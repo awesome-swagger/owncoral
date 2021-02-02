@@ -10,10 +10,6 @@ declare module '@emotion/react' {
       height: {
         navbar: number
       },
-      fonts: {
-        serif: string,
-        sans: string,
-      },
       fontSizes: {
         xxl: string,
         xl: string,

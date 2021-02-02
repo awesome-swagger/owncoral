@@ -88,7 +88,7 @@ const NavBar = (props: {}) => {
       </Styled.Nav>
 
       <Styled.Footer {...props}>
-        <Styled.Navitation>
+        <Styled.Navigation>
           {Object.entries(navLinks).map(([text, { url, image }]) => (
             <li>
               <Styled.StyledLink
@@ -104,7 +104,7 @@ const NavBar = (props: {}) => {
               </Styled.StyledLink>
             </li>
           ))}
-        </Styled.Navitation>
+        </Styled.Navigation>
       </Styled.Footer>
     </React.Fragment>
   );

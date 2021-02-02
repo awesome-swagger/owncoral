@@ -10,10 +10,6 @@ export const theme: Theme = {
     height: {
       navbar: 75
     },
-    fonts: {
-      serif: `'Merriweather', serif`,
-      sans: `'Open Sans', sans-serif`,
-    },
     fontSizes: {
       xxl: '2.5em', // 40px
       xl: '1.75em', // 28px

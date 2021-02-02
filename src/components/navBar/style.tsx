@@ -17,7 +17,7 @@ export const Nav = styled.nav`
   justify-content: flex-end;
 `;
 
-export const Navitation = styled.ul`
+export const Navigation = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -29,7 +29,7 @@ export const Navitation = styled.ul`
   justify-content: center;
 `;
 
-export const MenuNavitation = styled(Navitation)`
+export const MenuNavitation = styled(Navigation)`
   justify-content: flex-end;
   
   @media ${({ theme }) => theme.global.mediaQueries.md} {
