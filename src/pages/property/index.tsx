@@ -12,6 +12,8 @@ import PriceTable from "./PriceTable";
 import AboutProperty from "./AboutProperty";
 import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
@@ -81,17 +83,44 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                   </div>
                 </div>
               </div>
-
-              <img
-                css={css`
-                  object-fit: cover;
-                  object-position: center;
-                  width: 100%;
-                  height: 100%;
-                `}
-                src={propertyData.img}
-                alt={propertyData.address}
-              />
+              <Carousel>
+                <div>
+                  <img
+                    css={css`
+                      object-fit: cover;
+                      object-position: center;
+                      width: 100%;
+                      height: 100%;
+                    `}
+                    src={propertyData.img}
+                    alt={propertyData.address}
+                  />
+                </div>
+                <div>
+                  <img
+                    css={css`
+                      object-fit: cover;
+                      object-position: center;
+                      width: 100%;
+                      height: 100%;
+                    `}
+                    src={propertyData.img}
+                    alt={propertyData.address}
+                  />
+                </div>
+                <div>
+                  <img
+                    css={css`
+                      object-fit: cover;
+                      object-position: center;
+                      width: 100%;
+                      height: 100%;
+                    `}
+                    src={propertyData.img}
+                    alt={propertyData.address}
+                  />
+                </div>
+              </Carousel>
             </Card>
             <PriceTable />
             <AboutProperty />
