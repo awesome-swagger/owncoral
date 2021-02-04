@@ -4,6 +4,7 @@ import somerville from "../assets/565_somerville.jpg";
 
 const PortfolioData = [
   {
+    id: "0",
     address: "565 Somerville Ave",
     city: "Somerville, MA",
     img: somerville,
@@ -13,6 +14,7 @@ const PortfolioData = [
     distribution: 1384
   },
   {
+    id: "1",
     address: "17 East Milton Rd",
     city: "Brookline, MA",
     img: milton,
@@ -22,6 +24,7 @@ const PortfolioData = [
     distribution: 6193
   },
   {
+    id: "2",
     address: "2 Hingham St",
     city: "Cambridge, MA",
     img: hingham,

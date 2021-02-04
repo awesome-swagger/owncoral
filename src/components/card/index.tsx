@@ -9,8 +9,4 @@ const Card = (props: any) => {
   );
 };
 
-Card.defaultProps = {
-  hasLink: true
-};
-
 export default Card;

@@ -2,6 +2,11 @@
   "name": "@app/client-web",
   "version": "0.1.0",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "**/*"
+    ]
+  },
   "dependencies": {
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",

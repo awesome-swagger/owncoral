@@ -3,10 +3,6 @@ import '@emotion/react';
 declare module '@emotion/react' {
   export interface Theme {
     global: {
-      colors: {
-        black: string,
-        white: string,
-      },
       height: {
         navbar: number
       },

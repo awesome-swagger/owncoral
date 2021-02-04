@@ -3,10 +3,6 @@ import { Theme } from "@emotion/react";
 
 export const theme: Theme = {
   global: {
-    colors: {
-      black: '#222222',
-      white: '#ffffff',
-    },
     height: {
       navbar: 75
     },

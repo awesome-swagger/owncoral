@@ -4,9 +4,10 @@ import React from 'react';
 import { css, jsx, Global, ThemeProvider } from "@emotion/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { theme } from "./shared/theme";
-import NavBar from "./components/navBar";
-import { Content } from "./components/content";
-import Portfolio from "./components/portfolio";
+import Login from "./pages/login";
+import Portfolio from "./pages/portfolio";
+import Property from "./pages/property";
+
 import "./styles.css";
 
 const rootStyle = css`
@@ -50,18 +51,14 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Global styles={rootStyle} />
-        <NavBar />
+        
+        <Switch>
+          <Route exact path="/" component={Login} />
 
-        <Content>
-          <Switch>
-            <Route exact path="/portfolio">
-              <Portfolio />
-            </Route>
-            <Route exact path="/new-opportunities">
-              bar
-            </Route>
-          </Switch>
-        </Content>
+          <Route exact path="/portfolio" component={Portfolio} />
+
+          <Route exact path="/properties/:id" component={Property} />
+        </Switch>
         
       </Router>
     </ThemeProvider>

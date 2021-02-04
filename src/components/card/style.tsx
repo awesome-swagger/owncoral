@@ -23,8 +23,6 @@ export const Card = styled.div<CardProps>`
 	${(props) => 
 		props.hasLink &&
 		css`
-			cursor: pointer;
-
 			:hover {
 				box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
 				transform: scale(1.01);

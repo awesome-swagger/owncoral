@@ -60,8 +60,8 @@ const NavBar = (props: {}) => {
           />
         </Link>
         <Styled.MenuNavitation>
-          {Object.entries(navLinks).map(([text, { url, image }]) => (
-            <li>
+          {Object.entries(navLinks).map(([text, { url, image }], index) => (
+            <li key={index}>
               <Styled.StyledLink
                 key={text}
                 to={url}
@@ -89,8 +89,8 @@ const NavBar = (props: {}) => {
 
       <Styled.Footer {...props}>
         <Styled.Navigation>
-          {Object.entries(navLinks).map(([text, { url, image }]) => (
-            <li>
+          {Object.entries(navLinks).map(([text, { url, image }], index) => (
+            <li key={index}>
               <Styled.StyledLink
                 key={text}
                 to={url}

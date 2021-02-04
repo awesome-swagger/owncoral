@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import styled from '@emotion/styled'
-import Card from "../card";
+import Card from "../../components/card";
 
 export const TopBar = styled.div`
   background: linear-gradient(
