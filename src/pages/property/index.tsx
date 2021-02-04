@@ -1,14 +1,17 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { Fragment } from "react";
-import { RouteComponentProps } from 'react-router';
+import { RouteComponentProps } from "react-router";
 import { css, jsx } from "@emotion/react";
 import { MapPin } from "react-feather";
 import { RiPieChartLine } from "react-icons/ri";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
-import  PortfolioData  from "../../data_static/PortfolioData";
-import { TopBar } from './style';
+import PortfolioData from "../../data_static/PortfolioData";
 import { Nav, Content, Card } from "../../components";
+import PriceTable from "./PriceTable";
+import AboutProperty from "./AboutProperty";
+import RentDetail from "./RentDetail";
+import CoOwners from "./CoOwners";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
@@ -34,17 +37,20 @@ type PropertyProps = RouteComponentProps<PropertyParams>;
 const Property: React.FC<PropertyProps> = ({ match }) => {
   const id = match.params.id;
 
-  const propertyData = PortfolioData.find(property => property.id === id);
-  
+  const propertyData = PortfolioData.find((property) => property.id === id);
+
   return (
     <Fragment>
       <Nav />
       <Content>
-        <TopBar>
-          Property Details
-        </TopBar>
-        { propertyData &&
-          <div css={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+        {propertyData && (
+          <div
+            css={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-evenly",
+            }}
+          >
             <Card width={450} height={350} css={{ margin: "20px 0" }}>
               <div css={{ padding: "13px" }}>
                 <h2>{propertyData.address}</h2>
@@ -60,7 +66,10 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                   `}
                 >
                   <h2>
-                    ${roundFinancial(propertyData.mark + propertyData.distribution)}
+                    $
+                    {roundFinancial(
+                      propertyData.mark + propertyData.distribution
+                    )}
                   </h2>
                   <div css={{ color: "gray" }}>
                     <FaRegMoneyBillAlt />
@@ -70,7 +79,7 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                     <RiPieChartLine />
                     &nbsp;${roundFinancial(propertyData.mark)}
                   </div>
-                </div>              
+                </div>
               </div>
 
               <img
@@ -84,8 +93,12 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                 alt={propertyData.address}
               />
             </Card>
+            <PriceTable />
+            <AboutProperty />
+            <RentDetail />
+            <CoOwners />
           </div>
-        }
+        )}
       </Content>
     </Fragment>
   );
