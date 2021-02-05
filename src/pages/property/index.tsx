@@ -14,7 +14,7 @@ import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import CarouselImg from "./CarouselImg";
+import CarouselImg from "../../components/carousel";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
@@ -58,7 +58,7 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
             <Card
               css={css`
                 margin: 20px 0;
-                widht: 100%;
+                width: 100%;
                 max-width: 750px;
                 min-width: 450px;
                 height: 55vw;

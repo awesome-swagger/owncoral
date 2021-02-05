@@ -1,12 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from 'react';
+import React from "react";
 import { css, jsx, Global, ThemeProvider } from "@emotion/react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { theme } from "./shared/theme";
 import Login from "./pages/login";
 import Portfolio from "./pages/portfolio";
 import Property from "./pages/property";
+import Opportunity from "./pages/opportunity";
 
 import "./styles.css";
 
@@ -51,15 +52,15 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Global styles={rootStyle} />
-        
+
         <Switch>
           <Route exact path="/" component={Login} />
 
           <Route exact path="/portfolio" component={Portfolio} />
 
           <Route exact path="/properties/:id" component={Property} />
+          <Route exact pateh="/new-opportunities" component={Opportunity} />
         </Switch>
-        
       </Router>
     </ThemeProvider>
   );
