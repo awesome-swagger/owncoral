@@ -3,29 +3,13 @@
 import React from "react";
 import { jsx, css } from "@emotion/react";
 import { Card } from "../../components";
-import { RentItem } from "./style";
+import { RentItem, CardWrapper } from "./style";
 
 const RentDetail: React.FC = () => {
   return (
-    <div
-      css={css`
-        width: 100%;
-        min-width: 450px;
-        max-width: 750px;
-      `}
-    >
-      <h1
-        css={css`
-          text-align: center;
-        `}
-      >
-        Rent Detail
-      </h1>
-      <Card
-        css={css`
-          margin: 20px 0;
-        `}
-      >
+    <CardWrapper>
+      <h1> Rent Detail </h1>
+      <Card>
         <div
           css={css`
             padding: 13px;
@@ -39,11 +23,11 @@ const RentDetail: React.FC = () => {
           >
             <h2>Total Rent</h2> <h2>$21k/mo </h2>
           </div>
-          <RentItem extraSpace={true}>
+          <RentItem extraSpace>
             <h2>1 bedroom</h2>
             <h2>$15k x 6</h2>
           </RentItem>
-          <RentItem extraSpace={true}>
+          <RentItem extraSpace>
             <h2>2 bedroom</h2>
             <h2>$15k x 6</h2>
           </RentItem>
@@ -59,7 +43,7 @@ const RentDetail: React.FC = () => {
           </RentItem>
         </div>
       </Card>
-    </div>
+    </CardWrapper>
   );
 };
 export default RentDetail;

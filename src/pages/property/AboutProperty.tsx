@@ -3,28 +3,13 @@
 import React from "react";
 import { jsx, css } from "@emotion/react";
 import { Card } from "../../components";
+import { CardWrapper } from "./style";
 
 const AboutProperty: React.FC = () => {
   return (
-    <div
-      css={css`
-        width: 100%;
-        min-width: 450px;
-        max-width: 750px;
-      `}
-    >
-      <h1
-        css={css`
-          text-align: center;
-        `}
-      >
-        About
-      </h1>
-      <Card
-        css={css`
-          margin: 20px 0;
-        `}
-      >
+    <CardWrapper>
+      <h1> About </h1>
+      <Card>
         <div
           css={css`
             display: flex;
@@ -53,7 +38,7 @@ const AboutProperty: React.FC = () => {
           </div>
         </div>
       </Card>
-    </div>
+    </CardWrapper>
   );
 };
 export default AboutProperty;

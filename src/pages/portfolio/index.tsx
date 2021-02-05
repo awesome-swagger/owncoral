@@ -58,11 +58,10 @@ const Portfolio = () => {
               `}
             >
               <div css={{ flexGrow: 1 }}>Total Value</div>
-              <div css={{ flexGrow: 1, textAlign: "right" }}>
-                ${" "}
-                {roundFinancial(
-                  sum(PortfolioData.map((p) => p.mark + p.distribution))
-                )}
+              <div css={{ flexGrow: 1, textAlign: "right" }}>                
+                {`$ ${
+                  roundFinancial(sum(PortfolioData.map((p) => p.mark + p.distribution)))
+                }`}
               </div>
             </div>
           </div>
@@ -158,12 +157,14 @@ const Portfolio = () => {
                       )}
                     </h2>
                     <div css={{ color: "gray" }}>
-                      <FaRegMoneyBillAlt />
-                      &nbsp;$
-                      {roundFinancial(propertyData.distribution)}
-                      &nbsp;&nbsp;
-                      <RiPieChartLine />
-                      &nbsp;${roundFinancial(propertyData.mark)}
+                      <span>
+                        <FaRegMoneyBillAlt css={css`margin-right: 0.25em`} />
+                        ${roundFinancial(propertyData.distribution)}
+                      </span>
+                      <span css={css`margin-left: 0.5em`}>
+                        <RiPieChartLine css={css`margin-right: 0.25em`} />
+                        ${roundFinancial(propertyData.mark)}
+                      </span>
                     </div>
                   </div>
                 </div>

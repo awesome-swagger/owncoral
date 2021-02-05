@@ -30,24 +30,47 @@ export const TotalCard = styled(Card)`
   line-height: 200%;
 `;
 
-type PriceItemProps = {
-  extraSpace?: boolean;
-};
+export const CardWrapper = styled.div`
+  width: 100%;
+  min-width: 450px;
+  max-width: 750px;
 
-export const PriceItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-  padding-left: ${(props: PriceItemProps) =>
-    props.extraSpace ? "25px" : "0px"};
+  h1 {
+    text-align: center;
+  }
+
+  > div {
+    margin: 20px 0;
+  }
 `;
+
 type RentItemProps = {
   extraSpace?: boolean;
 };
-
 export const RentItem = styled.div`
   display: flex;
   justify-content: space-between;
   margin: ${(props: RentItemProps) => (props.extraSpace ? "5px 0" : "0")};
   paddingleft: ${(props: RentItemProps) => (props.extraSpace ? "25px" : "0")};
+`;
+
+export const PriceItem = styled(RentItem)`
+  margin: 5px 0;
+`;
+
+export const AvatarImg = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+
+  & ~ h2 {
+    text-align: center;
+  }
+`;
+
+export const CarouselImg = styled.img`
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
 `;

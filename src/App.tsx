@@ -51,7 +51,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Global styles={rootStyle} />
-        
         <Switch>
           <Route exact path="/" component={Login} />
 
@@ -59,7 +58,6 @@ const App = () => {
 
           <Route exact path="/properties/:id" component={Property} />
         </Switch>
-        
       </Router>
     </ThemeProvider>
   );

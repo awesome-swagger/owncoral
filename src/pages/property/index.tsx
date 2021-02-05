@@ -3,18 +3,19 @@
 import React, { Fragment } from "react";
 import { RouteComponentProps } from "react-router";
 import { css, jsx } from "@emotion/react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MapPin } from "react-feather";
 import { RiPieChartLine } from "react-icons/ri";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
-import PortfolioData from "../../data_static/PortfolioData";
 import { Nav, Content, Card } from "../../components";
 import PriceTable from "./PriceTable";
 import AboutProperty from "./AboutProperty";
 import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import CarouselImg from "./CarouselImg";
+import { CarouselImg } from './style';
+
+import PortfolioData from "../../data_static/PortfolioData";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
@@ -59,11 +60,11 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
               css={css`
                 margin: 20px 0;
                 widht: 100%;
-                max-width: 750px;
-                min-width: 450px;
                 height: 55vw;
-                max-height: 575px;
+                min-width: 450px;
+                max-width: 750px;
                 min-height: 350px;
+                max-height: 575px;
               `}
             >
               <div css={{ padding: "13px" }}>
@@ -86,28 +87,36 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                     )}
                   </h2>
                   <div css={{ color: "gray" }}>
-                    <FaRegMoneyBillAlt />
-                    &nbsp;$
-                    {roundFinancial(propertyData.distribution)}
-                    &nbsp;&nbsp;
-                    <RiPieChartLine />
-                    &nbsp;${roundFinancial(propertyData.mark)}
+                    <span>
+                      <FaRegMoneyBillAlt css={css`margin-right: 0.25em`} />
+                      ${roundFinancial(propertyData.distribution)}
+                    </span>
+                    <span css={css`margin-left: 0.5em`}>
+                      <RiPieChartLine css={css`margin-right: 0.25em`} />
+                      ${roundFinancial(propertyData.mark)}
+                    </span>
                   </div>
                 </div>
               </div>
               <Carousel>
-                <CarouselImg
-                  img={propertyData.img[0]}
-                  alt={propertyData.address}
-                />
-                <CarouselImg
-                  img={propertyData.img[1]}
-                  alt={propertyData.address}
-                />
-                <CarouselImg
-                  img={propertyData.img[2]}
-                  alt={propertyData.address}
-                />
+                <div>
+                  <CarouselImg
+                    src={propertyData.img[0]}
+                    alt={propertyData.address}
+                  />
+                </div>
+                <div>
+                  <CarouselImg
+                    src={propertyData.img[1]}
+                    alt={propertyData.address}
+                  />
+                </div>
+                <div>
+                  <CarouselImg
+                    src={propertyData.img[2]}
+                    alt={propertyData.address}
+                  />
+                </div>
               </Carousel>
             </Card>
             <PriceTable />
