@@ -12,6 +12,8 @@ const OpportunityData = [
     contribution: 20000,
     mark: 21283,
     distribution: 1384,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     id: "1",
@@ -22,6 +24,8 @@ const OpportunityData = [
     contribution: 120000,
     mark: 131000,
     distribution: 6193,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     id: "2",
@@ -32,6 +36,8 @@ const OpportunityData = [
     contribution: 60000,
     mark: 60500,
     distribution: 0,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
 

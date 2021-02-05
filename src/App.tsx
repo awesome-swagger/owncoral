@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Portfolio from "./pages/portfolio";
 import Property from "./pages/property";
 import Opportunity from "./pages/opportunity";
+import OpportunityDetail from "./pages/opportunity-detail";
 
 import "./styles.css";
 
@@ -52,14 +53,20 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Global styles={rootStyle} />
-
         <Switch>
           <Route exact path="/" component={Login} />
 
           <Route exact path="/portfolio" component={Portfolio} />
 
           <Route exact path="/properties/:id" component={Property} />
-          <Route exact pateh="/new-opportunities" component={Opportunity} />
+
+          <Route exact path="/new-opportunities" component={Opportunity} />
+
+          <Route
+            exact
+            path="/new-opportunities/:id"
+            component={OpportunityDetail}
+          />
         </Switch>
       </Router>
     </ThemeProvider>

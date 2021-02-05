@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import Card from "../../components/card";
 
 export const TopBar = styled.div`
