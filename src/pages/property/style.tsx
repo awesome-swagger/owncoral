@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import Card from "../../components/card";
 
 export const TopBar = styled.div`
@@ -28,4 +28,26 @@ export const TotalCard = styled(Card)`
   margin-right: calc(50vw - 200px);
   font-size: 120%;
   line-height: 200%;
+`;
+
+type PriceItemProps = {
+  extraSpace?: boolean;
+};
+
+export const PriceItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding-left: ${(props: PriceItemProps) =>
+    props.extraSpace ? "25px" : "0px"};
+`;
+type RentItemProps = {
+  extraSpace?: boolean;
+};
+
+export const RentItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: ${(props: RentItemProps) => (props.extraSpace ? "5px 0" : "0")};
+  paddingleft: ${(props: RentItemProps) => (props.extraSpace ? "25px" : "0")};
 `;

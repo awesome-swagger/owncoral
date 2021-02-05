@@ -3,25 +3,15 @@
 import React from "react";
 import { jsx, css } from "@emotion/react";
 import { Card } from "../../components";
-import styled from "@emotion/styled";
-
-type RentItemProps = {
-  extraSpace?: boolean;
-};
-
-const RentItem = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: ${(props: RentItemProps) => (props.extraSpace ? "5px 0" : "0")};
-  paddingleft: ${(props: RentItemProps) => (props.extraSpace ? "25px" : "0")};
-`;
+import { RentItem } from "./style";
 
 const RentDetail: React.FC = () => {
   return (
     <div
       css={css`
         width: 100%;
-        max-width: 450px;
+        min-width: 450px;
+        max-width: 750px;
       `}
     >
       <h1

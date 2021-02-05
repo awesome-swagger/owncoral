@@ -14,6 +14,7 @@ import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import CarouselImg from "./CarouselImg";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
@@ -50,10 +51,21 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
             css={{
               display: "flex",
               flexWrap: "wrap",
-              justifyContent: "space-evenly",
+              alignContent: "space-evenly",
+              flexDirection: "column",
             }}
           >
-            <Card width={450} height={350} css={{ margin: "20px 0" }}>
+            <Card
+              css={css`
+                margin: 20px 0;
+                widht: 100%;
+                max-width: 750px;
+                min-width: 450px;
+                height: 55vw;
+                max-height: 575px;
+                min-height: 350px;
+              `}
+            >
               <div css={{ padding: "13px" }}>
                 <h2>{propertyData.address}</h2>
                 <h4 css={{ color: "gray" }}>
@@ -84,42 +96,18 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                 </div>
               </div>
               <Carousel>
-                <div>
-                  <img
-                    css={css`
-                      object-fit: cover;
-                      object-position: center;
-                      width: 100%;
-                      height: 100%;
-                    `}
-                    src={propertyData.img}
-                    alt={propertyData.address}
-                  />
-                </div>
-                <div>
-                  <img
-                    css={css`
-                      object-fit: cover;
-                      object-position: center;
-                      width: 100%;
-                      height: 100%;
-                    `}
-                    src={propertyData.img}
-                    alt={propertyData.address}
-                  />
-                </div>
-                <div>
-                  <img
-                    css={css`
-                      object-fit: cover;
-                      object-position: center;
-                      width: 100%;
-                      height: 100%;
-                    `}
-                    src={propertyData.img}
-                    alt={propertyData.address}
-                  />
-                </div>
+                <CarouselImg
+                  img={propertyData.img[0]}
+                  alt={propertyData.address}
+                />
+                <CarouselImg
+                  img={propertyData.img[1]}
+                  alt={propertyData.address}
+                />
+                <CarouselImg
+                  img={propertyData.img[2]}
+                  alt={propertyData.address}
+                />
               </Carousel>
             </Card>
             <PriceTable />

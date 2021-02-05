@@ -9,7 +9,8 @@ const AboutProperty: React.FC = () => {
     <div
       css={css`
         width: 100%;
-        max-width: 450px;
+        min-width: 450px;
+        max-width: 750px;
       `}
     >
       <h1

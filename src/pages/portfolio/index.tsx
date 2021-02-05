@@ -7,7 +7,7 @@ import { MapPin } from "react-feather";
 import { RiPieChartLine } from "react-icons/ri";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import PortfolioData from "../../data_static/PortfolioData";
-import { TopBar, TotalCard } from './style';
+import { TopBar, TotalCard } from "./style";
 import Nav from "../../components/navBar";
 import { Content } from "../../components/content";
 import Card from "../../components/card";
@@ -59,7 +59,10 @@ const Portfolio = () => {
             >
               <div css={{ flexGrow: 1 }}>Total Value</div>
               <div css={{ flexGrow: 1, textAlign: "right" }}>
-                $ { roundFinancial(sum(PortfolioData.map((p) => p.mark + p.distribution))) }
+                ${" "}
+                {roundFinancial(
+                  sum(PortfolioData.map((p) => p.mark + p.distribution))
+                )}
               </div>
             </div>
           </div>
@@ -121,9 +124,19 @@ const Portfolio = () => {
           </div>
         </TotalCard>
 
-        <div css={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
+        <div
+          css={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-evenly",
+          }}
+        >
           {PortfolioData.map((propertyData, index) => (
-            <Link to={`/properties/${propertyData.id}`} key={index} css={{ textDecoration: 'none' }}>
+            <Link
+              to={`/properties/${propertyData.id}`}
+              key={index}
+              css={{ textDecoration: "none" }}
+            >
               <Card width={450} height={350} css={{ margin: "20px 0" }} hasLink>
                 <div css={{ padding: "13px" }}>
                   <h2>{propertyData.address}</h2>
@@ -139,7 +152,10 @@ const Portfolio = () => {
                     `}
                   >
                     <h2>
-                      ${roundFinancial(propertyData.mark + propertyData.distribution)}
+                      $
+                      {roundFinancial(
+                        propertyData.mark + propertyData.distribution
+                      )}
                     </h2>
                     <div css={{ color: "gray" }}>
                       <FaRegMoneyBillAlt />
@@ -149,7 +165,7 @@ const Portfolio = () => {
                       <RiPieChartLine />
                       &nbsp;${roundFinancial(propertyData.mark)}
                     </div>
-                  </div>              
+                  </div>
                 </div>
 
                 <img
@@ -159,7 +175,7 @@ const Portfolio = () => {
                     width: 100%;
                     height: 100%;
                   `}
-                  src={propertyData.img}
+                  src={propertyData.img[0]}
                   alt={propertyData.address}
                 />
               </Card>
