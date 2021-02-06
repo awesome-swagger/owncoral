@@ -110,25 +110,12 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                   </div>
                 </div>
               </div>
-              <Carousel>
-                <div>
-                  <CarouselImg
-                    src={propertyData.img[0]}
-                    alt={propertyData.address}
-                  />
-                </div>
-                <div>
-                  <CarouselImg
-                    src={propertyData.img[1]}
-                    alt={propertyData.address}
-                  />
-                </div>
-                <div>
-                  <CarouselImg
-                    src={propertyData.img[2]}
-                    alt={propertyData.address}
-                  />
-                </div>
+              <Carousel showThumbs={false}>
+                {propertyData.img.map((item, index) => (
+                  <div>
+                    <CarouselImg src={item} alt={item} key={index} />
+                  </div>
+                ))}
               </Carousel>
             </Card>
             <div

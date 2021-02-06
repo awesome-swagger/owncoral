@@ -11,5 +11,6 @@ const PrimaryBtn = styled.button`
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  cursor: pointer;
 `;
 export default PrimaryBtn;

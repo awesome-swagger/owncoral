@@ -9,6 +9,7 @@ import Portfolio from "./pages/portfolio";
 import Property from "./pages/property";
 import Opportunity from "./pages/opportunity";
 import OpportunityDetail from "./pages/opportunity-detail";
+import Docs from "./pages/docs";
 
 import "./styles.css";
 
@@ -61,6 +62,8 @@ const App = () => {
           <Route exact path="/properties/:id" component={Property} />
 
           <Route exact path="/new-opportunities" component={Opportunity} />
+
+          <Route exact path="/documents" component={Docs} />
 
           <Route
             exact
