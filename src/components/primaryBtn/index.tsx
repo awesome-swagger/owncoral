@@ -6,7 +6,7 @@ const PrimaryBtn = styled.button`
   height: 40px;
   width: 100px;
   margin: 5px;
-  background-color: #067afb;
+  background-color: #52b650;
   color: #fff;
   border: none;
   border-radius: 4px;
