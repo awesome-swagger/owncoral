@@ -1,7 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { Fragment } from "react";
-import { RouteComponentProps } from "react-router";
 import { Link } from "react-router-dom";
 import { css, jsx } from "@emotion/react";
 import { Nav, Content, Card } from "../../components";
@@ -12,12 +11,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import OpportunityData from "../../data_static/OpportunityData";
 import { MapPin } from "react-feather";
 
-type OpportunityParams = {
-  id: string;
-};
-type OpportunityProps = RouteComponentProps<OpportunityParams>;
-
-const Opportunity: React.FC<OpportunityProps> = ({ match }) => {
+const Opportunity = () => {
   return (
     <Fragment>
       <Nav />

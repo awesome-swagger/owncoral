@@ -1,11 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React from "react";
+import { css, jsx } from "@emotion/react";
 import { Card } from "../../components";
 import OpportunityData from "../../data_static/OpportunityData";
-import { css, jsx } from "@emotion/react";
 
-const Bottom = ({ id }) => {
+type OpportunityProps = {
+  id: string;
+};
+const Bottom: React.FC<OpportunityProps> = ({ id }) => {
   return (
     <div
       css={css`
@@ -33,7 +36,7 @@ const Bottom = ({ id }) => {
           <h2>{OpportunityData[id].description}</h2>
         </Card>
         <Card>
-          {OpportunityData[id].img.map((item, index) => (
+          {OpportunityData[id].img.map((item: string, index: number) => (
             <img
               css={css`
                 width: 100%;

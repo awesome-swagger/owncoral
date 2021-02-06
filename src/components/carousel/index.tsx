@@ -2,8 +2,11 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx, css } from "@emotion/react";
-
-const CarouselImg = ({ img, alt }) => {
+interface Props {
+  img: string,
+  alt: string
+}
+const CarouselImg: React.FC<Props> = ({ img, alt }) => {
   return (
     <div>
       <img

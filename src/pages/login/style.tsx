@@ -64,6 +64,7 @@ export const LoginBtn = styled.div`
   width: 80%;
 
   input {
+    cursor: pointer;
     background-color: rgb(70, 170, 60);
     color: white;
     padding: 15px;
@@ -72,5 +73,6 @@ export const LoginBtn = styled.div`
     height: 100%;
     border: 0;
     font-size: 120%;
+    outline: none;
   }
 `;

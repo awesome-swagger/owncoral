@@ -13,8 +13,8 @@ import PriceTable from "./PriceTable";
 import AboutProperty from "./AboutProperty";
 import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { CarouselImg } from "./style";
+import { CarouselImg } from './style';
+
 import PortfolioData from "../../data_static/PortfolioData";
 
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];

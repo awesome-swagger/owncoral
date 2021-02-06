@@ -1,18 +1,30 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { Fragment } from "react";
-import { Nav, Content, Card, PrimaryBtn } from "../../components";
-import OpportunityData from "../../data_static/OpportunityData";
 import { css, jsx } from "@emotion/react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import CarouselImg from "../../components/carousel";
+import { RouteComponentProps } from "react-router";
 import { Carousel } from "react-responsive-carousel";
-import Chart from "../../components/chart";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import {
+  Nav,
+  Content,
+  Card,
+  PrimaryBtn,
+  Chart,
+  CarouselImg
+} from "../../components";
 import Bottom from "./Bottom";
 
-const OpportunityDetail = ({ match }) => {
+import OpportunityData from "../../data_static/OpportunityData";
+
+type OpportunityParams = {
+  id: string;
+};
+type OpportunityProps = RouteComponentProps<OpportunityParams>;
+
+const OpportunityDetail: React.FC<OpportunityProps> = ({ match }) => {
   const id = match.params.id;
-  console.log(OpportunityData[id].img);
   return (
     <Fragment>
       <Nav />
@@ -77,7 +89,7 @@ const OpportunityDetail = ({ match }) => {
               `}
             >
               <Carousel showThumbs={false}>
-                {OpportunityData[id].img.map((item, index) => (
+                {OpportunityData[id].img.map((item: string, index: number) => (
                   <CarouselImg img={item} alt={item} key={index} />
                 ))}
               </Carousel>

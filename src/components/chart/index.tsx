@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { PureComponent } from "react";
+import React, { useState } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 
 const data = [
@@ -82,33 +82,29 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default class Chart extends PureComponent {
-  state = {
-    activeIndex: 0,
+const Chart = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const onPieEnter = (data, index) => {
+    setActiveIndex(index);
   };
 
-  onPieEnter = (data, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
-
-  render() {
-    return (
-      <PieChart width={400} height={400}>
-        <Pie
-          activeIndex={this.state.activeIndex}
-          activeShape={renderActiveShape}
-          data={data}
-          cx={200}
-          cy={200}
-          innerRadius={60}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-          onMouseEnter={this.onPieEnter}
-        />
-      </PieChart>
-    );
-  }
+  return (
+    <PieChart width={400} height={400}>
+      <Pie
+        activeIndex={activeIndex}
+        activeShape={renderActiveShape}
+        data={data}
+        cx={200}
+        cy={200}
+        innerRadius={60}
+        outerRadius={80}
+        fill="#8884d8"
+        dataKey="value"
+        onMouseEnter={onPieEnter}
+      />
+    </PieChart>
+  );
 }
+
+export default Chart;
