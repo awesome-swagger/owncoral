@@ -6,6 +6,12 @@ import { Card } from "../../components";
 import { CardWrapper, AvatarImg } from "./style";
 
 const CoOwners: React.FC = () => {
+  const coOwners = [
+    {name: "Ben", avatar: "profile-icon-male-avatar-portrait-casual-person-vector-id530830041"},
+    {name: "Jenny", avatar: "profile-icon-male-avatar-portrait-casual-person-vector-id530830041"},
+    {name: "Sophie", avatar: "profile-icon-male-avatar-portrait-casual-person-vector-id530830041"}
+  ];
+
   return (
     <CardWrapper>
       <h1> Co-owners </h1>
@@ -17,27 +23,15 @@ const CoOwners: React.FC = () => {
             padding: 25px 0;
           `}
         >
-          <div>
-            <AvatarImg
-              alt="avatar"
-              src="https://media.gettyimages.com/vectors/profile-icon-male-avatar-portrait-casual-person-vector-id530830041"
-            />
-            <h2>Ben</h2>
-          </div>
-          <div>
-            <AvatarImg
-              alt="avatar"
-              src="https://media.gettyimages.com/vectors/profile-icon-male-avatar-portrait-casual-person-vector-id530830041"
-            />
-            <h2>Jenny</h2>
-          </div>
-          <div>
-            <AvatarImg
-              alt="avatar"
-              src="https://media.gettyimages.com/vectors/profile-icon-male-avatar-portrait-casual-person-vector-id530830041"
-            />
-            <h2>Sophie</h2>
-          </div>
+          {coOwners.map((owner:any, index:number) => (
+            <div key={index}>
+              <AvatarImg
+                alt="avatar"
+                src={`https://media.gettyimages.com/vectors/${owner.avatar}`}
+              />
+              <h2>{ owner.name }</h2>
+            </div>
+          ))}
         </div>
       </Card>
     </CardWrapper>

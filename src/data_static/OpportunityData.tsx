@@ -2,6 +2,7 @@ import milton from "../assets/17_e_milton.jpg";
 import hingham from "../assets/2_hingham.jpg";
 import somerville from "../assets/565_somerville.jpg";
 
+// editorconfig-checker-disable-line
 const OpportunityData = [
   {
     id: "0",
@@ -13,7 +14,11 @@ const OpportunityData = [
     mark: 21283,
     distribution: 1384,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    // eslint-disable-next-line
+      "Lorem ipsum dolor sit amet, \
+      consectetur adipiscing elit, \
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     id: "1",
@@ -25,7 +30,11 @@ const OpportunityData = [
     mark: 131000,
     distribution: 6193,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    // eslint-disable-next-line
+      "Lorem ipsum dolor sit amet, \
+      consectetur adipiscing elit, \
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
   {
     id: "2",
@@ -37,7 +46,11 @@ const OpportunityData = [
     mark: 60500,
     distribution: 0,
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    // eslint-disable-next-line
+      "Lorem ipsum dolor sit amet, \
+      consectetur adipiscing elit, \
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. \
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   },
 ];
 
