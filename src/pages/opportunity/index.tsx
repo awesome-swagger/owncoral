@@ -3,13 +3,13 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { css, jsx } from "@emotion/react";
-import { Nav, Content, Card } from "../../components";
-import { TopBar } from "./style";
+import { Nav, Content } from "../../components";
 import { Carousel } from "react-responsive-carousel";
 import CarouselImg from "../../components/carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import OpportunityData from "../../data_static/OpportunityData";
 import { MapPin } from "react-feather";
+import { Container, RightBox, Box, CarouselBox, TopBar } from "./style";
 
 const Opportunity = () => {
   return (
@@ -19,54 +19,29 @@ const Opportunity = () => {
         <TopBar>
           <h3>Opportunity</h3>
         </TopBar>
-        <div
-          css={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-          }}
-        >
+        <Box>
           {OpportunityData.map((item, index) => (
             <Link
               to={`/new-opportunities/${item.id}`}
               key={index}
               css={{ textDecoration: "none" }}
             >
-              <Card
-                css={css`
-                  width: 100%;
-                  max-width: 450px;
-                  margin: 20px 0;
-                `}
-                hasLink
-              >
+              <Container hasLink>
                 <div css={{ padding: "13px" }}>
                   <h2>{item.address}</h2>
                   <h4 css={{ color: "gray" }}>
                     <MapPin size={14} /> {item.city}
                   </h4>
-                  <div
-                    css={css`
-                      position: absolute;
-                      text-align: right;
-                      right: 20px;
-                      top: 13px;
-                    `}
-                  >
+                  <RightBox>
                     <h2>X units, Y beds</h2>
                     <h3>90% Funded</h3>
-                  </div>
+                  </RightBox>
                 </div>
                 <Carousel showThumbs={false}>
                   {item.img.map((x, i) => (
-                    <div
-                      css={css`
-                        height: 65vw;
-                        max-height: 325px;
-                      `}
-                    >
+                    <CarouselBox>
                       <CarouselImg key={i} img={x} alt="img" />
-                    </div>
+                    </CarouselBox>
                   ))}
                 </Carousel>
                 <p
@@ -77,10 +52,10 @@ const Opportunity = () => {
                 >
                   {item.description}
                 </p>
-              </Card>
+              </Container>
             </Link>
           ))}
-        </div>
+        </Box>
       </Content>
     </Fragment>
   );

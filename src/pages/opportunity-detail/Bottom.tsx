@@ -4,18 +4,14 @@ import React from "react";
 import { css, jsx } from "@emotion/react";
 import { Card } from "../../components";
 import OpportunityData from "../../data_static/OpportunityData";
+import { LargeBox } from "./style";
 
 type OpportunityProps = {
   id: string;
 };
 const Bottom: React.FC<OpportunityProps> = ({ id }) => {
   return (
-    <div
-      css={css`
-        max-width: 1250px;
-        margin: 50px auto 0px auto;
-      `}
-    >
+    <LargeBox>
       <h1
         css={css`
           text-align: center;
@@ -30,7 +26,7 @@ const Bottom: React.FC<OpportunityProps> = ({ id }) => {
       >
         <Card
           css={css`
-            padding: 15px;
+            padding: 13px;
           `}
         >
           <h2>{OpportunityData[id].description}</h2>
@@ -48,7 +44,7 @@ const Bottom: React.FC<OpportunityProps> = ({ id }) => {
           ))}
         </Card>
       </div>
-    </div>
+    </LargeBox>
   );
 };
 

@@ -5,14 +5,15 @@ import { css, jsx } from "@emotion/react";
 import { RouteComponentProps } from "react-router";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Container, Box, SmallBox, BoxY } from "./style";
 
 import {
   Nav,
   Content,
-  Card,
   PrimaryBtn,
   Chart,
-  CarouselImg
+  CarouselImg,
+  Location,
 } from "../../components";
 import Bottom from "./Bottom";
 
@@ -29,35 +30,17 @@ const OpportunityDetail: React.FC<OpportunityProps> = ({ match }) => {
     <Fragment>
       <Nav />
       <Content>
-        <Card
-          css={css`
-            max-width: 1250px;
-            margin: 10px auto;
-          `}
-        >
-          <div
-            css={css`
-              padding: 15px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-            `}
-          >
+        <Container>
+          <Box>
             <h2>{OpportunityData[id].address}</h2>
-            <div
-              css={css`
-                display: flex;
-                flex-direction: column;
-              `}
-            >
+            <BoxY>
               <PrimaryBtn>Invest</PrimaryBtn>
               <PrimaryBtn>Deal Docs</PrimaryBtn>
-            </div>
-          </div>
+            </BoxY>
+          </Box>
           <div
             css={css`
               display: flex;
-              flex-wrap: wrap;
             `}
           >
             <div
@@ -65,23 +48,19 @@ const OpportunityDetail: React.FC<OpportunityProps> = ({ match }) => {
                 width: 30%;
               `}
             >
-              <div
-                css={css`
-                  background-color: #f1f3f1;
-                  width: 100%;
-                  height: 50%;
-                `}
-              ></div>
-              <div
-                css={css`
-                  height: 50%;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                `}
-              >
+              <SmallBox>
+                <Location
+                  center={{
+                    lat: 59.95,
+                    lng: 30.33,
+                  }}
+                  zoom={11}
+                />
+              </SmallBox>
+
+              <SmallBox>
                 <Chart />
-              </div>
+              </SmallBox>
             </div>
             <div
               css={css`
@@ -95,7 +74,7 @@ const OpportunityDetail: React.FC<OpportunityProps> = ({ match }) => {
               </Carousel>
             </div>
           </div>
-        </Card>
+        </Container>
         <Bottom id={id} />
       </Content>
     </Fragment>

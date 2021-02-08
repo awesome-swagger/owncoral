@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { Fragment } from "react";
-import { css, jsx } from "@emotion/react";
-import { Nav, Content, Card } from "../../components";
-import { TopBar } from "../opportunity/style";
+import { jsx } from "@emotion/react";
+import { Nav, Content } from "../../components";
+import { Container, TopBar } from "./style";
 
 const Docs = () => {
   return (
@@ -11,19 +11,12 @@ const Docs = () => {
       <Nav />
       <Content>
         <TopBar>Documents</TopBar>
-        <Card
-          css={css`
-            padding: 15px;
-            margin: 10px auto;
-            max-width: 750px;
-            text-align: center;
-          `}
-        >
+        <Container>
           <h2>Balance Sheet</h2>
           <h2>Income Sheet</h2>
           <h2>Closing Documents</h2>
           <h2>Tax Documents</h2>
-        </Card>
+        </Container>
       </Content>
     </Fragment>
   );

@@ -7,7 +7,7 @@ import { MapPin } from "react-feather";
 import { RiPieChartLine } from "react-icons/ri";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import PortfolioData from "../../data_static/PortfolioData";
-import { TopBar, TotalCard } from "./style";
+import { TopBar, TotalCard, Box, BoxRight, Wrapper } from "./style";
 import Nav from "../../components/navBar";
 import { Content } from "../../components/content";
 import Card from "../../components/card";
@@ -42,42 +42,23 @@ const Portfolio = () => {
         </TopBar>
 
         <TotalCard>
-          <div
-            css={css`
-              font-weight: bold;
-              border-bottom: 1px solid lightgray;
-              padding: 8px 20px;
-              font-size: 120%;
-            `}
-          >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-evenly;
-                width: 100%;
-              `}
-            >
+          <Wrapper>
+            <Box>
               <div css={{ flexGrow: 1 }}>Total Value</div>
-              <div css={{ flexGrow: 1, textAlign: "right" }}>                
-                {`$ ${
-                  roundFinancial(sum(PortfolioData.map((p) => p.mark + p.distribution)))
-                }`}
+              <div css={{ flexGrow: 1, textAlign: "right" }}>
+                {`$ ${roundFinancial(
+                  sum(PortfolioData.map((p) => p.mark + p.distribution))
+                )}`}
               </div>
-            </div>
-          </div>
+            </Box>
+          </Wrapper>
           <div
             css={css`
               border-bottom: 2px solid lightgray;
               padding: 8px 20px;
             `}
           >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-evenly;
-                width: 100%;
-              `}
-            >
+            <Box>
               <div css={{ flexGrow: 1, textIndent: "1em" }}>
                 <RiPieChartLine />
                 &nbsp;Current Equity
@@ -85,21 +66,15 @@ const Portfolio = () => {
               <div css={{ flexGrow: 1, textAlign: "right" }}>
                 ${roundFinancial(sum(PortfolioData.map((p) => p.mark)))}
               </div>
-            </div>
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-evenly;
-                width: 100%;
-              `}
-            >
+            </Box>
+            <Box>
               <div css={{ flexGrow: 1, textIndent: "1em" }}>
                 <FaRegMoneyBillAlt /> Prior Distributions
               </div>
               <div css={{ flexGrow: 1, textAlign: "right" }}>
                 ${roundFinancial(sum(PortfolioData.map((p) => p.distribution)))}
               </div>
-            </div>
+            </Box>
           </div>
 
           <div
@@ -108,28 +83,16 @@ const Portfolio = () => {
               padding: 8px 20px;
             `}
           >
-            <div
-              css={css`
-                display: flex;
-                justify-content: space-evenly;
-                width: 100%;
-              `}
-            >
+            <Box>
               <div css={{ flexGrow: 1 }}>Initial Investment</div>
               <div css={{ flexGrow: 1, textAlign: "right" }}>
                 ${roundFinancial(sum(PortfolioData.map((p) => p.contribution)))}
               </div>
-            </div>
+            </Box>
           </div>
         </TotalCard>
 
-        <div
-          css={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-          }}
-        >
+        <Box>
           {PortfolioData.map((propertyData, index) => (
             <Link
               to={`/properties/${propertyData.id}`}
@@ -142,14 +105,7 @@ const Portfolio = () => {
                   <h4 css={{ color: "gray" }}>
                     <MapPin size={14} /> {propertyData.city}
                   </h4>
-                  <div
-                    css={css`
-                      position: absolute;
-                      text-align: right;
-                      right: 20px;
-                      top: 13px;
-                    `}
-                  >
+                  <BoxRight>
                     <h2>
                       $
                       {roundFinancial(
@@ -158,15 +114,27 @@ const Portfolio = () => {
                     </h2>
                     <div css={{ color: "gray" }}>
                       <span>
-                        <FaRegMoneyBillAlt css={css`margin-right: 0.25em`} />
+                        <FaRegMoneyBillAlt
+                          css={css`
+                            margin-right: 0.25em;
+                          `}
+                        />
                         ${roundFinancial(propertyData.distribution)}
                       </span>
-                      <span css={css`margin-left: 0.5em`}>
-                        <RiPieChartLine css={css`margin-right: 0.25em`} />
+                      <span
+                        css={css`
+                          margin-left: 0.5em;
+                        `}
+                      >
+                        <RiPieChartLine
+                          css={css`
+                            margin-right: 0.25em;
+                          `}
+                        />
                         ${roundFinancial(propertyData.mark)}
                       </span>
                     </div>
-                  </div>
+                  </BoxRight>
                 </div>
 
                 <img
@@ -182,7 +150,7 @@ const Portfolio = () => {
               </Card>
             </Link>
           ))}
-        </div>
+        </Box>
       </Content>
     </Fragment>
   );

@@ -29,3 +29,24 @@ export const TotalCard = styled(Card)`
   font-size: 120%;
   line-height: 200%;
 `;
+
+export const Container = styled(Card)`
+  width: 100%;
+  max-width: 450px;
+  margin: 20px 0;
+`;
+export const RightBox = styled.div`
+  position: absolute;
+  text-align: right;
+  right: 20px;
+  top: 13px;
+`;
+export const Box = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+export const CarouselBox = styled.div`
+  height: 65vw;
+  max-height: 325px;
+`;

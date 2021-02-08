@@ -8,14 +8,21 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { MapPin } from "react-feather";
 import { RiPieChartLine } from "react-icons/ri";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
-import { Nav, Content, Card } from "../../components";
+import { Nav, Content } from "../../components";
 import PriceTable from "./PriceTable";
 import AboutProperty from "./AboutProperty";
 import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
-import { CarouselImg } from './style';
+import {
+  CarouselImg,
+  Box,
+  DetailBox,
+  Container,
+  RightBox,
+  SpaceBox,
+} from "./style";
 
-import { roundFinancial } from './../../Utils';
+import { roundFinancial } from "./../../Utils";
 import PortfolioData from "../../data_static/PortfolioData";
 
 type PropertyParams = {
@@ -33,38 +40,14 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
       <Nav />
       <Content>
         {propertyData && (
-          <div
-            css={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignContent: "space-evenly",
-              alignItems: "center",
-              flexDirection: "column",
-            }}
-          >
-            <Card
-              css={css`
-                margin: 20px 0;
-                width: 100%;
-                height: 65vw;
-                max-width: 750px;
-                min-height: 250px;
-                max-height: 575px;
-              `}
-            >
-              <div css={{ padding: "13px" }}>
+          <Container>
+            <Box>
+              <SpaceBox>
                 <h2>{propertyData.address}</h2>
                 <h4 css={{ color: "gray" }}>
                   <MapPin size={14} /> {propertyData.city}
                 </h4>
-                <div
-                  css={css`
-                    position: absolute;
-                    text-align: right;
-                    right: 20px;
-                    top: 13px;
-                  `}
-                >
+                <RightBox>
                   <h2>
                     $
                     {roundFinancial(
@@ -93,8 +76,8 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                       ${roundFinancial(propertyData.mark)}
                     </span>
                   </div>
-                </div>
-              </div>
+                </RightBox>
+              </SpaceBox>
               <Carousel showThumbs={false}>
                 {propertyData.img.map((item, index) => (
                   <div>
@@ -102,20 +85,14 @@ const Property: React.FC<PropertyProps> = ({ match }) => {
                   </div>
                 ))}
               </Carousel>
-            </Card>
-            <div
-              css={css`
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
-              `}
-            >
+            </Box>
+            <DetailBox>
               <PriceTable />
               <AboutProperty />
               <RentDetail />
               <CoOwners />
-            </div>
-          </div>
+            </DetailBox>
+          </Container>
         )}
       </Content>
     </Fragment>

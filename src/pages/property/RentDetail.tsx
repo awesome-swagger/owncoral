@@ -1,28 +1,19 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React from "react";
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import { Card } from "../../components";
-import { RentItem, CardWrapper } from "./style";
+import { RentItem, CardWrapper, SpaceBox } from "./style";
 
 const RentDetail: React.FC = () => {
   return (
     <CardWrapper>
       <h1> Rent Detail </h1>
       <Card>
-        <div
-          css={css`
-            padding: 13px;
-          `}
-        >
-          <div
-            css={css`
-              display: flex;
-              justify-content: space-between;
-            `}
-          >
+        <SpaceBox>
+          <RentItem>
             <h2>Total Rent</h2> <h2>$21k/mo </h2>
-          </div>
+          </RentItem>
           <RentItem extraSpace>
             <h2>1 bedroom</h2>
             <h2>$15k x 6</h2>
@@ -41,7 +32,7 @@ const RentDetail: React.FC = () => {
           <RentItem>
             <h2>Maintenance Cost</h2> <h2>$1,200</h2>
           </RentItem>
-        </div>
+        </SpaceBox>
       </Card>
     </CardWrapper>
   );

@@ -17,6 +17,43 @@ export const TopBar = styled.div`
   color: var(--light-color);
 `;
 
+export const Container = styled.div`
+  display: "flex";
+  flex-wrap: "wrap";
+  align-content: "space-evenly";
+  align-items: "center";
+  flex-direction: "column";
+`;
+
+export const Box = styled(Card)`
+  margin: 20px auto;
+  width: 100%;
+  height: 65vw;
+  max-width: 750px;
+  min-height: 250px;
+  max-height: 575px;
+`;
+type SpaceBoxProps = {
+  flex?: boolean;
+};
+export const SpaceBox = styled.div`
+  padding: 13px;
+  display: ${(props: SpaceBoxProps) => (props.flex ? "flex" : "")};
+`;
+
+export const DetailBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`;
+
+export const RightBox = styled.div`
+  position: absolute;
+  text-align: right;
+  right: 20px;
+  top: 13px;
+`;
+
 export const TotalCard = styled(Card)`
   margin-top: -75px;
   margin-bottom: 0px;

@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 import Card from "../../components/card";
 
 export const TopBar = styled.div`
@@ -28,4 +28,25 @@ export const TotalCard = styled(Card)`
   margin-right: calc(50vw - 200px);
   font-size: 120%;
   line-height: 200%;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-wrap: wrap;
+`;
+
+export const BoxRight = styled.div`
+  position: absolute;
+  text-align: right;
+  right: 20px;
+  top: 13px;
+`;
+
+export const Wrapper = styled.div`
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+  padding: 8px 20px;
+  font-size: 120%;
 `;

@@ -3,13 +3,13 @@
 import React from "react";
 import { jsx } from "@emotion/react";
 import { Card } from "../../components";
-import { CardWrapper, PriceItem } from "./style";
+import { CardWrapper, PriceItem, SpaceBox } from "./style";
 
 const PriceTable: React.FC = () => {
   return (
     <CardWrapper>
       <Card>
-        <div css={{ padding: "13px" }}>
+        <SpaceBox>
           <PriceItem>
             <h2>Total Value</h2>
             <h2>$15k</h2>
@@ -34,7 +34,7 @@ const PriceTable: React.FC = () => {
             <h2>Ownership Stake</h2>
             <h2>10.5%</h2>
           </PriceItem>
-        </div>
+        </SpaceBox>
       </Card>
     </CardWrapper>
   );
