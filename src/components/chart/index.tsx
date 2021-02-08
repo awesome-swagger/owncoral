@@ -3,10 +3,8 @@ import React, { useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 
 const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+  { name: "Group A", value: 90, fill: "#0000ff" },
+  { name: "Group B", value: 10, fill: "#ffffff" },
 ];
 
 const renderActiveShape = (props) => {
@@ -97,9 +95,10 @@ const Chart = () => {
           activeShape={renderActiveShape}
           data={data}
           innerRadius="50%"
-          outerRadius="70%"
-          fill="#8884d8"
+          outerRadius="70%"          
           dataKey="value"
+          startAngle={90}
+          endAngle={-270}
           onMouseEnter={onPieEnter}
         />
       </PieChart>

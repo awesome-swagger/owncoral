@@ -19,7 +19,7 @@ const PriceTable: React.FC = () => {
             <h2>$15k</h2>
           </PriceItem>
           <PriceItem extraSpace>
-            <h2>Prior Destributions</h2>
+            <h2>Prior Distributions</h2>
             <h2>$15k</h2>
           </PriceItem>
           <PriceItem>

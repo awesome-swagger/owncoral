@@ -15,23 +15,8 @@ import RentDetail from "./RentDetail";
 import CoOwners from "./CoOwners";
 import { CarouselImg } from './style';
 
+import { roundFinancial } from './../../Utils';
 import PortfolioData from "../../data_static/PortfolioData";
-
-const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
-
-const roundFinancial = (n: number) => {
-  const nDigits = Math.floor(Math.log10(Math.abs(n)));
-  if (nDigits >= 0) {
-    const unitIdx = Math.floor(nDigits / 3);
-    const nExtra = nDigits % 3 === 0 ? 1 : 0;
-    return (
-      (n / Math.pow(10, unitIdx * 3)).toFixed(nExtra) +
-      FINANCIAL_UNIT_SUFFIX[unitIdx]
-    );
-  } else {
-    return n;
-  }
-};
 
 type PropertyParams = {
   id: string;
