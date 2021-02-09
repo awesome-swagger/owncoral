@@ -10,7 +10,7 @@ import Property from "./pages/property";
 import Opportunity from "./pages/opportunity";
 import OpportunityDetail from "./pages/opportunity-detail";
 import Docs from "./pages/docs";
-
+import OnBoard from "./pages/onboard";
 import "./styles.css";
 
 const rootStyle = css`
@@ -70,6 +70,8 @@ const App = () => {
             path="/new-opportunities/:id"
             component={OpportunityDetail}
           />
+
+          <Route exact path="/onboard" component={OnBoard} />
         </Switch>
       </Router>
     </ThemeProvider>
