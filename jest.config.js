@@ -1,4 +1,4 @@
-const parent = require('../../jest.config.base')(__dirname);
+const parent = require('jest.config.base')(__dirname);
 module.exports = {
   ...parent,
   testEnvironment: 'jsdom',

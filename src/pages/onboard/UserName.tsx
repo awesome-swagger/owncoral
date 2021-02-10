@@ -11,7 +11,10 @@ import {
   Button,
 } from "./style";
 
-const UserName = ({ onProceed }) => {
+type UserNameProps = {
+  onProceed: Function;
+};
+const UserName: React.FC<UserNameProps> = ({ onProceed }) => {
   const [name, setName] = useState<string>("");
   const handleChange = useCallback(({ target: { value: inputValue } }) => {
     setName(inputValue);
@@ -34,7 +37,7 @@ const UserName = ({ onProceed }) => {
       <Description>This will be your public handle</Description>
       <Button
         disabled={!name}
-        onClick={() => onProceed((prevStep) => prevStep + 1)}
+        onClick={() => onProceed((prevStep: number) => prevStep + 1)}
       >
         Next
       </Button>

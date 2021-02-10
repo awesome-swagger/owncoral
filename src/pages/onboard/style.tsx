@@ -15,6 +15,7 @@ export const InputLabel = styled.label`
   display: block;
   margin: 15px 0;
 `;
+
 export const InputName = styled.span`
   background-color: #fff;
   color: #a8dadc;
@@ -24,6 +25,7 @@ export const InputName = styled.span`
   top: -7px;
   left: 15px;
 `;
+
 export const InputField = styled.input`
   width: 100%;
   box-sizing: border-box;
@@ -55,6 +57,7 @@ export const Button = styled.button`
   cursor: pointer;
   outline: none;
 `;
+
 type OptionBoxProps = {
   active?: boolean;
 };
@@ -74,6 +77,7 @@ export const OptionWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+
 export const Description = styled.p`
   font-size: 18px;
   margin: 0px;
@@ -89,6 +93,7 @@ export const RadioLabel = styled.label`
   border-radius: 15px;
   cursor: pointer;
 `;
+
 export const RadioName = styled.label`
   margin: 0 10px;
   color: #3169fb;

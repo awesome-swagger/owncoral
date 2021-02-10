@@ -12,10 +12,10 @@ const OnBoard = () => {
   return (
     <div>
       <Stepform
-        step0={(setStep) => <InvestingExperience onProceed={setStep} />}
-        step1={(setStep) => <Member onProceed={setStep} />}
-        step2={(setStep) => <UserName onProceed={setStep} />}
-        step3={(setStep) => <Name onProceed={setStep} />}
+        step0={(setStep: any) => <InvestingExperience onProceed={setStep} />}
+        step1={(setStep: any) => <Member onProceed={setStep} />}
+        step2={(setStep: any) => <UserName onProceed={setStep} />}
+        step3={(setStep: any) => <Name onProceed={setStep} />}
       />
     </div>
   );

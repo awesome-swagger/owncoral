@@ -11,7 +11,10 @@ const expOptions = [
   { value: 3, label: "I'm an expert" },
 ];
 
-const InvestingExperience = ({ onProceed }) => {
+type InvestingExperienceProps = {
+  onProceed: Function;
+};
+const InvestingExperience: React.FC<InvestingExperienceProps> = ({ onProceed }) => {
   const [selected, setSelected] = useState<undefined | number>();
 
   return (
@@ -31,7 +34,7 @@ const InvestingExperience = ({ onProceed }) => {
 
       <Button
         disabled={typeof selected !== "number"}
-        onClick={() => onProceed((prevStep) => prevStep + 1)}
+        onClick={() => onProceed((prevStep: number) => prevStep + 1)}
       >
         Next
       </Button>

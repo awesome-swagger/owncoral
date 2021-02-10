@@ -11,7 +11,10 @@ import {
   Description,
 } from "./style";
 
-const Name = ({ onProceed }) => {
+type NameProps = {
+  onProceed: Function;
+};
+const Name: React.FC<NameProps> = ({ onProceed }) => {
   const [state, setState] = useState({ firstName: "", lastName: "" });
 
   const handleChange = useCallback(
@@ -47,7 +50,7 @@ const Name = ({ onProceed }) => {
       </InputLabel>
       <Button
         disabled={!state.firstName || !state.lastName}
-        onClick={() => onProceed((prevStep) => prevStep + 1)}
+        onClick={() => onProceed((prevStep: number) => prevStep + 1)}
       >
         Next
       </Button>

@@ -8,8 +8,8 @@ import * as Styled from './style';
 import { fetchWrap } from '../../Utils';
 import { useHistory } from 'react-router';
 
-import type { History } from 'history';
 import type { User } from '../../SharedTypes';
+import { History } from 'history';
 
 type FormState = {
   email: string;
@@ -24,18 +24,21 @@ const onSubmit = (
 ) => {
   e.preventDefault();
   (async () => {
-    const resp = await fetchWrap('/api/login', {
+    // TODO: Validate password strength
+    const resp = await fetchWrap('/api/signup', {
       method: 'POST',
       body: JSON.stringify(formState),
     });
-
     if (resp.ok) {
-      setUser(await resp.json());
+      // TODO: conform to actual User type
+      setUser({ email: formState.email });
+      // TODO: redirect to signup flow
       history.push('/portfolio');
       return;
     }
+
     // TODO: add real UI
-    alert('Login failed!');
+    alert('Signup failed!');
   })();
 };
 
@@ -51,7 +54,7 @@ const handleInputChange = (
 
 // Don't try to refactor Signup and Login into sharing too much code
 // yet, signup will likely change and start diverging.
-const Login = ({ setUser }: { setUser: (u: User) => void }) => {
+const Signup = ({ setUser }: { setUser: (u: User) => void }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isDev = process.env.NODE_ENV === 'development';
   const [formState, setFormState] = useState({
@@ -71,7 +74,7 @@ const Login = ({ setUser }: { setUser: (u: User) => void }) => {
               fill: var(--main-color);
             `}
           />
-          <div>Log in to Franklin</div>
+          <div>Sign Up for Franklin</div>
         </Styled.CardTitle>
         <Styled.InputLine>
           <Styled.Icon>
@@ -111,12 +114,12 @@ const Login = ({ setUser }: { setUser: (u: User) => void }) => {
             )}
           </div>
         </Styled.InputLine>
-        <Styled.LoginBtn>
-          <input type="submit" value="Log In" />
-        </Styled.LoginBtn>
+        <Styled.SignupBtn>
+          <input type="submit" value="Sign Up" />
+        </Styled.SignupBtn>
       </Styled.Card>
     </form>
   );
 };
 
-export default Login;
+export default Signup;

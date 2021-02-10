@@ -65,7 +65,7 @@ export const Icon = styled.div`
   top: 13px;
 `;
 
-export const LoginBtn = styled.div`
+export const SignupBtn = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;

@@ -7,4 +7,12 @@ import CarouselImg from "./carousel";
 import Location from "./location";
 
 // editorconfig-checker-disable-line
-export { Card, Nav, Content, PrimaryBtn, Chart, CarouselImg, Location };
+export {
+  Card,
+  Nav,
+  Content,
+  PrimaryBtn,
+  Chart,
+  CarouselImg,
+  Location
+};

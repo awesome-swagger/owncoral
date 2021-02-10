@@ -13,9 +13,12 @@ const radioOptions = [
   { value: 2, label: "A politicaly exposed person" },
 ];
 
-const Member = ({ onProceed }) => {
+type MemberProps = {
+  onProceed: Function;
+};
+const Member: React.FC<MemberProps> = ({ onProceed }) => {
   const [selected, setSelected] = useState<undefined | number>();
-  console.log(selected);
+
   return (
     <Container>
       <h1>These usually don't apply, but let us know if they do to you</h1>
@@ -33,7 +36,7 @@ const Member = ({ onProceed }) => {
           <RadioName>{label}</RadioName>
         </RadioLabel>
       ))}
-      <Button onClick={() => onProceed((prevStep) => prevStep + 1)}>
+      <Button onClick={() => onProceed((prevStep: number) => prevStep + 1)}>
         None Apply
       </Button>
     </Container>

@@ -1,3 +1,25 @@
+import 'whatwg-fetch'; // Polyfill
+
+export const fetchWrap = (input: RequestInfo, init?: RequestInit) =>
+  fetch(input, {
+    ...{
+      // Fetch doesn't send cookies (in newer browser), but we rely on them
+      // for session authentication
+      credentials: 'same-origin',
+    },
+    // If we had set a body, then sent JSON Content-Type
+    ...((init || {}).body != null
+      ? {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      : {}),
+    // Override defaults above
+    ...init,
+  });
+
+
 const FINANCIAL_UNIT_SUFFIX = ["", "K", "MM", "B", "T"];
 
 export const roundFinancial = (n: number) => {

@@ -3,7 +3,7 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import MapMarker from "../../assets/map-marker.png";
 
-const AnyReactComponent = () => (
+const Position = () => (
   <div>
     <img style={{ width: "35px" }} src={MapMarker} alt="marker" />
   </div>
@@ -25,7 +25,7 @@ const Location: React.FC<LocationProps> = ({ center, zoom }) => {
         defaultCenter={center}
         defaultZoom={zoom}
       >
-        <AnyReactComponent lat={center.lat} lng={center.lng} />
+        <Position lat={center.lat} lng={center.lng} />
       </GoogleMapReact>
     </div>
   );
