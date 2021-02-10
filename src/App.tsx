@@ -1,22 +1,27 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { css, jsx, Global, ThemeProvider } from '@emotion/react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { theme } from './shared/theme';
-import Docs from './pages/docs';
-import Login from './pages/login';
-import Portfolio from './pages/portfolio';
-import Property from './pages/property';
-import Opportunity from './pages/opportunity';
-import OpportunityDetail from './pages/opportunity-detail';
-import Signup from './pages/signup';
+import React, { Fragment, useContext, useEffect, useState } from "react";
+import { css, jsx, Global, ThemeProvider } from "@emotion/react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { theme } from "./shared/theme";
+import Docs from "./pages/docs";
+import Login from "./pages/login";
+import Portfolio from "./pages/portfolio";
+import Property from "./pages/property";
+import Opportunity from "./pages/opportunity";
+import OpportunityDetail from "./pages/opportunity-detail";
+import Signup from "./pages/signup";
 import OnBoard from "./pages/onboard";
 
-import './styles.css';
+import "./styles.css";
 
-import { fetchWrap } from './Utils';
-import type { User } from './SharedTypes';
+import { fetchWrap } from "./Utils";
+import type { User } from "./SharedTypes";
 
 const rootStyle = css`
   :root {
@@ -32,7 +37,7 @@ const rootStyle = css`
     padding: 0;
     line-height: 1.5;
     background-color: rgba(250, 250, 250);
-    font-family: 'Nunito', Helvetica, sans-serif;
+    font-family: "Nunito", Helvetica, sans-serif;
     font-weight: 400;
     font-size: 12px;
     min-width: 320px; /* small iPhone */
@@ -58,7 +63,7 @@ const rootStyle = css`
 const UserContext = React.createContext<User>(null);
 
 const getUser = async (setUser: (u: User) => void): Promise<void> => {
-  const resp = await fetchWrap('/api/currentUser');
+  const resp = await fetchWrap("/api/currentUser");
 
   if (resp.ok) {
     setUser(await resp.json());
@@ -73,8 +78,17 @@ const App = () => {
   }, []);
 
   const debugProfile =
-    process.env.NODE_ENV === 'development' ? (
-      <div css={{ position: 'absolute', top: '5', left: '5', color: 'darkRed', width: 200, zIndex: 100 }}>
+    process.env.NODE_ENV === "development" ? (
+      <div
+        css={{
+          position: "absolute",
+          top: "5",
+          left: "5",
+          color: "darkRed",
+          width: 200,
+          zIndex: 100,
+        }}
+      >
         <pre>Profile is ${JSON.stringify(user, null, 2)}</pre>
       </div>
     ) : (
@@ -106,7 +120,11 @@ const App = () => {
 
             <Route exact path="/documents" component={Docs} />
 
-            <Route exact path="/new-opportunities/:id" component={OpportunityDetail} />
+            <Route
+              exact
+              path="/new-opportunities/:id"
+              component={OpportunityDetail}
+            />
 
             <Route exact path="/onboard" component={OnBoard} />
           </Switch>
