@@ -35,6 +35,7 @@ export const OptionChevron = styled.img`
 `;
 type ButtonProps = {
   disabled?: boolean;
+  gap?: boolean;
 };
 
 export const Button = styled.button`
@@ -43,6 +44,20 @@ export const Button = styled.button`
   background-color: ${(props: ButtonProps) =>
     props.disabled ? "#888888" : "#4E504F"};
   color: #ffffff;
+  font-size: 17px;
+  padding: 12px 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: ${(props: ButtonProps) => (props.gap ? "108px" : "54px")};
+  left: 24px;
+`;
+export const Button1 = styled.button`
+  width: calc(100% - 48px);
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #4e504f;
   font-size: 17px;
   padding: 12px 0;
   border: none;
@@ -84,17 +99,25 @@ export const EyeIcon = styled.img`
   top: 50%;
   transform: translate(0, -50%);
 `;
-
+export const InputLabel = styled.label`
+  width: 100%;
+  margin-top: 24px;
+`;
+type InputFieldProps = {
+  WithLabel?: boolean;
+};
 export const InputField = styled.input`
   &::placeholder {
     color: #888888;
   }
-  position:relative
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
   color: #4e504f;
   font-size: 15px;
   line-height: 24px;
   padding: 12px 16px;
-  margin: 16px 0;
+  margin: ${(props: InputFieldProps) => (props.WithLabel ? "8px 0" : "16px 0")};
   background-color: #f3f3f3;
   border: none;
   outline: none;
@@ -115,6 +138,13 @@ export const AlertBox = styled.div`
 export const Heading = styled.h2`
   font-size: 20px;
   margin-top: 24px;
+`;
+export const PopUpBtn = styled.span`
+  &:hover {
+    text-decoration: underline;
+  }
+  color: #000000;
+  cursor: pointer;
 `;
 export const PopUpBox = styled.div`
   margin: 60px auto 0 auto;
@@ -139,10 +169,15 @@ export const PopUpText = styled.p`
   font-size: 13px;
   color: #4e504f;
 `;
+type ImgButtonProps = {
+  marginBottom?: boolean;
+};
 export const ImgButton = styled.div`
   cursor: pointer;
   width: 16px;
   height: 16px;
+  margin-bottom: ${(props: ImgButtonProps) =>
+    props.marginBottom ? "32px" : ""};
 `;
 export const ProgressBar = styled.div`
   background-color: #f3f3f3;
@@ -163,7 +198,7 @@ export const Progress = styled.div`
   transition: 1s;
 `;
 export const Avatar = styled.div`
-  hieght: 160px;
+  height: 160px;
   width: 160px;
   border-radius: 50%;
   margin: 0 auto;

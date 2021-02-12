@@ -1,13 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { css, jsx, Global, ThemeProvider } from "@emotion/react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { theme } from "./shared/theme";
 import Docs from "./pages/docs";
 import Login from "./pages/login";
@@ -16,12 +11,14 @@ import Property from "./pages/property";
 import Opportunity from "./pages/opportunity";
 import OpportunityDetail from "./pages/opportunity-detail";
 import Signup from "./pages/signup";
+
 import OnBoard from "./pages/onboard";
 
 import "./styles.css";
 
 import { fetchWrap } from "./Utils";
 import type { User } from "./SharedTypes";
+import SignUpFlow from "./pages/signup/signupflow";
 
 const rootStyle = css`
   :root {
@@ -110,6 +107,8 @@ const App = () => {
             </Route>
 
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signupflow" component={SignUpFlow} />
+
             {/* TODO: Redirect not-signed-up users to signup */}
 
             <Route exact path="/portfolio" component={Portfolio} />
