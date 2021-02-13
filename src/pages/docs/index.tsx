@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React, { Fragment } from "react";
-import { jsx } from "@emotion/react";
 import { Nav, Content } from "../../components";
 import { Container, TopBar } from "./style";
 

@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React, { useState } from "react";
-import { jsx } from "@emotion/react";
 import {
   Container,
   ImgButton,

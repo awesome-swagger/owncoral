@@ -10,6 +10,7 @@ export const Container = styled.div`
   height: 100vh;
   box-sizing: border-box;
 `;
+
 type OptionProps = {
   active?: boolean;
 };
@@ -27,6 +28,7 @@ export const Option = styled.div`
   cursor: pointer;
   position: relative;
 `;
+
 export const OptionChevron = styled.img`
   position: absolute;
   right: 16px;
@@ -53,6 +55,7 @@ export const Button = styled.button`
   bottom: ${(props: ButtonProps) => (props.gap ? "108px" : "54px")};
   left: 24px;
 `;
+
 export const Button1 = styled.button`
   width: calc(100% - 48px);
   box-sizing: border-box;
@@ -103,6 +106,7 @@ export const InputLabel = styled.label`
   width: 100%;
   margin-top: 24px;
 `;
+
 type InputFieldProps = {
   WithLabel?: boolean;
 };
@@ -122,11 +126,13 @@ export const InputField = styled.input`
   border: none;
   outline: none;
 `;
+
 export const Description = styled.p`
   font-size: 15px;
   margin: 0px;
   color: #4e504f;
 `;
+
 export const AlertBox = styled.div`
   height: 100%;
   display: flex;
@@ -135,10 +141,12 @@ export const AlertBox = styled.div`
   align-items: center;
   text-align: center;
 `;
+
 export const Heading = styled.h2`
   font-size: 20px;
   margin-top: 24px;
 `;
+
 export const PopUpBtn = styled.span`
   &:hover {
     text-decoration: underline;
@@ -146,6 +154,7 @@ export const PopUpBtn = styled.span`
   color: #000000;
   cursor: pointer;
 `;
+
 export const PopUpBox = styled.div`
   margin: 60px auto 0 auto;
   width: 100%;
@@ -157,6 +166,7 @@ export const PopUpBox = styled.div`
   background-color: #fff;
   z-index: 1;
 `;
+
 export const PopUpWrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -169,6 +179,7 @@ export const PopUpText = styled.p`
   font-size: 13px;
   color: #4e504f;
 `;
+
 type ImgButtonProps = {
   marginBottom?: boolean;
 };
@@ -179,6 +190,7 @@ export const ImgButton = styled.div`
   margin-bottom: ${(props: ImgButtonProps) =>
     props.marginBottom ? "32px" : ""};
 `;
+
 export const ProgressBar = styled.div`
   background-color: #f3f3f3;
   height: 4px;
@@ -187,6 +199,7 @@ export const ProgressBar = styled.div`
   margin: 16px 0;
   overflow: hidden;
 `;
+
 type ProgressProps = {
   fill?: string;
 };
@@ -197,6 +210,7 @@ export const Progress = styled.div`
   border-radius: 2px;
   transition: 1s;
 `;
+
 export const Avatar = styled.div`
   height: 160px;
   width: 160px;

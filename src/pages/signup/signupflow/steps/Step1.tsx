@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React, { useState } from "react";
-import { jsx } from "@emotion/react";
 import Chevron from "../../../../assets/chevron.png";
 import Alert from "../../../../assets/alert.png";
 import {

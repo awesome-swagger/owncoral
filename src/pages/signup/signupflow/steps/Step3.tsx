@@ -1,7 +1,4 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
 import React from "react";
-import { jsx } from "@emotion/react";
 import { Container, ImgButton, Button } from "../style";
 import Chevron from "../../../../assets/chevron.png";
 

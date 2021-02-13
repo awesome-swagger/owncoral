@@ -12,8 +12,6 @@ import Opportunity from "./pages/opportunity";
 import OpportunityDetail from "./pages/opportunity-detail";
 import Signup from "./pages/signup";
 
-import OnBoard from "./pages/onboard";
-
 import "./styles.css";
 
 import { fetchWrap } from "./Utils";
@@ -124,8 +122,6 @@ const App = () => {
               path="/new-opportunities/:id"
               component={OpportunityDetail}
             />
-
-            <Route exact path="/onboard" component={OnBoard} />
           </Switch>
         </Router>
       </ThemeProvider>
