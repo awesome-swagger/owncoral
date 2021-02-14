@@ -1,52 +1,62 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from "@emotion/styled";
-import Card from "../../components/card";
+import styled from '@emotion/styled/macro';
+import { jsx } from '@emotion/react/macro';
+import Card from '../../components/shared/Card';
+import React from 'react';
 
-export const TopBar = styled.div`
-  background: linear-gradient(
-    115deg,
-    rgba(30, 170, 100, 1) 0%,
-    rgba(50, 180, 80, 1) 48%,
-    rgba(60, 190, 70, 1) 100%
-  );
-  height: 110px;
-  padding-top: 25px;
-  margin: -30px;
-  text-align: center;
-  color: var(--light-color);
-`;
-
-export const TotalCard = styled(Card)`
-  margin-top: -75px;
-  margin-bottom: 0px;
-  padding: 5px 0;
-  min-width: 200px;
+export const StyledTotalCard = styled(Card)`
+  margin-top: 20px;
+  padding: 0.5em 1.5em;
+  width: 50%;
+  min-width: 300px;
   max-width: 400px;
-  /* 50% - half the max width */
-  margin-left: calc(50vw - 200px);
-  margin-right: calc(50vw - 200px);
-  font-size: 120%;
-  line-height: 200%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 225%;
 `;
 
-export const Box = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  flex-wrap: wrap;
+export const Grid = styled.div`
+  display: grid;
+
+  padding: 1rem;
+  grid-gap: 1.5rem 1rem;
+
+  // Unlimited columns with min width, flexing to fill space
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center;
 `;
 
-export const BoxRight = styled.div`
+// Card that keeps a 3:4 aspect ratio.
+// We use a ::before selector to avoid an additional
+// nested div.
+//
+// References:
+// - https://css-tricks.com/aspect-ratio-boxes/
+// - https://codepen.io/danield770/pen/bjYvOj
+const StyledCard = styled(Card)`
+  min-width: 280px;
+  width: 80%; // Fill the grid container as it grows...
+  max-width: 355px; // ...but not too much
+  &::before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    padding-bottom: calc(4 / 3 * 100%);
+  }
+`;
+
+const RatioDivContents = styled.div`
   position: absolute;
-  text-align: right;
-  right: 20px;
-  top: 13px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
 
-export const Wrapper = styled.div`
-  font-weight: bold;
-  border-bottom: 1px solid lightgray;
-  padding: 8px 20px;
-  font-size: 120%;
-`;
+export const RatioContainer: React.FC = (props) => (
+  <StyledCard>
+    <RatioDivContents>{props.children}</RatioDivContents>
+  </StyledCard>
+);

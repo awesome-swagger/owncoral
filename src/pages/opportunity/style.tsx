@@ -1,15 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from "@emotion/styled";
-import Card from "../../components/card";
+import styled from '@emotion/styled';
+import Card from '../../components/shared/Card';
 
 export const TopBar = styled.div`
-  background: linear-gradient(
-    115deg,
-    rgba(30, 170, 100, 1) 0%,
-    rgba(50, 180, 80, 1) 48%,
-    rgba(60, 190, 70, 1) 100%
-  );
+  background: linear-gradient(115deg, rgba(30, 170, 100, 1) 0%, rgba(50, 180, 80, 1) 48%, rgba(60, 190, 70, 1) 100%);
   height: 110px;
   padding-top: 25px;
   margin: -30px;

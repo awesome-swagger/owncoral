@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import React, { useState } from 'react';
-import { css, jsx } from '@emotion/react';
+import { css, jsx, useTheme } from '@emotion/react';
 import { Mail, Lock, Eye, EyeOff } from 'react-feather';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { ReactComponent as Logo } from '../../assets/coral.svg';
 import * as Styled from './style';
 import { fetchWrap } from '../../Utils';
 import { useHistory } from 'react-router';
@@ -59,24 +59,22 @@ const Login = ({ setUser }: { setUser: (u: User) => void }) => {
     password: isDev ? 'asdf' : '',
   });
   const history = useHistory();
+  const theme = useTheme();
 
   return (
-    <form onSubmit={(e) => onSubmit(e, formState, setUser, history)}>
-      <Styled.Card>
-        <Styled.CardTitle>
-          <Logo
-            css={css`
-              height: 50px;
-              margin: 10px;
-              fill: var(--main-color);
-            `}
-          />
-          <div>Log in to Franklin</div>
-        </Styled.CardTitle>
+    <Styled.Card isActive>
+      <Styled.CardTitle>
+        <Logo
+          fill={theme.colors.p}
+          css={css`
+            height: 40px;
+          `}
+        />
+        <h4 css={{ margin: 0, color: theme.colors.p }}>Coral</h4>
+      </Styled.CardTitle>
+      <form onSubmit={(e) => onSubmit(e, formState, setUser, history)}>
         <Styled.InputLine>
-          <Styled.Icon>
-            <Mail size={20} stroke="gray" fill="none" />
-          </Styled.Icon>
+          <Mail size={20} stroke="gray" fill="none" css={{ margin: '0 .5em 0 1em' }} />
           <input
             placeholder="Email"
             name="email"
@@ -87,9 +85,7 @@ const Login = ({ setUser }: { setUser: (u: User) => void }) => {
           />
         </Styled.InputLine>
         <Styled.InputLine>
-          <Styled.Icon>
-            <Lock size={20} stroke="gray" fill="none" />
-          </Styled.Icon>
+          <Lock size={22} stroke="gray" fill="none" css={{ margin: '0 .5em 0 1em' }} />
           <input
             type={showPassword ? 'text' : 'password'}
             name="password"
@@ -99,23 +95,23 @@ const Login = ({ setUser }: { setUser: (u: User) => void }) => {
             onChange={(e) => handleInputChange(e, formState, setFormState)}
           />
           <div
-            css={{ position: 'absolute', right: '20px', top: '14px' }}
+            css={{ margin: '0 1em 0 .5em' }}
             onClick={() => {
               setShowPassword(!showPassword);
             }}
           >
             {showPassword ? (
-              <Eye size={20} stroke="gray" fill="none" />
+              <Eye size={18} stroke="gray" fill="none" />
             ) : (
-              <EyeOff size={20} stroke="gray" fill="none" />
+              <EyeOff size={18} stroke="gray" fill="none" />
             )}
           </div>
         </Styled.InputLine>
         <Styled.LoginBtn>
           <input type="submit" value="Log In" />
         </Styled.LoginBtn>
-      </Styled.Card>
-    </form>
+      </form>
+    </Styled.Card>
   );
 };
 

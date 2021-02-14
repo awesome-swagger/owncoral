@@ -1,24 +1,24 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { Fragment, useEffect, useState } from "react";
-import { css, jsx, Global, ThemeProvider } from "@emotion/react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { theme } from "./shared/theme";
-import Docs from "./pages/docs";
-import Login from "./pages/login";
-import Portfolio from "./pages/portfolio";
-import Property from "./pages/property";
-import Opportunity from "./pages/opportunity";
-import OpportunityDetail from "./pages/opportunity-detail";
-import Signup from "./pages/signup";
+import React, { Fragment, useEffect, useState } from 'react';
+import { css, jsx, Global, ThemeProvider, Theme } from '@emotion/react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { AppTheme } from './AppTheme';
+import Docs from './pages/docs';
+import Login from './pages/login';
+import Portfolio from './pages/portfolio';
+import Property from './pages/property';
+import Opportunity from './pages/opportunity';
+import OpportunityDetail from './pages/opportunity-detail';
+import Signup from './pages/signup';
+import SignUpFlow from './pages/signup/signupflow';
 
-import "./styles.css";
+import { HeaderStyles } from './TypographyStyles';
 
-import { fetchWrap } from "./Utils";
-import type { User } from "./SharedTypes";
-import SignUpFlow from "./pages/signup/signupflow";
+import { fetchWrap } from './Utils';
+import type { User } from './SharedTypes';
 
-const rootStyle = css`
+const makeRootStyle = (theme: Theme) => css`
   :root {
     /* Theme colors */
     --main-color: rgb(70, 170, 60);
@@ -27,38 +27,42 @@ const rootStyle = css`
     --light-color: white;
   }
 
+  * {
+    color: inherit;
+    text-transform: inherit;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  html {
+    //overscroll-behavior: none;
+    // https://css-tricks.com/international-box-sizing-awareness-day/
+  }
+
   body {
     margin: 0;
     padding: 0;
-    line-height: 1.5;
-    background-color: rgba(250, 250, 250);
-    font-family: "Nunito", Helvetica, sans-serif;
-    font-weight: 400;
-    font-size: 12px;
+    background-color: ${theme.colors.bg};
+    color: ${theme.colors.fg};
     min-width: 320px; /* small iPhone */
+    overscroll-behavior: none;
+    ${theme.textStyles.bodyText1}
   }
 
-  * {
-    color: var(--dark-color);
-  }
+  ${HeaderStyles}
 
-  /* reset */
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    padding: 0;
-    margin: 0;
+  html {
+    // We size text at 80% at 320px, and 90% at 768px
+    font-size: calc(80% + clamp(0%, 1.6 * ((100vw - 320px) / 448), 10%));
   }
 `;
 
 const UserContext = React.createContext<User>(null);
 
 const getUser = async (setUser: (u: User) => void): Promise<void> => {
-  const resp = await fetchWrap("/api/currentUser");
+  const resp = await fetchWrap('/api/currentUser');
 
   if (resp.ok) {
     setUser(await resp.json());
@@ -68,23 +72,35 @@ const getUser = async (setUser: (u: User) => void): Promise<void> => {
 const App = () => {
   const [user, setUser] = useState<User>(null);
 
+  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const [isDarkMode, setDarkMode] = useState(mq.matches);
+  mq.addEventListener('change', (evt) => {
+    setDarkMode(evt.matches);
+  });
+  const theme = AppTheme(isDarkMode);
+
   useEffect(() => {
     getUser(setUser);
   }, []);
 
   const debugProfile =
-    process.env.NODE_ENV === "development" ? (
+    process.env.NODE_ENV === 'development' ? (
       <div
-        css={{
-          position: "absolute",
-          top: "5",
-          left: "5",
-          color: "darkRed",
-          width: 200,
-          zIndex: 100,
-        }}
+        css={css`
+          background-color: rgba(0, 0, 0, 0);
+          display: inline-block;
+          pointer-events: none;
+          position: fixed;
+          bottom: 20px;
+          width: 200px;
+          left: 20px;
+          color: darkred;
+          z-index: 100;
+          user-select: none;
+          text-align: center;
+        `}
       >
-        <pre>Profile is ${JSON.stringify(user, null, 2)}</pre>
+        <pre>{(user || {}).email ? 'Profile loaded: ' + (user || {}).email : 'No profile loaded'}</pre>
       </div>
     ) : (
       <Fragment />
@@ -95,7 +111,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           {debugProfile}
-          <Global styles={rootStyle} />
+          <Global styles={makeRootStyle(theme)} />
           {/* Server handles not-logged-in redirection */}
           <Switch>
             <Route exact path="/" component={Portfolio} />
@@ -117,11 +133,7 @@ const App = () => {
 
             <Route exact path="/documents" component={Docs} />
 
-            <Route
-              exact
-              path="/new-opportunities/:id"
-              component={OpportunityDetail}
-            />
+            <Route exact path="/new-opportunities/:id" component={OpportunityDetail} />
           </Switch>
         </Router>
       </ThemeProvider>

@@ -1,37 +1,45 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from "react";
-import { jsx, css } from "@emotion/react";
-import { Card } from "../../components";
-import { CardWrapper, SpaceBox } from "./style";
+import React from 'react';
+import { jsx, css } from '@emotion/react/macro';
+import { Card } from '../../components';
+import { CardWrapper } from './style';
 
 const AboutProperty: React.FC = () => {
   return (
     <CardWrapper>
-      <h1> About </h1>
+      <h5 css={{ margin: '.3em 0' }}>About</h5>
       <Card>
-        <SpaceBox flex>
-          <h2
+        <div css={{ display: 'flex', flexDirection: 'column', padding: '2em' }}>
+          <table
             css={css`
-              text-align: center;
-              width: 50%;
+              font-size: 130%;
+              font-weight: 600;
+              tbody > tr {
+                td:last-child {
+                  text-align: right;
+                }
+              }
             `}
           >
-            Description
-          </h2>
-          <div
-            css={css`
-              margin-top: 25px;
-              width: 50%;
-            `}
-          >
-            <h2>8 Units</h2>
-            <h2>18 Beds</h2>
-            <h2>7,321 ft</h2>
-            <h2>$21k rent/mo</h2>
-            <h2>92% Occupency</h2>
-          </div>
-        </SpaceBox>
+            <tbody>
+              <tr>
+                <td>$21k / mo.</td>
+                <td>96% occupied</td>
+              </tr>
+              <tr>
+                <td>18 bd</td>
+                <td>7,321 ft²</td>
+              </tr>
+            </tbody>
+          </table>
+          <hr css={{ width: '100%', margin: '1em 0', border: '1px solid lightgray' }} />
+          <span css={{ fontSize: '110%' }}>
+            3 Linden is a 2-story, 2-unit (each 3B / 1BR) apartment building, at the border of Cambridge-Somerville,
+            right next to Union Square. We plan to renovate and refinance immediately after the purchase is complete,
+            returning ~27% of invested capital in the first year.
+          </span>
+        </div>
       </Card>
     </CardWrapper>
   );

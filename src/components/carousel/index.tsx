@@ -1,10 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React from "react";
-import { jsx, css } from "@emotion/react";
+import React from 'react';
+import { jsx, css } from '@emotion/react';
 interface Props {
-  img: string,
-  alt: string
+  img: string;
+  alt: string;
 }
 const CarouselImg: React.FC<Props> = ({ img, alt }) => {
   return (

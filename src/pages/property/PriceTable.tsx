@@ -1,39 +1,51 @@
-import React from "react";
-import { Card } from "../../components";
-import { CardWrapper, PriceItem, SpaceBox } from "./style";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import React from 'react';
+import { css, jsx } from '@emotion/react/macro';
+import { TotalCard } from './style';
+import { Table } from '@app/client-web/src/components/shared/Table';
 
 const PriceTable: React.FC = () => {
   return (
-    <CardWrapper>
-      <Card>
-        <SpaceBox>
-          <PriceItem>
-            <h2>Total Value</h2>
-            <h2>$15k</h2>
-          </PriceItem>
-          <PriceItem extraSpace>
-            <h2>Current Equity</h2>
-            <h2>$15k</h2>
-          </PriceItem>
-          <PriceItem extraSpace>
-            <h2>Prior Distributions</h2>
-            <h2>$15k</h2>
-          </PriceItem>
-          <PriceItem>
-            <h2>Initial Investment</h2>
-            <h2>$15k</h2>
-          </PriceItem>
-          <PriceItem>
-            <h2>Gain</h2>
-            <h2>$15k(0%)</h2>
-          </PriceItem>
-          <PriceItem>
-            <h2>Ownership Stake</h2>
-            <h2>10.5%</h2>
-          </PriceItem>
-        </SpaceBox>
-      </Card>
-    </CardWrapper>
+    <TotalCard>
+      <Table
+        css={css`
+          tr > td {
+            text-indent: 1.5em;
+          }
+
+          tr > td:nth-child(2) {
+            text-align: right;
+            direction: rtl;
+          }
+        `}
+      >
+        <tr>
+          <td>Total Value</td>
+          <td>$15k</td>
+        </tr>
+        <tr>
+          <td>Current Equity</td>
+          <td>$15k</td>
+        </tr>
+        <tr>
+          <td>Prior Distributions</td>
+          <td>$15k</td>
+        </tr>
+        <tr>
+          <td>Initial Investment</td>
+          <td>$15k</td>
+        </tr>
+        <tr>
+          <td>Gain</td>
+          <td>$15k (0%)</td>
+        </tr>
+        <tr>
+          <td>Ownership Stake</td>
+          <td>10.5%</td>
+        </tr>
+      </Table>
+    </TotalCard>
   );
 };
 

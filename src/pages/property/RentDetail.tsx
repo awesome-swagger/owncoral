@@ -1,35 +1,59 @@
-import React from "react";
-import { Card } from "../../components";
-import { RentItem, CardWrapper, SpaceBox } from "./style";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import React from 'react';
+import { css, jsx } from '@emotion/react/macro';
+import { Card } from '../../components';
+import { CardWrapper } from './style';
+import { Table } from '@app/client-web/src/components/shared/Table';
 
 const RentDetail: React.FC = () => {
   return (
     <CardWrapper>
-      <h1> Rent Detail </h1>
-      <Card>
-        <SpaceBox>
-          <RentItem>
-            <h2>Total Rent</h2> <h2>$21k/mo </h2>
-          </RentItem>
-          <RentItem extraSpace>
-            <h2>1 bedroom</h2>
-            <h2>$15k x 6</h2>
-          </RentItem>
-          <RentItem extraSpace>
-            <h2>2 bedroom</h2>
-            <h2>$15k x 6</h2>
-          </RentItem>
-          <hr />
-          <RentItem>
-            <h2>Tenants</h2> <h2>17</h2>
-          </RentItem>
-          <RentItem>
-            <h2>Maintenance Requests (30 Days)</h2> <h2>5</h2>
-          </RentItem>
-          <RentItem>
-            <h2>Maintenance Cost</h2> <h2>$1,200</h2>
-          </RentItem>
-        </SpaceBox>
+      <h5 css={{ margin: '.3em 0' }}>Rent Detail</h5>
+      <Card css={{ padding: '1em 1.5em' }}>
+        <Table
+          css={css`
+            font-size: 120%;
+
+            tbody > tr {
+              td {
+                padding: 0.2em;
+
+                &:nth-child(2) {
+                  text-align: right;
+                }
+              }
+            }
+          `}
+        >
+          <tbody>
+            <tr>
+              <td>Monthly Rent</td>
+              <td>$21k</td>
+            </tr>
+            <tr>
+              <td>1 bedroom</td>
+              <td>$15k x 6</td>
+            </tr>
+            <tr>
+              <td>2 bedroom</td>
+              <td>$15k x 6</td>
+            </tr>
+            <tr>
+              <td>Tenants</td>
+              <td>17</td>
+            </tr>
+
+            <tr>
+              <td>Maintenance</td>
+              <td>$1,200</td>
+            </tr>
+            <tr>
+              <td># Requests (30d)</td>
+              <td>5</td>
+            </tr>
+          </tbody>
+        </Table>
       </Card>
     </CardWrapper>
   );
