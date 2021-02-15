@@ -1,19 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from '@emotion/react';
-import { BrowserRouter } from 'react-router-dom';
-import Portfolio from './pages/portfolio';
-import { AppTheme } from './AppTheme';
+import { render } from '@testing-library/react';
 
-test('renders profile title', () => {
-  render(
-    <ThemeProvider theme={AppTheme(false)}>
-      <BrowserRouter>
-        <Portfolio />
-      </BrowserRouter>
-      );
-    </ThemeProvider>,
-  );
-  const linkElement = screen.getAllByText(/Portfolio/i);
-  expect.arrayContaining(linkElement);
+// import { expect } from 'chai';
+// import * as React from 'react';
+import App from './App';
+
+describe('<App>', () => {
+  it('renders learn react link', () => {
+    const { getByText } = render(<App />);
+    const linkElement = getByText(/learn react/i);
+    expect(document.body.contains(linkElement));
+  });
 });
