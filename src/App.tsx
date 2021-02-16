@@ -1,11 +1,11 @@
-import './App.css';
+import "./App.css";
 
-import { ChakraProvider } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ChakraProvider } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import logo from './logo.svg';
-import Login from './pages/login';
+import Login from "./pages/login";
+import SignUpFlow from "./pages/signup/signupflow";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface AppProps {}
@@ -32,6 +32,9 @@ function App({}: AppProps) {
 
             <Route exact path="/login">
               <Login /> {/* setUser={setUser} */}
+            </Route>
+            <Route exact path="/signupflow">
+              <SignUpFlow />
             </Route>
 
             {/* <Route exact path="/signup" component={Signup} /> */}
