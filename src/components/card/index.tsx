@@ -1,12 +1,7 @@
-import React from "react";
-import * as Styled from './style';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { Box } from '@chakra-ui/react';
+import { jsx } from '@emotion/react/macro';
+import styled from '@emotion/styled/macro';
 
-const Card = (props: any) => {
-  return (
-    <Styled.Card {...props}>
-      {props.children}
-    </Styled.Card>
-  );
-};
-
-export default Card;
+// const ThCard = <Box boxShadow="lg" rounded="lg" />;

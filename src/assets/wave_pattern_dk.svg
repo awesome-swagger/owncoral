@@ -1,0 +1,51 @@
+<svg width="3200" height="2400"  xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 6400 4800"
+     fill="#121212" fill-opacity="1" stroke-opacity=".05" stroke="#7a96ff" stroke-width="2">
+  <defs>
+    <pattern id="waves" width="300" height="150" patternUnits="userSpaceOnUse">
+      <circle cx="150" cy="0" r="147.5" ></circle>
+      <circle cx="150" cy="0" r="127.5" ></circle>
+      <circle cx="150" cy="0" r="107.5" ></circle>
+      <circle cx="150" cy="0" r="87.5" ></circle>
+      <circle cx="150" cy="0" r="67.5" ></circle>
+      <circle cx="150" cy="0" r="47.5" ></circle>
+      <circle cx="150" cy="0" r="27.5" ></circle>
+      <circle cx="0" cy="75" r="147.5" ></circle>
+      <circle cx="0" cy="75" r="127.5" ></circle>
+      <circle cx="0" cy="75" r="107.5" ></circle>
+      <circle cx="0" cy="75" r="87.5" ></circle>
+      <circle cx="0" cy="75" r="67.5" ></circle>
+      <circle cx="0" cy="75" r="47.5" ></circle>
+      <circle cx="0" cy="75" r="27.5" ></circle>
+      <circle cx="300" cy="75" r="147.5" ></circle>
+      <circle cx="300" cy="75" r="127.5" ></circle>
+      <circle cx="300" cy="75" r="107.5" ></circle>
+      <circle cx="300" cy="75" r="87.5" ></circle>
+      <circle cx="300" cy="75" r="67.5" ></circle>
+      <circle cx="300" cy="75" r="47.5" ></circle>
+      <circle cx="300" cy="75" r="27.5" ></circle>
+      <circle cx="150" cy="150" r="147.5" ></circle>
+      <circle cx="150" cy="150" r="127.5" ></circle>
+      <circle cx="150" cy="150" r="107.5" ></circle>
+      <circle cx="150" cy="150" r="87.5" ></circle>
+      <circle cx="150" cy="150" r="67.5" ></circle>
+      <circle cx="150" cy="150" r="47.5" ></circle>
+      <circle cx="150" cy="150" r="27.5" ></circle>
+      <circle cx="0" cy="225" r="147.5" ></circle>
+      <circle cx="0" cy="225" r="127.5" ></circle>
+      <circle cx="0" cy="225" r="107.5" ></circle>
+      <circle cx="0" cy="225" r="87.5" ></circle>
+      <circle cx="0" cy="225" r="67.5" ></circle>
+      <circle cx="0" cy="225" r="47.5" ></circle>
+      <circle cx="0" cy="225" r="27.5" ></circle>
+      <circle cx="300" cy="225" r="147.5" ></circle>
+      <circle cx="300" cy="225" r="127.5" ></circle>
+      <circle cx="300" cy="225" r="107.5" ></circle>
+      <circle cx="300" cy="225" r="87.5" ></circle>
+      <circle cx="300" cy="225" r="67.5" ></circle>
+      <circle cx="300" cy="225" r="47.5" ></circle>
+      <circle cx="300" cy="225" r="27.5" ></circle>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="6400" height="4800" fill="url(#waves)"></rect>
+</svg>

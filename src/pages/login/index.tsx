@@ -15,10 +15,10 @@ import {
   Stack,
   VStack,
 } from '@chakra-ui/react';
-import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
 import { css, jsx, useTheme } from '@emotion/react';
-// import { ReactComponent as Logo } from '../../assets/coral.svg';
-// import * as Styled from './style';
+import { FiEye, FiEyeOff,FiLock, FiMail } from 'react-icons/fi';
+
+import Logo from '../../assets/coral.svg';
 // import { fetchWrap } from '../../Utils';
 // import { useHistory } from 'react-router';
 //
@@ -31,37 +31,55 @@ import { css, jsx, useTheme } from '@emotion/react';
 // };
 
 const Login = () => (
-  <Box>
-    <Center>
-      <VStack>
-        <span>Logo here</span>
-        <h4>Coral</h4>
-      </VStack>
-    </Center>
-    <FormControl>
-      <VStack spacing={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={FiMail} />
-          </InputLeftElement>
-          <Input type="email" placeholder="Email address" />
-        </InputGroup>
+  <Center>
+    <Box
+      boxShadow="xl"
+      rounded="3xl"
+      w="60%"
+      minW="300px"
+      maxW="350px"
+      pos="fixed"
+      left="50%"
+      top="50%"
+      m={[2, 3]}
+      p={[8, 10]}
+      sx={{
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
+      <Center>
+        <VStack>
+          <Icon as={Logo} w={14} h={14} />
+          <h4>Coral</h4>
+        </VStack>
+      </Center>
+      <FormControl>
+        <Center>
+          <VStack spacing={4} padding={[1, 2]} sx={{ flexGrow: 1 }}>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={FiMail} />
+              </InputLeftElement>
+              <Input type="email" placeholder="Email address" />
+            </InputGroup>
 
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={FiLock} />
-          </InputLeftElement>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={FiLock} />
+              </InputLeftElement>
 
-          <Input type="password" placeholder="Password" />
-          <InputRightElement>
-            <Icon as={FiEyeOff} />
-          </InputRightElement>
-        </InputGroup>
-        <FormHelperText>Good job!</FormHelperText>
-      </VStack>
-      <Button>Login</Button>
-    </FormControl>
-  </Box>
+              <Input type="password" placeholder="Password" />
+              <InputRightElement>
+                <Icon as={FiEyeOff} />
+              </InputRightElement>
+            </InputGroup>
+            <FormHelperText>Good job!</FormHelperText>
+            <Button size="xl">Login</Button>
+          </VStack>
+        </Center>
+      </FormControl>
+    </Box>
+  </Center>
 );
 
 // const onSubmit = (
@@ -162,6 +180,6 @@ const Login = () => (
 //       </form>
 //     </Styled.Card>
 //   );
-//};
+// };
 
 export default Login;

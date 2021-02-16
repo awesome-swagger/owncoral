@@ -32,7 +32,8 @@ declare module '*.styl';
 
 /* IMAGES */
 declare module '*.svg' {
-  const ref: string;
+  import React from 'react';
+  const ref: React.RefForwardingComponent<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>;
   export default ref;
 }
 declare module '*.bmp' {

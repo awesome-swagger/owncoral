@@ -14,13 +14,15 @@
     "@chakra-ui/theme-tools": "^1.0.4",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
+    "@snowpack/plugin-webpack": "^2.3.0",
     "formik": "^2.2.6",
     "framer-motion": "^3.3.0",
     "normalize.css": "^8.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-icons": "^4.2.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "snowpack-plugin-svgr": "^0.1.2"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.0.5",
