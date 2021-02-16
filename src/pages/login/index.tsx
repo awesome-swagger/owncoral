@@ -1,6 +1,5 @@
 /** @jsxRuntime classic */
-/** @jsx jsx */
-// import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -14,9 +13,13 @@ import {
   InputRightElement,
   Stack,
   VStack,
-} from '@chakra-ui/react';
-import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-import { css, jsx, useTheme } from '@emotion/react';
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import Chevron from "../../assets/chevron.png";
+import RecoverPassword from "./recoverpassword";
+
+import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 // import { ReactComponent as Logo } from '../../assets/coral.svg';
 // import * as Styled from './style';
 // import { fetchWrap } from '../../Utils';
@@ -30,39 +33,91 @@ import { css, jsx, useTheme } from '@emotion/react';
 //   password: string;
 // };
 
-const Login = () => (
-  <Box>
-    <Center>
-      <VStack>
-        <span>Logo here</span>
-        <h4>Coral</h4>
-      </VStack>
-    </Center>
-    <FormControl>
-      <VStack spacing={4}>
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={FiMail} />
-          </InputLeftElement>
-          <Input type="email" placeholder="Email address" />
-        </InputGroup>
+const Login: React.FC = () => {
+  const [loginPage, setLoginPage] = useState<boolean>(true);
+  return (
+    <div>
+      {loginPage === true ? (
+        <Box p="24px" pos="relative" h="100vh">
+          <FormControl h="100%">
+            <Box h="16px" w="16px" cursor="pointer">
+              <Image src={Chevron} />
+            </Box>
+            <VStack spacing={4}>
+              <Text
+                color="#4E504F"
+                fontSize="15px"
+                textAlign="left"
+                m="32px 0px 8px 0px !important"
+                w="100%"
+              >
+                Email
+              </Text>
+              <InputGroup mt="8px !important">
+                <InputLeftElement pointerEvents="none" h="48px">
+                  <Icon as={FiMail} />
+                </InputLeftElement>
+                <Input
+                  type="email"
+                  placeholder="Email address"
+                  bg="#F3F3F3"
+                  h="48px"
+                />
+              </InputGroup>
 
-        <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={FiLock} />
-          </InputLeftElement>
+              <Text
+                color="#4E504F"
+                fontSize="15px"
+                textAlign="left"
+                m="32px 0px 8px 0px !important"
+                w="100%"
+              >
+                Password
+              </Text>
+              <InputGroup mt="0 !important">
+                <InputLeftElement pointerEvents="none" h="48px">
+                  <Icon as={FiLock} />
+                </InputLeftElement>
 
-          <Input type="password" placeholder="Password" />
-          <InputRightElement>
-            <Icon as={FiEyeOff} />
-          </InputRightElement>
-        </InputGroup>
-        <FormHelperText>Good job!</FormHelperText>
-      </VStack>
-      <Button>Login</Button>
-    </FormControl>
-  </Box>
-);
+                <Input
+                  type="password"
+                  placeholder="Password"
+                  bg="#F3F3F3"
+                  h="48px"
+                />
+                <InputRightElement h="48px">
+                  <Icon as={FiEyeOff} />
+                </InputRightElement>
+              </InputGroup>
+              <FormHelperText
+                w="100%"
+                textAlign="right"
+                fontSize="13px"
+                cursor="pointer"
+                onClick={() => setLoginPage(false)}
+              >
+                Forgot Password?
+              </FormHelperText>
+            </VStack>
+            <Button
+              pos="absolute"
+              bottom="42px"
+              left="0px"
+              w="100%"
+              h="48px"
+              bg="#4E504F"
+              color="#fff"
+            >
+              Login
+            </Button>
+          </FormControl>
+        </Box>
+      ) : (
+        <RecoverPassword />
+      )}
+    </div>
+  );
+};
 
 // const onSubmit = (
 //   e: React.FormEvent<HTMLFormElement>,

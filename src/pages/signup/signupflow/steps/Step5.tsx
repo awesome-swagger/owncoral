@@ -1,9 +1,9 @@
 /** @jsxRuntime classic */
 import React, { useState } from "react";
-import { Box, Heading, Text, Input, Button } from "@chakra-ui/react";
+import { Box, Heading, Text, Input, Button, Image } from "@chakra-ui/react";
 
-// import Chevron from "../../../../assets/chevron.png";
-// import Close from "../../../../assets/close.png";
+import Chevron from "../../../../assets/chevron.png";
+import Close from "../../../../assets/close.png";
 
 type stepProps = {
   nextStep: () => void;
@@ -22,12 +22,17 @@ const PopUpContent = {
   },
 };
 const Step5: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [popup, setPopup] = useState(false);
-  const [activepopup, setActivepopup] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [popup, setPopup] = useState<boolean>(false);
+  const [activepopup, setActivepopup] = useState<"privacy" | "terms">(
+    "privacy"
+  );
   return (
     <Box p="24px" m="0" w="100%" h="100vh">
+      <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
+        <Image src={Chevron} />
+      </Box>
       <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
         Let’s create your account
       </Heading>
@@ -139,11 +144,13 @@ const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
         maxW=" 550px"
         minH=" 500px"
         p=" 24px"
-        // box-sizing: border-box;
         borderRadius=" 10px"
         bg=" #fff"
         zIndex={1}
       >
+        <Box h="16px" w="16px" cursor="pointer">
+          <Image src={Close} onClick={() => togglePopUp(false)} />
+        </Box>
         <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
           {content.title}
         </Heading>

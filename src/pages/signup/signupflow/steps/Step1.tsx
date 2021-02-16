@@ -16,7 +16,7 @@ type stepProps = {
 };
 
 const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
-  const [available, setAvailable] = useState("Available");
+  const [available, setAvailable] = useState<string>("Available");
 
   return (
     <div>
@@ -75,7 +75,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
 };
 
 const TaxID = ({ nextStep, prevStep }: stepProps) => {
-  const [taxID, setTaxID] = useState("");
+  const [taxID, setTaxID] = useState<string>("");
   return (
     <Box p="24px" m="0" w="100%" h="100vh" pos="relative">
       <Box h="16px" w="16px" cursor="pointer">

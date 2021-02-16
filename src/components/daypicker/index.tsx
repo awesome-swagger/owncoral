@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import DatePicker from "react-mobile-datepicker";
+import { Heading } from "@chakra-ui/react";
 
-const DayPicker = () => {
-  const [date, setDate] = useState(new Date());
-  const [open, setOpen] = useState(false);
+const DayPicker: React.FC = () => {
+  const [date, setDate] = useState<Date>(new Date());
+  const [open, setOpen] = useState<boolean>(false);
   const monthMap = {
     "1": "Jan",
     "2": "Feb",
@@ -19,7 +20,6 @@ const DayPicker = () => {
     "11": "Nov",
     "12": "Dec",
   };
-  console.log(date.getDate);
   const dateConfig = {
     year: {
       format: "YYYY",
@@ -44,15 +44,20 @@ const DayPicker = () => {
     setOpen(false);
   };
 
-  const handleSelect = (newDate) => {
+  const handleSelect = (newDate: Date): void => {
     setDate(newDate);
     setOpen(false);
   };
   return (
     <div style={{ margin: "16px 0" }}>
-      <h2 style={{ cursor: "pointer" }} onClick={handleClick}>
+      <Heading
+        fontSize="24px"
+        textAlign="left"
+        cursor="pointer"
+        onClick={handleClick}
+      >
         Select Date
-      </h2>
+      </Heading>
       <DatePicker
         value={date}
         isOpen={open}
@@ -62,11 +67,11 @@ const DayPicker = () => {
         confirmText="Confirm"
         cancelText="Cancel"
       />
-      <h1>
+      <Heading fontSize="24px" textAlign="left">
         <span>{date.getFullYear()}</span> :{" "}
         <span>{monthMap[date.getMonth() + 1]}</span> :{" "}
         <span>{date.getDate()}</span>
-      </h1>
+      </Heading>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 import React, { useState, useCallback } from "react";
-import { Box, Button, Heading, Progress } from "@chakra-ui/react";
+import { Box, Button, Heading, Progress, Image } from "@chakra-ui/react";
+import Chevron from "../../../../assets/chevron.png";
 
 type stepProps = {
   nextStep: () => void;
@@ -37,7 +38,10 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   );
   return (
     <Box p="24px" m="0" w="100%" h="100vh">
-      <Progress colorScheme="gray" size="sm" value={3} />
+      <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
+        <Image src={Chevron} />
+      </Box>
+      <Progress mt="32px" colorScheme="gray" size="sm" value={3} />
       <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
         Which is your investment goal?
       </Heading>

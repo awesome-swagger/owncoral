@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 import React from "react";
-import { Box, Flex, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Button, Heading, Text, Image } from "@chakra-ui/react";
+import Chevron from "../../../../assets/chevron.png";
 import { Link } from "react-router-dom";
 
 type stepProps = {
@@ -14,10 +15,22 @@ const Step11: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       m="0"
       w="100%"
       h="100vh"
+      pos="relative"
       align="center"
       justify="center"
       direction="column"
     >
+      <Box
+        pos="absolute"
+        top="24px"
+        left="24px"
+        h="16px"
+        w="16px"
+        cursor="pointer"
+        onClick={() => prevStep()}
+      >
+        <Image src={Chevron} />
+      </Box>
       <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
       <Heading as="h1" size="md" mt="32px">
         Thanks for joining Coral

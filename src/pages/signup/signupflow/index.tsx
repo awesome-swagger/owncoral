@@ -12,11 +12,10 @@ import Step9 from "./steps/Step9";
 import Step10 from "./steps/Step10";
 import Step11 from "./steps/Step11";
 
-const SignUpFlow = () => {
-  const [step, setStep] = useState(1);
+const SignUpFlow: React.FC = () => {
+  const [step, setStep] = useState<number>(1);
   const nextStep = () => {
     setStep(step + 1);
-    console.log("next step");
   };
   const prevStep = () => {
     setStep(step - 1);

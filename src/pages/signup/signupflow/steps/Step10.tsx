@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 import React from "react";
-import { Box, Progress, Heading } from "@chakra-ui/react";
+import { Box, Progress, Heading, Image } from "@chakra-ui/react";
+import Chevron from "../../../../assets/chevron.png";
 
 type stepProps = {
   nextStep: () => void;
@@ -10,7 +11,10 @@ type stepProps = {
 const Step10: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   return (
     <Box p="24px" m="0" w="100%" h="100vh">
-      <Progress colorScheme="gray" size="sm" value={66} />
+      <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
+        <Image src={Chevron} />
+      </Box>
+      <Progress mt="32px" colorScheme="gray" size="sm" value={66} />
 
       <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
         How much investment experience do you have?

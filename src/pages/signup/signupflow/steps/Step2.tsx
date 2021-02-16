@@ -10,8 +10,8 @@ type stepProps = {
 };
 
 const Step2: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
 
   return (
     <Box p="24px" m="0" w="100%" h="100vh">

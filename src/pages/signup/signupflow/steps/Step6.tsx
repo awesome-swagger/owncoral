@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 import React from "react";
-import { Box, Button, Heading, Text, Flex } from "@chakra-ui/react";
+import { Box, Button, Heading, Text, Flex, Image } from "@chakra-ui/react";
+import Chevron from "../../../../assets/chevron.png";
 
 type stepProps = {
   nextStep: () => void;
@@ -10,6 +11,7 @@ type stepProps = {
 const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   return (
     <Flex
+      pos="relative"
       p="24px"
       m="0"
       w="100%"
@@ -18,6 +20,17 @@ const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       justify="center"
       direction="column"
     >
+      <Box
+        pos="absolute"
+        top="24px"
+        left="24px"
+        h="16px"
+        w="16px"
+        cursor="pointer"
+        onClick={() => prevStep()}
+      >
+        <Image src={Chevron} />
+      </Box>
       <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
       <Heading as="h1" size="md" mt="32px">
         Please verify your email address
