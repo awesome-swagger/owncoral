@@ -5,8 +5,8 @@
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
-    "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
+    "jsx": "react",
+//    "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     /* paths - import rewriting/resolving */
     "paths": {

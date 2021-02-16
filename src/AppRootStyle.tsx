@@ -1,0 +1,27 @@
+import { css, jsx } from '@emotion/react';
+
+const AppRootStyle = css`
+  //* {
+  //  color: inherit;
+  //  text-transform: inherit;
+  //}
+  //a {
+  //  text-decoration: none;
+  //}
+  html {
+    //overscroll-behavior: none;
+  }
+  body {
+    //margin: 0;
+    //padding: 0;
+    min-width: 360px; /* smallest common device size */
+    overscroll-behavior: none;
+  }
+
+  html {
+    // We size text at 85% at 360px, and 100% at 768px
+    font-size: calc(85% + clamp(0%, 1.6 * ((100vw - 360px) / 408), 15%));
+  }
+`;
+
+export default AppRootStyle;
