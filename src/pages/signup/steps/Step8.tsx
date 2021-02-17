@@ -41,7 +41,14 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
         <Image src={Chevron} />
       </Box>
       <Progress mt="32px" colorScheme="gray" size="sm" value={3} />
-      <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
+      <Heading
+        as="h1"
+        size="md"
+        mt="32px"
+        mb="8px"
+        textAlign="left"
+        letterSpacing="normal"
+      >
         Which is your investment goal?
       </Heading>
       {investmentGoalList.map(({ value, label }) => (

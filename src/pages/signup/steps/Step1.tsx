@@ -24,7 +24,14 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
             <Image src={Chevron} />
           </Box>
-          <Heading as="h1" size="md" mt="32px" mb="24px" textAlign="left">
+          <Heading
+            letterSpacing="normal"
+            as="h1"
+            size="md"
+            mt="32px"
+            mb="24px"
+            textAlign="left"
+          >
             Are you a U.S resident?
           </Heading>
           <Box
@@ -80,7 +87,14 @@ const TaxID = ({ nextStep, prevStep }: stepProps) => {
       <Box h="16px" w="16px" cursor="pointer">
         <Image src={Chevron} />
       </Box>
-      <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
+      <Heading
+        as="h1"
+        size="md"
+        mt="32px"
+        mb="8px"
+        textAlign="left"
+        letterSpacing="normal"
+      >
         Please enter your Tax ID
       </Heading>
       <Text fontSize="15px" textAlign="left">
@@ -133,7 +147,7 @@ const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
       >
         <Image src={Chevron} />
       </Box>
-      <Heading as="h1" size="md">
+      <Heading as="h1" size="md" letterSpacing="normal">
         Sorry, Coral is only available for U.S. residents
       </Heading>
       <Text fontSize="15px" m="0 !important">

@@ -30,7 +30,7 @@ const Step7: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
         <Image src={Chevron} />
       </Box>
       <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-      <Heading as="h1" size="md" mt="32px">
+      <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
         Welcome to Coral, John Doe!
       </Heading>
       <Text fontSize="15px" m="0 !important">

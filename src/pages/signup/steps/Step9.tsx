@@ -15,7 +15,14 @@ const Step9: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       </Box>
       <Progress mt="32px" colorScheme="gray" size="sm" value={33} />
 
-      <Heading as="h1" size="md" mt="32px" mb="8px" textAlign="left">
+      <Heading
+        as="h1"
+        size="md"
+        mt="32px"
+        mb="8px"
+        textAlign="left"
+        letterSpacing="normal"
+      >
         How much is your net worth
       </Heading>
       <Box

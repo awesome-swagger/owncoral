@@ -1,9 +1,5 @@
 {
-  "include": [
-    "src/**/*.tsx",
-    "src/**/*.ts",
-    "types"
-  ],
+  "include": ["src/**/*.tsx", "src/**/*.ts", "types"],
   "compilerOptions": {
     "incremental": true,
     "module": "esnext",
@@ -27,6 +23,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "importsNotUsedAsValues": "error"
+    "importsNotUsedAsValues": "error",
+    "types": ["chai", "mocha", "node", "snowpack-env"]
   }
 }

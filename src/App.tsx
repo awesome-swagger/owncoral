@@ -1,17 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { ChakraProvider } from '@chakra-ui/react';
-import { Global } from '@emotion/react';
+// import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Global } from "@emotion/react";
 
-import AppRootStyle from './AppRootStyle';
-import AppTheme from './theme/chakra';
-import { HeaderStyles } from './theme/typographyStyles';
+import AppRootStyle from "./AppRootStyle";
+import AppTheme from "./theme/chakra";
+import { HeaderStyles } from "./theme/typographyStyles";
 
-import Login from './pages/login';
-import Signup from './pages/signup';
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 
 // eslint-disable-next-line no-empty-pattern
-const App = (props: {}) => {
+const App: React.FC = () => {
   return (
     <ChakraProvider theme={AppTheme}>
       <Global styles={[AppRootStyle, HeaderStyles]} />
@@ -25,7 +25,7 @@ const App = (props: {}) => {
           <Route exact path="/login">
             <Login /> {/* setUser={setUser} */}
           </Route>
-          
+
           <Route exact path="/signup">
             <Signup />
           </Route>

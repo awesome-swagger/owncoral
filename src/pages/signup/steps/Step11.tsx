@@ -31,7 +31,7 @@ const Step11: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
         <Image src={Chevron} />
       </Box>
       <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-      <Heading as="h1" size="md" mt="32px">
+      <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
         Thanks for joining Coral
       </Heading>
       <Text fontSize="13px" color="#888" m="0 !important">
