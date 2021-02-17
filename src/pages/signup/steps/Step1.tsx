@@ -1,4 +1,3 @@
-/** @jsxRuntime classic */
 import React, { useState } from "react";
 import {
   Heading,

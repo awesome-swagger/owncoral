@@ -23,9 +23,9 @@ References
 - https://codepen.io/liujimj/pen/xxRgwmE
 */
 
-import { css,jsx } from '@emotion/react';
+import { css, jsx } from '@emotion/react';
 
-const hFont = css`
+const hFont = {
   /*
     Raleway has pretty, but funny-looking numbers.
     Switch back to standard 'lining numerals' instead of default 'text figures' for
@@ -34,116 +34,116 @@ const hFont = css`
     Reference
       https://medium.com/newsbrewer-app/what-s-wrong-with-one-of-the-most-elegant-typefaces-raleway-662e1e7bc7f7
   */
-  font-family: Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  font-feature-settings: 'lnum';
-`;
+  fontFamily: `Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
+  fontFeatureSettings: 'lnum',
+};
 
-const hMargin = css`
-  margin-block-start: 0.6em;
-  margin-block-end: 0.6em;
-`;
+const hMargin = {
+  marginBlockStart: '0.6em',
+  marginBlockEnd: '0.6em',
+};
 
-const bodyFont = css`
-  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-`;
+const bodyFont = {
+  fontFamily: `'Nunito', - apple - system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 
+  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
+};
 
 // Export header styles as 'mixins', so they can be reused to
 // style large components without using header tags. Exclude
 // setting a margin.
-export const h1 = css`
-  font-size: ${98 / 16}rem;
-  font-weight: 300;
-  letter-spacing: ${-1.5 / 16}em;
-  ${hFont}
-`;
+export const h1 = {
+  fontSize: `${98 / 16}rem`,
+  fontWeight: 300,
+  letterSpacing: `${-1.5 / 16}em`,
+  ...hFont,
+};
 
-export const h2 = css`
-  font-size: ${61 / 16}rem;
-  font-weight: 300;
-  letter-spacing: ${-0.5 / 16}em;
-  ${hFont}
-`;
+export const h2 = {
+  fontSize: `${61 / 16}rem`,
+  fontWeight: 300,
+  letterSpacing: `${-0.5 / 16}em`,
+  ...hFont,
+};
 
-export const h3 = css`
-  font-size: ${49 / 16}rem;
-  font-weight: 400;
-  ${hFont}
-`;
+export const h3 = {
+  fontSize: `${49 / 16}rem`,
+  fontWeight: 400,
+  ...hFont,
+};
 
-export const h4 = css`
-  font-size: ${35 / 16}rem;
-  font-weight: 400;
-  letter-spacing: ${0.25 / 16}em;
-  ${hFont}
-`;
+export const h4 = {
+  fontSize: `${35 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.25 / 16}em`,
+  ...hFont,
+};
 
-export const h5 = css`
-  font-size: ${24 / 16}rem;
-  font-weight: 400;
-  ${hFont}
-`;
+export const h5 = {
+  fontSize: `${24 / 16}rem`,
+  fontWeight: 400,
+  ...hFont,
+};
 
-export const h6 = css`
-  font-size: ${20 / 16}rem;
-  font-weight: 500;
-  letter-spacing: ${0.15 / 16}em;
-  ${hFont}
-`;
+export const h6 = {
+  fontSize: `${20 / 16}rem`,
+  fontWeight: 500,
+  letterSpacing: `${0.15 / 16}em`,
+  ...hFont,
+};
 
-export const subTitle1 = css`
-  fontsize: ${16 / 16}rem;
-  font-weight: 400;
-  letterspacing: ${0.15 / 16}em;
-  ${bodyFont}
-`;
+export const subTitle1 = {
+  fontSize: `${16 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.15 / 16}em`,
+  ...bodyFont,
+};
 
-export const subTitle2 = css`
-  fontsize: ${14 / 16}rem;
-  font-weight: 500;
-  letterspacing: ${0.1 / 16}em;
-  ${bodyFont}
-`;
+export const subTitle2 = {
+  fontSize: `${14 / 16}rem`,
+  fontWeight: 500,
+  letterSpacing: `${0.11 / 16}em`,
+  ...bodyFont,
+};
 
-export const bodyText1 = css`
-  font-size: ${17 / 16}rem;
-  font-weight: 400;
-  letter-spacing: ${0.5 / 16}em;
-  ${bodyFont}
-`;
+export const bodyText1 = {
+  fontSize: `${17 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.5 / 16}em`,
+  ...bodyFont,
+};
 
-export const bodyText2 = css`
-  font-size: ${15 / 16}rem;
-  font-weight: 400;
-  letter-spacing: ${0.25 / 16}em;
-  ${bodyFont}
-`;
+export const bodyText2 = {
+  fontSize: `${15 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.25 / 16}em`,
+  ...bodyFont,
+};
 
-export const button = css`
+export const button = {
   // Ignore MUI here, uppercase looks dated
   // text-transform: uppercase;
-  font-size: ${15 / 16}rem;
-  font-weight: 500;
-  letter-spacing: ${1.25 / 16}em;
-  ${bodyFont}
-`;
+  fontSize: `${15 / 16}rem`,
+  fontWeight: 500,
+  letterSpacing: `${1.25 / 16}em`,
+  ...bodyFont,
+};
 
-export const caption = css`
-  font-size: ${13 / 16}rem;
-  font-weight: 400;
-  letter-spacing: ${0.4 / 16}em;
-  ${bodyFont}
-`;
+export const caption = {
+  fontSize: `${13 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.4 / 16}em`,
+  ...bodyFont,
+};
 
-export const overline = css`
-  text-transform: uppercase;
+export const overline = {
+  textTransform: 'uppercase',
 
-  font-size: ${10 / 16}rem;
-  font-weight: 400;
-  letter-spacing: ${1.5 / 16}em;
-  ${bodyFont}
-`;
+  fontSize: `${10 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${1.5 / 16}em`,
+  ...bodyFont,
+};
 
 export const HeaderStyles = css`
   h1,

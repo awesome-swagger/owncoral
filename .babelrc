@@ -1,0 +1,16 @@
+{
+  "extends": "@snowpack/app-scripts-react/babel.config.json",
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    ],
+    "@emotion/babel-preset-css-prop"
+  ],
+  "plugins": [
+    "transform-node-env-inline"
+  ]
+}

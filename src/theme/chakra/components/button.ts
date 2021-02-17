@@ -1,16 +1,23 @@
+import { button } from '../../typographyStyles';
+
 const Button = {
-  // 1. We can update the base styles
   baseStyle: {
+    // Rounded buttons
     borderRadius: 'full',
-    fontWeight: 'normal',
+    // Use MUI button typography
+    ...button,
   },
   sizes: {
     xl: {
-      h: 14,
       minW: 16,
       fontSize: 'lg',
       px: 8,
+      py: 4,
     },
+  },
+
+  defaultProps: {
+    colorScheme: 'primary',
   },
 };
 

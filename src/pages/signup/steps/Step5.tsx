@@ -1,4 +1,3 @@
-/** @jsxRuntime classic */
 import React, { useState } from "react";
 import { Box, Heading, Text, Input, Button, Image } from "@chakra-ui/react";
 

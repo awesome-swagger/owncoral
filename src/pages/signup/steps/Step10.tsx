@@ -1,5 +1,4 @@
-/** @jsxRuntime classic */
-import React from "react";
+// import React from "react";
 import { Box, Progress, Heading, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
 
