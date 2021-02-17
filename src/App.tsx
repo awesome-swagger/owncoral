@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Global } from "@emotion/react";
 
-import AppRootStyle from "./AppRootStyle";
-import AppTheme from "./theme/chakra";
-import { HeaderStyles } from "./theme/typographyStyles";
+import AppRootStyle from './AppRootStyle';
+import AppTheme from './theme/chakra';
+import { HeaderStyles } from './theme/typographyStyles';
 
-import Login from "./pages/login";
-import Signup from "./pages/signup";
+import { Login } from './pages/login';
+import Signup from './pages/signup';
 
 // eslint-disable-next-line no-empty-pattern
-const App: React.FC = () => {
+export const App = (props: {}) => {
   return (
     <ChakraProvider theme={AppTheme}>
       <Global styles={[AppRootStyle, HeaderStyles]} />
@@ -47,5 +47,3 @@ const App: React.FC = () => {
     </ChakraProvider>
   );
 };
-
-export default App;

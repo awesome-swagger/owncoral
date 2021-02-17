@@ -14,7 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -118,7 +118,7 @@ const LoginForm = () => {
   );
 };
 
-const Login = () => {
+export const Login = () => {
   return (
     <Center>
       <Box
@@ -147,5 +147,3 @@ const Login = () => {
     </Center>
   );
 };
-
-export default Login;
