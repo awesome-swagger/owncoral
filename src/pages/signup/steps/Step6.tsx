@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 import React from "react";
 import { Box, Button, Heading, Text, Flex, Image } from "@chakra-ui/react";
-import Chevron from "../../../../assets/chevron.png";
+import Chevron from "../../../assets/chevron.png";
 
 type stepProps = {
   nextStep: () => void;

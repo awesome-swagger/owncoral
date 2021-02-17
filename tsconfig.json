@@ -1,5 +1,9 @@
 {
-  "include": ["src/**/*.tsx", "src/**/*.ts", "types"],
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "types"
+  ],
   "compilerOptions": {
     "incremental": true,
     "module": "esnext",
@@ -22,6 +26,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "error"
   }
 }

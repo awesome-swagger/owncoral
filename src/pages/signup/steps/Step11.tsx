@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 import React from "react";
 import { Box, Flex, Button, Heading, Text, Image } from "@chakra-ui/react";
-import Chevron from "../../../../assets/chevron.png";
+import Chevron from "../../../assets/chevron.png";
 import { Link } from "react-router-dom";
 
 type stepProps = {

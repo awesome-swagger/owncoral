@@ -9,7 +9,7 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-import Chevron from "../../../../assets/chevron.png";
+import Chevron from "../../../assets/chevron.png";
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
@@ -22,7 +22,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
     <div>
       {available === "Available" ? (
         <Box p="24px" m="0" w="100%" h="100vh">
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep}>
+          <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
             <Image src={Chevron} />
           </Box>
           <Heading as="h1" size="md" mt="32px" mb="24px" textAlign="left">

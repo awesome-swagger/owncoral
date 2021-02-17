@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { Box, Heading, Text, Input, Button, Image } from "@chakra-ui/react";
 
-import Chevron from "../../../../assets/chevron.png";
-import Close from "../../../../assets/close.png";
+import Chevron from "../../../assets/chevron.png";
+import Close from "../../../assets/close.png";
 
 type stepProps = {
   nextStep: () => void;
