@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Heading,
   Box,
@@ -9,13 +9,33 @@ import {
   Image,
 } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
+
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
+type availableType = "Available" | "taxID" | "notAvailable";
+
+const initialQuestions = [
+  { value: "yes", label: "Yes" },
+  { value: "taxID", label: "I Have a Tax ID" },
+  { value: "notAvailable", label: "No" },
+];
+
 const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
-  const [available, setAvailable] = useState<string>("Available");
+  const [available, setAvailable] = useState<availableType>("Available");
+
+  const handleSubmit = useCallback(
+    (value) => {
+      if (value === "yes") {
+        nextStep();
+      } else {
+        setAvailable(value);
+      }
+    },
+    [available]
+  );
 
   return (
     <div>
@@ -34,42 +54,20 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           >
             Are you a U.S resident?
           </Heading>
-          <Box
-            px="24px"
-            py="12px"
-            mt="8px"
-            bg="#F3F3F3"
-            color="4E504F"
-            textAlign="left"
-            cursor="pointer"
-            onClick={() => nextStep()}
-          >
-            Yes
-          </Box>
-          <Box
-            px="24px"
-            py="12px"
-            mt="8px"
-            bg="#F3F3F3"
-            color="4E504F"
-            textAlign="left"
-            cursor="pointer"
-            onClick={() => setAvailable("taxID")}
-          >
-            I have tax ID
-          </Box>
-          <Box
-            px="24px"
-            py="12px"
-            mt="8px"
-            bg="#F3F3F3"
-            color="4E504F"
-            textAlign="left"
-            cursor="pointer"
-            onClick={() => setAvailable("notAvailable")}
-          >
-            No
-          </Box>
+          {initialQuestions.map(({ value, label }) => (
+            <Box
+              px="24px"
+              py="12px"
+              mt="8px"
+              bg="#F3F3F3"
+              color="4E504F"
+              textAlign="left"
+              cursor="pointer"
+              onClick={() => handleSubmit(value)}
+            >
+              {label}
+            </Box>
+          ))}
         </Box>
       ) : available === "taxID" ? (
         <TaxID nextStep={nextStep} prevStep={prevStep} />

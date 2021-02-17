@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
@@ -9,10 +9,32 @@ import Step7 from "./steps/Step7";
 import Step8 from "./steps/Step8";
 import Step9 from "./steps/Step9";
 import Step10 from "./steps/Step10";
-import Step11 from "./steps/Step11";
+import Result from "./steps/Step11";
+
+interface formStateType {
+  [key: string]: any;
+}
+
+interface ContextType {
+  formState?: formStateType;
+  dispatch?: React.Dispatch<any>;
+}
+
+const StepFormContext = React.createContext<ContextType>({});
+
+function formReducer(state: formStateType, action: any) {
+  switch (action) {
+    case "update-form":
+      return { ...state, ...action.payload };
+    default:
+      return state;
+  }
+}
 
 const Signup = () => {
   const [step, setStep] = useState<number>(1);
+  const [formState, dispatch] = useReducer(formReducer, {});
+
   const nextStep = () => {
     setStep(step + 1);
   };
@@ -21,7 +43,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <StepFormContext.Provider value={{ formState, dispatch }}>
       {step === 1 ? (
         <Step1 nextStep={nextStep} prevStep={prevStep} />
       ) : step === 2 ? (
@@ -43,11 +65,11 @@ const Signup = () => {
       ) : step === 10 ? (
         <Step10 nextStep={nextStep} prevStep={prevStep} />
       ) : step === 11 ? (
-        <Step11 nextStep={nextStep} prevStep={prevStep} />
+        <Result nextStep={nextStep} prevStep={prevStep} />
       ) : (
         ""
       )}
-    </div>
+    </StepFormContext.Provider>
   );
 };
 
