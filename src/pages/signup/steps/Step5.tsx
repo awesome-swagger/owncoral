@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, Heading, Text, Input, Button, Image } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
 import Chevron from "../../../assets/chevron.png";
 import Close from "../../../assets/close.png";
+import { StepFormContext } from "../../signup";
 
 type stepProps = {
   nextStep: () => void;
@@ -21,110 +23,142 @@ const PopUpContent = {
   },
 };
 const Step5: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const { handleSubmit, register, setValue, watch } = useForm();
+  const form = useContext(StepFormContext);
+
+  const email = watch("email");
+  const password = watch("password");
+
   const [popup, setPopup] = useState<boolean>(false);
   const [activepopup, setActivepopup] = useState<"privacy" | "terms">(
     "privacy"
   );
-  return (
-    <Box p="24px" m="0" w="100%" h="100vh">
-      <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-        <Image src={Chevron} />
-      </Box>
-      <Heading
-        as="h1"
-        size="md"
-        mt="32px"
-        mb="8px"
-        textAlign="left"
-        letterSpacing="normal"
-      >
-        Let’s create your account
-      </Heading>
-      <Text fontSize="15px" textAlign="left" m="0 !important">
-        Lorem ipsum dolor sir amet
-      </Text>
-      <Box mt="32px">
-        <Text color="#4E504F" fontSize="15px" textAlign="left" m="0 !important">
-          Email
-        </Text>
-        <Input
-          h="48px"
-          bg="#F3F3F3"
-          mt="8px"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </Box>
-      <Box mt="32px">
-        <Text color="#4E504F" fontSize="15px" textAlign="left" m="0 !important">
-          Password
-        </Text>
-        <Input
-          type="password"
-          h="48px"
-          bg="#F3F3F3"
-          mt="8px"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </Box>
-      <Text fontSize="11px" color="#4E504F" textAlign="left" m="0 !important">
-        Must be at least 8 characters
-      </Text>
 
-      <Text
-        w=" calc(100% - 48px)"
-        fontSize="11px"
-        color="#4e504f"
-        pos="absolute"
-        bottom="106px"
-        left="24px"
-      >
-        By tapping “Continue” in the button below, you agree with the{" "}
-        <span
-          onClick={() => {
-            setPopup(true);
-            setActivepopup("terms");
-          }}
-          style={{ textDecoration: "underline", cursor: "pointer" }}
+  const onSubmit = useCallback(
+    (data) => {
+      form.dispatch({ type: "update-form", payload: { step5: data } });
+      nextStep();
+    },
+    [handleSubmit]
+  );
+
+  useEffect(() => {
+    const formState = form.formState;
+
+    setValue("email", formState?.step5?.email);
+    setValue("password", formState?.step5?.password);
+  }, []);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Box p="24px" m="0" w="100%" h="100vh">
+        <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
+          <Image src={Chevron} />
+        </Box>
+        <Heading
+          as="h1"
+          size="md"
+          mt="32px"
+          mb="8px"
+          textAlign="left"
+          letterSpacing="normal"
         >
-          terms and conditions
-        </span>{" "}
-        and{" "}
-        <span
-          onClick={() => {
-            setPopup(true);
-            setActivepopup("privacy");
-          }}
-          style={{ textDecoration: "underline", cursor: "pointer" }}
+          Let’s create your account
+        </Heading>
+        <Text fontSize="15px" textAlign="left" m="0 !important">
+          Lorem ipsum dolor sir amet
+        </Text>
+        <Box mt="32px">
+          <Text
+            color="#4E504F"
+            fontSize="15px"
+            textAlign="left"
+            m="0 !important"
+          >
+            Email
+          </Text>
+          <Input
+            h="48px"
+            bg="#F3F3F3"
+            mt="8px"
+            placeholder="Email"
+            ref={register}
+            name="email"
+          />
+        </Box>
+        <Box mt="32px">
+          <Text
+            color="#4E504F"
+            fontSize="15px"
+            textAlign="left"
+            m="0 !important"
+          >
+            Password
+          </Text>
+          <Input
+            type="password"
+            h="48px"
+            bg="#F3F3F3"
+            mt="8px"
+            placeholder="Password"
+            name="password"
+            ref={register}
+          />
+        </Box>
+        <Text fontSize="11px" color="#4E504F" textAlign="left" m="0 !important">
+          Must be at least 8 characters
+        </Text>
+
+        <Text
+          w=" calc(100% - 48px)"
+          fontSize="11px"
+          color="#4e504f"
+          pos="absolute"
+          bottom="106px"
+          left="24px"
         >
-          privacy policy
-        </span>{" "}
-        provided by Coral
-      </Text>
-      <Button
-        onClick={nextStep}
-        disabled={email === "" || password === ""}
-        pos="absolute"
-        bottom="42px"
-        left="24px"
-        w="calc(100% - 48px)"
-        h="48px"
-        bg="#4E504F"
-        color="#fff"
-      >
-        Continue
-      </Button>
-      {popup ? (
-        <PopUp content={PopUpContent[activepopup]} togglePopUp={setPopup} />
-      ) : (
-        ""
-      )}
-    </Box>
+          By tapping “Continue” in the button below, you agree with the{" "}
+          <span
+            onClick={() => {
+              setPopup(true);
+              setActivepopup("terms");
+            }}
+            style={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            terms and conditions
+          </span>{" "}
+          and{" "}
+          <span
+            onClick={() => {
+              setPopup(true);
+              setActivepopup("privacy");
+            }}
+            style={{ textDecoration: "underline", cursor: "pointer" }}
+          >
+            privacy policy
+          </span>{" "}
+          provided by Coral
+        </Text>
+        <Button
+          disabled={email === "" || password === ""}
+          pos="absolute"
+          bottom="42px"
+          left="24px"
+          w="calc(100% - 48px)"
+          h="48px"
+          bg="#4E504F"
+          color="#fff"
+          type="submit"
+        >
+          Continue
+        </Button>
+        {popup ? (
+          <PopUp content={PopUpContent[activepopup]} togglePopUp={setPopup} />
+        ) : (
+          ""
+        )}
+      </Box>
+    </form>
   );
 };
 type PopupProps = {

@@ -34,7 +34,7 @@ const Step11: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
         Thanks for joining Coral
       </Heading>
-      <Text fontSize="13px" color="#888" m="0 !important">
+      <Text fontSize="13px" color="#888" m="0 !important" textAlign="center">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </Text>

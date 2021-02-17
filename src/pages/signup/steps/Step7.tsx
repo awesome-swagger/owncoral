@@ -33,7 +33,7 @@ const Step7: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
         Welcome to Coral, John Doe!
       </Heading>
-      <Text fontSize="15px" m="0 !important">
+      <Text fontSize="15px" m="0 !important" textAlign="center">
         On the following screens, we are going to ask you a few questions to get
         you better. There are no good/bad answers.
       </Text>

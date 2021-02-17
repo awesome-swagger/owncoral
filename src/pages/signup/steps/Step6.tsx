@@ -34,7 +34,7 @@ const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
         Please verify your email address
       </Heading>
-      <Text fontSize="15px" m="0 !important">
+      <Text fontSize="15px" m="0 !important" textAlign="center">
         An email has been sent to <b>johndoe@gmail.com</b>. Please follow the
         instructions in the verification email to finish creating your Coral
         account.
@@ -47,6 +47,7 @@ const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
         w="calc(100% - 48px)"
         fontSize="13px"
         m="0 !important"
+        textAlign="center"
       >
         Didn’t receive an email?
       </Text>

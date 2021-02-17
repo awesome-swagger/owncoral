@@ -3,8 +3,15 @@ import React, { useState } from "react";
 import DatePicker from "react-mobile-datepicker";
 import { Heading } from "@chakra-ui/react";
 
-const DayPicker: React.FC = () => {
-  const [date, setDate] = useState<Date>(new Date());
+interface DayPickerProps {
+  date: Date;
+  onChange: (newDate: Date) => void;
+}
+
+const DayPicker: React.FC<DayPickerProps> = ({
+  date,
+  onChange,
+}: DayPickerProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const monthMap = {
     "1": "Jan",
@@ -45,7 +52,7 @@ const DayPicker: React.FC = () => {
   };
 
   const handleSelect = (newDate: Date): void => {
-    setDate(newDate);
+    onChange(newDate);
     setOpen(false);
   };
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import {
   Heading,
   Box,
@@ -9,6 +9,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
+import { StepFormContext, ContextType } from "../../signup";
 
 type stepProps = {
   nextStep: () => void;
@@ -25,10 +26,12 @@ const initialQuestions = [
 
 const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   const [available, setAvailable] = useState<availableType>("Available");
+  const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback(
     (value) => {
       if (value === "yes") {
+        form.dispatch({ type: "update-form", payload: { step1: value } });
         nextStep();
       } else {
         setAvailable(value);
@@ -56,6 +59,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           </Heading>
           {initialQuestions.map(({ value, label }) => (
             <Box
+              key={value}
               px="24px"
               py="12px"
               mt="8px"
@@ -70,7 +74,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           ))}
         </Box>
       ) : available === "taxID" ? (
-        <TaxID nextStep={nextStep} prevStep={prevStep} />
+        <TaxID form={form} nextStep={nextStep} prevStep={prevStep} />
       ) : (
         <NotAvailable nextStep={nextStep} prevStep={prevStep} />
       )}
@@ -78,8 +82,15 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   );
 };
 
-const TaxID = ({ nextStep, prevStep }: stepProps) => {
+const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
   const [taxID, setTaxID] = useState<string>("");
+  console.log("tax id", form);
+
+  const handleSubmit = useCallback(() => {
+    form.dispatch({ type: "update-form", payload: { step1: { taxID } } });
+    nextStep();
+  }, [taxID]);
+
   return (
     <Box p="24px" m="0" w="100%" h="100vh" pos="relative">
       <Box h="16px" w="16px" cursor="pointer">
@@ -115,7 +126,7 @@ const TaxID = ({ nextStep, prevStep }: stepProps) => {
         bg="#4E504F"
         color="#fff"
         disabled={!taxID.length}
-        onClick={() => nextStep()}
+        onClick={() => handleSubmit()}
       >
         Continue
       </Button>

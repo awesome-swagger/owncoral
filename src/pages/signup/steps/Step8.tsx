@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import { Box, Button, Heading, Progress, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
+import { StepFormContext } from "../../signup";
 
 type stepProps = {
   nextStep: () => void;
@@ -19,6 +20,7 @@ const investmentGoalList: investementGoal[] = [
 ];
 
 const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+  const form = useContext(StepFormContext);
   const [selection, setSelection] = useState<number[]>([]);
 
   const handleChangeSelection = useCallback(
@@ -35,6 +37,18 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
     },
     [selection]
   );
+
+  const handleSubmit = useCallback(() => {
+    nextStep();
+    form.dispatch({ type: "update-form", payload: { step8: selection } });
+  }, [selection]);
+
+  useEffect(() => {
+    const formState = form.formState;
+
+    setSelection(formState?.step8 || []);
+  }, []);
+
   return (
     <Box p="24px" m="0" w="100%" h="100vh">
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
@@ -56,13 +70,12 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           px="24px"
           py="12px"
           mt="8px"
-          bg="#F3F3F3"
+          bg={selection.includes(value) ? "#cacaca" : "#F3F3F3"}
           color="4E504F"
           textAlign="left"
           cursor="pointer"
           key={value}
           onClick={() => handleChangeSelection(value)}
-          active={selection.includes(value)}
         >
           {label}
         </Box>
@@ -75,7 +88,7 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
         h="48px"
         bg="#4E504F"
         color="#fff"
-        onClick={nextStep}
+        onClick={handleSubmit}
         disabled={!selection.length}
       >
         Continue

@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { ReducerAction, useReducer, useState } from "react";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
@@ -10,20 +10,26 @@ import Step8 from "./steps/Step8";
 import Step9 from "./steps/Step9";
 import Step10 from "./steps/Step10";
 import Result from "./steps/Step11";
+// import { useForm } from "yar-hook-form";
 
 interface formStateType {
   [key: string]: any;
 }
 
-interface ContextType {
+export interface ContextType {
   formState?: formStateType;
-  dispatch?: React.Dispatch<any>;
+  dispatch?: any;
 }
 
-const StepFormContext = React.createContext<ContextType>({});
+interface ActionType {
+  type: string;
+  payload: { [key: string]: any };
+}
 
-function formReducer(state: formStateType, action: any) {
-  switch (action) {
+export const StepFormContext = React.createContext<ContextType>({});
+
+function formReducer(state: formStateType, action: ActionType) {
+  switch (action.type) {
     case "update-form":
       return { ...state, ...action.payload };
     default:
@@ -32,8 +38,10 @@ function formReducer(state: formStateType, action: any) {
 }
 
 const Signup = () => {
+  // const { register, handleSubmit} = useForm();
   const [step, setStep] = useState<number>(1);
   const [formState, dispatch] = useReducer(formReducer, {});
+  console.log("form submit data", formState);
 
   const nextStep = () => {
     setStep(step + 1);
