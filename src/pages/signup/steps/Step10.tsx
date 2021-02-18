@@ -2,6 +2,7 @@ import { useContext, useCallback, useState } from "react";
 import { Box, Progress, Heading, Image } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
 import Chevron from "../../../assets/chevron.png";
+import { Container } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
@@ -18,7 +19,10 @@ const experience: experience[] = [
   { value: 3, label: "Lorem Ipsum" },
 ];
 
-const Step10: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step10: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback((value) => {
@@ -26,7 +30,7 @@ const Step10: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
     form.dispatch({ type: "update-form", payload: { step10: value } });
   }, []);
   return (
-    <Box p="24px" m="0" w="100%" h="100vh">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
         <Image src={Chevron} />
       </Box>
@@ -57,7 +61,6 @@ const Step10: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           {label}
         </Box>
       ))}
-    </Box>
+    </Container>
   );
 };
-export default Step10;

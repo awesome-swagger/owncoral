@@ -2,23 +2,18 @@
 import { Box, Flex, Button, Heading, Text, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
 import { Link } from "react-router-dom";
+import { FlexContainer } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
-const Step11: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Result: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   return (
-    <Flex
-      p="24px"
-      m="0"
-      w="100%"
-      h="100vh"
-      pos="relative"
-      align="center"
-      justify="center"
-      direction="column"
-    >
+    <FlexContainer>
       <Box
         pos="absolute"
         top="24px"
@@ -51,7 +46,6 @@ const Step11: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           Start
         </Button>
       </Link>
-    </Flex>
+    </FlexContainer>
   );
 };
-export default Step11;

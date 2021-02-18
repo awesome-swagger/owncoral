@@ -1,15 +1,15 @@
 import React, { ReducerAction, useReducer, useState } from "react";
-import Step1 from "./steps/Step1";
-import Step2 from "./steps/Step2";
-import Step3 from "./steps/Step3";
-import Step4 from "./steps/Step4";
-import Step5 from "./steps/Step5";
-import Step6 from "./steps/Step6";
-import Step7 from "./steps/Step7";
-import Step8 from "./steps/Step8";
-import Step9 from "./steps/Step9";
-import Step10 from "./steps/Step10";
-import Result from "./steps/Step11";
+import { Step1 } from "./steps/Step1";
+import { Step2 } from "./steps/Step2";
+import { Step3 } from "./steps/Step3";
+import { Step4 } from "./steps/Step4";
+import { Step5 } from "./steps/Step5";
+import { Step6 } from "./steps/Step6";
+import { Step7 } from "./steps/Step7";
+import { Step8 } from "./steps/Step8";
+import { Step9 } from "./steps/Step9";
+import { Step10 } from "./steps/Step10";
+import { Result } from "./steps/Result";
 // import { useForm } from "yar-hook-form";
 
 interface formStateType {

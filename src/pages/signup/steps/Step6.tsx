@@ -1,24 +1,19 @@
 // import React from "react";
 import { Box, Button, Heading, Text, Flex, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
+import { FlexContainer } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step6: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   return (
-    <Flex
-      pos="relative"
-      p="24px"
-      m="0"
-      w="100%"
-      h="100vh"
-      align="center"
-      justify="center"
-      direction="column"
-    >
+    <FlexContainer>
       <Box
         pos="absolute"
         top="24px"
@@ -64,8 +59,6 @@ const Step6: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       >
         Resend verification email
       </Button>
-    </Flex>
+    </FlexContainer>
   );
 };
-
-export default Step6;

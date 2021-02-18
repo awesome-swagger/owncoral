@@ -1,14 +1,7 @@
 import React, { useState, useCallback, useContext } from "react";
-import {
-  Heading,
-  Box,
-  Text,
-  Input,
-  Button,
-  Flex,
-  Image,
-} from "@chakra-ui/react";
+import { Heading, Box, Text, Input, Button, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
+import { FlexContainer, Container } from "../../../components/container";
 import { StepFormContext, ContextType } from "../../signup";
 
 type stepProps = {
@@ -24,7 +17,10 @@ const initialQuestions = [
   { value: "notAvailable", label: "No" },
 ];
 
-const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step1: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const [available, setAvailable] = useState<availableType>("Available");
   const form = useContext(StepFormContext);
 
@@ -43,7 +39,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   return (
     <div>
       {available === "Available" ? (
-        <Box p="24px" m="0" w="100%" h="100vh">
+        <Container>
           <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
             <Image src={Chevron} />
           </Box>
@@ -72,7 +68,7 @@ const Step1: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
               {label}
             </Box>
           ))}
-        </Box>
+        </Container>
       ) : available === "taxID" ? (
         <TaxID form={form} nextStep={nextStep} prevStep={prevStep} />
       ) : (
@@ -92,7 +88,7 @@ const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
   }, [taxID]);
 
   return (
-    <Box p="24px" m="0" w="100%" h="100vh" pos="relative">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer">
         <Image src={Chevron} />
       </Box>
@@ -130,21 +126,13 @@ const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
       >
         Continue
       </Button>
-    </Box>
+    </Container>
   );
 };
 
 const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
   return (
-    <Flex
-      p="24px"
-      m="0"
-      w="100%"
-      h="100vh"
-      align="center"
-      justify="center"
-      direction="column"
-    >
+    <FlexContainer>
       <Box
         pos="absolute"
         left="24px"
@@ -156,10 +144,10 @@ const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
       >
         <Image src={Chevron} />
       </Box>
-      <Heading as="h1" size="md" letterSpacing="normal">
+      <Heading as="h1" size="md" letterSpacing="normal" textAlign="center">
         Sorry, Coral is only available for U.S. residents
       </Heading>
-      <Text fontSize="15px" m="0 !important">
+      <Text fontSize="15px" m="0 !important" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
         sint.
       </Text>
@@ -174,8 +162,6 @@ const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
       >
         Dismiss
       </Button>
-    </Flex>
+    </FlexContainer>
   );
 };
-
-export default Step1;

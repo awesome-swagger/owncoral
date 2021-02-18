@@ -2,13 +2,17 @@ import { Box, Text, Heading, Button, Image } from "@chakra-ui/react";
 import { useCallback, useContext } from "react";
 import Chevron from "../../../assets/chevron.png";
 import { StepFormContext } from "../../signup";
+import { Container } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-const Step4: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step4: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback(() => {
@@ -16,7 +20,7 @@ const Step4: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
     nextStep();
   }, []);
   return (
-    <Box p="24px" m="0" w="100%" h="100vh" pos="relative">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
         <Image src={Chevron} />
       </Box>
@@ -60,8 +64,6 @@ const Step4: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       >
         No
       </Button>
-    </Box>
+    </Container>
   );
 };
-
-export default Step4;

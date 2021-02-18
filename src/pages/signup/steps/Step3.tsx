@@ -3,13 +3,17 @@ import { Box, Heading, Button, Image } from "@chakra-ui/react";
 import { StepFormContext } from "../";
 import Chevron from "../../../assets/chevron.png";
 import DayPicker from "../../../components/daypicker";
+import { Container } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-const Step3: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step3: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const [date, setDate] = useState(new Date());
   const form = useContext(StepFormContext);
 
@@ -31,7 +35,7 @@ const Step3: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   }, []);
 
   return (
-    <Box p="24px" m="0" w="100%" h="100vh">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
         <Image src={Chevron} />
       </Box>
@@ -58,8 +62,6 @@ const Step3: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       >
         Continue
       </Button>
-    </Box>
+    </Container>
   );
 };
-
-export default Step3;

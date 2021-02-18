@@ -2,6 +2,7 @@ import { useCallback, useState, useContext } from "react";
 import { Progress, Heading, Box, Image } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
 import Chevron from "../../../assets/chevron.png";
+import { Container } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
@@ -17,7 +18,10 @@ const netWorth = [
   { value: "$10m or more" },
   { value: "I prefer not to say" },
 ];
-const Step9: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step9: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback((value) => {
@@ -26,7 +30,7 @@ const Step9: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   }, []);
 
   return (
-    <Box p="24px" m="0" w="100%" h="100vh">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
         <Image src={Chevron} />
       </Box>
@@ -56,8 +60,6 @@ const Step9: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
           {value}
         </Box>
       ))}
-    </Box>
+    </Container>
   );
 };
-
-export default Step9;

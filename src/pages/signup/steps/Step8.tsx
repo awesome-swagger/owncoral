@@ -2,6 +2,7 @@ import React, { useState, useCallback, useContext, useEffect } from "react";
 import { Box, Button, Heading, Progress, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
 import { StepFormContext } from "../../signup";
+import { Container } from "../../../components/container";
 
 type stepProps = {
   nextStep: () => void;
@@ -19,7 +20,10 @@ const investmentGoalList: investementGoal[] = [
   { value: 3, label: "Lorem Ipsum" },
 ];
 
-const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
+export const Step8: React.FC<stepProps> = ({
+  nextStep,
+  prevStep,
+}: stepProps) => {
   const form = useContext(StepFormContext);
   const [selection, setSelection] = useState<number[]>([]);
 
@@ -50,7 +54,7 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
   }, []);
 
   return (
-    <Box p="24px" m="0" w="100%" h="100vh">
+    <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
         <Image src={Chevron} />
       </Box>
@@ -93,8 +97,6 @@ const Step8: React.FC<stepProps> = ({ nextStep, prevStep }: stepProps) => {
       >
         Continue
       </Button>
-    </Box>
+    </Container>
   );
 };
-
-export default Step8;
