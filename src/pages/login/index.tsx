@@ -14,7 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
-import React, { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
@@ -22,38 +22,49 @@ import { useHistory } from 'react-router-dom';
 import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import colors from '../../theme/chakra/foundations/colors';
+import type { User } from '../../userContext';
+import { UserContext } from '../../userContext';
 
-type User = any; // TODO: make it the real type
+function Login() {
+  return (
+    <Center>
+      <Box
+        boxShadow="xl"
+        rounded="3xl"
+        w="60%"
+        minW="300px"
+        maxW="350px"
+        pos="fixed"
+        left="50%"
+        top="50%"
+        m={[2, 3]}
+        p={[8, 10]}
+        sx={{
+          transform: 'translate(-50%, -50%)',
+        }}
+      >
+        <Center>
+          <VStack>
+            <Icon as={Logo} w={14} h={14} />
+            <h4 css={{ color: colors.primary['500'] }}>Coral</h4>
+            <LoginForm />
+          </VStack>
+        </Center>
+      </Box>
+    </Center>
+  );
+}
 
-type FormContents = {
-  email: string;
-  password: string;
-};
-const onSubmit = async (data: FormContents, history: History, setUser: (u: User) => void): Promise<void> => {
-  const resp = await fetchWrap('/api/login', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-
-  if (resp.ok) {
-    setUser(await resp.json());
-    history.push('/portfolio');
-    return;
-  }
-  // TODO: add real UI
-  alert('Login failed!');
-};
-
-const LoginForm = () => {
+function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [_, setUser] = useContext<User>(UserContext);
   const history = useHistory();
 
-  const setUser = () => {}; // TODO: link to app
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
@@ -116,34 +127,26 @@ const LoginForm = () => {
       </FormControl>
     </form>
   );
-};
+}
 
-export const Login = () => {
-  return (
-    <Center>
-      <Box
-        boxShadow="xl"
-        rounded="3xl"
-        w="60%"
-        minW="300px"
-        maxW="350px"
-        pos="fixed"
-        left="50%"
-        top="50%"
-        m={[2, 3]}
-        p={[8, 10]}
-        sx={{
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        <Center>
-          <VStack>
-            <Icon as={Logo} w={14} h={14} />
-            <h4 css={{ color: colors.primary['500'] }}>Coral</h4>
-            <LoginForm />
-          </VStack>
-        </Center>
-      </Box>
-    </Center>
-  );
+type FormContents = {
+  email: string;
+  password: string;
 };
+async function onSubmit(data: FormContents, history: History, setUser: (u: User) => void): Promise<void> {
+  const resp = await fetchWrap('/api/login', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+
+  if (resp.ok) {
+    setUser(await resp.json());
+    history.push('/portfolio');
+    return;
+  }
+  // TODO: add real UI
+  alert('Login failed!');
+}
+
+// eslint-disable-next-line import/no-default-export
+export default Login;

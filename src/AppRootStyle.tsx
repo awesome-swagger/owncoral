@@ -11,9 +11,8 @@ const AppRootStyle = css`
   html {
     //overscroll-behavior: none;
   }
+
   body {
-    //margin: 0;
-    //padding: 0;
     min-width: 360px; /* smallest common device size */
     overscroll-behavior: none;
   }
@@ -24,4 +23,5 @@ const AppRootStyle = css`
   }
 `;
 
+// eslint-disable-next-line import/no-default-export
 export default AppRootStyle;
