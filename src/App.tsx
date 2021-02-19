@@ -1,18 +1,24 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { Global } from '@emotion/react';
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { ChakraProvider } from "@chakra-ui/react";
+import { Global } from "@emotion/react";
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
-import AppRootStyle from './AppRootStyle';
-import DebugPanel from './components/debugPanel';
-import { fetchWrap } from './lib/api';
-import Login from './pages/login';
-import Signup from './pages/signup';
-import Portfolio from './pages/portfolio';
-import AppTheme from './theme/chakra';
-import { HeaderStyles } from './theme/typographyStyles';
-import type { User } from './userContext';
-import { UserContext } from './userContext';
+import AppRootStyle from "./AppRootStyle";
+import DebugPanel from "./components/debugPanel";
+import { fetchWrap } from "./lib/api";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Portfolio from "./pages/portfolio";
+import AppTheme from "./theme/chakra";
+import { HeaderStyles } from "./theme/typographyStyles";
+import type { User } from "./userContext";
+import { UserContext } from "./userContext";
+import { Step2 } from "./pages/login/steps/Step2";
 
 function App() {
   const [user, setUser] = useState<User>(null);
@@ -28,7 +34,7 @@ function App() {
             {/* <Route exact path="/" component={Portfolio} /> */}
 
             <Route exact path="/login">
-              <Login /> {/* setUser={setUser} */}
+              <Step2 /> {/* setUser={setUser} */}
             </Route>
 
             <Route exact path="/signup" component={Signup} />
@@ -55,7 +61,7 @@ function App() {
 }
 
 async function getUser(setUser: (u: User) => void): Promise<void> {
-  const resp = await fetchWrap('/api/currentUser');
+  const resp = await fetchWrap("/api/currentUser");
 
   if (resp.ok) {
     setUser(await resp.json());

@@ -1,8 +1,9 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, forwardRef } from "react";
 import { Heading, Box, Text, Input, Button, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
 import { FlexContainer, Container } from "../../../components/container";
 import { StepFormContext, ContextType } from "../../signup";
+import type { DivRef } from "../../signup";
 
 type stepProps = {
   nextStep: () => void;
@@ -17,66 +18,65 @@ const initialQuestions = [
   { value: "notAvailable", label: "No" },
 ];
 
-export const Step1: React.FC<stepProps> = ({
-  nextStep,
-  prevStep,
-}: stepProps) => {
-  const [available, setAvailable] = useState<availableType>("Available");
-  const form = useContext(StepFormContext);
+export const Residency = forwardRef<DivRef, stepProps>(
+  ({ nextStep, prevStep }: stepProps, ref) => {
+    const [available, setAvailable] = useState<availableType>("Available");
+    const form = useContext(StepFormContext);
 
-  const handleSubmit = useCallback(
-    (value) => {
-      if (value === "yes") {
-        form.dispatch({ type: "update-form", payload: { step1: value } });
-        nextStep();
-      } else {
-        setAvailable(value);
-      }
-    },
-    [available]
-  );
+    const handleSubmit = useCallback(
+      (value) => {
+        if (value === "yes") {
+          form.dispatch({ type: "update-form", payload: { step1: value } });
+          nextStep();
+        } else {
+          setAvailable(value);
+        }
+      },
+      [available]
+    );
 
-  return (
-    <div>
-      {available === "Available" ? (
-        <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
-            <Image src={Chevron} />
-          </Box>
-          <Heading
-            letterSpacing="normal"
-            as="h1"
-            size="md"
-            mt="32px"
-            mb="24px"
-            textAlign="left"
-          >
-            Are you a U.S resident?
-          </Heading>
-          {initialQuestions.map(({ value, label }) => (
-            <Box
-              key={value}
-              px="24px"
-              py="12px"
-              mt="8px"
-              bg="#F3F3F3"
-              color="4E504F"
-              textAlign="left"
-              cursor="pointer"
-              onClick={() => handleSubmit(value)}
-            >
-              {label}
+    return (
+      <div ref={ref}>
+        {available === "Available" ? (
+          <Container>
+            <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
+              <Image src={Chevron} />
             </Box>
-          ))}
-        </Container>
-      ) : available === "taxID" ? (
-        <TaxID form={form} nextStep={nextStep} prevStep={prevStep} />
-      ) : (
-        <NotAvailable nextStep={nextStep} prevStep={prevStep} />
-      )}
-    </div>
-  );
-};
+            <Heading
+              letterSpacing="normal"
+              as="h1"
+              size="md"
+              mt="32px"
+              mb="24px"
+              textAlign="left"
+            >
+              Are you a U.S resident?
+            </Heading>
+            {initialQuestions.map(({ value, label }) => (
+              <Box
+                key={value}
+                px="24px"
+                py="12px"
+                mt="8px"
+                bg="#F3F3F3"
+                color="4E504F"
+                textAlign="left"
+                cursor="pointer"
+                onClick={() => handleSubmit(value)}
+              >
+                {label}
+              </Box>
+            ))}
+          </Container>
+        ) : available === "taxID" ? (
+          <TaxID form={form} nextStep={nextStep} prevStep={prevStep} />
+        ) : (
+          <NotAvailable nextStep={nextStep} prevStep={prevStep} />
+        )}
+      </div>
+    );
+  }
+);
 
 const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
   const [taxID, setTaxID] = useState<string>("");

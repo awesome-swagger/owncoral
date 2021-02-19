@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
-import { Box, Flex, Button, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Heading, Image } from "@chakra-ui/react";
 import Chevron from "../../../assets/chevron.png";
-import { Link } from "react-router-dom";
 import { FlexContainer } from "../../../components/container";
 import type { DivRef } from "../../signup";
 
@@ -9,7 +8,8 @@ type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
-export const Result = forwardRef<DivRef, stepProps>(
+
+export const WelcomeCoral = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     return (
       <div ref={ref}>
@@ -27,30 +27,25 @@ export const Result = forwardRef<DivRef, stepProps>(
           </Box>
           <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
           <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
-            Thanks for joining Coral
+            Welcome to Coral, John Doe!
           </Heading>
-          <Text
-            fontSize="13px"
-            color="#888"
-            m="0 !important"
-            textAlign="center"
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <Text fontSize="15px" m="0 !important" textAlign="center">
+            On the following screens, we are going to ask you a few questions to
+            get you better. There are no good/bad answers.
           </Text>
-          <Link to="/">
-            <Button
-              pos="absolute"
-              bottom="42px"
-              left="24px"
-              w="calc(100% - 48px)"
-              h="48px"
-              bg="#4E504F"
-              color="#fff"
-            >
-              Start
-            </Button>
-          </Link>
+          <Button
+            pos="absolute"
+            bottom="42px"
+            left="24px"
+            w="calc(100% - 48px)"
+            h="48px"
+            bg="#4E504F"
+            color="#fff"
+            cursor="pointer"
+            onClick={nextStep}
+          >
+            Continue
+          </Button>
         </FlexContainer>
       </div>
     );

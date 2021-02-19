@@ -1,16 +1,21 @@
-import React, { ReducerAction, useReducer, useState } from "react";
-import { Step1 } from "./steps/Step1";
-import { Step2 } from "./steps/Step2";
-import { Step3 } from "./steps/Step3";
-import { Step4 } from "./steps/Step4";
-import { Step5 } from "./steps/Step5";
-import { Step6 } from "./steps/Step6";
-import { Step7 } from "./steps/Step7";
-import { Step8 } from "./steps/Step8";
-import { Step9 } from "./steps/Step9";
-import { Step10 } from "./steps/Step10";
+import React, { useEffect, useReducer, useState } from "react";
+import { Residency } from "./steps/Residency";
+import { Name } from "./steps/Name";
+import { BirthDate } from "./steps/BirthDate";
+import { Investor } from "./steps/Investor";
+import { CreateAccount } from "./steps/CreateAccount";
+import { VerifyEmail } from "./steps/VerifyEmail";
+import { WelcomeCoral } from "./steps/WelcomeCoral";
+import { InvestmentGoal } from "./steps/InvestmentGoal";
+import { NetWorth } from "./steps/NetWorth";
+import { InvestmentExperience } from "./steps/InvestmentExperience";
 import { Result } from "./steps/Result";
-// import { useForm } from "yar-hook-form";
+import { useSwipeable } from "react-swipeable";
+import { retrieveState, storeState } from "../../lib/utils";
+
+export type DivRef = HTMLDivElement;
+
+export type FormRef = HTMLFormElement;
 
 interface formStateType {
   [key: string]: any;
@@ -31,7 +36,9 @@ export const StepFormContext = React.createContext<ContextType>({});
 function formReducer(state: formStateType, action: ActionType) {
   switch (action.type) {
     case "update-form":
-      return { ...state, ...action.payload };
+      const newState = { ...state, ...action.payload };
+
+      return newState;
     default:
       return state;
   }
@@ -40,8 +47,14 @@ function formReducer(state: formStateType, action: ActionType) {
 const Signup = () => {
   // const { register, handleSubmit} = useForm();
   const [step, setStep] = useState<number>(1);
-  const [formState, dispatch] = useReducer(formReducer, {});
+  const [formState, dispatch] = useReducer(formReducer, retrieveState());
   console.log("form submit data", formState);
+  const handlers = useSwipeable({
+    onSwipedLeft: () => nextStep(),
+    onSwipedRight: () => prevStep(),
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   const nextStep = () => {
     setStep(step + 1);
@@ -50,30 +63,39 @@ const Signup = () => {
     setStep(step - 1);
   };
 
+  useEffect(() => {
+    /** store state at local storage as well for future use */
+    storeState(formState);
+  }, [formState]);
+
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       {step === 1 ? (
-        <Step1 nextStep={nextStep} prevStep={prevStep} />
+        <Residency nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 2 ? (
-        <Step2 nextStep={nextStep} prevStep={prevStep} />
+        <Name nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 3 ? (
-        <Step3 nextStep={nextStep} prevStep={prevStep} />
+        <BirthDate nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 4 ? (
-        <Step4 nextStep={nextStep} prevStep={prevStep} />
+        <Investor nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 5 ? (
-        <Step5 nextStep={nextStep} prevStep={prevStep} />
+        <CreateAccount nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 6 ? (
-        <Step6 nextStep={nextStep} prevStep={prevStep} />
+        <VerifyEmail nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 7 ? (
-        <Step7 nextStep={nextStep} prevStep={prevStep} />
+        <WelcomeCoral nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 8 ? (
-        <Step8 nextStep={nextStep} prevStep={prevStep} />
+        <InvestmentGoal nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 9 ? (
-        <Step9 nextStep={nextStep} prevStep={prevStep} />
+        <NetWorth nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 10 ? (
-        <Step10 nextStep={nextStep} prevStep={prevStep} />
+        <InvestmentExperience
+          nextStep={nextStep}
+          prevStep={prevStep}
+          {...handlers}
+        />
       ) : step === 11 ? (
-        <Result nextStep={nextStep} prevStep={prevStep} />
+        <Result nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : (
         ""
       )}
