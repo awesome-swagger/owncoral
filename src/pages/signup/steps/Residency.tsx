@@ -69,16 +69,25 @@ export const Residency = forwardRef<DivRef, stepProps>(
             ))}
           </Container>
         ) : available === "taxID" ? (
-          <TaxID form={form} nextStep={nextStep} prevStep={prevStep} />
+          <TaxID
+            goBack={() => setAvailable("Available")}
+            form={form}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
         ) : (
-          <NotAvailable nextStep={nextStep} prevStep={prevStep} />
+          <NotAvailable goBack={() => setAvailable("Available")} />
         )}
       </div>
     );
   }
 );
 
-const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
+const TaxID = ({
+  nextStep,
+  form,
+  goBack,
+}: stepProps & { form: ContextType } & { goBack: React.Dispatch<any> }) => {
   const [taxID, setTaxID] = useState<string>("");
   console.log("tax id", form);
 
@@ -89,7 +98,7 @@ const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
 
   return (
     <Container>
-      <Box h="16px" w="16px" cursor="pointer">
+      <Box h="16px" w="16px" cursor="pointer" onClick={goBack}>
         <Image src={Chevron} />
       </Box>
       <Heading
@@ -130,7 +139,7 @@ const TaxID = ({ nextStep, form }: stepProps & { form: ContextType }) => {
   );
 };
 
-const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
+const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
   return (
     <FlexContainer>
       <Box
@@ -140,7 +149,7 @@ const NotAvailable = ({ nextStep, prevStep }: stepProps) => {
         h="16px"
         w="16px"
         cursor="pointer"
-        onClick={() => prevStep}
+        onClick={goBack}
       >
         <Image src={Chevron} />
       </Box>
