@@ -1,24 +1,18 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import { Global } from "@emotion/react";
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { ChakraProvider } from '@chakra-ui/react';
+import { Global } from '@emotion/react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
-import AppRootStyle from "./AppRootStyle";
-import DebugPanel from "./components/debugPanel";
-import { fetchWrap } from "./lib/api";
-import Login from "./pages/login";
-import Signup from "./pages/signup";
-import Portfolio from "./pages/portfolio";
-import AppTheme from "./theme/chakra";
-import { HeaderStyles } from "./theme/typographyStyles";
-import type { User } from "./userContext";
-import { UserContext } from "./userContext";
-import { Steps } from "./pages/login/steps";
+import AppRootStyle from './AppRootStyle';
+import DebugPanel from './components/debugPanel';
+import { fetchWrap } from './lib/api';
+import Portfolio from './pages/portfolio';
+import AppTheme from './theme/chakra';
+import { HeaderStyles } from './theme/typographyStyles';
+import type { User } from './userContext';
+import { UserContext } from './userContext';
+import Login from './pages/login';
+import Signup from './pages/signup';
 
 function App() {
   const [user, setUser] = useState<User>(null);
@@ -31,13 +25,14 @@ function App() {
         <Router>
           {/* Note: server handles not-logged-in redirection for the SPA bundle */}
           <Switch>
-            {/* <Route exact path="/" component={Portfolio} /> */}
-
             <Route exact path="/login">
-              <Steps /> {/* setUser={setUser} */}
+              <Login /> {/* setUser={setUser} */}
             </Route>
 
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/signup">
+              <Signup />
+            </Route>
+
             {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
             <Route exact path="/">
               {/* TODO: redirect to a dashboard */}
@@ -61,7 +56,7 @@ function App() {
 }
 
 async function getUser(setUser: (u: User) => void): Promise<void> {
-  const resp = await fetchWrap("/api/currentUser");
+  const resp = await fetchWrap('/api/currentUser');
 
   if (resp.ok) {
     setUser(await resp.json());

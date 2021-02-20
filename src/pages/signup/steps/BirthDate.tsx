@@ -5,9 +5,9 @@ import {
   useEffect,
   forwardRef,
 } from "react";
-import { Heading, Button, Image } from "@chakra-ui/react";
+import { Heading, Button } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
-import DayPicker from "../../../components/daypicker";
+import { DayPicker } from "../../../components/daypicker";
 import { Container } from "../../../components/container";
 import { BackBtn } from "../../../components/backBtn";
 import type { DivRef } from "../../signup";
@@ -42,8 +42,6 @@ export const BirthDate = forwardRef<DivRef, stepProps>(
           : new Date()
       );
     }, []);
-
-    console.log("***", date);
 
     return (
       <div ref={ref}>

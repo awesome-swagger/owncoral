@@ -1,3 +1,5 @@
+// @ts-nocheck
+import React from "react";
 import { Box } from "@chakra-ui/react";
 import { BsChevronLeft } from "react-icons/bs";
 

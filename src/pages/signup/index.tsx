@@ -1,17 +1,19 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { Residency } from "./steps/Residency";
-import { Name } from "./steps/Name";
-import { BirthDate } from "./steps/BirthDate";
-import { Investor } from "./steps/Investor";
-import { CreateAccount } from "./steps/CreateAccount";
-import { VerifyEmail } from "./steps/VerifyEmail";
-import { WelcomeCoral } from "./steps/WelcomeCoral";
-import { InvestmentGoal } from "./steps/InvestmentGoal";
-import { NetWorth } from "./steps/NetWorth";
-import { InvestmentExperience } from "./steps/InvestmentExperience";
-import { Result } from "./steps/Result";
 import { useSwipeable } from "react-swipeable";
 import { retrieveState, storeState } from "../../lib/utils";
+import {
+  Name ,
+  BirthDate,
+  Investor,
+  CreateAccount,
+  VerifyEmail,
+  WelcomeCoral,
+  InvestmentGoal,
+  NetWorth,
+  Residency,
+  InvestmentExperience,
+  Result
+} from "./steps";
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -35,15 +37,13 @@ export const StepFormContext = React.createContext<ContextType>({});
 function formReducer(state: formStateType, action: ActionType) {
   switch (action.type) {
     case "update-form":
-      const newState = { ...state, ...action.payload };
-
-      return newState;
+      return { ...state, ...action.payload };
     default:
       return state;
   }
 }
 
-const Signup = () => {
+function Signup() {
   const [step, setStep] = useState<number>(1);
   const [formState, dispatch] = useReducer(
     formReducer,
@@ -58,14 +58,17 @@ const Signup = () => {
   });
 
   const nextStep = () => {
-    {
-      step === 11 ? console.log("This is the last page") : setStep(step + 1);
-    }
+    if(step === 11)
+      console.log("This is the last page");
+    else
+      setStep(step + 1);
   };
+
   const prevStep = () => {
-    {
-      step === 1 ? console.log("This is the first page") : setStep(step - 1);
-    }
+    if(step === 1)
+      console.log("This is the first page");
+    else 
+      setStep(step - 1);
   };
 
   useEffect(() => {
@@ -108,4 +111,5 @@ const Signup = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default Signup;

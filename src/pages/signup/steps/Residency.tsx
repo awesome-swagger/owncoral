@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext, forwardRef } from "react";
-import { Heading, Box, Text, Input, Button, Image } from "@chakra-ui/react";
+import { Heading, Box, Text, Input, Button } from "@chakra-ui/react";
 import { BsChevronLeft } from "react-icons/bs";
 import { BackBtn } from "../../../components/backBtn";
 import { FlexContainer, Container } from "../../../components/container";
@@ -87,7 +87,6 @@ const TaxID = ({
   goBack,
 }: stepProps & { form: ContextType } & { goBack: React.Dispatch<any> }) => {
   const [taxID, setTaxID] = useState<string>("");
-  console.log("tax id", form);
 
   const handleSubmit = useCallback(() => {
     form.dispatch({ type: "update-form", payload: { step1: { taxID } } });

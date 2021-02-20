@@ -1,3 +1,5 @@
+// @ts-nocheck
+import React from "react";
 import { Flex, Box } from "@chakra-ui/react";
 
 export const Container: React.FC = ({ children }: any) => (
@@ -7,7 +9,6 @@ export const Container: React.FC = ({ children }: any) => (
 );
 
 export const FlexContainer: React.FC = ({ children }: any) => {
-  console.log();
   return (
     <Flex
       pos="relative"

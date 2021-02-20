@@ -8,7 +8,7 @@ interface DayPickerProps {
   onChange: (newDate: Date) => void;
 }
 
-const DayPicker: React.FC<DayPickerProps> = ({
+export const DayPicker: React.FC<DayPickerProps> = ({
   date,
   onChange,
 }: DayPickerProps) => {
@@ -82,4 +82,3 @@ const DayPicker: React.FC<DayPickerProps> = ({
     </div>
   );
 };
-export default DayPicker;

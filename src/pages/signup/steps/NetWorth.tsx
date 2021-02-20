@@ -1,5 +1,5 @@
 import { useCallback, forwardRef, useContext } from "react";
-import { Progress, Heading, Box, Image } from "@chakra-ui/react";
+import { Progress, Heading, Box } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
 import { BackBtn } from "../../../components/backBtn";
 import { Container } from "../../../components/container";

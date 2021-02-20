@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import { Box, Button, Heading, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { BackBtn } from "../../../components/backBtn";
 import { FlexContainer } from "../../../components/container";
 import type { DivRef } from "../../signup";

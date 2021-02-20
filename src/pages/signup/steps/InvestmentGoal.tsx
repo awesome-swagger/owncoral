@@ -15,13 +15,13 @@ type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
-type investementGoal = {
+type investmentGoal = {
   value: number;
   label: string;
   selected: boolean;
 };
 
-const investmentGoalList: investementGoal[] = [
+const investmentGoalList: investmentGoal[] = [
   { value: 0, label: "Lorem Ipsum", selected: false },
   { value: 1, label: "Lorem Ipsum", selected: false },
   { value: 2, label: "Lorem Ipsum", selected: false },
@@ -31,43 +31,29 @@ const investmentGoalList: investementGoal[] = [
 export const InvestmentGoal = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-    const [investmentGoal, setInvestementGoal] = useState<investementGoal[]>(
+    const [investmentGoals, setInvestementGoals] = useState<investmentGoal[]>(
       investmentGoalList
     );
 
-    const handleChangeSelection = useCallback(
-      (selectedValue: number) => {
-        const newState = investmentGoal.map((goal) => {
-          if (goal.value === selectedValue) {
-            return {
-              ...goal,
-              selected: !goal.selected,
-            };
-          } else {
-            return {
-              ...goal,
-            };
-          }
-        });
-
-        setInvestementGoal(newState);
-      },
-      [investmentGoal]
-    );
+    const handleChangeSelection = useCallback((selectedIndex: number) => {
+      investmentGoals[selectedIndex].selected = !investmentGoals[selectedIndex].selected
+      
+      setInvestementGoals([...investmentGoals]);
+    },[investmentGoals]);
 
     const handleSubmit = useCallback(() => {
       nextStep();
       form.dispatch({
         type: "update-form",
-        payload: { step8: investmentGoal },
+        payload: { step8: investmentGoals },
       });
-    }, [investmentGoal]);
+    }, [investmentGoals]);
 
     useEffect(() => {
       const formState = form.formState;
 
       if (formState?.step8) {
-        setInvestementGoal(formState?.step8);
+        setInvestementGoals(formState?.step8);
       }
     }, []);
 
@@ -85,7 +71,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
           >
             Which is your investment goal?
           </Heading>
-          {investmentGoal.map(({ value, label, selected }) => (
+          {investmentGoals.map(({ value, label, selected }, index) => (
             <Box
               px="24px"
               py="12px"
@@ -95,7 +81,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
               textAlign="left"
               cursor="pointer"
               key={value}
-              onClick={() => handleChangeSelection(value)}
+              onClick={() => handleChangeSelection(index)}
             >
               {label}
             </Box>

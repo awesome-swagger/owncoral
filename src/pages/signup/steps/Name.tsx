@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect, forwardRef } from "react";
 import { StepFormContext } from "../../signup";
-import { Button, Heading, Text, Input, Image } from "@chakra-ui/react";
+import { Button, Heading, Text, Input } from "@chakra-ui/react";
 import { BackBtn } from "../../../components/backBtn";
 import { useForm } from "react-hook-form";
 import { Container } from "../../../components/container";
