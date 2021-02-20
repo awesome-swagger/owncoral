@@ -5,11 +5,11 @@ import {
   useEffect,
   forwardRef,
 } from "react";
-import { Box, Heading, Button, Image } from "@chakra-ui/react";
+import { Heading, Button, Image } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
-import Chevron from "../../../assets/chevron.png";
 import DayPicker from "../../../components/daypicker";
 import { Container } from "../../../components/container";
+import { BackBtn } from "../../../components/backBtn";
 import type { DivRef } from "../../signup";
 
 type stepProps = {
@@ -36,17 +36,21 @@ export const BirthDate = forwardRef<DivRef, stepProps>(
     useEffect(() => {
       const formState = form.formState;
 
-      setDate(formState?.step3 || new Date());
+      setDate(
+        typeof formState?.step3 !== "undefined"
+          ? new Date(formState?.step3)
+          : new Date()
+      );
     }, []);
+
+    console.log("***", date);
 
     return (
       <div ref={ref}>
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn pos="absolute" handleClick={prevStep} />
+
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"

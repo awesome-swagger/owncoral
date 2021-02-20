@@ -6,7 +6,7 @@ import React, {
   forwardRef,
 } from "react";
 import { Box, Button, Heading, Progress, Image } from "@chakra-ui/react";
-import Chevron from "../../../assets/chevron.png";
+import { BackBtn } from "../../../components/backBtn";
 import { StepFormContext } from "../../signup";
 import { Container } from "../../../components/container";
 import type { DivRef } from "../../signup";
@@ -18,56 +18,65 @@ type stepProps = {
 type investementGoal = {
   value: number;
   label: string;
+  selected: boolean;
 };
 
 const investmentGoalList: investementGoal[] = [
-  { value: 0, label: "Lorem Ipsum" },
-  { value: 1, label: "Lorem Ipsum" },
-  { value: 2, label: "Lorem Ipsum" },
-  { value: 3, label: "Lorem Ipsum" },
+  { value: 0, label: "Lorem Ipsum", selected: false },
+  { value: 1, label: "Lorem Ipsum", selected: false },
+  { value: 2, label: "Lorem Ipsum", selected: false },
+  { value: 3, label: "Lorem Ipsum", selected: false },
 ];
 
 export const InvestmentGoal = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-    const [selection, setSelection] = useState<number[]>([]);
+    const [investmentGoal, setInvestementGoal] = useState<investementGoal[]>(
+      investmentGoalList
+    );
 
     const handleChangeSelection = useCallback(
       (selectedValue: number) => {
-        if (
-          typeof selection.find((item) => item === selectedValue) !==
-          "undefined"
-        ) {
-          setSelection((prevSelection) =>
-            prevSelection.filter((x) => x !== selectedValue)
-          );
-        } else {
-          setSelection([...selection, selectedValue]);
-        }
+        const newState = investmentGoal.map((goal) => {
+          if (goal.value === selectedValue) {
+            return {
+              ...goal,
+              selected: !goal.selected,
+            };
+          } else {
+            return {
+              ...goal,
+            };
+          }
+        });
+
+        setInvestementGoal(newState);
       },
-      [selection]
+      [investmentGoal]
     );
 
     const handleSubmit = useCallback(() => {
       nextStep();
-      form.dispatch({ type: "update-form", payload: { step8: selection } });
-    }, [selection]);
+      form.dispatch({
+        type: "update-form",
+        payload: { step8: investmentGoal },
+      });
+    }, [investmentGoal]);
 
     useEffect(() => {
       const formState = form.formState;
 
-      setSelection(formState?.step8 || []);
+      if (formState?.step8) {
+        setInvestementGoal(formState?.step8);
+      }
     }, []);
 
     return (
       <div ref={ref}>
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn pos="absolute" handleClick={prevStep} />
           <Progress mt="32px" colorScheme="gray" size="sm" value={3} />
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -76,12 +85,12 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
           >
             Which is your investment goal?
           </Heading>
-          {investmentGoalList.map(({ value, label }) => (
+          {investmentGoal.map(({ value, label, selected }) => (
             <Box
               px="24px"
               py="12px"
               mt="8px"
-              bg={selection.includes(value) ? "#cacaca" : "#F3F3F3"}
+              bg={selected ? "#cacaca" : "#F3F3F3"}
               color="4E504F"
               textAlign="left"
               cursor="pointer"
@@ -100,7 +109,6 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             bg="#4E504F"
             color="#fff"
             onClick={handleSubmit}
-            disabled={!selection.length}
           >
             Continue
           </Button>

@@ -18,7 +18,7 @@ import AppTheme from "./theme/chakra";
 import { HeaderStyles } from "./theme/typographyStyles";
 import type { User } from "./userContext";
 import { UserContext } from "./userContext";
-import { Step2 } from "./pages/login/steps/Step2";
+import { Steps } from "./pages/login/steps";
 
 function App() {
   const [user, setUser] = useState<User>(null);
@@ -34,7 +34,7 @@ function App() {
             {/* <Route exact path="/" component={Portfolio} /> */}
 
             <Route exact path="/login">
-              <Step2 /> {/* setUser={setUser} */}
+              <Steps /> {/* setUser={setUser} */}
             </Route>
 
             <Route exact path="/signup" component={Signup} />

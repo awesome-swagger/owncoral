@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useContext, forwardRef } from "react";
 import { Heading, Box, Text, Input, Button, Image } from "@chakra-ui/react";
-import Chevron from "../../../assets/chevron.png";
+import { BsChevronLeft } from "react-icons/bs";
+import { BackBtn } from "../../../components/backBtn";
 import { FlexContainer, Container } from "../../../components/container";
 import { StepFormContext, ContextType } from "../../signup";
 import type { DivRef } from "../../signup";
@@ -39,12 +40,9 @@ export const Residency = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         {available === "Available" ? (
           <Container>
-            <Box h="16px" w="16px" cursor="pointer" onClick={prevStep}>
-              <Image src={Chevron} />
-            </Box>
+            <BackBtn handleClick={prevStep} />
             <Heading
               letterSpacing="normal"
-              as="h1"
               size="md"
               mt="32px"
               mb="24px"
@@ -99,10 +97,9 @@ const TaxID = ({
   return (
     <Container>
       <Box h="16px" w="16px" cursor="pointer" onClick={goBack}>
-        <Image src={Chevron} />
+        <BsChevronLeft style={{ width: "16px", height: "16px" }} />
       </Box>
       <Heading
-        as="h1"
         size="md"
         mt="32px"
         mb="8px"
@@ -111,7 +108,7 @@ const TaxID = ({
       >
         Please enter your Tax ID
       </Heading>
-      <Text fontSize="15px" textAlign="left">
+      <Text fontSize="1rem" textAlign="left">
         Lorem ipsum dolor sir
       </Text>
       <Input
@@ -151,12 +148,12 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
         cursor="pointer"
         onClick={goBack}
       >
-        <Image src={Chevron} />
+        <BsChevronLeft style={{ width: "16px", height: "16px" }} />
       </Box>
-      <Heading as="h1" size="md" letterSpacing="normal" textAlign="center">
+      <Heading size="md" letterSpacing="normal" textAlign="center">
         Sorry, Coral is only available for U.S. residents
       </Heading>
-      <Text fontSize="15px" m="0 !important" textAlign="center">
+      <Text fontSize="1rem" m="0 !important" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
         sint.
       </Text>

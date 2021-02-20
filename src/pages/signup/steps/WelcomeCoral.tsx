@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { Box, Flex, Text, Button, Heading, Image } from "@chakra-ui/react";
-import Chevron from "../../../assets/chevron.png";
+import { BackBtn } from "../../../components/backBtn";
 import { FlexContainer } from "../../../components/container";
 import type { DivRef } from "../../signup";
 
@@ -14,22 +14,12 @@ export const WelcomeCoral = forwardRef<DivRef, stepProps>(
     return (
       <div ref={ref}>
         <FlexContainer>
-          <Box
-            pos="absolute"
-            top="24px"
-            left="24px"
-            h="16px"
-            w="16px"
-            cursor="pointer"
-            onClick={() => prevStep()}
-          >
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn pos="absolute" handleClick={prevStep} />
           <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-          <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
+          <Heading size="md" mt="32px" letterSpacing="normal">
             Welcome to Coral, John Doe!
           </Heading>
-          <Text fontSize="15px" m="0 !important" textAlign="center">
+          <Text fontSize="1rem" m="0 !important" textAlign="center">
             On the following screens, we are going to ask you a few questions to
             get you better. There are no good/bad answers.
           </Text>

@@ -24,7 +24,6 @@ const RecoverPassword: React.FC = () => {
             <Image src={Chevron} />
           </Box>
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -112,7 +111,7 @@ export const CheckEmail: React.FC<CheckEmailProps> = ({
         <Image src={Chevron} />
       </Box>
       <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-      <Heading as="h1" size="md" mt="32px" letterSpacing="normal">
+      <Heading size="md" mt="32px" letterSpacing="normal">
         Check your email
       </Heading>
       <Text fontSize="15px" m="0 !important">
@@ -150,7 +149,6 @@ export const NewPassword: React.FC = () => {
         <Image src={Chevron} />
       </Box>
       <Heading
-        as="h1"
         size="md"
         mt="32px"
         mb="8px"

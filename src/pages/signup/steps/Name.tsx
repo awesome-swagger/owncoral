@@ -1,7 +1,7 @@
 import React, { useContext, useCallback, useEffect, forwardRef } from "react";
 import { StepFormContext } from "../../signup";
-import { Box, Button, Heading, Text, Input, Image } from "@chakra-ui/react";
-import Chevron from "../../../assets/chevron.png";
+import { Button, Heading, Text, Input, Image } from "@chakra-ui/react";
+import { BackBtn } from "../../../components/backBtn";
 import { useForm } from "react-hook-form";
 import { Container } from "../../../components/container";
 import type { FormRef } from "../../signup";
@@ -37,11 +37,8 @@ export const Name = forwardRef<FormRef, stepProps>(
     return (
       <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn handleClick={prevStep} />
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -50,7 +47,7 @@ export const Name = forwardRef<FormRef, stepProps>(
           >
             What’s your full name?
           </Heading>
-          <Text fontSize="15px" textAlign="left" m="0 !important">
+          <Text fontSize="1rem" textAlign="left" m="0 !important">
             Lorem ipsum dolor sir
           </Text>
           <Input

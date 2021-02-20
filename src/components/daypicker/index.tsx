@@ -58,7 +58,7 @@ const DayPicker: React.FC<DayPickerProps> = ({
   return (
     <div style={{ margin: "16px 0" }}>
       <Heading
-        fontSize="24px"
+        fontSize="1.5rem"
         textAlign="left"
         cursor="pointer"
         onClick={handleClick}
@@ -74,7 +74,7 @@ const DayPicker: React.FC<DayPickerProps> = ({
         confirmText="Confirm"
         cancelText="Cancel"
       />
-      <Heading fontSize="24px" textAlign="left">
+      <Heading fontSize="1.5rem" textAlign="left">
         <span>{date.getFullYear()}</span> :{" "}
         <span>{monthMap[date.getMonth() + 1]}</span> :{" "}
         <span>{date.getDate()}</span>

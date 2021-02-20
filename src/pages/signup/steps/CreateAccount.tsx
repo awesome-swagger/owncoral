@@ -6,9 +6,9 @@ import React, {
   forwardRef,
 } from "react";
 import { Box, Heading, Text, Input, Button, Image } from "@chakra-ui/react";
+import { CgClose } from "react-icons/cg";
 import { useForm } from "react-hook-form";
-import Chevron from "../../../assets/chevron.png";
-import Close from "../../../assets/close.png";
+import { BackBtn } from "../../../components/backBtn";
 import { StepFormContext } from "../../signup";
 import { Container } from "../../../components/container";
 import type { FormRef } from "../../signup";
@@ -60,11 +60,9 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn pos="absolute" handleClick={prevStep} />
+
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -73,13 +71,13 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           >
             Let’s create your account
           </Heading>
-          <Text fontSize="15px" textAlign="left" m="0 !important">
+          <Text fontSize="1rem" textAlign="left" m="0 !important">
             Lorem ipsum dolor sir amet
           </Text>
           <Box mt="32px">
             <Text
               color="#4E504F"
-              fontSize="15px"
+              fontSize="1rem"
               textAlign="left"
               m="0 !important"
             >
@@ -97,7 +95,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           <Box mt="32px">
             <Text
               color="#4E504F"
-              fontSize="15px"
+              fontSize="1rem"
               textAlign="left"
               m="0 !important"
             >
@@ -114,17 +112,17 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             />
           </Box>
           <Text
-            fontSize="11px"
+            fontSize="0.75rem"
             color="#4E504F"
             textAlign="left"
-            m="0 !important"
+            m="8px 0 !important"
           >
             Must be at least 8 characters
           </Text>
 
           <Text
             w=" calc(100% - 48px)"
-            fontSize="11px"
+            fontSize="0.75rem"
             color="#4e504f"
             pos="absolute"
             bottom="106px"
@@ -202,11 +200,15 @@ const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
         bg=" #fff"
         zIndex={1}
       >
-        <Box h="16px" w="16px" cursor="pointer">
-          <Image src={Close} onClick={() => togglePopUp(false)} />
+        <Box
+          h="16px"
+          w="16px"
+          cursor="pointer"
+          onClick={() => togglePopUp(false)}
+        >
+          <CgClose />
         </Box>
         <Heading
-          as="h1"
           size="md"
           mt="32px"
           mb="8px"
@@ -215,7 +217,7 @@ const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
         >
           {content.title}
         </Heading>
-        <Text fontSize="15px" textAlign="left" m="0 !important">
+        <Text fontSize="1rem" textAlign="left" m="0 !important">
           {content.text}
         </Text>
       </Box>

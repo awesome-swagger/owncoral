@@ -1,14 +1,14 @@
-export function storeState(state: { [key: string]: any }) {
+export function storeState(state: { [key: string]: any }, key: string) {
   const newState = JSON.stringify(state);
-  localStorage.setItem("state", newState);
+  localStorage.setItem(key, newState);
 }
 
 interface retrieveStateType {
   [key: string]: any;
 }
 
-export function retrieveState(): retrieveStateType {
-  const newState = localStorage.getItem("state") || "{}";
+export function retrieveState(key: string): retrieveStateType {
+  const newState = localStorage.getItem(key) || "{}";
 
   return JSON.parse(newState) || {};
 }

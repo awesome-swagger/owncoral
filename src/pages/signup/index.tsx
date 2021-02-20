@@ -14,7 +14,6 @@ import { useSwipeable } from "react-swipeable";
 import { retrieveState, storeState } from "../../lib/utils";
 
 export type DivRef = HTMLDivElement;
-
 export type FormRef = HTMLFormElement;
 
 interface formStateType {
@@ -45,10 +44,12 @@ function formReducer(state: formStateType, action: ActionType) {
 }
 
 const Signup = () => {
-  // const { register, handleSubmit} = useForm();
   const [step, setStep] = useState<number>(1);
-  const [formState, dispatch] = useReducer(formReducer, retrieveState());
-  console.log("form submit data", formState);
+  const [formState, dispatch] = useReducer(
+    formReducer,
+    retrieveState("signup_state")
+  );
+
   const handlers = useSwipeable({
     onSwipedLeft: () => nextStep(),
     onSwipedRight: () => prevStep(),
@@ -57,15 +58,19 @@ const Signup = () => {
   });
 
   const nextStep = () => {
-    setStep(step + 1);
+    {
+      step === 11 ? console.log("This is the last page") : setStep(step + 1);
+    }
   };
   const prevStep = () => {
-    setStep(step - 1);
+    {
+      step === 1 ? console.log("This is the first page") : setStep(step - 1);
+    }
   };
 
   useEffect(() => {
     /** store state at local storage as well for future use */
-    storeState(formState);
+    storeState(formState, "signup_state");
   }, [formState]);
 
   return (

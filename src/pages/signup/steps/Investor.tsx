@@ -1,6 +1,6 @@
 import { Box, Text, Heading, Button, Image } from "@chakra-ui/react";
 import { useCallback, useContext, forwardRef } from "react";
-import Chevron from "../../../assets/chevron.png";
+import { BackBtn } from "../../../components/backBtn";
 import { StepFormContext } from "../../signup";
 import { Container } from "../../../components/container";
 import type { DivRef } from "../../signup";
@@ -21,11 +21,9 @@ export const Investor = forwardRef<DivRef, stepProps>(
     return (
       <div ref={ref}>
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn pos="absolute" handleClick={prevStep} />
+
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -34,11 +32,16 @@ export const Investor = forwardRef<DivRef, stepProps>(
           >
             Are you an accredited investor?
           </Heading>
-          <Text fontSize="15px" textAlign="left" m="0 !important">
+          <Text fontSize="1rem" textAlign="left" m="0 !important">
             Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
             sint. Velit officia consequat duis enim velit mollit.
           </Text>
-          <Text fontSize="13px" color="#888" textAlign="left" m="0 !important">
+          <Text
+            fontSize="0.85rem"
+            color="#888"
+            textAlign="left"
+            m="0 !important"
+          >
             Amet minim mollit non deserunt ullamco est.
           </Text>
           <Button

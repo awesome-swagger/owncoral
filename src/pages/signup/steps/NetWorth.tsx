@@ -1,7 +1,7 @@
 import { useCallback, forwardRef, useContext } from "react";
 import { Progress, Heading, Box, Image } from "@chakra-ui/react";
 import { StepFormContext } from "../../signup";
-import Chevron from "../../../assets/chevron.png";
+import { BackBtn } from "../../../components/backBtn";
 import { Container } from "../../../components/container";
 import type { DivRef } from "../../signup";
 
@@ -30,15 +30,12 @@ export const NetWorth = forwardRef<DivRef, stepProps>(
 
     return (
       <div ref={ref}>
-        {" "}
         <Container>
-          <Box h="16px" w="16px" cursor="pointer" onClick={() => prevStep()}>
-            <Image src={Chevron} />
-          </Box>
+          <BackBtn handleClick={prevStep} />
+
           <Progress mt="32px" colorScheme="gray" size="sm" value={33} />
 
           <Heading
-            as="h1"
             size="md"
             mt="32px"
             mb="8px"
@@ -56,6 +53,7 @@ export const NetWorth = forwardRef<DivRef, stepProps>(
               color="4E504F"
               textAlign="left"
               cursor="pointer"
+              key={value}
               onClick={() => handleSubmit(value)}
             >
               {value}
