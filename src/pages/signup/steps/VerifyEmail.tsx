@@ -1,8 +1,9 @@
-import { forwardRef } from "react";
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
-import { BackBtn } from "../../../components/backBtn";
-import { FlexContainer } from "../../../components/container";
-import type { DivRef } from "../../signup";
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+
+import { BackBtn } from '../../../components/backBtn';
+import { FlexContainer } from '../../../components/container';
+import type { DivRef } from '../../signup';
 
 type stepProps = {
   nextStep: () => void;
@@ -21,9 +22,8 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
             Please verify your email address
           </Heading>
           <Text fontSize="1rem" m="0 !important" textAlign="center">
-            An email has been sent to <b>johndoe@gmail.com</b>. Please follow
-            the instructions in the verification email to finish creating your
-            Coral account.
+            An email has been sent to <b>johndoe@gmail.com</b>. Please follow the instructions in
+            the verification email to finish creating your Coral account.
           </Text>
 
           <Text
@@ -53,5 +53,5 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
         </FlexContainer>
       </div>
     );
-  }
+  },
 );

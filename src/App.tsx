@@ -4,15 +4,18 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import AppRootStyle from './AppRootStyle';
-import DebugPanel from './components/debugPanel';
 import { fetchWrap } from './lib/api';
-import Portfolio from './pages/portfolio';
-import AppTheme from './theme/chakra';
-import { HeaderStyles } from './theme/typographyStyles';
+import AppTheme from './theme';
+import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import type { User } from './userContext';
 import { UserContext } from './userContext';
+import DebugPanel from './components/debugPanel';
+
 import Login from './pages/login';
 import Signup from './pages/signup';
+import Portfolio from './pages/portfolio';
+
+const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
   const [user, setUser] = useState<User>(null);
@@ -20,7 +23,7 @@ function App() {
   return (
     <UserContext.Provider value={[user, setUser]}>
       <ChakraProvider theme={AppTheme}>
-        <Global styles={[AppRootStyle, HeaderStyles]} />
+        <Global styles={[AppRootStyle, headerStyles]} />
         <DebugPanel />
         <Router>
           {/* Note: server handles not-logged-in redirection for the SPA bundle */}

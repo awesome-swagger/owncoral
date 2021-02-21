@@ -39,24 +39,22 @@ const hFont = {
   fontFeatureSettings: 'lnum',
 };
 
-const hMargin = {
+const bodyFont = {
+  fontFamily: `'Nunito', - apple - system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
+};
+
+export const hMargin = {
   marginBlockStart: '0.6em',
   marginBlockEnd: '0.6em',
 };
 
-const bodyFont = {
-  fontFamily: `'Nunito', - apple - system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 
-  'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
-};
-
-// Export header styles as 'mixins', so they can be reused to
-// style large components without using header tags. Exclude
-// setting a margin.
 export const h1 = {
   fontSize: `${98 / 16}rem`,
   fontWeight: 300,
   letterSpacing: `${-1.5 / 16}em`,
   ...hFont,
+  ...hMargin,
 };
 
 export const h2 = {
@@ -64,12 +62,14 @@ export const h2 = {
   fontWeight: 300,
   letterSpacing: `${-0.5 / 16}em`,
   ...hFont,
+  ...hMargin,
 };
 
 export const h3 = {
   fontSize: `${49 / 16}rem`,
   fontWeight: 400,
   ...hFont,
+  ...hMargin,
 };
 
 export const h4 = {
@@ -77,12 +77,14 @@ export const h4 = {
   fontWeight: 400,
   letterSpacing: `${0.25 / 16}em`,
   ...hFont,
+  ...hMargin,
 };
 
 export const h5 = {
   fontSize: `${24 / 16}rem`,
   fontWeight: 400,
   ...hFont,
+  ...hMargin,
 };
 
 export const h6 = {
@@ -90,6 +92,7 @@ export const h6 = {
   fontWeight: 500,
   letterSpacing: `${0.15 / 16}em`,
   ...hFont,
+  ...hMargin,
 };
 
 export const subTitle1 = {
@@ -144,38 +147,3 @@ export const overline = {
   letterSpacing: `${1.5 / 16}em`,
   ...bodyFont,
 };
-
-export const HeaderStyles = css`
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    ${hMargin}
-  }
-
-  h1 {
-    ${h1}
-  }
-
-  h2 {
-    ${h2}
-  }
-
-  h3 {
-    ${h3}
-  }
-
-  h4 {
-    ${h4}
-  }
-
-  h5 {
-    ${h5}
-  }
-
-  h6 {
-    ${h6}
-  }
-`;

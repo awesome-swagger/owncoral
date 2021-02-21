@@ -1,8 +1,9 @@
-import { forwardRef } from "react";
-import { Box, Text, Button, Heading } from "@chakra-ui/react";
-import { BackBtn } from "../../../components/backBtn";
-import { FlexContainer } from "../../../components/container";
-import type { DivRef } from "../../signup";
+import { Box, Button, Heading,Text } from '@chakra-ui/react';
+import { forwardRef } from 'react';
+
+import { BackBtn } from '../../../components/backBtn';
+import { FlexContainer } from '../../../components/container';
+import type { DivRef } from '../../signup';
 
 type stepProps = {
   nextStep: () => void;
@@ -20,8 +21,8 @@ export const WelcomeCoral = forwardRef<DivRef, stepProps>(
             Welcome to Coral, John Doe!
           </Heading>
           <Text fontSize="1rem" m="0 !important" textAlign="center">
-            On the following screens, we are going to ask you a few questions to
-            get you better. There are no good/bad answers.
+            On the following screens, we are going to ask you a few questions to get you better.
+            There are no good/bad answers.
           </Text>
           <Button
             pos="absolute"
@@ -39,5 +40,5 @@ export const WelcomeCoral = forwardRef<DivRef, stepProps>(
         </FlexContainer>
       </div>
     );
-  }
+  },
 );

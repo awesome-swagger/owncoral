@@ -1,15 +1,10 @@
-import React, {
-  useState,
-  useCallback,
-  useContext,
-  useEffect,
-  forwardRef,
-} from "react";
-import { Box, Button, Heading, Progress, Image } from "@chakra-ui/react";
-import { BackBtn } from "../../../components/backBtn";
-import { StepFormContext } from "../../signup";
-import { Container } from "../../../components/container";
-import type { DivRef } from "../../signup";
+import { Box, Button, Heading, Image,Progress } from '@chakra-ui/react';
+import React, { forwardRef,useCallback, useContext, useEffect, useState } from 'react';
+
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import type { DivRef } from '../../signup';
+import { StepFormContext } from '../../signup';
 
 type stepProps = {
   nextStep: () => void;
@@ -22,29 +17,30 @@ type investmentGoal = {
 };
 
 const investmentGoalList: investmentGoal[] = [
-  { value: 0, label: "Lorem Ipsum", selected: false },
-  { value: 1, label: "Lorem Ipsum", selected: false },
-  { value: 2, label: "Lorem Ipsum", selected: false },
-  { value: 3, label: "Lorem Ipsum", selected: false },
+  { value: 0, label: 'Lorem Ipsum', selected: false },
+  { value: 1, label: 'Lorem Ipsum', selected: false },
+  { value: 2, label: 'Lorem Ipsum', selected: false },
+  { value: 3, label: 'Lorem Ipsum', selected: false },
 ];
 
 export const InvestmentGoal = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-    const [investmentGoals, setInvestementGoals] = useState<investmentGoal[]>(
-      investmentGoalList
-    );
+    const [investmentGoals, setInvestementGoals] = useState<investmentGoal[]>(investmentGoalList);
 
-    const handleChangeSelection = useCallback((selectedIndex: number) => {
-      investmentGoals[selectedIndex].selected = !investmentGoals[selectedIndex].selected
-      
-      setInvestementGoals([...investmentGoals]);
-    },[investmentGoals]);
+    const handleChangeSelection = useCallback(
+      (selectedIndex: number) => {
+        investmentGoals[selectedIndex].selected = !investmentGoals[selectedIndex].selected;
+
+        setInvestementGoals([...investmentGoals]);
+      },
+      [investmentGoals],
+    );
 
     const handleSubmit = useCallback(() => {
       nextStep();
       form.dispatch({
-        type: "update-form",
+        type: 'update-form',
         payload: { step8: investmentGoals },
       });
     }, [investmentGoals]);
@@ -62,13 +58,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
         <Container>
           <BackBtn pos="absolute" handleClick={prevStep} />
           <Progress mt="32px" colorScheme="gray" size="sm" value={3} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
             Which is your investment goal?
           </Heading>
           {investmentGoals.map(({ value, label, selected }, index) => (
@@ -76,7 +66,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
               px="24px"
               py="12px"
               mt="8px"
-              bg={selected ? "#cacaca" : "#F3F3F3"}
+              bg={selected ? '#cacaca' : '#F3F3F3'}
               color="4E504F"
               textAlign="left"
               cursor="pointer"
@@ -101,5 +91,5 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

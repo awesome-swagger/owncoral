@@ -1,25 +1,25 @@
-import { Name } from "./Name";
-import { BirthDate } from "./BirthDate";
-import { Investor } from "./Investor";
-import { CreateAccount } from "./CreateAccount";
-import { VerifyEmail } from "./VerifyEmail";
-import { WelcomeCoral } from "./WelcomeCoral";
-import { InvestmentGoal } from "./InvestmentGoal";
-import { NetWorth } from "./NetWorth";
-import { InvestmentExperience } from "./InvestmentExperience";
-import { Residency } from "./Residency";
-import { Result } from "./Result";
+import { BirthDate } from './BirthDate';
+import { CreateAccount } from './CreateAccount';
+import { InvestmentExperience } from './InvestmentExperience';
+import { InvestmentGoal } from './InvestmentGoal';
+import { Investor } from './Investor';
+import { Name } from './Name';
+import { NetWorth } from './NetWorth';
+import { Residency } from './Residency';
+import { Result } from './Result';
+import { VerifyEmail } from './VerifyEmail';
+import { WelcomeCoral } from './WelcomeCoral';
 
 export {
-    Name,
-    BirthDate,
-    Investor,
-    CreateAccount,
-    VerifyEmail,
-    WelcomeCoral,
-    InvestmentGoal,
-    NetWorth,
-    InvestmentExperience,
-    Residency,
-    Result
-}
+  BirthDate,
+  CreateAccount,
+  InvestmentExperience,
+  InvestmentGoal,
+  Investor,
+  Name,
+  NetWorth,
+  Residency,
+  Result,
+  VerifyEmail,
+  WelcomeCoral,
+};

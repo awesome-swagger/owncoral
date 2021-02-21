@@ -1,17 +1,12 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  forwardRef,
-} from "react";
-import { Box, Heading, Text, Input, Button } from "@chakra-ui/react";
-import { CgClose } from "react-icons/cg";
-import { useForm } from "react-hook-form";
-import { BackBtn } from "../../../components/backBtn";
-import { StepFormContext } from "../../signup";
-import { Container } from "../../../components/container";
-import type { FormRef } from "../../signup";
+import { Box, Button,Heading, Input, Text } from '@chakra-ui/react';
+import React, { forwardRef,useCallback, useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { CgClose } from 'react-icons/cg';
+
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import type { FormRef } from '../../signup';
+import { StepFormContext } from '../../signup';
 
 type stepProps = {
   nextStep: () => void;
@@ -19,12 +14,12 @@ type stepProps = {
 };
 const PopUpContent = {
   privacy: {
-    title: "Privacy & Policay",
-    text: "Privacy & Policy: Lorem ipsum dolor sit amet",
+    title: 'Privacy & Policay',
+    text: 'Privacy & Policy: Lorem ipsum dolor sit amet',
   },
   terms: {
-    title: "Terms & Conditions",
-    text: "Terms & Conditions: Lorem ipsum dolor sit amet",
+    title: 'Terms & Conditions',
+    text: 'Terms & Conditions: Lorem ipsum dolor sit amet',
   },
 };
 export const CreateAccount = forwardRef<FormRef, stepProps>(
@@ -32,27 +27,25 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     const { handleSubmit, register, setValue, watch } = useForm();
     const form = useContext(StepFormContext);
 
-    const email = watch("email");
-    const password = watch("password");
+    const email = watch('email');
+    const password = watch('password');
 
     const [popup, setPopup] = useState<boolean>(false);
-    const [activepopup, setActivepopup] = useState<"privacy" | "terms">(
-      "privacy"
-    );
+    const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
 
     const onSubmit = useCallback(
       (data) => {
-        form.dispatch({ type: "update-form", payload: { step5: data } });
+        form.dispatch({ type: 'update-form', payload: { step5: data } });
         nextStep();
       },
-      [handleSubmit]
+      [handleSubmit],
     );
 
     useEffect(() => {
       const formState = form.formState;
 
-      setValue("email", formState?.step5?.email);
-      setValue("password", formState?.step5?.password);
+      setValue('email', formState?.step5?.email);
+      setValue('password', formState?.step5?.password);
     }, []);
 
     return (
@@ -60,43 +53,20 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
         <Container>
           <BackBtn pos="absolute" handleClick={prevStep} />
 
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
             Let’s create your account
           </Heading>
           <Text fontSize="1rem" textAlign="left" m="0 !important">
             Lorem ipsum dolor sir amet
           </Text>
           <Box mt="32px">
-            <Text
-              color="#4E504F"
-              fontSize="1rem"
-              textAlign="left"
-              m="0 !important"
-            >
+            <Text color="#4E504F" fontSize="1rem" textAlign="left" m="0 !important">
               Email
             </Text>
-            <Input
-              h="48px"
-              bg="#F3F3F3"
-              mt="8px"
-              placeholder="Email"
-              ref={register}
-              name="email"
-            />
+            <Input h="48px" bg="#F3F3F3" mt="8px" placeholder="Email" ref={register} name="email" />
           </Box>
           <Box mt="32px">
-            <Text
-              color="#4E504F"
-              fontSize="1rem"
-              textAlign="left"
-              m="0 !important"
-            >
+            <Text color="#4E504F" fontSize="1rem" textAlign="left" m="0 !important">
               Password
             </Text>
             <Input
@@ -109,12 +79,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               ref={register}
             />
           </Box>
-          <Text
-            fontSize="0.75rem"
-            color="#4E504F"
-            textAlign="left"
-            m="8px 0 !important"
-          >
+          <Text fontSize="0.75rem" color="#4E504F" textAlign="left" m="8px 0 !important">
             Must be at least 8 characters
           </Text>
 
@@ -126,30 +91,30 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             bottom="106px"
             left="24px"
           >
-            By tapping “Continue” in the button below, you agree with the{" "}
+            By tapping “Continue” in the button below, you agree with the{' '}
             <span
               onClick={() => {
                 setPopup(true);
-                setActivepopup("terms");
+                setActivepopup('terms');
               }}
-              style={{ textDecoration: "underline", cursor: "pointer" }}
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
             >
               terms and conditions
-            </span>{" "}
-            and{" "}
+            </span>{' '}
+            and{' '}
             <span
               onClick={() => {
                 setPopup(true);
-                setActivepopup("privacy");
+                setActivepopup('privacy');
               }}
-              style={{ textDecoration: "underline", cursor: "pointer" }}
+              style={{ textDecoration: 'underline', cursor: 'pointer' }}
             >
               privacy policy
-            </span>{" "}
+            </span>{' '}
             provided by Coral
           </Text>
           <Button
-            disabled={email === "" || password === ""}
+            disabled={email === '' || password === ''}
             pos="absolute"
             bottom="42px"
             left="24px"
@@ -161,15 +126,11 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           >
             Continue
           </Button>
-          {popup ? (
-            <PopUp content={PopUpContent[activepopup]} togglePopUp={setPopup} />
-          ) : (
-            ""
-          )}
+          {popup ? <PopUp content={PopUpContent[activepopup]} togglePopUp={setPopup} /> : ''}
         </Container>
       </form>
     );
-  }
+  },
 );
 type PopupProps = {
   togglePopUp: React.Dispatch<React.SetStateAction<boolean>>;
@@ -180,14 +141,7 @@ type PopupProps = {
 };
 const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
   return (
-    <Box
-      w="100vw"
-      h=" 100vh"
-      bg=" #00000030"
-      pos="absolute"
-      top="0px"
-      left="0px"
-    >
+    <Box w="100vw" h=" 100vh" bg=" #00000030" pos="absolute" top="0px" left="0px">
       <Box
         m=" 60px auto 0 auto"
         w="100%"
@@ -198,21 +152,10 @@ const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
         bg=" #fff"
         zIndex={1}
       >
-        <Box
-          h="16px"
-          w="16px"
-          cursor="pointer"
-          onClick={() => togglePopUp(false)}
-        >
+        <Box h="16px" w="16px" cursor="pointer" onClick={() => togglePopUp(false)}>
           <CgClose />
         </Box>
-        <Heading
-          size="md"
-          mt="32px"
-          mb="8px"
-          textAlign="left"
-          letterSpacing="normal"
-        >
+        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
           {content.title}
         </Heading>
         <Text fontSize="1rem" textAlign="left" m="0 !important">

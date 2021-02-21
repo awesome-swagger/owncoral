@@ -1,9 +1,10 @@
-import { useContext, useCallback, forwardRef } from "react";
-import { Box, Progress, Heading } from "@chakra-ui/react";
-import { StepFormContext } from "../../signup";
-import { BackBtn } from "../../../components/backBtn";
-import { Container } from "../../../components/container";
-import type { DivRef } from "../../signup";
+import { Box, Heading,Progress } from '@chakra-ui/react';
+import { forwardRef,useCallback, useContext } from 'react';
+
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import type { DivRef } from '../../signup';
+import { StepFormContext } from '../../signup';
 
 type stepProps = {
   nextStep: () => void;
@@ -14,10 +15,10 @@ type experience = {
   label: string;
 };
 const experience: experience[] = [
-  { value: 0, label: "Lorem Ipsum" },
-  { value: 1, label: "Lorem Ipsum" },
-  { value: 2, label: "Lorem Ipsum" },
-  { value: 3, label: "Lorem Ipsum" },
+  { value: 0, label: 'Lorem Ipsum' },
+  { value: 1, label: 'Lorem Ipsum' },
+  { value: 2, label: 'Lorem Ipsum' },
+  { value: 3, label: 'Lorem Ipsum' },
 ];
 
 export const InvestmentExperience = forwardRef<DivRef, stepProps>(
@@ -26,7 +27,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
 
     const handleSubmit = useCallback((value) => {
       nextStep();
-      form.dispatch({ type: "update-form", payload: { step10: value } });
+      form.dispatch({ type: 'update-form', payload: { step10: value } });
     }, []);
     return (
       <div ref={ref}>
@@ -35,13 +36,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
 
           <Progress mt="32px" colorScheme="gray" size="sm" value={66} />
 
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
             How much investment experience do you have?
           </Heading>
           {experience.map(({ value, label }) => (
@@ -62,5 +57,5 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

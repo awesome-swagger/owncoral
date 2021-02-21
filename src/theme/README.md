@@ -6,7 +6,7 @@ Themes for Chakra, mirroring [Chakra source repo structure](https://github.com/c
 ## On style
 
 We've implemented some aspects of [Material Design](https://material.io/design),
-namely [Typography](../typographyStyles.tsx) and [colors](foundations/colors.tsx).
+namely [Typography](typographyStyles.tsx) and [colors](foundations/colors.tsx).
 
 We went a bit overboard on the colors and generated our own
 [perceptually uniform palettes](https://observablehq.com/d/9156fe7f1051dca3) (using the OKLab 

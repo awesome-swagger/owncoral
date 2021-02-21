@@ -1,6 +1,6 @@
-import { button } from '../../typographyStyles';
+import { button } from '../textStyles';
 
-const Button = {
+export const Button = {
   baseStyle: {
     // Rounded buttons
     borderRadius: 'full',
@@ -20,5 +20,3 @@ const Button = {
     colorScheme: 'primary',
   },
 };
-
-export default Button;

@@ -1,11 +1,11 @@
-import { Avatar, Box, Center, Flex, HStack, Icon } from '@chakra-ui/react';
+import { Avatar, Box, Center, Flex, HStack, Icon, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 
 import Logo from '../../assets/coral.svg';
-import colors from '../../theme/chakra/foundations/colors';
-import { bodyText2 } from '../../theme/typographyStyles';
+import colors from '../../theme/foundations/colors';
+import { bodyText2 } from '../../theme/textStyles';
 
 const navLinks = [
   {
@@ -58,6 +58,10 @@ export function NavBar() {
 }
 
 function NavButtons(props: { currentPageName: string | null }) {
+  const color = useColorModeValue('black', 'white');
+  const backgroundColor = useColorModeValue('primary.200', 'secondary.800');
+  const [isTouch] = useMediaQuery('(pointer: coarse)');
+
   return (
     <Flex h="100%" as="nav">
       {navLinks.map(({ name, url, icon }) => (
@@ -71,9 +75,12 @@ function NavButtons(props: { currentPageName: string | null }) {
           m={0}
           h="100%"
           justify="center"
-          color={props.currentPageName === name ? 'black' : 'gray.500'}
+          color={props.currentPageName === name ? color : 'gray.500'}
           borderRadius="lg"
-          sx={{ '&:hover': { color: 'black', backgroundColor: 'primary.100' } }}
+          _hover={{ color, backgroundColor }}
+          // Button-press effect for desktop
+          _active={isTouch ? {} : { transform: 'scale(0.9)' }}
+          sx={{ transition: 'all 200ms' }}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
           <span css={[bodyText2]}>{name}</span>

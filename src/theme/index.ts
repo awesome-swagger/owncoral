@@ -5,22 +5,32 @@
  */
 
 import { extendTheme } from '@chakra-ui/react';
+import type { ColorModeOptions } from '@chakra-ui/system';
 
 // Component style overrides
-import Button from './components/button';
+import { Button } from './components/button';
 import Input from './components/input';
 // Foundational style overrides
 import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import typography from './foundations/typography';
+import * as textStyles from './textStyles';
 
 // Global style overrides
 // import styles from './styles';
+
+const config: ColorModeOptions = {
+  initialColorMode: 'light',
+  useSystemColorMode: true,
+};
 
 const overrides = {
   colors,
   ...typography,
   shadows,
+  config,
+  textStyles,
+
   // Other foundational style overrides go here
   components: {
     Button,
@@ -28,4 +38,5 @@ const overrides = {
   },
 };
 
+// eslint-disable-next-line import/no-default-export
 export default extendTheme(overrides);
