@@ -1,5 +1,5 @@
-import { Box, Button,Heading, Input, Text } from '@chakra-ui/react';
-import React, { forwardRef,useCallback, useContext, useEffect, useState } from 'react';
+import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
+import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CgClose } from 'react-icons/cg';
 
@@ -50,43 +50,50 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
-        <Container>
+        <Container layerStyle="noSelect">
           <BackBtn pos="absolute" handleClick={prevStep} />
 
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
             Let’s create your account
           </Heading>
-          <Text fontSize="1rem" textAlign="left" m="0 !important">
+          <Text fontSize="1rem" textAlign="left">
             Lorem ipsum dolor sir amet
           </Text>
           <Box mt="32px">
-            <Text color="#4E504F" fontSize="1rem" textAlign="left" m="0 !important">
+            <Text fontSize="1rem" textAlign="left">
               Email
             </Text>
-            <Input h="48px" bg="#F3F3F3" mt="8px" placeholder="Email" ref={register} name="email" />
+            <Input
+              h="48px"
+              mt="8px"
+              placeholder="Email"
+              ref={register}
+              name="email"
+              variant="filled"
+            />
           </Box>
           <Box mt="32px">
-            <Text color="#4E504F" fontSize="1rem" textAlign="left" m="0 !important">
+            <Text fontSize="1rem" textAlign="left">
               Password
             </Text>
             <Input
               type="password"
               h="48px"
-              bg="#F3F3F3"
               mt="8px"
               placeholder="Password"
               name="password"
+              variant="filled"
               ref={register}
             />
           </Box>
-          <Text fontSize="0.75rem" color="#4E504F" textAlign="left" m="8px 0 !important">
+          <Text fontSize="0.85rem" colorScheme="gray" textAlign="left" m="8px 0">
             Must be at least 8 characters
           </Text>
 
           <Text
             w=" calc(100% - 48px)"
-            fontSize="0.75rem"
-            color="#4e504f"
+            fontSize="0.85rem"
+            colorScheme="gray"
             pos="absolute"
             bottom="106px"
             left="24px"
@@ -120,8 +127,6 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             left="24px"
             w="calc(100% - 48px)"
             h="48px"
-            bg="#4E504F"
-            color="#fff"
             type="submit"
           >
             Continue
@@ -141,24 +146,24 @@ type PopupProps = {
 };
 const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
   return (
-    <Box w="100vw" h=" 100vh" bg=" #00000030" pos="absolute" top="0px" left="0px">
+    <Box w="100vw" h="100vh" bg="#00000030" pos="absolute" top="0px" left="0px">
       <Box
-        m=" 60px auto 0 auto"
+        m="60px auto 0 auto"
         w="100%"
-        maxW=" 550px"
-        minH=" 500px"
-        p=" 24px"
-        borderRadius=" 10px"
-        bg=" #fff"
+        maxW="550px"
+        minH="500px"
+        p="24px"
+        borderRadius="md"
+        bg="#fff"
         zIndex={1}
       >
         <Box h="16px" w="16px" cursor="pointer" onClick={() => togglePopUp(false)}>
           <CgClose />
         </Box>
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
           {content.title}
         </Heading>
-        <Text fontSize="1rem" textAlign="left" m="0 !important">
+        <Text fontSize="1rem" textAlign="left">
           {content.text}
         </Text>
       </Box>

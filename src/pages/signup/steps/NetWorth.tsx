@@ -1,4 +1,4 @@
-import { Box,Heading, Progress } from '@chakra-ui/react';
+import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
 import { forwardRef, useCallback, useContext } from 'react';
 
 import { BackBtn } from '../../../components/backBtn';
@@ -16,7 +16,7 @@ const netWorth = [
   { value: '$1m - $3m' },
   { value: '$3m - $5m' },
   { value: '$10m or more' },
-  { value: 'I prefer not to say' },
+  { value: 'I would prefer not to say' },
 ];
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
@@ -26,23 +26,28 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     form.dispatch({ type: 'update-form', payload: { step9: value } });
   }, []);
 
+  const selectionColors = useColorModeValue(
+    { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' } },
+    { bg: 'whiteAlpha.100', color: 'white', _hover: { bg: 'secondary.800' } },
+  );
+
   return (
-    <div ref={ref}>
+    <Box ref={ref} layerStyle="noSelect">
       <Container>
         <BackBtn handleClick={prevStep} />
 
-        <Progress mt="32px" colorScheme="gray" size="sm" value={33} />
+        <Progress mt="32px" borderRadius="full" colorScheme="primary" size="sm" value={40} />
 
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
-          How much is your net worth
+        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+          What is your net worth?
         </Heading>
         {netWorth.map(({ value }) => (
           <Box
             px="24px"
             py="12px"
             mt="8px"
-            bg="#F3F3F3"
-            color="4E504F"
+            {...selectionColors}
+            borderRadius="full"
             textAlign="left"
             cursor="pointer"
             key={value}
@@ -52,6 +57,6 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
           </Box>
         ))}
       </Container>
-    </div>
+    </Box>
   );
 });

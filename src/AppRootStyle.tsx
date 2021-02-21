@@ -1,15 +1,8 @@
-import { css, jsx } from '@emotion/react';
+import { css } from '@emotion/react';
 
 const AppRootStyle = css`
-  //* {
-  //  color: inherit;
-  //  text-transform: inherit;
-  //}
-  //a {
-  //  text-decoration: none;
-  //}
   html {
-    //overscroll-behavior: none;
+    // overscroll-behavior: none;
   }
 
   body {

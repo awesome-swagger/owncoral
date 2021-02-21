@@ -1,5 +1,5 @@
-import { Button, Heading, Input,Text } from '@chakra-ui/react';
-import React, { forwardRef,useCallback, useContext, useEffect } from 'react';
+import { Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
+import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { BackBtn } from '../../../components/backBtn';
@@ -36,12 +36,12 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
 
   return (
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
-      <Container>
+      <Container layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+        <Heading as="h4" size="md" mt="32px" mb="8px" textAlign="left">
           What’s your full name?
         </Heading>
-        <Text fontSize="1rem" textAlign="left" m="0 !important">
+        <Text fontSize="1rem" textAlign="left">
           Lorem ipsum dolor sir
         </Text>
         <Input
@@ -49,16 +49,16 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           name="firstName"
           ref={register}
           h="48px"
-          bg="#F3F3F3"
           mt="32px"
+          variant="filled"
         />
         <Input
           placeholder="Last Name"
           name="lastName"
           ref={register}
           h="48px"
-          bg="#F3F3F3"
           mt="32px"
+          variant="filled"
         />
         <Button
           pos="absolute"
@@ -66,8 +66,6 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           left="24px"
           w="calc(100% - 48px)"
           h="48px"
-          bg="#4E504F"
-          color="#fff"
           type="submit"
           disabled={!firstName || !lastName}
         >

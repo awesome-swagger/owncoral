@@ -1,27 +1,23 @@
-// @ts-nocheck
-import React from "react";
-import { Flex, Box } from "@chakra-ui/react";
+import type { BoxProps, FlexProps } from '@chakra-ui/react';
+import { Box, Flex, forwardRef } from '@chakra-ui/react';
+import type React from 'react';
 
-export const Container: React.FC = ({ children }: any) => (
-  <Box p="24px" m="0 auto" w="100%" h="100vh" maxW="600px" pos="relative">
-    {children}
-  </Box>
-);
+export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
+  <Box p="24px" m="0 auto" w="100%" h="100vh" maxW="600px" pos="relative" ref={ref} {...props} />
+));
 
-export const FlexContainer: React.FC = ({ children }: any) => {
-  return (
-    <Flex
-      pos="relative"
-      p="24px"
-      m="0 auto"
-      w="100%"
-      h="100vh"
-      align="center"
-      justify="center"
-      direction="column"
-      maxW="600px"
-    >
-      {children}
-    </Flex>
-  );
-};
+export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
+  <Flex
+    pos="relative"
+    p="24px"
+    m="0 auto"
+    w="100%"
+    h="100vh"
+    align="center"
+    justify="center"
+    direction="column"
+    maxW="600px"
+    ref={ref}
+    {...props}
+  />
+));

@@ -1,4 +1,4 @@
-import { Box, Button, Heading,Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import { forwardRef } from 'react';
 
 import { BackBtn } from '../../../components/backBtn';
@@ -13,14 +13,14 @@ type stepProps = {
 export const WelcomeCoral = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     return (
-      <div ref={ref}>
+      <Box ref={ref} layerStyle="noSelect">
         <FlexContainer>
           <BackBtn pos="absolute" handleClick={prevStep} />
           <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-          <Heading size="md" mt="32px" letterSpacing="normal">
+          <Heading size="md" as="h4" mt="32px">
             Welcome to Coral, John Doe!
           </Heading>
-          <Text fontSize="1rem" m="0 !important" textAlign="center">
+          <Text fontSize="1rem" textAlign="center">
             On the following screens, we are going to ask you a few questions to get you better.
             There are no good/bad answers.
           </Text>
@@ -30,15 +30,14 @@ export const WelcomeCoral = forwardRef<DivRef, stepProps>(
             left="24px"
             w="calc(100% - 48px)"
             h="48px"
-            bg="#4E504F"
-            color="#fff"
             cursor="pointer"
+            colorScheme="primary"
             onClick={nextStep}
           >
             Continue
           </Button>
         </FlexContainer>
-      </div>
+      </Box>
     );
   },
 );

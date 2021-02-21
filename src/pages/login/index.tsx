@@ -4,6 +4,7 @@ import {
   Center,
   FormControl,
   FormHelperText,
+  Heading,
   Icon,
   IconButton,
   Input,
@@ -11,6 +12,7 @@ import {
   InputLeftElement,
   InputRightElement,
   Spacer,
+  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
@@ -21,11 +23,12 @@ import { useHistory } from 'react-router-dom';
 
 import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
-import colors from '../../theme/chakra/foundations/colors';
 import type { User } from '../../userContext';
 import { UserContext } from '../../userContext';
 
 function Login() {
+  const backgroundColor = useColorModeValue('inherit', 'whiteAlpha.100');
+
   return (
     <Center>
       <Box
@@ -39,6 +42,7 @@ function Login() {
         top="50%"
         m={[2, 3]}
         p={[8, 10]}
+        backgroundColor={backgroundColor}
         sx={{
           transform: 'translate(-50%, -50%)',
         }}
@@ -46,7 +50,9 @@ function Login() {
         <Center>
           <VStack>
             <Icon as={Logo} w={14} h={14} />
-            <h4 css={{ color: colors.primary['500'] }}>Coral</h4>
+            <Heading as="h4" size="md" color="primary.500">
+              Coral
+            </Heading>
             <LoginForm />
           </VStack>
         </Center>
@@ -133,7 +139,11 @@ type FormContents = {
   email: string;
   password: string;
 };
-async function onSubmit(data: FormContents, history: History, setUser: (u: User) => void): Promise<void> {
+async function onSubmit(
+  data: FormContents,
+  history: History,
+  setUser: (u: User) => void,
+): Promise<void> {
   const resp = await fetchWrap('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),

@@ -9,11 +9,13 @@ import type { ColorModeOptions } from '@chakra-ui/system';
 
 // Component style overrides
 import { Button } from './components/button';
-import Input from './components/input';
+import { Heading } from './components/heading';
+import { Input } from './components/input';
 // Foundational style overrides
 import colors from './foundations/colors';
 import shadows from './foundations/shadows';
 import typography from './foundations/typography';
+import { layerStyles } from './layerStyles';
 import * as textStyles from './textStyles';
 
 // Global style overrides
@@ -30,11 +32,13 @@ const overrides = {
   shadows,
   config,
   textStyles,
+  layerStyles,
 
   // Other foundational style overrides go here
   components: {
     Button,
     Input,
+    Heading,
   },
 };
 

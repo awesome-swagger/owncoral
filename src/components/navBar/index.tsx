@@ -1,4 +1,14 @@
-import { Avatar, Box, Center, Flex, HStack, Icon, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
@@ -35,11 +45,21 @@ export function NavBar() {
         <Center pos="absolute" w="100%" h={16}>
           <Flex h="100%" align="center">
             <Icon as={Logo} w={8} h={8} />
-            <h5 css={{ margin: 0, color: colors.primary['500'] }}>Coral</h5>
+            <Heading as="h5" size="sm" color="primary.500" m={0}>
+              Coral
+            </Heading>
           </Flex>
         </Center>
 
-        <HStack align="center" position="absolute" right={0} h="16" pr={3} justify="right" spacing={3}>
+        <HStack
+          align="center"
+          position="absolute"
+          right={0}
+          h="16"
+          pr={3}
+          justify="right"
+          spacing={3}
+        >
           <Box h="100%" display={{ base: 'none', md: 'block' }}>
             <NavButtons currentPageName={currentPageName} />
           </Box>
@@ -48,7 +68,15 @@ export function NavBar() {
         </HStack>
       </Box>
 
-      <Box as="footer" pos="fixed" bottom={0} w="100%" boxShadow="xs" h="16" display={{ md: 'none' }}>
+      <Box
+        as="footer"
+        pos="fixed"
+        bottom={0}
+        w="100%"
+        boxShadow="xs"
+        h="16"
+        display={{ md: 'none' }}
+      >
         <Center h="100%">
           <NavButtons currentPageName={currentPageName} />
         </Center>
@@ -59,7 +87,7 @@ export function NavBar() {
 
 function NavButtons(props: { currentPageName: string | null }) {
   const color = useColorModeValue('black', 'white');
-  const backgroundColor = useColorModeValue('primary.200', 'secondary.800');
+  const backgroundColor = useColorModeValue('primary.100', 'secondary.800');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
   return (
@@ -83,7 +111,7 @@ function NavButtons(props: { currentPageName: string | null }) {
           sx={{ transition: 'all 200ms' }}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
-          <span css={[bodyText2]}>{name}</span>
+          <span css={bodyText2}>{name}</span>
         </Flex>
       ))}
     </Flex>

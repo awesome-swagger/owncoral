@@ -1,5 +1,5 @@
-import { Button,Heading } from '@chakra-ui/react';
-import { forwardRef,useCallback, useContext, useEffect, useState } from 'react';
+import { Box, Button, Heading } from '@chakra-ui/react';
+import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
@@ -34,11 +34,11 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   }, []);
 
   return (
-    <div ref={ref}>
+    <Box ref={ref} layerStyle="noSelect">
       <Container>
         <BackBtn pos="absolute" handleClick={prevStep} />
 
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
           When is your Birthday?
         </Heading>
         <DayPicker onChange={handleDateChange} date={date} />
@@ -47,14 +47,13 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
           bottom="42px"
           left="24px"
           w="calc(100% - 48px)"
+          u
           h="48px"
-          bg="#4E504F"
-          color="#fff"
           onClick={onSubmit}
         >
           Continue
         </Button>
       </Container>
-    </div>
+    </Box>
   );
 });

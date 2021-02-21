@@ -7,7 +7,7 @@ const sizeBorderRadiusOverride = {
   },
 };
 
-const Input = {
+export const Input = {
   sizes: {
     xs: sizeBorderRadiusOverride,
     sm: sizeBorderRadiusOverride,
@@ -15,5 +15,3 @@ const Input = {
     lg: sizeBorderRadiusOverride,
   },
 };
-
-export default Input;
