@@ -1,8 +1,19 @@
-import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Heading,
+  Input,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from '@chakra-ui/react';
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { CgClose } from 'react-icons/cg';
-
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import type { FormRef } from '../../signup';
@@ -24,14 +35,10 @@ const PopUpContent = {
 };
 export const CreateAccount = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, register, setValue, watch } = useForm();
+    const { handleSubmit, register, setValue, errors } = useForm();
     const form = useContext(StepFormContext);
-
-    const email = watch('email');
-    const password = watch('password');
-
-    const [popup, setPopup] = useState<boolean>(false);
     const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const onSubmit = useCallback(
       (data) => {
@@ -44,8 +51,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     useEffect(() => {
       const formState = form.formState;
 
-      setValue('email', formState?.step5?.email);
-      setValue('password', formState?.step5?.password);
+      setValue('email', formState?.step5?.email || '');
+      setValue('password', formState?.step5?.password || '');
     }, []);
 
     return (
@@ -69,6 +76,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               placeholder="Email"
               ref={register}
               name="email"
+              type="email"
               variant="filled"
             />
           </Box>
@@ -83,12 +91,14 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               placeholder="Password"
               name="password"
               variant="filled"
-              ref={register}
+              ref={register({ minLength: 8, required: true })}
             />
           </Box>
-          <Text fontSize="0.85rem" colorScheme="gray" textAlign="left" m="8px 0">
-            Must be at least 8 characters
-          </Text>
+          {errors.password && (
+            <Text fontSize="0.85rem" colorScheme="gray" textAlign="left" m="8px 0">
+              Must be at least 8 characters
+            </Text>
+          )}
 
           <Text
             w=" calc(100% - 48px)"
@@ -101,8 +111,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             By tapping “Continue” in the button below, you agree with the{' '}
             <span
               onClick={() => {
-                setPopup(true);
                 setActivepopup('terms');
+                onOpen();
               }}
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
             >
@@ -111,8 +121,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             and{' '}
             <span
               onClick={() => {
-                setPopup(true);
                 setActivepopup('privacy');
+                onOpen();
               }}
               style={{ textDecoration: 'underline', cursor: 'pointer' }}
             >
@@ -121,7 +131,6 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             provided by Coral
           </Text>
           <Button
-            disabled={email === '' || password === ''}
             pos="absolute"
             bottom="42px"
             left="24px"
@@ -131,42 +140,17 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           >
             Continue
           </Button>
-          {popup ? <PopUp content={PopUpContent[activepopup]} togglePopUp={setPopup} /> : ''}
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent minH="450px">
+              <ModalHeader>{PopUpContent[activepopup].title}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>{PopUpContent[activepopup].text}</ModalBody>
+            </ModalContent>
+          </Modal>
         </Container>
       </form>
     );
   },
 );
-type PopupProps = {
-  togglePopUp: React.Dispatch<React.SetStateAction<boolean>>;
-  content: {
-    title: string;
-    text: string;
-  };
-};
-const PopUp: React.FC<PopupProps> = ({ togglePopUp, content }: PopupProps) => {
-  return (
-    <Box w="100vw" h="100vh" bg="#00000030" pos="absolute" top="0px" left="0px">
-      <Box
-        m="60px auto 0 auto"
-        w="100%"
-        maxW="550px"
-        minH="500px"
-        p="24px"
-        borderRadius="md"
-        bg="#fff"
-        zIndex={1}
-      >
-        <Box h="16px" w="16px" cursor="pointer" onClick={() => togglePopUp(false)}>
-          <CgClose />
-        </Box>
-        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
-          {content.title}
-        </Heading>
-        <Text fontSize="1rem" textAlign="left">
-          {content.text}
-        </Text>
-      </Box>
-    </Box>
-  );
-};

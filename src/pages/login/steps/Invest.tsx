@@ -1,31 +1,26 @@
-import { forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { BackBtn } from "../../../components/backBtn";
-import { Container } from "../../../components/container";
-import { Heading, Box, Text, Image } from "@chakra-ui/react";
-import Chevron from "../../../assets/chevron.png";
-import type { DivRef } from "../steps";
+import { forwardRef, useContext, useEffect, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { StepFormContext } from '../steps';
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import { Heading, Box, Text, Image } from '@chakra-ui/react';
+import Chevron from '../../../assets/chevron.png';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
-};
+} & { gotoStep: (step: number) => void };
 
-export const Step5 = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const Invest = forwardRef<DivRef, stepProps>(
+  ({ gotoStep, nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
     return (
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
             Do you want to invest as an individual or through an entity?
           </Heading>
           <Box
@@ -37,6 +32,15 @@ export const Step5 = forwardRef<DivRef, stepProps>(
             textAlign="left"
             cursor="pointer"
             pos="relative"
+            onClick={() => {
+              form.dispatch({
+                type: 'update-form',
+                payload: {
+                  step5: 'Individual',
+                },
+              });
+              gotoStep(17);
+            }}
           >
             <Text fontSize="1rem" color="#4E504F">
               Individual account
@@ -61,6 +65,15 @@ export const Step5 = forwardRef<DivRef, stepProps>(
             textAlign="left"
             cursor="pointer"
             pos="relative"
+            onClick={() => {
+              form.dispatch({
+                type: 'update-form',
+                payload: {
+                  step5: 'Entity',
+                },
+              });
+              nextStep();
+            }}
           >
             <Text fontSize="1rem" color="#4E504F">
               Entity account
@@ -79,5 +92,5 @@ export const Step5 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

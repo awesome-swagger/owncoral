@@ -1,16 +1,16 @@
-import { forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { BackBtn } from "../../../components/backBtn";
-import { Container } from "../../../components/container";
-import { Heading, Button, Box, Text } from "@chakra-ui/react";
-import type { DivRef } from "../steps";
+import { forwardRef, useContext } from 'react';
+import { StepFormContext } from '../steps';
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import { Heading, Button, Box, Text } from '@chakra-ui/react';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const Step14 = forwardRef<DivRef, stepProps>(
+export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
@@ -18,13 +18,7 @@ export const Step14 = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
             Certificate of registration
           </Heading>
           <Text fontSize="1rem" textAlign="left" mb="32px">
@@ -53,5 +47,5 @@ export const Step14 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

@@ -1,24 +1,24 @@
-import { forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { Heading, Box, Text, Image } from "@chakra-ui/react";
-import { Container } from "../../../components/container";
-import { BackBtn } from "../../../components/backBtn";
-import Chevron from "../../../assets/chevron.png";
-import type { DivRef } from "../steps";
+import { forwardRef, useContext } from 'react';
+import { StepFormContext } from '../steps';
+import { Heading, Box, Text, Image } from '@chakra-ui/react';
+import { Container } from '../../../components/container';
+import { BackBtn } from '../../../components/backBtn';
+import Chevron from '../../../assets/chevron.png';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
+
 const EntityType = [
   {
-    value: "LLC, Single-Member LLC",
+    value: 'Partnership',
   },
-  { value: "S Coporation" },
-  { value: "Limited Partnership" },
-  { value: "C Corporation" },
+  { value: 'S Coporation' },
+  { value: 'C Corporation' },
 ];
-export const Step7 = forwardRef<DivRef, stepProps>(
+export const TaxClasification = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
@@ -26,14 +26,8 @@ export const Step7 = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
-            Which Entity type is?
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+            Which type of Tax Clasification?
           </Heading>
           <Text fontSize="1rem" textAlign="left" mb="32px">
             Lorem ipsum dolor sir amet
@@ -48,7 +42,7 @@ export const Step7 = forwardRef<DivRef, stepProps>(
               textAlign="left"
               cursor="pointer"
               pos="relative"
-              key={value}
+              key="value"
             >
               {value}
               <Image
@@ -63,5 +57,5 @@ export const Step7 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

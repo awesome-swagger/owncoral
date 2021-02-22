@@ -1,17 +1,17 @@
-import { useState, useCallback, forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { BackBtn } from "../../../components/backBtn";
-import { Container } from "../../../components/container";
-import { Heading, Button, Input, Text } from "@chakra-ui/react";
-import DayPicker from "../../../components/daypicker";
-import type { DivRef } from "../steps";
+import { useState, useCallback, forwardRef, useContext } from 'react';
+import { StepFormContext } from '../steps';
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import { Heading, Button, Text } from '@chakra-ui/react';
+import { DayPicker } from '../../../components/daypicker';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const Step11 = forwardRef<DivRef, stepProps>(
+export const DateOfRegistration = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(new Date());
     const form = useContext(StepFormContext);
@@ -20,20 +20,14 @@ export const Step11 = forwardRef<DivRef, stepProps>(
       (newDate) => {
         setDate(newDate);
       },
-      [date]
+      [date],
     );
     return (
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
-            Which is the date of formation?
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+            Which is the date of registration?
           </Heading>
           <Text fontSize="1rem" textAlign="left">
             Lorem ipsum dolor sir amet
@@ -54,5 +48,5 @@ export const Step11 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

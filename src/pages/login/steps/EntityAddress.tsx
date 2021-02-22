@@ -1,16 +1,16 @@
-import { forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { Heading, Input, Text, Button } from "@chakra-ui/react";
-import { Container } from "../../../components/container";
-import { BackBtn } from "../../../components/backBtn";
-import type { DivRef } from "../steps";
+import { forwardRef, useContext } from 'react';
+import { StepFormContext } from '../steps';
+import { Heading, Input, Text, Button } from '@chakra-ui/react';
+import { Container } from '../../../components/container';
+import { BackBtn } from '../../../components/backBtn';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const Step15 = forwardRef<DivRef, stepProps>(
+export const EntityAddress = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
@@ -24,12 +24,7 @@ export const Step15 = forwardRef<DivRef, stepProps>(
           <Text fontSize="1rem" m="0 !important">
             Lorem ipsum dolor sir amet
           </Text>
-          <Input
-            placeholder="Residental Address"
-            h="48px"
-            bg="#F3F3F3"
-            mt="32px"
-          />
+          <Input placeholder="Residental Address" h="48px" bg="#F3F3F3" mt="32px" />
           <Button
             pos="absolute"
             bottom="42px"
@@ -46,5 +41,5 @@ export const Step15 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

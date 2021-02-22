@@ -1,16 +1,16 @@
-import { forwardRef, useContext } from "react";
-import { StepFormContext } from "../steps";
-import { BackBtn } from "../../../components/backBtn";
-import { Container } from "../../../components/container";
-import { Heading, Button, Text } from "@chakra-ui/react";
-import type { DivRef } from "../steps";
+import { forwardRef, useContext } from 'react';
+import { StepFormContext } from '../steps';
+import { BackBtn } from '../../../components/backBtn';
+import { Container } from '../../../components/container';
+import { Heading, Button, Input, Text } from '@chakra-ui/react';
+import type { DivRef } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const Step12 = forwardRef<DivRef, stepProps>(
+export const EntityPhoneNumber = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
@@ -18,18 +18,13 @@ export const Step12 = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading
-            size="md"
-            mt="32px"
-            mb="8px"
-            textAlign="left"
-            letterSpacing="normal"
-          >
-            Which is the jurisdiction of registration
+          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+            What’s your Entity phone number?
           </Heading>
           <Text fontSize="1rem" textAlign="left">
-            Lorem ipsum dolor sir amet
+            Enter your US phone number
           </Text>
+          <Input placeholder="XXX XXX XXX" h="48px" bg="#F3F3F3" mt="32px" />
           <Button
             pos="absolute"
             bottom="42px"
@@ -45,5 +40,5 @@ export const Step12 = forwardRef<DivRef, stepProps>(
         </Container>
       </div>
     );
-  }
+  },
 );

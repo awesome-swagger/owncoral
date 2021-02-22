@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 
 import { retrieveState, storeState } from '../../lib/utils';
@@ -47,6 +48,7 @@ function formReducer(state: formStateType, action: ActionType) {
 function Signup() {
   const [step, setStep] = useState<number>(1);
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
+  const history = useHistory();
 
   const handlers = useSwipeable({
     onSwipedLeft: () => nextStep(),
@@ -61,8 +63,11 @@ function Signup() {
   };
 
   const prevStep = () => {
-    if (step === 1) console.log('This is the first page');
-    else setStep(step - 1);
+    if (step === 1) {
+      history.goBack();
+    } else {
+      setStep(step - 1);
+    }
   };
 
   useEffect(() => {

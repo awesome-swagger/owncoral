@@ -1,24 +1,24 @@
-import { useState, useEffect, useReducer, createContext } from "react";
-import { retrieveState, storeState } from "../../../lib/utils";
-import { Step1 } from "../steps/Step1";
-import { Step2 } from "../steps/Step2";
-import { Step3 } from "../steps/Step3";
-import { Step4 } from "../steps/Step4";
-import { Step5 } from "../steps/Step5";
-import { Step6 } from "../steps/Step6";
-import { Step7 } from "../steps/Step7";
-import { Step8 } from "../steps/Step8";
-import { Step9 } from "../steps/Step9";
-import { Step10 } from "../steps/Step10";
-import { Step11 } from "../steps/Step11";
-import { Step12 } from "../steps/Step12";
-import { Step13 } from "../steps/Step13";
-import { Step14 } from "../steps/Step14";
-import { Step15 } from "../steps/Step15";
-import { Step16 } from "../steps/Step16";
-import { Result } from "../steps/Result";
-
-import { useSwipeable } from "react-swipeable";
+import { useState, useEffect, useReducer, createContext, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import { retrieveState, storeState } from '../../../lib/utils';
+import { InformationMissing } from './InformationMissing';
+import { ResidentialAddress } from './ResidentialAddress';
+import { PhoneNumber } from './PhoneNumber';
+import { SsnOrEin } from './SsnOrEin';
+import { Invest } from './Invest';
+import { EntityName } from './EntityName';
+import { EntityType } from './EntityType';
+import { TaxClasification } from './TaxClasification';
+import { Ein } from './Ein';
+import { Industry } from './Industry';
+import { DateOfFormation } from './DateOfFormation';
+import { JurisdictionRegistration } from './JurisdictionRegistration';
+import { DateOfRegistration } from './DateOfRegistration';
+import { CertificateOfRegistration } from './CertificateOfRegistration';
+import { EntityAddress } from './EntityAddress';
+import { EntityPhoneNumber } from './EntityPhoneNumber';
+import { Result } from '../steps/Result';
+import { useSwipeable } from 'react-swipeable';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -40,7 +40,7 @@ export const StepFormContext = createContext<ContextType>({});
 
 function formReducer(state: formStateType, action: ActionType) {
   switch (action.type) {
-    case "update-form":
+    case 'update-form':
       const newState = { ...state, ...action.payload };
 
       return newState;
@@ -51,10 +51,8 @@ function formReducer(state: formStateType, action: ActionType) {
 
 export const Steps = () => {
   const [step, setStep] = useState(1);
-  const [formState, dispatch] = useReducer(
-    formReducer,
-    retrieveState("login_state")
-  );
+  const [formState, dispatch] = useReducer(formReducer, retrieveState('login_state'));
+  const history = useHistory();
 
   const handlers = useSwipeable({
     onSwipedLeft: () => nextStep(),
@@ -63,59 +61,62 @@ export const Steps = () => {
     trackMouse: true,
   });
 
-  const nextStep = () => {
+  const nextStep = useCallback(() => {
     {
-      step === 17 ? console.log("This is the last page") : setStep(step + 1);
+      step === 17 ? console.log('This is the last page') : setStep(step + 1);
     }
-  };
-  const prevStep = () => {
+  }, [step]);
+
+  const prevStep = useCallback(() => {
     {
-      step === 1 ? console.log("This is the first page") : setStep(step - 1);
+      step === 1 ? history.goBack() : setStep(step - 1);
     }
-  };
+  }, [step]);
+
+  const gotoStep = useCallback((stepNumber: number) => setStep(stepNumber), [setStep]);
 
   useEffect(() => {
     /** store state at local storage as well for future use */
-    storeState(formState, "login_state");
+    storeState(formState, 'login_state');
   }, [formState]);
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       {step === 1 ? (
-        <Step1 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <InformationMissing nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 2 ? (
-        <Step2 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <ResidentialAddress nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 3 ? (
-        <Step3 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <PhoneNumber nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 4 ? (
-        <Step4 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <SsnOrEin nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 5 ? (
-        <Step5 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <Invest nextStep={nextStep} prevStep={prevStep} gotoStep={gotoStep} {...handlers} />
       ) : step === 6 ? (
-        <Step6 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <EntityName nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 7 ? (
-        <Step7 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <EntityType nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 8 ? (
-        <Step8 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <TaxClasification nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 9 ? (
-        <Step9 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <Ein nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 10 ? (
-        <Step10 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <Industry nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 11 ? (
-        <Step11 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <DateOfFormation nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 12 ? (
-        <Step12 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <JurisdictionRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 13 ? (
-        <Step13 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <DateOfRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 14 ? (
-        <Step14 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <CertificateOfRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 15 ? (
-        <Step15 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <EntityAddress nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 16 ? (
-        <Step16 nextStep={nextStep} prevStep={prevStep} {...handlers} />
+        <EntityPhoneNumber nextStep={nextStep} prevStep={prevStep} {...handlers} />
       ) : step === 17 ? (
-        <Result prevStep={prevStep} {...handlers} />
+        <Result prevStep={prevStep} gotoStep={gotoStep} {...handlers} />
       ) : (
-        ""
+        ''
       )}
     </StepFormContext.Provider>
   );
