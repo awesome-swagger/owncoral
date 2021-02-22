@@ -1,5 +1,6 @@
 import type { BoxProps, FlexProps } from '@chakra-ui/react';
 import { Box, Flex, forwardRef, Image } from '@chakra-ui/react';
+import Logo from '../../assets/logo.svg';
 import type React from 'react';
 
 export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
@@ -12,8 +13,10 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
     pos="relative"
     boxShadow="0 0 5px #00000040"
     ref={ref}
-    {...props}
-  />
+  >
+    <Logo style={{ position: 'absolute', top: '24px', right: '24px', height: '30px' }} />
+    {props.children}
+  </Box>
 ));
 
 export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
@@ -29,6 +32,8 @@ export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
     maxW="600px"
     boxShadow="0 0 5px #00000040"
     ref={ref}
-    {...props}
-  />
+  >
+    <Logo style={{ position: 'absolute', top: '24px', right: '24px', height: '30px' }} />
+    {props.children}
+  </Flex>
 ));
