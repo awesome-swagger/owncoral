@@ -1,7 +1,7 @@
-import type { BoxProps, FlexProps } from '@chakra-ui/react';
-import { Box, Flex, forwardRef, Image } from '@chakra-ui/react';
-import Logo from '../../assets/logo.svg';
 import type React from 'react';
+import type { BoxProps, FlexProps } from '@chakra-ui/react';
+import { Box, Flex, forwardRef } from '@chakra-ui/react';
+import Logo from '../../assets/logo.svg';
 
 export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box

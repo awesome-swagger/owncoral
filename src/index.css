@@ -9,6 +9,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
 .mask_input {
   width: 100%;
   min-width: 0;
@@ -30,6 +31,7 @@ code {
   background: #f3f3f3;
   margin-top: 32px;
 }
+
 .mask_input:focus {
   z-index: 1;
   border-color: #3182ce;
