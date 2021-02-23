@@ -43,6 +43,15 @@ export const TaxClasification = forwardRef<DivRef, stepProps>(
               cursor="pointer"
               pos="relative"
               key="value"
+              onClick={() => {
+                form.dispatch({
+                  type: 'update-form',
+                  payload: {
+                    step8: { tax_clasification: value },
+                  },
+                });
+                nextStep();
+              }}
             >
               {value}
               <Image

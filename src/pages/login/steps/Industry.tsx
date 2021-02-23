@@ -1,20 +1,36 @@
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useCallback, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import { Heading, Button, Input, Text } from '@chakra-ui/react';
-import type { DivRef } from '../steps';
+import { Heading, Input, Text } from '@chakra-ui/react';
+import type { FormRef } from '../steps';
+import { SubmitBtn } from '../../../components/submitBtn';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const Industry = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+  const { handleSubmit, setValue, register } = useForm();
   const form = useContext(StepFormContext);
 
+  const onSubmit = useCallback((data) => {
+    form.dispatch({
+      type: 'update-form',
+      payload: { step10: data },
+    });
+    nextStep();
+  }, []);
+
+  useEffect(() => {
+    const formState = form.formState;
+
+    setValue('industry', formState?.step10?.industry || '');
+  }, []);
   return (
-    <div ref={ref}>
+    <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
         <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
@@ -23,21 +39,18 @@ export const Industry = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         <Text fontSize="1rem" textAlign="left">
           Lorem ipsum dolor sir amet
         </Text>
-        <Input type="text" placeholder="Industry" h="48px" bg="#F3F3F3" mt="32px" />
-
-        <Button
-          pos="absolute"
-          bottom="42px"
-          left="24px"
-          w="calc(100% - 48px)"
+        <Input
+          name="industry"
+          ref={register({ required: true })}
+          type="text"
+          placeholder="Industry"
           h="48px"
-          bg="#4E504F"
-          color="#fff"
-          onClick={nextStep}
-        >
-          Continue
-        </Button>
+          bg="#F3F3F3"
+          mt="32px"
+        />
+
+        <SubmitBtn label="Continue" />
       </Container>
-    </div>
+    </form>
   );
 });

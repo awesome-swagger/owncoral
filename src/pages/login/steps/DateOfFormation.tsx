@@ -1,10 +1,11 @@
-import { useState, useCallback, forwardRef, useContext } from 'react';
+import { useState, useCallback, forwardRef, useContext, useEffect } from 'react';
 import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { Heading, Button, Input, Text } from '@chakra-ui/react';
 import { DayPicker } from '../../../components/daypicker';
 import type { DivRef } from '../steps';
+import { SubmitBtn } from '../../../components/submitBtn';
 
 type stepProps = {
   nextStep: () => void;
@@ -15,13 +16,23 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(new Date());
     const form = useContext(StepFormContext);
-
     const handleDateChange = useCallback(
       (newDate) => {
         setDate(newDate);
       },
       [date],
     );
+
+    const onSubmit = useCallback(() => {
+      form.dispatch({ type: 'update-form', payload: { step12: date } });
+      nextStep();
+    }, [date]);
+
+    useEffect(() => {
+      const formState = form.formState;
+      setDate(typeof formState?.step12 === 'object' ? new Date(formState?.step12) : new Date());
+    }, []);
+
     return (
       <div ref={ref}>
         <Container>
@@ -33,18 +44,7 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
             Lorem ipsum dolor sir amet
           </Text>
           <DayPicker onChange={handleDateChange} date={date} />
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            bg="#4E504F"
-            color="#fff"
-            onClick={nextStep}
-          >
-            Continue
-          </Button>
+          <SubmitBtn onClick={onSubmit} label="Continue" />
         </Container>
       </div>
     );

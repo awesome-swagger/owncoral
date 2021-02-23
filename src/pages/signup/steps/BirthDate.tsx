@@ -4,6 +4,7 @@ import React, { forwardRef, useCallback, useContext, useEffect, useState } from 
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { DayPicker } from '../../../components/daypicker';
+import { SubmitBtn } from '../../../components/submitBtn';
 import type { DivRef } from '../../signup';
 import { StepFormContext } from '../../signup';
 
@@ -42,17 +43,7 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
           When is your Birthday?
         </Heading>
         <DayPicker onChange={handleDateChange} date={date} />
-        <Button
-          pos="absolute"
-          bottom="42px"
-          left="24px"
-          w="calc(100% - 48px)"
-          u
-          h="48px"
-          onClick={onSubmit}
-        >
-          Continue
-        </Button>
+        <SubmitBtn onClick={onSubmit} label="Continue" />
       </Container>
     </Box>
   );

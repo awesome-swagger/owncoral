@@ -1,21 +1,39 @@
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useEffect, useCallback } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { Heading, Button, Input, Text } from '@chakra-ui/react';
-import type { DivRef } from '../steps';
+import type { FormRef } from '../steps';
+import { SubmitBtn } from '../../../components/submitBtn';
+import InputMask from 'react-input-mask';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const EntityPhoneNumber = forwardRef<DivRef, stepProps>(
+export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
+    const { handleSubmit, register, setValue, control } = useForm();
     const form = useContext(StepFormContext);
 
+    const onSubmit = useCallback((data) => {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step16: data },
+      });
+      nextStep();
+    }, []);
+
+    useEffect(() => {
+      const formState = form.formState;
+
+      setValue('entity_phone_number', formState?.step16?.entity_phone_number || '');
+    }, []);
+
     return (
-      <div ref={ref}>
+      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
@@ -24,21 +42,18 @@ export const EntityPhoneNumber = forwardRef<DivRef, stepProps>(
           <Text fontSize="1rem" textAlign="left">
             Enter your US phone number
           </Text>
-          <Input placeholder="XXX XXX XXX" h="48px" bg="#F3F3F3" mt="32px" />
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            bg="#4E504F"
-            color="#fff"
-            onClick={nextStep}
-          >
-            Continue
-          </Button>
+          <Controller
+            placeholder="XXX XXX XXXX"
+            className="mask_input"
+            as={InputMask}
+            name="entity_phone_number"
+            control={control}
+            rules={{ required: true, minLength: 9 }}
+            mask="999 999 999"
+          />
+          <SubmitBtn label="Continue" />
         </Container>
-      </div>
+      </form>
     );
   },
 );

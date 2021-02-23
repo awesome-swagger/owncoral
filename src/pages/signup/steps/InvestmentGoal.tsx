@@ -2,6 +2,7 @@ import { Box, Button, Flex, Heading, Image, Progress, useColorModeValue } from '
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 
 import { BackBtn } from '../../../components/backBtn';
+import { SubmitBtn } from '../../../components/submitBtn';
 import { Container } from '../../../components/container';
 import type { DivRef } from '../../signup';
 import { StepFormContext } from '../../signup';
@@ -62,16 +63,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
               {label}
             </Box>
           ))}
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            onClick={handleSubmit}
-          >
-            Continue
-          </Button>
+          <SubmitBtn label="Continue" onClick={handleSubmit} />
         </Container>
       </Box>
     );

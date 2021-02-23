@@ -16,6 +16,7 @@ import React, { forwardRef, useCallback, useContext, useEffect, useState } from 
 import { useForm } from 'react-hook-form';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
+import { SubmitBtn } from '../../../components/submitBtn';
 import type { FormRef } from '../../signup';
 import { StepFormContext } from '../../signup';
 
@@ -130,17 +131,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             </span>{' '}
             provided by Coral
           </Text>
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            type="submit"
-          >
-            Continue
-          </Button>
-
+          <SubmitBtn label="Continue" />
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent minH="450px">

@@ -1,21 +1,38 @@
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useCallback, useEffect } from 'react';
 import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import { Heading, Button, Text } from '@chakra-ui/react';
-import type { DivRef } from '../steps';
+import { Heading, Text, Select } from '@chakra-ui/react';
+import { States } from '../../../lib/states';
+import { SubmitBtn } from '../../../components/submitBtn';
+import type { FormRef } from '../steps';
+import { useForm } from 'react-hook-form';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const JurisdictionRegistration = forwardRef<DivRef, stepProps>(
+export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
+    const { handleSubmit, register, setValue, control } = useForm();
     const form = useContext(StepFormContext);
 
+    const onSubmit = useCallback((data) => {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step13: data },
+      });
+      nextStep();
+    }, []);
+
+    useEffect(() => {
+      const formState = form.formState;
+
+      setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
+    }, []);
     return (
-      <div ref={ref}>
+      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
@@ -24,20 +41,21 @@ export const JurisdictionRegistration = forwardRef<DivRef, stepProps>(
           <Text fontSize="1rem" textAlign="left">
             Lorem ipsum dolor sir amet
           </Text>
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            bg="#4E504F"
-            color="#fff"
-            onClick={nextStep}
+          <Select
+            ref={register}
+            placeholder="Select option"
+            name="jurisdiction_registration"
+            mt="0.5rem"
           >
-            Continue
-          </Button>
+            {States.map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Select>
+          <SubmitBtn label="Continue" />
         </Container>
-      </div>
+      </form>
     );
   },
 );

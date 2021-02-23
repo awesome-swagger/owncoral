@@ -2,7 +2,7 @@ import { forwardRef, useContext } from 'react';
 import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import { Heading, Button, Box, Text } from '@chakra-ui/react';
+import { Heading, Button, Box, Text, Input } from '@chakra-ui/react';
 import type { DivRef } from '../steps';
 
 type stepProps = {
@@ -24,14 +24,18 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
           <Text fontSize="1rem" textAlign="left" mb="32px">
             Lorem ipsum dolor sir amet
           </Text>
-          <Box border="2px dashed #D2D2D1" p="14px">
-            <Text fontSize="1rem" textAlign="center" color="#4E504F">
-              Upload Certificate of registration file
-            </Text>
-            <Text fontSize="0.85rem" textAlign="center" color="#888">
-              JPG, PNG or PDF
-            </Text>
-          </Box>
+          <label>
+            <Input d="none" type="file" />
+            <Box border="2px dashed #D2D2D1" p="14px" cursor="pointer">
+              <Text fontSize="1rem" textAlign="center" color="#4E504F">
+                Upload Certificate of registration file
+              </Text>
+              <Text fontSize="0.85rem" textAlign="center" color="#888">
+                JPG, PNG or PDF
+              </Text>
+            </Box>
+          </label>
+
           <Button
             pos="absolute"
             bottom="42px"

@@ -43,6 +43,15 @@ export const EntityType = forwardRef<DivRef, stepProps>(
               cursor="pointer"
               pos="relative"
               key={value}
+              onClick={() => {
+                form.dispatch({
+                  type: 'update-form',
+                  payload: {
+                    step7: { entity_type: value },
+                  },
+                });
+                nextStep();
+              }}
             >
               {value}
               <Image

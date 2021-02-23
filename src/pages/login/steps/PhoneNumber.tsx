@@ -47,7 +47,7 @@ export const PhoneNumber = forwardRef<FormRef, stepProps>(
             as={InputMask}
             name="phone_number"
             control={control}
-            rules={{ minLength: 10 }}
+            rules={{ required: true, minLength: 10 }}
             mask="(999) 999-9999"
           />
           <SubmitBtn label="Continue" />

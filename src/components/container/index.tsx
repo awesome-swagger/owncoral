@@ -14,7 +14,7 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
     boxShadow="0 0 5px #00000040"
     ref={ref}
   >
-    <Logo style={{ position: 'absolute', top: '24px', right: '24px', height: '30px' }} />
+    <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />
     {props.children}
   </Box>
 ));
@@ -33,7 +33,7 @@ export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
     boxShadow="0 0 5px #00000040"
     ref={ref}
   >
-    <Logo style={{ position: 'absolute', top: '24px', right: '24px', height: '30px' }} />
+    <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />
     {props.children}
   </Flex>
 ));
