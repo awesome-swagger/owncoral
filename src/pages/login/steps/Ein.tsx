@@ -1,11 +1,10 @@
-import { forwardRef, useContext, useEffect, useCallback } from 'react';
-import { Heading, Text } from '@chakra-ui/react';
-import { useForm, Controller } from 'react-hook-form';
+import { forwardRef, useContext, useEffect, useCallback, useState } from 'react';
+import { Heading, Text, Input } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { SubmitBtn } from '../../../components/submitBtn';
-import type { FormRef } from '../steps';
+import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
 type stepProps = {
@@ -13,25 +12,30 @@ type stepProps = {
   prevStep: () => void;
 };
 
-export const Ein = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
-  const { handleSubmit, register, setValue, control } = useForm();
+export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+  const [einNumber, setEinNumber] = useState('');
+  const [error, setError] = useState(false);
   const form = useContext(StepFormContext);
 
-  const onSubmit = useCallback((data) => {
-    form.dispatch({
-      type: 'update-form',
-      payload: { step9: data },
-    });
-    nextStep();
-  }, []);
+  const onSubmit = useCallback(() => {
+    if (!einNumber.includes('_') && einNumber.length !== 0) {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step9: { einNumber } },
+      });
+      nextStep();
+    } else {
+      setError(true);
+    }
+  }, [einNumber]);
 
   useEffect(() => {
     const formState = form.formState;
 
-    setValue('phone_number', formState?.step9?.phone_number || '');
+    setEinNumber(formState?.step9?.einNumber || '');
   }, []);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+    <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
         <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
@@ -40,17 +44,23 @@ export const Ein = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepP
         <Text fontSize="1rem" textAlign="left">
           Lorem ipsum dolor sir amet
         </Text>
-        <Controller
+        <InputMask
           placeholder="XX-XXXXXXX"
-          className="mask_input"
-          as={InputMask}
-          name="phone_number"
-          control={control}
-          rules={{ required: true, minLength: 9 }}
+          className={error ? 'mask_input shake_animation' : 'mask_input'}
+          name="ein"
           mask="99-9999999"
+          value={einNumber}
+          onChange={(e: any) => {
+            setEinNumber(e.target.value);
+            setError(false);
+          }}
         />
-        <SubmitBtn label="Continue" />
+        <Text mt="8px" color="red">
+          {error ? 'Please enter a valid EIN number' : ''}
+        </Text>
+
+        <SubmitBtn onClick={onSubmit} label="Continue" />
       </Container>
-    </form>
+    </div>
   );
 });

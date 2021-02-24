@@ -6,12 +6,12 @@ import Logo from '../../assets/logo.svg';
 export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box
     p="24px"
-    m="0 auto"
-    w="100%"
-    h="100vh"
-    maxW="600px"
+    m={{ base: '0', md: '28px' }}
+    w={{ base: '100%', md: 'calc(100% - 56px)' }}
+    h={{ base: '100vh', md: 'calc(100vh - 56px)' }}
+    borderRadius="15px"
     pos="relative"
-    boxShadow="0 0 5px #00000040"
+    boxShadow="md"
     ref={ref}
   >
     <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />
@@ -23,14 +23,14 @@ export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
   <Flex
     pos="relative"
     p="24px"
-    m="0 auto"
-    w="100%"
-    h="100vh"
+    m={{ base: '0', md: '28px' }}
+    w={{ base: '100%', md: 'calc(100% - 56px)' }}
+    h={{ base: '100vh', md: 'calc(100vh - 56px)' }}
+    borderRadius="15px"
     align="center"
     justify="center"
     direction="column"
-    maxW="600px"
-    boxShadow="0 0 5px #00000040"
+    boxShadow="md"
     ref={ref}
   >
     <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />

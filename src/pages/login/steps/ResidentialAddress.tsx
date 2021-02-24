@@ -1,10 +1,10 @@
-import { forwardRef, useContext, useCallback, useState, useEffect } from 'react';
+import { forwardRef, useContext, ChangeEvent, ReactNode } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
-import { useForm } from 'react-hook-form';
+import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import { Container } from '../../../components/container';
 import { BackBtn } from '../../../components/backBtn';
 import { SubmitBtn } from '../../../components/submitBtn';
-import type { FormRef } from '../steps';
+import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
 type stepProps = {
@@ -12,46 +12,71 @@ type stepProps = {
   prevStep: () => void;
 };
 
-export const ResidentialAddress = forwardRef<FormRef, stepProps>(
+export const ResidentialAddress = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, register, setValue } = useForm();
     const form = useContext(StepFormContext);
+    const {
+      ready,
+      value,
+      suggestions: { status, data },
+      setValue,
+      clearSuggestions,
+    } = usePlacesAutocomplete({
+      requestOptions: {},
+      debounce: 300,
+    });
+    const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
+      setValue(e.target.value);
+    };
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step2: data },
+    const handleSelect = ({ description }: any) => () => {
+      setValue(description, false);
+      clearSuggestions();
+      getGeocode({ address: description })
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          console.log('📍 Coordinates: ', { lat, lng });
+        })
+        .catch((error) => {
+          console.log('😱 Error: ', error);
+        });
+    };
+    const renderSuggestions = () =>
+      data.map((suggestion) => {
+        const {
+          place_id,
+          structured_formatting: { main_text, secondary_text },
+        } = suggestion;
+
+        return (
+          <li key={place_id} onClick={() => handleSelect(suggestion)}>
+            <strong>{main_text}</strong> <small>{secondary_text}</small>
+          </li>
+        );
       });
-      nextStep();
-    }, []);
-
-    useEffect(() => {
-      const formState = form.formState;
-
-      setValue('residential_address', formState?.step2?.residential_address || '');
-    }, []);
-
     return (
-      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+      <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <Heading size="md" mt="32px" letterSpacing="normal">
-            What’s your residential address?
+            What’s your Residential address?
           </Heading>
           <Text fontSize="1rem" m="0 !important">
             Lorem ipsum dolor sir amet
           </Text>
           <Input
-            name="residential_address"
             placeholder="Residental Address"
             h="48px"
             bg="#F3F3F3"
             mt="32px"
-            ref={register({ required: true })}
+            value={value}
+            onChange={handleInput}
+            disabled={!ready}
           />
+          {status === 'OK' && <ul>{renderSuggestions()}</ul>}
           <SubmitBtn label="Continue" />
         </Container>
-      </form>
+      </div>
     );
   },
 );

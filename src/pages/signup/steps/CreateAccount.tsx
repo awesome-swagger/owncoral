@@ -10,12 +10,17 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure
+  useDisclosure,
+  InputGroup,
+  InputRightElement,
+  IconButton,
+  Icon,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { SubmitBtn } from '../../../components/submitBtn';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -39,6 +44,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     const { handleSubmit, register, setValue, errors } = useForm();
     const form = useContext(StepFormContext);
     const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
+    const [showPassword, setShowPassword] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const onSubmit = useCallback(
@@ -85,21 +91,40 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             <Text fontSize="1rem" textAlign="left">
               Password
             </Text>
-            <Input
-              type="password"
-              h="48px"
-              mt="8px"
-              placeholder="Password"
-              name="password"
-              variant="filled"
-              ref={register({ minLength: 8, required: true })}
-            />
+            <InputGroup>
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                h="48px"
+                mt="8px"
+                placeholder="Password"
+                name="password"
+                variant="filled"
+                className={errors.password ? 'shake_animation' : ''}
+                ref={register({ minLength: 8, required: true })}
+              />
+              <InputRightElement h="calc(100% - 0.5rem)" mt="0.5rem">
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)}
+                  variant="unstyled"
+                  aria-label={(showPassword ? 'Hide' : 'Show') + ' password'}
+                  sx={{
+                    '&:focus': { boxShadow: 'none' },
+                  }}
+                  icon={<Icon as={showPassword ? FiEyeOff : FiEye} />}
+                />
+              </InputRightElement>
+            </InputGroup>
           </Box>
-          {errors.password && (
-            <Text fontSize="0.85rem" colorScheme="gray" textAlign="left" m="8px 0">
-              Must be at least 8 characters
-            </Text>
-          )}
+
+          <Text
+            fontSize="0.85rem"
+            color={errors.password ? 'black' : 'gray'}
+            className={errors.password ? 'shake_animation' : ''}
+            textAlign="left"
+            m="8px 0"
+          >
+            Must be at least 8 characters
+          </Text>
 
           <Text
             w=" calc(100% - 48px)"

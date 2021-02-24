@@ -1,11 +1,11 @@
-import { forwardRef, useContext, useCallback, useEffect } from 'react';
+import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
 import { Controller, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { SubmitBtn } from '../../../components/submitBtn';
-import type { FormRef } from '../steps';
+import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
 type stepProps = {
@@ -13,26 +13,30 @@ type stepProps = {
   prevStep: () => void;
 };
 
-export const PhoneNumber = forwardRef<FormRef, stepProps>(
+export const PhoneNumber = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, register, setValue, control } = useForm();
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [error, setError] = useState(false);
     const form = useContext(StepFormContext);
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step3: data },
-      });
-      nextStep();
-    }, []);
+    const onSubmit = useCallback(() => {
+      if (!phoneNumber.includes('_') && phoneNumber.length !== 0) {
+        form.dispatch({
+          type: 'update-form',
+          payload: { step3: { phoneNumber } },
+        });
+        nextStep();
+      } else {
+        setError(true);
+      }
+    }, [phoneNumber]);
 
     useEffect(() => {
       const formState = form.formState;
-
-      setValue('phone_number', formState?.step3?.phone_number || '');
+      setPhoneNumber(formState?.step3?.phoneNumber || '');
     }, []);
     return (
-      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+      <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
@@ -41,18 +45,23 @@ export const PhoneNumber = forwardRef<FormRef, stepProps>(
           <Text fontSize="1rem" textAlign="left">
             Enter your US phone number
           </Text>
-          <Controller
-            placeholder="XXX XXX XXX"
-            className="mask_input"
-            as={InputMask}
+          <InputMask
+            mask="999 999 9999"
             name="phone_number"
-            control={control}
-            rules={{ required: true, minLength: 10 }}
-            mask="(999) 999-9999"
+            placeholder="XXX XXX XXX"
+            className={error ? 'mask_input shake_animation' : 'mask_input'}
+            value={phoneNumber}
+            onChange={(e: any) => {
+              setPhoneNumber(e.target.value);
+              setError(false);
+            }}
           />
-          <SubmitBtn label="Continue" />
+          <Text mt="8px" color="red">
+            {error ? 'Please enter a valid phone number' : ''}
+          </Text>
+          <SubmitBtn onClick={onSubmit} label="Continue" />
         </Container>
-      </form>
+      </div>
     );
   },
 );
