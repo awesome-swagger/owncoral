@@ -1,11 +1,11 @@
-import { Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
+import { Button, Heading, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import type { FormRef } from '../../signup';
-import { StepFormContext } from '../../signup';
+import type { FormRef } from '../index';
+import { StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;

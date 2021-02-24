@@ -1,11 +1,10 @@
 import { forwardRef, useContext, useEffect, useCallback } from 'react';
-import { useForm } from 'react-hook-form';
-import { StepFormContext } from '../steps';
+import { Heading, Box, Text, Image } from '@chakra-ui/react';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import { Heading, Box, Text, Image } from '@chakra-ui/react';
 import Chevron from '../../../assets/chevron.png';
 import type { DivRef } from '../steps';
+import { StepFormContext } from '../steps';
 
 type stepProps = {
   nextStep: () => void;

@@ -1,6 +1,6 @@
+import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import {
   Box,
-  Button,
   Heading,
   Input,
   Text,
@@ -10,15 +10,14 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react';
-import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { SubmitBtn } from '../../../components/submitBtn';
-import type { FormRef } from '../../signup';
-import { StepFormContext } from '../../signup';
+import type { FormRef } from '../index';
+import { StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;
@@ -34,6 +33,7 @@ const PopUpContent = {
     text: 'Terms & Conditions: Lorem ipsum dolor sit amet',
   },
 };
+
 export const CreateAccount = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const { handleSubmit, register, setValue, errors } = useForm();

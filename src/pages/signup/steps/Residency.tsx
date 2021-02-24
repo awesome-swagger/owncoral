@@ -1,11 +1,11 @@
-import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
+import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 
 import { BackBtn } from '../../../components/backBtn';
 import { Container, FlexContainer } from '../../../components/container';
-import type { DivRef } from '../../signup';
-import { ContextType, StepFormContext } from '../../signup';
+import type { DivRef } from '../index';
+import { ContextType, StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;

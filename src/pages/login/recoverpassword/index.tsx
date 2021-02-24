@@ -197,4 +197,5 @@ export const NewPassword: React.FC = () => {
     </Box>
   );
 };
+// eslint-disable-next-line import/no-default-export
 export default RecoverPassword;

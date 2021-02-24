@@ -1,10 +1,10 @@
-import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
 import { forwardRef, useCallback, useContext } from 'react';
+import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import type { DivRef } from '../../signup';
-import { StepFormContext } from '../../signup';
+import type { DivRef } from '../index';
+import { StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;
@@ -18,6 +18,7 @@ const netWorth = [
   { value: '$10m or more' },
   { value: 'I would prefer not to say' },
 ];
+
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
 

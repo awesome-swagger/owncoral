@@ -1,11 +1,11 @@
-import { Box, Button, Flex, Heading, Image, Progress, useColorModeValue } from '@chakra-ui/react';
-import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useContext } from 'react';
+import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../components/backBtn';
 import { SubmitBtn } from '../../../components/submitBtn';
 import { Container } from '../../../components/container';
-import type { DivRef } from '../../signup';
-import { StepFormContext } from '../../signup';
+import type { DivRef } from '../index';
+import { StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;

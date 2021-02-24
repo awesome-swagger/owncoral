@@ -1,11 +1,11 @@
 import { forwardRef, useContext, useCallback, useEffect } from 'react';
+import { Heading, Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { StepFormContext } from '../steps';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
 import { SubmitBtn } from '../../../components/submitBtn';
-import { Heading, Input } from '@chakra-ui/react';
 import type { FormRef } from '../steps';
+import { StepFormContext } from '../steps';
 
 type stepProps = {
   nextStep: () => void;

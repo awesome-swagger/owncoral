@@ -1,5 +1,6 @@
 import { useState, useEffect, useReducer, createContext, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
 import { retrieveState, storeState } from '../../../lib/utils';
 import { InformationMissing } from './InformationMissing';
 import { ResidentialAddress } from './ResidentialAddress';
@@ -17,8 +18,7 @@ import { DateOfRegistration } from './DateOfRegistration';
 import { CertificateOfRegistration } from './CertificateOfRegistration';
 import { EntityAddress } from './EntityAddress';
 import { EntityPhoneNumber } from './EntityPhoneNumber';
-import { Result } from '../steps/Result';
-import { useSwipeable } from 'react-swipeable';
+import { Result } from './Result';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;

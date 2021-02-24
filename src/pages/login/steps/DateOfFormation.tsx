@@ -1,11 +1,11 @@
 import { useState, useCallback, forwardRef, useContext, useEffect } from 'react';
-import { StepFormContext } from '../steps';
+import { Heading, Text } from '@chakra-ui/react';
 import { BackBtn } from '../../../components/backBtn';
 import { Container } from '../../../components/container';
-import { Heading, Button, Input, Text } from '@chakra-ui/react';
 import { DayPicker } from '../../../components/daypicker';
-import type { DivRef } from '../steps';
 import { SubmitBtn } from '../../../components/submitBtn';
+import type { DivRef } from '../steps';
+import { StepFormContext } from '../steps';
 
 type stepProps = {
   nextStep: () => void;
