@@ -13,16 +13,27 @@ type stepProps = {
   prevStep: () => void;
 };
 
+const initialDate = {
+  year: '2000',
+  month: 'Jan',
+  day: '30',
+};
+
 export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(initialDate);
+
   const form = useContext(StepFormContext);
 
   const handleDateChange = useCallback(
     (newDate) => {
-      setDate(newDate);
+      setDate((prevState) => ({
+        ...prevState,
+        ...newDate,
+      }));
     },
-    [date],
+    [setDate],
   );
+
   const onSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step3: date } });
     nextStep();
@@ -31,7 +42,7 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   useEffect(() => {
     const formState = form.formState;
 
-    setDate(typeof formState?.step3 !== 'undefined' ? new Date(formState?.step3) : new Date());
+    setDate(formState?.step3 || initialDate);
   }, []);
 
   return (
@@ -39,10 +50,10 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       <Container>
         <BackBtn pos="absolute" handleClick={prevStep} />
 
-        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+        <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left">
           When is your Birthday?
         </Heading>
-        <DayPicker onChange={handleDateChange} date={date} />
+        <DayPicker date={date} onChange={handleDateChange} />
         <SubmitBtn onClick={onSubmit} label="Continue" />
       </Container>
     </Box>

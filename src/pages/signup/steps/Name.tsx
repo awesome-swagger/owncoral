@@ -38,7 +38,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
       <Container layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
-        <Heading as="h4" size="md" mt="32px" mb="8px" textAlign="left">
+        <Heading as="h4" size="md" mt="2rem" mb="0.5rem" textAlign="left">
           What’s your full name?
         </Heading>
         <Text fontSize="1rem" textAlign="left">
@@ -48,24 +48,24 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           placeholder="First Name"
           name="firstName"
           ref={register}
-          h="48px"
-          mt="32px"
+          h="3rem"
+          mt="2rem"
           variant="filled"
         />
         <Input
           placeholder="Last Name"
           name="lastName"
           ref={register}
-          h="48px"
-          mt="32px"
+          h="3rem"
+          mt="2rem"
           variant="filled"
         />
         <Button
           pos="absolute"
-          bottom="42px"
-          left="24px"
-          w="calc(100% - 48px)"
-          h="48px"
+          bottom="2.5rem"
+          left="1.5rem"
+          w="calc(100% - 3rem)"
+          h="3rem"
           type="submit"
           disabled={!firstName || !lastName}
         >

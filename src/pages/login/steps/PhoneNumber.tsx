@@ -39,7 +39,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             What’s your phone number?
           </Heading>
           <Text fontSize="1rem" textAlign="left">
@@ -56,7 +56,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
               setError(false);
             }}
           />
-          <Text mt="8px" color="red">
+          <Text mt="0.5rem" color="red">
             {error ? 'Please enter a valid phone number' : ''}
           </Text>
           <SubmitBtn onClick={onSubmit} label="Continue" />

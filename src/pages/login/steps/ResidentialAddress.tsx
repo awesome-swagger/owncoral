@@ -58,7 +58,7 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" letterSpacing="normal">
+          <Heading size="md" mt="2rem" letterSpacing="normal">
             What’s your Residential address?
           </Heading>
           <Text fontSize="1rem" m="0 !important">
@@ -66,9 +66,9 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
           </Text>
           <Input
             placeholder="Residental Address"
-            h="48px"
+            h="3rem"
             bg="#F3F3F3"
-            mt="32px"
+            mt="2rem"
             value={value}
             onChange={handleInput}
             disabled={!ready}

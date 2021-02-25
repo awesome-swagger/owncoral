@@ -33,7 +33,7 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
     <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+        <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
           What’s your Industry?
         </Heading>
         <Text fontSize="1rem" textAlign="left">
@@ -44,9 +44,9 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
           ref={register({ required: true })}
           type="text"
           placeholder="Industry"
-          h="48px"
+          h="3rem"
           bg="#F3F3F3"
-          mt="32px"
+          mt="2rem"
         />
 
         <SubmitBtn label="Continue" />

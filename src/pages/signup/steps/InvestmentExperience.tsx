@@ -39,16 +39,16 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
         <Container>
           <BackBtn pos="absolute" handleClick={prevStep} />
 
-          <Progress mt="32px" colorScheme="primary" borderRadius="full" size="sm" value={80} />
+          <Progress mt="2rem" colorScheme="primary" borderRadius="full" size="sm" value={80} />
 
-          <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+          <Heading size="md" as="h4" mt="2rem" mb="0.5rem" textAlign="left">
             How much investing experience do you have?
           </Heading>
           {experience.map(({ value, label }) => (
             <Box
-              px="24px"
-              py="12px"
-              mt="8px"
+              px="1.5rem"
+              py="0.75rem"
+              mt="0.5rem"
               {...selectionColors}
               borderRadius="full"
               textAlign="left"

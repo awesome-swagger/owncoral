@@ -16,26 +16,25 @@ export const Result = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
       <FlexContainer>
         <BackBtn pos="absolute" handleClick={prevStep} />
 
-        <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-        <Heading as="h4" size="md" mt="32px" color="primary.highlight">
+        <Box h="10rem" w="10rem" borderRadius="50%" bg="#d2d2d1" />
+        <Heading as="h4" size="md" mt="2rem" color="primary.highlight">
           Thanks for joining Coral
         </Heading>
         <Text fontSize="0.85rem" color="gray.500" textAlign="center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua.
         </Text>
-        <Link to="/">
-          <Button
-            pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
-            colorScheme="primary"
-          >
-            Start
-          </Button>
-        </Link>
+        <Button
+          pos="absolute"
+          bottom="2.5rem"
+          left="1.5rem"
+          onClick={nextStep}
+          w="calc(100% - 3rem)"
+          h="3rem"
+          colorScheme="primary"
+        >
+          Start
+        </Button>
       </FlexContainer>
     </Box>
   );

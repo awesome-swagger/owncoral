@@ -46,15 +46,15 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       {available === 'Available' ? (
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading as="h4" size="md" mt="32px" mb="24px" textAlign="left">
+          <Heading as="h4" size="md" mt="2rem" mb="1.5rem" textAlign="left">
             Are you a U.S resident?
           </Heading>
           {initialQuestions.map(({ value, label }) => (
             <Box
               key={value}
-              px="24px"
-              py="12px"
-              mt="8px"
+              px="1.5rem"
+              py="0.75rem"
+              mt="0.5rem"
               // bg={gray}
               borderRadius="full"
               // color={color}
@@ -96,10 +96,10 @@ const TaxID = ({
 
   return (
     <Container layerStyle="noSelect">
-      <Box h="16px" w="16px" cursor="pointer" onClick={goBack}>
-        <BsChevronLeft style={{ width: '16px', height: '16px' }} />
+      <Box h="1rem" w="1rem" cursor="pointer" onClick={goBack}>
+        <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+      <Heading size="md" as="h4" mt="2rem" mb="0.5rem" textAlign="left">
         Please enter your Tax ID
       </Heading>
       <Text fontSize="1rem" textAlign="left">
@@ -107,18 +107,18 @@ const TaxID = ({
       </Text>
       <Input
         placeholder="XX-XX-XXXX"
-        h="48px"
-        mt="32px"
+        h="3rem"
+        mt="2rem"
         value={taxID}
         variant="filled"
         onChange={(e) => setTaxID(e.target.value)}
       />
       <Button
         pos="absolute"
-        bottom="42px"
-        left="24px"
-        w="calc(100% - 48px)"
-        h="48px"
+        bottom="2.5rem"
+        left="1.5rem"
+        w="calc(100% - 3rem)"
+        h="3rem"
         disabled={!taxID.length}
         onClick={() => handleSubmit()}
       >
@@ -135,14 +135,14 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
     <FlexContainer layerStyle="noSelect">
       <Box
         pos="absolute"
-        left="24px"
-        top="24px"
-        h="16px"
-        w="16px"
+        left="1.5rem"
+        top="1.5rem"
+        h="1rem"
+        w="1rem"
         cursor="pointer"
         onClick={goBack}
       >
-        <BsChevronLeft style={{ width: '16px', height: '16px' }} />
+        <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
       <Heading size="md" as="h4" textAlign="center">
         Sorry, Coral is only available for U.S. residents
@@ -152,10 +152,10 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
       </Text>
       <Button
         pos="absolute"
-        bottom="42px"
-        left="24px"
-        w="calc(100% - 48px)"
-        h="48px"
+        bottom="2.5rem"
+        left="1.5rem"
+        w="calc(100% - 3rem)"
+        h="3rem"
         colorScheme={colorScheme}
       >
         Dismiss

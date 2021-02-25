@@ -26,17 +26,17 @@ export const TaxClasification = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             Which type of Tax Clasification?
           </Heading>
-          <Text fontSize="1rem" textAlign="left" mb="32px">
+          <Text fontSize="1rem" textAlign="left" mb="2rem">
             Lorem ipsum dolor sir amet
           </Text>
           {EntityType.map(({ value }) => (
             <Box
-              px="24px"
-              py="12px"
-              mt="8px"
+              px="1.5rem"
+              py="0.75rem"
+              mt="0.5rem"
               bg="#F3F3F3"
               color="4E504F"
               textAlign="left"
@@ -57,7 +57,7 @@ export const TaxClasification = forwardRef<DivRef, stepProps>(
               <Image
                 pos="absolute"
                 top="50%"
-                right="16px"
+                right="1rem"
                 transform="translateY(-50%) rotate(180deg)"
                 src={Chevron}
               />

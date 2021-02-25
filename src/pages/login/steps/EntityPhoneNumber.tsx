@@ -36,7 +36,7 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             What’s your Entity phone number?
           </Heading>
           <Text fontSize="1rem" textAlign="left">

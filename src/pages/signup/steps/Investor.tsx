@@ -26,7 +26,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
           <Container>
             <BackBtn pos="absolute" handleClick={prevStep} />
 
-            <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+            <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left">
               Are you an accredited investor?
             </Heading>
             <Text fontSize="1rem" textAlign="left">
@@ -38,10 +38,10 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             </Text>
             <Button
               pos="absolute"
-              bottom="106px"
-              left="24px"
-              w="calc(100% - 48px)"
-              h="48px"
+              bottom="6.25rem"
+              left="1.5rem"
+              w="calc(100% - 3rem)"
+              h="3rem"
               variant="outline"
               onClick={handleSubmit}
             >
@@ -50,10 +50,10 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             <Button
               onClick={() => setAvailable('Not Available')}
               pos="absolute"
-              bottom="42px"
-              left="24px"
-              w="calc(100% - 48px)"
-              h="48px"
+              bottom="2.5rem"
+              left="1.5rem"
+              w="calc(100% - 3rem)"
+              h="3rem"
             >
               No
             </Button>
@@ -73,14 +73,14 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
     <FlexContainer layerStyle="noSelect">
       <Box
         pos="absolute"
-        left="24px"
-        top="24px"
-        h="16px"
-        w="16px"
+        left="1.5rem"
+        top="1.5rem"
+        h="1rem"
+        w="1rem"
         cursor="pointer"
         onClick={goBack}
       >
-        <BsChevronLeft style={{ width: '16px', height: '16px' }} />
+        <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
       <Heading size="md" as="h4" textAlign="center">
         Coral is currently available to accredited investors only
@@ -90,10 +90,10 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
       </Text>
       <Button
         pos="absolute"
-        bottom="42px"
-        left="24px"
-        w="calc(100% - 48px)"
-        h="48px"
+        bottom="2.5rem"
+        left="1.5rem"
+        w="calc(100% - 3rem)"
+        h="3rem"
         colorScheme={colorScheme}
       >
         Dismiss

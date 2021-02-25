@@ -11,39 +11,48 @@ type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
+const initialDate = {
+  year: '2000',
+  month: 'Jan',
+  day: '30',
+};
 
 export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(initialDate);
     const form = useContext(StepFormContext);
     const handleDateChange = useCallback(
       (newDate) => {
-        setDate(newDate);
+        setDate((prevState) => ({
+          ...prevState,
+          ...newDate,
+        }));
       },
-      [date],
+      [setDate],
     );
 
     const onSubmit = useCallback(() => {
-      form.dispatch({ type: 'update-form', payload: { step12: date } });
+      form.dispatch({ type: 'update-form', payload: { step11: date } });
       nextStep();
     }, [date]);
 
     useEffect(() => {
       const formState = form.formState;
-      setDate(typeof formState?.step12 === 'object' ? new Date(formState?.step12) : new Date());
+
+      setDate(formState?.step11 || initialDate);
     }, []);
 
     return (
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             Which is the date of formation?
           </Heading>
           <Text fontSize="1rem" textAlign="left">
             Lorem ipsum dolor sir amet
           </Text>
-          <DayPicker onChange={handleDateChange} date={date} />
+          <DayPicker date={date} onChange={handleDateChange} />
           <SubmitBtn onClick={onSubmit} label="Continue" />
         </Container>
       </div>

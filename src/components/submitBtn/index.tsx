@@ -9,10 +9,10 @@ type SubmitBtnProps = {
 export const SubmitBtn: React.FC<SubmitBtnProps> = ({ label, onClick }: SubmitBtnProps) => (
   <Button
     pos="absolute"
-    bottom="42px"
-    left="24px"
-    w="calc(100% - 48px)"
-    h="48px"
+    bottom="2.5rem"
+    left="1.5rem"
+    w="calc(100% - 3rem)"
+    h="3rem"
     type="submit"
     bg="#4E504F"
     color="#fff"

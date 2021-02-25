@@ -34,7 +34,7 @@ export const EntityName = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             What is your Entity Name
           </Heading>
           <Input
@@ -42,9 +42,9 @@ export const EntityName = forwardRef<FormRef, stepProps>(
             name="entity_name"
             placeholder="Entity Name"
             ref={register({ required: true })}
-            h="48px"
+            h="3rem"
             bg="#F3F3F3"
-            mt="32px"
+            mt="2rem"
           />
           <SubmitBtn label="Continue" />
         </Container>

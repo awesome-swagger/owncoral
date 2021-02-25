@@ -18,8 +18,8 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <FlexContainer>
           <BackBtn pos="absolute" handleClick={prevStep} />
-          <Box h="160px" w="160px" borderRadius="50%" bg="#d2d2d1" />
-          <Heading size="md" mt="32px" letterSpacing="normal" textAlign="center">
+          <Box h="10rem" w="10rem" borderRadius="50%" bg="#d2d2d1" />
+          <Heading size="md" mt="2rem" letterSpacing="normal" textAlign="center">
             Some personal information is missing
           </Heading>
           <Text fontSize="1rem" m="0 !important" textAlign="center">
@@ -27,10 +27,10 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
           </Text>
           <Button
             pos="absolute"
-            bottom="106px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
+            bottom="6.25rem"
+            left="1.5rem"
+            w="calc(100% - 3rem)"
+            h="3rem"
             bg="#4E504F"
             color="#fff"
             cursor="pointer"
@@ -40,10 +40,10 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
           </Button>
           <Button
             pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
+            bottom="2.5rem"
+            left="1.5rem"
+            w="calc(100% - 3rem)"
+            h="3rem"
             bg="fff"
             color="#4E504F"
             cursor="pointer"

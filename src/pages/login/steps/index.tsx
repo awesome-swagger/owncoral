@@ -1,24 +1,8 @@
 import { useState, useEffect, useReducer, createContext, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Route } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { retrieveState, storeState } from '../../../lib/utils';
-import { InformationMissing } from './InformationMissing';
-import { ResidentialAddress } from './ResidentialAddress';
-import { PhoneNumber } from './PhoneNumber';
-import { SsnOrEin } from './SsnOrEin';
-import { Invest } from './Invest';
-import { EntityName } from './EntityName';
-import { EntityType } from './EntityType';
-import { TaxClasification } from './TaxClasification';
-import { Ein } from './Ein';
-import { Industry } from './Industry';
-import { DateOfFormation } from './DateOfFormation';
-import { JurisdictionRegistration } from './JurisdictionRegistration';
-import { DateOfRegistration } from './DateOfRegistration';
-import { CertificateOfRegistration } from './CertificateOfRegistration';
-import { EntityAddress } from './EntityAddress';
-import { EntityPhoneNumber } from './EntityPhoneNumber';
-import { Result } from './Result';
+import { loginRoutes } from '../../../lib/loginRoutes';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -49,8 +33,7 @@ function formReducer(state: formStateType, action: ActionType) {
   }
 }
 
-export const Steps = () => {
-  const [step, setStep] = useState(1);
+export const LoginFlow = () => {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('login_state'));
   const history = useHistory();
 
@@ -61,19 +44,17 @@ export const Steps = () => {
     trackMouse: true,
   });
 
-  const nextStep = useCallback(() => {
-    {
-      step === 17 ? console.log('This is the last page') : setStep(step + 1);
+  const nextStep = () => {
+    const index = loginRoutes.find((x) => x.path === location.pathname)?.id as number;
+    if (index === 17) {
+      history.push('/');
+    } else {
+      history.push(loginRoutes[index + 1]?.path);
     }
-  }, [step]);
-
+  };
   const prevStep = useCallback(() => {
-    {
-      step === 1 ? history.goBack() : setStep(step - 1);
-    }
-  }, [step]);
-
-  const gotoStep = useCallback((stepNumber: number) => setStep(stepNumber), [setStep]);
+    history.goBack();
+  }, [history]);
 
   useEffect(() => {
     /** store state at local storage as well for future use */
@@ -81,43 +62,14 @@ export const Steps = () => {
   }, [formState]);
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
-      {step === 1 ? (
-        <InformationMissing nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 2 ? (
-        <ResidentialAddress nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 3 ? (
-        <PhoneNumber nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 4 ? (
-        <SsnOrEin nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 5 ? (
-        <Invest nextStep={nextStep} prevStep={prevStep} gotoStep={gotoStep} {...handlers} />
-      ) : step === 6 ? (
-        <EntityName nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 7 ? (
-        <EntityType nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 8 ? (
-        <TaxClasification nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 9 ? (
-        <Ein nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 10 ? (
-        <Industry nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 11 ? (
-        <DateOfFormation nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 12 ? (
-        <JurisdictionRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 13 ? (
-        <DateOfRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 14 ? (
-        <CertificateOfRegistration nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 15 ? (
-        <EntityAddress nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 16 ? (
-        <EntityPhoneNumber nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 17 ? (
-        <Result prevStep={prevStep} gotoStep={gotoStep} {...handlers} />
-      ) : (
-        ''
-      )}
+      {loginRoutes.map(({ Component, path }) => (
+        <Route
+          path={path}
+          exact
+          key={path}
+          render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
+        />
+      ))}
     </StepFormContext.Provider>
   );
 };

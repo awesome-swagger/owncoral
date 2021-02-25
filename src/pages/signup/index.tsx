@@ -1,21 +1,8 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useEffect, useReducer, useState } from 'react';
+import { useHistory, Route, useLocation } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
-
 import { retrieveState, storeState } from '../../lib/utils';
-import {
-  BirthDate,
-  CreateAccount,
-  InvestmentExperience,
-  InvestmentGoal,
-  Investor,
-  Name,
-  NetWorth,
-  Residency,
-  Result,
-  VerifyEmail,
-  WelcomeCoral,
-} from './steps';
+import { signupRoutes } from '../../lib/signupRoutes';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -49,6 +36,7 @@ function Signup() {
   const [step, setStep] = useState<number>(1);
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
   const history = useHistory();
+  const location = useLocation();
 
   const handlers = useSwipeable({
     onSwipedLeft: () => nextStep(),
@@ -58,17 +46,16 @@ function Signup() {
   });
 
   const nextStep = () => {
-    if (step === 11) console.log('This is the last page');
-    else setStep(step + 1);
-  };
-
-  const prevStep = () => {
-    if (step === 1) {
-      history.goBack();
+    const index = signupRoutes.find((x) => x.path === location.pathname)?.id as number;
+    if (index === 11) {
+      history.push('/');
     } else {
-      setStep(step - 1);
+      history.push(signupRoutes[index + 1]?.path);
     }
   };
+  const prevStep = useCallback(() => {
+    history.goBack();
+  }, [history]);
 
   useEffect(() => {
     /** store state at local storage as well for future use */
@@ -77,31 +64,14 @@ function Signup() {
 
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
-      {step === 1 ? (
-        <Residency nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 2 ? (
-        <Name nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 3 ? (
-        <BirthDate nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 4 ? (
-        <Investor nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 5 ? (
-        <CreateAccount nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 6 ? (
-        <VerifyEmail nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 7 ? (
-        <WelcomeCoral nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 8 ? (
-        <InvestmentGoal nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 9 ? (
-        <NetWorth nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 10 ? (
-        <InvestmentExperience nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : step === 11 ? (
-        <Result nextStep={nextStep} prevStep={prevStep} {...handlers} />
-      ) : (
-        ''
-      )}
+      {signupRoutes.map(({ Component, path }) => (
+        <Route
+          path={path}
+          exact
+          key={path}
+          render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
+        />
+      ))}
     </StepFormContext.Provider>
   );
 }

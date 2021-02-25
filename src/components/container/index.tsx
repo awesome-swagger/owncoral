@@ -5,16 +5,16 @@ import Logo from '../../assets/logo.svg';
 
 export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
   <Box
-    p="24px"
-    m={{ base: '0', md: '28px' }}
-    w={{ base: '100%', md: 'calc(100% - 56px)' }}
-    h={{ base: '100vh', md: 'calc(100vh - 56px)' }}
-    borderRadius="15px"
+    p="1.5rem"
+    m={{ base: '0', md: '1.75rem' }}
+    w={{ base: '100%', md: 'calc(100% - 3.5rem)' }}
+    h={{ base: '100vh', md: 'calc(100vh - 3.5rem)' }}
+    borderRadius="1rem"
     pos="relative"
     boxShadow="md"
     ref={ref}
   >
-    <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />
+    <Logo style={{ position: 'absolute', top: '1.5rem', right: '0px', height: '2rem' }} />
     {props.children}
   </Box>
 ));
@@ -22,18 +22,18 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
 export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
   <Flex
     pos="relative"
-    p="24px"
-    m={{ base: '0', md: '28px' }}
-    w={{ base: '100%', md: 'calc(100% - 56px)' }}
-    h={{ base: '100vh', md: 'calc(100vh - 56px)' }}
-    borderRadius="15px"
+    p="1.5rem"
+    m={{ base: '0', md: '1.75rem' }}
+    w={{ base: '100%', md: 'calc(100% - 3.5rem)' }}
+    h={{ base: '100vh', md: 'calc(100vh - 3.5rem)' }}
+    borderRadius="1rem"
     align="center"
     justify="center"
     direction="column"
     boxShadow="md"
     ref={ref}
   >
-    <Logo style={{ position: 'absolute', top: '24px', right: '0px', height: '30px' }} />
+    <Logo style={{ position: 'absolute', top: '1.5rem', right: '0px', height: '2rem' }} />
     {props.children}
   </Flex>
 ));

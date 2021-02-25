@@ -18,10 +18,10 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
             Certificate of registration
           </Heading>
-          <Text fontSize="1rem" textAlign="left" mb="32px">
+          <Text fontSize="1rem" textAlign="left" mb="2rem">
             Lorem ipsum dolor sir amet
           </Text>
           <label>
@@ -38,10 +38,10 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
 
           <Button
             pos="absolute"
-            bottom="42px"
-            left="24px"
-            w="calc(100% - 48px)"
-            h="48px"
+            bottom="2.5rem"
+            left="1.5rem"
+            w="calc(100% - 3rem)"
+            h="3rem"
             bg="#4E504F"
             color="#fff"
             onClick={nextStep}

@@ -44,15 +44,15 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
       <Box ref={ref} layerStyle="noSelect">
         <Container>
           <BackBtn pos="absolute" handleClick={prevStep} />
-          <Progress mt="32px" colorScheme="primary" borderRadius="full" size="sm" value={3} />
-          <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+          <Progress mt="2rem" colorScheme="primary" borderRadius="full" size="sm" value={3} />
+          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left">
             What are your investment goals?
           </Heading>
           {investmentGoals.map(({ value, label }) => (
             <Box
-              px="24px"
-              py="12px"
-              mt="8px"
+              px="1.5rem"
+              py="0.75rem"
+              mt="0.5rem"
               {...selectionColors}
               borderRadius="full"
               textAlign="left"

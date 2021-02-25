@@ -37,16 +37,16 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
       <Container>
         <BackBtn handleClick={prevStep} />
 
-        <Progress mt="32px" borderRadius="full" colorScheme="primary" size="sm" value={40} />
+        <Progress mt="2rem" borderRadius="full" colorScheme="primary" size="sm" value={40} />
 
-        <Heading size="md" as="h4" mt="32px" mb="8px" textAlign="left">
+        <Heading size="md" as="h4" mt="2rem" mb="0.5rem" textAlign="left">
           What is your net worth?
         </Heading>
         {netWorth.map(({ value }) => (
           <Box
-            px="24px"
-            py="12px"
-            mt="8px"
+            px="1.5rem"
+            py="0.75rem"
+            mt="0.5rem"
             {...selectionColors}
             borderRadius="full"
             textAlign="left"

@@ -11,10 +11,9 @@ import type { User } from './userContext';
 import { UserContext } from './userContext';
 import DebugPanel from './components/debugPanel';
 
-import Login from './pages/login';
 import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
-import { Steps } from './pages/login/steps';
+import { LoginFlow } from './pages/login/steps';
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -29,28 +28,17 @@ function App() {
         <Router>
           {/* Note: server handles not-logged-in redirection for the SPA bundle */}
           <Switch>
-            <Route exact path="/login">
-              <Steps /> {/* setUser={setUser} */}
-            </Route>
-
-            <Route exact path="/signup">
-              <Signup />
-            </Route>
-
+            <LoginFlow /> {/* setUser={setUser} */}
+            <Signup />
             {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
             <Route exact path="/">
               {/* TODO: redirect to a dashboard */}
               <Redirect to="/portfolio" />
             </Route>
-
             <Route exact path="/portfolio" component={Portfolio} />
-
             {/* <Route exact path="/properties/:id" component={Property} /> */}
-
             {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
-
             {/* <Route exact path="/documents" component={Docs} /> */}
-
             {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
           </Switch>
         </Router>

@@ -42,7 +42,7 @@ export const SsnOrEin = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
     <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt="32px" mb="8px" textAlign="left" letterSpacing="normal">
+        <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
           What’s your SSN or EIN?
         </Heading>
         <Text fontSize="1rem" textAlign="left">
@@ -58,9 +58,9 @@ export const SsnOrEin = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
             name="Ssn_Or_Ein"
             type={showPassword ? 'text' : 'password'}
             placeholder="XXX-XX-XXXX"
-            h="48px"
+            h="3rem"
             bg="#F3F3F3"
-            mt="32px"
+            mt="2rem"
             className={errors.Ssn_Or_Ein ? 'shake_animation' : ''}
           />
           <InputRightElement h="calc(100% - 2rem)" mt="2rem">
@@ -75,7 +75,7 @@ export const SsnOrEin = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
             />
           </InputRightElement>
         </InputGroup>
-        <Text mt="8px" color="red">
+        <Text mt="0.5rem" color="red">
           {errors.Ssn_Or_Ein?.message}
         </Text>
         <SubmitBtn label="Continue" />

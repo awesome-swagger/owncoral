@@ -1,84 +1,71 @@
 // @ts-nocheck
-import React, { useState } from "react";
-import DatePicker from "react-mobile-datepicker";
-import { Heading } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Select, Box, Flex, Spacer } from '@chakra-ui/react';
+import InputMask from 'react-input-mask';
 
 interface DayPickerProps {
-  date: Date;
-  onChange: (newDate: Date) => void;
+  date: {
+    day: string;
+    month: string;
+    year: string;
+  };
+  onChange: (newDate: { [key: string]: string }) => void;
 }
 
-export const DayPicker: React.FC<DayPickerProps> = ({
-  date,
-  onChange,
-}: DayPickerProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const monthMap = {
-    "1": "Jan",
-    "2": "Feb",
-    "3": "Mar",
-    "4": "Apr",
-    "5": "May",
-    "6": "Jun",
-    "7": "Jul",
-    "8": "Aug",
-    "9": "Sep",
-    "10": "Oct",
-    "11": "Nov",
-    "12": "Dec",
-  };
-  const dateConfig = {
-    year: {
-      format: "YYYY",
-      caption: "Year",
-      step: 1,
-    },
-    month: {
-      format: (value) => monthMap[value.getMonth() + 1],
-      caption: "Mon",
-      step: 1,
-    },
-    date: {
-      format: "DD",
-      caption: "Day",
-      step: 1,
-    },
-  };
-  const handleClick = () => {
-    setOpen(true);
-  };
-  const handleCancel = () => {
-    setOpen(false);
-  };
+export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
+  const monthMap = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
-  const handleSelect = (newDate: Date): void => {
-    onChange(newDate);
-    setOpen(false);
-  };
   return (
-    <div style={{ margin: "16px 0" }}>
-      <Heading
-        fontSize="1.5rem"
-        textAlign="left"
-        cursor="pointer"
-        onClick={handleClick}
+    <Flex m="1rem 0" maxW="40rem">
+      <Select
+        w="35%"
+        mt="2rem"
+        h="3rem"
+        background="#f3f3f3"
+        borderRadius="1.5rem"
+        placeholder="Month"
+        value={date.month}
+        onChange={(e) => onChange({ month: e.target.value })}
       >
-        Select Date
-      </Heading>
-      <DatePicker
-        value={date}
-        isOpen={open}
-        onSelect={handleSelect}
-        onCancel={handleCancel}
-        dateConfig={dateConfig}
-        confirmText="Confirm"
-        cancelText="Cancel"
-      />
-      <Heading fontSize="1.5rem" textAlign="left">
-        <span>{date.getFullYear()}</span> :{" "}
-        <span>{monthMap[date.getMonth() + 1]}</span> :{" "}
-        <span>{date.getDate()}</span>
-      </Heading>
-    </div>
+        {monthMap.map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+        ))}
+      </Select>
+      <Spacer />
+      <Box w="25%">
+        <InputMask
+          className="mask_input"
+          placeholder="Day"
+          mask="99"
+          value={date.day}
+          onChange={(e) => onChange({ day: e.target.value })}
+        />
+      </Box>
+      <Spacer />
+      <Box w="30%">
+        <InputMask
+          className="mask_input"
+          placeholder="Year"
+          mask="9999"
+          value={date.year}
+          onChange={(e) => onChange({ year: e.target.value })}
+        />
+      </Box>
+    </Flex>
   );
 };
