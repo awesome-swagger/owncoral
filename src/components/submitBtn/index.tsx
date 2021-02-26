@@ -4,9 +4,14 @@ import { Button } from '@chakra-ui/react';
 type SubmitBtnProps = {
   label: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  disabled?: boolean;
 };
 
-export const SubmitBtn: React.FC<SubmitBtnProps> = ({ label, onClick }: SubmitBtnProps) => (
+export const SubmitBtn: React.FC<SubmitBtnProps> = ({
+  label,
+  onClick,
+  disabled,
+}: SubmitBtnProps) => (
   <Button
     pos="absolute"
     bottom="2.5rem"
@@ -17,6 +22,7 @@ export const SubmitBtn: React.FC<SubmitBtnProps> = ({ label, onClick }: SubmitBt
     bg="#4E504F"
     color="#fff"
     onClick={onClick}
+    disabled={disabled}
     cursor="pointer"
   >
     {label}

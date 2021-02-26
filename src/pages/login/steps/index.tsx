@@ -1,5 +1,5 @@
-import { useState, useEffect, useReducer, createContext, useCallback } from 'react';
-import { useHistory, Route } from 'react-router-dom';
+import { useEffect, useReducer, createContext, useCallback } from 'react';
+import { useHistory, Route, Switch } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { retrieveState, storeState } from '../../../lib/utils';
 import { loginRoutes } from '../../../lib/loginRoutes';
@@ -62,14 +62,16 @@ export const LoginFlow = () => {
   }, [formState]);
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
-      {loginRoutes.map(({ Component, path }) => (
-        <Route
-          path={path}
-          exact
-          key={path}
-          render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
-        />
-      ))}
+      <Switch>
+        {loginRoutes.map(({ Component, path }) => (
+          <Route
+            path={path}
+            exact
+            key={path}
+            render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
+          />
+        ))}
+      </Switch>
     </StepFormContext.Provider>
   );
 };

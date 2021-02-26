@@ -54,7 +54,11 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
           When is your Birthday?
         </Heading>
         <DayPicker date={date} onChange={handleDateChange} />
-        <SubmitBtn onClick={onSubmit} label="Continue" />
+        <SubmitBtn
+          onClick={onSubmit}
+          label="Continue"
+          disabled={date.year && date.month && date.day ? false : true}
+        />
       </Container>
     </Box>
   );

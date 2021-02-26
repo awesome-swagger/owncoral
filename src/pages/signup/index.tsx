@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useReducer, useState } from 'react';
-import { useHistory, Route, useLocation } from 'react-router-dom';
+import { useHistory, Route, useLocation, Switch } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { retrieveState, storeState } from '../../lib/utils';
 import { signupRoutes } from '../../lib/signupRoutes';
@@ -32,7 +32,7 @@ function formReducer(state: formStateType, action: ActionType) {
   }
 }
 
-function Signup() {
+export function Signup() {
   const [step, setStep] = useState<number>(1);
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
   const history = useHistory();
@@ -44,6 +44,8 @@ function Signup() {
     preventDefaultTouchmoveEvent: true,
     trackMouse: true,
   });
+
+  console.log('reaching ...');
 
   const nextStep = () => {
     const index = signupRoutes.find((x) => x.path === location.pathname)?.id as number;
@@ -64,17 +66,19 @@ function Signup() {
 
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
-      {signupRoutes.map(({ Component, path }) => (
-        <Route
-          path={path}
-          exact
-          key={path}
-          render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
-        />
-      ))}
+      <Switch>
+        {signupRoutes.map(({ Component, path }) => (
+          <Route
+            path={path}
+            exact
+            key={path}
+            render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
+          />
+        ))}
+      </Switch>
     </StepFormContext.Provider>
   );
 }
 
 // eslint-disable-next-line import/no-default-export
-export default Signup;
+// export default Signup;

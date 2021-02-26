@@ -12,14 +12,15 @@ type stepProps = {
   prevStep: () => void;
 };
 const initialDate = {
-  year: '2000',
-  month: 'Jan',
-  day: '30',
+  year: '',
+  month: '',
+  day: '',
 };
 
 export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
+
     const form = useContext(StepFormContext);
     const handleDateChange = useCallback(
       (newDate) => {
@@ -53,7 +54,11 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
             Lorem ipsum dolor sir amet
           </Text>
           <DayPicker date={date} onChange={handleDateChange} />
-          <SubmitBtn onClick={onSubmit} label="Continue" />
+          <SubmitBtn
+            onClick={onSubmit}
+            label="Continue"
+            disabled={date.year && date.month && date.day ? false : true}
+          />
         </Container>
       </div>
     );

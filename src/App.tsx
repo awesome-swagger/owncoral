@@ -11,7 +11,7 @@ import type { User } from './userContext';
 import { UserContext } from './userContext';
 import DebugPanel from './components/debugPanel';
 
-import Signup from './pages/signup';
+import { Signup } from './pages/signup';
 import Portfolio from './pages/portfolio';
 import { LoginFlow } from './pages/login/steps';
 
@@ -27,20 +27,18 @@ function App() {
         <DebugPanel />
         <Router>
           {/* Note: server handles not-logged-in redirection for the SPA bundle */}
-          <Switch>
-            <LoginFlow /> {/* setUser={setUser} */}
-            <Signup />
-            {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
-            <Route exact path="/">
-              {/* TODO: redirect to a dashboard */}
-              <Redirect to="/portfolio" />
-            </Route>
-            <Route exact path="/portfolio" component={Portfolio} />
-            {/* <Route exact path="/properties/:id" component={Property} /> */}
-            {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
-            {/* <Route exact path="/documents" component={Docs} /> */}
-            {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
-          </Switch>
+          <Signup />
+          <LoginFlow /> {/* setUser={setUser} */}
+          {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
+          <Route exact path="/">
+            {/* TODO: redirect to a dashboard */}
+            <Redirect to="/portfolio" />
+          </Route>
+          <Route exact path="/portfolio" component={Portfolio} />
+          {/* <Route exact path="/properties/:id" component={Property} /> */}
+          {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
+          {/* <Route exact path="/documents" component={Docs} /> */}
+          {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
         </Router>
       </ChakraProvider>
     </UserContext.Provider>

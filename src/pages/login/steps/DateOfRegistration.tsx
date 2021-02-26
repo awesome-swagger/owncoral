@@ -53,7 +53,11 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
             Lorem ipsum dolor sir amet
           </Text>
           <DayPicker date={date} onChange={handleDateChange} />
-          <SubmitBtn onClick={onSubmit} label="Continue" />
+          <SubmitBtn
+            onClick={onSubmit}
+            label="Continue"
+            disabled={date.year && date.month && date.day ? false : true}
+          />
         </Container>
       </div>
     );
