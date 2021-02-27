@@ -58,8 +58,9 @@ const LoginFlow = () => {
             path={path}
             exact
             key={path}
-            render={() => <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />}
-          />
+          >
+            <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />
+          </Route>
         ))}
       </Switch>
     </StepFormContext.Provider>
