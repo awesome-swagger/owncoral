@@ -19,6 +19,7 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => (
       pos="relative"
       boxShadow="md"
       ref={ref}
+      overflow="hidden auto"
     >
       {/* <Logo style={{ position: 'absolute', top: '1.5rem', right: '0px', height: '2rem' }} /> */}
       {props.children}

@@ -15,6 +15,7 @@ import { DebugPanel } from './components';
 import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
 import LoginFlow from './pages/login/steps';
+import { Profile } from './pages/profile';
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -36,6 +37,7 @@ function App() {
             <Redirect to="/portfolio" />
           </Route>
           <Route exact path="/portfolio" component={Portfolio} />
+          <Route exact path="/profile" component={Profile} />
           {/* <Route exact path="/properties/:id" component={Property} /> */}
           {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
           {/* <Route exact path="/documents" component={Docs} /> */}
