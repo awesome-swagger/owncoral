@@ -16,7 +16,7 @@ import { PortfolioChart } from './chart';
 import type { PropertyDataT } from './fakePropertyData';
 import { propertyData } from './fakePropertyData';
 import theme from '../../theme';
-import lowPolyHouseSm from '../../assets/low-poly-1-still-sm.jpg';
+import lowPolyHouseSm from '../../assets/low-poly-1-still-sm.png';
 import { formatFinancial } from '../../lib/financialFormatter';
 
 import { NavBar } from '../../components';
