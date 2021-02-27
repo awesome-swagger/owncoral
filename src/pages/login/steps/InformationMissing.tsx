@@ -1,7 +1,6 @@
 import { forwardRef, useContext } from 'react';
 import { Heading, Box, Text, Button } from '@chakra-ui/react';
-import { FlexContainer } from '../../../components/container';
-import { BackBtn } from '../../../components/backBtn';
+import { BackBtn, FlexContainer } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 

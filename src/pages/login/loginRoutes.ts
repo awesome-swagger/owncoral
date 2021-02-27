@@ -1,20 +1,20 @@
-import { InformationMissing } from '../pages/login/steps/InformationMissing';
-import { ResidentialAddress } from '../pages/login/steps/ResidentialAddress';
-import { PhoneNumber } from '../pages/login/steps/PhoneNumber';
-import { SsnOrEin } from '../pages/login/steps/SsnOrEin';
-import { Invest } from '../pages/login/steps/Invest';
-import { EntityName } from '../pages/login/steps/EntityName';
-import { EntityType } from '../pages/login/steps/EntityType';
-import { TaxClasification } from '../pages/login/steps/TaxClasification';
-import { Ein } from '../pages/login/steps/Ein';
-import { Industry } from '../pages/login/steps/Industry';
-import { DateOfFormation } from '../pages/login/steps/DateOfFormation';
-import { JurisdictionRegistration } from '../pages/login/steps/JurisdictionRegistration';
-import { DateOfRegistration } from '../pages/login/steps/DateOfRegistration';
-import { CertificateOfRegistration } from '../pages/login/steps/CertificateOfRegistration';
-import { EntityAddress } from '../pages/login/steps/EntityAddress';
-import { EntityPhoneNumber } from '../pages/login/steps/EntityPhoneNumber';
-import { Result } from '../pages/login/steps/Result';
+import { InformationMissing } from './steps/InformationMissing';
+import { ResidentialAddress } from './steps/ResidentialAddress';
+import { PhoneNumber } from './steps/PhoneNumber';
+import { SsnOrEin } from './steps/SsnOrEin';
+import { Invest } from './steps/Invest';
+import { EntityName } from './steps/EntityName';
+import { EntityType } from './steps/EntityType';
+import { TaxClasification } from './steps/TaxClasification';
+import { Ein } from './steps/Ein';
+import { Industry } from './steps/Industry';
+import { DateOfFormation } from './steps/DateOfFormation';
+import { JurisdictionRegistration } from './steps/JurisdictionRegistration';
+import { DateOfRegistration } from './steps/DateOfRegistration';
+import { CertificateOfRegistration } from './steps/CertificateOfRegistration';
+import { EntityAddress } from './steps/EntityAddress';
+import { EntityPhoneNumber } from './steps/EntityPhoneNumber';
+import { Result } from './steps/Result';
 
 type loginRouteType = { id: number; path: string; Component: any };
 

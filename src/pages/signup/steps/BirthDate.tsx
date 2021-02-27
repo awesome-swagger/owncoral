@@ -1,10 +1,7 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
-import { DayPicker } from '../../../components/daypicker';
-import { SubmitBtn } from '../../../components/submitBtn';
+import { BackBtn, Container, SubmitBtn, DayPicker } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 

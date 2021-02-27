@@ -1,8 +1,6 @@
 import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
-import { SubmitBtn } from '../../../components/submitBtn';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 import {

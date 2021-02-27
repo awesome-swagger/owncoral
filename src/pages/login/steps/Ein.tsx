@@ -1,9 +1,7 @@
 import { forwardRef, useContext, useEffect, useCallback, useState } from 'react';
 import { Heading, Text, Input } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
-import { SubmitBtn } from '../../../components/submitBtn';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 

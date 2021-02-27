@@ -17,10 +17,9 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
-import { SubmitBtn } from '../../../components/submitBtn';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
+
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 

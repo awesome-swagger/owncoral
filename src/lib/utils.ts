@@ -3,11 +3,11 @@ export function storeState(state: { [key: string]: any }, key: string) {
   localStorage.setItem(key, newState);
 }
 
-interface retrieveStateType {
+interface retrieveStateT {
   [key: string]: any;
 }
 
-export function retrieveState(key: string): retrieveStateType {
+export function retrieveState(key: string): retrieveStateT {
   const newState = localStorage.getItem(key) || "{}";
 
   return JSON.parse(newState) || {};

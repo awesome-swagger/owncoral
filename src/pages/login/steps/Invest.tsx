@@ -1,8 +1,7 @@
 import { forwardRef, useContext, useEffect, useCallback } from 'react';
 import { Heading, Box, Text, Image } from '@chakra-ui/react';
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
 import { useHistory } from 'react-router-dom';
+import { BackBtn, Container } from '../../../components';
 import Chevron from '../../../assets/chevron.png';
 import { StepFormContext } from '../steps';
 import type { DivRef } from '../steps';

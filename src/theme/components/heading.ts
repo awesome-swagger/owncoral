@@ -15,6 +15,7 @@ const sizes = {
 };
 const defaultProps = {
   size: 'md',
+  as: 'h4',
 };
 
 export const Heading = {

@@ -1,24 +1,25 @@
+import React, { useState } from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 
 import AppRootStyle from './AppRootStyle';
 import { fetchWrap } from './lib/api';
 import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
-import type { User } from './userContext';
+import type { UserT } from './userContext';
 import { UserContext } from './userContext';
-import DebugPanel from './components/debugPanel';
 
-import { Signup } from './pages/signup';
+import { DebugPanel } from './components';
+
+import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
-import { LoginFlow } from './pages/login/steps';
+import LoginFlow from './pages/login/steps';
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
-  const [user, setUser] = useState<User>(null);
+  const [user, setUser] = useState<UserT>(null);
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -45,7 +46,7 @@ function App() {
   );
 }
 
-async function getUser(setUser: (u: User) => void): Promise<void> {
+async function getUser(setUser: (u: UserT) => void): Promise<void> {
   const resp = await fetchWrap('/api/currentUser');
 
   if (resp.ok) {

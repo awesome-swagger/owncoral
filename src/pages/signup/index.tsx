@@ -1,29 +1,29 @@
-import React, { useCallback, useEffect, useReducer, useState } from 'react';
-import { useHistory, Route, useLocation, Switch } from 'react-router-dom';
-import { useSwipeable } from 'react-swipeable';
+import React, { useCallback, useEffect, useReducer } from 'react';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+
 import { retrieveState, storeState } from '../../lib/utils';
-import { signupRoutes } from '../../lib/signupRoutes';
+import { signupRoutes } from './signupRoutes';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
 
-type formStateType = {
+type FormStateT = {
   [key: string]: any;
 };
 
-export type ContextType = {
-  formState?: formStateType;
+export type ContextT = {
+  formState?: FormStateT;
   dispatch?: any;
 };
 
-type ActionType = {
+type ActionT = {
   type: string;
   payload: { [key: string]: any };
 };
 
-export const StepFormContext = React.createContext<ContextType>({});
+export const StepFormContext = React.createContext<ContextT>({});
 
-function formReducer(state: formStateType, action: ActionType) {
+function formReducer(state: FormStateT, action: ActionT) {
   switch (action.type) {
     case 'update-form':
       return { ...state, ...action.payload };
@@ -32,27 +32,15 @@ function formReducer(state: formStateType, action: ActionType) {
   }
 }
 
-export function Signup() {
-  const [step, setStep] = useState<number>(1);
+function Signup() {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
   const history = useHistory();
-  const location = useLocation();
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => nextStep(),
-    onSwipedRight: () => prevStep(),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
-  console.log('reaching ...');
-
-  const nextStep = () => {
-    const index = signupRoutes.find((x) => x.path === location.pathname)?.id as number;
-    if (index === 11) {
+  const createNextStep = (currStep: number) => () => {
+    if (currStep + 1 === signupRoutes.length) {
       history.push('/');
     } else {
-      history.push(signupRoutes[index + 1]?.path);
+      history.push(signupRoutes[currStep + 1]?.path);
     }
   };
   const prevStep = useCallback(() => {
@@ -67,13 +55,13 @@ export function Signup() {
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
-        {signupRoutes.map(({ Component, path }) => (
-          <Route
-            path={path}
-            exact
-            key={path}
-            render={() => <Component {...handlers} nextStep={nextStep} prevStep={prevStep} />}
-          />
+        <Route path="/signup" exact key="/signup">
+          <Redirect to={signupRoutes[0].path} />
+        </Route>
+        {signupRoutes.map(({ component: SignupComponent, path }, currStep) => (
+          <Route path={path} exact key={path}>
+            <SignupComponent nextStep={createNextStep(currStep)} prevStep={prevStep} />
+          </Route>
         ))}
       </Switch>
     </StepFormContext.Provider>
@@ -81,4 +69,4 @@ export function Signup() {
 }
 
 // eslint-disable-next-line import/no-default-export
-// export default Signup;
+export default Signup;

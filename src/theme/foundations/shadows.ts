@@ -10,7 +10,7 @@ const mdDepthShadow = (dp: number) =>
         (7 / 24) * dp,
       )}px rgba(0, 0, 0, 0.2)`;
 
-const shadows = {
+export const shadows = {
   xs: mdDepthShadow(2),
   sm: mdDepthShadow(4),
   base: mdDepthShadow(8),
@@ -22,7 +22,5 @@ const shadows = {
   inner: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
   none: 'none',
   'dark-lg':
-    'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 1rem 40px',
+    'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px',
 };
-
-export default shadows;

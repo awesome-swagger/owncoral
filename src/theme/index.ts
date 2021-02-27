@@ -12,9 +12,9 @@ import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
 // Foundational style overrides
-import colors from './foundations/colors';
-import shadows from './foundations/shadows';
-import typography from './foundations/typography';
+import { colors } from './foundations/colors';
+import { shadows } from './foundations/shadows';
+import { typography } from './foundations/typography';
 import { layerStyles } from './layerStyles';
 import * as textStyles from './textStyles';
 

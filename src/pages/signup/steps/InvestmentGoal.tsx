@@ -1,9 +1,7 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
 
-import { BackBtn } from '../../../components/backBtn';
-import { SubmitBtn } from '../../../components/submitBtn';
-import { Container } from '../../../components/container';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 

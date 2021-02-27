@@ -1,7 +1,7 @@
-const muiBodyFontScale = 17 / 16;
+const muiBodyFontScale = 16 / 16;
 const muiBodyFontSpacing = 0.5 / 16;
 
-const typography = {
+export const typography = {
   letterSpacings: {
     tighter: `${muiBodyFontSpacing - 0.05}em`,
     tight: `${muiBodyFontSpacing - 0.025}em`,
@@ -42,8 +42,8 @@ const typography = {
   },
 
   fonts: {
-    heading: 'Raleway',
-    body: 'Nunito',
+    heading: 'Roboto',
+    body: 'Roboto',
   },
 
   fontSizes: {
@@ -62,5 +62,3 @@ const typography = {
     '9xl': `${8 * muiBodyFontScale}rem`,
   },
 };
-
-export default typography;

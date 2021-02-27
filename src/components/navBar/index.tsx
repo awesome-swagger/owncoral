@@ -1,3 +1,4 @@
+import React, { Fragment } from 'react';
 import {
   Avatar,
   Box,
@@ -9,12 +10,11 @@ import {
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
-import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 
-import Logo from '../../assets/coral.svg';
-import colors from '../../theme/foundations/colors';
+// import Logo from '../../assets/coral.svg';
+// import { colors } from '../../theme/foundations/colors';
 import { bodyText2 } from '../../theme/textStyles';
 
 const navLinks = [
@@ -38,13 +38,14 @@ const navLinks = [
 export function NavBar() {
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
+  const bgColor = useColorModeValue('white', 'whiteAlpha.100');
 
   return (
     <Fragment>
-      <Box as="header" pos="sticky" top={0} w="100%" boxShadow="xs" h={16}>
+      <Box as="header" pos="sticky" top={0} w="100%" boxShadow="xs" h={16} bgColor={bgColor}>
         <Center pos="absolute" w="100%" h={16}>
           <Flex h="100%" align="center">
-            <Icon as={Logo} w={8} h={8} />
+            {/* <Icon as={Logo} w={8} h={8} /> */}
             <Heading as="h5" size="sm" color="primary.500" m={0}>
               Coral
             </Heading>
@@ -76,6 +77,7 @@ export function NavBar() {
         boxShadow="xs"
         h="16"
         display={{ md: 'none' }}
+        bgColor={bgColor}
       >
         <Center h="100%">
           <NavButtons currentPageName={currentPageName} />

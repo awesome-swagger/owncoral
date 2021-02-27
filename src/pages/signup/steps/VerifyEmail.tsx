@@ -1,8 +1,7 @@
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import { forwardRef } from 'react';
 
-import { BackBtn } from '../../../components/backBtn';
-import { FlexContainer } from '../../../components/container';
+import { BackBtn, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
 
 type stepProps = {

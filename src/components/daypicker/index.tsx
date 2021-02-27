@@ -1,16 +1,15 @@
-// @ts-nocheck
-import React, { useState } from 'react';
-import { Select, Box, Flex, Spacer } from '@chakra-ui/react';
+import type React from 'react';
+import { Flex, Input, Select, Spacer } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
 
-interface DayPickerProps {
+type DayPickerProps = {
   date: {
     day: string;
     month: string;
     year: string;
   };
   onChange: (newDate: { [key: string]: string }) => void;
-}
+};
 
 export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
   const monthMap = [
@@ -32,11 +31,12 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
     <Flex m="1rem 0" maxW="40rem">
       <Select
         w="35%"
-        mt="2rem"
-        h="3rem"
-        background="#f3f3f3"
-        borderRadius="1.5rem"
+        mt={8}
+        size="lg"
+        colorScheme="gray"
+        borderRadius="full"
         placeholder="Month"
+        variant="filled"
         value={date.month}
         onChange={(e) => onChange({ month: e.target.value })}
       >
@@ -47,25 +47,31 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         ))}
       </Select>
       <Spacer />
-      <Box w="25%">
-        <InputMask
-          className="mask_input"
-          placeholder="Day"
-          mask="99"
-          value={date.day}
-          onChange={(e) => onChange({ day: e.target.value })}
-        />
-      </Box>
+      <Input
+        as={InputMask}
+        w="25%"
+        size="lg"
+        className="mask_input"
+        placeholder="Day"
+        mask="99"
+        colorScheme="gray"
+        variant="filled"
+        value={date.day}
+        onChange={(e) => onChange({ day: e.target.value })}
+      />
       <Spacer />
-      <Box w="30%">
-        <InputMask
-          className="mask_input"
-          placeholder="Year"
-          mask="9999"
-          value={date.year}
-          onChange={(e) => onChange({ year: e.target.value })}
-        />
-      </Box>
+      <Input
+        as={InputMask}
+        w="30%"
+        size="lg"
+        className="mask_input"
+        placeholder="Year"
+        mask="9999"
+        colorScheme="gray"
+        variant="filled"
+        value={date.year}
+        onChange={(e) => onChange({ year: e.target.value })}
+      />
     </Flex>
   );
 };

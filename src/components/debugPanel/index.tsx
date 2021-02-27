@@ -1,9 +1,9 @@
+import React, { useContext } from 'react';
 import { css } from '@emotion/react';
-import React, { Fragment, useContext } from 'react';
 
 import { UserContext } from '../../userContext';
 
-function DebugPanel() {
+export function DebugPanel() {
   const [user] = useContext(UserContext);
   return process.env.NODE_ENV === 'development' ? (
     <div
@@ -25,6 +25,3 @@ function DebugPanel() {
     </div>
   ) : null;
 }
-
-// eslint-disable-next-line import/no-default-export
-export default DebugPanel;

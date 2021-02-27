@@ -2,26 +2,25 @@ import React, { forwardRef, useCallback, useContext, useState } from 'react';
 import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 
-import { BackBtn } from '../../../components/backBtn';
-import { Container, FlexContainer } from '../../../components/container';
+import { Container, FlexContainer, BackBtn } from '../../../components';
 import type { DivRef } from '../index';
-import { ContextType, StepFormContext } from '../index';
+import { ContextT, StepFormContext } from '../index';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-type availableType = 'Available' | 'taxID' | 'notAvailable';
+type availableT = 'Available' | 'taxID' | 'notAvailable';
 
-const initialQuestions: { value: availableType; label: string }[] = [
+const initialQuestions: { value: availableT; label: string }[] = [
   { value: 'Available', label: 'Yes' },
   { value: 'taxID', label: 'I Have a Tax ID' },
   { value: 'notAvailable', label: 'No' },
 ];
 
 export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
-  const [available, setAvailable] = useState<availableType>('Available');
+  const [available, setAvailable] = useState<availableT>('Available');
   const form = useContext(StepFormContext);
 
   const selectionColors = useColorModeValue(
@@ -86,7 +85,7 @@ const TaxID = ({
   nextStep,
   form,
   goBack,
-}: stepProps & { form: ContextType } & { goBack: React.Dispatch<any> }) => {
+}: stepProps & { form: ContextT } & { goBack: React.Dispatch<any> }) => {
   const [taxID, setTaxID] = useState<string>('');
 
   const handleSubmit = useCallback(() => {

@@ -1,9 +1,7 @@
 import { forwardRef, useContext, useCallback, useEffect } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { BackBtn } from '../../../components/backBtn';
-import { Container } from '../../../components/container';
-import { SubmitBtn } from '../../../components/submitBtn';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { FormRef } from '../steps';
 import { StepFormContext } from '../steps';
 

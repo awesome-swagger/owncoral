@@ -1,9 +1,7 @@
 import { forwardRef, useContext, ChangeEvent, ReactNode } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
-import { Container } from '../../../components/container';
-import { BackBtn } from '../../../components/backBtn';
-import { SubmitBtn } from '../../../components/submitBtn';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 

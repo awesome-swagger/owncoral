@@ -1,8 +1,8 @@
-import { forwardRef, useCallback, useContext, useState } from 'react';
+import { Dispatch, forwardRef, useCallback, useContext, useState } from 'react';
 import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-import { BackBtn } from '../../../components/backBtn';
-import { Container, FlexContainer } from '../../../components/container';
+
+import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -66,7 +66,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   );
 });
 
-const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
+const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
   const colorScheme = useColorModeValue('primary', 'secondary');
 
   return (

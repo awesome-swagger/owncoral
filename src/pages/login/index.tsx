@@ -21,9 +21,9 @@ import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 
-import Logo from '../../assets/coral.svg';
+// import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
-import type { User } from '../../userContext';
+import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
 
 function Login() {
@@ -49,8 +49,8 @@ function Login() {
       >
         <Center>
           <VStack>
-            <Icon as={Logo} w={14} h={14} />
-            <Heading as="h4" size="md" color="primary.500">
+            {/* <Icon as={Logo} w={14} h={14} /> */}
+            <Heading size="md" color="primary.500">
               Coral
             </Heading>
             <LoginForm />
@@ -68,7 +68,7 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const [_, setUser] = useContext<User>(UserContext);
+  const [_, setUser] = useContext<UserT>(UserContext);
   const history = useHistory();
 
   const isDev = process.env.NODE_ENV === 'development';
@@ -77,7 +77,7 @@ function LoginForm() {
     <form onSubmit={handleSubmit(async (data) => onSubmit(data as FormContents, history, setUser))}>
       <FormControl>
         <Center>
-          <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }}>
+          <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }} textStyle="bodyText1">
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
@@ -125,7 +125,7 @@ function LoginForm() {
               </InputRightElement>
             </InputGroup>
             <FormHelperText>{errors.password?.message}&nbsp;</FormHelperText>
-            <Button type="submit" size="xl">
+            <Button textStyle="button" type="submit" size="lg">
               Log In
             </Button>
           </VStack>
@@ -142,7 +142,7 @@ type FormContents = {
 async function onSubmit(
   data: FormContents,
   history: History,
-  setUser: (u: User) => void,
+  setUser: (u: UserT) => void,
 ): Promise<void> {
   const resp = await fetchWrap('/api/login', {
     method: 'POST',

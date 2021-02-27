@@ -33,9 +33,7 @@ const ultramarine = {
   highlight: '#7db7ff',
 };
 
-const colors = {
+export const colors = {
   primary: coral,
   secondary: ultramarine,
 };
-
-export default colors;

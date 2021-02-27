@@ -34,13 +34,13 @@ const hFont = {
     Reference
       https://medium.com/newsbrewer-app/what-s-wrong-with-one-of-the-most-elegant-typefaces-raleway-662e1e7bc7f7
   */
-  fontFamily: `Raleway, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
   fontFeatureSettings: 'lnum',
 };
 
 const bodyFont = {
-  fontFamily: `'Nunito', - apple - system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
   'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
 };
 
@@ -50,7 +50,7 @@ export const hMargin = {
 };
 
 export const h1 = {
-  fontSize: `${98 / 16}rem`,
+  fontSize: `${96 / 16}rem`,
   fontWeight: 300,
   letterSpacing: `${-1.5 / 16}em`,
   ...hFont,
@@ -58,7 +58,7 @@ export const h1 = {
 };
 
 export const h2 = {
-  fontSize: `${61 / 16}rem`,
+  fontSize: `${60 / 16}rem`,
   fontWeight: 300,
   letterSpacing: `${-0.5 / 16}em`,
   ...hFont,
@@ -66,14 +66,14 @@ export const h2 = {
 };
 
 export const h3 = {
-  fontSize: `${49 / 16}rem`,
+  fontSize: `${48 / 16}rem`,
   fontWeight: 400,
   ...hFont,
   ...hMargin,
 };
 
 export const h4 = {
-  fontSize: `${35 / 16}rem`,
+  fontSize: `${34 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.25 / 16}em`,
   ...hFont,
@@ -105,19 +105,19 @@ export const subTitle1 = {
 export const subTitle2 = {
   fontSize: `${14 / 16}rem`,
   fontWeight: 500,
-  letterSpacing: `${0.11 / 16}em`,
+  letterSpacing: `${0.1 / 16}em`,
   ...bodyFont,
 };
 
 export const bodyText1 = {
-  fontSize: `${17 / 16}rem`,
+  fontSize: `${16 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.5 / 16}em`,
   ...bodyFont,
 };
 
 export const bodyText2 = {
-  fontSize: `${15 / 16}rem`,
+  fontSize: `${14 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.25 / 16}em`,
   ...bodyFont,
@@ -126,14 +126,14 @@ export const bodyText2 = {
 export const button = {
   // Ignore MUI here, uppercase looks dated
   // text-transform: uppercase;
-  fontSize: `${15 / 16}rem`,
+  fontSize: `${14 / 16}rem`,
   fontWeight: 500,
   letterSpacing: `${1.25 / 16}em`,
   ...bodyFont,
 };
 
 export const caption = {
-  fontSize: `${13 / 16}rem`,
+  fontSize: `${12 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.4 / 16}em`,
   ...bodyFont,
