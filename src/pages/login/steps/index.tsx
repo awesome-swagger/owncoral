@@ -6,22 +6,22 @@ import { loginRoutes } from '../loginRoutes';
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
 
-interface formStateT {
+interface formStateType {
   [key: string]: any;
 }
 
-export interface ContextT {
-  formState?: formStateT;
+export interface ContextType {
+  formState?: formStateType;
   dispatch?: any;
 }
 
-interface ActionT {
+interface ActionType {
   type: string;
   payload: { [key: string]: any };
 }
-export const StepFormContext = createContext<ContextT>({});
+export const StepFormContext = createContext<ContextType>({});
 
-function formReducer(state: formStateT, action: ActionT) {
+function formReducer(state: formStateType, action: ActionType) {
   switch (action.type) {
     case 'update-form':
       return { ...state, ...action.payload };
