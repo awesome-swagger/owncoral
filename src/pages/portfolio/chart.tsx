@@ -34,6 +34,7 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
   (props: PortfolioChartProps & WithTooltipProvidedProps<ChartDataT>) => {
     const primaryTooltipColor = useColorModeValue('primary.900', 'primary.100');
     const secondaryTooltipColor = useColorModeValue('secondary.900', 'secondary.100');
+    const expectedFillOpacity = useColorModeValue('0.2', '0.4');
     const colors = Object.fromEntries(
       ['color', 'primaryColor', 'secondaryColor', 'bgColor'].map((k) => [
         k,
@@ -103,7 +104,7 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
               y={(d) => yScale(d.expected)}
               yScale={yScale}
               fill={colors.secondaryColor}
-              fillOpacity={0.2}
+              fillOpacity={expectedFillOpacity}
               shapeRendering="geometricPrecision"
             />
           </Group>

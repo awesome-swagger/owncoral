@@ -23,11 +23,16 @@ import { NavBar } from '../../components';
 
 // TODO: make responsive
 function Portfolio() {
+  // TODO: clean up colors
   const color = useColorModeValue('black', 'white');
-  const bgColor = useColorModeValue('white', 'gray.900');
+  const bgColor = useColorModeValue('white', 'gray.800');
   const primary = useColorModeValue('primary.500', 'primary.400');
   const secondary = useColorModeValue('secondary.500', 'secondary.400');
   const highlightForeground = useColorModeValue('primary.800', 'primary.200');
+  // Based on: https://material.io/design/environment/elevation.html#default-elevations
+  // andhttps://material.io/design/color/dark-theme.html#properties
+  const muiCardColor = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.05)');
+  const muiCardColorActive = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.12)');
 
   return (
     <Fragment>
@@ -43,14 +48,15 @@ function Portfolio() {
           <Heading size="md" m={0} mt={2}>
             Portfolio
           </Heading>
-          <Box shadow="xs" maxW={400} borderRadius="xl" mt={3} p={6}>
+          <Box shadow="xs" maxW={400} borderRadius="xl" mt={3} p={6} bgColor={muiCardColor}>
             <Center>
               <VStack>
                 <Box textAlign="center">
+                  You received{' '}
                   <Box as="span" color={highlightForeground} fontWeight="bold" textStyle="h5">
                     $3,323
                   </Box>{' '}
-                  last month,
+                  last month
                   <br />
                   out of{' '}
                   <Box as="span" color={highlightForeground} fontWeight="bold">
@@ -86,6 +92,8 @@ function Portfolio() {
                 key={property.uri}
                 property={property}
                 highlightForeground={highlightForeground}
+                muiCardColor={muiCardColor}
+                muiCardColorActive={muiCardColorActive}
               />
             ))}
           </VStack>
@@ -98,9 +106,11 @@ function Portfolio() {
 type PropertyCardProps = {
   property: PropertyDataT;
   highlightForeground: string;
+  muiCardColor: string;
+  muiCardColorActive: string;
 };
 function PropertyCard(props: PropertyCardProps) {
-  const { property, highlightForeground } = props;
+  const { property, highlightForeground, muiCardColor, muiCardColorActive } = props;
 
   return (
     <Box
@@ -112,9 +122,10 @@ function PropertyCard(props: PropertyCardProps) {
       width="100%"
       key={property.uri}
       shadow="xs"
-      _hover={{ shadow: 'md' }}
+      _hover={{ shadow: 'md', bgColor: muiCardColorActive }}
       sx={{ transition: 'all 0.1s' }}
       to={property.uri}
+      bgColor={muiCardColor}
     >
       <Flex width="100%" mb={2}>
         <Heading size="xs" m={0} flexGrow={1}>
@@ -133,7 +144,7 @@ function PropertyCard(props: PropertyCardProps) {
           </VStack>
         </Center>
         <Flex direction="column" width="100%">
-          <Flex textAlign="left" direction="row">
+          <Flex textAlign="center" direction="row">
             <Box flexGrow={1} mb={3}>
               <Text textStyle="h6" m={0} color={highlightForeground}>
                 ${formatFinancial(property.distributionLast)}
@@ -143,7 +154,7 @@ function PropertyCard(props: PropertyCardProps) {
               </Text>
             </Box>
 
-            <Box>
+            <Box flexGrow={1}>
               <Text textStyle="h6" m={0} color={highlightForeground}>
                 ${formatFinancial(property.distributionTotal)}
               </Text>
