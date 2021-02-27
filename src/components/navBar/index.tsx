@@ -1,124 +1,165 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import React from 'react';
-import { css, jsx, useTheme } from '@emotion/react';
+import React, { Fragment } from 'react';
+import {
+  Avatar,
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
+
+import { Portal } from '@visx/tooltip';
+import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/coral.svg';
-import { TrendingUp, FileText, Home } from 'react-feather';
-import * as Styled from './style';
 
-const navLinks = {
-  Portfolio: {
+// import Logo from '../../assets/coral.svg';
+// import { colors } from '../../theme/foundations/colors';
+
+import { bodyText2 } from '../../theme/textStyles';
+
+const navLinks = [
+  {
+    name: 'Portfolio',
     url: '/portfolio',
-    image: <TrendingUp size={20} />,
+    icon: FiTrendingUp,
   },
-  Opportunities: {
+  {
+    name: 'Opportunities',
     url: '/new-opportunities',
-    image: <Home size={20} />,
+    icon: FiHome,
   },
-  Documents: {
+  {
+    name: 'Documents',
     url: '/documents',
-    image: <FileText size={20} />,
+    icon: FiFileText,
   },
-};
+];
 
-const currentPage = (path: string): string | null => {
-  console.info(path);
-  for (const [name, { url }] of Object.entries(navLinks)) {
+/*
+  Note that in dark mode, we lighten cards by applying transparency. The headers and footers need
+  a solid dark backing (else content will show up through the transparency), hence the apparenlty
+  useless doubled up <Box>es
+
+  https://material.io/design/color/dark-theme.html#properties
+ */
+export function NavBar() {
+  const location = useLocation();
+  const currentPageName = getCurrentPageName(location.pathname);
+  const bgColor = useColorModeValue('white', 'rgba(255, 255, 255, 0.15)');
+  const footerHeight = 16;
+
+  return (
+    <Fragment>
+      {/* Provide a default bgColor backing transparency in dark mode */}
+      <Box
+        as="header"
+        pos="sticky"
+        top={0}
+        w="100%"
+        boxShadow="xs"
+        h={16}
+        /* match theme.styles.global.body.bg for dark mode */
+        bgColor="gray.800"
+        zIndex={1}
+      >
+        <Box bgColor={bgColor} h="100%" w="100%">
+          <Center pos="absolute" w="100%" h={16}>
+            <Flex h="100%" align="center">
+              {/* <Icon as={Logo} w={8} h={8} /> */}
+              <Heading as="h5" size="sm" color="primary.500" m={0}>
+                Coral
+              </Heading>
+            </Flex>
+          </Center>
+
+          <HStack
+            align="center"
+            position="absolute"
+            right={0}
+            h="16"
+            pr={3}
+            justify="right"
+            spacing={3}
+          >
+            <Box h="100%" display={{ base: 'none', md: 'block' }}>
+              <NavButtons currentPageName={currentPageName} />
+            </Box>
+            {/* TODO: profile menu */}
+            <Avatar src="https://bit.ly/sage-adebayo" />
+          </HStack>
+        </Box>
+      </Box>
+
+      {/* This goes at bottom of content to match footer height */}
+      <Portal>
+        <Box display={{ md: 'none' }} h={footerHeight} />
+      </Portal>
+
+      {/* Provide a default bgColor backing transparency in dark mode */}
+      <Box
+        as="footer"
+        pos="fixed"
+        bottom={0}
+        w="100%"
+        boxShadow="xs"
+        h={footerHeight}
+        display={{ md: 'none' }}
+        /* match theme.styles.global.body.bg for dark mode */
+        bgColor="gray.800"
+        zIndex={1}
+      >
+        <Box bgColor={bgColor} h="100%" w="100%">
+          <Center h="100%">
+            <NavButtons currentPageName={currentPageName} />
+          </Center>
+        </Box>
+      </Box>
+    </Fragment>
+  );
+}
+
+function NavButtons(props: { currentPageName: string | null }) {
+  const color = useColorModeValue('black', 'white');
+  const backgroundColor = useColorModeValue('primary.100', 'secondary.800');
+  const grayColor = useColorModeValue('gray.500', 'gray.400');
+  const [isTouch] = useMediaQuery('(pointer: coarse)');
+
+  return (
+    <Flex h="100%" as="nav">
+      {navLinks.map(({ name, url, icon }) => (
+        <Flex
+          as={Link}
+          to={url}
+          direction="column"
+          align="center"
+          key={name}
+          p={1}
+          m={0}
+          h="100%"
+          justify="center"
+          color={props.currentPageName === name ? color : grayColor}
+          borderRadius="lg"
+          _hover={{ color, backgroundColor }}
+          // Button-press effect for desktop
+          _active={isTouch ? {} : { transform: 'scale(0.9)' }}
+          sx={{ transition: 'all 200ms' }}
+        >
+          <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
+          <span css={bodyText2}>{name}</span>
+        </Flex>
+      ))}
+    </Flex>
+  );
+}
+
+function getCurrentPageName(path: string): string | null {
+  for (const { name, url } of navLinks) {
     if (path.startsWith(url)) {
       return name;
     }
   }
   return null;
-};
-
-const NavBar = (props: {}) => {
-  const location = useLocation();
-  const item = currentPage(location.pathname);
-  const theme = useTheme();
-
-  const logoStyle = css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 180px;
-    @media ${theme.mediaQueries.md} {
-      position: fixed;
-      left: 0;
-      right: 0;
-      top: 0;
-      margin-left: auto;
-      margin-right: auto;
-      height: ${theme.navHeight};
-    }
-  `;
-
-  return (
-    <React.Fragment>
-      <Styled.Nav {...props}>
-        <Link to="/" css={logoStyle}>
-          <Logo css={{ position: 'relative', bottom: '3px' }} height="auto" width="40px" fill={theme.colors.p} />
-          <h4 css={{ color: theme.colors.p }}>Coral</h4>
-        </Link>
-        <Styled.MenuNavigation>
-          {Object.entries(navLinks).map(([text, { url, image }], index) => (
-            <li key={index}>
-              <Styled.StyledLink key={text} to={url} selected={item === text}>
-                <div css={{ textAlign: 'center' }}>
-                  <div>{image}</div>
-                  <div>{text}</div>
-                </div>
-              </Styled.StyledLink>
-            </li>
-          ))}
-        </Styled.MenuNavigation>
-
-        <Styled.DropDown>
-          {/* TODO: extract component? */}
-          <a css={{ height: '100%', display: 'block' }} href="/profile">
-            <svg viewBox={'0 0 100 100'} css={{ height: '65px', width: '65px' }}>
-              <circle cx={'50%'} cy={'50%'} r={26} fill="purple" />
-              <text
-                x="50%"
-                y="50%"
-                fontFamily="monospace"
-                fill="white"
-                dominantBaseline="central"
-                textAnchor="middle"
-                fontSize="34px"
-              >
-                B
-              </text>
-            </svg>
-          </a>
-
-          <ul>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/logout">Log out</Link>
-            </li>
-          </ul>
-        </Styled.DropDown>
-      </Styled.Nav>
-
-      <Styled.Footer {...props}>
-        <Styled.Navigation>
-          {Object.entries(navLinks).map(([text, { url, image }], index) => (
-            <li key={index}>
-              <Styled.StyledLink key={text} to={url} selected={item === text}>
-                <div css={{ textAlign: 'center' }}>
-                  <div>{image}</div>
-                  <div>{text}</div>
-                </div>
-              </Styled.StyledLink>
-            </li>
-          ))}
-        </Styled.Navigation>
-      </Styled.Footer>
-    </React.Fragment>
-  );
-};
-
-export default NavBar;
+}

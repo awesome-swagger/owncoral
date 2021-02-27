@@ -1,0 +1,47 @@
+# This file is for unifying the coding style for different editors and IDEs
+# http://EditorConfig.org
+
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 2
+# Forces a hard wrap, so this is set looser than the ~100 width that we want to target
+max_line_length = 120
+
+# Code
+[*.{css,js,jsx,py,sh,sql,ts}]
+trim_trailing_whitespace = true
+
+# Allow space-aligned table definitions
+[*.sql]
+indent_size = unset
+
+# Config
+[*.{json,yml,yaml}]
+trim_trailing_whitespace = true
+
+# Docs
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = unset
+
+# Ignore yarn-generated files
+[.yarn/**/*.cjs]
+insert_final_newline = unset
+max_line_length = unset
+
+# Ignore generated files
+[*.{xml,csv}]
+insert_final_newline = unset
+max_line_length = unset
+end_of_line = unset
+
+# Ignore SQL dump files
+[db/data/**/*]
+trim_trailing_whitespace = false
+insert_final_newline = unset
+max_line_length = unset
