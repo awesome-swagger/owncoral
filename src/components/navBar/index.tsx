@@ -16,7 +16,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 // import Logo from '../../assets/coral.svg';
 // import { colors } from '../../theme/foundations/colors';
-
 import { bodyText2 } from '../../theme/textStyles';
 
 const navLinks = [
