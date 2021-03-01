@@ -1,16 +1,16 @@
-import { Heading, Box } from '@chakra-ui/react';
-import { Option, BackBtn } from '../../../components';
+import { Box } from '@chakra-ui/react';
+import { Option, BackBtn, HeadingTypography } from '../../../components';
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
-    <Box p="1.5rem">
+    <Box p={6}>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <Heading pos="absolute" right="1.5rem" top="1.5rem" m="0" fontSize="1.25rem" cursor="pointer">
+      <HeadingTypography pos="absolute" right={6} top={6} m="0" fontSize={5} cursor="pointer">
         Save
-      </Heading>
-      <Heading m=" 0 0 1.5rem 0" fontSize="1.25rem" align="center">
+      </HeadingTypography>
+      <HeadingTypography mb={6} mt="0" mx="0" fontSize={5} align="center">
         Personal Information
-      </Heading>
+      </HeadingTypography>
       <Option>Full Name</Option>
       <Box p="3px" />
 

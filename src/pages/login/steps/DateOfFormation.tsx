@@ -1,6 +1,12 @@
 import { useState, useCallback, forwardRef, useContext, useEffect } from 'react';
-import { Heading, Text } from '@chakra-ui/react';
-import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  DayPicker,
+  SubmitBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
@@ -44,12 +50,12 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
+          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
             Which is the date of formation?
-          </Heading>
-          <Text fontSize="1rem" textAlign="left">
+          </HeadingTypography>
+          <TextTypography fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet
-          </Text>
+          </TextTypography>
           <DayPicker date={date} onChange={handleDateChange} />
           <SubmitBtn
             onClick={onSubmit}

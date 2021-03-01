@@ -1,7 +1,6 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
-import { Box, Heading } from '@chakra-ui/react';
-
-import { BackBtn, Container, SubmitBtn, DayPicker } from '../../../components';
+import { Box } from '@chakra-ui/react';
+import { BackBtn, Container, SubmitBtn, DayPicker, HeadingTypography } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -47,9 +46,9 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       <Container>
         <BackBtn pos="absolute" handleClick={prevStep} />
 
-        <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left">
+        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
           When is your Birthday?
-        </Heading>
+        </HeadingTypography>
         <DayPicker date={date} onChange={handleDateChange} />
         <SubmitBtn
           onClick={onSubmit}

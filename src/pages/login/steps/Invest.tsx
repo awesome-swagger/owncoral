@@ -1,10 +1,10 @@
 import { forwardRef, useContext, useEffect, useCallback } from 'react';
-import { Heading, Box, Text, Image } from '@chakra-ui/react';
+import { Box, Icon } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import { BackBtn, Container } from '../../../components';
-import Chevron from '../../../assets/chevron.png';
+import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
 import { StepFormContext } from '../steps';
 import type { DivRef } from '../steps';
+import { BsChevronRight } from 'react-icons/bs';
 
 type stepProps = {
   nextStep: () => void;
@@ -19,13 +19,13 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
     <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
+        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
           Do you want to invest as an individual or through an entity?
-        </Heading>
+        </HeadingTypography>
         <Box
-          px="1.5rem"
-          py="0.75rem"
-          mt="2rem"
+          px={6}
+          py={3}
+          mt={8}
           bg="#F3F3F3"
           color="4E504F"
           textAlign="left"
@@ -41,24 +41,24 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             history.push('/login/result');
           }}
         >
-          <Text fontSize="1rem" color="#4E504F">
+          <TextTypography fontSize="md" color="#4E504F">
             Individual account
-          </Text>
-          <Text fontSize="0.85rem" color="#888">
+          </TextTypography>
+          <TextTypography fontSize="sm" color="#888">
             Lorem ipsum dolor sir amet
-          </Text>
-          <Image
+          </TextTypography>
+          <Icon
             pos="absolute"
             top="50%"
-            right="1rem"
-            transform="translateY(-50%) rotate(180deg)"
-            src={Chevron}
+            right={4}
+            transform="translateY(-50%)"
+            as={BsChevronRight}
           />
         </Box>
         <Box
-          px="1.5rem"
-          py="0.75rem"
-          mt="0.5rem"
+          px={6}
+          py={3}
+          mt={2}
           bg="#F3F3F3"
           color="4E504F"
           textAlign="left"
@@ -74,18 +74,18 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             nextStep();
           }}
         >
-          <Text fontSize="1rem" color="#4E504F">
+          <TextTypography fontSize="md" color="#4E504F">
             Entity account
-          </Text>
-          <Text fontSize="0.85rem" color="#888">
+          </TextTypography>
+          <TextTypography fontSize="sm" color="#888">
             Lorem ipsum dolor sir amet
-          </Text>
-          <Image
+          </TextTypography>
+          <Icon
             pos="absolute"
             top="50%"
-            right="1rem"
-            transform="translateY(-50%) rotate(180deg)"
-            src={Chevron}
+            right={4}
+            transform="translateY(-50%)"
+            as={BsChevronRight}
           />
         </Box>
       </Container>

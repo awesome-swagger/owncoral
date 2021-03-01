@@ -1,7 +1,6 @@
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import { Box, Button } from '@chakra-ui/react';
 import { forwardRef } from 'react';
-
-import { BackBtn, FlexContainer } from '../../../components';
+import { BackBtn, FlexContainer, HeadingTypography, TextTypography } from '../../../components';
 import type { DivRef } from '../index';
 
 type stepProps = {
@@ -15,32 +14,31 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
       <Box ref={ref} layerStyle="noSelect">
         <FlexContainer>
           <BackBtn pos="absolute" handleClick={prevStep} />
-
-          <Box h="10rem" w="10rem" borderRadius="50%" bg="#d2d2d1" />
-          <Heading size="md" as="h4" mt="2rem">
+          <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
+          <HeadingTypography size="md" as="h4" mt={8} textAlign="center">
             Please verify your email address
-          </Heading>
-          <Text fontSize="1rem" textAlign="center">
+          </HeadingTypography>
+          <TextTypography fontSize="md" textAlign="center">
             An email has been sent to <b>johndoe@gmail.com</b>. Please follow the instructions in
             the verification email to finish creating your Coral account.
-          </Text>
+          </TextTypography>
 
-          <Text
+          <TextTypography
             pos="absolute"
-            bottom="6.25rem"
-            left="1.5rem"
+            bottom={24}
+            left={6}
             w="calc(100% - 3rem)"
-            fontSize="0.85rem"
+            fontSize="sm"
             textAlign="center"
           >
             Didn’t receive an email?
-          </Text>
+          </TextTypography>
           <Button
             pos="absolute"
-            bottom="2.5rem"
-            left="1.5rem"
+            bottom={10}
+            left={6}
             w="calc(100% - 3rem)"
-            h="3rem"
+            h={12}
             variant="outline"
             onClick={nextStep}
           >

@@ -1,8 +1,14 @@
 import { forwardRef, useContext, useCallback, useEffect } from 'react';
-import { Heading, Text, Select } from '@chakra-ui/react';
+import { Select } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { States } from '../../../lib/states';
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  SubmitBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 
 import type { FormRef } from '../steps';
 import { StepFormContext } from '../steps';
@@ -34,17 +40,17 @@ export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
+          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
             Which is the jurisdiction of registration
-          </Heading>
-          <Text fontSize="1rem" textAlign="left">
+          </HeadingTypography>
+          <TextTypography fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet
-          </Text>
+          </TextTypography>
           <Select
             ref={register}
             placeholder="Select option"
             name="jurisdiction_registration"
-            mt="0.5rem"
+            mt={2}
           >
             {States.map((value) => (
               <option key={value} value={value}>

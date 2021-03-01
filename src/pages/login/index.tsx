@@ -4,7 +4,6 @@ import {
   Center,
   FormControl,
   FormHelperText,
-  Heading,
   Icon,
   IconButton,
   Input,
@@ -20,6 +19,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import { HeadingTypography } from '../../components';
 
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
@@ -50,9 +50,9 @@ function Login() {
         <Center>
           <VStack>
             {/* <Icon as={Logo} w={14} h={14} /> */}
-            <Heading size="md" color="primary.500">
+            <HeadingTypography size="md" color="primary.500">
               Coral
-            </Heading>
+            </HeadingTypography>
             <LoginForm />
           </VStack>
         </Center>

@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
+import { Box, Progress, useColorModeValue } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, HeadingTypography } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -42,15 +42,15 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
       <Box ref={ref} layerStyle="noSelect">
         <Container>
           <BackBtn pos="absolute" handleClick={prevStep} />
-          <Progress mt="2rem" colorScheme="primary" borderRadius="full" size="sm" value={3} />
-          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left">
+          <Progress mt={8} colorScheme="primary" borderRadius="full" size="sm" value={3} />
+          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
             What are your investment goals?
-          </Heading>
+          </HeadingTypography>
           {investmentGoals.map(({ value, label }) => (
             <Box
-              px="1.5rem"
-              py="0.75rem"
-              mt="0.5rem"
+              px={6}
+              py={3}
+              mt={2}
               {...selectionColors}
               borderRadius="full"
               textAlign="left"

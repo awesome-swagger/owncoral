@@ -1,8 +1,8 @@
 import { useState, useRef, useLayoutEffect } from 'react';
 import { Container } from '../../components';
-import { Center, Avatar, AvatarBadge, Heading, Box } from '@chakra-ui/react';
+import { Center, Avatar, AvatarBadge, Box } from '@chakra-ui/react';
 import theme from '../../theme';
-import { Option } from '../../components';
+import { Option, HeadingTypography } from '../../components';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { PersonalInformation } from './personalInformation';
 import {
@@ -39,14 +39,14 @@ export const Profile = () => {
           </AvatarBadge>
         </Avatar>
       </Center>
-      <Heading m="0" fontSize="1.5rem" align="center">
+      <HeadingTypography m="0" fontSize={6} align="center">
         John Doe
-      </Heading>
-      <Heading m="0" fontSize="1rem" align="center">
+      </HeadingTypography>
+      <HeadingTypography m="0" fontSize="md" align="center">
         jhondoe@gmail.com
-      </Heading>
-      <Box mt="2rem">
-        <Heading fontSize="1rem">Account</Heading>
+      </HeadingTypography>
+      <Box mt={8}>
+        <HeadingTypography fontSize="md">Account</HeadingTypography>
         <Option onClick={handleClick}>
           <BsPerson
             style={{
@@ -55,9 +55,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Personal Inforamtion
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <FaRegDotCircle
@@ -67,9 +67,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Investment Goal
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <IoMdNotificationsOutline
@@ -79,13 +79,13 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Notifications
-          </Heading>
+          </HeadingTypography>
         </Option>
       </Box>
-      <Box mt="2rem">
-        <Heading fontSize="1rem">Help</Heading>
+      <Box mt={8}>
+        <HeadingTypography fontSize="md">Help</HeadingTypography>
         <Option>
           <BsCircle
             style={{
@@ -94,9 +94,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             About Coral
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <BsQuestionCircle
@@ -106,9 +106,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             FAQS
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <BiSupport
@@ -118,13 +118,13 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Support
-          </Heading>
+          </HeadingTypography>
         </Option>
       </Box>
-      <Box mt="2rem">
-        <Heading fontSize="1rem">Legal</Heading>
+      <Box mt={8}>
+        <HeadingTypography fontSize="md">Legal</HeadingTypography>
         <Option>
           <ImFileEmpty
             style={{
@@ -133,9 +133,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Terms & Conditions
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <ImFileEmpty
@@ -145,12 +145,12 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Privacy Policy
-          </Heading>
+          </HeadingTypography>
         </Option>
       </Box>
-      <Box mt="2rem">
+      <Box mt={8}>
         <Option>
           <FiLogOut
             style={{
@@ -159,9 +159,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Log out
-          </Heading>
+          </HeadingTypography>
         </Option>
         <Option>
           <RiDeleteBin6Line
@@ -171,9 +171,9 @@ export const Profile = () => {
               marginRight: '0.5rem',
             }}
           />
-          <Heading fontSize="0.85rem" m="0">
+          <HeadingTypography fontSize="sm" m="0">
             Delete Account
-          </Heading>
+          </HeadingTypography>
         </Option>
       </Box>
       <Box

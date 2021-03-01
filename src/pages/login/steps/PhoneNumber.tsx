@@ -1,7 +1,12 @@
 import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
-import { Heading, Text } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  SubmitBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
@@ -36,12 +41,12 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="2rem" mb="0.5rem" textAlign="left" letterSpacing="normal">
+          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
             What’s your phone number?
-          </Heading>
-          <Text fontSize="1rem" textAlign="left">
+          </HeadingTypography>
+          <TextTypography fontSize="md" textAlign="left">
             Enter your US phone number
-          </Text>
+          </TextTypography>
           <InputMask
             mask="999 999 9999"
             name="phone_number"
@@ -53,9 +58,9 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
               setError(false);
             }}
           />
-          <Text mt="0.5rem" color="red">
+          <TextTypography mt={2} color="red">
             {error ? 'Please enter a valid phone number' : ''}
-          </Text>
+          </TextTypography>
           <SubmitBtn onClick={onSubmit} label="Continue" />
         </Container>
       </div>

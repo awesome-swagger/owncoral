@@ -4,13 +4,12 @@ import {
   Box,
   Center,
   Flex,
-  Heading,
   HStack,
   Icon,
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
-
+import { HeadingTypography } from '../../components';
 import { Portal } from '@visx/tooltip';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
@@ -69,9 +68,9 @@ export function NavBar() {
           <Center pos="absolute" w="100%" h={16}>
             <Flex h="100%" align="center">
               {/* <Icon as={Logo} w={8} h={8} /> */}
-              <Heading as="h5" size="sm" color="primary.500" m={0}>
+              <HeadingTypography as="h5" size="sm" color="primary.500" m={0}>
                 Coral
-              </Heading>
+              </HeadingTypography>
             </Flex>
           </Center>
 

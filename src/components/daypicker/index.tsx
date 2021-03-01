@@ -28,7 +28,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
   ];
 
   return (
-    <Flex m="1rem 0" maxW="40rem">
+    <Flex my={1} maxW="40rem">
       <Select
         w="35%"
         mt={8}

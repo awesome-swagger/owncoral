@@ -1,9 +1,7 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import {
   Box,
-  Heading,
   Input,
-  Text,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -18,8 +16,13 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  SubmitBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -66,19 +69,19 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
         <Container layerStyle="noSelect">
           <BackBtn pos="absolute" handleClick={prevStep} />
 
-          <Heading size="md" as="h4" mt="2rem" mb="0.5rem" textAlign="left">
+          <HeadingTypography size="md" as="h4" mt={8} mb={2} textAlign="left">
             Let’s create your account
-          </Heading>
-          <Text fontSize="1rem" textAlign="left">
+          </HeadingTypography>
+          <TextTypography fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet
-          </Text>
-          <Box mt="2rem">
-            <Text fontSize="1rem" textAlign="left">
+          </TextTypography>
+          <Box mt={8}>
+            <TextTypography fontSize="md" textAlign="left">
               Email
-            </Text>
+            </TextTypography>
             <Input
-              h="3rem"
-              mt="0.5rem"
+              h={12}
+              mt={2}
               placeholder="Email"
               ref={register}
               name="email"
@@ -86,15 +89,15 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               variant="filled"
             />
           </Box>
-          <Box mt="2rem">
-            <Text fontSize="1rem" textAlign="left">
+          <Box mt={8}>
+            <TextTypography fontSize="md" textAlign="left">
               Password
-            </Text>
+            </TextTypography>
             <InputGroup>
               <Input
                 type={showPassword ? 'text' : 'password'}
-                h="3rem"
-                mt="0.5rem"
+                h={12}
+                mt={2}
                 placeholder="Password"
                 name="password"
                 variant="filled"
@@ -115,23 +118,24 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             </InputGroup>
           </Box>
 
-          <Text
-            fontSize="0.85rem"
+          <TextTypography
+            fontSize="sm"
             color={errors.password ? 'black' : 'gray'}
             className={errors.password ? 'shake_animation' : ''}
             textAlign="left"
             m="0.5rem 0"
           >
             Must be at least 8 characters
-          </Text>
+          </TextTypography>
 
-          <Text
+          <TextTypography
             w=" calc(100% - 3rem)"
-            fontSize="0.85rem"
+            fontSize="sm"
             colorScheme="gray"
             pos="absolute"
-            bottom="6.25rem"
-            left="1.5rem"
+            bottom={24}
+            left={6}
+            textAlign="center"
           >
             By tapping “Continue” in the button below, you agree with the{' '}
             <span
@@ -154,7 +158,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               privacy policy
             </span>{' '}
             provided by Coral
-          </Text>
+          </TextTypography>
           <SubmitBtn label="Continue" />
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />

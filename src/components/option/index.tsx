@@ -1,4 +1,5 @@
-import { Flex, useColorModeValue, Heading } from '@chakra-ui/react';
+import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { HeadingTypography } from '../../components';
 import { BsChevronRight } from 'react-icons/bs';
 
 export const Option = ({ children, onClick }: { children: React.ReactNode; onClick?: any }) => {
@@ -6,10 +7,10 @@ export const Option = ({ children, onClick }: { children: React.ReactNode; onCli
   const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255, 0.15)');
 
   return (
-    <Heading fontSize="0.85rem" m="0">
+    <HeadingTypography fontSize="sm" m="0">
       <Flex
         m="1px 0"
-        p="0.75rem"
+        p={3}
         bg={bgColor}
         color={color}
         textAlign="left"
@@ -30,6 +31,6 @@ export const Option = ({ children, onClick }: { children: React.ReactNode; onCli
           }}
         />
       </Flex>
-    </Heading>
+    </HeadingTypography>
   );
 };

@@ -1,7 +1,13 @@
-import { forwardRef, useContext, ChangeEvent, ReactNode } from 'react';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { forwardRef, useContext, ChangeEvent } from 'react';
+import { Input } from '@chakra-ui/react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  SubmitBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 
@@ -56,17 +62,17 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt="2rem" letterSpacing="normal">
+          <HeadingTypography size="md" mt={8}>
             What’s your Residential address?
-          </Heading>
-          <Text fontSize="1rem" m="0 !important">
+          </HeadingTypography>
+          <TextTypography fontSize="md" m="0">
             Lorem ipsum dolor sir amet
-          </Text>
+          </TextTypography>
           <Input
             placeholder="Residental Address"
-            h="3rem"
+            h={12}
             bg="#F3F3F3"
-            mt="2rem"
+            mt={8}
             value={value}
             onChange={handleInput}
             disabled={!ready}

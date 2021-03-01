@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react';
-import { Heading, Box, Text, Button } from '@chakra-ui/react';
-import { BackBtn, FlexContainer } from '../../../components';
+import { Box, Button } from '@chakra-ui/react';
+import { BackBtn, FlexContainer, HeadingTypography, TextTypography } from '../../../components';
 import { StepFormContext } from '../steps';
 import { useHistory } from 'react-router-dom';
 import type { DivRef } from '../steps';
@@ -25,19 +25,19 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
             }
           }}
         />
-        <Box h="10rem" w="10rem" borderRadius="50%" bg="#d2d2d1" />
-        <Heading size="md" mt="2rem" letterSpacing="normal" textAlign="center">
+        <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
+        <HeadingTypography size="md" mt={8} textAlign="center">
           Congratulations! Your profile is now complete{' '}
-        </Heading>
-        <Text fontSize="1rem" m="0 !important" textAlign="center">
+        </HeadingTypography>
+        <TextTypography fontSize="md" m="0" textAlign="center">
           You are ready to start investing in Coral.
-        </Text>
+        </TextTypography>
         <Button
           pos="absolute"
-          bottom="2.5rem"
-          left="1.5rem"
+          bottom={10}
+          left={6}
           w="calc(100% - 3rem)"
-          h="3rem"
+          h={12}
           bg="#4E504F"
           color="#fff"
           cursor="pointer"

@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
-
 import { retrieveState, storeState } from '../../lib/utils';
 import { signupRoutes } from './signupRoutes';
 

@@ -1,7 +1,6 @@
 import { forwardRef } from 'react';
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
-
-import { BackBtn, FlexContainer } from '../../../components';
+import { Box, Button } from '@chakra-ui/react';
+import { BackBtn, FlexContainer, HeadingTypography, TextTypography } from '../../../components';
 import type { DivRef } from '../index';
 
 type stepProps = {
@@ -14,21 +13,21 @@ export const Result = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
       <FlexContainer>
         <BackBtn pos="absolute" handleClick={prevStep} />
 
-        <Box h="10rem" w="10rem" borderRadius="50%" bg="#d2d2d1" />
-        <Heading as="h4" size="md" mt="2rem" color="primary.highlight">
+        <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
+        <HeadingTypography as="h4" size="md" mt={8} color="primary.highlight">
           Thanks for joining Coral
-        </Heading>
-        <Text fontSize="0.85rem" color="gray.500" textAlign="center">
+        </HeadingTypography>
+        <TextTypography fontSize="sm" color="gray.500" textAlign="center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua.
-        </Text>
+        </TextTypography>
         <Button
           pos="absolute"
-          bottom="2.5rem"
-          left="1.5rem"
+          bottom={10}
+          left={6}
           onClick={nextStep}
           w="calc(100% - 3rem)"
-          h="3rem"
+          h={12}
           colorScheme="primary"
         >
           Start

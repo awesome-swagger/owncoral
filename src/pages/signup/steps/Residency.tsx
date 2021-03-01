@@ -1,8 +1,13 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Input, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-
-import { Container, FlexContainer, BackBtn } from '../../../components';
+import {
+  Container,
+  FlexContainer,
+  BackBtn,
+  HeadingTypography,
+  TextTypography,
+} from '../../../components';
 import type { DivRef } from '../index';
 import { ContextT, StepFormContext } from '../index';
 
@@ -45,15 +50,15 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       {available === 'Available' ? (
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading as="h4" size="md" mt="2rem" mb="1.5rem" textAlign="left">
+          <HeadingTypography as="h4" size="md" mt={8} mb={6} textAlign="left">
             Are you a U.S resident?
-          </Heading>
+          </HeadingTypography>
           {initialQuestions.map(({ value, label }) => (
             <Box
               key={value}
-              px="1.5rem"
-              py="0.75rem"
-              mt="0.5rem"
+              px={6}
+              py={3}
+              mt={2}
               // bg={gray}
               borderRadius="full"
               // color={color}
@@ -95,29 +100,29 @@ const TaxID = ({
 
   return (
     <Container layerStyle="noSelect">
-      <Box h="1rem" w="1rem" cursor="pointer" onClick={goBack}>
+      <Box h={4} w={4} cursor="pointer" onClick={goBack}>
         <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <Heading size="md" as="h4" mt="2rem" mb="0.5rem" textAlign="left">
+      <HeadingTypography size="md" as="h4" mt={8} mb={2} textAlign="left">
         Please enter your Tax ID
-      </Heading>
-      <Text fontSize="1rem" textAlign="left">
+      </HeadingTypography>
+      <TextTypography fontSize="md" textAlign="left">
         Lorem ipsum dolor sir
-      </Text>
+      </TextTypography>
       <Input
         placeholder="XX-XX-XXXX"
-        h="3rem"
-        mt="2rem"
+        h={12}
+        mt={8}
         value={taxID}
         variant="filled"
         onChange={(e) => setTaxID(e.target.value)}
       />
       <Button
         pos="absolute"
-        bottom="2.5rem"
-        left="1.5rem"
+        bottom={10}
+        left={6}
         w="calc(100% - 3rem)"
-        h="3rem"
+        h={12}
         disabled={!taxID.length}
         onClick={() => handleSubmit()}
       >
@@ -132,29 +137,21 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
 
   return (
     <FlexContainer layerStyle="noSelect">
-      <Box
-        pos="absolute"
-        left="1.5rem"
-        top="1.5rem"
-        h="1rem"
-        w="1rem"
-        cursor="pointer"
-        onClick={goBack}
-      >
+      <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
         <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <Heading size="md" as="h4" textAlign="center">
+      <HeadingTypography size="md" as="h4" textAlign="center">
         Sorry, Coral is only available for U.S. residents
-      </Heading>
-      <Text fontSize="1rem" textAlign="center">
+      </HeadingTypography>
+      <TextTypography fontSize="md" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </Text>
+      </TextTypography>
       <Button
         pos="absolute"
-        bottom="2.5rem"
-        left="1.5rem"
+        bottom={10}
+        left={6}
         w="calc(100% - 3rem)"
-        h="3rem"
+        h={12}
         colorScheme={colorScheme}
       >
         Dismiss
