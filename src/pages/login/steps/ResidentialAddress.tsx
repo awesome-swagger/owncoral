@@ -1,5 +1,4 @@
 import { forwardRef, useContext, ChangeEvent } from 'react';
-import { Input } from '@chakra-ui/react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import {
   BackBtn,
@@ -7,6 +6,7 @@ import {
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputField,
 } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
@@ -68,10 +68,9 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
           <TextTypography fontSize="md" m="0">
             Lorem ipsum dolor sir amet
           </TextTypography>
-          <Input
+          <InputField
             placeholder="Residental Address"
             h={12}
-            bg="#F3F3F3"
             mt={8}
             value={value}
             onChange={handleInput}

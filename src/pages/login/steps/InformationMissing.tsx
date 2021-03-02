@@ -26,7 +26,8 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
           </TextTypography>
           <Button
             pos="absolute"
-            bottom={24}
+            bottom={16}
+            mb={2}
             left={6}
             w="calc(100% - 3rem)"
             h={12}
@@ -39,7 +40,7 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
           </Button>
           <Button
             pos="absolute"
-            bottom={10}
+            bottom={4}
             left={6}
             w="calc(100% - 3rem)"
             h={12}

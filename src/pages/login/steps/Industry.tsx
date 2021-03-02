@@ -1,5 +1,4 @@
 import { forwardRef, useContext, useCallback, useEffect } from 'react';
-import { Input } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import {
   BackBtn,
@@ -7,6 +6,7 @@ import {
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputField,
 } from '../../../components';
 import type { FormRef } from '../steps';
 import { StepFormContext } from '../steps';
@@ -43,7 +43,7 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
         <TextTypography fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
         </TextTypography>
-        <Input
+        <InputField
           name="industry"
           ref={register({ required: true })}
           type="text"

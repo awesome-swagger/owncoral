@@ -1,11 +1,11 @@
 import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
-import InputMask from 'react-input-mask';
 import {
   BackBtn,
   Container,
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputMaskField,
 } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
@@ -47,7 +47,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
           <TextTypography fontSize="md" textAlign="left">
             Enter your US phone number
           </TextTypography>
-          <InputMask
+          <InputMaskField
             mask="999 999 9999"
             name="phone_number"
             placeholder="XXX XXX XXX"

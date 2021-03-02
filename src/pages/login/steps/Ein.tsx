@@ -1,12 +1,12 @@
 import { forwardRef, useContext, useEffect, useCallback, useState } from 'react';
-import { Input } from '@chakra-ui/react';
-import InputMask from 'react-input-mask';
+
 import {
   BackBtn,
   Container,
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputMaskField,
 } from '../../../components';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
@@ -48,7 +48,7 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
         <TextTypography fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
         </TextTypography>
-        <InputMask
+        <InputMaskField
           placeholder="XX-XXXXXXX"
           className={error ? 'mask_input shake_animation' : 'mask_input'}
           name="ein"

@@ -5,8 +5,8 @@ import {
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputMaskField,
 } from '../../../components';
-import InputMask from 'react-input-mask';
 import type { DivRef } from '../steps';
 import { StepFormContext } from '../steps';
 type stepProps = {
@@ -47,7 +47,7 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         <TextTypography fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
         </TextTypography>
-        <InputMask
+        <InputMaskField
           className={error ? 'mask_input shake_animation' : 'mask_input'}
           name="Ssn_Or_Ein"
           mask="999-99-9999"

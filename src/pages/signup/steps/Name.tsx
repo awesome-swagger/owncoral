@@ -1,7 +1,13 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
-import { Button, Input } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  HeadingTypography,
+  TextTypography,
+  InputField,
+} from '../../../components';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -42,7 +48,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
         <TextTypography fontSize="md" textAlign="left">
           Lorem ipsum dolor sir
         </TextTypography>
-        <Input
+        <InputField
           placeholder="First Name"
           name="firstName"
           ref={register}
@@ -50,7 +56,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           mt={8}
           variant="filled"
         />
-        <Input
+        <InputField
           placeholder="Last Name"
           name="lastName"
           ref={register}

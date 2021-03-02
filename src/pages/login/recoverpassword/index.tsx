@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 import React, { useState } from 'react';
-import { Box, InputGroup, Input, Button, Flex } from '@chakra-ui/react';
-import { BackBtn, HeadingTypography, TextTypography } from '../../../components';
+import { Box, InputGroup, Button, Flex } from '@chakra-ui/react';
+import { BackBtn, HeadingTypography, TextTypography, InputField } from '../../../components';
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [recover, setRecover] = useState<string>('Recover');
@@ -28,7 +28,7 @@ const RecoverPassword: React.FC = () => {
             Email
           </TextTypography>
           <InputGroup mt="0.5rem">
-            <Input
+            <InputField
               type="email"
               placeholder="Email address"
               bg="#F3F3F3"
@@ -115,7 +115,7 @@ export const NewPassword: React.FC = () => {
       <TextTypography color="#4E504F" fontSize="md" textAlign="left" m="2rem 0 0.5rem 0 " w="100%">
         Password
       </TextTypography>
-      <Input type="password" placeholder="Password" bg="#F3F3F3" h={12} />
+      <InputField type="password" placeholder="Password" bg="#F3F3F3" h={12} />
       <TextTypography m="0.5rem 0 0 0 " fontSize="xs" w="100%" color="#4E504F" textAlign="left">
         Must be at least 8 characters
       </TextTypography>

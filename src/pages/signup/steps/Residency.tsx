@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Button, Input, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 import {
   Container,
@@ -7,6 +7,7 @@ import {
   BackBtn,
   HeadingTypography,
   TextTypography,
+  InputField,
 } from '../../../components';
 import type { DivRef } from '../index';
 import { ContextT, StepFormContext } from '../index';
@@ -109,7 +110,7 @@ const TaxID = ({
       <TextTypography fontSize="md" textAlign="left">
         Lorem ipsum dolor sir
       </TextTypography>
-      <Input
+      <InputField
         placeholder="XX-XX-XXXX"
         h={12}
         mt={8}

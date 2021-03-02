@@ -47,7 +47,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         ))}
       </Select>
       <Spacer />
-      <Input
+      <InputField
         as={InputMask}
         w="25%"
         size="lg"
@@ -60,7 +60,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         onChange={(e) => onChange({ day: e.target.value })}
       />
       <Spacer />
-      <Input
+      <InputField
         as={InputMask}
         w="30%"
         size="lg"

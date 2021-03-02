@@ -6,7 +6,6 @@ import {
   FormHelperText,
   Icon,
   IconButton,
-  Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -19,7 +18,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { HeadingTypography } from '../../components';
+import { HeadingTypography, InputField } from '../../components';
 
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
@@ -82,7 +81,7 @@ function LoginForm() {
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
               </InputLeftElement>
-              <Input
+              <InputField
                 name="email"
                 type="email"
                 placeholder="Email"
@@ -98,7 +97,7 @@ function LoginForm() {
                 <Icon as={FiLock} />
               </InputLeftElement>
 
-              <Input
+              <InputField
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"

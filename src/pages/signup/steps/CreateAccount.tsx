@@ -1,7 +1,6 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import {
   Box,
-  Input,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -22,6 +21,7 @@ import {
   SubmitBtn,
   HeadingTypography,
   TextTypography,
+  InputField,
 } from '../../../components';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
@@ -79,7 +79,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             <TextTypography fontSize="md" textAlign="left">
               Email
             </TextTypography>
-            <Input
+            <InputField
               h={12}
               mt={2}
               placeholder="Email"
@@ -94,7 +94,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               Password
             </TextTypography>
             <InputGroup>
-              <Input
+              <InputField
                 type={showPassword ? 'text' : 'password'}
                 h={12}
                 mt={2}

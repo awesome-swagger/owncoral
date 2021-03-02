@@ -7,6 +7,7 @@ import { SubmitBtn } from './submitBtn';
 import { Option } from './option';
 import { HeadingTypography } from './headingTypography';
 import { TextTypography } from './textTypography';
+import { InputField, InputMaskField } from './inputField';
 
 export {
   BackBtn,
@@ -19,4 +20,6 @@ export {
   Option,
   HeadingTypography,
   TextTypography,
+  InputField,
+  InputMaskField,
 };
