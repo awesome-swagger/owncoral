@@ -1,28 +1,22 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-import { Center, Avatar, AvatarBadge, Box } from '@chakra-ui/react';
-import { IoMdNotificationsOutline } from 'react-icons/io';
-import {
-  FaRegDotCircle,
-  BsPerson,
-  BiCamera,
-  BsCircle,
-  BsQuestionCircle,
-  BiSupport,
-  ImFileEmpty,
-  FiLogOut,
-  RiDeleteBin6Line,
-} from 'react-icons/all';
-
-import theme from '../../theme';
-import { Container, Option, HeadingTypography } from '../../components';
-import { PersonalInformation } from './personalInformation';
+import { Box } from '@chakra-ui/react';
+import { Account } from './account';
+import { Help } from './help';
+import { Header } from './header';
+import { Legal } from './legal';
+import { Footer } from './footer';
+import { PopUp } from './popup';
+import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
+import { Container } from '../../components';
 
 function Profile() {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [overLay, setOverLay] = useState(false);
+  const [overLay, setOverLay] = useState<Number | String | null>(null);
+  const [popUp, setPopUp] = useState<String | null>('');
 
-  const handleClose = () => setOverLay(false);
-  const handleClick = () => setOverLay(true);
+  const handleClose = () => setOverLay(null);
+  const handleClick = (value: Number | String) => setOverLay(value);
+  const handlePopUp = (value: String) => setPopUp(value);
 
   useLayoutEffect(() => {
     if (ref.current) {
@@ -32,150 +26,11 @@ function Profile() {
 
   return (
     <Container ref={ref}>
-      <Center m=".5rem 0">
-        <Avatar name="john_doe" size="lg" src="https://bit.ly/sage-adebayo">
-          <AvatarBadge boxSize="1em" bg={theme.colors.secondary[900]} p="2px" border="0">
-            <BiCamera />
-          </AvatarBadge>
-        </Avatar>
-      </Center>
-      <HeadingTypography m="0" fontSize={6} align="center">
-        John Doe
-      </HeadingTypography>
-      <HeadingTypography m="0" fontSize="md" align="center">
-        jhondoe@gmail.com
-      </HeadingTypography>
-      <Box mt={8}>
-        <HeadingTypography fontSize="md">Account</HeadingTypography>
-        <Option onClick={handleClick}>
-          <BsPerson
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Personal Inforamtion
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <FaRegDotCircle
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Investment Goal
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <IoMdNotificationsOutline
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Notifications
-          </HeadingTypography>
-        </Option>
-      </Box>
-      <Box mt={8}>
-        <HeadingTypography fontSize="md">Help</HeadingTypography>
-        <Option>
-          <BsCircle
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            About Coral
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <BsQuestionCircle
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            FAQS
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <BiSupport
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Support
-          </HeadingTypography>
-        </Option>
-      </Box>
-      <Box mt={8}>
-        <HeadingTypography fontSize="md">Legal</HeadingTypography>
-        <Option>
-          <ImFileEmpty
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Terms & Conditions
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <ImFileEmpty
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Privacy Policy
-          </HeadingTypography>
-        </Option>
-      </Box>
-      <Box mt={8}>
-        <Option>
-          <FiLogOut
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Log out
-          </HeadingTypography>
-        </Option>
-        <Option>
-          <RiDeleteBin6Line
-            style={{
-              height: '1.25rem',
-              width: '1.25rem',
-              marginRight: '0.5rem',
-            }}
-          />
-          <HeadingTypography fontSize="sm" m="0">
-            Delete Account
-          </HeadingTypography>
-        </Option>
-      </Box>
+      <Header />
+      <Account handleClick={handleClick} />
+      <Help handleClick={handleClick} />
+      <Legal />
+      <Footer handleClick={handlePopUp} />
       <Box
         zIndex="2"
         pos="absolute"
@@ -188,16 +43,29 @@ function Profile() {
         borderRadius={{ base: 'none', md: '2xl' }}
         boxShadow="md"
       >
-        <PersonalInformation goBack={handleClose} />
+        {overLay === 1 ? (
+          <PersonalInformation goBack={handleClose} />
+        ) : overLay === 2 ? (
+          <InvestmentGoal goBack={handleClose} />
+        ) : overLay === 3 ? (
+          <Notification goBack={handleClose} />
+        ) : overLay === 4 ? (
+          <About goBack={handleClose} />
+        ) : overLay === 5 ? (
+          <Faqs goBack={handleClose} />
+        ) : (
+          ''
+        )}
       </Box>
       {overLay ? (
         <Box h="100vh" w="100vw" zIndex="1" bg="#fff" pos="fixed" top="0px" left="0px"></Box>
       ) : (
         ''
       )}
+      {popUp ? <PopUp value={popUp} handleClick={setPopUp} /> : ''}
     </Container>
   );
-};
+}
 
 // eslint-disable-next-line import/no-default-export
 export default Profile;

@@ -1,14 +1,14 @@
-import { Box } from '@chakra-ui/react';
-import { Option, BackBtn, HeadingTypography } from '../../../components';
+import { Box, FormControl, Switch } from '@chakra-ui/react';
+import { Option, BackBtn, HeadingTypography } from '../../../../components';
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box p={6}>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <HeadingTypography pos="absolute" right={6} top={6} m="0" fontSize={5} cursor="pointer">
+      <HeadingTypography pos="absolute" right={6} top={6} m="0" fontSize="lg" cursor="pointer">
         Save
       </HeadingTypography>
-      <HeadingTypography mb={6} mt="0" mx="0" fontSize={5} align="center">
+      <HeadingTypography mb={6} mt="0" mx="0" fontSize="lg" align="center">
         Personal Information
       </HeadingTypography>
       <Option>Full Name</Option>
@@ -29,7 +29,12 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
       <Option>Social Security Number</Option>
       <Box p="3px" />
 
-      <Option>I&#39;m an accredited visitor</Option>
+      <Option icon={false}>
+        <FormControl justifyContent="space-between" display="flex" alignItems="center">
+          I&#39;m an accredited visitor
+          <Switch id="Features" />
+        </FormControl>
+      </Option>
     </Box>
   );
 };
