@@ -8,8 +8,8 @@ import {
   HeadingTypography,
   TextTypography,
 } from '../../../components';
-import type { FormRef } from '.';
-import { StepFormContext } from '.';
+import type { FormRef } from './index';
+import { StepFormContext } from './index';
 
 type stepProps = {
   nextStep: () => void;
