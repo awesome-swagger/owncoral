@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { Flex, useColorModeValue } from '@chakra-ui/react';
-import { HeadingTypography } from '../../components';
 import { BsChevronRight } from 'react-icons/bs';
+import { HeadingTypography } from '../../components';
 
-export const Option = ({ children, onClick }: { children: React.ReactNode; onClick?: any }) => {
+export const Option = ({ children, onClick }: { children: ReactNode; onClick?: any }) => {
   const bgColor = useColorModeValue('#f3f3f3', 'rgba(255, 255, 255, 0.15)');
   const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255, 0.15)');
 

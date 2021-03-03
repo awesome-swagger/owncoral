@@ -1,10 +1,10 @@
-import { forwardRef, useContext, useEffect, useCallback } from 'react';
+import { forwardRef, useContext } from 'react';
 import { Box, Icon } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import { BsChevronRight } from 'react-icons/bs';
 import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
 import { StepFormContext } from './index';
 import type { DivRef } from './index';
-import { BsChevronRight } from 'react-icons/bs';
 
 type stepProps = {
   nextStep: () => void;

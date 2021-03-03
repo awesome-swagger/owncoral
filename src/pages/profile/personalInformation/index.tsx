@@ -29,7 +29,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
       <Option>Social Security Number</Option>
       <Box p="3px" />
 
-      <Option>I'm an accredited visitor</Option>
+      <Option>I&#39;m an accredited visitor</Option>
     </Box>
   );
 };

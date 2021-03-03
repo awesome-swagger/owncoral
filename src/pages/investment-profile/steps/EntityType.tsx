@@ -1,7 +1,7 @@
 import { forwardRef, useContext } from 'react';
 import { Box, Icon } from '@chakra-ui/react';
-import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
 import { BsChevronRight } from 'react-icons/bs';
+import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 

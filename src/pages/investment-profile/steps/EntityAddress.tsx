@@ -1,4 +1,4 @@
-import { forwardRef, useContext, ChangeEvent, ReactNode } from 'react';
+import { forwardRef, useContext, ChangeEvent } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import {
   BackBtn,
