@@ -1,10 +1,6 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-import { Container } from '../../components';
 import { Center, Avatar, AvatarBadge, Box } from '@chakra-ui/react';
-import theme from '../../theme';
-import { Option, HeadingTypography } from '../../components';
 import { IoMdNotificationsOutline } from 'react-icons/io';
-import { PersonalInformation } from './personalInformation';
 import {
   FaRegDotCircle,
   BsPerson,
@@ -17,7 +13,11 @@ import {
   RiDeleteBin6Line,
 } from 'react-icons/all';
 
-export const Profile = () => {
+import theme from '../../theme';
+import { Container, Option, HeadingTypography } from '../../components';
+import { PersonalInformation } from './personalInformation';
+
+function Profile() {
   const ref = useRef<HTMLDivElement | null>(null);
   const [overLay, setOverLay] = useState(false);
 
@@ -198,3 +198,6 @@ export const Profile = () => {
     </Container>
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default Profile;

@@ -1,9 +1,9 @@
 import { forwardRef, useContext } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 import { BackBtn, FlexContainer, HeadingTypography, TextTypography } from '../../../components';
-import { StepFormContext } from '../steps';
+import { StepFormContext } from '.';
 import { useHistory } from 'react-router-dom';
-import type { DivRef } from '../steps';
+import type { DivRef } from '.';
 
 type stepProps = {
   prevStep: () => void;
@@ -19,7 +19,7 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
           pos="absolute"
           handleClick={() => {
             if (form.formState?.step5 === 'Individual') {
-              history.push('/login/invest');
+              history.push('/investment-profile/invest');
             } else {
               prevStep();
             }

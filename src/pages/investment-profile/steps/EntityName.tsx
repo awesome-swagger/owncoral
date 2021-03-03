@@ -1,8 +1,8 @@
 import { forwardRef, useContext, useCallback, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { BackBtn, Container, SubmitBtn, HeadingTypography, InputField } from '../../../components';
-import type { FormRef } from '../steps';
-import { StepFormContext } from '../steps';
+import type { FormRef } from '.';
+import { StepFormContext } from '.';
 
 type stepProps = {
   nextStep: () => void;

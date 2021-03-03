@@ -1,8 +1,8 @@
 import { forwardRef, useContext } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 import { BackBtn, FlexContainer, HeadingTypography, TextTypography } from '../../../components';
-import type { DivRef } from '../steps';
-import { StepFormContext } from '../steps';
+import type { DivRef } from '.';
+import { StepFormContext } from '.';
 
 type stepProps = {
   nextStep: () => void;

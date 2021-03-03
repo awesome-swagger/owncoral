@@ -7,23 +7,23 @@ import {
   HeadingTypography,
   TextTypography,
 } from '../../../components';
-import type { DivRef } from '../steps';
-import { StepFormContext } from '../steps';
+import type { DivRef } from '.';
+import { StepFormContext } from '.';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
+
 const initialDate = {
-  year: '',
-  month: '',
-  day: '',
+  year: '2000',
+  month: 'Jan',
+  day: '30',
 };
 
-export const DateOfFormation = forwardRef<DivRef, stepProps>(
+export const DateOfRegistration = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
-
     const form = useContext(StepFormContext);
     const handleDateChange = useCallback(
       (newDate) => {
@@ -36,22 +36,22 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
     );
 
     const onSubmit = useCallback(() => {
-      form.dispatch({ type: 'update-form', payload: { step11: date } });
+      form.dispatch({ type: 'update-form', payload: { step13: date } });
       nextStep();
     }, [date]);
 
     useEffect(() => {
       const formState = form.formState;
 
-      setDate(formState?.step11 || initialDate);
+      setDate(formState?.step13 || initialDate);
     }, []);
-
+    console.log('date of reg === >', date);
     return (
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
-            Which is the date of formation?
+            Which is the date of registration?
           </HeadingTypography>
           <TextTypography fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet

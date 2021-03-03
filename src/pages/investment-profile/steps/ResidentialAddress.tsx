@@ -1,4 +1,4 @@
-import { forwardRef, useContext, ChangeEvent, ReactNode } from 'react';
+import { forwardRef, useContext, ChangeEvent } from 'react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 import {
   BackBtn,
@@ -8,15 +8,15 @@ import {
   TextTypography,
   InputField,
 } from '../../../components';
-import type { DivRef } from '../steps';
-import { StepFormContext } from '../steps';
+import type { DivRef } from '.';
+import { StepFormContext } from '.';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const EntityAddress = forwardRef<DivRef, stepProps>(
+export const ResidentialAddress = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
     const {
@@ -63,7 +63,7 @@ export const EntityAddress = forwardRef<DivRef, stepProps>(
         <Container>
           <BackBtn handleClick={prevStep} />
           <HeadingTypography size="md" mt={8}>
-            What’s your Entity address?
+            What’s your Residential address?
           </HeadingTypography>
           <TextTypography fontSize="md" m="0">
             Lorem ipsum dolor sir amet
@@ -71,7 +71,6 @@ export const EntityAddress = forwardRef<DivRef, stepProps>(
           <InputField
             placeholder="Residental Address"
             h={12}
-            bg="#F3F3F3"
             mt={8}
             value={value}
             onChange={handleInput}

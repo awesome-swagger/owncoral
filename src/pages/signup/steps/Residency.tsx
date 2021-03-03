@@ -116,7 +116,7 @@ const TaxID = ({
         mt={8}
         value={taxID}
         variant="filled"
-        onChange={(e) => setTaxID(e.target.value)}
+        onChange={(e: any) => setTaxID(e.target.value)}
       />
       <Button
         pos="absolute"

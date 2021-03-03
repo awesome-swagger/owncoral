@@ -2,8 +2,8 @@ import { forwardRef, useContext, useEffect, useCallback } from 'react';
 import { Box, Icon } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
-import { StepFormContext } from '../steps';
-import type { DivRef } from '../steps';
+import { StepFormContext } from '.';
+import type { DivRef } from '.';
 import { BsChevronRight } from 'react-icons/bs';
 
 type stepProps = {
@@ -38,7 +38,7 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
                 step5: 'Individual',
               },
             });
-            history.push('/login/result');
+            history.push('/investment-profile/result');
           }}
         >
           <TextTypography fontSize="md" color="#4E504F">

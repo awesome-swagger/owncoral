@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Box, InputGroup, Button, Flex } from '@chakra-ui/react';
 import { BackBtn, HeadingTypography, TextTypography, InputField } from '../../../components';
+
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [recover, setRecover] = useState<string>('Recover');
@@ -34,7 +35,7 @@ const RecoverPassword: React.FC = () => {
               bg="#F3F3F3"
               h={12}
               value={email}
-              onChange={(x) => setEmail(x.target.value)}
+              onChange={(x: any) => setEmail(x.target.value)}
             />
           </InputGroup>
           <Button

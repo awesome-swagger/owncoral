@@ -1,6 +1,7 @@
-import { forwardRef, useContext, useEffect, useCallback } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
+import { forwardRef, useContext, useCallback, useEffect } from 'react';
+import { Select } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import { States } from '../../../lib/states';
 import {
   BackBtn,
   Container,
@@ -8,15 +9,16 @@ import {
   HeadingTypography,
   TextTypography,
 } from '../../../components';
-import type { FormRef } from '../steps';
-import { StepFormContext } from '../steps';
+
+import type { FormRef } from '.';
+import { StepFormContext } from '.';
 
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
 
-export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
+export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const { handleSubmit, register, setValue, control } = useForm();
     const form = useContext(StepFormContext);
@@ -24,7 +26,7 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
     const onSubmit = useCallback((data) => {
       form.dispatch({
         type: 'update-form',
-        payload: { step16: data },
+        payload: { step13: data },
       });
       nextStep();
     }, []);
@@ -32,28 +34,30 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
     useEffect(() => {
       const formState = form.formState;
 
-      setValue('entity_phone_number', formState?.step16?.entity_phone_number || '');
+      setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
     }, []);
-
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
           <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
-            What’s your Entity phone number?
+            Which is the jurisdiction of registration
           </HeadingTypography>
           <TextTypography fontSize="md" textAlign="left">
-            Enter your US phone number
+            Lorem ipsum dolor sir amet
           </TextTypography>
-          <Controller
-            placeholder="XXX XXX XXXX"
-            className="mask_input"
-            as={InputMask}
-            name="entity_phone_number"
-            control={control}
-            rules={{ required: true, minLength: 9 }}
-            mask="999 999 999"
-          />
+          <Select
+            ref={register}
+            placeholder="Select option"
+            name="jurisdiction_registration"
+            mt={2}
+          >
+            {States.map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </Select>
           <SubmitBtn label="Continue" />
         </Container>
       </form>
