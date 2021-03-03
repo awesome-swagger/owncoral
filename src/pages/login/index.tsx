@@ -84,6 +84,7 @@ function LoginForm() {
               <InputField
                 name="email"
                 type="email"
+                pl={8}
                 placeholder="Email"
                 defaultValue={isDev ? 'a@b.com' : ''}
                 ref={register({
@@ -109,6 +110,7 @@ function LoginForm() {
                     value: 8,
                   },
                 })}
+                pl={8}
               />
 
               <InputRightElement>

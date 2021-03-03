@@ -14,6 +14,7 @@ import { DebugPanel } from './components';
 
 import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
+import Login from './pages/login';
 import LoginFlow from './pages/investment-profile/steps';
 import Profile from './pages/profile';
 
@@ -35,6 +36,10 @@ function App() {
           <Route exact path="/">
             {/* TODO: redirect to a dashboard */}
             <Redirect to="/portfolio" />
+          </Route>
+          <Route exact path="/login">
+            {/* TODO: redirect to a dashboard */}
+            <Login />
           </Route>
           <Route exact path="/portfolio" component={Portfolio} />
           <Route exact path="/profile" component={Profile} />

@@ -23,6 +23,7 @@ const initialDate = {
 export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
+
     const form = useContext(StepFormContext);
     const handleDateChange = useCallback(
       (newDate) => {
