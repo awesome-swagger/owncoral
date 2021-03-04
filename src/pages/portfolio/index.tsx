@@ -106,8 +106,8 @@ function PropertyCard(props: PropertyCardProps) {
   return (
     <Box
       as={Link}
-      paddingY={4}
-      paddingX={6}
+      paddingY={[4, 6]}
+      paddingX={[7, 9, 7]}
       mb={3}
       borderRadius="lg"
       width="100%"
@@ -129,7 +129,7 @@ function PropertyCard(props: PropertyCardProps) {
         </Box>
       </Flex>
       <Flex alignItems="top" justifyItems="stretch">
-        <Center width={120} marginY={-4} marginLeft={-3} mr={2}>
+        <Center width={120} marginY={-4} marginLeft={-2} mr={5}>
           <VStack>
             <Image src={lowPolyHouseSm} alt="House stylized picture" />
           </VStack>
