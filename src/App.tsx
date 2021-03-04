@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 
 import AppRootStyle from './AppRootStyle';
 import { fetchWrap } from './lib/api';
@@ -16,7 +16,7 @@ import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
 import Login from './pages/login';
 import LoginFlow from './pages/investment-profile/steps';
-import Profile from './pages/profile';
+import Property from './pages/property';
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -30,6 +30,10 @@ function App() {
         <DebugPanel />
         <Router>
           {/* Note: server handles not-logged-in redirection for the SPA bundle */}
+          {/*
+            TODO: refactor to just use nested routes / URL parameters
+            https://reactrouter.com/web/guides/philosophy/nested-routes
+          */}
           <Signup />
           <LoginFlow /> {/* setUser={setUser} */}
           {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
@@ -42,7 +46,8 @@ function App() {
             <Login />
           </Route>
           <Route exact path="/portfolio" component={Portfolio} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/property/:address" component={Property} />
+          {/* <Route exact path="/profile" component={Profile} /> */}
           {/* <Route exact path="/properties/:id" component={Property} /> */}
           {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
           {/* <Route exact path="/documents" component={Docs} /> */}

@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Progress, useColorModeValue } from '@chakra-ui/react';
-import { BackBtn, Container, HeadingTypography } from '../../../components';
+import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
+
+import { BackBtn, Container } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -35,13 +36,13 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
     return (
       <Box ref={ref} layerStyle="noSelect">
         <Container>
-          <BackBtn pos="absolute" handleClick={prevStep} />
+          <BackBtn handleClick={prevStep} />
 
           <Progress mt={8} colorScheme="primary" borderRadius="full" size="sm" value={80} />
 
-          <HeadingTypography size="md" as="h4" mt={8} mb={2} textAlign="left">
+          <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             How much investing experience do you have?
-          </HeadingTypography>
+          </Heading>
           {experience.map(({ value, label }) => (
             <Box
               px={6}

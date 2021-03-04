@@ -1,14 +1,11 @@
-import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-  InputMaskField,
-} from '../../../components';
+import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import InputMask from 'react-input-mask';
+import { Heading, Input, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
+
 type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
@@ -41,13 +38,14 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+        <Heading size="md" mt={8} mb={2} textAlign="left">
           What’s your SSN or EIN?
-        </HeadingTypography>
-        <TextTypography fontSize="md" textAlign="left">
+        </Heading>
+        <Text fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
-        </TextTypography>
-        <InputMaskField
+        </Text>
+        <Input
+          as={InputMask}
           className={error ? 'mask_input shake_animation' : 'mask_input'}
           name="Ssn_Or_Ein"
           mask="999-99-9999"
@@ -57,9 +55,9 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             setError(false);
           }}
         />
-        <TextTypography mt={2} color="red">
+        <Text mt={2} variant="colored" colorScheme="red">
           {error ? 'Please enter a valid SSN number' : ''}
-        </TextTypography>
+        </Text>
         <SubmitBtn onClick={onSubmit} label="Continue" />
       </Container>
     </div>

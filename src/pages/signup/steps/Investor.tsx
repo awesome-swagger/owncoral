@@ -1,13 +1,8 @@
 import { Dispatch, forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Button, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-import {
-  BackBtn,
-  Container,
-  FlexContainer,
-  HeadingTypography,
-  TextTypography,
-} from '../../../components';
+import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+
+import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -29,21 +24,21 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
       {available === 'Available' ? (
         <Box ref={ref} layerStyle="noSelect">
           <Container>
-            <BackBtn pos="absolute" handleClick={prevStep} />
+            <BackBtn handleClick={prevStep} />
 
-            <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+            <Heading size="md" mt={8} mb={2} textAlign="left">
               Are you an accredited investor?
-            </HeadingTypography>
-            <TextTypography fontSize="md" textAlign="left">
+            </Heading>
+            <Text fontSize="md" textAlign="left">
               Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
               officia consequat duis enim velit mollit.
-            </TextTypography>
-            <TextTypography fontSize="sm" color="gray.500" textAlign="left">
+            </Text>
+            <Text fontSize="sm" color="gray.500" textAlign="left">
               Amet minim mollit non deserunt ullamco est.
-            </TextTypography>
+            </Text>
             <Button
               pos="absolute"
-              bottom={24}
+              bottom={28}
               left={6}
               w="calc(100% - 3rem)"
               h={12}
@@ -59,6 +54,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               left={6}
               w="calc(100% - 3rem)"
               h={12}
+              variant="outline"
             >
               No
             </Button>
@@ -79,12 +75,12 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
       <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
         <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <HeadingTypography size="md" as="h4" textAlign="center">
+      <Heading size="md" as="h4" textAlign="center">
         Coral is currently available to accredited investors only
-      </HeadingTypography>
-      <TextTypography fontSize="md" textAlign="center">
+      </Heading>
+      <Text fontSize="md" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </TextTypography>
+      </Text>
       <Button
         pos="absolute"
         bottom={10}

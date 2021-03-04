@@ -1,10 +1,11 @@
 import { forwardRef, useContext } from 'react';
-import { Box, Icon } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
 import { BsChevronRight } from 'react-icons/bs';
-import { BackBtn, Container, HeadingTypography, TextTypography } from '../../../components';
-import { StepFormContext } from './index';
+import { useHistory } from 'react-router-dom';
+import { Box, Heading, Icon, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
+import { StepFormContext } from './index';
 
 type stepProps = {
   nextStep: () => void;
@@ -19,18 +20,18 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
     <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+        <Heading size="md" mt={8} mb={2} textAlign="left">
           Do you want to invest as an individual or through an entity?
-        </HeadingTypography>
+        </Heading>
         <Box
           px={6}
           py={3}
           mt={8}
-          bg="#F3F3F3"
-          color="4E504F"
           textAlign="left"
           cursor="pointer"
           pos="relative"
+          borderRadius="full"
+          layerStyle="selectionBox"
           onClick={() => {
             form.dispatch({
               type: 'update-form',
@@ -41,12 +42,12 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             history.push('/investment-profile/result');
           }}
         >
-          <TextTypography fontSize="md" color="#4E504F">
+          <Text fontSize="md" colorScheme="gray" variant="colored">
             Individual account
-          </TextTypography>
-          <TextTypography fontSize="sm" color="#888">
+          </Text>
+          <Text fontSize="sm" colorScheme="gray" variant="colored">
             Lorem ipsum dolor sir amet
-          </TextTypography>
+          </Text>
           <Icon
             pos="absolute"
             top="50%"
@@ -59,11 +60,11 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
           px={6}
           py={3}
           mt={2}
-          bg="#F3F3F3"
-          color="4E504F"
           textAlign="left"
           cursor="pointer"
           pos="relative"
+          borderRadius="full"
+          layerStyle="selectionBox"
           onClick={() => {
             form.dispatch({
               type: 'update-form',
@@ -74,12 +75,12 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             nextStep();
           }}
         >
-          <TextTypography fontSize="md" color="#4E504F">
+          <Text fontSize="md" colorScheme="gray" variant="colored">
             Entity account
-          </TextTypography>
-          <TextTypography fontSize="sm" color="#888">
+          </Text>
+          <Text fontSize="sm" colorScheme="gray" variant="colored">
             Lorem ipsum dolor sir amet
-          </TextTypography>
+          </Text>
           <Icon
             pos="absolute"
             top="50%"

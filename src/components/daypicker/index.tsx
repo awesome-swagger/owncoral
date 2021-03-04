@@ -1,7 +1,6 @@
 import type React from 'react';
-import { Flex, Select, Spacer } from '@chakra-ui/react';
 import InputMask from 'react-input-mask';
-import { InputField } from '../inputField';
+import { Flex, Input, Select, Spacer } from '@chakra-ui/react';
 
 type DayPickerProps = {
   date: {
@@ -48,7 +47,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         ))}
       </Select>
       <Spacer />
-      <InputField
+      <Input
         as={InputMask}
         w="25%"
         size="lg"
@@ -61,7 +60,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         onChange={(e: any) => onChange({ day: e.target.value })}
       />
       <Spacer />
-      <InputField
+      <Input
         as={InputMask}
         w="30%"
         size="lg"

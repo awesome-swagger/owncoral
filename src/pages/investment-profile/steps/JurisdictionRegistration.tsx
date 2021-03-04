@@ -1,15 +1,9 @@
-import { forwardRef, useContext, useCallback, useEffect } from 'react';
-import { Select } from '@chakra-ui/react';
+import { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { States } from '../../../lib/states';
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-} from '../../../components';
+import { Heading, Select, Text } from '@chakra-ui/react';
 
+import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { States } from '../../../lib/states';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -40,12 +34,12 @@ export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             Which is the jurisdiction of registration
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left">
+          </Heading>
+          <Text fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet
-          </TextTypography>
+          </Text>
           <Select
             ref={register}
             placeholder="Select option"

@@ -1,14 +1,9 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Button, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
-import {
-  Container,
-  FlexContainer,
-  BackBtn,
-  HeadingTypography,
-  TextTypography,
-  InputField,
-} from '../../../components';
+import InputMask from 'react-input-mask';
+import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
+
+import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
 import { ContextT, StepFormContext } from '../index';
 
@@ -29,11 +24,6 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   const [available, setAvailable] = useState<availableT>('Available');
   const form = useContext(StepFormContext);
 
-  const selectionColors = useColorModeValue(
-    { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' } },
-    { bg: 'whiteAlpha.100', color: 'white', _hover: { bg: 'secondary.800' } },
-  );
-
   const handleSubmit = useCallback(
     (value) => {
       if (value === 'Available') {
@@ -51,23 +41,20 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       {available === 'Available' ? (
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography as="h4" size="md" mt={8} mb={6} textAlign="left">
+          <Heading as="h4" size="md" mt={8} mb={6} textAlign="left">
             Are you a U.S resident?
-          </HeadingTypography>
+          </Heading>
           {initialQuestions.map(({ value, label }) => (
             <Box
               key={value}
               px={6}
               py={3}
               mt={2}
-              // bg={gray}
               borderRadius="full"
-              // color={color}
               textAlign="left"
               cursor="pointer"
-              // _hover={{ backgroundColor: highlight }}
               onClick={() => handleSubmit(value)}
-              {...selectionColors}
+              layerStyle="selectionBox"
             >
               {label}
             </Box>
@@ -104,14 +91,20 @@ const TaxID = ({
       <Box h={4} w={4} cursor="pointer" onClick={goBack}>
         <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <HeadingTypography size="md" as="h4" mt={8} mb={2} textAlign="left">
+      <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
         Please enter your Tax ID
-      </HeadingTypography>
-      <TextTypography fontSize="md" textAlign="left">
+      </Heading>
+      <Text fontSize="md" textAlign="left">
         Lorem ipsum dolor sir
-      </TextTypography>
-      <InputField
-        placeholder="XX-XX-XXXX"
+      </Text>
+      <Input
+        as={InputMask}
+        mask="999-99-9999"
+        type="tel"
+        maskPlaceholder="0"
+        placeholder="XXX-XX-XXXX"
+        fontFamily="monospace"
+        className="mask_input"
         h={12}
         mt={8}
         value={taxID}
@@ -141,12 +134,12 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
       <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
         <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
-      <HeadingTypography size="md" as="h4" textAlign="center">
+      <Heading size="md" as="h4" textAlign="center">
         Sorry, Coral is only available for U.S. residents
-      </HeadingTypography>
-      <TextTypography fontSize="md" textAlign="center">
+      </Heading>
+      <Text fontSize="md" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </TextTypography>
+      </Text>
       <Button
         pos="absolute"
         bottom={10}

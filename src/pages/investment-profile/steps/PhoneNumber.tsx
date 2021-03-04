@@ -1,12 +1,8 @@
-import { forwardRef, useContext, useCallback, useEffect, useState } from 'react';
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-  InputMaskField,
-} from '../../../components';
+import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import InputMask from 'react-input-mask';
+import { Heading, Input, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -41,16 +37,17 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             What’s your phone number?
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left">
+          </Heading>
+          <Text fontSize="md" textAlign="left">
             Enter your US phone number
-          </TextTypography>
-          <InputMaskField
-            mask="999 999 9999"
+          </Text>
+          <Input
+            as={InputMask}
+            mask="(999) 999-9999"
             name="phone_number"
-            placeholder="XXX XXX XXX"
+            placeholder="(XXX) XXX-XXX"
             className={error ? 'mask_input shake_animation' : 'mask_input'}
             value={phoneNumber}
             onChange={(e: any) => {
@@ -58,9 +55,9 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
               setError(false);
             }}
           />
-          <TextTypography mt={2} color="red">
+          <Text mt={2} colorScheme="red" variant="colored">
             {error ? 'Please enter a valid phone number' : ''}
-          </TextTypography>
+          </Text>
           <SubmitBtn onClick={onSubmit} label="Continue" />
         </Container>
       </div>

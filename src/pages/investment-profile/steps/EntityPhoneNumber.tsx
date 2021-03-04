@@ -1,13 +1,9 @@
-import { forwardRef, useContext, useEffect, useCallback } from 'react';
+import React, { forwardRef, useCallback,useContext, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-} from '../../../components';
+import { Heading, Input, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -18,7 +14,7 @@ type stepProps = {
 
 export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, register, setValue, control } = useForm();
+    const { handleSubmit, register, setValue } = useForm();
     const form = useContext(StepFormContext);
 
     const onSubmit = useCallback((data) => {
@@ -39,20 +35,22 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             What’s your Entity phone number?
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left">
+          </Heading>
+          <Text fontSize="md" textAlign="left">
             Enter your US phone number
-          </TextTypography>
-          <Controller
-            placeholder="XXX XXX XXXX"
-            className="mask_input"
+          </Text>
+          <Input
             as={InputMask}
+            placeholder="(XXX) XXX-XXXX"
+            className="mask_input"
             name="entity_phone_number"
-            control={control}
-            rules={{ required: true, minLength: 9 }}
-            mask="999 999 999"
+            mask="(999) 999-9999"
+            ref={register({
+              required: true,
+              minLength: 9,
+            })}
           />
           <SubmitBtn label="Continue" />
         </Container>

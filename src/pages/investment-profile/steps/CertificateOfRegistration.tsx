@@ -1,12 +1,7 @@
 import { forwardRef, useContext } from 'react';
-import { Button, Box } from '@chakra-ui/react';
-import {
-  BackBtn,
-  Container,
-  HeadingTypography,
-  TextTypography,
-  InputField,
-} from '../../../components';
+import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
+
+import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -23,32 +18,35 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             Certificate of registration
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left" mb={8}>
+          </Heading>
+          <Text fontSize="md" textAlign="left" mb={8}>
             Lorem ipsum dolor sir amet
-          </TextTypography>
+          </Text>
           <label>
-            <InputField d="none" type="file" />
-            <Box border="2px dashed #D2D2D1" p="14px" cursor="pointer">
-              <TextTypography fontSize="md" textAlign="center" color="#4E504F">
+            <Input d="none" type="file" />
+            <Box
+              border="2px dashed"
+              borderColor={useColorModeValue('gray.700', 'gray.200')}
+              p="14px"
+              cursor="pointer"
+            >
+              <Text fontSize="md" textAlign="center" colorScheme="gray" variant="colored">
                 Upload Certificate of registration file
-              </TextTypography>
-              <TextTypography fontSize="sm" textAlign="center" color="#888">
+              </Text>
+              <Text fontSize="sm" textAlign="center" colorScheme="gray" variant="colored">
                 JPG, PNG or PDF
-              </TextTypography>
+              </Text>
             </Box>
           </label>
 
           <Button
             pos="absolute"
-            bottom="2.5"
+            bottom={10}
             left={6}
             w="calc(100% - 3rem)"
             h={12}
-            bg="#4E504F"
-            color="#fff"
             onClick={nextStep}
           >
             Continue
