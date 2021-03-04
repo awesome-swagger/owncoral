@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, Button , Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, FlexContainer } from '../../../components';
 import type { DivRef } from './index';
@@ -16,7 +16,7 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
   return (
     <FlexContainer ref={ref}>
       <BackBtn
-        pos="fixed"
+        pos="absolute"
         top={6}
         left={6}
         handleClick={() => {

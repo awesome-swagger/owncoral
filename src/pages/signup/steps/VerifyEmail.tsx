@@ -13,7 +13,7 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     return (
       <FlexContainer ref={ref} layerStyle="noSelect">
-        <BackBtn handleClick={prevStep} top={6} left={6} pos="fixed" />
+        <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
         <Box h={40} w={40} borderRadius="50%" bg="gray.200" />
         <Heading size="md" as="h4" mt={8} textAlign="center">
           Please verify your email address

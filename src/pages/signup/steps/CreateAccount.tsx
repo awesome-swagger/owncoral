@@ -86,7 +86,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               variant="filled"
             />
           </Box>
-          <Box mt={8}>
+          <Box mt={4}>
             <Text fontSize="md" textAlign="left">
               Password
             </Text>

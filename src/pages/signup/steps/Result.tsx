@@ -9,7 +9,7 @@ type stepProps = {
 export const Result = ({ nextStep, prevStep }: stepProps) => {
   return (
     <FlexContainer layerStyle="noSelect">
-      <BackBtn handleClick={prevStep} top={6} left={6} pos="fixed" />
+      <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
 
       <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
       <Heading as="h4" size="md" mt={8} color={useColorModeValue('primary.700', 'primary.300')}>

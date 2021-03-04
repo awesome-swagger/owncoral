@@ -10,7 +10,7 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => {
   const muiCardColorActive = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.05)');
 
   return (
-    <Center w="100vw" h="100vh" pos="fixed">
+    <Center w="100vw" h="100vh" pos="fixed" zIndex={props.zIndex}>
       <Box
         p={6}
         maxW={theme.breakpoints.md}

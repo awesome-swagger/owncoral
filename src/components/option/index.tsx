@@ -6,10 +6,12 @@ export const Option = ({
   children,
   onClick,
   icon = true,
+  borderRadius = false,
 }: {
   children: ReactNode;
   onClick?: any;
   icon?: boolean;
+  borderRadius?: boolean;
 }) => {
   const bgColor = useColorModeValue('#f3f3f3', 'rgba(255, 255, 255, 0.15)');
   const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255, 0.15)');
@@ -24,6 +26,7 @@ export const Option = ({
         textAlign="left"
         cursor="pointer"
         pos="relative"
+        borderRadius={borderRadius ? 'full' : ''}
         alignItems="center"
         onClick={onClick}
       >
