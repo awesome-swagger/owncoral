@@ -1,7 +1,7 @@
-/** @jsxRuntime classic */
 import React, { useState } from 'react';
-import { Box, InputGroup, Button, Flex } from '@chakra-ui/react';
-import { BackBtn, HeadingTypography, TextTypography, InputField } from '../../../components';
+import { Box, Button, Flex, Heading, Input, InputGroup, Text } from '@chakra-ui/react';
+
+import { BackBtn } from '../../../components';
 
 const RecoverPassword: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -12,24 +12,18 @@ const RecoverPassword: React.FC = () => {
       {recover === 'Recover' ? (
         <Box p={6} m="0" w="100%" h="100vh" pos="relative">
           <BackBtn handleClick={() => console.log('Clicked!')} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             Recover your password
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left" m="0 " color="#4E504F">
+          </Heading>
+          <Text fontSize="md" textAlign="left" m="0 " color="#4E504F">
             Enter the email address associated with your account and we will send you an email with
             instructions to recover your password
-          </TextTypography>
-          <TextTypography
-            color="#4E504F"
-            fontSize="md"
-            textAlign="left"
-            m="2rem 0 0.5rem 0"
-            w="100%"
-          >
+          </Text>
+          <Text color="#4E504F" fontSize="md" textAlign="left" m="2rem 0 0.5rem 0" w="100%">
             Email
-          </TextTypography>
+          </Text>
           <InputGroup mt="0.5rem">
-            <InputField
+            <Input
               type="email"
               placeholder="Email address"
               bg="#F3F3F3"
@@ -61,40 +55,31 @@ const RecoverPassword: React.FC = () => {
   );
 };
 
-interface CheckEmailProps {
+type CheckEmailProps = {
   onRecover: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 export const CheckEmail: React.FC<CheckEmailProps> = ({ onRecover }: CheckEmailProps) => {
   return (
     <Flex p={6} m="0" w="100%" h="100vh" align="center" justify="center" direction="column">
       <BackBtn handleClick={() => console.log('Clicked!')} />
       <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
-      <HeadingTypography size="md" mt={8}>
+      <Heading size="md" mt={8}>
         Check your email
-      </HeadingTypography>
-      <TextTypography fontSize="md" m="0">
+      </Heading>
+      <Text fontSize="md" m="0">
         We have sent a password recover instructions
-      </TextTypography>
-      <TextTypography
-        color="#4E504F"
-        pos="absolute"
-        bottom={24}
-        fontSize="sm"
-        m="0"
-        textAlign="center"
-      >
+      </Text>
+      <Text color="#4E504F" pos="absolute" bottom={24} fontSize="sm" m="0" textAlign="center">
         Didn’t receive an email? <br />
         Check your spam folder or try with another email
-      </TextTypography>
+      </Text>
       <Button
         pos="absolute"
         bottom={9}
         left={6}
         w="calc(100% - 3rem)"
         h={12}
-        bg="#4E504F"
-        color="#fff"
         onClick={() => onRecover('NewPassword')}
       >
         Open email app
@@ -107,23 +92,23 @@ export const NewPassword: React.FC = () => {
     <Box p={6} m="0" w="100%" h="100vh" pos="relative">
       <BackBtn handleClick={() => console.log('Clicked!')} />
 
-      <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+      <Heading size="md" mt={8} mb={2} textAlign="left">
         Create a new password
-      </HeadingTypography>
-      <TextTypography fontSize="md" textAlign="left" m="0" color="#4E504F">
+      </Heading>
+      <Text fontSize="md" textAlign="left" m="0" color="#4E504F">
         Lorem ipsum dolor sir amet
-      </TextTypography>
-      <TextTypography color="#4E504F" fontSize="md" textAlign="left" m="2rem 0 0.5rem 0 " w="100%">
+      </Text>
+      <Text color="#4E504F" fontSize="md" textAlign="left" m="2rem 0 0.5rem 0 " w="100%">
         Password
-      </TextTypography>
-      <InputField type="password" placeholder="Password" bg="#F3F3F3" h={12} />
-      <TextTypography m="0.5rem 0 0 0 " fontSize="xs" w="100%" color="#4E504F" textAlign="left">
+      </Text>
+      <Input type="password" placeholder="Password" bg="#F3F3F3" h={12} />
+      <Text m="0.5rem 0 0 0 " fontSize="xs" w="100%" color="#4E504F" textAlign="left">
         Must be at least 8 characters
-      </TextTypography>
-      <TextTypography m=" 0" bottom={24} pos="absolute" fontSize="xs" textAlign="center">
+      </Text>
+      <Text m=" 0" bottom={24} pos="absolute" fontSize="xs" textAlign="center">
         By tapping “Continue” in the button below, you agree with the terms and conditions and
         privacy policy provided by Coral
-      </TextTypography>
+      </Text>
       <Button
         pos="absolute"
         bottom={10}

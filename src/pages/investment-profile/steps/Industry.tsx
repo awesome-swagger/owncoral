@@ -1,13 +1,8 @@
-import { forwardRef, useContext, useCallback, useEffect } from 'react';
+import { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-  InputField,
-} from '../../../components';
+import { Heading, Input, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -37,19 +32,18 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
     <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+        <Heading size="md" mt={8} mb={2} textAlign="left">
           What’s your Industry?
-        </HeadingTypography>
-        <TextTypography fontSize="md" textAlign="left">
+        </Heading>
+        <Text fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
-        </TextTypography>
-        <InputField
+        </Text>
+        <Input
           name="industry"
           ref={register({ required: true })}
           type="text"
           placeholder="Industry"
           h={12}
-          bg="#F3F3F3"
           mt={8}
         />
 

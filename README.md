@@ -36,6 +36,12 @@ going to turn it into a `Flex`).
 Make sure you also use [ref forwarding](https://reactjs.org/docs/forwarding-refs.html) when
 wrapping other React libraries.
 
+Note: forwarding refs only makes sense when:
+
+1. There's one clear 'wrapped' component
+2. Your wrapper component is reusable—don't bother ref forwarding a top-level page component,
+   for example
+
 
 ### Styling 101
 
@@ -65,6 +71,8 @@ Try to apply styles in this order:
    Styles can be set on the [component](./src/theme/components)
    or [globally](./src/theme/foundations). For colors, mostly stick to the `primary`
    or `secondary` [color swatches](./src/theme/foundations/colors.ts).
+   
+   See our [theme README](./src/theme/README.MD) for more suggestions.
 4. Lastly, you can apply global CSS through a Chakra
    [layer style](https://chakra-ui.com/docs/features/text-and-layer-styles), or in 
    [AppRootStyle.tsx](src/AppRootStyle.tsx). You shouldn't need this very often. 

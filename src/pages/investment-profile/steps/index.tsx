@@ -1,24 +1,25 @@
-import { useEffect, useReducer, createContext, useCallback } from 'react';
-import { useHistory, Route, Switch } from 'react-router-dom';
+import { createContext, useCallback, useEffect, useReducer } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
+
 import { retrieveState, storeState } from '../../../lib/utils';
 import { loginRoutes } from '../loginRoutes';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
 
-interface formStateType {
+type formStateType = {
   [key: string]: any;
-}
+};
 
-export interface ContextType {
+export type ContextType = {
   formState?: formStateType;
   dispatch?: any;
-}
+};
 
-interface ActionType {
+type ActionType = {
   type: string;
   payload: { [key: string]: any };
-}
+};
 export const StepFormContext = createContext<ContextType>({});
 
 function formReducer(state: formStateType, action: ActionType) {
@@ -54,11 +55,7 @@ const LoginFlow = () => {
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
         {loginRoutes.map(({ Component, path }, currStep) => (
-          <Route
-            path={path}
-            exact
-            key={path}
-          >
+          <Route path={path} exact key={path}>
             <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />
           </Route>
         ))}

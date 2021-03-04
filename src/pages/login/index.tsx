@@ -1,24 +1,27 @@
+import { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
+import { Link as RouterLink, useHistory } from 'react-router-dom';
 import {
   Box,
   Button,
   Center,
   FormControl,
   FormHelperText,
+  Heading,
   Icon,
   IconButton,
+  Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Link as ChakraLink,
   Spacer,
+  Spinner,
   useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
-import { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
-import { HeadingTypography, InputField } from '../../components';
 
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
@@ -49,9 +52,9 @@ function Login() {
         <Center>
           <VStack>
             {/* <Icon as={Logo} w={14} h={14} /> */}
-            <HeadingTypography size="md" color="primary.500">
+            <Heading size="md" color="primary.500">
               Coral
-            </HeadingTypography>
+            </Heading>
             <LoginForm />
           </VStack>
         </Center>
@@ -67,13 +70,19 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [_, setUser] = useContext<UserT>(UserContext);
   const history = useHistory();
 
   const isDev = process.env.NODE_ENV === 'development';
+  const linkHighlightColor = useColorModeValue('secondary.700', 'secondary.300');
 
   return (
-    <form onSubmit={handleSubmit(async (data) => onSubmit(data as FormContents, history, setUser))}>
+    <form
+      onSubmit={handleSubmit(async (data) =>
+        onSubmit(data as FormContents, history, setUser, setIsLoading),
+      )}
+    >
       <FormControl>
         <Center>
           <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }} textStyle="bodyText1">
@@ -81,7 +90,7 @@ function LoginForm() {
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
               </InputLeftElement>
-              <InputField
+              <Input
                 name="email"
                 type="email"
                 pl={8}
@@ -98,7 +107,7 @@ function LoginForm() {
                 <Icon as={FiLock} />
               </InputLeftElement>
 
-              <InputField
+              <Input
                 name="password"
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
@@ -125,8 +134,21 @@ function LoginForm() {
                 />
               </InputRightElement>
             </InputGroup>
-            <FormHelperText>{errors.password?.message}&nbsp;</FormHelperText>
-            <Button textStyle="button" type="submit" size="lg">
+            <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
+            <FormHelperText textStyles="caption" color={linkHighlightColor}>
+              Don&apos;t have an account?{' '}
+              <ChakraLink as={RouterLink} to="/signup">
+                Sign up here
+              </ChakraLink>
+            </FormHelperText>
+            <Box />
+            <Button
+              isLoading={isLoading}
+              textStyle="button"
+              type="submit"
+              size="lg"
+              spinner={<Spinner />}
+            >
               Log In
             </Button>
           </VStack>
@@ -140,15 +162,19 @@ type FormContents = {
   email: string;
   password: string;
 };
+// eslint-disable-next-line max-params
 async function onSubmit(
   data: FormContents,
   history: History,
   setUser: (u: UserT) => void,
+  setIsLoading: (isLoading: boolean) => void,
 ): Promise<void> {
+  setIsLoading(true);
   const resp = await fetchWrap('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),
   });
+  setIsLoading(false);
 
   if (resp.ok) {
     setUser(await resp.json());

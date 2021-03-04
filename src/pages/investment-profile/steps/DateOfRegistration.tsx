@@ -1,12 +1,7 @@
-import { useState, useCallback, forwardRef, useContext, useEffect } from 'react';
-import {
-  BackBtn,
-  Container,
-  DayPicker,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-} from '../../../components';
+import { forwardRef, useCallback, useContext, useEffect,useState } from 'react';
+import { Heading, Text } from '@chakra-ui/react';
+
+import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -50,12 +45,12 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+          <Heading size="md" mt={8} mb={2} textAlign="left">
             Which is the date of registration?
-          </HeadingTypography>
-          <TextTypography fontSize="md" textAlign="left">
+          </Heading>
+          <Text fontSize="md" textAlign="left">
             Lorem ipsum dolor sir amet
-          </TextTypography>
+          </Text>
           <DayPicker date={date} onChange={handleDateChange} />
           <SubmitBtn
             onClick={onSubmit}

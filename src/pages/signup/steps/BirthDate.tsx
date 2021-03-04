@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
-import { Box } from '@chakra-ui/react';
-import { BackBtn, Container, SubmitBtn, DayPicker, HeadingTypography } from '../../../components';
+import { Heading } from '@chakra-ui/react';
+
+import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -42,20 +43,18 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   }, []);
 
   return (
-    <Box ref={ref} layerStyle="noSelect">
-      <Container>
-        <BackBtn pos="absolute" handleClick={prevStep} />
+    <Container ref={ref} layerStyle="noSelect">
+      <BackBtn handleClick={prevStep} />
 
-        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
-          When is your Birthday?
-        </HeadingTypography>
-        <DayPicker date={date} onChange={handleDateChange} />
-        <SubmitBtn
-          onClick={onSubmit}
-          label="Continue"
-          disabled={date.year && date.month && date.day ? false : true}
-        />
-      </Container>
-    </Box>
+      <Heading size="md" mt={8} mb={2} textAlign="left">
+        When is your Birthday?
+      </Heading>
+      <DayPicker date={date} onChange={handleDateChange} />
+      <SubmitBtn
+        onClick={onSubmit}
+        label="Continue"
+        disabled={date.year && date.month && date.day ? false : true}
+      />
+    </Container>
   );
 });

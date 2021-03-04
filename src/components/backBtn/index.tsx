@@ -1,15 +1,25 @@
-// @ts-nocheck
-import React from 'react';
-import { Box, Icon } from '@chakra-ui/react';
-import { BsChevronLeft } from 'react-icons/bs';
+import type React from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
+import { forwardRef, Icon, IconButton, IconButtonProps } from '@chakra-ui/react';
 
 type BackBtnProps = {
-  pos?: 'initial' | 'absolute';
   handleClick: () => void;
 };
 
-export const BackBtn: React.FC<BackBtnProps> = ({ pos = 'initial', handleClick }: BackBtnProps) => (
-  <Box pos={pos} top={6} left={6} h={6} w={6} cursor="pointer" onClick={handleClick}>
-    <Icon as={BsChevronLeft} h={4} w={4} />
-  </Box>
+export const BackBtn = forwardRef<Omit<IconButtonProps & BackBtnProps, 'aria-label'>, 'button'>(
+  (props, ref) => {
+    const { handleClick }: BackBtnProps = props;
+
+    return (
+      <IconButton
+        icon={<Icon as={FiChevronLeft} h={7} w={7} />}
+        aria-label="Back button"
+        variant="unstyled"
+        onClick={handleClick}
+        _focus={{ boxShadow: 0 }}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
 );

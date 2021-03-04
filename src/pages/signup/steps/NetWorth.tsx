@@ -1,6 +1,7 @@
 import { forwardRef, useCallback, useContext } from 'react';
-import { Box, Progress, useColorModeValue } from '@chakra-ui/react';
-import { BackBtn, Container, HeadingTypography } from '../../../components';
+import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
+
+import { BackBtn, Container } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -37,9 +38,9 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
 
         <Progress mt={8} borderRadius="full" colorScheme="primary" size="sm" value={40} />
 
-        <HeadingTypography size="md" as="h4" mt={8} mb={2} textAlign="left">
+        <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
           What is your net worth?
-        </HeadingTypography>
+        </Heading>
         {netWorth.map(({ value }) => (
           <Box
             px={6}

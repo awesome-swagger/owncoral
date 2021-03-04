@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
-import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronRight } from 'react-icons/bs';
-import { HeadingTypography } from '../../components';
 
 export const Option = ({
   children,
@@ -16,7 +15,7 @@ export const Option = ({
   const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255, 0.15)');
 
   return (
-    <HeadingTypography fontSize="sm" m="0">
+    <Heading fontSize="sm" m="0">
       <Flex
         m="1px 0"
         p={3}
@@ -44,6 +43,6 @@ export const Option = ({
           ''
         )}
       </Flex>
-    </HeadingTypography>
+    </Heading>
   );
 };

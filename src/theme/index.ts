@@ -11,6 +11,7 @@ import type { ColorModeOptions } from '@chakra-ui/system';
 import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
+import { Text } from './components/text';
 // Foundational style overrides
 import { colors } from './foundations/colors';
 import { shadows } from './foundations/shadows';
@@ -39,6 +40,7 @@ const overrides = {
     Button,
     Input,
     Heading,
+    Text,
   },
 };
 

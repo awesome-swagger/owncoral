@@ -1,16 +1,25 @@
 import React, { Fragment } from 'react';
-import { Box, Center, Flex, Image, useColorModeValue, VStack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  Spinner,
+  Text,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react';
 import { format as formatDate } from 'date-fns';
 
-import { PortfolioChart } from './chart';
-import type { PropertyDataT } from './fakePropertyData';
-import { propertyData } from './fakePropertyData';
-import theme from '../../theme';
 import lowPolyHouseSm from '../../assets/low-poly-1-still-sm.png';
+import { NavBar } from '../../components';
+import type { PropertyDataT } from '../../lib/fakePropertyData';
+import { propertyData } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
-
-import { NavBar, HeadingTypography, TextTypography } from '../../components';
+import theme from '../../theme';
+import { PortfolioChart } from './chart';
 
 // TODO: make responsive
 function Portfolio() {
@@ -36,9 +45,9 @@ function Portfolio() {
           maxW={theme.breakpoints.sm}
           paddingX={[3, 4, 6]}
         >
-          <HeadingTypography size="md" m={0} mt={2}>
+          <Heading size="md" m={0} mt={2}>
             Portfolio
-          </HeadingTypography>
+          </Heading>
           <Box shadow="xs" maxW={400} borderRadius="xl" mt={3} p={6} bgColor={muiCardColor}>
             <Center>
               <VStack>
@@ -80,7 +89,7 @@ function Portfolio() {
           <VStack width="100%">
             {propertyData.map((property: PropertyDataT) => (
               <PropertyCard
-                key={property.uri}
+                key={property.uriAddress}
                 property={property}
                 highlightForeground={highlightForeground}
                 muiCardColor={muiCardColor}
@@ -111,55 +120,59 @@ function PropertyCard(props: PropertyCardProps) {
       mb={3}
       borderRadius="lg"
       width="100%"
-      key={property.uri}
+      key={property.uriAddress}
       shadow="xs"
       _hover={{ shadow: 'md', bgColor: muiCardColorActive }}
       sx={{ transition: 'all 0.1s' }}
-      to={property.uri}
+      to={`/property/${property.uriAddress}`}
       bgColor={muiCardColor}
     >
       <Flex width="100%" mb={2}>
-        <HeadingTypography size="xs" m={0} flexGrow={1}>
+        <Heading size="xs" m={0} flexGrow={1}>
           {property.name}
-        </HeadingTypography>
+        </Heading>
         <Box textAslign="right">
-          <TextTypography>
+          <Text>
             {property.cityLocality}, {property.stateRegion}
-          </TextTypography>
+          </Text>
         </Box>
       </Flex>
       <Flex alignItems="top" justifyItems="stretch">
         <Center width={120} marginY={-4} marginLeft={-2} mr={5}>
           <VStack>
-            <Image src={lowPolyHouseSm} alt="House stylized picture" />
+            <Image
+              src={lowPolyHouseSm}
+              alt={`${property.name} (stylized)`}
+              fallback={<Spinner />}
+            />
           </VStack>
         </Center>
         <Flex direction="column" width="100%">
           <Flex textAlign="center" direction="row">
             <Box flexGrow={1} mb={3}>
-              <TextTypography textStyle="h6" m={0} color={highlightForeground}>
+              <Text textStyle="h6" m={0} color={highlightForeground}>
                 ${formatFinancial(property.distributionLast)}
-              </TextTypography>
-              <TextTypography textStyle="caption">
+              </Text>
+              <Text textStyle="caption">
                 last paid {formatDate(property.distributionLastDate, `MMM dd`)}
-              </TextTypography>
+              </Text>
             </Box>
 
             <Box flexGrow={1}>
-              <TextTypography textStyle="h6" m={0} color={highlightForeground}>
+              <Text textStyle="h6" m={0} color={highlightForeground}>
                 ${formatFinancial(property.distributionTotal)}
-              </TextTypography>
-              <TextTypography textStyle="caption">total to-date</TextTypography>
+              </Text>
+              <Text textStyle="caption">total to-date</Text>
             </Box>
           </Flex>
 
           <Center>
-            <TextTypography textStyle="subTitle1">
+            <Text textStyle="subTitle1">
               <Box as="span" textStyle="h6" color={highlightForeground}>
                 ${formatFinancial(property.contribution)}
               </Box>{' '}
               investment
-            </TextTypography>
+            </Text>
           </Center>
         </Flex>
       </Flex>

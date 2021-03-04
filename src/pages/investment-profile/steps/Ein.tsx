@@ -1,13 +1,8 @@
-import { forwardRef, useContext, useEffect, useCallback, useState } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import InputMask from 'react-input-mask';
+import { Heading, Input, Text } from '@chakra-ui/react';
 
-import {
-  BackBtn,
-  Container,
-  SubmitBtn,
-  HeadingTypography,
-  TextTypography,
-  InputMaskField,
-} from '../../../components';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -42,13 +37,14 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
     <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <HeadingTypography size="md" mt={8} mb={2} textAlign="left">
+        <Heading size="md" mt={8} mb={2} textAlign="left">
           What’s your EIN?
-        </HeadingTypography>
-        <TextTypography fontSize="md" textAlign="left">
+        </Heading>
+        <Text fontSize="md" textAlign="left">
           Lorem ipsum dolor sir amet
-        </TextTypography>
-        <InputMaskField
+        </Text>
+        <Input
+          as={InputMask}
           placeholder="XX-XXXXXXX"
           className={error ? 'mask_input shake_animation' : 'mask_input'}
           name="ein"
@@ -59,9 +55,9 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
             setError(false);
           }}
         />
-        <TextTypography mt={2} color="red">
+        <Text mt={2} color="red">
           {error ? 'Please enter a valid EIN number' : ''}
-        </TextTypography>
+        </Text>
 
         <SubmitBtn onClick={onSubmit} label="Continue" />
       </Container>

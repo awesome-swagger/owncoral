@@ -1,4 +1,4 @@
-import { Center, useColorModeValue } from '@chakra-ui/react';
+import { Center, Text, useColorModeValue } from '@chakra-ui/react';
 import { getColor } from '@chakra-ui/theme-tools';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { curveBasis } from '@visx/curve';
@@ -9,7 +9,7 @@ import { defaultStyles, Tooltip, useTooltip, withTooltip } from '@visx/tooltip';
 import type { WithTooltipProvidedProps } from '@visx/tooltip/lib/enhancers/withTooltip';
 import type { NumberValue } from 'd3-scale';
 import { format } from 'date-fns';
-import { TextTypography } from '../../components';
+
 import theme from '../../theme';
 import { chartData, ChartDataT } from './fakeChartData';
 
@@ -184,16 +184,14 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
         {(tooltipOpen || true) && tooltipData && (
           <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
             <Center>
-              <TextTypography textStyle="caption">
-                {format(tooltipData.t, `MMM yyyy`)}
-              </TextTypography>
+              <Text textStyle="caption">{format(tooltipData.t, `MMM yyyy`)}</Text>
             </Center>
-            <TextTypography textStyle="caption" color={primaryTooltipColor}>
+            <Text textStyle="caption" color={primaryTooltipColor}>
               ${tooltipData.actual} distributed
-            </TextTypography>
-            <TextTypography textStyle="caption" color={secondaryTooltipColor}>
+            </Text>
+            <Text textStyle="caption" color={secondaryTooltipColor}>
               ${tooltipData.expected} projected
-            </TextTypography>
+            </Text>
           </Tooltip>
         )}
       </div>
