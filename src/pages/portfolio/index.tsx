@@ -138,7 +138,7 @@ function PropertyCard(props: PropertyCardProps) {
         </Box>
       </Flex>
       <Flex alignItems="top" justifyItems="stretch">
-        <Center width={120} marginY={-4} marginLeft={-2} mr={5}>
+        <Center width={120} marginY={-4} marginLeft={-3} mr={2}>
           <VStack>
             <Image
               src={lowPolyHouseSm}
@@ -151,7 +151,7 @@ function PropertyCard(props: PropertyCardProps) {
           <Flex textAlign="center" direction="row">
             <Box flexGrow={1} mb={3}>
               <Text textStyle="h6" m={0} color={highlightForeground}>
-                ${formatFinancial(property.distributionLast)}
+                ${formatFinancial(property.distributionLastActual)}
               </Text>
               <Text textStyle="caption">
                 last paid {formatDate(property.distributionLastDate, `MMM dd`)}
@@ -160,7 +160,7 @@ function PropertyCard(props: PropertyCardProps) {
 
             <Box flexGrow={1}>
               <Text textStyle="h6" m={0} color={highlightForeground}>
-                ${formatFinancial(property.distributionTotal)}
+                ${formatFinancial(property.distributionTotalActual)}
               </Text>
               <Text textStyle="caption">total to-date</Text>
             </Box>

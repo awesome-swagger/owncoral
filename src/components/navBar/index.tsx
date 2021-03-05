@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { FiFileText, FiHome, FiMoon, FiSun, FiTrendingUp } from 'react-icons/fi';
+import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Avatar,
@@ -9,6 +9,7 @@ import {
   Heading,
   HStack,
   Icon,
+  Spacer,
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
@@ -37,13 +38,22 @@ const navLinks = [
 ];
 
 /*
-  Note that in dark mode, we lighten cards by applying transparency. The headers and footers need
-  a solid dark backing (else content will show up through the transparency), hence the apparenlty
-  useless doubled up <Box>es
+  Layout
+    Children are inlined into top left area. Logo is centered, but
+    can be pushed rightward by children (children can take up to 50% area).
 
-  https://material.io/design/color/dark-theme.html#properties
+    Below md breakpoint, nav buttons are shown in a bottom bar.
+    At md and above, nav buttons are inlined into top right.
+
+
+  Styling
+    In dark mode, we lighten cards by applying transparency. The headers and footers need
+    a solid dark backing (else content will show up through the transparency), hence the apparenlty
+    useless doubled up <Box>es
+
+    Reference: https://material.io/design/color/dark-theme.html#properties
  */
-export function NavBar() {
+export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
   const bgColor = useColorModeValue('white', 'rgba(255, 255, 255, 0.15)');
@@ -63,8 +73,13 @@ export function NavBar() {
         bgColor="gray.800"
         zIndex={1}
       >
-        <Box bgColor={bgColor} h="100%" w="100%">
-          <Center pos="absolute" w="100%" h={16}>
+        <Flex align="center" justify="center" bgColor={bgColor} h="100%" w="100%">
+          {/* Children are allowed to push the logo right, but not too far */}
+          <Box flexBasis={0} flexGrow={1} maxW="50%">
+            {props.children}
+          </Box>
+
+          <Center h="100%" marginX={5}>
             <Flex h="100%" align="center">
               {/* <Icon as={Logo} w={8} h={8} /> */}
               <Heading as="h5" size="sm" color="primary.500" m={0}>
@@ -73,23 +88,18 @@ export function NavBar() {
             </Flex>
           </Center>
 
-          <HStack
-            align="center"
-            position="absolute"
-            right={0}
-            h="16"
-            pr={3}
-            justify="right"
-            spacing={3}
-          >
-            <Box h="100%" display={{ base: 'none', md: 'block' }}>
-              <NavButtons currentPageName={currentPageName} />
-            </Box>
-            {/* TODO: profile menu */}
-            <ColorModeButton />
-            <Avatar src="https://bit.ly/sage-adebayo" />
-          </HStack>
-        </Box>
+          <Flex flexBasis={0} flexGrow={1}>
+            <Spacer />
+            <HStack h="100%" pr={3} justify="right" align="center" spacing={3}>
+              <Box h="100%" display={{ base: 'none', md: 'block' }}>
+                <NavButtons currentPageName={currentPageName} />
+              </Box>
+              {/* TODO: profile menu */}
+              <ColorModeButton />
+              <Avatar src="https://bit.ly/sage-adebayo" />
+            </HStack>
+          </Flex>
+        </Flex>
       </Box>
 
       {/* This goes at bottom of content to match footer height */}

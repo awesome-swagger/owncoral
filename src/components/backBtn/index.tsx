@@ -4,18 +4,17 @@ import { forwardRef, Icon, IconButton, IconButtonProps } from '@chakra-ui/react'
 
 type BackBtnProps = {
   handleClick: () => void;
+  'aria-label'?: string;
 };
 
-export const BackBtn = forwardRef<Omit<IconButtonProps & BackBtnProps, 'aria-label'>, 'button'>(
+export const BackBtn = forwardRef<Omit<IconButtonProps, 'aria-label'> & BackBtnProps, 'button'>(
   (props, ref) => {
-    const { handleClick }: BackBtnProps = props;
-
     return (
       <IconButton
         icon={<Icon as={FiChevronLeft} h={7} w={7} />}
         aria-label="Back button"
         variant="unstyled"
-        onClick={handleClick}
+        onClick={props.handleClick}
         _focus={{ boxShadow: 0 }}
         ref={ref}
         {...props}
