@@ -5,6 +5,7 @@ import { Box, Icon, Heading, Text } from '@chakra-ui/react';
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
+import { layerStyles } from '../../../theme/layerStyles';
 
 type stepProps = {
   nextStep: () => void;
@@ -42,6 +43,11 @@ export const TaxClassification = forwardRef<DivRef, stepProps>(
               pos="relative"
               key="value"
               layerStyle="selectionBox"
+              bg={
+                value === form?.formState?.step8?.tax_classification
+                  ? layerStyles.selectionBox.selected
+                  : layerStyles.selectionBox.bg
+              }
               borderRadius="full"
               onClick={() => {
                 form.dispatch({

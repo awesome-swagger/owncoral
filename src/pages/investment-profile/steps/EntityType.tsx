@@ -1,10 +1,11 @@
 import { forwardRef, useContext } from 'react';
 import { BsChevronRight } from 'react-icons/bs';
-import { Box, Heading, Icon , Text } from '@chakra-ui/react';
+import { Box, Heading, Icon, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
+import { layerStyles } from '../../../theme/layerStyles';
 
 type stepProps = {
   nextStep: () => void;
@@ -42,6 +43,11 @@ export const EntityType = forwardRef<DivRef, stepProps>(
               pos="relative"
               key={value}
               layerStyle="selectionBox"
+              bg={
+                value === form?.formState?.step7?.entity_type
+                  ? layerStyles.selectionBox.selected
+                  : layerStyles.selectionBox.bg
+              }
               borderRadius="full"
               onClick={() => {
                 form.dispatch({

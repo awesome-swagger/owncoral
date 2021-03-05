@@ -22,13 +22,18 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback((value) => {
-    nextStep();
     form.dispatch({ type: 'update-form', payload: { step9: value } });
+    nextStep();
   }, []);
 
   const selectionColors = useColorModeValue(
-    { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' } },
-    { bg: 'whiteAlpha.100', color: 'white', _hover: { bg: 'secondary.800' } },
+    { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' }, selected: 'gray.300' },
+    {
+      bg: 'whiteAlpha.100',
+      color: 'white',
+      _hover: { bg: 'secondary.800' },
+      selected: 'whiteAlpha.400',
+    },
   );
 
   return (
@@ -47,6 +52,7 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             py={3}
             mt={2}
             {...selectionColors}
+            bg={value === form?.formState?.step9 ? selectionColors.selected : selectionColors.bg}
             borderRadius="full"
             textAlign="left"
             cursor="pointer"

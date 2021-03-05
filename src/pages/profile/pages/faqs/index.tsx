@@ -3,7 +3,7 @@ import { Option, BackBtn } from '../../../../components';
 
 export const Faqs = ({ goBack }: { goBack: () => void }) => {
   return (
-    <Box p={6}>
+    <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
 
       <Heading mb={6} mt="0" mx="0" fontSize="lg" align="center">

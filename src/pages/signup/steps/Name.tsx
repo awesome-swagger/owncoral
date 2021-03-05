@@ -26,6 +26,13 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
     [handleSubmit],
   );
 
+  const handleChange = useCallback(
+    (data) => {
+      form.dispatch({ type: 'update-form', payload: { step2: data } });
+    },
+    [handleSubmit],
+  );
+
   useEffect(() => {
     const formState = form.formState;
 
@@ -50,6 +57,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           h={12}
           mt={8}
           variant="filled"
+          onChange={handleSubmit(handleChange)}
         />
         <Input
           placeholder="Last Name"
@@ -58,6 +66,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           h={12}
           mt={8}
           variant="filled"
+          onChange={handleSubmit(handleChange)}
         />
         <Button
           pos="absolute"

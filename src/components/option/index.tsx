@@ -14,7 +14,7 @@ export const Option = ({
   borderRadius?: boolean;
 }) => {
   const bgColor = useColorModeValue('#f3f3f3', 'rgba(255, 255, 255, 0.15)');
-  const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255, 0.15)');
+  const color = useColorModeValue('#4E504F', 'rgba(255, 255, 255)');
 
   return (
     <Heading fontSize="sm" m="0">
