@@ -23,6 +23,7 @@ export const EntityAddress = forwardRef<DivRef, stepProps>(
     } = usePlacesAutocomplete({
       requestOptions: {},
       debounce: 300,
+      callbackName: 'initMap',
     });
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
       setValue(e.target.value);

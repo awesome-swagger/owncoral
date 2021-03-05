@@ -6,4 +6,16 @@ import { NavBar } from './navBar';
 import { SubmitBtn } from './submitBtn';
 import { Option } from './option';
 
-export { BackBtn, Container, DayPicker, DebugPanel, FlexContainer, NavBar, SubmitBtn, Option };
+import { ColorModeButton } from './colorModeButton';
+
+export {
+  BackBtn,
+  Container,
+  DayPicker,
+  DebugPanel,
+  FlexContainer,
+  NavBar,
+  SubmitBtn,
+  Option,
+  ColorModeButton,
+};
