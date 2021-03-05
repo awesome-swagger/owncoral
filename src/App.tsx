@@ -47,8 +47,6 @@ function App() {
           </Route>
           <Route exact path="/portfolio" component={Portfolio} />
           <Route exact path="/property/:address" component={Property} />
-          {/* <Route exact path="/profile" component={Profile} /> */}
-          {/* <Route exact path="/properties/:id" component={Property} /> */}
           {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
           {/* <Route exact path="/documents" component={Docs} /> */}
           {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}

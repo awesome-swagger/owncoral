@@ -1,4 +1,4 @@
-import { ChangeEvent,forwardRef, useContext } from 'react';
+import { ChangeEvent, forwardRef, useContext } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
@@ -23,6 +23,7 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
     } = usePlacesAutocomplete({
       requestOptions: {},
       debounce: 300,
+      callbackName: 'initMap',
     });
     const handleInput = (e: ChangeEvent<HTMLInputElement>): void => {
       setValue(e.target.value);

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import type { History } from 'history';
 
+import { ColorModeButton } from '../../components';
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';
@@ -32,34 +33,37 @@ function Login() {
   const backgroundColor = useColorModeValue('inherit', 'whiteAlpha.100');
 
   return (
-    <Center>
-      <Box
-        boxShadow="xl"
-        rounded="3xl"
-        w="60%"
-        minW="300px"
-        maxW="350px"
-        pos="fixed"
-        left="50%"
-        top="50%"
-        m={[2, 3]}
-        p={[8, 10]}
-        backgroundColor={backgroundColor}
-        sx={{
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        <Center>
-          <VStack>
-            {/* <Icon as={Logo} w={14} h={14} /> */}
-            <Heading size="md" color="primary.500">
-              Coral
-            </Heading>
-            <LoginForm />
-          </VStack>
-        </Center>
-      </Box>
-    </Center>
+    <Fragment>
+      <Center>
+        <Box
+          boxShadow="xl"
+          rounded="3xl"
+          w="60%"
+          minW="300px"
+          maxW="350px"
+          pos="fixed"
+          left="50%"
+          top="50%"
+          m={[2, 3]}
+          p={[8, 10]}
+          backgroundColor={backgroundColor}
+          sx={{
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <Center>
+            <VStack>
+              {/* <Icon as={Logo} w={14} h={14} /> */}
+              <Heading size="md" color="primary.500">
+                Coral
+              </Heading>
+              <LoginForm />
+            </VStack>
+          </Center>
+        </Box>
+      </Center>
+      <ColorModeButton pos="fixed" top={6} right={6} />
+    </Fragment>
   );
 }
 

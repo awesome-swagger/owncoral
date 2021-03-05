@@ -4,5 +4,6 @@ import { DayPicker } from './daypicker';
 import { DebugPanel } from './debugPanel';
 import { NavBar } from './navBar';
 import { SubmitBtn } from './submitBtn';
+import { ColorModeButton } from './colorModeButton';
 
-export { BackBtn, Container, DayPicker, DebugPanel, FlexContainer, NavBar, SubmitBtn };
+export { BackBtn, Container, DayPicker, DebugPanel, FlexContainer, NavBar, SubmitBtn, ColorModeButton };

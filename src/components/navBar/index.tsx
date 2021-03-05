@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
+import { FiFileText, FiHome, FiMoon, FiSun, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Avatar,
@@ -15,8 +15,8 @@ import {
 import { Portal } from '@visx/tooltip';
 
 // import Logo from '../../assets/coral.svg';
-// import { colors } from '../../theme/foundations/colors';
 import { bodyText2 } from '../../theme/textStyles';
+import { ColorModeButton } from '../colorModeButton';
 
 const navLinks = [
   {
@@ -86,6 +86,7 @@ export function NavBar() {
               <NavButtons currentPageName={currentPageName} />
             </Box>
             {/* TODO: profile menu */}
+            <ColorModeButton />
             <Avatar src="https://bit.ly/sage-adebayo" />
           </HStack>
         </Box>
