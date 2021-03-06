@@ -1,3 +1,4 @@
+import type React from 'react';
 import {
   Box,
   Heading,
@@ -17,7 +18,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
       <Heading mb={8} mt="0" mx="0" fontSize="lg" align="center">
-        FAQS
+        FAQ
       </Heading>
       <Accordion allowToggle>
         <AccordionItem bg={bgColor} _hover={hover}>

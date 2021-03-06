@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 import { BsCircle, BsQuestionCircle } from 'react-icons/bs';
 import { BiSupport } from 'react-icons/bi';

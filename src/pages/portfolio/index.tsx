@@ -138,7 +138,7 @@ function PropertyCard(props: PropertyCardProps) {
         </Box>
       </Flex>
       <Flex alignItems="top" justifyItems="stretch">
-        <Center width={120} marginY={-4} marginLeft={-3} mr={2}>
+        <Center width={120} marginY={-4} marginLeft={-2} mr={5}>
           <VStack>
             <Image
               src={lowPolyHouseSm}

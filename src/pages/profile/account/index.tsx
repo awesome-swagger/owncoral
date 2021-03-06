@@ -1,9 +1,10 @@
-import { Box } from '@chakra-ui/react';
+import type React from 'react';
+import { Box, Heading } from '@chakra-ui/react';
 import { IoMdNotificationsOutline } from 'react-icons/io';
 import { FaRegDotCircle } from 'react-icons/fa';
 import { BsPerson } from 'react-icons/bs';
+
 import { Option } from '../../../components';
-import { Heading } from '@chakra-ui/react';
 
 export const Account = ({ handleClick }: { handleClick: (x: Number) => void }) => {
   return (
@@ -18,7 +19,7 @@ export const Account = ({ handleClick }: { handleClick: (x: Number) => void }) =
           }}
         />
         <Heading fontSize="sm" m="0">
-          Personal Inforamtion
+          Personal Information
         </Heading>
       </Option>
       <Option onClick={() => handleClick(2)}>

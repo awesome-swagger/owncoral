@@ -32,11 +32,12 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
     },
     [setDate],
   );
+
   useEffect(() => {
-    Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18
-      ? form.dispatch({ type: 'update-form', payload: { step3: date } })
-      : '';
+    if( Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18 )
+      form.dispatch({ type: 'update-form', payload: { step3: date } });
   }, [date]);
+
   const onSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step3: date } });
     nextStep();

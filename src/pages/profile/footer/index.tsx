@@ -1,6 +1,8 @@
+import type React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Box, Heading } from '@chakra-ui/react';
+
 import { Option } from '../../../components';
 
 export const Footer = ({ handleClick }: { handleClick: (x: String) => void }) => (

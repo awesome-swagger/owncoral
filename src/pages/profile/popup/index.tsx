@@ -1,5 +1,6 @@
-import { Container } from '../../../components';
+import type React from 'react';
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Container } from '../../../components';
 
 export const PopUp = ({
   handleClick,

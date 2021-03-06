@@ -1,11 +1,11 @@
 import { useState, useRef, useLayoutEffect } from 'react';
+import { Portal } from '@chakra-ui/react';
 import { Account } from './account';
 import { Help } from './help';
 import { Header } from './header';
 import { Legal } from './legal';
 import { Footer } from './footer';
 import { PopUp } from './popup';
-import { Portal } from '@chakra-ui/react';
 import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
 import { Container } from '../../components';
 

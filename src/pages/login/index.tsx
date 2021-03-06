@@ -23,11 +23,11 @@ import {
 } from '@chakra-ui/react';
 import type { History } from 'history';
 
-import { ColorModeButton } from '../../components';
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
+import { ColorModeButton } from '../../components';
 
 function Login() {
   const backgroundColor = useColorModeValue('inherit', 'whiteAlpha.100');

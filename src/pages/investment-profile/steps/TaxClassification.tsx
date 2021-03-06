@@ -5,7 +5,6 @@ import { Box, Icon, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
-import { layerStyles } from '../../../theme/layerStyles';
 
 type stepProps = {
   nextStep: () => void;

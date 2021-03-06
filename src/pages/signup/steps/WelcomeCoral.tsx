@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, FlexContainer } from '../../../components';

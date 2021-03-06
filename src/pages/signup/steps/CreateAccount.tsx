@@ -1,6 +1,5 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
 import {
   Box,
   Heading,
@@ -18,6 +17,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { FormRef } from '../index';

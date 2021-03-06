@@ -5,7 +5,7 @@ import theme from '../../../theme';
 
 export const Header = () => {
   const [loading, setLoading] = useState(true);
-  console.log('img loading', loading);
+
   return (
     <Box>
       <Center m=".5rem 0">
@@ -20,7 +20,7 @@ export const Header = () => {
         John Doe
       </Heading>
       <Heading m="0" fontSize="md" align="center">
-        jhondoe@gmail.com
+        johndoe@gmail.com
       </Heading>
     </Box>
   );

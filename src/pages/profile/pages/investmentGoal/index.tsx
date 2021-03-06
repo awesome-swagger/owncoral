@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 import { Option, BackBtn } from '../../../../components';
 
