@@ -29,6 +29,7 @@ code {
   border: 1px solid;
   border-color: inherit;
   margin-top: 2rem;
+  font-family: monospace;
 }
 
 .mask_input:focus {

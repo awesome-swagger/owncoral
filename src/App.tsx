@@ -17,6 +17,7 @@ import Portfolio from './pages/portfolio';
 import Login from './pages/login';
 import LoginFlow from './pages/investment-profile/steps';
 import Property from './pages/property';
+import Profile from './pages/profile';
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -47,6 +48,8 @@ function App() {
           </Route>
           <Route exact path="/portfolio" component={Portfolio} />
           <Route exact path="/property/:address" component={Property} />
+          <Route exact path="/profile" component={Profile} />
+          {/* <Route exact path="/properties/:id" component={Property} /> */}
           {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
           {/* <Route exact path="/documents" component={Docs} /> */}
           {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}

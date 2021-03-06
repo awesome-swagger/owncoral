@@ -33,6 +33,14 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       const formState = form.formState;
       setPhoneNumber(formState?.step3?.phoneNumber || '');
     }, []);
+    useEffect(
+      () =>
+        form.dispatch({
+          type: 'update-form',
+          payload: { step3: { phoneNumber } },
+        }),
+      [phoneNumber],
+    );
     return (
       <div ref={ref}>
         <Container>

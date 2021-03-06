@@ -1,5 +1,5 @@
 import { Dispatch, forwardRef, useCallback, useContext, useState } from 'react';
-import { BsChevronLeft } from 'react-icons/bs';
+import { FiChevronLeft } from 'react-icons/fi';
 import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn, Container, FlexContainer } from '../../../components';
@@ -73,7 +73,7 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
   return (
     <FlexContainer layerStyle="noSelect">
       <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
-        <BsChevronLeft style={{ width: '1rem', height: '1rem' }} />
+        <FiChevronLeft style={{ width: '1rem', height: '1rem' }} />
       </Box>
       <Heading size="md" as="h4" textAlign="center">
         Coral is currently available to accredited investors only

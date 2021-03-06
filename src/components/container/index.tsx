@@ -1,4 +1,3 @@
-import type React from 'react';
 import { Fragment } from 'react';
 import type { BoxProps, FlexProps } from '@chakra-ui/react';
 import { Box, Center, forwardRef, useColorModeValue } from '@chakra-ui/react';

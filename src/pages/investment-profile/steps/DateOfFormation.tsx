@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useContext, useEffect,useState } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useState, useMemo } from 'react';
 import { Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
@@ -19,6 +19,27 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
 
+    const checkValid = useMemo<boolean>(() => {
+      const now = Date.now();
+
+      const currentDate = new Date(
+        Number(date.year),
+        Number(date.month),
+        Number(date.day),
+      ).getTime();
+
+      return date.month &&
+        date.day &&
+        Number(date.day) < 31 &&
+        date.year &&
+        !(date.day || '').includes('_') &&
+        date.day.length !== 0 &&
+        !isNaN(currentDate) &&
+        currentDate < now
+        ? false
+        : true;
+    }, [date]);
+
     const form = useContext(StepFormContext);
     const handleDateChange = useCallback(
       (newDate) => {
@@ -34,13 +55,13 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
       form.dispatch({ type: 'update-form', payload: { step11: date } });
       nextStep();
     }, [date]);
+    useEffect(() => form.dispatch({ type: 'update-form', payload: { step11: date } }), [date]);
 
     useEffect(() => {
       const formState = form.formState;
 
       setDate(formState?.step11 || initialDate);
     }, []);
-
     return (
       <div ref={ref}>
         <Container>
@@ -52,11 +73,7 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
             Lorem ipsum dolor sir amet
           </Text>
           <DayPicker date={date} onChange={handleDateChange} />
-          <SubmitBtn
-            onClick={onSubmit}
-            label="Continue"
-            disabled={date.year && date.month && date.day ? false : true}
-          />
+          <SubmitBtn onClick={onSubmit} label="Continue" disabled={checkValid} />
         </Container>
       </div>
     );

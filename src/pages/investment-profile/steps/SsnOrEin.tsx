@@ -34,6 +34,15 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     setSsnNumber(formState?.step4?.ssnNumber || '');
   }, []);
 
+  useEffect(
+    () =>
+      form.dispatch({
+        type: 'update-form',
+        payload: { step4: { ssnNumber } },
+      }),
+    [ssnNumber],
+  );
+
   return (
     <div ref={ref}>
       <Container>

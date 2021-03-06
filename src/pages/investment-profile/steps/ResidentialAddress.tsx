@@ -1,8 +1,8 @@
 import { ChangeEvent, forwardRef, useContext } from 'react';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { Heading, Input, Text, Box } from '@chakra-ui/react';
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, Option } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -49,9 +49,9 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
         } = suggestion;
 
         return (
-          <li key={place_id} onClick={() => handleSelect(suggestion)}>
+          <Option icon={false} key={place_id} onClick={() => handleSelect(suggestion)}>
             <strong>{main_text}</strong> <small>{secondary_text}</small>
-          </li>
+          </Option>
         );
       });
     return (
@@ -72,7 +72,12 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
             onChange={handleInput}
             disabled={!ready}
           />
-          {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+          {status === 'OK' && (
+            <Box borderRadius="3xl" overflow="hidden" mt={1}>
+              {renderSuggestions()}
+            </Box>
+          )}
+
           <SubmitBtn label="Continue" />
         </Container>
       </div>

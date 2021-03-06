@@ -11,8 +11,8 @@ type stepProps = {
 export const WelcomeCoral = ({ nextStep, prevStep }: stepProps) => {
   return (
     <Fragment>
-      <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
       <FlexContainer layerStyle="noSelect">
+        <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
         <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
         <Heading size="md" as="h4" mt={8} textAlign="center">
           Welcome to Coral, John Doe!

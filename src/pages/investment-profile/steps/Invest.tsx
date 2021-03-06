@@ -1,5 +1,5 @@
 import { forwardRef, useContext } from 'react';
-import { BsChevronRight } from 'react-icons/bs';
+import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Box, Heading, Icon, Text } from '@chakra-ui/react';
 
@@ -53,7 +53,7 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             top="50%"
             right={4}
             transform="translateY(-50%)"
-            as={BsChevronRight}
+            as={FiChevronRight}
           />
         </Box>
         <Box
@@ -86,7 +86,7 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
             top="50%"
             right={4}
             transform="translateY(-50%)"
-            as={BsChevronRight}
+            as={FiChevronRight}
           />
         </Box>
       </Container>

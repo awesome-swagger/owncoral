@@ -18,6 +18,8 @@ const initialDate = {
 
 export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const [date, setDate] = useState(initialDate);
+  const currentYear = new Date().getFullYear();
+  const age = currentYear - Number(date.year);
 
   const form = useContext(StepFormContext);
 
@@ -30,7 +32,11 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
     },
     [setDate],
   );
-
+  useEffect(() => {
+    Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18
+      ? form.dispatch({ type: 'update-form', payload: { step3: date } })
+      : '';
+  }, [date]);
   const onSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step3: date } });
     nextStep();
@@ -50,10 +56,18 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
         When is your Birthday?
       </Heading>
       <DayPicker date={date} onChange={handleDateChange} />
+      <Heading size="xs" color="red">
+        {age < 18 ? 'You are under 18!' : ''}
+      </Heading>
+
       <SubmitBtn
         onClick={onSubmit}
         label="Continue"
-        disabled={date.year && date.month && date.day ? false : true}
+        disabled={
+          Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18
+            ? false
+            : true
+        }
       />
     </Container>
   );
