@@ -1,11 +1,10 @@
 import { forwardRef, useContext } from 'react';
-import { BsChevronRight } from 'react-icons/bs';
-import { Box, Heading, Icon, Text } from '@chakra-ui/react';
+import { FiChevronRight } from 'react-icons/fi';
+import { Box, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
-import { layerStyles } from '../../../theme/layerStyles';
 
 type stepProps = {
   nextStep: () => void;
@@ -22,7 +21,15 @@ const Types = [
 export const EntityType = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-
+    const selectionColors = useColorModeValue(
+      { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' }, selected: 'gray.300' },
+      {
+        bg: 'whiteAlpha.100',
+        color: 'white',
+        _hover: { bg: 'secondary.800' },
+        selected: 'whiteAlpha.400',
+      },
+    );
     return (
       <div ref={ref}>
         <Container>
@@ -42,11 +49,11 @@ export const EntityType = forwardRef<DivRef, stepProps>(
               cursor="pointer"
               pos="relative"
               key={value}
-              layerStyle="selectionBox"
+              {...selectionColors}
               bg={
                 value === form?.formState?.step7?.entity_type
-                  ? layerStyles.selectionBox.selected
-                  : layerStyles.selectionBox.bg
+                  ? selectionColors.selected
+                  : selectionColors.bg
               }
               borderRadius="full"
               onClick={() => {
@@ -65,7 +72,7 @@ export const EntityType = forwardRef<DivRef, stepProps>(
                 top="50%"
                 right={4}
                 transform="translateY(-50%)"
-                as={BsChevronRight}
+                as={FiChevronRight}
               />
             </Box>
           ))}

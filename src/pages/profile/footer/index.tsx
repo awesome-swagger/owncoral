@@ -1,4 +1,5 @@
-import { FiLogOut, RiDeleteBin6Line } from 'react-icons/all';
+import { FiLogOut } from 'react-icons/fi';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Box, Heading } from '@chakra-ui/react';
 import { Option } from '../../../components';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Center, Avatar, AvatarBadge, Box, Heading, Spinner } from '@chakra-ui/react';
-import { BiCamera } from 'react-icons/all';
+import { BiCamera } from 'react-icons/bi';
 import theme from '../../../theme';
 
 export const Header = () => {

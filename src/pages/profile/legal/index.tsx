@@ -1,5 +1,5 @@
 import { Box, Heading } from '@chakra-ui/react';
-import { ImFileEmpty } from 'react-icons/all';
+import { ImFileEmpty } from 'react-icons/im';
 import { Option } from '../../../components';
 
 export const Legal = () => (
