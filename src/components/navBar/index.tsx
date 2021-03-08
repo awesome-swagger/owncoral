@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Avatar,
   Box,
   Center,
   Flex,
@@ -13,11 +12,13 @@ import {
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
+
 import { Portal } from '@visx/tooltip';
 
 // import Logo from '../../assets/coral.svg';
 import { bodyText2 } from '../../theme/textStyles';
 import { ColorModeButton } from '../colorModeButton';
+import { ProfilePopOver } from '../profilePopOver';
 
 const navLinks = [
   {
@@ -96,7 +97,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
               </Box>
               {/* TODO: profile menu */}
               <ColorModeButton />
-              <Avatar src="https://bit.ly/sage-adebayo" />
+              <ProfilePopOver />
             </HStack>
           </Flex>
         </Flex>

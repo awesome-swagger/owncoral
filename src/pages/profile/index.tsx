@@ -1,5 +1,5 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-import { Portal } from '@chakra-ui/react';
+import { Portal, Box, useColorModeValue } from '@chakra-ui/react';
 import { Account } from './account';
 import { Help } from './help';
 import { Header } from './header';
@@ -26,20 +26,10 @@ function Profile() {
 
   return (
     <Container ref={ref}>
-      {overLay ? (
-        ''
-      ) : (
-        <div>
-          <Header />
-          <Account handleClick={handleClick} />
-          <Help handleClick={handleClick} />
-          <Legal />
-          <Footer handleClick={handlePopUp} />
-        </div>
-      )}
+      {overLay ? '' : <ProfileContent handleClick={handleClick} />}
 
       {overLay === 1 ? (
-        <PersonalInformation goBack={handleClose} />
+        <PersonalInformation goBack={handleClose} handleClick={handlePopUp} />
       ) : overLay === 2 ? (
         <InvestmentGoal goBack={handleClose} />
       ) : overLay === 3 ? (
@@ -62,6 +52,22 @@ function Profile() {
     </Container>
   );
 }
+
+export const ProfileContent = ({
+  handleClick,
+  popOver = false,
+}: {
+  handleClick: (x: Number) => void;
+  popOver?: boolean;
+}) => (
+  <Box borderRadius="xl" overflow="hidden">
+    <Header />
+    <Account popOver={popOver} handleClick={handleClick} />
+    <Help popOver={popOver} handleClick={handleClick} />
+    <Legal popOver={popOver} />
+    <Footer popOver={popOver} />
+  </Box>
+);
 
 // eslint-disable-next-line import/no-default-export
 export default Profile;

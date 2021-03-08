@@ -3,9 +3,11 @@ import { Box, Heading } from '@chakra-ui/react';
 import { ImFileEmpty } from 'react-icons/im';
 import { Option } from '../../../components';
 
-export const Legal = () => (
-  <Box mt={8}>
-    <Heading fontSize="md">Legal</Heading>
+export const Legal = ({ popOver }: { popOver: boolean }) => (
+  <Box mt={popOver ? 0 : 8}>
+    <Heading fontSize="md" display={popOver ? 'none' : 'initial'}>
+      Legal
+    </Heading>
     <Option icon={false}>
       <ImFileEmpty
         style={{

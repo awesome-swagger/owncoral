@@ -6,6 +6,7 @@ import { NavBar } from './navBar';
 import { SubmitBtn } from './submitBtn';
 import { Option } from './option';
 import { ColorModeButton } from './colorModeButton';
+import { ProfilePopOver } from './profilePopOver';
 
 export {
   BackBtn,
@@ -17,4 +18,5 @@ export {
   SubmitBtn,
   Option,
   ColorModeButton,
+  ProfilePopOver,
 };
