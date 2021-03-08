@@ -26,16 +26,6 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     nextStep();
   }, []);
 
-  const selectionColors = useColorModeValue(
-    { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' }, selected: 'gray.300' },
-    {
-      bg: 'whiteAlpha.100',
-      color: 'white',
-      _hover: { bg: 'secondary.800' },
-      selected: 'whiteAlpha.400',
-    },
-  );
-
   return (
     <Box ref={ref} layerStyle="noSelect">
       <Container>
@@ -51,8 +41,7 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             px={6}
             py={3}
             mt={2}
-            {...selectionColors}
-            bg={value === form?.formState?.step9 ? selectionColors.selected : selectionColors.bg}
+            layerStyle={value === form?.formState?.step9 ? 'selectionBox.selected' : 'selectionBox'}
             borderRadius="full"
             textAlign="left"
             cursor="pointer"

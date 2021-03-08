@@ -21,15 +21,7 @@ const EntityType = [
 export const TaxClassification = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-    const selectionColors = useColorModeValue(
-      { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' }, selected: 'gray.300' },
-      {
-        bg: 'whiteAlpha.100',
-        color: 'white',
-        _hover: { bg: 'secondary.800' },
-        selected: 'whiteAlpha.400',
-      },
-    );
+
     return (
       <div ref={ref}>
         <Container>
@@ -49,11 +41,10 @@ export const TaxClassification = forwardRef<DivRef, stepProps>(
               cursor="pointer"
               pos="relative"
               key="value"
-              {...selectionColors}
-              bg={
+              layerStyle={
                 value === form?.formState?.step8?.tax_classification
-                  ? selectionColors.selected
-                  : selectionColors.bg
+                  ? 'selectionBox.selected'
+                  : 'selectionBox'
               }
               borderRadius="full"
               onClick={() => {
