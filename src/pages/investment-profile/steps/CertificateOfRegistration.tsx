@@ -1,5 +1,5 @@
 import { forwardRef, useContext } from 'react';
-import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
@@ -26,12 +26,7 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
           </Text>
           <label>
             <Input d="none" type="file" />
-            <Box
-              border="2px dashed"
-              borderColor={useColorModeValue('gray.700', 'gray.200')}
-              p="14px"
-              cursor="pointer"
-            >
+            <Box border="2px dashed" layerStyle="borderColor" p="14px" cursor="pointer">
               <Text fontSize="md" textAlign="center" colorScheme="gray" variant="colored">
                 Upload Certificate of registration file
               </Text>

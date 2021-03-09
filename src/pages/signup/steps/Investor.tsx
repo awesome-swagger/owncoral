@@ -1,6 +1,6 @@
 import { Dispatch, forwardRef, useCallback, useContext, useState } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
-import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
@@ -68,8 +68,6 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
 });
 
 const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
-  const colorScheme = useColorModeValue('primary', 'secondary');
-
   return (
     <FlexContainer layerStyle="noSelect">
       <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
@@ -81,14 +79,7 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
       <Text fontSize="md" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
       </Text>
-      <Button
-        pos="absolute"
-        bottom={10}
-        left={6}
-        w="calc(100% - 3rem)"
-        h={12}
-        colorScheme={colorScheme}
-      >
+      <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
         Dismiss
       </Button>
     </FlexContainer>

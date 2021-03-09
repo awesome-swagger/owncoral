@@ -28,11 +28,8 @@ function Portfolio() {
   const bgColor = useColorModeValue('white', 'gray.800');
   const primary = useColorModeValue('primary.500', 'primary.400');
   const secondary = useColorModeValue('secondary.500', 'secondary.400');
-  const highlightForeground = useColorModeValue('primary.800', 'primary.200');
   // Based on: https://material.io/design/environment/elevation.html#default-elevations
   // andhttps://material.io/design/color/dark-theme.html#properties
-  const muiCardColor = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.05)');
-  const muiCardColorActive = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.12)');
 
   return (
     <Fragment>
@@ -48,18 +45,18 @@ function Portfolio() {
           <Heading size="md" m={0} mt={2}>
             Portfolio
           </Heading>
-          <Box shadow="xs" maxW={400} borderRadius="xl" mt={3} p={6} bgColor={muiCardColor}>
+          <Box shadow="xs" maxW={400} borderRadius="xl" mt={3} p={6} layerStyle="muiCardColor">
             <Center>
               <VStack>
                 <Box textAlign="center">
                   You received{' '}
-                  <Box as="span" color={highlightForeground} fontWeight="bold" textStyle="h5">
+                  <Box as="span" layerStyle="highlightForeground" fontWeight="bold" textStyle="h5">
                     $3,323
                   </Box>{' '}
                   last month
                   <br />
                   out of{' '}
-                  <Box as="span" color={highlightForeground} fontWeight="bold">
+                  <Box as="span" layerStyle="highlightForeground" fontWeight="bold">
                     $100k
                   </Box>{' '}
                   distributions to-date
@@ -91,9 +88,8 @@ function Portfolio() {
               <PropertyCard
                 key={property.uriAddress}
                 property={property}
-                highlightForeground={highlightForeground}
-                muiCardColor={muiCardColor}
-                muiCardColorActive={muiCardColorActive}
+                highlightForeground="highlightForeground"
+                muiCardColorActive="muiCardColorActive"
               />
             ))}
           </VStack>
@@ -106,11 +102,10 @@ function Portfolio() {
 type PropertyCardProps = {
   property: PropertyDataT;
   highlightForeground: string;
-  muiCardColor: string;
   muiCardColorActive: string;
 };
 function PropertyCard(props: PropertyCardProps) {
-  const { property, highlightForeground, muiCardColor, muiCardColorActive } = props;
+  const { property, highlightForeground, muiCardColorActive } = props;
 
   return (
     <Box
@@ -122,10 +117,9 @@ function PropertyCard(props: PropertyCardProps) {
       width="100%"
       key={property.uriAddress}
       shadow="xs"
-      _hover={{ shadow: 'md', bgColor: muiCardColorActive }}
       sx={{ transition: 'all 0.1s' }}
       to={`/property/${property.uriAddress}`}
-      bgColor={muiCardColor}
+      layerStyle={muiCardColorActive}
     >
       <Flex width="100%" mb={2}>
         <Heading size="xs" m={0} flexGrow={1}>
@@ -150,7 +144,7 @@ function PropertyCard(props: PropertyCardProps) {
         <Flex direction="column" width="100%">
           <Flex textAlign="center" direction="row">
             <Box flexGrow={1} mb={3}>
-              <Text textStyle="h6" m={0} color={highlightForeground}>
+              <Text textStyle="h6" m={0} layerStyle={highlightForeground}>
                 ${formatFinancial(property.distributionLastActual)}
               </Text>
               <Text textStyle="caption">
@@ -159,7 +153,7 @@ function PropertyCard(props: PropertyCardProps) {
             </Box>
 
             <Box flexGrow={1}>
-              <Text textStyle="h6" m={0} color={highlightForeground}>
+              <Text textStyle="h6" m={0} layerStyle={highlightForeground}>
                 ${formatFinancial(property.distributionTotalActual)}
               </Text>
               <Text textStyle="caption">total to-date</Text>
@@ -168,9 +162,9 @@ function PropertyCard(props: PropertyCardProps) {
 
           <Center>
             <Text textStyle="subTitle1">
-              <Box as="span" textStyle="h6" color={highlightForeground}>
+              <Box as="span" textStyle="h6" layerStyle={highlightForeground}>
                 ${formatFinancial(property.contribution)}
-              </Box>{' '}
+              </Box>
               investment
             </Text>
           </Center>

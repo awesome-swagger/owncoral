@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Progress } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from '../index';

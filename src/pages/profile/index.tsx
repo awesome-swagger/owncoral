@@ -1,5 +1,5 @@
 import { useState, useRef, useLayoutEffect } from 'react';
-import { Portal, Box, useColorModeValue } from '@chakra-ui/react';
+import { Portal, Box } from '@chakra-ui/react';
 import { Account } from './account';
 import { Help } from './help';
 import { Header } from './header';

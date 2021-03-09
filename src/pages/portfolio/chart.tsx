@@ -33,9 +33,8 @@ type PortfolioChartProps = {
 };
 export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
   (props: PortfolioChartProps & WithTooltipProvidedProps<ChartDataT>) => {
-    const primaryTooltipColor = useColorModeValue('primary.900', 'primary.100');
-    const secondaryTooltipColor = useColorModeValue('secondary.900', 'secondary.100');
     const expectedFillOpacity = useColorModeValue('0.2', '0.4');
+
     const colors = Object.fromEntries(
       ['color', 'primaryColor', 'secondaryColor', 'bgColor'].map((k) => [
         k,
@@ -187,10 +186,10 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
             <Center>
               <Text textStyle="caption">{format(tooltipData.t, `MMM yyyy`)}</Text>
             </Center>
-            <Text textStyle="caption" color={primaryTooltipColor}>
+            <Text textStyle="caption" layerStyle="primaryTooltipColor">
               ${tooltipData.actual} distributed
             </Text>
-            <Text textStyle="caption" color={secondaryTooltipColor}>
+            <Text textStyle="caption" layerStyle="secondaryTooltipColor">
               ${tooltipData.expected} projected
             </Text>
           </Tooltip>

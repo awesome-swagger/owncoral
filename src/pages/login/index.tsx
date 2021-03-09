@@ -18,7 +18,6 @@ import {
   Link as ChakraLink,
   Spacer,
   Spinner,
-  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
@@ -30,8 +29,6 @@ import { UserContext } from '../../userContext';
 import { ColorModeButton } from '../../components';
 
 function Login() {
-  const backgroundColor = useColorModeValue('inherit', 'whiteAlpha.100');
-
   return (
     <Fragment>
       <Center>
@@ -46,7 +43,7 @@ function Login() {
           top="50%"
           m={[2, 3]}
           p={[8, 10]}
-          backgroundColor={backgroundColor}
+          layerStyle="LoginColor"
           sx={{
             transform: 'translate(-50%, -50%)',
           }}
@@ -79,7 +76,6 @@ function LoginForm() {
   const history = useHistory();
 
   const isDev = process.env.NODE_ENV === 'development';
-  const linkHighlightColor = useColorModeValue('secondary.700', 'secondary.300');
 
   return (
     <form
@@ -139,7 +135,7 @@ function LoginForm() {
               </InputRightElement>
             </InputGroup>
             <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
-            <FormHelperText textStyles="caption" color={linkHighlightColor}>
+            <FormHelperText textStyles="caption" layerStyle="highLightColor">
               Don&apos;t have an account?{' '}
               <ChakraLink as={RouterLink} to="/signup">
                 Sign up here

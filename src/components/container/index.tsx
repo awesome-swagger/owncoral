@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import type { BoxProps, FlexProps } from '@chakra-ui/react';
-import { Box, Center, forwardRef, useColorModeValue } from '@chakra-ui/react';
+import { Box, Center, forwardRef } from '@chakra-ui/react';
 
 import theme from '../../theme';
 import { ColorModeButton } from '../colorModeButton';
@@ -8,8 +8,6 @@ import { ColorModeButton } from '../colorModeButton';
 // import Logo from '../../assets/coral.svg';
 
 export const Container = forwardRef<BoxProps, 'div'>((props, ref) => {
-  const muiCardColorActive = useColorModeValue('inherit', 'rgba(255, 255, 255, 0.05)');
-
   return (
     <Fragment>
       <Center w="100vw" h="100vh" pos="fixed">
@@ -20,7 +18,7 @@ export const Container = forwardRef<BoxProps, 'div'>((props, ref) => {
           w={{ base: '100vw', md: '80vw' }}
           h={{ base: '100vh', md: '80vh' }}
           borderRadius={{ base: 'none', md: '2xl' }}
-          bgColor={{ base: 'inherit', md: muiCardColorActive }}
+          layerStyle="muiCardColor"
           pos="relative"
           boxShadow="md"
           ref={ref}
