@@ -1,7 +1,7 @@
 import type React from 'react';
+import { Box, Heading } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
-import { Box, Heading } from '@chakra-ui/react';
 
 import { Option } from '../../../components';
 

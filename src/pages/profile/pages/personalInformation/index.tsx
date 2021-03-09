@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Box, FormControl, Switch, Heading } from '@chakra-ui/react';
-import { Option, BackBtn } from '../../../../components';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { Option, BackBtn } from '../../../../components';
 
 export const PersonalInformation = ({
   goBack,

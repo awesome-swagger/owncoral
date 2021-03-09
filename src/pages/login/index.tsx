@@ -18,11 +18,13 @@ import {
   Link as ChakraLink,
   Spacer,
   Spinner,
+  useToast,
   VStack,
 } from '@chakra-ui/react';
 import type { UseToastOptions } from '@chakra-ui/toast';
 import type { History } from 'history';
 
+import { ColorModeButton } from '../../components';
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';
@@ -139,6 +141,16 @@ function LoginForm() {
               </InputRightElement>
             </InputGroup>
             <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
+            <Box h={2} />
+            <Button isLoading={isLoading} type="submit" size="lg" spinner={<Spinner />}>
+              Log In
+            </Button>
+            <Box h={2} />
+            <ChakraLink as={RouterLink} to="/forgot">
+              Forgot Password?
+            </ChakraLink>
+
+            <FormHelperText textStyle="caption" layerStyle="highLightColor">
               Don&apos;t have an account?{' '}
               <ChakraLink as={RouterLink} to="/signup">
                 Sign up for Coral

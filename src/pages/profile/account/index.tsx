@@ -1,6 +1,5 @@
 import type React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
-import { IoMdNotificationsOutline } from 'react-icons/io';
 import { FaRegDotCircle } from 'react-icons/fa';
 import { BsPerson } from 'react-icons/bs';
 

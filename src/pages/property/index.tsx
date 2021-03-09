@@ -1,35 +1,111 @@
-import { Fragment } from 'react';
-import { useParams } from 'react-router-dom';
-import { Center, Flex, Heading } from '@chakra-ui/react';
+import React, { Fragment } from 'react';
+import { FiMapPin } from 'react-icons/fi';
+import { useHistory, useParams } from 'react-router-dom';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Image,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import { format as formatDate } from 'date-fns';
 
-import { propertyData } from '../../lib/fakePropertyData';
-import type { PropertyDataT } from '../../lib/fakePropertyData';
-import theme from '../../theme';
+import lowPolyHouseLg from '../../assets/low-poly-1.gif';
+import { BackBtn } from '../../components';
 import { NavBar } from '../../components/navBar';
+import type { PropertyDataT } from '../../lib/fakePropertyData';
+import { propertyData } from '../../lib/fakePropertyData';
+import { formatFinancial } from '../../lib/financialFormatter';
+import theme from '../../theme';
+import { PropertyTable } from './PropertyTable';
 
 function Property() {
   const { address: uriAddress } = useParams<{ address: string }>();
   const property: PropertyDataT | undefined = propertyData.find(
     (property) => property.uriAddress === uriAddress,
   );
+  const history = useHistory();
 
-  if(!property) return null;
-
-  return (
+  return !property ? null : (
     <Fragment>
-      <NavBar />
+      <NavBar>
+        <HStack align="center">
+          <BackBtn
+            handleClick={() => {
+              history.push('/portfolio');
+            }}
+          />
+          <VStack>
+            <Heading as="h6" size="xs" m={0} isTruncated>
+              {property.name}
+            </Heading>
+          </VStack>
+        </HStack>
+      </NavBar>
+
       <Center>
-        <Flex
-          direction="column"
-          align="center"
-          w="100%"
-          maxW={theme.breakpoints.sm}
-          paddingX={[3, 4, 6]}
-        >
-          <Heading size="md" m={0} mt={2}>
-            {property.name}
-          </Heading>
-        </Flex>
+        <Box maxW={theme.breakpoints.md}>
+          <Image
+            marginLeft="auto"
+            marginRight="auto"
+            w="50%"
+            src={lowPolyHouseLg}
+            alt={`${property.name} stylized picture`}
+            fallback={<Spinner />}
+          />
+        </Box>
+      </Center>
+
+      <Center>
+        <VStack w="85%" minW="340px" maxW={theme.breakpoints.md} paddingX={[3, 4, 6]}>
+          <Flex justify="space-between" w="100%">
+            <VStack align="left">
+              <Heading as="h5" size="sm" m={0}>
+                {property.name}
+              </Heading>
+              <HStack spacing={1}>
+                <Icon as={FiMapPin} />
+                <Text textStyle="bodyText2" verticalAlign="middle">
+                  {property.cityLocality}, {property.stateRegion}
+                </Text>
+              </HStack>
+            </VStack>
+            <VStack align="right" textAlign="right">
+              <Text textStyle="bodyText2">Initial Investment</Text>
+              <Heading as="h5" size="sm" m={0} colorScheme="primary" variant="colored">
+                ${formatFinancial(property.contribution)}
+              </Heading>
+              <Text textStyle="bodyText2">
+                on {formatDate(property.contributionDate, 'MM/dd/yyyy')}
+              </Text>
+            </VStack>
+          </Flex>
+          <Box h={4} />
+          <Tabs isLazy variant="enclosed" align="end">
+            <TabList>
+              <Tab>Last Month</Tab>
+              <Tab>Since Purchase</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel p={0}>
+                <PropertyTable property={property} period="last" />
+              </TabPanel>
+              <TabPanel p={0}>
+                <PropertyTable property={property} period="total" />
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </VStack>
       </Center>
     </Fragment>
   );

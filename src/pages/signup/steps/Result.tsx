@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, FlexContainer } from '../../../components';
