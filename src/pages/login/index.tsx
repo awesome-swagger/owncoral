@@ -20,13 +20,16 @@ import {
   Spinner,
   VStack,
 } from '@chakra-ui/react';
+import type { UseToastOptions } from '@chakra-ui/toast';
 import type { History } from 'history';
 
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
-import { ColorModeButton } from '../../components';
+import ForgotCheckEmail from './ForgotCheckEmail';
+import ForgotPassword from './ForgotPassword';
+import NewPassword from './NewPassword';
 
 function Login() {
   return (
@@ -74,13 +77,14 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [_, setUser] = useContext<UserT>(UserContext);
   const history = useHistory();
+  const toast = useToast();
 
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
     <form
       onSubmit={handleSubmit(async (data) =>
-        onSubmit(data as FormContents, history, setUser, setIsLoading),
+        onSubmit(data as FormContents, history, setUser, setIsLoading, toast),
       )}
     >
       <FormControl>
@@ -135,22 +139,11 @@ function LoginForm() {
               </InputRightElement>
             </InputGroup>
             <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
-            <FormHelperText textStyles="caption" layerStyle="highLightColor">
               Don&apos;t have an account?{' '}
               <ChakraLink as={RouterLink} to="/signup">
-                Sign up here
+                Sign up for Coral
               </ChakraLink>
             </FormHelperText>
-            <Box />
-            <Button
-              isLoading={isLoading}
-              textStyle="button"
-              type="submit"
-              size="lg"
-              spinner={<Spinner />}
-            >
-              Log In
-            </Button>
           </VStack>
         </Center>
       </FormControl>
@@ -168,6 +161,7 @@ async function onSubmit(
   history: History,
   setUser: (u: UserT) => void,
   setIsLoading: (isLoading: boolean) => void,
+  toast: (options?: UseToastOptions | undefined) => string | number | undefined,
 ): Promise<void> {
   setIsLoading(true);
   const resp = await fetchWrap('/api/login', {
@@ -181,9 +175,40 @@ async function onSubmit(
     history.push('/portfolio');
     return;
   }
-  // TODO: add real UI
-  alert('Login failed!');
+
+  switch (resp.status) {
+    case 401:
+      toast({
+        title: 'Incorrect password',
+        description: 'Your password was incorrect, please try again',
+        status: 'error',
+        duration: null,
+        isClosable: true,
+      });
+      break;
+
+    case 429:
+      toast({
+        title: 'Too many attempts',
+        description: "You've entered the wrong password too many times. Please try again later",
+        status: 'error',
+        duration: null,
+        isClosable: true,
+      });
+      break;
+
+    default:
+      toast({
+        title: 'An error occurred.',
+        description: 'Unable to login',
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      });
+      break;
+  }
 }
 
 // eslint-disable-next-line import/no-default-export
 export default Login;
+export { ForgotCheckEmail, ForgotPassword, NewPassword };
