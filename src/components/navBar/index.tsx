@@ -1,23 +1,14 @@
 import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Avatar,
-  Box,
-  Center,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  Spacer,
-  useColorModeValue,
-  useMediaQuery,
-} from '@chakra-ui/react';
+import { Box, Center, Flex, Heading, HStack, Icon, Spacer, useMediaQuery } from '@chakra-ui/react';
+
 import { Portal } from '@visx/tooltip';
 
 // import Logo from '../../assets/coral.svg';
 import { bodyText2 } from '../../theme/textStyles';
 import { ColorModeButton } from '../colorModeButton';
+import { ProfilePopOver } from '../profilePopOver';
 
 const navLinks = [
   {
@@ -56,7 +47,6 @@ const navLinks = [
 export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
-  const bgColor = useColorModeValue('white', 'rgba(255, 255, 255, 0.15)');
   const footerHeight = 20;
 
   return (
@@ -73,7 +63,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         bgColor="gray.800"
         zIndex={1}
       >
-        <Flex align="center" justify="center" bgColor={bgColor} h="100%" w="100%">
+        <Flex align="center" justify="center" layerStyle="navColor" h="100%" w="100%">
           {/* Children are allowed to push the logo right, but not too far */}
           <Box flexBasis={0} flexGrow={1} maxW="50%">
             {props.children}
@@ -96,7 +86,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
               </Box>
               {/* TODO: profile menu */}
               <ColorModeButton />
-              <Avatar src="https://bit.ly/sage-adebayo" />
+              <ProfilePopOver />
             </HStack>
           </Flex>
         </Flex>
@@ -120,7 +110,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         bgColor="gray.800"
         zIndex={1}
       >
-        <Center bgColor={bgColor} h="100%" w="100%" paddingBottom={3}>
+        <Center layerStyle="navColor" h="100%" w="100%" paddingBottom={3}>
           <NavButtons currentPageName={currentPageName} />
         </Center>
       </Box>
@@ -129,9 +119,6 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 }
 
 function NavButtons(props: { currentPageName: string | null }) {
-  const color = useColorModeValue('black', 'white');
-  const backgroundColor = useColorModeValue('primary.100', 'secondary.800');
-  const grayColor = useColorModeValue('gray.500', 'gray.400');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
   return (
@@ -147,9 +134,8 @@ function NavButtons(props: { currentPageName: string | null }) {
           m={0}
           h="100%"
           justify="center"
-          color={props.currentPageName === name ? color : grayColor}
+          layerStyle={props.currentPageName === name ? 'navButton.active' : 'navButton'}
           borderRadius="lg"
-          _hover={{ color, backgroundColor }}
           // Button-press effect for desktop
           _active={isTouch ? {} : { transform: 'scale(0.9)' }}
           sx={{ transition: 'all 200ms' }}

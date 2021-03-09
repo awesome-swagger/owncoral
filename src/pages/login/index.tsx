@@ -18,8 +18,6 @@ import {
   Link as ChakraLink,
   Spacer,
   Spinner,
-  useColorModeValue,
-  useToast,
   VStack,
 } from '@chakra-ui/react';
 import type { UseToastOptions } from '@chakra-ui/toast';
@@ -34,8 +32,6 @@ import ForgotPassword from './ForgotPassword';
 import NewPassword from './NewPassword';
 
 function Login() {
-  const backgroundColor = useColorModeValue('inherit', 'whiteAlpha.100');
-
   return (
     <Fragment>
       <Center>
@@ -50,7 +46,7 @@ function Login() {
           top="50%"
           m={[2, 3]}
           p={[8, 10]}
-          backgroundColor={backgroundColor}
+          layerStyle="LoginColor"
           sx={{
             transform: 'translate(-50%, -50%)',
           }}
@@ -84,7 +80,6 @@ function LoginForm() {
   const toast = useToast();
 
   const isDev = process.env.NODE_ENV === 'development';
-  const linkHighlightColor = useColorModeValue('secondary.700', 'secondary.300');
 
   return (
     <form
@@ -144,16 +139,6 @@ function LoginForm() {
               </InputRightElement>
             </InputGroup>
             <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
-            <Box h={2} />
-            <Button isLoading={isLoading} type="submit" size="lg" spinner={<Spinner />}>
-              Log In
-            </Button>
-            <Box h={2} />
-            <ChakraLink as={RouterLink} to="/forgot">
-              Forgot Password?
-            </ChakraLink>
-
-            <FormHelperText textStyle="caption" color={linkHighlightColor}>
               Don&apos;t have an account?{' '}
               <ChakraLink as={RouterLink} to="/signup">
                 Sign up for Coral

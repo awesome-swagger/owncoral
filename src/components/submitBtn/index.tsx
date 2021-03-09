@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Button, useColorModeValue } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 type SubmitBtnProps = {
   label: string;
@@ -12,8 +12,6 @@ export const SubmitBtn: React.FC<SubmitBtnProps> = ({
   onClick,
   disabled,
 }: SubmitBtnProps) => {
-  const colorScheme = useColorModeValue('primary', 'secondary');
-
   return (
     <Button
       pos="absolute"
@@ -22,7 +20,6 @@ export const SubmitBtn: React.FC<SubmitBtnProps> = ({
       w="calc(100% - 3rem)"
       h={12}
       type="submit"
-      colorScheme={colorScheme}
       onClick={onClick}
       disabled={disabled}
       cursor="pointer"

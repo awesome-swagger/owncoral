@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   Box,
   Heading,
@@ -7,13 +6,10 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { BackBtn } from '../../../../components';
 
 export const Faqs = ({ goBack }: { goBack: () => void }) => {
-  const bgColor = useColorModeValue('gray.100', 'whiteAlpha.100');
-  const hover = useColorModeValue({ bg: 'primary.100' }, { bg: 'secondary.800' });
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
@@ -21,7 +17,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         FAQ
       </Heading>
       <Accordion allowToggle>
-        <AccordionItem bg={bgColor} _hover={hover}>
+        <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
             <Heading fontSize="sm">Lorem ipsum dolor sir amet?</Heading>
             <AccordionIcon ml="auto" />
@@ -38,7 +34,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         </AccordionItem>
 
         <Box bg="gray.300" p=".5px" />
-        <AccordionItem bg={bgColor} _hover={hover}>
+        <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
             <Heading fontSize="sm">Lorem ipsum dolor sir amet?</Heading>
             <AccordionIcon ml="auto" />
@@ -55,7 +51,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         </AccordionItem>
 
         <Box bg="gray.300" p=".5px" />
-        <AccordionItem bg={bgColor} _hover={hover}>
+        <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
             <Heading fontSize="sm">Lorem ipsum dolor sir amet?</Heading>
             <AccordionIcon ml="auto" />
@@ -72,7 +68,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         </AccordionItem>
 
         <Box bg="gray.300" p=".5px" />
-        <AccordionItem bg={bgColor} _hover={hover}>
+        <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
             <Heading fontSize="sm">Lorem ipsum dolor sir amet?</Heading>
             <AccordionIcon ml="auto" />

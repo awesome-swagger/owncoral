@@ -1,5 +1,5 @@
-import React, { forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Heading, Progress, useColorModeValue } from '@chakra-ui/react';
+import React, { forwardRef, useCallback, useContext } from 'react';
+import { Box, Heading, Progress } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from '../index';
@@ -24,16 +24,6 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
-    const selectionColors = useColorModeValue(
-      { bg: 'gray.100', color: 'black', _hover: { bg: 'primary.100' }, selected: 'gray.300' },
-      {
-        bg: 'whiteAlpha.100',
-        color: 'white',
-        _hover: { bg: 'secondary.800' },
-        selected: 'whiteAlpha.400',
-      },
-    );
-
     const handleSubmit = useCallback((value) => {
       form.dispatch({ type: 'update-form', payload: { step10: value } });
       nextStep();
@@ -54,8 +44,9 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
               px={6}
               py={3}
               mt={2}
-              {...selectionColors}
-              bg={value === form?.formState?.step10 ? selectionColors.selected : selectionColors.bg}
+              layerStyle={
+                value === form?.formState?.step10 ? 'selectionBox.selected' : 'selectionBox'
+              }
               borderRadius="full"
               textAlign="left"
               cursor="pointer"

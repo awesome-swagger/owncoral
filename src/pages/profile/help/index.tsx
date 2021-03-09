@@ -4,10 +4,18 @@ import { BsCircle, BsQuestionCircle } from 'react-icons/bs';
 import { BiSupport } from 'react-icons/bi';
 import { Option } from '../../../components';
 
-export const Help = ({ handleClick }: { handleClick: (x: Number) => void }) => {
+export const Help = ({
+  handleClick,
+  popOver,
+}: {
+  handleClick: (x: Number) => void;
+  popOver: boolean;
+}) => {
   return (
-    <Box mt={8}>
-      <Heading fontSize="md">Help</Heading>
+    <Box mt={popOver ? 0 : 8}>
+      <Heading fontSize="md" display={popOver ? 'none' : 'initial'}>
+        Help
+      </Heading>
       <Option onClick={() => handleClick(4)}>
         <BsCircle
           style={{
@@ -32,7 +40,7 @@ export const Help = ({ handleClick }: { handleClick: (x: Number) => void }) => {
           FAQS
         </Heading>
       </Option>
-      <Option icon={false}>
+      {/* <Option icon={false}>
         <BiSupport
           style={{
             height: '1.25rem',
@@ -43,7 +51,7 @@ export const Help = ({ handleClick }: { handleClick: (x: Number) => void }) => {
         <Heading fontSize="sm" m="0">
           Support
         </Heading>
-      </Option>
+      </Option> */}
     </Box>
   );
 };

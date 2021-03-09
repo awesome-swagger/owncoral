@@ -6,10 +6,18 @@ import { BsPerson } from 'react-icons/bs';
 
 import { Option } from '../../../components';
 
-export const Account = ({ handleClick }: { handleClick: (x: Number) => void }) => {
+export const Account = ({
+  handleClick,
+  popOver,
+}: {
+  handleClick: (x: Number) => void;
+  popOver: boolean;
+}) => {
   return (
     <Box mt={8}>
-      <Heading fontSize="md">Account</Heading>
+      <Heading fontSize="md" display={popOver ? 'none' : 'initial'}>
+        Account
+      </Heading>
       <Option onClick={() => handleClick(1)}>
         <BsPerson
           style={{
@@ -32,18 +40,6 @@ export const Account = ({ handleClick }: { handleClick: (x: Number) => void }) =
         />
         <Heading fontSize="sm" m="0">
           Investment Goal
-        </Heading>
-      </Option>
-      <Option onClick={() => handleClick(3)}>
-        <IoMdNotificationsOutline
-          style={{
-            height: '1.25rem',
-            width: '1.25rem',
-            marginRight: '0.5rem',
-          }}
-        />
-        <Heading fontSize="sm" m="0">
-          Notifications
         </Heading>
       </Option>
     </Box>

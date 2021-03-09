@@ -1,8 +1,15 @@
 import type React from 'react';
 import { Box, FormControl, Switch, Heading } from '@chakra-ui/react';
 import { Option, BackBtn } from '../../../../components';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
-export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
+export const PersonalInformation = ({
+  goBack,
+  handleClick,
+}: {
+  goBack: () => void;
+  handleClick: (x: String) => void;
+}) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
@@ -35,6 +42,20 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           I&#39;m an accredited visitor
           <Switch id="Features" />
         </FormControl>
+      </Option>
+      <Box p="3px" />
+
+      <Option onClick={() => handleClick('DeleteAccount')}>
+        <RiDeleteBin6Line
+          style={{
+            height: '1.25rem',
+            width: '1.25rem',
+            marginRight: '0.5rem',
+          }}
+        />
+        <Heading fontSize="sm" m="0">
+          Delete Account
+        </Heading>
       </Option>
     </Box>
   );
