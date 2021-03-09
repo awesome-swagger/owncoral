@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
@@ -14,7 +14,7 @@ import { DebugPanel } from './components';
 
 import Signup from './pages/signup';
 import Portfolio from './pages/portfolio';
-import Login from './pages/login';
+import { default as Login, ForgotCheckEmail, ForgotPassword, NewPassword } from './pages/login';
 import LoginFlow from './pages/investment-profile/steps';
 import Property from './pages/property';
 import Profile from './pages/profile';
@@ -37,25 +37,40 @@ function App() {
           */}
           <Signup />
           <LoginFlow /> {/* setUser={setUser} */}
-          {/* /!* TODO: Redirect not-signed-up users to signup *!/ */}
+          {/* TODO: Redirect not-signed-up users to signup */}
           <Route exact path="/">
-            {/* TODO: redirect to a dashboard */}
             <Redirect to="/portfolio" />
           </Route>
-          <Route exact path="/login">
-            {/* TODO: redirect to a dashboard */}
-            <Login />
-          </Route>
+          <AuthRoutes />
           <Route exact path="/portfolio" component={Portfolio} />
           <Route exact path="/property/:address" component={Property} />
           <Route exact path="/profile" component={Profile} />
-
           {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
           {/* <Route exact path="/documents" component={Docs} /> */}
           {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
         </Router>
       </ChakraProvider>
     </UserContext.Provider>
+  );
+}
+
+// TODO: pull static routes into this file
+function AuthRoutes() {
+  return (
+    <Fragment>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/forgot">
+        <ForgotPassword />
+      </Route>
+      <Route exact path="/forgot-check-email">
+        <ForgotCheckEmail />
+      </Route>
+      <Route exact path="/new-password/:resetToken">
+        <NewPassword />
+      </Route>
+    </Fragment>
   );
 }
 
