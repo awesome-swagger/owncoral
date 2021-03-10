@@ -31,7 +31,7 @@ function formReducer(state: formStateType, action: ActionType) {
   }
 }
 
-const LoginFlow = () => {
+const InvestmentProfileFlow = () => {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('login_state'));
   const history = useHistory();
 
@@ -65,4 +65,4 @@ const LoginFlow = () => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default LoginFlow;
+export default InvestmentProfileFlow;

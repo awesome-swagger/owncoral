@@ -7,6 +7,7 @@ import { SubmitBtn } from './submitBtn';
 import { Option } from './option';
 import { ColorModeButton } from './colorModeButton';
 import { ProfilePopOver } from './profilePopOver';
+import { Loading } from './loading';
 
 export {
   BackBtn,
@@ -19,4 +20,5 @@ export {
   Option,
   ColorModeButton,
   ProfilePopOver,
+  Loading,
 };
