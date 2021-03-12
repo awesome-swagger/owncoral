@@ -29,9 +29,6 @@ import { ColorModeButton } from '../../components';
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
-import ForgotCheckEmail from './ForgotCheckEmail';
-import ForgotPassword from './ForgotPassword';
-import NewPassword from './NewPassword';
 
 function Login() {
   return (
@@ -223,4 +220,3 @@ async function onSubmit(
 
 // eslint-disable-next-line import/no-default-export
 export default Login;
-export { ForgotCheckEmail, ForgotPassword, NewPassword };

@@ -125,7 +125,7 @@ function PropertyCard(props: PropertyCardProps) {
         <Heading size="xs" m={0} flexGrow={1}>
           {property.name}
         </Heading>
-        <Box textAslign="right">
+        <Box textAlign="right">
           <Text>
             {property.cityLocality}, {property.stateRegion}
           </Text>
