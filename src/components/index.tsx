@@ -8,7 +8,7 @@ import { Option } from './option';
 import { ColorModeButton } from './colorModeButton';
 import { ProfilePopOver } from './profilePopOver';
 import { Loading } from './loading';
-import { ErrorBoundary } from './errorBoundary';
+import { ErrorFallback, MyErrorHandler } from './errorFallback';
 
 export {
   BackBtn,
@@ -22,5 +22,6 @@ export {
   ColorModeButton,
   ProfilePopOver,
   Loading,
-  ErrorBoundary,
+  ErrorFallback,
+  MyErrorHandler,
 };
