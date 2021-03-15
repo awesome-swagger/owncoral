@@ -13,7 +13,7 @@ export const Result = ({ nextStep, prevStep }: stepProps) => {
       <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
 
       <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
-      <Heading as="h4" size="md" mt={8} layerStyle="headingLight">
+      <Heading as="h4" size="md" mt={8} layerStyle="resultHeading">
         Thanks for joining Coral
       </Heading>
       <Text fontSize="sm" colorScheme="gray" variant="colored" textAlign="center">
