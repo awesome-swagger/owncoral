@@ -6,19 +6,36 @@ import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
 
-import Map from '../../assets/Map.png';
-import House from '../../assets/Multifamily_Night.png';
+import MapImg from '../../assets/Map.png';
+import HouseImg from '../../assets/Multifamily_Night.png';
 
 export const PropertyCard = () => {
+  const Map = MapImg;
+  const House = HouseImg;
+
+  const [remove, setRemove] = useState(false);
   const [zoom, setZoom] = useState(false);
+  const [zoomOut, setZoomOut] = useState(true);
   const [image, setImage] = useState(Map);
+
   useEffect(() => {
     {
-      zoom ? setTimeout(() => setImage(House), 500) : setImage(Map);
+      zoom
+        ? setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500)
+        : setImage(Map);
     }
   }, [zoom]);
   const handleZoom = () => {
-    setZoom(!zoom);
+    if (zoom === false) {
+      setZoom(true);
+      setZoomOut(false);
+    } else if (zoom === true) {
+      setZoomOut(true);
+      setRemove(false);
+      setTimeout(() => {
+        setZoom(false);
+      }, 500);
+    }
   };
 
   console.log(Map);
@@ -38,18 +55,35 @@ export const PropertyCard = () => {
         </Box>
       </Box>
       <Box h={{ base: '500px', sm: '550px', md: '650px' }} className="property_card" mt={6} p={4}>
-        <Image
-          src={image}
-          alt="map"
-          className={zoom ? 'property_card_img zoom' : 'property_card_img'}
-        />
-
+        {remove ? (
+          ''
+        ) : (
+          <Image
+            src={Map}
+            alt="map"
+            className={
+              zoom
+                ? zoomOut
+                  ? 'property_card_img'
+                  : 'property_card_img zoom'
+                : 'property_card_img'
+            }
+          />
+        )}
+        {image === House ? (
+          <Image
+            src={House}
+            className={zoomOut ? 'property_card_img zoomout' : 'property_card_img zoomin '}
+          />
+        ) : (
+          ''
+        )}
         <Box className="card_gradient" zIndex="-1" />
         <CardTop />
         <CardBottom />
       </Box>
       <Center my={6}>
-        <Icon onClick={handleZoom} as={zoom ? AiOutlineZoomOut : AiOutlineZoomIn} h={6} w={6} />
+        <Icon onClick={handleZoom} as={zoomOut ? AiOutlineZoomIn : AiOutlineZoomOut} h={6} w={6} />
       </Center>
     </Container>
   );

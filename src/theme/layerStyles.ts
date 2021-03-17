@@ -148,4 +148,12 @@ export const layerStyles = {
       color: 'secondary.100',
     },
   },
+  iconColor: {
+    color: 'gray',
+    bgColor: 'white',
+    '.chakra-ui-dark &': {
+      color: 'gray',
+      bgColor: 'white',
+    },
+  },
 };

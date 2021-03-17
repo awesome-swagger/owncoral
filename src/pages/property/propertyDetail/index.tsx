@@ -1,6 +1,7 @@
 import { Container } from '../../../components';
 import { Image, Button, Divider, Icon } from '@chakra-ui/react';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
+import { FiMoreHorizontal } from 'react-icons/fi';
 import {
   TopSection,
   TabSection,
@@ -17,6 +18,31 @@ const PropertyDetail = () => (
   <Container>
     <Image src={HouseImg} alt="house_img" w="100%" />
     <Icon pos="absolute" top={10} left={10} h={8} w={8} color="white" as={AiFillCloseCircle} />
+    <Icon
+      pos="absolute"
+      top={10}
+      right={10}
+      h={8}
+      w={8}
+      p={1}
+      color="white"
+      as={FiMoreHorizontal}
+      borderRadius="full"
+      layerStyle="iconColor"
+    />
+    <Icon
+      pos="absolute"
+      top={10}
+      right={20}
+      mr={2}
+      h={8}
+      w={8}
+      p={1}
+      color="white"
+      as={AiOutlineUpload}
+      borderRadius="full"
+      layerStyle="iconColor"
+    />
     <TopSection />
     <TabSection />
     <ChartSection />

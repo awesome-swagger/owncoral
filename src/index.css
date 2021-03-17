@@ -115,17 +115,43 @@ code {
   z-index: -2;
 }
 .zoom {
-  animation: zoom 0.5s;
+  animation: zoom 0.75s;
 }
 @keyframes zoom {
   0% {
     transform: scale(1) translateY(-50%);
   }
-  30% {
-    opacity: 0.8;
-  }
+
   100% {
     transform: scale(1.5) translateY(-50%);
-    opacity: 0.5;
+  }
+}
+.zoomin {
+  animation: zoomin 0.5s;
+}
+@keyframes zoomin {
+  0% {
+    transform: scale(0) translateY(-50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) translateY(-50%);
+    opacity: 1;
+  }
+}
+
+.zoomout {
+  animation: zoomout 0.5s;
+}
+@keyframes zoomout {
+  0% {
+    transform: scale(1) translateY(-50%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.5) translateY(-50%);
+    opacity: 0;
   }
 }
