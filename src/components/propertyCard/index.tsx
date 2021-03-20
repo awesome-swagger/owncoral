@@ -5,6 +5,7 @@ import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
+import { CardStyle, ImgZoomOut, ImgZoomIn, ImgZoom, CardImg, CardGradient } from './styleProps';
 
 import MapImg from '../../assets/Map.png';
 import HouseImg from '../../assets/Multifamily_Night.png';
@@ -38,7 +39,6 @@ export const PropertyCard = () => {
     }
   };
 
-  console.log(Map);
   return (
     <Container>
       <Box pos="relative">
@@ -54,31 +54,14 @@ export const PropertyCard = () => {
           </Heading>
         </Box>
       </Box>
-      <Box h={{ base: '500px', sm: '550px', md: '650px' }} className="property_card" mt={6} p={4}>
+      <Box h={{ base: '500px', sm: '550px', md: '650px' }} style={CardStyle} mt={6} p={4}>
         {remove ? (
           ''
         ) : (
-          <Image
-            src={Map}
-            alt="map"
-            className={
-              zoom
-                ? zoomOut
-                  ? 'property_card_img'
-                  : 'property_card_img zoom'
-                : 'property_card_img'
-            }
-          />
+          <Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />
         )}
-        {image === House ? (
-          <Image
-            src={House}
-            className={zoomOut ? 'property_card_img zoomout' : 'property_card_img zoomin '}
-          />
-        ) : (
-          ''
-        )}
-        <Box className="card_gradient" zIndex="-1" />
+        {image === House ? <Image src={House} style={zoomOut ? ImgZoomOut : ImgZoomIn} /> : ''}
+        <Box style={CardGradient} />
         <CardTop />
         <CardBottom />
       </Box>
