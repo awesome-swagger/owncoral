@@ -1,6 +1,7 @@
 import type React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
 import { Container } from '../../../components';
+import { PopUpBox, PopUpBtn } from './styleProps';
 
 export const PopUp = ({
   handleClick,
@@ -21,7 +22,7 @@ export const PopUp = ({
     <Box w="100vw" h="100vh" pos="fixed" top="0" left="0" bg="blackAlpha.400">
       <Container>
         <Box onClick={() => handleClick(null)} w="100%" h="100%" pos="absolute" top="0" left="0" />
-        <Box layerStyle="popUpColor" className="popup_box">
+        <Box layerStyle="popUpColor" style={PopUpBox}>
           <Heading fontSize="sm">
             {value === 'LogOut' ? popUpContent.LogOut.text : popUpContent.DeleteAccount.text}
           </Heading>
@@ -30,7 +31,7 @@ export const PopUp = ({
             {value === 'LogOut' ? popUpContent.LogOut.title : popUpContent.DeleteAccount.title}
           </Heading>
         </Box>
-        <Box layerStyle="popUpColor" className="popup_btn" onClick={() => handleClick(null)}>
+        <Box layerStyle="popUpColor" style={PopUpBtn} onClick={() => handleClick(null)}>
           <Heading fontSize="lg">Cancel</Heading>
         </Box>
       </Container>

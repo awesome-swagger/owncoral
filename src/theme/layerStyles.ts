@@ -7,6 +7,30 @@ export const layerStyles = {
 
   // We're using CSS classnames for dark mode instead of props, because it's not available here.
   // Discussion: https://github.com/chakra-ui/chakra-ui/issues/2231#issuecomment-771531813
+  grayHeading: {
+    color: 'gray.400',
+    '.chakra-ui-dark &': {
+      color: 'gray.600',
+    },
+  },
+  lightGrayHeading: {
+    color: 'gray.100',
+    '.chakra-ui-dark &': {
+      color: 'gray.200',
+    },
+  },
+  whiteHeading: {
+    color: 'white',
+    '.chakra-ui-dark &': {
+      color: 'white',
+    },
+  },
+  card: {
+    bg: 'gray.100',
+    '.chakra-ui-dark &': {
+      bg: 'whiteAlpha.100',
+    },
+  },
   selectionBox: {
     bg: 'gray.100',
     color: 'black',
@@ -62,7 +86,7 @@ export const layerStyles = {
       _hover: { bg: { base: 'inherit', md: 'rgba(255, 255, 255, 0.12)' }, shadow: 'md' },
     },
   },
-  headingLight: {
+  resultHeading: {
     color: 'primary.700',
     '.chakra-ui-dark &': {
       color: 'primary.300',
@@ -122,6 +146,14 @@ export const layerStyles = {
     color: 'secondary.900',
     '.chakra-ui-dark &': {
       color: 'secondary.100',
+    },
+  },
+  iconColor: {
+    color: 'gray',
+    bgColor: 'white',
+    '.chakra-ui-dark &': {
+      color: 'gray',
+      bgColor: 'white',
     },
   },
 };

@@ -9,6 +9,7 @@ import { ColorModeButton } from './colorModeButton';
 import { ProfilePopOver } from './profilePopOver';
 import { Loading } from './loading';
 import { ErrorFallback, MyErrorHandler } from './errorFallback';
+import {PropertyCard} from "./propertyCard"
 
 export {
   BackBtn,
@@ -24,4 +25,5 @@ export {
   Loading,
   ErrorFallback,
   MyErrorHandler,
+  PropertyCard
 };

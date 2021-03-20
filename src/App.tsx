@@ -11,7 +11,8 @@ import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import type { UserT } from './userContext';
 import { UserContext } from './userContext';
 
-import { DebugPanel, Loading, MyErrorHandler, ErrorFallback } from './components';
+import { DebugPanel, Loading, MyErrorHandler, ErrorFallback, PropertyCard } from './components';
+import PropertyDetail from './pages/property/propertyDetail';
 
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
@@ -52,6 +53,8 @@ function App() {
               <Route exact path="/portfolio" component={Portfolio} />
               <Route exact path="/property/:address" component={Property} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/propertycard" component={PropertyCard} />
+              <Route exact path="/propertydetail" component={PropertyDetail} />
               {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
               {/* <Route exact path="/documents" component={Docs} /> */}
               {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
