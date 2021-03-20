@@ -1,4 +1,3 @@
-import { Container } from '../../../components';
 import { Image, Button, Divider, Icon } from '@chakra-ui/react';
 import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal } from 'react-icons/fi';
@@ -12,6 +11,7 @@ import {
   RenovationSection,
   SourcesAndUses,
 } from './sections';
+import { Container } from '../../../components';
 import HouseImg from '../../../assets/Multifamily_Night.png';
 
 const PropertyDetail = () => (
@@ -60,4 +60,6 @@ const PropertyDetail = () => (
     </Button>
   </Container>
 );
+
+// eslint-disable-next-line import/no-default-export
 export default PropertyDetail;

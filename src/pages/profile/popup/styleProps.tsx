@@ -1,4 +1,6 @@
-export const PopUpBtn: React.CSSProperties = {
+import type { CSSProperties } from 'react';
+
+export const PopUpBtn: CSSProperties = {
   position: 'absolute',
   bottom: '2rem',
   left: '50%',
@@ -9,7 +11,7 @@ export const PopUpBtn: React.CSSProperties = {
   cursor: 'pointer',
 };
 
-export const PopUpBox: React.CSSProperties = {
+export const PopUpBox: CSSProperties = {
   position: 'absolute',
   bottom: '6rem',
   left: '50%',

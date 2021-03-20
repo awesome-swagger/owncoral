@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Container } from '../container';
+import React, { useState, useEffect } from 'react';
+import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
 import { IoMdClose } from 'react-icons/io';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
-import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
+import { Container } from '../container';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
 import { CardStyle, ImgZoomOut, ImgZoomIn, ImgZoom, CardImg, CardGradient } from './styleProps';
@@ -20,12 +20,10 @@ export const PropertyCard = () => {
   const [image, setImage] = useState(Map);
 
   useEffect(() => {
-    {
-      zoom
-        ? setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500)
-        : setImage(Map);
-    }
+    if(zoom) setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500);
+    else setImage(Map);
   }, [zoom]);
+
   const handleZoom = () => {
     if (zoom === false) {
       setZoom(true);
@@ -55,12 +53,8 @@ export const PropertyCard = () => {
         </Box>
       </Box>
       <Box h={{ base: '500px', sm: '550px', md: '650px' }} style={CardStyle} mt={6} p={4}>
-        {remove ? (
-          ''
-        ) : (
-          <Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />
-        )}
-        {image === House ? <Image src={House} style={zoomOut ? ImgZoomOut : ImgZoomIn} /> : ''}
+        {!remove && (<Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />)}
+        {image === House && (<Image src={House} style={zoomOut ? ImgZoomOut : ImgZoomIn} />)}
         <Box style={CardGradient} />
         <CardTop />
         <CardBottom />

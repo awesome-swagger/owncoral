@@ -12,7 +12,6 @@ import type { UserT } from './userContext';
 import { UserContext } from './userContext';
 
 import { DebugPanel, Loading, MyErrorHandler, ErrorFallback, PropertyCard } from './components';
-import PropertyDetail from './pages/property/propertyDetail';
 
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
@@ -24,6 +23,7 @@ const Profile = lazy(() => import('./pages/profile'));
 const Property = lazy(() => import('./pages/property'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const Signup = lazy(() => import('./pages/signup'));
+const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -53,8 +53,8 @@ function App() {
               <Route exact path="/portfolio" component={Portfolio} />
               <Route exact path="/property/:address" component={Property} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path="/propertycard" component={PropertyCard} />
-              <Route exact path="/propertydetail" component={PropertyDetail} />
+              <Route exact path="/property-card" component={PropertyCard} />
+              <Route exact path="/property-detail" component={PropertyDetail} />
               {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
               {/* <Route exact path="/documents" component={Docs} /> */}
               {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}

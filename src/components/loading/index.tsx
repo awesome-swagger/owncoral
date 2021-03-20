@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
 import { Box, Spinner } from '@chakra-ui/react';
-import { ColorModeButton } from '../colorModeButton';
 
 export const Loading = () => (
   <Fragment>

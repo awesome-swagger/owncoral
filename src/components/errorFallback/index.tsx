@@ -1,9 +1,5 @@
-export function ErrorFallback({
-  error,
-  resetErrorBoundary,
-}: {
-  error: any;
-  resetErrorBoundary: any;
+export function ErrorFallback({ error, resetErrorBoundary } : {
+  error: any; resetErrorBoundary: any;
 }) {
   return (
     <div role="alert">
@@ -13,6 +9,7 @@ export function ErrorFallback({
     </div>
   );
 }
+
 export const MyErrorHandler = (error: Error, info: { componentStack: string }) => {
   console.log('error ==>', error);
   console.log('info ==>', info);

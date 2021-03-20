@@ -1,4 +1,6 @@
-export const CardStyle: React.CSSProperties = {
+import type { CSSProperties } from 'react';
+
+export const CardStyle: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -6,7 +8,7 @@ export const CardStyle: React.CSSProperties = {
   position: 'relative',
 };
 
-export const CardGradient: React.CSSProperties = {
+export const CardGradient: CSSProperties = {
   position: 'absolute',
   top: 0,
   left: 0,
@@ -16,7 +18,8 @@ export const CardGradient: React.CSSProperties = {
     'linear-gradient(180deg,rgba(78, 80, 79, 1) 0%,rgba(78, 80, 79, 0) 50%,rgba(78, 80, 79, 1) 100%)',
   zIndex: -1,
 };
-export const CardImg: React.CSSProperties = {
+
+export const CardImg: CSSProperties = {
   width: '100%',
   position: 'absolute',
   left: '0%',
@@ -25,7 +28,7 @@ export const CardImg: React.CSSProperties = {
   zIndex: -2,
 };
 
-export const ImgZoom: React.CSSProperties = {
+export const ImgZoom: CSSProperties = {
   width: '100%',
   position: 'absolute',
   left: '0%',
@@ -34,7 +37,8 @@ export const ImgZoom: React.CSSProperties = {
   zIndex: -2,
   animation: 'zoom 0.75s',
 };
-export const ImgZoomIn: React.CSSProperties = {
+
+export const ImgZoomIn: CSSProperties = {
   width: '100%',
   position: 'absolute',
   left: '0%',
@@ -43,7 +47,8 @@ export const ImgZoomIn: React.CSSProperties = {
   zIndex: -2,
   animation: 'zoomin 0.5s',
 };
-export const ImgZoomOut: React.CSSProperties = {
+
+export const ImgZoomOut: CSSProperties = {
   width: '100%',
   position: 'absolute',
   left: '0%',
