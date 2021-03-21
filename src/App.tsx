@@ -1,4 +1,4 @@
-import React, { Fragment, useState, lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -69,22 +69,23 @@ function App() {
 // TODO: pull static routes into this file
 function AuthRoutes() {
   return (
-    <Fragment>
-      <Suspense fallback={<Loading />}>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/forgot">
-          <ForgotPassword />
-        </Route>
-        <Route exact path="/forgot-check-email">
-          <ForgotCheckEmail />
-        </Route>
-        <Route exact path="/new-password/:resetToken">
-          <NewPassword />
-        </Route>
-      </Suspense>
-    </Fragment>
+    <Suspense fallback={<Loading />}>
+      <Route exact path="/login">
+        <Login />
+      </Route>
+      <Route exact path="/forgot">
+        <ForgotPassword />
+      </Route>
+      <Route exact path="/forgot-check-email">
+        <ForgotCheckEmail />
+      </Route>
+      <Route exact path="/new-password/:resetToken">
+        <NewPassword />
+      </Route>
+      <Route exact path="/welcome-to-coral/:resetToken">
+        <NewPassword isWelcome />
+      </Route>
+    </Suspense>
   );
 }
 

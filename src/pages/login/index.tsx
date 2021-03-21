@@ -137,7 +137,7 @@ function LoginForm() {
                 />
               </InputRightElement>
             </InputGroup>
-            <FormHelperText textStyles="caption">{errors.password?.message}&nbsp;</FormHelperText>
+            <FormHelperText textStyle="caption">{errors.password?.message}&nbsp;</FormHelperText>
             <Box h={2} />
             <Button isLoading={isLoading} type="submit" size="lg" spinner={<Spinner />}>
               Log In
