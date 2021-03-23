@@ -18,7 +18,7 @@ export const Step6 = ({
       </Heading>
       <Heading fontSize="2xl">Tax efficiency</Heading>
       <Heading fontSize="md">
-        Real estate is extremely tax efficient, and Coral passes all these benefits to the investor.
+        Real estate is extremely tax efficient, and Coral passes all these benefits to the investor
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
