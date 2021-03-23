@@ -1,5 +1,6 @@
-import { Box, Icon, Progress, Heading, Button } from '@chakra-ui/react';
+import { Box, Icon, Progress, Heading, Button, Center, Divider } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
+import { RentalRevenueChart } from '../charts';
 
 export const Step3 = ({
   nextStep,
@@ -19,6 +20,14 @@ export const Step3 = ({
       <Heading fontSize="md">
         Rental revenue is the first way to make money with Coral properties. Rent is collected from
         tenants, and expenses are paid. What remains is the profit.
+      </Heading>
+      <Divider mt={8} mb={12} />
+      <Divider my={2} />
+      <Center w="100%" h="85px">
+        <RentalRevenueChart />
+      </Center>
+      <Heading fontSize="xs" textAlign="right" mt={0} mb={6}>
+        An example of lorem ipsum dolor
       </Heading>
       <Heading fontSize="sm">
         Cash flow derived from rental revenue typically looks pretty smooth for Coral properties,

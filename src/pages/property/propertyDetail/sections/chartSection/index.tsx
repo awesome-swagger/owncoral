@@ -31,7 +31,13 @@ export const ChartSection = () => {
       </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent p={4} pb={24} mb="0" minH={{ base: 'calc(100vh - 4rem)', md: '400px' }}>
+        <ModalContent
+          p={4}
+          pb={10}
+          mb="0"
+          h={{ base: 'calc(100vh - 4rem)', md: '650px' }}
+          overflow="hidden"
+        >
           <CourseCashFlow handleClose={onClose} />
         </ModalContent>
       </Modal>

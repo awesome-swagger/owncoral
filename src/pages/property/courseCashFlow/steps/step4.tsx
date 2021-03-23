@@ -1,5 +1,6 @@
-import { Box, Icon, Progress, Heading, Button } from '@chakra-ui/react';
+import { Box, Icon, Progress, Heading, Button, Center } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
+import { RealizedAppreciationChart } from '../charts';
 
 export const Step4 = ({
   nextStep,
@@ -25,6 +26,12 @@ export const Step4 = ({
         construction earn-outs. We ask our lender to recognize the increased property value, and
         increase our loan balance accordingly. The incremental loan amount is then distributed to
         investors.
+      </Heading>
+      <Center w="100%" h="150px">
+        <RealizedAppreciationChart />
+      </Center>
+      <Heading fontSize="xs" textAlign="right" mt={0} mb={6}>
+        An example of lorem ipsum dolor
       </Heading>
       <Heading fontSize="sm">
         We typically get a construction earn-out after a meaningful renovation, and refinance every

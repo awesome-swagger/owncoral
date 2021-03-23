@@ -1,5 +1,6 @@
-import { Box, Icon, Progress, Heading, Button } from '@chakra-ui/react';
+import { Box, Icon, Progress, Heading, Button, Image } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
+import ChartImg from '../../../../assets/Frame331.png';
 
 export const Step6 = ({
   nextStep,
@@ -24,6 +25,7 @@ export const Step6 = ({
         revenue of the property. This means that you'll likely pay very little (if any) income tax
         on your cash flow.
       </Heading>
+      <Image w="100%" src={ChartImg} alt="chart" />
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
         revenue of the property. This means that you'll likely pay very little (if any) income tax
