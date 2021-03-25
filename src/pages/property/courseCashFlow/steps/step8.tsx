@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Flex, Center } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 
@@ -69,7 +70,7 @@ export const Step8 = ({
         <Box pl={4}>
           <Heading fontSize="md">It’s extremely tax-efficient as a result of depreciation</Heading>
           <Heading fontSize="sm">
-            Most isn't taxed at the income tax rate, but is instead deferred to capital gains (a
+            Most isn&#39;t taxed at the income tax rate, but is instead deferred to capital gains (a
             much lower tax rate).
           </Heading>
         </Box>

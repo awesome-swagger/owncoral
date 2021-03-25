@@ -3,7 +3,7 @@ import { Center, Avatar, AvatarBadge, Box, Heading, Spinner } from '@chakra-ui/r
 import { BiCamera } from 'react-icons/bi';
 import theme from '../../../theme';
 
-export const Header = () => {
+export const ProfileHeader = () => {
   const [loading, setLoading] = useState(true);
 
   return (

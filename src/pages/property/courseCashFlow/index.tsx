@@ -7,27 +7,28 @@ export const CourseCashFlow = ({ handleClose }: { handleClose: React.MouseEventH
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
 
-  return (
-    <>
-      {step === 1 ? (
-        <Step1 handleClose={handleClose} nextStep={nextStep} />
-      ) : step === 2 ? (
-        <Step2 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 3 ? (
-        <Step3 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 4 ? (
-        <Step4 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 5 ? (
-        <Step5 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 6 ? (
-        <Step6 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 7 ? (
-        <Step7 nextStep={nextStep} prevStep={prevStep} />
-      ) : step === 8 ? (
-        <Step8 nextStep={nextStep} prevStep={prevStep} />
-      ) : (
-        <BackToProperty handleClose={handleClose} prevStep={prevStep} />
-      )}
-    </>
-  );
+  const stepComponent = (st: number) => {
+    switch(st){
+      case 1:
+        return (<Step1 handleClose={handleClose} nextStep={nextStep} />);
+      case 2:
+        return (<Step2 nextStep={nextStep} prevStep={prevStep} />)
+      case 3:
+        return (<Step3 nextStep={nextStep} prevStep={prevStep} />)
+      case 4:
+        return (<Step4 nextStep={nextStep} prevStep={prevStep} />)
+      case 5:
+        return (<Step5 nextStep={nextStep} prevStep={prevStep} />)
+      case 6:
+        return (<Step6 nextStep={nextStep} prevStep={prevStep} />)
+      case 7:
+        return (<Step7 nextStep={nextStep} prevStep={prevStep} />)
+      case 8:
+        return (<Step8 nextStep={nextStep} prevStep={prevStep} />)
+      default:
+        return (<BackToProperty handleClose={handleClose} prevStep={prevStep} />)
+    }
+  }
+
+  return stepComponent(step);
 };

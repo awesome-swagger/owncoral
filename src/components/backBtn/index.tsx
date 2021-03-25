@@ -9,7 +9,7 @@ type BackBtnProps = {
 
 export const BackBtn = forwardRef<Omit<IconButtonProps, 'aria-label'> & BackBtnProps, 'button'>(
   (props, ref) => {
-    const { handleClick } = props;
+    const { handleClick, ...otherProps } = props;
 
     return (
       <IconButton
@@ -19,7 +19,7 @@ export const BackBtn = forwardRef<Omit<IconButtonProps, 'aria-label'> & BackBtnP
         onClick={handleClick}
         _focus={{ boxShadow: 0 }}
         ref={ref}
-        {...props}
+        {...otherProps}
       />
     );
   },

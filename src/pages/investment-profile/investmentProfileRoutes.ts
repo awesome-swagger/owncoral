@@ -18,7 +18,7 @@ import { TaxClassification } from './steps/TaxClassification';
 
 type loginRouteType = { path: string; Component: any };
 
-export const loginRoutes: Array<loginRouteType> = [
+export const investmentProfileRoutes: Array<loginRouteType> = [
   {
     path: '/investment-profile/information-missing',
     Component: InformationMissing,

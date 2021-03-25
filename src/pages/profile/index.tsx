@@ -2,9 +2,9 @@ import { useState, useRef, useLayoutEffect } from 'react';
 import { Portal, Box } from '@chakra-ui/react';
 import { Account } from './account';
 import { Help } from './help';
-import { Header } from './header';
+import { ProfileHeader } from './profileHeader';
 import { Legal } from './legal';
-import { Footer } from './footer';
+import { LogoutSelector } from './logoutSelector';
 import { PopUp } from './popup';
 import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
 import { Container } from '../../components';
@@ -61,11 +61,11 @@ export const ProfileContent = ({
   popOver?: boolean;
 }) => (
   <Box borderRadius="xl" overflow="hidden">
-    <Header />
+    <ProfileHeader />
     <Account popOver={popOver} handleClick={handleClick} />
     <Help popOver={popOver} handleClick={handleClick} />
     <Legal popOver={popOver} />
-    <Footer popOver={popOver} />
+    <LogoutSelector popOver={popOver} />
   </Box>
 );
 

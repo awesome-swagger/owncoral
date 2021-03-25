@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Center, Divider } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { RentalRevenueChart } from '../charts';

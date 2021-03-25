@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Heading, Button, Flex, Center } from '@chakra-ui/react';
 import { BsChevronLeft, BsListTask } from 'react-icons/bs';
 

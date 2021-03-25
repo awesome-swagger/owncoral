@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Flex } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
 import { HiOutlineCash } from 'react-icons/hi';
@@ -45,7 +46,7 @@ export const Step2 = ({
       </Flex>
       <Box layerStyle="selectionBox" p={4}>
         <Heading fontSize="sm" m="0">
-          Note: at the sale of the property, you'll also receive (as a part of your cash flow) any
+          Note: at the sale of the property, you&#39;ll also receive (as a part of your cash flow) any
           unused cash that had been reserved to cover specific cash outflows, such as maintenance
           and repair.
         </Heading>
