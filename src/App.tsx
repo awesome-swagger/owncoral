@@ -60,6 +60,8 @@ function App() {
               <ProtectedRoute exact path="/profile" component={Profile} />
               <ProtectedRoute exact path="/property-card" component={PropertyCard} />
               <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
+              <ProtectedRoute exact path="/404" component={Error404} />
+
               {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
               {/* <Route exact path="/documents" component={Docs} /> */}
               {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
