@@ -24,6 +24,7 @@ const Property = lazy(() => import('./pages/property'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
+const Error404 = lazy(() => import('./pages/error404'));
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -55,6 +56,7 @@ function App() {
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/property-card" component={PropertyCard} />
               <Route exact path="/property-detail" component={PropertyDetail} />
+              <Route exact path="/404" component={Error404} />
               {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
               {/* <Route exact path="/documents" component={Docs} /> */}
               {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
