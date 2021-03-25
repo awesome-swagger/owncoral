@@ -1,8 +1,9 @@
 import { createContext, useCallback, useEffect, useReducer } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Switch, useHistory } from 'react-router-dom';
 
+import { ProtectedRoute } from '../../../components';
 import { retrieveState, storeState } from '../../../lib/utils';
-import { loginRoutes } from '../loginRoutes';
+import { investmentProfileRoutes } from '../investmentProfileRoutes';
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -20,6 +21,7 @@ type ActionType = {
   type: string;
   payload: { [key: string]: any };
 };
+
 export const StepFormContext = createContext<ContextType>({});
 
 function formReducer(state: formStateType, action: ActionType) {
@@ -31,15 +33,15 @@ function formReducer(state: formStateType, action: ActionType) {
   }
 }
 
-const InvestmentProfileFlow = () => {
+function InvestmentProfileFlow() {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('login_state'));
   const history = useHistory();
 
   const createNextStep = (currStep: number) => () => {
-    if (currStep + 1 === loginRoutes.length) {
+    if (currStep + 1 === investmentProfileRoutes.length) {
       history.push('/');
     } else {
-      history.push(loginRoutes[currStep + 1]?.path);
+      history.push(investmentProfileRoutes[currStep + 1]?.path);
     }
   };
   const prevStep = useCallback(() => {
@@ -54,10 +56,10 @@ const InvestmentProfileFlow = () => {
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
-        {loginRoutes.map(({ Component, path }, currStep) => (
-          <Route path={path} exact key={path}>
+        {investmentProfileRoutes.map(({ Component, path }, currStep) => (
+          <ProtectedRoute path={path} exact key={path}>
             <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />
-          </Route>
+          </ProtectedRoute>
         ))}
       </Switch>
     </StepFormContext.Provider>

@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Center } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { RealizedAppreciationChart } from '../charts';
@@ -35,7 +36,7 @@ export const Step4 = ({
       </Heading>
       <Heading fontSize="sm">
         We typically get a construction earn-out after a meaningful renovation, and refinance every
-        ~5 years. These events, along with the sale of the property, create "spikes" in cash flow
+        ~5 years. These events, along with the sale of the property, create &#34;spikes&#34; in cash flow
         (layered on top of the cash flow from rental revenue).
       </Heading>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

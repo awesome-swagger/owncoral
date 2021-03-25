@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
-import { Link as BrowserLink,useHistory, useParams } from 'react-router-dom';
+import { Link as BrowserLink, useHistory, useParams } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -25,7 +25,10 @@ import { fetchWrap } from '../../lib/api';
 // We check the password reset token and show 404 if not valid
 type TokenStateT = 'loading' | 'invalid' | 'valid';
 
-const NewPassword: React.FC = () => {
+type NewPasswordPropsT = {
+  isWelcome?: boolean;
+};
+const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
   const { handleSubmit, register, errors } = useForm();
   const { resetToken } = useParams<{ resetToken: string }>();
   const [showPassword, setShowPassword] = useState(false);
@@ -91,10 +94,21 @@ const NewPassword: React.FC = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box p={6} w="100%" h="100vh" pos="relative">
             <BackBtn handleClick={handleClick} />
+            {isWelcome ? (
+              <Fragment>
+                <Heading mt={8} mb={2} variant="colored" colorScheme="primary">
+                  Welcome to Coral
+                </Heading>
+                <Text textStyle="subTitle1">
+                  To sign in for the first time, create a new password now
+                </Text>
+              </Fragment>
+            ) : (
+              <Heading mt={8} mb={2}>
+                Create a new password
+              </Heading>
+            )}
 
-            <Heading mt={8} mb={2}>
-              Create a new password
-            </Heading>
             <Text>Lorem ipsum dolor sir amet</Text>
             <Text m="2rem 0 0.5rem 0" w="100%">
               Password

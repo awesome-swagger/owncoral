@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button } from '@chakra-ui/react';
 import { IoMdClose } from 'react-icons/io';
 import { BsChevronRight } from 'react-icons/bs';
@@ -27,8 +28,8 @@ export const Step1 = ({
         invest in another property (for optimal compounding).
       </Heading>
       <Heading fontSize="md">
-        We'll walk through where the cash comes from, what the cash flow looks like from each
-        source, and how it's taxed (tldr: it's extremely tax efficient!).
+        We&#39;ll walk through where the cash comes from, what the cash flow looks like from each
+        source, and how it&#39;s taxed (tldr: it&#39;s extremely tax efficient!).
       </Heading>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
         <Icon as={BsChevronRight} />

@@ -40,7 +40,7 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
           </Td>
         </Tr>
         <Tr>
-          <Td paddingBottom={0} colspan={3}>
+          <Td paddingBottom={0} colSpan={3}>
             <Text textStyle="bodyText2">Pro Rata</Text>
           </Td>
         </Tr>
@@ -55,7 +55,7 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
           <Td isNumeric>${formatFinancial(period === 'last' ? 0 : 0)}</Td>
         </Tr>
         <Tr>
-          <Td colspan={3} />
+          <Td colSpan={3} />
         </Tr>
         <Tr>
           <Td textStyle="subTitle1">

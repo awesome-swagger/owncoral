@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Center, Flex } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { TotalReturnChart } from '../charts';
@@ -23,12 +24,12 @@ export const Step7 = ({
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you'll likely pay very little (if any) income tax
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
         on your cash flow.
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you'll likely pay very little (if any) income tax
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
         on your cash flow.
       </Heading>
       <Box textAlign="center">

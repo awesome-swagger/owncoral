@@ -1,15 +1,18 @@
 import type React from 'react';
-import { Box, Heading } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
+import { Box, Heading } from '@chakra-ui/react';
 
 import { Option } from '../../../components';
+import { fetchWrap } from '../../../lib/api';
 
-export const Footer = ({ popOver }: { popOver: boolean }) => {
-  const history = useHistory();
+export const LogoutSelector = ({ popOver }: { popOver: boolean }) => {
+  const handleLogout = async () => {
+    await fetchWrap('/api/logout', { method: 'GET' });
+    window.location.href = '/';
+  };
   return (
     <Box mt={popOver ? 0 : 8} pb={popOver ? 0 : 20}>
-      <Option onClick={() => history.push('/logout')}>
+      <Option onClick={handleLogout}>
         <FiLogOut
           style={{
             height: '1.25rem',

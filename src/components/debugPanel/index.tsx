@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { css } from '@emotion/react';
+import { pick } from 'remeda';
 
 import { UserContext } from '../../userContext';
 
@@ -18,10 +19,14 @@ export function DebugPanel() {
         color: darkred;
         z-index: 100;
         user-select: none;
-        text-align: center;
+        text-align: left;
       `}
     >
-      <pre>{user?.email ? 'Profile loaded: ' + user.email : 'No profile loaded'}</pre>
+      <pre>
+        {user
+          ? 'User Profile\n' + JSON.stringify(pick(user, ['email', 'isAdmin']), null, 2)
+          : 'No profile loaded'}
+      </pre>
     </div>
   ) : null;
 }
