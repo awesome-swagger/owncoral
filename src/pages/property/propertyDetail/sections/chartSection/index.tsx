@@ -35,7 +35,7 @@ export const ChartSection = () => {
           p={4}
           pb={10}
           mb="0"
-          h={{ base: 'calc(100vh - 4rem)', md: '650px' }}
+          h={{ base: 'calc(100vh - 4rem)', md: '700px' }}
           overflow="hidden"
         >
           <CourseCashFlow handleClose={onClose} />
