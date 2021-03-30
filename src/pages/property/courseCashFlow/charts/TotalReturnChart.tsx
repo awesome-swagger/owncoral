@@ -8,6 +8,10 @@ import { animated, useTransition, interpolate } from 'react-spring';
 import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
 import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
 
+export const TotalReturnChart = () => (
+  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>
+);
+
 // data and types
 type BrowserNames = keyof Browsers;
 
@@ -173,8 +177,3 @@ function AnimatedPie<Datum>({
     </>
   );
 }
-
-export const TotalReturnChart = () => (
-  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>
-  // <Example width={400} height={200} />
-);

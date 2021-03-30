@@ -40,7 +40,7 @@ export const Step7 = ({
           TAXABLE INCOME
         </Heading>
       </Box>
-      <Center w="100%" h="150px">
+      <Center w="100%" h="200px">
         <Heading pos="absolute" fontSize="2xl" fontWeight="bold">
           $181
         </Heading>

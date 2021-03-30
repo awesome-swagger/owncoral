@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react';
 import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
-import { AxisBottom } from '@visx/axis';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 import { format } from 'date-fns';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 
 export const RealizedAppreciationChart = () => (
-  // <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
-  <Chart width={400} height={200} />
+  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
 );
 
 const data = [

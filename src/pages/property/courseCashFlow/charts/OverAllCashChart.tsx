@@ -2,16 +2,15 @@
 import React, { useMemo } from 'react';
 import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
-import { AxisBottom } from '@visx/axis';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 import { format } from 'date-fns';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleBand, scaleLinear } from '@visx/scale';
 
-console.log(ParentSize, '*** parent size');
+console.log(ParentSize);
 console.log(Group);
-console.log('hello');
 
-export const RentalRevenueChart = () => {
+export const OverAllCashChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
 };
 
@@ -83,12 +82,12 @@ function Chart({ width, height, events = false }: BarsProps) {
     round: true,
     domain: data.map(x),
     paddingInner: paddingInner,
-    paddingOuter: 0.15,
+    paddingOuter: 0.5,
   });
   const yScale = useMemo(
     () =>
       scaleLinear<number>({
-        range: [yMax, 0],
+        range: [yMax, 10],
         round: true,
         domain: [0, Math.max(...data.map(getLetterFrequency))],
       }),
@@ -98,7 +97,7 @@ function Chart({ width, height, events = false }: BarsProps) {
 
   return width < 10 ? null : (
     <svg width={width} height={height}>
-      <Group top={verticalMargin / 2}>
+      <Group top={verticalMargin / 2} left={10}>
         {data.map((d) => {
           const letter = getLetter(d);
           const barWidth = xScale.bandwidth();
@@ -116,7 +115,8 @@ function Chart({ width, height, events = false }: BarsProps) {
             />
           );
         })}
-        <AxisBottom scale={xScale} tickFormat={formatDate} top={yMax} />;
+        <AxisBottom scale={xScale} tickFormat={formatDate} top={yMax} />
+        <AxisLeft numTicks={3} scale={yScale} tickFormat={formatDate} left={5} />
       </Group>
     </svg>
   );
