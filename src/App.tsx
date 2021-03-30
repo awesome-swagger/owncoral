@@ -33,6 +33,7 @@ const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 const Error404 = lazy(() => import('./pages/error404'));
 const PortfolioDetail = lazy(() => import('./pages/portfolio/portfolioDetail'));
+const PortfolioDetailFlow = lazy(() => import('./pages/portfolio/portfolioDetailFlow'));
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -66,6 +67,8 @@ function App() {
               <ProtectedRoute exact path="/404" component={Error404} />
               <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
               <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
+              <ProtectedRoute exact path="/portfolio-detail-flow" component={PortfolioDetailFlow} />
+
               <ProtectedRoute
                 exact
                 path="/portfolio-detail/portfolio-map"
