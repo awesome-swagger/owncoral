@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo } from 'react';
 import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';

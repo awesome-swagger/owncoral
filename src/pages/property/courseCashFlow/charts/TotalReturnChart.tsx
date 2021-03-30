@@ -4,27 +4,36 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
 import { scaleOrdinal } from '@visx/scale';
 import { Group } from '@visx/group';
-import { GradientPinkBlue } from '@visx/gradient';
 import { animated, useTransition, interpolate } from 'react-spring';
+import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
+import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
 
-export const TotalReturnChart = () => (
-  // <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
-  <Example width={400} height={200} />
-);
-const browserUsage = [
+// data and types
+type BrowserNames = keyof Browsers;
+
+interface BrowserUsage {
+  label: BrowserNames;
+  usage: number;
+}
+
+const newBrowserUsage = [
   {
     Google: '3',
     Firefox: '78',
     Opera: '100',
   },
 ];
-const browserNames = Object.keys(browserUsage[0]).filter((k) => k !== 'date') as BrowserNames[];
-const browsers = browserNames.map((name) => ({
+const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
+const browserNames = Object.keys(newBrowserUsage[0]).filter((k) => k !== 'date') as BrowserNames[];
+const browsers: BrowserUsage[] = browserNames.map((name) => ({
   label: name,
-  usage: Number(browserUsage[0][name]),
+  usage: Number(newBrowserUsage[0][name]),
 }));
+
 // accessor functions
-const usage = (d) => d.usage;
+const usage = (d: BrowserUsage) => d.usage;
+const frequency = (d: LetterFrequency) => d.frequency;
+
 // color scales
 const getBrowserColor = scaleOrdinal({
   domain: browserNames,
@@ -40,12 +49,7 @@ export type PieProps = {
   animate?: boolean;
 };
 
-export default function Example({
-  width,
-  height,
-  margin = defaultMargin,
-  animate = true,
-}: PieProps) {
+function Example({ width, height, margin = defaultMargin, animate = true }: PieProps) {
   const [selectedBrowser, setSelectedBrowser] = useState<string | null>(null);
 
   if (width < 10) return null;
@@ -55,12 +59,11 @@ export default function Example({
   const radius = Math.min(innerWidth, innerHeight) / 2;
   const centerY = innerHeight / 2;
   const centerX = innerWidth / 2;
-  const donutThickness = 50;
+  const donutThickness = 20;
 
   return (
     <svg width={width} height={height}>
-      <GradientPinkBlue id="visx-pie-gradient" />
-      <rect rx={14} width={width} height={height} fill="url('#visx-pie-gradient')" />
+      <rect rx={14} width={width} height={height} fill="#fff" />
       <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
           data={
@@ -144,6 +147,7 @@ function AnimatedPie<Datum>({
           props: AnimatedStyles;
           key: string;
         }) => {
+          const [centroidX, centroidY] = path.centroid(arc);
           const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
           return (
@@ -169,3 +173,8 @@ function AnimatedPie<Datum>({
     </>
   );
 }
+
+export const TotalReturnChart = () => (
+  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>
+  // <Example width={400} height={200} />
+);
