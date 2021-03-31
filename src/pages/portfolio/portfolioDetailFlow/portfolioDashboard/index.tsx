@@ -7,7 +7,7 @@ import { IoMdClose } from 'react-icons/io';
 import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
 
-export const Dashboard = () => {
+export const PortfolioDashboard = () => {
   const [popUp, setPopUp] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
 
