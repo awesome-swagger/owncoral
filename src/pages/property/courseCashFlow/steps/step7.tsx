@@ -24,24 +24,24 @@ export const Step7 = ({
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
-        on your cash flow.
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
+        tax on your cash flow.
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
-        on your cash flow.
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
+        tax on your cash flow.
       </Heading>
       <Box textAlign="center">
-        <Heading fontSize="md" fontWeight="bold" m="0">
+        <Heading fontSize="md" fontWeight="bold" m="0" pos="relative">
           $3k
         </Heading>
         <Heading fontSize="xs" m="0">
           TAXABLE INCOME
         </Heading>
       </Box>
-      <Center w="100%" h="150px" transform="rotate(-85deg)">
-        <Heading pos="absolute" transform="rotate(85deg)" fontSize="2xl" fontWeight="bold">
+      <Center w="100%" h="200px">
+        <Heading pos="absolute" fontSize="2xl" fontWeight="bold">
           $181
         </Heading>
         <TotalReturnChart />

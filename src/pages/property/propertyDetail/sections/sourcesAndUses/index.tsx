@@ -37,7 +37,15 @@ export const SourcesAndUses = () => (
         <Icon w={6} h={6} as={BsQuestionCircle} />
       </Box>
     </Center>
-    <Flex justifyContent="space-between" alignItems="center" px={4} py={2} my={4} border="1px">
+    <Flex
+      justifyContent="space-between"
+      alignItems="center"
+      px={4}
+      py={2}
+      my={4}
+      border="1px"
+      layerStyle="lightBorder"
+    >
       <Box>
         <Heading fontSize="md" fontWeight="bold">
           Why Coral participates in equity?
@@ -81,7 +89,7 @@ export const SourcesAndUses = () => (
         </Heading>
       </Flex>
     </Box>
-    <Box px={4} my={4} textAlign="center" border="1px">
+    <Box px={4} my={4} textAlign="center" border="1px" layerStyle="lightBorder">
       <Heading fontSize="lg"> Learn more about uses of funds</Heading>
     </Box>
   </Box>

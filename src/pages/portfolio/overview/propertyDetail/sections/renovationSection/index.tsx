@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
-import RenovationImg from '../../../../../assets/CapturaRenovation.png';
+import RenovationImg from '../../../../../../assets/CapturaRenovation.png';
 
 export const RenovationSection = () => (
   <Box>

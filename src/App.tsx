@@ -17,6 +17,9 @@ import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import type { UserT } from './userContext';
 import { UserContext } from './userContext';
+import { Dashboard } from './pages/portfolio/portfolioDetail/dashboard';
+import { PortfolioMap } from './pages/portfolio/portfolioDetail/portfolioMap';
+import { PortfolioDashboard } from './pages/portfolio/overview/portfolioDashboard';
 
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
@@ -30,6 +33,9 @@ const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/step
 const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 const Error404 = lazy(() => import('./pages/error404'));
+const PortfolioDetail = lazy(() => import('./pages/portfolio/portfolioDetail'));
+const Overview = lazy(() => import('./pages/portfolio/overview'));
+const PortfolioPropertyDetail = lazy(() => import('./pages/portfolio/overview/propertyDetail'));
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -61,7 +67,20 @@ function App() {
               <ProtectedRoute exact path="/property-card" component={PropertyCard} />
               <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
               <ProtectedRoute exact path="/404" component={Error404} />
-
+              <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
+              <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
+              <ProtectedRoute
+                exact
+                path="/portfolio-detail/portfolio-map"
+                component={PortfolioMap}
+              />
+              <ProtectedRoute exact path="/overview" component={Overview} />
+              <ProtectedRoute exact path="/overview/dashboard" component={PortfolioDashboard} />
+              <ProtectedRoute
+                exact
+                path="/overview/property-detail"
+                component={PortfolioPropertyDetail}
+              />
               {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
               {/* <Route exact path="/documents" component={Docs} /> */}
               {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}

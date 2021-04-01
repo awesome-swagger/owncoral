@@ -28,7 +28,7 @@ export const Step4 = ({
         increase our loan balance accordingly. The incremental loan amount is then distributed to
         investors.
       </Heading>
-      <Center w="100%" h="150px">
+      <Center w="100%" h={250} my={-8}>
         <RealizedAppreciationChart />
       </Center>
       <Heading fontSize="xs" textAlign="right" mt={0} mb={6}>
@@ -36,8 +36,8 @@ export const Step4 = ({
       </Heading>
       <Heading fontSize="sm">
         We typically get a construction earn-out after a meaningful renovation, and refinance every
-        ~5 years. These events, along with the sale of the property, create &#34;spikes&#34; in cash flow
-        (layered on top of the cash flow from rental revenue).
+        ~5 years. These events, along with the sale of the property, create &#34;spikes&#34; in cash
+        flow (layered on top of the cash flow from rental revenue).
       </Heading>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
         <Icon as={BsChevronRight} />

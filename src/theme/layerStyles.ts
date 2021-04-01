@@ -156,4 +156,10 @@ export const layerStyles = {
       bgColor: 'white',
     },
   },
+  lightBorder: {
+    borderColor: 'blackAlpha.300',
+    '.chakra-ui-dark &': {
+      borderColor: 'whiteAlpha.400',
+    },
+  },
 };
