@@ -86,6 +86,22 @@ export const layerStyles = {
       _hover: { bg: { base: 'inherit', md: 'rgba(255, 255, 255, 0.12)' }, shadow: 'md' },
     },
   },
+  // Unlike the ones above, these are not responsive
+  muiCardColorAlwaysOn: {
+    bg: { base: 'inherit', md: 'inherit' },
+    '.chakra-ui-dark &': {
+      bg: { base: 'rgba(255, 255, 255, 0.05)' },
+    },
+  },
+  muiCardColorActiveAlwaysOn: {
+    bg: { base: 'inherit' },
+    _hover: { shadow: 'md' },
+
+    '.chakra-ui-dark &': {
+      bg: { base: 'rgba(255, 255, 255, 0.05)' },
+      _hover: { bg: { base: 'rgba(255, 255, 255, 0.12)' }, shadow: 'md' },
+    },
+  },
   resultHeading: {
     color: 'primary.700',
     '.chakra-ui-dark &': {

@@ -23,10 +23,10 @@ import { format as formatDate } from 'date-fns';
 import lowPolyHouseLg from '../../assets/low-poly-1.gif';
 import { BackBtn } from '../../components';
 import { NavBar } from '../../components/navBar';
-import type { PropertyDataT } from '../../lib/fakePropertyData';
 import { propertyData } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
 import theme from '../../theme';
+import type { PropertyDataT } from '../portfolio/fetchData';
 import { PropertyTable } from './PropertyTable';
 
 function Property() {

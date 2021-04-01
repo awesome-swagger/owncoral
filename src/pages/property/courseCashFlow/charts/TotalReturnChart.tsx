@@ -1,11 +1,10 @@
-// @ts-nocheck
 import React, { useState } from 'react';
+import { useColorModeValue } from '@chakra-ui/react';
+import { animated, useTransition, interpolate } from 'react-spring';
+import { Group } from '@visx/group';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
 import { scaleOrdinal } from '@visx/scale';
-import { Group } from '@visx/group';
-import { animated, useTransition, interpolate } from 'react-spring';
-import { useColorModeValue } from '@chakra-ui/react';
 
 export const TotalReturnChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -18,13 +17,14 @@ const ChartData = [
     Opera: '100',
   },
 ];
-const DataNames = Object.keys(ChartData[0]).filter((k) => k !== 'date') as DataNames[];
+
+const DataNames = Object.keys(ChartData[0]).filter((k) => k !== 'date');
 const PieData = DataNames.map((name) => ({
   label: name,
-  usage: Number(ChartData[0][name]),
+  usage: Number((ChartData[0] as any)[name]),
 }));
 
-const usage = (d) => d.usage;
+const usage = (d: { usage: number }) => d.usage;
 
 const PieColor = scaleOrdinal({
   domain: DataNames,
@@ -66,7 +66,7 @@ function Chart({ width, height, margin = defaultMargin, animate = true }: PiePro
           padAngle={0.005}
         >
           {(pie) => (
-            <AnimatedPie<BrowserUsage>
+            <AnimatedPie
               {...pie}
               animate={animate}
               getKey={(arc) => arc.data.label}
@@ -82,13 +82,12 @@ function Chart({ width, height, margin = defaultMargin, animate = true }: PiePro
   );
 }
 
-type AnimatedStyles = { startAngle: number; endAngle: number; opacity: number };
-
 const fromLeaveTransition = ({ endAngle }: PieArcDatum<any>) => ({
   startAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   endAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   opacity: 0,
 });
+
 const enterUpdateTransition = ({ startAngle, endAngle }: PieArcDatum<any>) => ({
   startAngle,
   endAngle,
@@ -111,7 +110,7 @@ function AnimatedPie<Datum>({
   getColor,
   onClickDatum,
 }: AnimatedPieProps<Datum>) {
-  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(arcs, getKey, {
+  const transitions = useTransition(arcs, getKey, {
     from: animate ? fromLeaveTransition : enterUpdateTransition,
     enter: enterUpdateTransition,
     update: enterUpdateTransition,
@@ -119,37 +118,27 @@ function AnimatedPie<Datum>({
   });
   return (
     <>
-      {transitions.map(
-        ({
-          item: arc,
-          props,
-          key,
-        }: {
-          item: PieArcDatum<Datum>;
-          props: AnimatedStyles;
-          key: string;
-        }) => {
-          const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
+      {transitions.map(({ item: arc, props, key }: { item: any; props: any; key: string }) => {
+        const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
-          return (
-            <g key={key}>
-              <animated.path
-                d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
-                  path({
-                    ...arc,
-                    startAngle,
-                    endAngle,
-                  }),
-                )}
-                fill={getColor(arc)}
-                onClick={() => onClickDatum(arc)}
-                onTouchStart={() => onClickDatum(arc)}
-              />
-              {hasSpaceForLabel && <animated.g style={{ opacity: props.opacity }}></animated.g>}
-            </g>
-          );
-        },
-      )}
+        return (
+          <g key={key}>
+            <animated.path
+              d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
+                path({
+                  ...arc,
+                  startAngle,
+                  endAngle,
+                }),
+              )}
+              fill={getColor(arc)}
+              onClick={() => onClickDatum(arc)}
+              onTouchStart={() => onClickDatum(arc)}
+            />
+            {hasSpaceForLabel && <animated.g style={{ opacity: props.opacity }}></animated.g>}
+          </g>
+        );
+      })}
     </>
   );
 }

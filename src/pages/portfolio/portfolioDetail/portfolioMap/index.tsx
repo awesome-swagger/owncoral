@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Container } from '../../../../components';
 import { Image, Box, Center, Heading, Icon } from '@chakra-ui/react';
-import MapImg from '../../../../assets/MapsicleMap.png';
 import { FiChevronLeft } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { PopUpBox } from './popUpBox';
+import { Container } from '../../../../components';
+import MapImg from '../../../../assets/MapsicleMap.png';
 
 export const PortfolioMap = () => {
   const [popUp, setPopUp] = useState(false);
@@ -46,4 +46,4 @@ export const PortfolioMap = () => {
       {popUp ? <PopUpBox handleClose={setPopUp} /> : ''}
     </Container>
   );
-};
+}

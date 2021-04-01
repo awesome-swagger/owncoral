@@ -1,12 +1,13 @@
 // @ts-nocheck
 import React, { useMemo } from 'react';
+import { useColorModeValue } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
-import { format } from 'date-fns';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import { useColorModeValue } from '@chakra-ui/react';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+
 
 export const OverAllCashChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
@@ -57,8 +58,8 @@ const data = [
 const verticalMargin = 120;
 
 // accessors
-const BarLabel = (d: any) => d.t;
-const ChartData = (d: any) => Number(d.expected) * 100;
+const barLabel = (d: any) => d.t;
+const chartData = (d: any) => Number(d.expected) * 100;
 
 export type BarsProps = {
   width: number;
@@ -88,7 +89,7 @@ function Chart({ width, height, events = false }: BarsProps) {
       scaleLinear<number>({
         range: [yMax, 10],
         round: true,
-        domain: [0, Math.max(...data.map(ChartData))],
+        domain: [0, Math.max(...data.map(chartData))],
       }),
     [yMax],
   );
@@ -98,9 +99,9 @@ function Chart({ width, height, events = false }: BarsProps) {
     <svg width={width} height={height}>
       <Group top={verticalMargin / 2} left={10}>
         {data.map((d) => {
-          const letter = BarLabel(d);
+          const letter = barLabel(d);
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - (yScale(ChartData(d)) ?? 0);
+          const barHeight = yMax - (yScale(chartData(d)) ?? 0);
           const barX = xScale(letter);
           const barY = yMax - barHeight;
           return (

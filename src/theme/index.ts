@@ -4,8 +4,8 @@
  *   https://chakra-ui.com/docs/theming/customize-theme
  */
 
+import type { ColorModeOptions } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
-import type { ColorModeOptions } from '@chakra-ui/system';
 
 // Component style overrides
 import { Button } from './components/button';

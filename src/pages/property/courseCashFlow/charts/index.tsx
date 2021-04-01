@@ -3,4 +3,4 @@ import { RealizedAppreciationChart } from './RealizedAppreciationChart';
 import { TotalReturnChart } from './TotalReturnChart';
 import { OverAllCashChart } from './OverAllCashChart';
 
-export { RentalRevenueChart, RealizedAppreciationChart, TotalReturnChart, OverAllCashChart };
+export { RentalRevenueChart, RealizedAppreciationChart, TotalReturnChart, OverAllCashChart }

@@ -12,11 +12,12 @@ module.exports = {
     },
   },
   plugins: [
+    // Trying out esbuild (vs. webpack) production bundles
+    // "@snowpack/plugin-webpack",
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
     "snowpack-plugin-svgr",
-    "@snowpack/plugin-webpack",
     "@snowpack/plugin-babel",
   ],
   // https://www.snowpack.dev/guides/routing
@@ -24,7 +25,13 @@ module.exports = {
     // Proxy local API routes
     {
       src: '/api/.*',
-      dest: (req, res) => proxy.web(req, res),
+      dest: (req, res) => {
+        try {
+          return proxy.web(req, res)
+        } catch (e) {
+          console.trace(e);
+        }
+      },
     },
     // Enable an SPA Fallback in development
     {
@@ -33,9 +40,12 @@ module.exports = {
       "dest": "/index.html"
     },
   ],
+  // https://www.snowpack.dev/guides/optimize-and-bundle
   optimize: {
-    /* Example: Bundle your final build: */
     "bundle": true,
+    "minify": true,
+    "treeshake": true,
+    "splitting": true
   },
   packageOptions: {
     /* ... */
@@ -44,6 +54,6 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    /* ... */
+    sourcemap: true
   },
 };

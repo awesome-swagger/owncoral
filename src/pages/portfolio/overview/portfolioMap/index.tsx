@@ -43,7 +43,7 @@ export const PortfolioMap = () => {
         </Box>
       </Box>
       <Image w="100%" src={MapImg} alt="map" />
-      {popUp ? <PopUpBox handleClose={setPopUp} /> : ''}
+      {popUp && <PopUpBox handleClose={setPopUp} />}
     </Container>
   );
 };

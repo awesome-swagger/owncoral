@@ -18,74 +18,75 @@ import { TaxClassification } from './steps/TaxClassification';
 
 type loginRouteType = { path: string; Component: any };
 
+// Paths are relative to flow's path (e.g. '/phone-number' corresponds to 'investment-profile/phone-number')
 export const investmentProfileRoutes: Array<loginRouteType> = [
   {
-    path: '/investment-profile/information-missing',
+    path: '/information-missing',
     Component: InformationMissing,
   },
   {
-    path: '/investment-profile/residental-address',
+    path: '/residental-address',
     Component: ResidentialAddress,
   },
   {
-    path: '/investment-profile/phone-number',
+    path: '/phone-number',
     Component: PhoneNumber,
   },
   {
-    path: '/investment-profile/ssn-or-ein',
+    path: '/ssn-or-ein',
     Component: SsnOrEin,
   },
   {
-    path: '/investment-profile/invest',
+    path: '/invest',
     Component: Invest,
   },
   {
-    path: '/investment-profile/entity-name',
+    path: '/entity-name',
     Component: EntityName,
   },
   {
-    path: '/investment-profile/entity-type',
+    path: '/entity-type',
     Component: EntityType,
   },
   {
-    path: '/investment-profile/tax-classification',
+    path: '/tax-classification',
     Component: TaxClassification,
   },
   {
-    path: '/investment-profile/ein',
+    path: '/ein',
     Component: Ein,
   },
   {
-    path: '/investment-profile/industry',
+    path: '/industry',
     Component: Industry,
   },
   {
-    path: '/investment-profile/date-of-formation',
+    path: '/date-of-formation',
     Component: DateOfFormation,
   },
 
   {
-    path: '/investment-profile/jurisdiction-registration',
+    path: '/jurisdiction-registration',
     Component: JurisdictionRegistration,
   },
   {
-    path: '/investment-profile/date-of-registration',
+    path: '/date-of-registration',
     Component: DateOfRegistration,
   },
   {
-    path: '/investment-profile/certificate-of-registration',
+    path: '/certificate-of-registration',
     Component: CertificateOfRegistration,
   },
   {
-    path: '/investment-profile/entity-address',
+    path: '/entity-address',
     Component: EntityAddress,
   },
   {
-    path: '/investment-profile/entity-phone-number',
+    path: '/entity-phone-number',
     Component: EntityPhoneNumber,
   },
   {
-    path: '/investment-profile/result',
+    path: '/result',
     Component: Result,
   },
 ];

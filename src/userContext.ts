@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
-export type UserT = any; // TODO: fix type
-export const UserContext = React.createContext<UserT>(null);
+// TODO: create shared type-lib and fix below
+export type UserT = any;
+export const UserContext = React.createContext<[UserT, Dispatch<SetStateAction<UserT>>]>([
+  null,
+  () => {},
+]);

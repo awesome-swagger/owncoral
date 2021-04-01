@@ -1,5 +1,5 @@
-import { TotalDistribution } from './totalDistribution';
-import { TopRankingProperties } from './topRankingProperties';
-import { CashFlow } from './cashFlow';
+import { TotalDistribution } from './TotalDistribution';
+import { TopRankingProperties } from './TopRankingProperties';
+import { CashFlow } from './CashFlow';
 
 export { TotalDistribution, TopRankingProperties, CashFlow };

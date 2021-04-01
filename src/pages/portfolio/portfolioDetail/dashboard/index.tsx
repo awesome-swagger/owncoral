@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Flex, Icon, Heading } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import { Container, BackBtn, Option } from '../../../../components';
 import { FiFilter } from 'react-icons/fi';
+import { Container, BackBtn } from '../../../../components';
 import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
 
@@ -23,4 +23,4 @@ export const Dashboard = () => {
       {popUp ? <PopUpBox handleClose={setPopUp} /> : ''}
     </Container>
   );
-};
+}
