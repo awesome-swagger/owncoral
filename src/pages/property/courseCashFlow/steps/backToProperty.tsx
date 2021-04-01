@@ -22,7 +22,7 @@ export const BackToProperty = ({
       <Heading fontSize="sm" mt={16}>
         Complete this crash course:
       </Heading>
-      <Flex border="1px" justifyContent="space-between">
+      <Flex border="1px" justifyContent="space-between" layerStyle="lightBorder">
         <Box p={4}>
           <Heading fontSize="md" m="0">
             Rookie homeowner

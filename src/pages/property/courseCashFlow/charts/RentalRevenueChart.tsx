@@ -6,6 +6,7 @@ import { AxisBottom } from '@visx/axis';
 import { format } from 'date-fns';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleBand, scaleLinear } from '@visx/scale';
+import { useColorModeValue } from '@chakra-ui/react';
 
 console.log(ParentSize, '*** parent size');
 console.log(Group);
@@ -70,6 +71,7 @@ export type BarsProps = {
 };
 
 function Chart({ width, height, events = false }: BarsProps) {
+  const BarColor = useColorModeValue('#4E504F', '#4E504F');
   // bounds
   const xMax = width;
   const yMax = height - verticalMargin;
@@ -112,7 +114,7 @@ function Chart({ width, height, events = false }: BarsProps) {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill="#4E504F"
+              fill={BarColor}
             />
           );
         })}

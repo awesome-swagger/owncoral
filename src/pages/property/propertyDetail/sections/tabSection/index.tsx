@@ -22,7 +22,7 @@ export const TabSection = () => (
           <Heading layerStyle="highlightForeground" w="100%" fontSize="sm">
             Great business, fair price
           </Heading>
-          <Box border="1px" textAlign="center" cursor="pointer">
+          <Box border="1px" textAlign="center" cursor="pointer" layerStyle="lightBorder">
             <Heading fontWeight="bold" fontSize="sm">
               What’s this?
             </Heading>
@@ -40,7 +40,7 @@ export const TabSection = () => (
           <Heading layerStyle="highlightForeground" w="100%" fontSize="sm">
             Great business, fair price
           </Heading>
-          <Box border="1px" textAlign="center" cursor="pointer">
+          <Box border="1px" textAlign="center" cursor="pointer" layerStyle="lightBorder">
             <Heading fontWeight="bold" fontSize="sm">
               What’s this?
             </Heading>

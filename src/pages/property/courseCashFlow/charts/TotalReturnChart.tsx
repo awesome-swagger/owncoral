@@ -5,42 +5,29 @@ import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
 import { scaleOrdinal } from '@visx/scale';
 import { Group } from '@visx/group';
 import { animated, useTransition, interpolate } from 'react-spring';
-import letterFrequency, { LetterFrequency } from '@visx/mock-data/lib/mocks/letterFrequency';
-import browserUsage, { BrowserUsage as Browsers } from '@visx/mock-data/lib/mocks/browserUsage';
+import { useColorModeValue } from '@chakra-ui/react';
 
 export const TotalReturnChart = () => (
-  <ParentSize>{({ width, height }) => <Example width={width} height={height} />}</ParentSize>
+  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
 );
 
-// data and types
-type BrowserNames = keyof Browsers;
-
-interface BrowserUsage {
-  label: BrowserNames;
-  usage: number;
-}
-
-const newBrowserUsage = [
+const ChartData = [
   {
     Google: '3',
     Firefox: '78',
     Opera: '100',
   },
 ];
-const letters: LetterFrequency[] = letterFrequency.slice(0, 4);
-const browserNames = Object.keys(newBrowserUsage[0]).filter((k) => k !== 'date') as BrowserNames[];
-const browsers: BrowserUsage[] = browserNames.map((name) => ({
+const DataNames = Object.keys(ChartData[0]).filter((k) => k !== 'date') as DataNames[];
+const PieData = DataNames.map((name) => ({
   label: name,
-  usage: Number(newBrowserUsage[0][name]),
+  usage: Number(ChartData[0][name]),
 }));
 
-// accessor functions
-const usage = (d: BrowserUsage) => d.usage;
-const frequency = (d: LetterFrequency) => d.frequency;
+const usage = (d) => d.usage;
 
-// color scales
-const getBrowserColor = scaleOrdinal({
-  domain: browserNames,
+const PieColor = scaleOrdinal({
+  domain: DataNames,
   range: ['#232525', '#888888', '#DFDFDF'],
 });
 
@@ -53,8 +40,9 @@ export type PieProps = {
   animate?: boolean;
 };
 
-function Example({ width, height, margin = defaultMargin, animate = true }: PieProps) {
-  const [selectedBrowser, setSelectedBrowser] = useState<string | null>(null);
+function Chart({ width, height, margin = defaultMargin, animate = true }: PieProps) {
+  const BgColor = useColorModeValue('#FFFFFF', '#FFFFFF00');
+  const [chartValue, setChartValue] = useState<string | null>(null);
 
   if (width < 10) return null;
 
@@ -67,12 +55,10 @@ function Example({ width, height, margin = defaultMargin, animate = true }: PieP
 
   return (
     <svg width={width} height={height}>
-      <rect rx={14} width={width} height={height} fill="#fff" />
+      <rect rx={14} width={width} height={height} fill={BgColor} />
       <Group top={centerY + margin.top} left={centerX + margin.left}>
         <Pie
-          data={
-            selectedBrowser ? browsers.filter(({ label }) => label === selectedBrowser) : browsers
-          }
+          data={chartValue ? PieData.filter(({ label }) => label === chartValue) : PieData}
           pieValue={usage}
           outerRadius={radius}
           innerRadius={radius - donutThickness}
@@ -85,10 +71,9 @@ function Example({ width, height, margin = defaultMargin, animate = true }: PieP
               animate={animate}
               getKey={(arc) => arc.data.label}
               onClickDatum={({ data: { label } }) =>
-                animate &&
-                setSelectedBrowser(selectedBrowser && selectedBrowser === label ? null : label)
+                animate && setChartValue(chartValue && chartValue === label ? null : label)
               }
-              getColor={(arc) => getBrowserColor(arc.data.label)}
+              getColor={(arc) => PieColor(arc.data.label)}
             />
           )}
         </Pie>
@@ -97,11 +82,9 @@ function Example({ width, height, margin = defaultMargin, animate = true }: PieP
   );
 }
 
-// react-spring transition definitions
 type AnimatedStyles = { startAngle: number; endAngle: number; opacity: number };
 
 const fromLeaveTransition = ({ endAngle }: PieArcDatum<any>) => ({
-  // enter from 360° if end angle is > 180°
   startAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   endAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   opacity: 0,
@@ -128,17 +111,12 @@ function AnimatedPie<Datum>({
   getColor,
   onClickDatum,
 }: AnimatedPieProps<Datum>) {
-  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(
-    arcs,
-    getKey,
-    // @ts-ignore react-spring doesn't like this overload
-    {
-      from: animate ? fromLeaveTransition : enterUpdateTransition,
-      enter: enterUpdateTransition,
-      update: enterUpdateTransition,
-      leave: animate ? fromLeaveTransition : enterUpdateTransition,
-    },
-  );
+  const transitions = useTransition<PieArcDatum<Datum>, AnimatedStyles>(arcs, getKey, {
+    from: animate ? fromLeaveTransition : enterUpdateTransition,
+    enter: enterUpdateTransition,
+    update: enterUpdateTransition,
+    leave: animate ? fromLeaveTransition : enterUpdateTransition,
+  });
   return (
     <>
       {transitions.map(
@@ -151,13 +129,11 @@ function AnimatedPie<Datum>({
           props: AnimatedStyles;
           key: string;
         }) => {
-          const [centroidX, centroidY] = path.centroid(arc);
           const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
           return (
             <g key={key}>
               <animated.path
-                // compute interpolated path d attribute from intermediate angle values
                 d={interpolate([props.startAngle, props.endAngle], (startAngle, endAngle) =>
                   path({
                     ...arc,

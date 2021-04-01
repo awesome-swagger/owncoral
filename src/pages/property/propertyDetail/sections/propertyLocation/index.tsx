@@ -34,7 +34,7 @@ export const PropertyLocation = () => (
         <Heading fontSize="md">14 min drive/25 min train to downtown Boston</Heading>
       </ListItem>
     </UnorderedList>
-    <Box border="1px" textAlign="center" my={4}>
+    <Box border="1px" textAlign="center" my={4} layerStyle="lightBorder">
       <Heading fontSize="md"> Learn more about location</Heading>
     </Box>
   </Box>

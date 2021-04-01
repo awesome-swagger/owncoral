@@ -49,7 +49,7 @@ export const RenovationSection = () => (
         <Heading fontSize="sm">Monthly rental income ($76,200 annually)</Heading>
       </Box>
     </Flex>
-    <Box px={4} my={4} textAlign="center" border="1px">
+    <Box px={4} my={4} textAlign="center" border="1px" layerStyle="lightBorder">
       <Heading fontSize="lg"> Learn more about renovations</Heading>
     </Box>
   </Box>

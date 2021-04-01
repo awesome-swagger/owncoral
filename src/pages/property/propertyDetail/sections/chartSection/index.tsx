@@ -16,7 +16,7 @@ export const ChartSection = () => {
   return (
     <Box>
       <Image src={ChartImg} alt="chart" w="100%" />
-      <Box border="1px" p={2} my={4} cursor="pointer" onClick={onOpen}>
+      <Box border="1px" p={2} my={4} cursor="pointer" onClick={onOpen} layerStyle="lightBorder">
         <Heading fontSize="md" m="0">
           Understanding investor cash flow
         </Heading>
@@ -24,7 +24,7 @@ export const ChartSection = () => {
           Crash course
         </Heading>
       </Box>
-      <Box border="1px" p={2} my={4}>
+      <Box border="1px" p={2} my={4} layerStyle="lightBorder">
         <Heading fontSize="md" m="0">
           Learn more about hypothetical investment
         </Heading>

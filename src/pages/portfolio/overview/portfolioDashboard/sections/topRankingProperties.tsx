@@ -1,6 +1,7 @@
 import { Heading, Box, Flex, Image } from '@chakra-ui/react';
 import { RankingProperties } from '../../../../../lib/rankingProperties';
-export const TopRankingProperties: React.FC = () => {
+
+export const TopRankingProperties = () => {
   return (
     <Box>
       <Heading fontSize="md" fontWeight="bold">
@@ -21,7 +22,6 @@ export const TopRankingProperties: React.FC = () => {
             Contribution
           </Heading>
         </Flex>
-
         {RankingProperties.map((data) => (
           <Flex alignItems="center" mt={2}>
             <Image w={16} src={data.img} alt="property_img" />

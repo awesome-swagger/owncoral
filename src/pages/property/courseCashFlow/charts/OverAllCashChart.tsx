@@ -6,9 +6,7 @@ import { AxisBottom, AxisLeft } from '@visx/axis';
 import { format } from 'date-fns';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleBand, scaleLinear } from '@visx/scale';
-
-console.log(ParentSize);
-console.log(Group);
+import { useColorModeValue } from '@chakra-ui/react';
 
 export const OverAllCashChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
@@ -59,8 +57,8 @@ const data = [
 const verticalMargin = 120;
 
 // accessors
-const getLetter = (d: any) => d.t;
-const getLetterFrequency = (d: any) => Number(d.expected) * 100;
+const BarLabel = (d: any) => d.t;
+const ChartData = (d: any) => Number(d.expected) * 100;
 
 export type BarsProps = {
   width: number;
@@ -69,6 +67,7 @@ export type BarsProps = {
 };
 
 function Chart({ width, height, events = false }: BarsProps) {
+  const BarColor = useColorModeValue('#4E504F', '#4E504F');
   // bounds
   const xMax = width;
   const yMax = height - verticalMargin;
@@ -89,7 +88,7 @@ function Chart({ width, height, events = false }: BarsProps) {
       scaleLinear<number>({
         range: [yMax, 10],
         round: true,
-        domain: [0, Math.max(...data.map(getLetterFrequency))],
+        domain: [0, Math.max(...data.map(ChartData))],
       }),
     [yMax],
   );
@@ -99,9 +98,9 @@ function Chart({ width, height, events = false }: BarsProps) {
     <svg width={width} height={height}>
       <Group top={verticalMargin / 2} left={10}>
         {data.map((d) => {
-          const letter = getLetter(d);
+          const letter = BarLabel(d);
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - (yScale(getLetterFrequency(d)) ?? 0);
+          const barHeight = yMax - (yScale(ChartData(d)) ?? 0);
           const barX = xScale(letter);
           const barY = yMax - barHeight;
           return (
@@ -111,7 +110,7 @@ function Chart({ width, height, events = false }: BarsProps) {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill="#4E504F"
+              fill={BarColor}
             />
           );
         })}

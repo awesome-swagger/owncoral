@@ -7,10 +7,10 @@ import { useHistory } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
 import { PortfolioMap } from './portfolioMap';
 
-const PortfolioDetailFlow = () => {
+const Overview = () => {
   const [step, setStep] = useState<any>(0);
   const history = useHistory();
-  const handleRoute = (route: string) => history.push(`/portfolio-detail-flow/${route}`);
+  const handleRoute = (route: string) => history.push(`/overview/${route}`);
   const handleNextStep = () => {
     step === 1 ? handleRoute('property-detail') : step === 'map' ? setStep(1) : setStep(step + 1);
   };
@@ -78,4 +78,4 @@ const Portfolio = ({
     </Box>
   </Container>
 );
-export default PortfolioDetailFlow;
+export default Overview;
