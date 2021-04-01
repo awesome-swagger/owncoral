@@ -8,10 +8,6 @@ import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import { useColorModeValue } from '@chakra-ui/react';
 
-console.log(ParentSize, '*** parent size');
-console.log(Group);
-console.log('hello');
-
 export const RentalRevenueChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
 };
