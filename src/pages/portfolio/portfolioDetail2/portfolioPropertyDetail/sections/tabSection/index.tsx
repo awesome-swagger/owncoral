@@ -27,7 +27,7 @@ export const TabSection = () => (
           <TabPanel2 />
         </TabPanel>
         <TabPanel px="0">
-          <p>three!</p>
+          <TabPanel3 />
         </TabPanel>
       </TabPanels>
     </Tabs>
