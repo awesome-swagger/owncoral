@@ -18,7 +18,9 @@ import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import { UserContext } from './userContext';
 import { Dashboard } from './pages/portfolio/portfolioDetail/dashboard';
 import { PortfolioMap } from './pages/portfolio/portfolioDetail/portfolioMap';
-import { PortfolioDashboard } from './pages/portfolio/overview/portfolioDashboard';
+import { Dashboard2 } from './pages/portfolio/portfolioDetail2/dashboard';
+import { PortfolioMap2 } from './pages/portfolio/portfolioDetail2/portfolioMap';
+import { OverviewDashboard } from './pages/portfolio/overview/overviewDashboard';
 
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
@@ -33,8 +35,12 @@ const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 const Error404 = lazy(() => import('./pages/error404'));
 const PortfolioDetail = lazy(() => import('./pages/portfolio/portfolioDetail'));
+const PortfolioDetail2 = lazy(() => import('./pages/portfolio/portfolioDetail2'));
 const Overview = lazy(() => import('./pages/portfolio/overview'));
-const PortfolioPropertyDetail = lazy(() => import('./pages/portfolio/overview/propertyDetail'));
+const OverviewPropertyDetail = lazy(() => import('./pages/portfolio/overview/overviewDetail'));
+const PortfolioPropertyDetail = lazy(
+  () => import('./pages/portfolio/portfolioDetail2/portfolioPropertyDetail'),
+);
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -67,17 +73,31 @@ function App() {
                 <ProtectedRoute exact path="/property-card" component={PropertyCard} />
                 <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
                 <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
+                <ProtectedRoute exact path="/portfolio-detail-2" component={PortfolioDetail2} />
+
                 <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
+                <ProtectedRoute exact path="/portfolio-detail-2/dashboard" component={Dashboard2} />
+
                 <ProtectedRoute
                   exact
                   path="/portfolio-detail/portfolio-map"
                   component={PortfolioMap}
                 />
+                <ProtectedRoute
+                  exact
+                  path="/portfolio-detail-2/portfolio-map"
+                  component={PortfolioMap2}
+                />
                 <ProtectedRoute exact path="/overview" component={Overview} />
-                <ProtectedRoute exact path="/overview/dashboard" component={PortfolioDashboard} />
+                <ProtectedRoute exact path="/overview/dashboard" component={OverviewDashboard} />
                 <ProtectedRoute
                   exact
                   path="/overview/property-detail"
+                  component={OverviewPropertyDetail}
+                />
+                <ProtectedRoute
+                  exact
+                  path="/portfolio-detail-2/property-detail"
                   component={PortfolioPropertyDetail}
                 />
                 <ProtectedRoute path="*" component={Error404} />

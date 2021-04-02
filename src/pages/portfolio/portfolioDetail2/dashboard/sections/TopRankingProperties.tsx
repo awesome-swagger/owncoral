@@ -1,11 +1,18 @@
-import type React from 'react';
 import { Heading, Box, Flex, Image } from '@chakra-ui/react';
 import { RankingProperties } from '../../../../../lib/rankingProperties';
+import { BackBtn } from '../../../../../components';
 
-export const TopRankingProperties: React.FC = () => {
+export const TopRankingProperties = ({
+  handleClick,
+  showAll,
+}: {
+  handleClick: () => void;
+  showAll: Boolean;
+}) => {
   return (
     <Box>
-      <Heading fontSize="md" fontWeight="bold">
+      {showAll ? <BackBtn handleClick={handleClick} /> : ''}
+      <Heading fontSize="xl" fontWeight="bold">
         Your top ranking properties
       </Heading>
       <Box>
@@ -40,9 +47,15 @@ export const TopRankingProperties: React.FC = () => {
             </Heading>
           </Flex>
         ))}
-        <Box border="1px" textAlign="center" my={6} layerStyle="lightBorder">
-          <Heading fontSize="md">See all ({RankingProperties.length})</Heading>
-        </Box>
+        {showAll ? (
+          ''
+        ) : (
+          <Box border="1px" textAlign="center" my={6} layerStyle="lightBorder" cursor="pointer">
+            <Heading fontSize="md" onClick={handleClick}>
+              See all ({RankingProperties.length})
+            </Heading>
+          </Box>
+        )}
       </Box>
     </Box>
   );

@@ -39,7 +39,7 @@ export const TopRankingProperties = () => {
           </Flex>
         ))}
         <Box border="1px" textAlign="center" my={6} layerStyle="lightBorder">
-          <Heading fontSize="md">See all (8)</Heading>
+          <Heading fontSize="md">See all ({RankingProperties.length})</Heading>
         </Box>
       </Box>
     </Box>

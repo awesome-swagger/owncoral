@@ -17,7 +17,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
           <FormLabel fontSize="sm" htmlFor="Portfolio" mb="0" cursor="pointer">
             Portfolio
           </FormLabel>
-          <Switch id="Portfolio" />
+          <Switch id="Portfolio" size="lg" />
         </FormControl>
       </Option>
       <Heading fontSize="sm" px={3} mb={8}>
@@ -29,7 +29,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
           <FormLabel fontSize="sm" htmlFor="Opportunities" mb="0" cursor="pointer">
             Opportunities
           </FormLabel>
-          <Switch id="Opportunities" />
+          <Switch id="Opportunities" size="lg" />
         </FormControl>
       </Option>
       <Heading fontSize="sm" px={3}>
@@ -44,7 +44,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
           <FormLabel fontSize="sm" htmlFor="Features" mb="0" cursor="pointer">
             Features and recommendations
           </FormLabel>
-          <Switch id="Features" />
+          <Switch id="Features" size="lg" />
         </FormControl>
       </Option>
       <Heading fontSize="sm" px={3} mb={8}>

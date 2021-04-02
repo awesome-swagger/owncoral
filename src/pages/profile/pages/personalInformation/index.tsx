@@ -40,7 +40,7 @@ export const PersonalInformation = ({
       <Option icon={false}>
         <FormControl justifyContent="space-between" display="flex" alignItems="center">
           I&#39;m an accredited visitor
-          <Switch id="Features" />
+          <Switch id="Features" size="lg" />
         </FormControl>
       </Option>
       <Box p="3px" />
