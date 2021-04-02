@@ -1,4 +1,4 @@
-import { Box, Heading, Flex, Center, Divider, Icon } from '@chakra-ui/react';
+import { Box, Heading, Flex, Center, Icon } from '@chakra-ui/react';
 import { BsQuestionCircle } from 'react-icons/bs';
 
 export const SourcesAndUses = () => (

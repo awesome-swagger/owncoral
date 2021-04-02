@@ -1,17 +1,8 @@
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Box,
-  Heading,
-  Flex,
-  Divider,
-} from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Heading } from '@chakra-ui/react';
 
 import { TabPanel1 } from './tabPanel1';
 import { TabPanel2 } from './tabPanel2';
+import { TabPanel3 } from './tabPanel3';
 
 export const TabSection = () => (
   <Box>
