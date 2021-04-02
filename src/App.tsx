@@ -80,7 +80,7 @@ function App() {
                   path="/overview/property-detail"
                   component={PortfolioPropertyDetail}
                 />
-                <ProtectedRoute path="/" component={Error404} />
+                <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
                 {/* <Route exact path="/documents" component={Docs} /> */}
                 {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
