@@ -17,6 +17,7 @@ const ChartData = [
     Opera: '100',
   },
 ];
+
 const DataNames = Object.keys(ChartData[0]).filter((k) => k !== 'date');
 const PieData = DataNames.map((name) => ({
   label: name,

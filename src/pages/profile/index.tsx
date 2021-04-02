@@ -1,5 +1,6 @@
 import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { Portal, Box } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 import { Account } from './account';
 import { Help } from './help';
 import { ProfileHeader } from './profileHeader';
@@ -8,7 +9,6 @@ import { LogoutSelector } from './logoutSelector';
 import { PopUp } from './popup';
 import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
 import { Container } from '../../components';
-import { useLocation } from 'react-router-dom';
 
 function Profile() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -37,30 +37,31 @@ function Profile() {
     }
   }, [overLay]);
 
+  const containerComponent = (overlay: any) => {
+    switch (overlay) {
+      case 1:
+        return <PersonalInformation goBack={handleClose} handleClick={handlePopUp} />
+      case 2:
+        return <InvestmentGoal goBack={handleClose} />
+      case 3:
+        return <Notification goBack={handleClose} />
+      case 4:
+        return <About goBack={handleClose} />
+      case 5:
+        return <Faqs goBack={handleClose} />
+      default:
+        return <ProfileContent handleClick={handleClick} />      
+    }
+  }
+
   return (
     <Container ref={ref}>
-      {overLay ? '' : <ProfileContent handleClick={handleClick} />}
+      { containerComponent(overLay) }
 
-      {overLay === 1 ? (
-        <PersonalInformation goBack={handleClose} handleClick={handlePopUp} />
-      ) : overLay === 2 ? (
-        <InvestmentGoal goBack={handleClose} />
-      ) : overLay === 3 ? (
-        <Notification goBack={handleClose} />
-      ) : overLay === 4 ? (
-        <About goBack={handleClose} />
-      ) : overLay === 5 ? (
-        <Faqs goBack={handleClose} />
-      ) : (
-        ''
-      )}
-
-      {popUp ? (
+      {popUp && (
         <Portal containerRef={ref}>
           <PopUp value={popUp} handleClick={setPopUp} />
         </Portal>
-      ) : (
-        ''
       )}
     </Container>
   );
