@@ -1,8 +1,10 @@
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow, Avatar } from '@chakra-ui/react';
 import { ProfileContent } from '../../pages/profile';
+import { useHistory } from 'react-router-dom';
 
 export const ProfilePopOver = () => {
-  const handleClick = () => console.log('Log Out');
+  const history = useHistory();
+  const handleClick = (overlayNo: Number) => history.push(`/profile?overlay=${overlayNo}`);
 
   return (
     <Popover placement="bottom-end">
