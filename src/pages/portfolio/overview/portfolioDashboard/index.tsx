@@ -1,18 +1,15 @@
 import { useState } from 'react';
 import { Flex, Icon, Heading } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
-import { Container, BackBtn, Option } from '../../../../components';
 import { CgOptions } from 'react-icons/cg';
 import { IoMdClose } from 'react-icons/io';
+import { Container, BackBtn } from '../../../../components';
 import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
 
 export const PortfolioDashboard = () => {
   const [popUp, setPopUp] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
-
-  console.log(filter);
-
   const history = useHistory();
 
   return (
@@ -38,8 +35,9 @@ export const PortfolioDashboard = () => {
           <Icon as={CgOptions} h={4} w={4} mr={filter.length === 0 ? 2 : 0} />
           {filter.length === 0 ? 'All properties' : ''}
         </Heading>
-        {filter.map((value) => (
+        {filter.map((value, index) => (
           <Heading
+            key={index}
             borderRadius="full"
             display="inline-block"
             cursor="pointer"
@@ -64,7 +62,7 @@ export const PortfolioDashboard = () => {
       <TotalDistribution />
       <TopRankingProperties />
       <CashFlow />
-      {popUp ? <PopUpBox handleClose={setPopUp} handleFilter={setFilter} filters={filter} /> : ''}
+      {popUp && <PopUpBox handleClose={setPopUp} handleFilter={setFilter} filters={filter} />}
     </Container>
   );
 };

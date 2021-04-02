@@ -49,7 +49,8 @@ const PortfolioPropertyDetail = () => (
     <Divider my={6} />
     <AssetSection />
     <Divider my={6} />
-    <RenovationSection /> <Divider my={6} />
+    <RenovationSection />
+    <Divider my={6} />
   </Container>
 );
 

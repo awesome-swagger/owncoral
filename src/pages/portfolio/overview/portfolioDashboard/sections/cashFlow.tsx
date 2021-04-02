@@ -8,7 +8,6 @@ import {
   TabPanel,
   Image,
   Flex,
-  Divider,
 } from '@chakra-ui/react';
 import Chart from '../../../../../assets/Chart1.png';
 

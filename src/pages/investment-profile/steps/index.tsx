@@ -1,5 +1,5 @@
 import { createContext, useCallback, useEffect, useReducer } from 'react';
-import { Switch, useHistory } from 'react-router-dom';
+import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { ProtectedRoute } from '../../../components';
 import { retrieveState, storeState } from '../../../lib/utils';
@@ -35,13 +35,14 @@ function formReducer(state: formStateType, action: ActionType) {
 
 function InvestmentProfileFlow() {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('login_state'));
+  const { url: investmentRootUrl } = useRouteMatch();
   const history = useHistory();
 
   const createNextStep = (currStep: number) => () => {
     if (currStep + 1 === investmentProfileRoutes.length) {
       history.push('/');
     } else {
-      history.push(investmentProfileRoutes[currStep + 1]?.path);
+      history.push(investmentRootUrl + investmentProfileRoutes[currStep + 1]?.path);
     }
   };
   const prevStep = useCallback(() => {
@@ -57,14 +58,14 @@ function InvestmentProfileFlow() {
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
         {investmentProfileRoutes.map(({ Component, path }, currStep) => (
-          <ProtectedRoute path={path} exact key={path}>
+          <ProtectedRoute exact path={investmentRootUrl + path} key={path}>
             <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />
           </ProtectedRoute>
         ))}
       </Switch>
     </StepFormContext.Provider>
   );
-};
+}
 
 // eslint-disable-next-line import/no-default-export
 export default InvestmentProfileFlow;

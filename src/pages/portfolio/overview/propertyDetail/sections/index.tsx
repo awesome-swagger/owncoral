@@ -5,4 +5,4 @@ import { PropertyLocation } from './propertyLocation';
 import { AssetSection } from './assetSection';
 import { RenovationSection } from './renovationSection';
 
-export { TopSection, TabSection, ChartSection, PropertyLocation, AssetSection, RenovationSection };
+export { TopSection, TabSection, ChartSection, PropertyLocation, AssetSection, RenovationSection }

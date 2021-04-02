@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
-import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
+
 import { retrieveState, storeState } from '../../lib/utils';
 import { signupRoutes } from './signupRoutes';
 
@@ -33,13 +34,14 @@ function formReducer(state: FormStateT, action: ActionT) {
 
 function Signup() {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
+  const { url: signupRootUrl } = useRouteMatch();
   const history = useHistory();
 
   const createNextStep = (currStep: number) => () => {
     if (currStep + 1 === signupRoutes.length) {
       history.push('/');
     } else {
-      history.push(signupRoutes[currStep + 1]?.path);
+      history.push(signupRootUrl + signupRoutes[currStep + 1]?.path);
     }
   };
   const prevStep = useCallback(() => {
@@ -54,11 +56,11 @@ function Signup() {
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
-        <Route path="/signup" exact key="/signup">
-          <Redirect to={signupRoutes[0].path} />
+        <Route exact path={signupRootUrl}>
+          <Redirect to={signupRootUrl + signupRoutes[0].path} />
         </Route>
         {signupRoutes.map(({ component: SignupComponent, path }, currStep) => (
-          <Route path={path} exact key={path}>
+          <Route exact path={signupRootUrl + path} key={path}>
             <SignupComponent nextStep={createNextStep(currStep)} prevStep={prevStep} />
           </Route>
         ))}

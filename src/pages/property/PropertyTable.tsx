@@ -1,11 +1,10 @@
 import type React from 'react';
 import { Heading, Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
 
-import type { PropertyDataT } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
 
 type PropertyTableProps = {
-  property: PropertyDataT;
+  property: any;
   period: 'last' | 'total';
 };
 

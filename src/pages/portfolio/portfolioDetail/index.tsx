@@ -1,9 +1,9 @@
-import { Container } from '../../../components';
 import { Image, Center, Icon, Box } from '@chakra-ui/react';
+import { useHistory } from 'react-router-dom';
 import { FiMap } from 'react-icons/fi';
 import { FaChartLine } from 'react-icons/fa';
+import { Container } from '../../../components';
 import MapImg from '../../../assets/Frame269.png';
-import { useHistory } from 'react-router-dom';
 
 const PortfolioDetail = () => {
   const history = useHistory();
@@ -40,5 +40,7 @@ const PortfolioDetail = () => {
       </Box>
     </Container>
   );
-};
+}
+
+// eslint-disable-next-line import/no-default-export
 export default PortfolioDetail;

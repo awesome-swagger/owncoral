@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
+import type { UseToastOptions } from '@chakra-ui/react';
 import {
   Box,
   Button,
@@ -21,7 +22,6 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
-import type { UseToastOptions } from '@chakra-ui/toast';
 import type { History } from 'history';
 
 import { ColorModeButton } from '../../components';
@@ -74,7 +74,7 @@ function LoginForm() {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [_, setUser] = useContext<UserT>(UserContext);
+  const [_, setUser] = useContext(UserContext);
   const history = useHistory();
   const toast = useToast();
 

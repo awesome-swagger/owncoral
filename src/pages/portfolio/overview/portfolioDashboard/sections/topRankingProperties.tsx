@@ -22,8 +22,8 @@ export const TopRankingProperties = () => {
             Contribution
           </Heading>
         </Flex>
-        {RankingProperties.map((data) => (
-          <Flex alignItems="center" mt={2}>
+        {RankingProperties.map((data, index) => (
+          <Flex alignItems="center" mt={2} key={index}>
             <Image w={16} src={data.img} alt="property_img" />
 
             <Heading fontSize="sm" w="calc(50% - 4rem)" px={3} isTruncated>

@@ -1,6 +1,6 @@
-import React, { Fragment, lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 
@@ -15,7 +15,6 @@ import {
 } from './components';
 import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
-import type { UserT } from './userContext';
 import { UserContext } from './userContext';
 import { Dashboard } from './pages/portfolio/portfolioDetail/dashboard';
 import { PortfolioMap } from './pages/portfolio/portfolioDetail/portfolioMap';
@@ -40,7 +39,7 @@ const PortfolioPropertyDetail = lazy(() => import('./pages/portfolio/overview/pr
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
-  const [user, setUser] = useState<UserT>(null);
+  const [user, setUser] = useState(null);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
@@ -50,40 +49,42 @@ function App() {
           <DebugPanel />
           <Suspense fallback={<Loading />}>
             <Router>
-              {/* Note: server handles not-logged-in redirection for the SPA bundle */}
-              {/*
-                TODO: refactor to just use nested routes / URL parameters
-                https://reactrouter.com/web/guides/philosophy/nested-routes
-              */}
-              <AuthRoutes />
-              <Signup />
-              <InvestmentProfileFlow />
-              <ProtectedRoute exact path="/">
-                <Redirect to="/portfolio" />
-              </ProtectedRoute>
-              <ProtectedRoute exact path="/portfolio" component={Portfolio} />
-              <ProtectedRoute exact path="/property/:address" component={Property} />
-              <ProtectedRoute exact path="/profile" component={Profile} />
-              <ProtectedRoute exact path="/property-card" component={PropertyCard} />
-              <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
-              <ProtectedRoute exact path="/404" component={Error404} />
-              <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
-              <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
-              <ProtectedRoute
-                exact
-                path="/portfolio-detail/portfolio-map"
-                component={PortfolioMap}
-              />
-              <ProtectedRoute exact path="/overview" component={Overview} />
-              <ProtectedRoute exact path="/overview/dashboard" component={PortfolioDashboard} />
-              <ProtectedRoute
-                exact
-                path="/overview/property-detail"
-                component={PortfolioPropertyDetail}
-              />
-              {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
-              {/* <Route exact path="/documents" component={Docs} /> */}
-              {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
+              <Switch>
+                {/* Note: server handles not-logged-in redirection for the SPA bundle */}
+                {authRoutes}
+                <Route path="/signup">
+                  <Signup />
+                </Route>
+                <Route path="/investment-profile">
+                  <InvestmentProfileFlow />
+                </Route>
+                <ProtectedRoute exact path="/">
+                  <Redirect to="/portfolio" />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/portfolio" component={Portfolio} />
+                <ProtectedRoute exact path="/property/:address" component={Property} />
+                <ProtectedRoute exact path="/profile" component={Profile} />
+                <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+                <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
+                <ProtectedRoute exact path="/404" component={Error404} />
+                <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
+                <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
+                <ProtectedRoute
+                  exact
+                  path="/portfolio-detail/portfolio-map"
+                  component={PortfolioMap}
+                />
+                <ProtectedRoute exact path="/overview" component={Overview} />
+                <ProtectedRoute exact path="/overview/dashboard" component={PortfolioDashboard} />
+                <ProtectedRoute
+                  exact
+                  path="/overview/property-detail"
+                  component={PortfolioPropertyDetail}
+                />
+                {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
+                {/* <Route exact path="/documents" component={Docs} /> */}
+                {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
+              </Switch>
             </Router>
           </Suspense>
         </ChakraProvider>
@@ -92,28 +93,23 @@ function App() {
   );
 }
 
-// TODO: pull static routes into this file
-function AuthRoutes() {
-  return (
-    <Fragment>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route exact path="/forgot">
-        <ForgotPassword />
-      </Route>
-      <Route exact path="/forgot-check-email">
-        <ForgotCheckEmail />
-      </Route>
-      <Route exact path="/new-password/:resetToken">
-        <NewPassword />
-      </Route>
-      <Route exact path="/welcome-to-coral/:resetToken">
-        <NewPassword isWelcome />
-      </Route>
-    </Fragment>
-  );
-}
+const authRoutes = [
+  <Route exact path="/login" key="/login">
+    <Login />
+  </Route>,
+  <Route exact path="/forgot" key="/forgot">
+    <ForgotPassword />
+  </Route>,
+  <Route exact path="/forgot-check-email" key="/forgot-check-email">
+    <ForgotCheckEmail />
+  </Route>,
+  <Route exact path="/new-password/:resetToken" key="/new-password/:resetToken">
+    <NewPassword />
+  </Route>,
+  <Route exact path="/welcome-to-coral/:resetToken" key="/welcome-to-coral/:resetToken">
+    <NewPassword isWelcome />
+  </Route>,
+];
 
 // eslint-disable-next-line import/no-default-export
 export default App;

@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Container, PropertyCard } from '../../../components';
+import React, { useState } from 'react';
 import { Image, Center, Icon, Box } from '@chakra-ui/react';
-import { FiMap, FiBarChart2 } from 'react-icons/fi';
-import MapImg from '../../../assets/Frame269.png';
 import { useHistory } from 'react-router-dom';
 import { useSwipeable } from 'react-swipeable';
+import { FiMap, FiBarChart2 } from 'react-icons/fi';
+import { Container, PropertyCard } from '../../../components';
 import { PortfolioMap } from './portfolioMap';
+import MapImg from '../../../assets/Frame269.png';
 
 const Overview = () => {
   const [step, setStep] = useState<any>(0);
@@ -78,4 +78,6 @@ const Portfolio = ({
     </Box>
   </Container>
 );
+
+// eslint-disable-next-line import/no-default-export
 export default Overview;

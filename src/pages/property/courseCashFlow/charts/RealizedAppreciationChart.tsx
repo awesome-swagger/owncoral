@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
+import { useColorModeValue } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { Bar } from '@visx/shape';
 import { Group } from '@visx/group';
 import { AxisBottom } from '@visx/axis';
-import { format } from 'date-fns';
 import { scaleBand, scaleLinear } from '@visx/scale';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import { useColorModeValue } from '@chakra-ui/react';
 
 export const RealizedAppreciationChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -31,8 +31,8 @@ const data = [
 const verticalMargin = 120;
 
 // accessors
-const BarLabel = (d: any) => d.t;
-const ChartData = (d: any) => Number(d.expected) * 100;
+const barLabel = (d: any) => d.t;
+const chartData = (d: any) => Number(d.expected) * 100;
 
 export type BarsProps = {
   width: number;
@@ -41,7 +41,7 @@ export type BarsProps = {
 };
 
 function Chart({ width, height, events = false }: BarsProps) {
-  const BarColor = useColorModeValue('#4E504F', '#4E504F');
+  const barColor = useColorModeValue('#4E504F', '#4E504F');
   // bounds
   const xMax = width;
   const yMax = height - verticalMargin;
@@ -62,7 +62,7 @@ function Chart({ width, height, events = false }: BarsProps) {
       scaleLinear<number>({
         range: [yMax, 0],
         round: true,
-        domain: [0, Math.max(...data.map(ChartData))],
+        domain: [0, Math.max(...data.map(chartData))],
       }),
     [yMax],
   );
@@ -72,9 +72,9 @@ function Chart({ width, height, events = false }: BarsProps) {
     <svg width={width} height={height}>
       <Group top={verticalMargin / 2}>
         {data.map((d) => {
-          const letter = BarLabel(d);
+          const letter = barLabel(d);
           const barWidth = xScale.bandwidth();
-          const barHeight = yMax - (yScale(ChartData(d)) ?? 0);
+          const barHeight = yMax - (yScale(chartData(d)) ?? 0);
           const barX = xScale(letter);
           const barY = yMax - barHeight;
           return (
@@ -84,7 +84,7 @@ function Chart({ width, height, events = false }: BarsProps) {
               y={barY}
               width={barWidth - 20}
               height={barHeight}
-              fill={BarColor}
+              fill={barColor}
             />
           );
         })}

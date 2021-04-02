@@ -1,5 +1,7 @@
 const FINANCIAL_UNIT_SUFFIX = ['', 'K', 'MM', 'B', 'T'];
 
+const round2 = (n: number): number => Math.round(n * 100) / 100;
+
 /**
  * Formats a monetary amount by rounding to the nearest
  * power-of-three suffix (e.g. K, MM).
@@ -13,7 +15,7 @@ const FINANCIAL_UNIT_SUFFIX = ['', 'K', 'MM', 'B', 'T'];
 export const formatFinancial = (n: number): string => {
   const nDigits = Math.floor(Math.log10(Math.abs(n))) + 1;
   if (nDigits <= 4) {
-    return n.toLocaleString('en');
+    return Math.round(n).toLocaleString('en');
   }
 
   const unitIdx = Math.floor((nDigits - 1) / 3);

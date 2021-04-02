@@ -46,4 +46,4 @@ export const TotalDistribution = () => {
       </Flex>
     </Box>
   );
-};
+}

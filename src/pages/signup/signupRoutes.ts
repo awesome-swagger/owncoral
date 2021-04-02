@@ -14,49 +14,50 @@ import {
 
 type SignupRouteT = { path: string; component: any };
 
+// Paths are relative to signup path (e.g. '/name' corresponds to '/signup/name', if '/signup' is the parent path)
 export const signupRoutes: Array<SignupRouteT> = [
   {
-    path: '/signup/residency',
+    path: '/residency',
     component: Residency,
   },
   {
-    path: '/signup/name',
+    path: '/name',
     component: Name,
   },
   {
-    path: '/signup/birthdate',
+    path: '/birthdate',
     component: BirthDate,
   },
   {
-    path: '/signup/investor',
+    path: '/investor',
     component: Investor,
   },
   {
-    path: '/signup/create-account',
+    path: '/create-account',
     component: CreateAccount,
   },
   {
-    path: '/signup/verify-email',
+    path: '/verify-email',
     component: VerifyEmail,
   },
   {
-    path: '/signup/welcome-coral',
+    path: '/welcome-coral',
     component: WelcomeCoral,
   },
   {
-    path: '/signup/investment-goal',
+    path: '/investment-goal',
     component: InvestmentGoal,
   },
   {
-    path: '/signup/networth',
+    path: '/networth',
     component: NetWorth,
   },
   {
-    path: '/signup/investment-experience',
+    path: '/investment-experience',
     component: InvestmentExperience,
   },
   {
-    path: '/signup/result',
+    path: '/result',
     component: Result,
   },
 ];

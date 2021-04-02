@@ -91,7 +91,6 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
     const yPoint = (d: ChartDataT) => yScale(y(d));
 
     const formatDate = (t: Date) => format(t, 'MMM');
-
     const formatMoney = (m: NumberValue) => `$${m}`;
 
     return (

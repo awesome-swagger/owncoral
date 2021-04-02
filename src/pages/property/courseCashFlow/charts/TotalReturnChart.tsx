@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { useColorModeValue } from '@chakra-ui/react';
+import { animated, useTransition, interpolate } from 'react-spring';
+import { Group } from '@visx/group';
 import ParentSize from '@visx/responsive/lib/components/ParentSize';
 import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
 import { scaleOrdinal } from '@visx/scale';
-import { Group } from '@visx/group';
-import { animated, useTransition, interpolate } from 'react-spring';
-import { useColorModeValue } from '@chakra-ui/react';
 
 export const TotalReturnChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -81,13 +81,12 @@ function Chart({ width, height, margin = defaultMargin, animate = true }: PiePro
   );
 }
 
-type AnimatedStyles = { startAngle: number; endAngle: number; opacity: number };
-
 const fromLeaveTransition = ({ endAngle }: PieArcDatum<any>) => ({
   startAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   endAngle: endAngle > Math.PI ? 2 * Math.PI : 0,
   opacity: 0,
 });
+
 const enterUpdateTransition = ({ startAngle, endAngle }: PieArcDatum<any>) => ({
   startAngle,
   endAngle,

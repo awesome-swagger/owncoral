@@ -1,6 +1,8 @@
 import { ChangeEvent, forwardRef, useContext } from 'react';
 import { Heading, Input, Text } from '@chakra-ui/react';
-import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete';
+// We're using the verbose default import here to work around a
+// bundling bug in Snowpack for this particular package
+import { default as usePlacesAutocomplete, getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import { BackBtn, Container, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';

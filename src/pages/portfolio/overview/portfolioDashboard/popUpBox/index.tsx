@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Heading, Center } from '@chakra-ui/react';
 import { Container, Option } from '../../../../../components';
 
@@ -26,8 +27,8 @@ export const PopUpBox = ({
           <Heading fontSize="lg" fontWeight="bold">
             Filter properties by market
           </Heading>
-          {AvalaibleFilters.map((value: { name: string; value: string }) => (
-            <Box>
+          {AvalaibleFilters.map((value: { name: string; value: string }, index) => (
+            <Box key={index}>
               <Option
                 icon={false}
                 onClick={() => {

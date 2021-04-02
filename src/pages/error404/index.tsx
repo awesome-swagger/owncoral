@@ -1,5 +1,7 @@
+import type React from 'react';
 import { Center, Icon, Heading } from '@chakra-ui/react';
 import { BiError } from 'react-icons/bi';
+
 const Error404 = () => (
   <Center h="100vh">
     <Center
@@ -20,4 +22,5 @@ const Error404 = () => (
   </Center>
 );
 
+// eslint-disable-next-line import/no-default-export
 export default Error404;
