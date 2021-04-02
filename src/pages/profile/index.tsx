@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from 'react';
+import { useState, useRef, useLayoutEffect, useEffect } from 'react';
 import { Portal, Box } from '@chakra-ui/react';
 import { Account } from './account';
 import { Help } from './help';
@@ -8,15 +8,28 @@ import { LogoutSelector } from './logoutSelector';
 import { PopUp } from './popup';
 import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
 import { Container } from '../../components';
+import { useLocation } from 'react-router-dom';
 
 function Profile() {
   const ref = useRef<HTMLDivElement | null>(null);
   const [overLay, setOverLay] = useState<Number | String | null>(null);
   const [popUp, setPopUp] = useState<String | null>('');
 
+  const location = useLocation();
+
   const handleClose = () => setOverLay(null);
   const handleClick = (value: Number | String) => setOverLay(value);
   const handlePopUp = (value: String) => setPopUp(value);
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+
+    let overlayLoc = query.get('overlay');
+
+    if (typeof overlayLoc !== 'undefined') {
+      setOverLay(Number(overlayLoc));
+    }
+  }, [location, setOverLay]);
 
   useLayoutEffect(() => {
     if (ref.current) {

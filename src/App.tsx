@@ -39,7 +39,7 @@ const PortfolioPropertyDetail = lazy(() => import('./pages/portfolio/overview/pr
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ id: 1 });
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
@@ -66,7 +66,6 @@ function App() {
                 <ProtectedRoute exact path="/profile" component={Profile} />
                 <ProtectedRoute exact path="/property-card" component={PropertyCard} />
                 <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
-                <ProtectedRoute exact path="/404" component={Error404} />
                 <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
                 <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
                 <ProtectedRoute
@@ -81,6 +80,7 @@ function App() {
                   path="/overview/property-detail"
                   component={PortfolioPropertyDetail}
                 />
+                <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
                 {/* <Route exact path="/documents" component={Docs} /> */}
                 {/* <Route exact path="/new-opportunities/:id" component={OpportunityDetail} /> */}
