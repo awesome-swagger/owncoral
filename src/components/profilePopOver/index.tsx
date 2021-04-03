@@ -1,6 +1,6 @@
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow, Avatar } from '@chakra-ui/react';
-import { ProfileContent } from '../../pages/profile';
 import { useHistory } from 'react-router-dom';
+import { ProfileContent } from '../../pages/profile';
 
 export const ProfilePopOver = () => {
   const history = useHistory();
