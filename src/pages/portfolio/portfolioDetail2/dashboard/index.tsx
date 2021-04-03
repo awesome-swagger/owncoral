@@ -30,7 +30,7 @@ export const Dashboard2 = () => {
           <CashFlow />
         </Box>
       )}
-      {popUp ? <PopUpBox handleClose={setPopUp} /> : ''}
+      {popUp && <PopUpBox handleClose={setPopUp} />}
     </Container>
   );
 };
