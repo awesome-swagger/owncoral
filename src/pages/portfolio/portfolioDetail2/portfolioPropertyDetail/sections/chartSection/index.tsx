@@ -1,4 +1,5 @@
 import { Box, Heading, Flex, Switch } from '@chakra-ui/react';
+import { CumulativeChart } from '../../charts';
 
 export const ChartSection = () => (
   <Box>
@@ -9,6 +10,9 @@ export const ChartSection = () => (
       <Heading fontSize="md">Switch to 5 years hold</Heading>
       <Switch size="lg" />
     </Flex>
+    <Box h="400px">
+      <CumulativeChart />
+    </Box>
     <Heading fontSize="2xl" fontWeight="bold">
       Cashflow
     </Heading>
@@ -16,5 +20,8 @@ export const ChartSection = () => (
       <Heading fontSize="md">Switch to 5 years hold</Heading>
       <Switch size="lg" />
     </Flex>
+    <Box h="400px">
+      <CumulativeChart />
+    </Box>
   </Box>
 );

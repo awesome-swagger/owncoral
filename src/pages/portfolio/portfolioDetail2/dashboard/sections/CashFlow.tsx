@@ -9,7 +9,9 @@ export const CashFlow = () => (
       <Heading fontSize="md">Switch to 5 years hold</Heading>
       <Switch size="lg" />
     </Flex>
-    <CumulativeChart />
+    <Box h="400px">
+      <CumulativeChart />
+    </Box>
     <Heading fontSize="2xl" fontWeight="bold">
       Cashflow
     </Heading>
@@ -17,5 +19,8 @@ export const CashFlow = () => (
       <Heading fontSize="md">Switch to 5 years hold</Heading>
       <Switch size="lg" />
     </Flex>
+    <Box h="400px">
+      <CumulativeChart />
+    </Box>
   </Box>
 );
