@@ -18,8 +18,8 @@ import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import { UserContext } from './userContext';
 import { Dashboard } from './pages/portfolio/portfolioDetail/dashboard';
 import { PortfolioMap } from './pages/portfolio/portfolioDetail/portfolioMap';
-import { Dashboard2 } from './pages/portfolio/portfolioDetail2/dashboard';
-import { PortfolioMap2 } from './pages/portfolio/portfolioDetail2/portfolioMap';
+import { Dashboard2 } from './pages/portfolio/detail/dashboard';
+import { PortfolioMap2 } from './pages/portfolio/detail/portfolioMap';
 import { OverviewDashboard } from './pages/portfolio/overview/overviewDashboard';
 
 const Login = lazy(() => import('./pages/login'));
@@ -35,11 +35,11 @@ const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 const Error404 = lazy(() => import('./pages/error404'));
 const PortfolioDetail = lazy(() => import('./pages/portfolio/portfolioDetail'));
-const PortfolioDetail2 = lazy(() => import('./pages/portfolio/portfolioDetail2'));
+const PortfolioDetail2 = lazy(() => import('./pages/portfolio/detail'));
 const Overview = lazy(() => import('./pages/portfolio/overview'));
 const OverviewPropertyDetail = lazy(() => import('./pages/portfolio/overview/overviewDetail'));
 const PortfolioPropertyDetail = lazy(
-  () => import('./pages/portfolio/portfolioDetail2/portfolioPropertyDetail'),
+  () => import('./pages/portfolio/detail/portfolioPropertyDetail'),
 );
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };

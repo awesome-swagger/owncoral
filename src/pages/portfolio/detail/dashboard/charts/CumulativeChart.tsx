@@ -35,15 +35,14 @@ const data = [
   { name: 'Y10', NewYork: '100', SanFrancisco: '5', Austin: '65' },
 ];
 
-console.log(data);
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
 
-const temperatureTotals = data.reduce((allTotals, currentDate: any) => {
-  const totalTemperature = keys.reduce((dailyTotal, k) => {
+const dataTotals = data.reduce((allTotals, currentDate: any) => {
+  const totalData = keys.reduce((dailyTotal, k) => {
     dailyTotal += Number(currentDate[k]);
     return dailyTotal;
   }, 0);
-  allTotals.push(totalTemperature);
+  allTotals.push(totalData);
   return allTotals;
 }, [] as number[]);
 
@@ -55,8 +54,8 @@ const dateScale = scaleBand<string>({
   domain: data.map(getDate),
   padding: 0.2,
 });
-const temperatureScale = scaleLinear<number>({
-  domain: [0, Math.max(...temperatureTotals)],
+const dataScale = scaleLinear<number>({
+  domain: [0, Math.max(...dataTotals)],
   nice: true,
 });
 const colorScale = scaleOrdinal({
@@ -69,7 +68,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
   const yMax = height - margin.top - 100;
 
   dateScale.rangeRound([0, xMax]);
-  temperatureScale.range([yMax, 0]);
+  dataScale.range([yMax, 0]);
 
   return width < 10 ? null : (
     <div style={{ position: 'relative' }}>
@@ -79,7 +78,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
           top={margin.top}
           left={margin.left}
           xScale={dateScale}
-          yScale={temperatureScale}
+          yScale={dataScale}
           width={xMax}
           height={yMax}
           stroke="black"
@@ -91,7 +90,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
             keys={keys}
             x={getDate}
             xScale={dateScale}
-            yScale={temperatureScale}
+            yScale={dataScale}
             color={colorScale}
           >
             {(barStacks) =>
@@ -99,10 +98,10 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
                 barStack.bars.map((bar) => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
-                    x={bar.x}
+                    x={bar.x + 5}
                     y={bar.y}
                     height={bar.height}
-                    width={bar.width}
+                    width={bar.width - 10}
                     fill={bar.color}
                   />
                 )),

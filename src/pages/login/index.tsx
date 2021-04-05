@@ -83,12 +83,12 @@ function LoginForm() {
 
   return (
     <form
-      onSubmit={handleSubmit(async (data) => {
+      onSubmit={handleSubmit(async (data: FormContents) => {
         const query = new URLSearchParams(location.search);
 
         let redirectUrl = query.get('redirect');
 
-        return onSubmit(data as FormContents, history, setUser, setIsLoading, toast, redirectUrl);
+        return onSubmit({ data, history, setUser, setIsLoading, toast, redirectUrl });
       })}
     >
       <FormControl>
@@ -169,15 +169,25 @@ type FormContents = {
   email: string;
   password: string;
 };
+
+interface SubmitParams {
+  data: FormContents;
+  history: History;
+  setUser: (u: UserT) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  toast: (options?: UseToastOptions | undefined) => string | number | undefined;
+  redirectUrl: null | string;
+}
+
 // eslint-disable-next-line max-params
-async function onSubmit(
-  data: FormContents,
-  history: History,
-  setUser: (u: UserT) => void,
-  setIsLoading: (isLoading: boolean) => void,
-  toast: (options?: UseToastOptions | undefined) => string | number | undefined,
-  redirectUrl: null | string,
-): Promise<void> {
+async function onSubmit({
+  data,
+  history,
+  setUser,
+  setIsLoading,
+  toast,
+  redirectUrl,
+}: SubmitParams): Promise<void> {
   setIsLoading(true);
   const resp = await fetchWrap('/api/login', {
     method: 'POST',

@@ -1,6 +1,6 @@
 import { Box, Flex, Icon, Heading, Divider } from '@chakra-ui/react';
 import { FaPercent } from 'react-icons/fa';
-import { InvestmentReturn, ChartSection } from '../../../sections';
+import { InvestmentReturn, ChartSection } from '../..';
 
 export const TabPanel1 = () => (
   <Box>
