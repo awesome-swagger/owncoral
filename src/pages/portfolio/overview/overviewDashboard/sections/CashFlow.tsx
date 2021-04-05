@@ -31,7 +31,7 @@ export const CashFlow = () => (
         </Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
+        <TabPanel px="0">
           <Image src={Chart} alt="chart" w="100%" />
           <Flex justifyContent="space-between" layerStyle="card" px={4} py={2} mb={4}>
             <Heading fontSize="md">Avg Monthly distribution</Heading>
@@ -77,7 +77,7 @@ export const CashFlow = () => (
             </Box>
           </Flex>
         </TabPanel>
-        <TabPanel>
+        <TabPanel px="0">
           <p>two!</p>
         </TabPanel>
       </TabPanels>

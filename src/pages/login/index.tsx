@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
 import type { UseToastOptions } from '@chakra-ui/react';
 import {
   Box,
@@ -77,14 +77,19 @@ function LoginForm() {
   const [_, setUser] = useContext(UserContext);
   const history = useHistory();
   const toast = useToast();
+  const location = useLocation();
 
   const isDev = process.env.NODE_ENV === 'development';
 
   return (
     <form
-      onSubmit={handleSubmit(async (data) =>
-        onSubmit(data as FormContents, history, setUser, setIsLoading, toast),
-      )}
+      onSubmit={handleSubmit(async (data: FormContents) => {
+        const query = new URLSearchParams(location.search);
+
+        let redirectUrl = query.get('redirect');
+
+        return onSubmit({ data, history, setUser, setIsLoading, toast, redirectUrl });
+      })}
     >
       <FormControl>
         <Center>
@@ -164,14 +169,25 @@ type FormContents = {
   email: string;
   password: string;
 };
+
+interface SubmitParams {
+  data: FormContents;
+  history: History;
+  setUser: (u: UserT) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  toast: (options?: UseToastOptions | undefined) => string | number | undefined;
+  redirectUrl: null | string;
+}
+
 // eslint-disable-next-line max-params
-async function onSubmit(
-  data: FormContents,
-  history: History,
-  setUser: (u: UserT) => void,
-  setIsLoading: (isLoading: boolean) => void,
-  toast: (options?: UseToastOptions | undefined) => string | number | undefined,
-): Promise<void> {
+async function onSubmit({
+  data,
+  history,
+  setUser,
+  setIsLoading,
+  toast,
+  redirectUrl,
+}: SubmitParams): Promise<void> {
   setIsLoading(true);
   const resp = await fetchWrap('/api/login', {
     method: 'POST',
@@ -181,7 +197,7 @@ async function onSubmit(
 
   if (resp.ok) {
     setUser(await resp.json());
-    history.push('/portfolio');
+    history.push(redirectUrl ? redirectUrl : '/portfolio');
     return;
   }
 

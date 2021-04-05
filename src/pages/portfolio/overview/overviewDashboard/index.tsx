@@ -7,7 +7,7 @@ import { Container, BackBtn } from '../../../../components';
 import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
 
-export const PortfolioDashboard = () => {
+export const OverviewDashboard = () => {
   const [popUp, setPopUp] = useState(false);
   const [filter, setFilter] = useState<string[]>([]);
   const history = useHistory();

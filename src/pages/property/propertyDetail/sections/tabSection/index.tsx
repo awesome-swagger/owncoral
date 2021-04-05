@@ -11,7 +11,7 @@ export const TabSection = () => (
       </Tab>
     </TabList>
     <TabPanels>
-      <TabPanel>
+      <TabPanel px="0">
         <Box layerStyle="card" m="2" p={4} w={40}>
           <Heading layerStyle="highlightForeground" fontSize="xs">
             Rental yield
@@ -29,7 +29,7 @@ export const TabSection = () => (
           </Box>
         </Box>
       </TabPanel>
-      <TabPanel>
+      <TabPanel px="0">
         <Box layerStyle="card" m="2" p={4} w={40}>
           <Heading layerStyle="highlightForeground" fontSize="xs">
             Rental yield

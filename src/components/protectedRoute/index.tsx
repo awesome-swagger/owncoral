@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import type { RouteProps } from 'react-router-dom';
+import { RouteProps, useLocation } from 'react-router-dom';
 import { Redirect, Route } from 'react-router-dom';
 
 import { fetchWrap } from '../../lib/api';
@@ -17,13 +17,21 @@ import { Loading } from '../loading';
 export const ProtectedRoute: React.FC<RouteProps> = (props) => {
   const [user, setUser] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(!user);
+  const location = useLocation();
+
   useEffect(() => {
     if (!user) {
       getUser(setUser, setIsLoading);
     }
   }, []);
 
-  return isLoading ? <Loading /> : user ? <Route {...props} /> : <Redirect to="/login" />;
+  return isLoading ? (
+    <Loading />
+  ) : user ? (
+    <Route {...props} />
+  ) : (
+    <Redirect to={`/login?redirect=${location.pathname}`} />
+  );
 };
 
 async function getUser(
