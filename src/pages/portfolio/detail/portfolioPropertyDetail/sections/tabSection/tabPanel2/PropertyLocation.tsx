@@ -22,7 +22,7 @@ export const PropertyLocation = () => (
       </Center>
     </Box>
     <Heading fontSize="md">
-      3 Linden is in the heart of Somerville, an emerging biotech hub. It's minutes from the new
+      3 Linden is in the heart of Somerville, an emerging biotech hub. It&#39;s minutes from the new
       Union Square biotech hub, which is in development, and the Union Square Greenline T Station
       (estimated to be complete at the end of this year)
     </Heading>

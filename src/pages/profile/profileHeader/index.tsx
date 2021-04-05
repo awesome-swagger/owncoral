@@ -10,7 +10,7 @@ export const ProfileHeader = () => {
     <Box>
       <Center m=".5rem 0">
         <Avatar size="lg" src="https://bit.ly/sage-adebayo" onLoad={() => setLoading(false)}>
-          {loading ? <Spinner pos="absolute" /> : ''}
+          {loading && <Spinner pos="absolute" />}
           <AvatarBadge boxSize="1em" bg={theme.colors.secondary[900]} p="2px" border="0">
             <BiCamera />
           </AvatarBadge>

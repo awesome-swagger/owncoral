@@ -38,6 +38,7 @@ const data = [
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
 
 const dataTotals = data.reduce((allTotals, currentDate: any) => {
+  // eslint-disable-line no-param-reassign
   const totalData = keys.reduce((dailyTotal, k) => {
     dailyTotal += Number(currentDate[k]);
     return dailyTotal;
@@ -62,6 +63,7 @@ const colorScale = scaleOrdinal({
   domain: keys,
   range: [barColor1, barColor2, barColor3],
 });
+
 function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
   if (width < 10) return null;
   const xMax = width;
