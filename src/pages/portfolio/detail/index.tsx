@@ -35,7 +35,7 @@ const PortfolioDetail2 = () => {
       {step === 0 ? (
         <Portfolio newRoute={handleRoute} nextStep={handleNextStep} setStep={setStep} />
       ) : step === 'map' ? (
-        <PortfolioMap2 data={PortfolioData} />
+        <PortfolioMap2 />
       ) : (
         <PropertyCard data={PortfolioData} handleClose={handlePrevStep} />
       )}
