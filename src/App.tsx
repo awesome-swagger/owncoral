@@ -68,26 +68,30 @@ function App() {
                   <Redirect to="/portfolio" />
                 </ProtectedRoute>
                 <ProtectedRoute exact path="/portfolio" component={Portfolio} />
+
+                {/* Portfolio Overview Route */}
+                <ProtectedRoute exact path="/portfolio/overview" component={PortfolioDetail2} />
+                <ProtectedRoute exact path="/portfolio/overview/dashboard" component={Dashboard2} />
+                <ProtectedRoute exact path="/portfolio/overview/map" component={PortfolioMap2} />
+                <ProtectedRoute
+                  exact
+                  path="/portfolio/overview/property-detail"
+                  component={PortfolioPropertyDetail}
+                />
+
                 <ProtectedRoute exact path="/property/:address" component={Property} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
                 <ProtectedRoute exact path="/property-card" component={PropertyCard} />
                 <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
                 <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
-                <ProtectedRoute exact path="/portfolio-detail-2" component={PortfolioDetail2} />
-
                 <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
-                <ProtectedRoute exact path="/portfolio-detail-2/dashboard" component={Dashboard2} />
 
                 <ProtectedRoute
                   exact
                   path="/portfolio-detail/portfolio-map"
                   component={PortfolioMap}
                 />
-                <ProtectedRoute
-                  exact
-                  path="/portfolio-detail-2/portfolio-map"
-                  component={PortfolioMap2}
-                />
+
                 <ProtectedRoute exact path="/overview" component={Overview} />
                 <ProtectedRoute exact path="/overview/dashboard" component={OverviewDashboard} />
                 <ProtectedRoute
@@ -95,11 +99,7 @@ function App() {
                   path="/overview/property-detail"
                   component={OverviewPropertyDetail}
                 />
-                <ProtectedRoute
-                  exact
-                  path="/portfolio-detail-2/property-detail"
-                  component={PortfolioPropertyDetail}
-                />
+
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}
                 {/* <Route exact path="/documents" component={Docs} /> */}

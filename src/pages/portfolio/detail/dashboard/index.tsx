@@ -5,8 +5,11 @@ import { FiFilter } from 'react-icons/fi';
 import { Container, BackBtn } from '../../../../components';
 import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
+import { DummyData } from '../../../../lib/portfolioData';
 
 export const Dashboard2 = () => {
+  const PortfolioData = DummyData;
+
   const [popUp, setPopUp] = useState(false);
   const [allProperties, setAllProperties] = useState(false);
   const history = useHistory();
@@ -24,7 +27,7 @@ export const Dashboard2 = () => {
             <Heading fontSize="lg">Dashboard</Heading>
             <Icon as={FiFilter} h={4} w={4} cursor="pointer" onClick={() => setPopUp(true)} />
           </Flex>
-          <TotalDistribution />
+          <TotalDistribution data={PortfolioData} />
           <Divider mb={4} />
           <TopRankingProperties handleClick={handleClick} showAll={allProperties} />
           <CashFlow />
