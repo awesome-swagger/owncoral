@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { RouteProps, useLocation } from 'react-router-dom';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, RouteProps, useLocation } from 'react-router-dom';
 
 import { fetchWrap } from '../../lib/api';
 import type { UserT } from '../../userContext';

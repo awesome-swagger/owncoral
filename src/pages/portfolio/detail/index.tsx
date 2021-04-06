@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Image, Center, Icon, Box } from '@chakra-ui/react';
 import { useHistory } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
 import { FiMap } from 'react-icons/fi';
 import { FaChartLine } from 'react-icons/fa';
 import { Container, PropertyCard } from '../../../components';
 import { PortfolioMap2 } from './portfolioMap';
 import MapImg from '../../../assets/Frame269.png';
-import { useSwipeable } from 'react-swipeable';
 import { DummyData } from '../../../lib/portfolioData';
 
 const PortfolioDetail2 = () => {

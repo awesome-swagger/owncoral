@@ -11,7 +11,7 @@ export const TopRankingProperties = ({
 }) => {
   return (
     <Box>
-      {showAll ? <BackBtn handleClick={handleClick} /> : ''}
+      {showAll && <BackBtn handleClick={handleClick} />}
       <Heading fontSize="xl" fontWeight="bold">
         Your top ranking properties
       </Heading>
@@ -47,9 +47,7 @@ export const TopRankingProperties = ({
             </Heading>
           </Flex>
         ))}
-        {showAll ? (
-          ''
-        ) : (
+        {!showAll && (
           <Box border="1px" textAlign="center" my={6} layerStyle="lightBorder" cursor="pointer">
             <Heading fontSize="md" onClick={handleClick}>
               See all ({RankingProperties.length})

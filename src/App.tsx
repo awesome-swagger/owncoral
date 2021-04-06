@@ -45,7 +45,7 @@ const PortfolioPropertyDetail = lazy(
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
-  const [user, setUser] = useState({ id: 1 });
+  const [user, setUser] = useState(null);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>

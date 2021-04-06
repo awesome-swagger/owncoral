@@ -1,7 +1,4 @@
 import React, { Fragment, useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
-import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
 import type { UseToastOptions } from '@chakra-ui/react';
 import {
   Box,
@@ -23,6 +20,9 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
+import { useForm } from 'react-hook-form';
+import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
+import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 
 import { ColorModeButton } from '../../components';
 // import Logo from '../../assets/coral.svg';

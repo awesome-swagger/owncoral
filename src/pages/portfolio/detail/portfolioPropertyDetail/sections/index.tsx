@@ -3,4 +3,4 @@ import { TabSection } from './tabSection';
 import { InvestmentReturn } from './investmentReturn';
 import { ChartSection } from './chartSection';
 
-export { TopSection, TabSection, InvestmentReturn, ChartSection };
+export { TopSection, TabSection, InvestmentReturn, ChartSection }

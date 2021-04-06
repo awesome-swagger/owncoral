@@ -20,7 +20,7 @@ export const Dashboard = () => {
       <TotalDistribution />
       <TopRankingProperties />
       <CashFlow />
-      {popUp ? <PopUpBox handleClose={setPopUp} /> : ''}
+      {popUp && <PopUpBox handleClose={setPopUp} />}
     </Container>
   );
 }
