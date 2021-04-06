@@ -5,7 +5,6 @@ import { useSwipeable } from 'react-swipeable';
 import { FiMap } from 'react-icons/fi';
 import { FaChartLine } from 'react-icons/fa';
 import { Container, PropertyCard } from '../../../components';
-import { PortfolioMap2 } from './portfolioMap';
 import MapImg from '../../../assets/Frame269.png';
 import { DummyData } from '../../../lib/portfolioData';
 
@@ -33,9 +32,7 @@ const PortfolioDetail2 = () => {
   return (
     <div {...handlers}>
       {step === 0 ? (
-        <Portfolio newRoute={handleRoute} nextStep={handleNextStep} setStep={setStep} />
-      ) : step === 'map' ? (
-        <PortfolioMap2 />
+        <Portfolio newRoute={handleRoute} nextStep={handleNextStep} />
       ) : (
         <PropertyCard data={PortfolioData} handleClose={handlePrevStep} />
       )}
@@ -45,11 +42,9 @@ const PortfolioDetail2 = () => {
 const Portfolio = ({
   newRoute,
   nextStep,
-  setStep,
 }: {
   newRoute: (route: string) => void;
   nextStep: () => void;
-  setStep: React.Dispatch<any>;
 }) => (
   <Container>
     <Box pos="relative" mx="auto">

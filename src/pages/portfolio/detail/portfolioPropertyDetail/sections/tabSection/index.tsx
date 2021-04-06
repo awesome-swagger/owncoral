@@ -4,7 +4,7 @@ import { TabPanel1 } from './tabPanel1';
 import { TabPanel2 } from './tabPanel2';
 import { TabPanel3 } from './tabPanel3';
 
-export const TabSection = () => (
+export const TabSection = ({ data }: { data: any }) => (
   <Box>
     <Tabs>
       <TabList>
@@ -21,13 +21,13 @@ export const TabSection = () => (
 
       <TabPanels>
         <TabPanel px="0">
-          <TabPanel1 />
+          <TabPanel1 data={data} />
         </TabPanel>
         <TabPanel px="0">
-          <TabPanel2 />
+          <TabPanel2 data={data} />
         </TabPanel>
         <TabPanel px="0">
-          <TabPanel3 />
+          <TabPanel3 data={data} />
         </TabPanel>
       </TabPanels>
     </Tabs>

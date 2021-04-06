@@ -4,14 +4,14 @@ import { PropertyDetail } from './PropertyDetail';
 import { ValueAddPlane } from './ValueAddPlane';
 import { Financing } from './Financing';
 
-export const TabPanel2 = () => (
+export const TabPanel2 = ({ data }: { data: any }) => (
   <Box>
-    <PropertyLocation />
+    <PropertyLocation data={data} />
     <Divider my={8} />
-    <PropertyDetail />
+    <PropertyDetail data={data} />
     <Divider my={8} />
-    <ValueAddPlane />
+    <ValueAddPlane data={data} />
     <Divider my={8} />
-    <Financing />
+    <Financing data={data} />
   </Box>
 );
