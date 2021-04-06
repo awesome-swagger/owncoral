@@ -12,6 +12,7 @@ import {
   MyErrorHandler,
   PropertyCard,
   ProtectedRoute,
+  MapBox,
 } from './components';
 import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
@@ -99,6 +100,8 @@ function App() {
                   path="/overview/property-detail"
                   component={OverviewPropertyDetail}
                 />
+
+                <ProtectedRoute exact path="/map-box" component={MapBox} />
 
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/new-opportunities" component={Opportunity} /> */}

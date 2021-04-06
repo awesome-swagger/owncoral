@@ -12,6 +12,7 @@ import { ErrorFallback, MyErrorHandler } from './errorFallback';
 import { PropertyCard } from './propertyCard';
 import { ProtectedRoute } from './protectedRoute';
 import { Card } from './card';
+import { MapBox } from './mapBox';
 
 export {
   BackBtn,
@@ -30,4 +31,5 @@ export {
   PropertyCard,
   ProtectedRoute,
   Card,
+  MapBox,
 };
