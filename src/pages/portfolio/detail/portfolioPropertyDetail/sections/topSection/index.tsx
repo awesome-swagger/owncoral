@@ -1,15 +1,15 @@
 import { Heading, Divider, Box } from '@chakra-ui/react';
 
-export const TopSection = () => (
+export const TopSection = ({ data }: { data: any }) => (
   <Box my={6}>
     <Heading fontSize="md" my={2}>
       Great business, fair price
     </Heading>
     <Heading fontSize="3xl" m="0" fontWeight="bold">
-      3 Linden St
+      {data.street}
     </Heading>
     <Heading fontSize="sm" my={2}>
-      Cambridge, Greater Boston Area
+      {data.cityLocality}, {data.stateRegion}
     </Heading>
 
     <Divider my={6} />
@@ -18,7 +18,7 @@ export const TopSection = () => (
       Apartment building
     </Heading>
     <Heading fontSize="md" my={2}>
-      2 units - 6 beds - 2,400sq ft
+      {data.propertyMeasure}
     </Heading>
     <Heading
       borderRadius="full"

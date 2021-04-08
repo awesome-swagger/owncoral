@@ -2,13 +2,12 @@
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createServer({ target: 'http://localhost:3001' });
 
-
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    public: {url: '/', static: true},
+    public: { url: '/', static: true },
     src: {
-      url: '/dist'
+      url: '/dist',
     },
   },
   plugins: [
@@ -17,8 +16,8 @@ module.exports = {
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    "snowpack-plugin-svgr",
-    "@snowpack/plugin-babel",
+    'snowpack-plugin-svgr',
+    '@snowpack/plugin-babel',
   ],
   // https://www.snowpack.dev/guides/routing
   routes: [
@@ -27,7 +26,7 @@ module.exports = {
       src: '/api/.*',
       dest: (req, res) => {
         try {
-          return proxy.web(req, res)
+          return proxy.web(req, res);
         } catch (e) {
           console.trace(e);
         }
@@ -35,17 +34,17 @@ module.exports = {
     },
     // Enable an SPA Fallback in development
     {
-      "match": "routes",
-      "src": ".*",
-      "dest": "/index.html"
+      match: 'routes',
+      src: '.*',
+      dest: '/index.html',
     },
   ],
   // https://www.snowpack.dev/guides/optimize-and-bundle
   optimize: {
-    "bundle": true,
-    "minify": true,
-    "treeshake": true,
-    "splitting": true
+    bundle: true,
+    minify: true,
+    treeshake: true,
+    splitting: true,
   },
   packageOptions: {
     /* ... */
@@ -54,6 +53,6 @@ module.exports = {
     /* ... */
   },
   buildOptions: {
-    sourcemap: true
+    sourcemap: true,
   },
 };

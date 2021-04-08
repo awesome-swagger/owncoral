@@ -10,7 +10,7 @@ import { CardStyle, ImgZoomOut, ImgZoomIn, ImgZoom, CardImg, CardGradient } from
 import MapImg from '../../assets/Map.png';
 import HouseImg from '../../assets/Multifamily_Night.png';
 
-export const PropertyCard = () => {
+export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: () => void }) => {
   const Map = MapImg;
   const House = HouseImg;
 
@@ -20,7 +20,7 @@ export const PropertyCard = () => {
   const [image, setImage] = useState(Map);
 
   useEffect(() => {
-    if(zoom) setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500);
+    if (zoom) setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500);
     else setImage(Map);
   }, [zoom]);
 
@@ -40,24 +40,26 @@ export const PropertyCard = () => {
   return (
     <Container>
       <Box pos="relative">
-        <Center pos="absolute" h="100%">
+        <Center pos="absolute" h="100%" cursor="pointer" onClick={() => handleClose()}>
           <Icon as={IoMdClose} />
         </Center>
         <Box textAlign="center" borderRadius="full" boxShadow="xs" py={2} w="56" mx="auto">
           <Heading layerStyle="grayHeading" fontSize="sm" m="0">
-            Greater Boston Area
+            {data.stateRegion}
           </Heading>
           <Heading fontSize="sm" m="0">
-            Cambridge
+            {data.cityLocality}
           </Heading>
         </Box>
       </Box>
       <Box h={{ base: '500px', sm: '550px', md: '650px' }} style={CardStyle} mt={6} p={4}>
-        {!remove && (<Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />)}
-        {image === House && (<Image src={House} style={zoomOut ? ImgZoomOut : ImgZoomIn} />)}
+        {!remove && (
+          <Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />
+        )}
+        {image === House && <Image src={House} style={zoomOut ? ImgZoomOut : ImgZoomIn} />}
         <Box style={CardGradient} />
-        <CardTop />
-        <CardBottom />
+        <CardTop data={data} />
+        <CardBottom data={data} />
       </Box>
       <Center my={6}>
         <Icon onClick={handleZoom} as={zoomOut ? AiOutlineZoomIn : AiOutlineZoomOut} h={6} w={6} />

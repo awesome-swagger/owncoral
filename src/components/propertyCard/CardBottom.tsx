@@ -1,39 +1,39 @@
 import { Flex, Box, Heading } from '@chakra-ui/react';
 
-export const CardBottom = () => (
+export const CardBottom = ({ data }: { data: any }) => (
   <Flex justifyContent="space-between" flexWrap="wrap">
     <Box>
       <Heading layerStyle="lightGrayHeading" fontSize="sm">
-        Target cash distribution
+        Distribution
       </Heading>
       <Flex>
-        <Box mr={4}>
+        <Box mr={8}>
           <Heading layerStyle="whiteHeading" fontSize="xl" m="0">
-            20%
+            {data.totalDistribution}
           </Heading>
           <Heading layerStyle="lightGrayHeading" fontSize="xs">
-            Year 1
+            Total
           </Heading>
         </Box>
         <Box>
           <Heading layerStyle="whiteHeading" fontSize="xl" m="0">
-            5-9%
+            {data.lastMonthDistribution}
           </Heading>
           <Heading layerStyle="lightGrayHeading" fontSize="xs">
-            Year 2+
+            Last month
           </Heading>
         </Box>
       </Flex>
     </Box>
     <Box>
       <Heading layerStyle="lightGrayHeading" fontSize="sm">
-        IRR
+        Return rate
       </Heading>
       <Heading layerStyle="whiteHeading" fontSize="xl" m="0">
-        15-16%
+        {data.returnRate}
       </Heading>
       <Heading layerStyle="lightGrayHeading" fontSize="xs">
-        5-10 yr hold
+        6 months
       </Heading>
     </Box>
   </Flex>

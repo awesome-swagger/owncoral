@@ -3,11 +3,11 @@ import { AiOutlineReload } from 'react-icons/ai';
 import { HiOutlineCash } from 'react-icons/hi';
 import { FaChartLine } from 'react-icons/fa';
 
-export const TotalDistribution = () => {
+export const TotalDistribution = ({ data }: { data: any }) => {
   return (
     <Box py={4}>
       <Heading fontSize="3xl" mt="0" fontWeight="bold">
-        $24,800
+        {data.totalInvest}
       </Heading>
       <Heading fontSize="sm" m="0">
         Total amount invested
@@ -51,7 +51,7 @@ export const TotalDistribution = () => {
             Monthly
           </Heading>
           <Heading fontSize="2xl" m="0" fontWeight="bold">
-            $124%
+            {data.monthlyDistribution}
           </Heading>
           <Heading layerStyle="highlightForeground" w="100%" fontSize="xs">
             March, 2021
@@ -62,7 +62,7 @@ export const TotalDistribution = () => {
             Total
           </Heading>
           <Heading fontSize="2xl" m="0" fontWeight="bold">
-            $12,000
+            {data.totalDistribution}
           </Heading>
           <Heading layerStyle="highlightForeground" w="100%" fontSize="xs">
             $830 rental, $370 special
@@ -81,7 +81,7 @@ export const TotalDistribution = () => {
               Return of capital
             </Heading>
             <Heading fontSize="md" fontWeight="bold">
-              1.5%
+              {data.capitalReturn}
             </Heading>
           </Flex>
           <Divider />
@@ -93,7 +93,7 @@ export const TotalDistribution = () => {
               Cash-on-cash Return
             </Heading>
             <Heading fontSize="md" fontWeight="bold">
-              4.5%
+              {data.cashReturn}
             </Heading>
           </Flex>
           <Divider />
@@ -105,7 +105,7 @@ export const TotalDistribution = () => {
               Lorem Ipsum
             </Heading>
             <Heading fontSize="md" fontWeight="bold">
-              3.2%
+              {data.returnRate}
             </Heading>
           </Flex>
         </Box>

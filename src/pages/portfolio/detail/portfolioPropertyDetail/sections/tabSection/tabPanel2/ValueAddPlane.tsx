@@ -1,7 +1,6 @@
 import { Box, Heading, Flex, Image } from '@chakra-ui/react';
-import RenovationImg from '../../../../../../../assets/CapturaRenovation.png';
 
-export const ValueAddPlane = () => (
+export const ValueAddPlane = ({ data }: { data: any }) => (
   <Box>
     <Heading fontSize="lg" fontWeight="bold">
       Value-add plane
@@ -9,38 +8,37 @@ export const ValueAddPlane = () => (
     <Box>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Renovations</Heading>
-        <Heading fontSize="md">$97,620</Heading>
+        <Heading fontSize="md">{data.renovation}</Heading>
       </Flex>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Maintenance and Repair Reserve</Heading>
-        <Heading fontSize="md">$34,180</Heading>
+        <Heading fontSize="md">{data.maintenance}</Heading>
       </Flex>
       <Flex justifyContent="space-between">
         <Heading fontSize="md" fontWeight="bold">
           Total Capex
         </Heading>
         <Heading fontSize="md" fontWeight="bold">
-          $1,048,500
+          {data.totalCapex}
         </Heading>
       </Flex>
     </Box>
     <Flex className="custom_scroll" overflow="auto" my={6}>
       <Box mx={2}>
-        <Image src={RenovationImg} />
+        <Image src={data.renovationImg} />
+        <Heading fontSize="sm" textAlign="center">
+          {data.updatePlan}
+        </Heading>
+      </Box>
+      <Box mx={2}>
+        <Image src={data.renovationImg} />
         <Heading fontSize="sm" textAlign="center">
           Update floor plan, including +1 new bathroom in each unit and opening up kitchen to
           living/dining area
         </Heading>
       </Box>
       <Box mx={2}>
-        <Image src={RenovationImg} />
-        <Heading fontSize="sm" textAlign="center">
-          Update floor plan, including +1 new bathroom in each unit and opening up kitchen to
-          living/dining area
-        </Heading>
-      </Box>
-      <Box mx={2}>
-        <Image src={RenovationImg} />
+        <Image src={data.renovationImg} />
         <Heading fontSize="sm" textAlign="center">
           Update floor plan, including +1 new bathroom in each unit and opening up kitchen to
           living/dining area
@@ -56,7 +54,7 @@ export const ValueAddPlane = () => (
           Current
         </Heading>
         <Heading fontSize="md" mt="0">
-          n/a
+          {data.currentIncome}
         </Heading>
       </Flex>
       <Flex justifyContent="space-between">
@@ -64,7 +62,7 @@ export const ValueAddPlane = () => (
           Target
         </Heading>
         <Heading fontSize="md" mt="0">
-          $6,350
+          {data.targetIncome}
         </Heading>
       </Flex>
     </Box>

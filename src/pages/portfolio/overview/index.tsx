@@ -5,9 +5,11 @@ import { useSwipeable } from 'react-swipeable';
 import { FiMap, FiBarChart2 } from 'react-icons/fi';
 import { Container, PropertyCard } from '../../../components';
 import { PortfolioMap } from './portfolioMap';
+import { DummyData } from '../../../lib/portfolioData';
 import MapImg from '../../../assets/Frame269.png';
 
 const Overview = () => {
+  const PortfolioData = DummyData;
   const [step, setStep] = useState<any>(0);
   const history = useHistory();
   const handleRoute = (route: string) => history.push(`/overview/${route}`);
@@ -32,7 +34,7 @@ const Overview = () => {
       ) : step === 'map' ? (
         <PortfolioMap />
       ) : (
-        <PropertyCard />
+        <PropertyCard handleClose={handlePrevStep} data={PortfolioData} />
       )}
     </div>
   );

@@ -117,7 +117,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
           stroke={barColor3}
           tickStroke={barColor3}
           tickLabelProps={() => ({
-            fill: barColor3,
+            fill: barColor1,
             fontSize: 15,
             textAnchor: 'middle',
           })}

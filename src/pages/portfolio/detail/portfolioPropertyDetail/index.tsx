@@ -4,13 +4,15 @@ import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { TopSection, TabSection } from './sections';
 import { Container } from '../../../../components';
-import HouseImg from '../../../../assets/Multifamily_Night.png';
+import { DummyData } from '../../../../lib/portfolioData';
 
 const PortfolioPropertyDetail2 = () => {
+  const PortfolioData = DummyData;
+
   const history = useHistory();
   return (
     <Container>
-      <Image src={HouseImg} alt="house_img" w="100%" />
+      <Image src={PortfolioData.propertyImg} alt="house_img" w="100%" />
       <Icon
         pos="absolute"
         top={10}
@@ -47,8 +49,8 @@ const PortfolioPropertyDetail2 = () => {
         borderRadius="full"
         layerStyle="iconColor"
       />
-      <TopSection />
-      <TabSection />
+      <TopSection data={PortfolioData} />
+      <TabSection data={PortfolioData} />
     </Container>
   );
 };

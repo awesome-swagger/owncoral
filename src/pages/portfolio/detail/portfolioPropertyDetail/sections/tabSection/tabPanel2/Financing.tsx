@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Divider, Center, Icon } from '@chakra-ui/react';
 import { BsQuestionCircle } from 'react-icons/bs';
 
-export const Financing = () => (
+export const Financing = ({ data }: { data: any }) => (
   <Box>
     <Box>
       <Heading fontSize="lg" fontWeight="bold">
@@ -9,26 +9,26 @@ export const Financing = () => (
       </Heading>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Purchase price</Heading>
-        <Heading fontSize="md">$890,000</Heading>
+        <Heading fontSize="md">{data.purchasePrice}</Heading>
       </Flex>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Closing costs</Heading>
-        <Heading fontSize="md">$8,900</Heading>
+        <Heading fontSize="md">{data.closingCost}</Heading>
       </Flex>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Acquisition Fee</Heading>
-        <Heading fontSize="md">$17,800</Heading>
+        <Heading fontSize="md">{data.acquisitionFee}</Heading>
       </Flex>
       <Flex justifyContent="space-between">
         <Heading fontSize="md">Capex Reserve</Heading>
-        <Heading fontSize="md">$131,800</Heading>
+        <Heading fontSize="md">{data.capexReserve}</Heading>
       </Flex>
       <Flex my={4} borderTop="1px" borderStyle="dashed" justifyContent="space-between">
         <Heading fontSize="md" fontWeight="bold">
           Total capital cost
         </Heading>
         <Heading fontSize="md" fontWeight="bold">
-          $1,048,500
+          {data.totalCapitalCost}
         </Heading>
       </Flex>
       <Box border="1px" layerStyle="lightBorder" textAlign="center">
@@ -49,13 +49,13 @@ export const Financing = () => (
           <Heading fontSize="md" fontWeight="bold">
             Equity
           </Heading>
-          <Heading fontSize="sm">55% - $999k</Heading>
+          <Heading fontSize="sm">{data.equity}</Heading>
         </Box>
         <Box h="100%" borderLeft="1px" px={4}>
           <Heading fontSize="md" fontWeight="bold">
             Loan
           </Heading>
-          <Heading fontSize="sm">65% - $999k</Heading>
+          <Heading fontSize="sm">{data.loan}</Heading>
         </Box>
         <Box pl={8}>
           <Icon w={6} h={6} as={BsQuestionCircle} />

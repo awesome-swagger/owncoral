@@ -5,8 +5,11 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { PopUpBox } from './popUpBox';
 import { Container } from '../../../../components';
 import MapImg from '../../../../assets/MapsicleMap.png';
+import { DummyData } from '../../../../lib/portfolioData';
 
 export const PortfolioMap2 = () => {
+  const PortfolioData = DummyData;
+
   const [popUp, setPopUp] = useState(false);
   const history = useHistory();
 
@@ -36,10 +39,10 @@ export const PortfolioMap2 = () => {
           onClick={() => setPopUp(true)}
         >
           <Heading layerStyle="grayHeading" fontSize="sm" m="0">
-            Greater Boston Area
+            {PortfolioData.stateRegion}
           </Heading>
           <Heading fontSize="sm" m="0">
-            Cambridge
+            {PortfolioData.cityLocality}
           </Heading>
         </Box>
       </Box>

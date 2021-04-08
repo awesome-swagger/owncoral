@@ -1,34 +1,19 @@
 import { Box, Heading, Image, Flex } from '@chakra-ui/react';
-import HouseImg from '../../../../../../../assets/CapturaRenovation.png';
 
-export const TabPanel3 = () => (
+export const TabPanel3 = ({ data }: { data: any }) => (
   <Box borderLeft="2px" borderStyle="dashed" layerStyle="lightBorder">
-    <Box pos="relative" pl={6}>
-      <Box w={4} h={4} borderRadius="full" bg="#000" left={-2} top={6} pos="absolute" />
-      <Heading fontSize="xs">Feb. 28 · 16:45</Heading>
-      <Heading fontSize="md" fontWeight="bold">
-        Permits obtained, renovations started! 📄
-      </Heading>
-      <Heading fontSize="sm">Ullamcorper pellentesque et tempor, nisi tempor.</Heading>
-    </Box>
-    <Box pos="relative" pl={6}>
-      <Box w={4} h={4} borderRadius="full" bg="#000" left={-2} top={6} pos="absolute" />
-      <Heading fontSize="xs">Feb. 28 · 16:45</Heading>
-      <Heading fontSize="md" fontWeight="bold">
-        Permits obtained, renovations started! 📄
-      </Heading>
-      <Heading fontSize="sm">Ullamcorper pellentesque et tempor, nisi tempor.</Heading>
-    </Box>
-    <Box pos="relative" pl={6}>
-      <Box w={4} h={4} borderRadius="full" bg="#000" left={-2} top={6} pos="absolute" />
-      <Heading fontSize="xs">Feb. 28 · 16:45</Heading>
-      <Heading fontSize="md" fontWeight="bold">
-        Renovation on both units complete! 💪
-      </Heading>
-      <Heading fontSize="sm">Ullamcorper pellentesque et tempor, nisi tempor.</Heading>
-      <Flex overflow="auto">
-        <Image src={HouseImg} alt="img" w={52} />
-      </Flex>
-    </Box>
+    {data.news.map((value: any) => (
+      <Box pos="relative" pl={6}>
+        <Box w={4} h={4} borderRadius="full" bg="#000" left={-2} top={6} pos="absolute" />
+        <Heading fontSize="xs">{value.date}</Heading>
+        <Heading fontSize="md" fontWeight="bold">
+          {value.title}
+        </Heading>
+        <Heading fontSize="sm">{value.description}</Heading>
+      </Box>
+    ))}
   </Box>
 );
+{
+  /* <Image src={HouseImg} alt="img" w={52} /> */
+}

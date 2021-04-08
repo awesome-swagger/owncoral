@@ -3,7 +3,7 @@ import { AiOutlineReload } from 'react-icons/ai';
 import { HiOutlineCash } from 'react-icons/hi';
 import { FaChartLine } from 'react-icons/fa';
 
-export const InvestmentReturn = () => (
+export const InvestmentReturn = ({ data }: { data: any }) => (
   <Box>
     <Heading fontSize="xl" fontWeight="bold">
       Investment returns
@@ -16,7 +16,7 @@ export const InvestmentReturn = () => (
             Return of capital
           </Heading>
           <Heading fontSize="md" fontWeight="bold">
-            1.5%
+            {data.capitalReturn}
           </Heading>
         </Flex>
         <Divider />
@@ -28,7 +28,7 @@ export const InvestmentReturn = () => (
             Cash-on-cash Return
           </Heading>
           <Heading fontSize="md" fontWeight="bold">
-            4.5%
+            {data.cashReturn}
           </Heading>
         </Flex>
         <Divider />
@@ -40,7 +40,7 @@ export const InvestmentReturn = () => (
             Lorem Ipsum
           </Heading>
           <Heading fontSize="md" fontWeight="bold">
-            3.2%
+            {data.returnRate}
           </Heading>
         </Flex>
         <Divider my={8} />

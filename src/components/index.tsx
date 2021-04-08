@@ -9,8 +9,10 @@ import { ColorModeButton } from './colorModeButton';
 import { ProfilePopOver } from './profilePopOver';
 import { Loading } from './loading';
 import { ErrorFallback, MyErrorHandler } from './errorFallback';
-import { PropertyCard } from "./propertyCard";
-import { ProtectedRoute } from "./protectedRoute";
+import { PropertyCard } from './propertyCard';
+import { ProtectedRoute } from './protectedRoute';
+import { Card } from './card';
+import { MapBox } from './mapBox';
 
 export {
   BackBtn,
@@ -27,5 +29,7 @@ export {
   ErrorFallback,
   MyErrorHandler,
   PropertyCard,
-  ProtectedRoute
+  ProtectedRoute,
+  Card,
+  MapBox,
 };
