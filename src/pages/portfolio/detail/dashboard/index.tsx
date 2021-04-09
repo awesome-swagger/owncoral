@@ -7,7 +7,7 @@ import { TotalDistribution, TopRankingProperties, CashFlow } from './sections';
 import { PopUpBox } from './popUpBox';
 import { DummyData } from '../../../../lib/portfolioData';
 
-export const Dashboard2 = () => {
+export const Dashboard = () => {
   const PortfolioData = DummyData;
 
   const [popUp, setPopUp] = useState(false);

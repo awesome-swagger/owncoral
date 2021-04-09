@@ -1,5 +1,9 @@
 {
-  "include": ["src/**/*.tsx", "src/**/*.ts", "types"],
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "types"
+  ],
   "compilerOptions": {
     "incremental": true,
     "module": "esnext",

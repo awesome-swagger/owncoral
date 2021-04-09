@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Container } from '../../../../components';
 import { Image, Box, Center, Heading, Icon } from '@chakra-ui/react';
-import MapImg from '../../../../assets/MapsicleMap.png';
-import { FiChevronLeft } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
+import { FiChevronLeft } from 'react-icons/fi';
+import { Container } from '../../../../components';
+import MapImg from '../../../../assets/MapsicleMap.png';
 import { PopUpBox } from './popUpBox';
 
 export const PortfolioMap = () => {

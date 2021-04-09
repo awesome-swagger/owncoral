@@ -8,8 +8,8 @@ import { DummyData } from '../../../../lib/portfolioData';
 
 const PortfolioPropertyDetail2 = () => {
   const PortfolioData = DummyData;
-
   const history = useHistory();
+
   return (
     <Container>
       <Image src={PortfolioData.propertyImg} alt="house_img" w="100%" />

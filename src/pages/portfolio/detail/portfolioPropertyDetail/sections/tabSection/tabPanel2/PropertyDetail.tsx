@@ -52,7 +52,6 @@ export const PropertyDetail = ({ data }: { data: any }) => (
     </Flex>
     <Flex overflow="auto">
       <Card title="Purchase Price" value={data.purchasePrice} description="Lorem ipsum" />
-
       <Card title="Price/Bedroom" value={data.bedroomPrice} description="30% below market" />
     </Flex>
   </Box>

@@ -14,10 +14,12 @@ const Overview = () => {
   const history = useHistory();
   const handleRoute = (route: string) => history.push(`/overview/${route}`);
   const handleNextStep = () => {
-    step === 1 ? handleRoute('property-detail') : step === 'map' ? setStep(1) : setStep(step + 1);
+    if(step === 1) handleRoute('property-detail');
+    else if(step === 'map') setStep(1);
+    else setStep(step + 1);
   };
   const handlePrevStep = () => {
-    step === 0 ? null : setStep(step - 1);
+    if(step > 0) setStep(step - 1);
   };
 
   const handlers = useSwipeable({

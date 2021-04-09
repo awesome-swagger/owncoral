@@ -2,8 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 export const MapBox = () => {
-  mapboxgl.accessToken = process.env.SNOWPACK_PUBLIC_MAP_BOX_API_KEY as string;
-  console.log(process.env.SNOWPACK_PUBLIC_MAP_BOX_API_KEY);
+  mapboxgl.accessToken = process.env.SNOWPACK_PUBLIC_MAPBOX_TOKEN as string;
 
   const mapContainer = useRef<HTMLDivElement | null>(null);
   const [lng, setLng] = useState(-70.9);

@@ -2,22 +2,48 @@
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createServer({ target: 'http://localhost:3001' });
 
+// This config is only (??) used for development (plugin-webpack maintains its own babel config),
+// and applies to all source files (including e.g. shared-fullstack) via
+// transpiling node_modules.
+//
+// Reference: https://github.com/snowpackjs/snowpack/blob/main/plugins/plugin-webpack/plugin.js
+const babelConfig = {
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    ],
+    "@babel/preset-typescript",
+  ],
+  "plugins": [
+    "@emotion/babel-plugin",
+    "@babel/plugin-syntax-import-meta",
+  ]
+};
+
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
   mount: {
-    public: { url: '/', static: true },
+    public: {
+      url: '/',
+      static: true
+    },
     src: {
-      url: '/dist',
+      url: '/dist'
     },
   },
   plugins: [
-    // Trying out esbuild (vs. webpack) production bundles
-    // "@snowpack/plugin-webpack",
+    "@snowpack/plugin-webpack",
     '@snowpack/plugin-react-refresh',
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    'snowpack-plugin-svgr',
-    '@snowpack/plugin-babel',
+    "snowpack-plugin-svgr",
+    ["@snowpack/plugin-babel", {
+      transformOptions: babelConfig
+    }],
   ],
   // https://www.snowpack.dev/guides/routing
   routes: [
@@ -26,7 +52,7 @@ module.exports = {
       src: '/api/.*',
       dest: (req, res) => {
         try {
-          return proxy.web(req, res);
+          return proxy.web(req, res)
         } catch (e) {
           console.trace(e);
         }
@@ -34,25 +60,22 @@ module.exports = {
     },
     // Enable an SPA Fallback in development
     {
-      match: 'routes',
-      src: '.*',
-      dest: '/index.html',
+      "match": "routes",
+      "src": ".*",
+      "dest": "/index.html"
     },
   ],
-  // https://www.snowpack.dev/guides/optimize-and-bundle
+
   optimize: {
-    bundle: true,
-    minify: true,
-    treeshake: true,
-    splitting: true,
+    /* Leave this empty (not compatible with webpack plugin) */
   },
   packageOptions: {
-    /* ... */
+    "knownEntrypoints": ["@emotion/react/jsx-runtime"]
   },
   devOptions: {
     /* ... */
   },
   buildOptions: {
-    sourcemap: true,
+    sourcemap: true
   },
 };

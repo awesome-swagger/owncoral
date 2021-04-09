@@ -17,10 +17,8 @@ import {
 import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import { UserContext } from './userContext';
-import { Dashboard } from './pages/portfolio/portfolioDetail/dashboard';
-import { PortfolioMap } from './pages/portfolio/portfolioDetail/portfolioMap';
-import { Dashboard2 } from './pages/portfolio/detail/dashboard';
-import { PortfolioMap2 } from './pages/portfolio/detail/portfolioMap';
+import { Dashboard } from './pages/portfolio/detail/dashboard';
+import { PortfolioMap } from './pages/portfolio/detail/portfolioMap';
 import { OverviewDashboard } from './pages/portfolio/overview/overviewDashboard';
 
 const Login = lazy(() => import('./pages/login'));
@@ -35,8 +33,7 @@ const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/step
 const Signup = lazy(() => import('./pages/signup'));
 const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
 const Error404 = lazy(() => import('./pages/error404'));
-const PortfolioDetail = lazy(() => import('./pages/portfolio/portfolioDetail'));
-const PortfolioDetail2 = lazy(() => import('./pages/portfolio/detail'));
+const PortfolioDetail = lazy(() => import('./pages/portfolio/detail'));
 const Overview = lazy(() => import('./pages/portfolio/overview'));
 const OverviewPropertyDetail = lazy(() => import('./pages/portfolio/overview/overviewDetail'));
 const PortfolioPropertyDetail = lazy(
@@ -71,9 +68,9 @@ function App() {
                 <ProtectedRoute exact path="/portfolio" component={Portfolio} />
 
                 {/* Portfolio Overview Route */}
-                <ProtectedRoute exact path="/portfolio/overview" component={PortfolioDetail2} />
-                <ProtectedRoute exact path="/portfolio/overview/dashboard" component={Dashboard2} />
-                <ProtectedRoute exact path="/portfolio/overview/map" component={PortfolioMap2} />
+                <ProtectedRoute exact path="/portfolio/overview" component={PortfolioDetail} />
+                <ProtectedRoute exact path="/portfolio/overview/dashboard" component={Dashboard} />
+                <ProtectedRoute exact path="/portfolio/overview/map" component={PortfolioMap} />
                 <ProtectedRoute
                   exact
                   path="/portfolio/overview/property-detail"
@@ -84,15 +81,7 @@ function App() {
                 <ProtectedRoute exact path="/profile" component={Profile} />
                 <ProtectedRoute exact path="/property-card" component={PropertyCard} />
                 <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
-                <ProtectedRoute exact path="/portfolio-detail" component={PortfolioDetail} />
-                <ProtectedRoute exact path="/portfolio-detail/dashboard" component={Dashboard} />
-
-                <ProtectedRoute
-                  exact
-                  path="/portfolio-detail/portfolio-map"
-                  component={PortfolioMap}
-                />
-
+                
                 <ProtectedRoute exact path="/overview" component={Overview} />
                 <ProtectedRoute exact path="/overview/dashboard" component={OverviewDashboard} />
                 <ProtectedRoute

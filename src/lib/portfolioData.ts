@@ -17,7 +17,7 @@ export const DummyData = {
   cashReturn: '4.5%',
   returnRate: '3.10%',
   propertyLocation:
-    "3 Linden is in the heart of Somerville, an emerging biotech hub. It's minutes from the new Union Square biotech hub, which is in development, and the Union Square Greenline T Station (estimated to be complete at the end of this year)",
+    "3 Linden is in the heart of Somerville, an emerging biotech hub. It's minutes from the new Union Square biotech hub, which is in development, and the Union Square Greenline T Station (estimated to be complete at the end of this year)", // editorconfig-checker-disable-line
   propertyImg: PropertyImg,
   mapImg2: MapImg2,
   propertyStories: '3 stories',

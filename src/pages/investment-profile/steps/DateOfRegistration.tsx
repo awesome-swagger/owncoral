@@ -20,6 +20,7 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
 
+    // TODO: extract into own function
     const checkValid = useMemo<boolean>(() => {
       const now = Date.now();
 

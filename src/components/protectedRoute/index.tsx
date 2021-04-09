@@ -23,15 +23,14 @@ export const ProtectedRoute: React.FC<RouteProps> = (props) => {
       getUser(setUser, setIsLoading);
     }
   }, []);
-  return isLoading ? <Loading /> : <Route {...props} />;
 
-  // return isLoading ? (
-  //   <Loading />
-  // ) : user ? (
-  //   <Route {...props} />
-  // ) : (
-  //   <Redirect to={`/login?redirect=${location.pathname}`} />
-  // );
+  return isLoading ? (
+    <Loading />
+  ) : user ? (
+    <Route {...props} />
+  ) : (
+    <Redirect to={`/login?redirect=${location.pathname}`} />
+  );
 };
 
 async function getUser(

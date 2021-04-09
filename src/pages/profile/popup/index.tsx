@@ -1,8 +1,10 @@
 import type React from 'react';
 import { Box, Heading } from '@chakra-ui/react';
+
 import { Container } from '../../../components';
 import { PopUpBox, PopUpBtn } from './styleProps';
 
+// TODO: Change this to disable account
 export const PopUp = ({
   handleClick,
   value,

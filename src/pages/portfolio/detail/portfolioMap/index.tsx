@@ -7,7 +7,7 @@ import { Container } from '../../../../components';
 import MapImg from '../../../../assets/MapsicleMap.png';
 import { DummyData } from '../../../../lib/portfolioData';
 
-export const PortfolioMap2 = () => {
+export const PortfolioMap = () => {
   const PortfolioData = DummyData;
 
   const [popUp, setPopUp] = useState(false);

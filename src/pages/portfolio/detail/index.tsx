@@ -8,7 +8,7 @@ import { Container, PropertyCard } from '../../../components';
 import MapImg from '../../../assets/Frame269.png';
 import { DummyData } from '../../../lib/portfolioData';
 
-const PortfolioDetail2 = () => {
+const PortfolioDetail = () => {
   const PortfolioData = DummyData;
 
   const [step, setStep] = useState<any>(0);
@@ -39,6 +39,7 @@ const PortfolioDetail2 = () => {
     </div>
   );
 };
+
 const Portfolio = ({
   newRoute,
   nextStep,
@@ -79,4 +80,4 @@ const Portfolio = ({
 );
 
 // eslint-disable-next-line import/no-default-export
-export default PortfolioDetail2;
+export default PortfolioDetail;

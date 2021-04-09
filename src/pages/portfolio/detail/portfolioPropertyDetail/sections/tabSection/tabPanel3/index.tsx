@@ -1,9 +1,9 @@
-import { Box, Heading, Image, Flex } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
 
 export const TabPanel3 = ({ data }: { data: any }) => (
   <Box borderLeft="2px" borderStyle="dashed" layerStyle="lightBorder">
-    {data.news.map((value: any) => (
-      <Box pos="relative" pl={6}>
+    {data.news.map((value: any, index: number) => (
+      <Box pos="relative" pl={6} key={index}>
         <Box w={4} h={4} borderRadius="full" bg="#000" left={-2} top={6} pos="absolute" />
         <Heading fontSize="xs">{value.date}</Heading>
         <Heading fontSize="md" fontWeight="bold">
@@ -14,6 +14,3 @@ export const TabPanel3 = ({ data }: { data: any }) => (
     ))}
   </Box>
 );
-{
-  /* <Image src={HouseImg} alt="img" w={52} /> */
-}

@@ -1,18 +1,20 @@
-import { useState, useRef, useLayoutEffect, useEffect } from 'react';
-import { Portal, Box } from '@chakra-ui/react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Box, Portal } from '@chakra-ui/react';
+
+import { Container } from '../../components';
 import { Account } from './account';
 import { Help } from './help';
-import { ProfileHeader } from './profileHeader';
 import { Legal } from './legal';
 import { LogoutSelector } from './logoutSelector';
+import { About, Faqs, InvestmentGoal, Notification, PersonalInformation } from './pages';
 import { PopUp } from './popup';
-import { PersonalInformation, InvestmentGoal, Notification, About, Faqs } from './pages';
-import { Container } from '../../components';
+import { ProfileHeader } from './profileHeader';
 
 function Profile() {
   const ref = useRef<HTMLDivElement | null>(null);
   const [overLay, setOverLay] = useState<Number | String | null>(null);
+  // TODO: either remove dead code or re-implement disabling account
   const [popUp, setPopUp] = useState<String | null>('');
 
   const location = useLocation();
@@ -40,23 +42,23 @@ function Profile() {
   const containerComponent = (overlay: any) => {
     switch (overlay) {
       case 1:
-        return <PersonalInformation goBack={handleClose} handleClick={handlePopUp} />
+        return <PersonalInformation goBack={handleClose} />;
       case 2:
-        return <InvestmentGoal goBack={handleClose} />
+        return <InvestmentGoal goBack={handleClose} />;
       case 3:
-        return <Notification goBack={handleClose} />
+        return <Notification goBack={handleClose} />;
       case 4:
-        return <About goBack={handleClose} />
+        return <About goBack={handleClose} />;
       case 5:
-        return <Faqs goBack={handleClose} />
+        return <Faqs goBack={handleClose} />;
       default:
-        return <ProfileContent handleClick={handleClick} />      
+        return <ProfileContent handleClick={handleClick} />;
     }
-  }
+  };
 
   return (
     <Container ref={ref}>
-      { containerComponent(overLay) }
+      {containerComponent(overLay)}
 
       {popUp && (
         <Portal containerRef={ref}>

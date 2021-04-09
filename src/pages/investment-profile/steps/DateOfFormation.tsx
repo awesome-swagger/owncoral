@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useContext, useEffect, useState, useMemo } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useMemo,useState } from 'react';
 import { Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
@@ -19,6 +19,7 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const [date, setDate] = useState(initialDate);
 
+    // TODO: extract into own function
     const checkValid = useMemo<boolean>(() => {
       const now = Date.now();
 
