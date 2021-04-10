@@ -3,7 +3,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { forwardRef, Icon, IconButton, IconButtonProps } from '@chakra-ui/react';
 
 type BackBtnProps = {
-  handleClick: () => void;
+  handleClick: React.Dispatch<any>;
   'aria-label'?: string;
 };
 

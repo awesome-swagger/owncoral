@@ -14,31 +14,27 @@ import {
   ProtectedRoute,
   MapBox,
 } from './components';
+import PortfolioDashboard from './pages/portfolio/dashboard';
+import { PortfolioMap } from './pages/portfolio/map';
 import AppTheme from './theme';
 import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
 import { UserContext } from './userContext';
-import { Dashboard } from './pages/portfolio/detail/dashboard';
-import { PortfolioMap } from './pages/portfolio/detail/portfolioMap';
-import { OverviewDashboard } from './pages/portfolio/overview/overviewDashboard';
 
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
 const ForgotPassword = lazy(() => import('./pages/login/ForgotPassword'));
 const NewPassword = lazy(() => import('./pages/login/NewPassword'));
 
-const Portfolio = lazy(() => import('./pages/portfolio'));
+const Drafts = lazy(() => import('./pages/drafts'));
+const OldPortfolio = lazy(() => import('./pages/drafts/oldPortfolio'));
 const Profile = lazy(() => import('./pages/profile'));
-const Property = lazy(() => import('./pages/property'));
+const Property = lazy(() => import('./pages/opportunity'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const Signup = lazy(() => import('./pages/signup'));
-const PropertyDetail = lazy(() => import('./pages/property/propertyDetail'));
+const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 const Error404 = lazy(() => import('./pages/error404'));
-const PortfolioDetail = lazy(() => import('./pages/portfolio/detail'));
-const Overview = lazy(() => import('./pages/portfolio/overview'));
-const OverviewPropertyDetail = lazy(() => import('./pages/portfolio/overview/overviewDetail'));
-const PortfolioPropertyDetail = lazy(
-  () => import('./pages/portfolio/detail/portfolioPropertyDetail'),
-);
+const PortfolioSplash = lazy(() => import('./pages/portfolio/splash'));
+const PortfolioPropertyDetail = lazy(() => import('./pages/portfolio/portfolioPropertyDetail'));
 
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
@@ -59,35 +55,38 @@ function App() {
                 <Route path="/signup">
                   <Signup />
                 </Route>
+
                 <Route path="/investment-profile">
                   <InvestmentProfileFlow />
                 </Route>
+
                 <ProtectedRoute exact path="/">
                   <Redirect to="/portfolio" />
                 </ProtectedRoute>
-                <ProtectedRoute exact path="/portfolio" component={Portfolio} />
 
-                {/* Portfolio Overview Route */}
-                <ProtectedRoute exact path="/portfolio/overview" component={PortfolioDetail} />
-                <ProtectedRoute exact path="/portfolio/overview/dashboard" component={Dashboard} />
-                <ProtectedRoute exact path="/portfolio/overview/map" component={PortfolioMap} />
+                {/* Portfolio */}
+                <ProtectedRoute exact path="/drafts" component={Drafts} />
+                <ProtectedRoute exact path="/drafts/old-portfolio" component={OldPortfolio} />
+
+                {/* Portfolio */}
+                <ProtectedRoute exact path="/portfolio" component={PortfolioDashboard} />
+                <ProtectedRoute exact path="/portfolio/splash" component={PortfolioSplash} />
+                <ProtectedRoute exact path="/portfolio/map" component={PortfolioMap} />
                 <ProtectedRoute
                   exact
-                  path="/portfolio/overview/property-detail"
+                  path="/portfolio/property-detail"
                   component={PortfolioPropertyDetail}
                 />
 
                 <ProtectedRoute exact path="/property/:address" component={Property} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
                 <ProtectedRoute exact path="/property-card" component={PropertyCard} />
-                <ProtectedRoute exact path="/property-detail" component={PropertyDetail} />
-                
-                <ProtectedRoute exact path="/overview" component={Overview} />
-                <ProtectedRoute exact path="/overview/dashboard" component={OverviewDashboard} />
+                <ProtectedRoute exact path="/opportunities/detail" component={OpportunityDetail} />
+
                 <ProtectedRoute
                   exact
                   path="/overview/property-detail"
-                  component={OverviewPropertyDetail}
+                  component={PortfolioPropertyDetail}
                 />
 
                 <ProtectedRoute exact path="/map-box" component={MapBox} />

@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
+import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import { Box, Center, Flex, Heading, HStack, Icon, Spacer, useMediaQuery } from '@chakra-ui/react';
-
 import { Portal } from '@visx/tooltip';
 
 // import Logo from '../../assets/coral.svg';
@@ -18,13 +18,18 @@ const navLinks = [
   },
   {
     name: 'Opportunities',
-    url: '/new-opportunities',
+    url: '/opportunities/detail',
     icon: FiHome,
   },
   {
     name: 'Documents',
     url: '/documents',
     icon: FiFileText,
+  },
+  {
+    name: 'Drafts',
+    url: '/drafts',
+    icon: HiOutlineDocument,
   },
 ];
 

@@ -29,7 +29,7 @@ export const ProtectedRoute: React.FC<RouteProps> = (props) => {
   ) : user ? (
     <Route {...props} />
   ) : (
-    <Redirect to={`/login?redirect=${location.pathname}`} />
+    <Redirect to={location.pathname !== '/' ? `/login?redirect=${location.pathname}` : '/login'} />
   );
 };
 

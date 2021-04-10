@@ -1,5 +1,4 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
-import { FiChevronLeft } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
 import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
 
@@ -88,9 +87,7 @@ const TaxID = ({
 
   return (
     <Container layerStyle="noSelect">
-      <Box h={4} w={4} cursor="pointer" onClick={goBack}>
-        <FiChevronLeft style={{ width: '1rem', height: '1rem' }} />
-      </Box>
+      <BackBtn handleClick={goBack} />
       <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
         Please enter your Tax ID
       </Heading>
@@ -129,9 +126,7 @@ const TaxID = ({
 const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
   return (
     <FlexContainer layerStyle="noSelect">
-      <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
-        <FiChevronLeft style={{ width: '1rem', height: '1rem' }} />
-      </Box>
+      <BackBtn handleClick={goBack} pos="absolute" top={6} left={6} />
       <Heading size="md" as="h4" textAlign="center">
         Sorry, Coral is only available for U.S. residents
       </Heading>
