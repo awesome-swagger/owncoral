@@ -1,9 +1,10 @@
-import { createContext, useCallback, useEffect, useReducer } from 'react';
-import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import React, { createContext, lazy, useCallback, useEffect, useReducer } from 'react';
+import { Redirect, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { ProtectedRoute } from '../../../components';
 import { retrieveState, storeState } from '../../../lib/utils';
 import { investmentProfileRoutes } from '../investmentProfileRoutes';
+const Error404 = lazy(() => import('../../error404'));
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -57,11 +58,15 @@ function InvestmentProfileFlow() {
   return (
     <StepFormContext.Provider value={{ formState, dispatch }}>
       <Switch>
+        <ProtectedRoute exact path={investmentRootUrl}>
+          <Redirect to={investmentRootUrl + investmentProfileRoutes[0].path} />
+        </ProtectedRoute>
         {investmentProfileRoutes.map(({ Component, path }, currStep) => (
           <ProtectedRoute exact path={investmentRootUrl + path} key={path}>
             <Component nextStep={createNextStep(currStep)} prevStep={prevStep} />
           </ProtectedRoute>
         ))}
+        <ProtectedRoute path="*" component={Error404} />
       </Switch>
     </StepFormContext.Provider>
   );

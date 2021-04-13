@@ -1,58 +1,116 @@
-import { Heading, Box, Flex, Image } from '@chakra-ui/react';
-import { RankingProperties } from '../../../../lib/rankingProperties';
-import { BackBtn } from '../../../../components';
+import { Fragment } from 'react';
+import { Link as BrowserLink } from 'react-router-dom';
+import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/validators';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  LinkBox,
+  LinkOverlay,
+  Spinner,
+  Text,
+  VStack,
+} from '@chakra-ui/react';
+import * as R from 'remeda';
 
+import PlaceholderPoly2 from '../../../../assets/low-poly/2-Hingham.png';
+import PlaceholderPoly1 from '../../../../assets/low-poly/3-Linden.png';
+import PlaceholderPoly3 from '../../../../assets/low-poly/378-Washington-R02.jpeg';
+import PlaceholderPoly4 from '../../../../assets/low-poly/low-poly-1-still-sm.png';
+import PlaceholderImg from '../../../../assets/Multifamily_Night.png';
+import { formatFinancial } from '../../../../lib/financialFormatter';
+// TODO: remove
+import { RankingProperties } from '../../../../lib/rankingProperties';
+
+const SHOW_FEWER_COUNT = 5;
+
+const PLACEHOLDER_POLYS = [PlaceholderPoly1, PlaceholderPoly2, PlaceholderPoly3, PlaceholderPoly4];
+
+type TopRankingPropertiesPropsT = {
+  properties: PortfolioDashboardPropertyT[] | null;
+  handleClick: () => void;
+  showAll: boolean;
+  portfolioRootUrl: string;
+};
 export const TopRankingProperties = ({
+  properties,
   handleClick,
   showAll,
-}: {
-  handleClick: () => void;
-  showAll: Boolean;
-}) => {
+  portfolioRootUrl,
+}: TopRankingPropertiesPropsT) => {
   return (
     <Box>
-      {showAll && <BackBtn handleClick={handleClick} />}
-      <Heading fontSize="xl" fontWeight="bold">
+      <Heading size="xs" as="h6">
         Your top ranking properties
       </Heading>
       <Box>
-        <Flex>
-          <Heading fontSize="xs" fontWeight="bold" w={16}>
-            Prop
-          </Heading>
-          <Heading fontSize="xs" fontWeight="bold" w="calc(50% - 4rem)" px={3}>
-            Address
-          </Heading>
-          <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
-            City
-          </Heading>
-          <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
-            Contribution
-          </Heading>
-        </Flex>
+        {properties === null ? (
+          <Center w="100%" h={16}>
+            <Spinner />
+          </Center>
+        ) : properties.length === 0 ? (
+          <Center>
+            <Text textStyle="subTitle2">You have no properties</Text>
+          </Center>
+        ) : (
+          <Fragment>
+            <Flex>
+              <Heading fontSize="xs" fontWeight="bold" w={16} />
+              <Heading fontSize="xs" fontWeight="bold" w="calc(50% - 4rem)" px={3}>
+                Address
+              </Heading>
+              <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
+                City
+              </Heading>
+              <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
+                Contribution
+              </Heading>
+            </Flex>
+            {R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.totalContribution || -1)
+              .reverse()
+              .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
+              .map((property: PortfolioDashboardPropertyT, idx) => (
+                <LinkBox key={idx}>
+                  <Flex alignItems="center" mt={2}>
+                    <Image
+                      w={16}
+                      src={PLACEHOLDER_POLYS[idx % 4]}
+                      alt="property_img"
+                      borderRadius="md"
+                    />
+                    <Heading fontSize="sm" w="calc(50% - 4rem)" px={3} isTruncated>
+                      <LinkOverlay as={BrowserLink} to={portfolioRootUrl + '/property-detail'}>
+                        {property.address.line1}
+                      </LinkOverlay>
+                    </Heading>
 
-        {RankingProperties.map((data, index) => (
-          <Flex alignItems="center" mt={2} key={index}>
-            <Image w={16} src={data.img} alt="property_img" />
-
-            <Heading fontSize="sm" w="calc(50% - 4rem)" px={3} isTruncated>
-              {data.address}
-            </Heading>
-
-            <Heading textAlign="right" fontSize="sm" w="25%">
-              {data.city}
-            </Heading>
-            <Heading textAlign="right" fontSize="sm" w="25%">
-              {data.contribution}
-            </Heading>
-          </Flex>
-        ))}
-        {!showAll && (
-          <Box border="1px" textAlign="center" my={6} layerStyle="lightBorder" cursor="pointer">
-            <Heading fontSize="md" onClick={handleClick}>
-              See all ({RankingProperties.length})
-            </Heading>
-          </Box>
+                    <Heading textAlign="right" fontSize="sm" w="25%">
+                      {property.address.cityLocality}
+                    </Heading>
+                    <Heading textAlign="right" fontSize="sm" w="25%">
+                      {property.totalContribution
+                        ? '$' + formatFinancial(property.totalContribution)
+                        : 'N/A'}
+                    </Heading>
+                  </Flex>
+                </LinkBox>
+              ))}
+            {properties.length > SHOW_FEWER_COUNT && (
+              <Center>
+                <VStack>
+                  <Box m={0} h={4}>
+                    {!showAll && <Text textStyle="subTitle1">⋯</Text>}
+                  </Box>
+                  <Button onClick={handleClick} variant="outline">
+                    {showAll ? `See fewer` : `See all (${properties.length})`}
+                  </Button>
+                </VStack>
+              </Center>
+            )}
+          </Fragment>
         )}
       </Box>
     </Box>

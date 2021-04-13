@@ -1,8 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import type { UserProfileT } from './shared-fullstack/types';
 
-// TODO: create shared type-lib and fix below
-export type UserT = any;
-export const UserContext = React.createContext<[UserT, Dispatch<SetStateAction<UserT>>]>([
-  null,
-  () => {},
-]);
+export const UserContext = React.createContext<
+  [UserProfileT | null, Dispatch<SetStateAction<UserProfileT | null>>]
+>([null, () => {}]);

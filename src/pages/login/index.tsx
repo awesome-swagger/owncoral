@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
+import type { UserProfileT } from '../../shared-fullstack/validators';
 import type { UseToastOptions } from '@chakra-ui/react';
 import {
   Box,
@@ -27,7 +28,6 @@ import type { History } from 'history';
 import { ColorModeButton } from '../../components';
 // import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
-import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
 
 function Login() {
@@ -152,8 +152,8 @@ function LoginForm() {
               Forgot Password?
             </ChakraLink>
 
-            <FormHelperText textStyle="caption" layerStyle="highLightColor">
-              Don&apos;t have an account?{' '}
+            <FormHelperText textStyle="caption" layerStyle="highLightColor" textAlign="center">
+              Don&apos;t have an account? <br />
               <ChakraLink as={RouterLink} to="/signup">
                 Sign up for Coral
               </ChakraLink>
@@ -173,11 +173,11 @@ type FormContents = {
 type SubmitParams = {
   data: FormContents;
   history: History;
-  setUser: (u: UserT) => void;
+  setUser: (u: UserProfileT) => void;
   setIsLoading: (isLoading: boolean) => void;
   toast: (options?: UseToastOptions | undefined) => string | number | undefined;
   redirectUrl: null | string;
-}
+};
 
 // eslint-disable-next-line max-params
 async function onSubmit({

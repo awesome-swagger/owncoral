@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import { animated, interpolate,useTransition } from 'react-spring';
 import { useColorModeValue } from '@chakra-ui/react';
-import { animated, useTransition, interpolate } from 'react-spring';
 import { Group } from '@visx/group';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import Pie, { ProvidedProps, PieArcDatum } from '@visx/shape/lib/shapes/Pie';
+import { ParentSize } from '@visx/responsive';
 import { scaleOrdinal } from '@visx/scale';
+import Pie, { PieArcDatum,ProvidedProps } from '@visx/shape/lib/shapes/Pie';
 
 export const TotalReturnChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -117,7 +117,7 @@ function AnimatedPie<Datum>({
     leave: animate ? fromLeaveTransition : enterUpdateTransition,
   });
   return (
-    <>
+    <React.Fragment>
       {transitions.map(({ item: arc, props, key }: { item: any; props: any; key: string }) => {
         const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
@@ -135,10 +135,10 @@ function AnimatedPie<Datum>({
               onClick={() => onClickDatum(arc)}
               onTouchStart={() => onClickDatum(arc)}
             />
-            {hasSpaceForLabel && <animated.g style={{ opacity: props.opacity }}></animated.g>}
+            {hasSpaceForLabel && <animated.g style={{ opacity: props.opacity }} />}
           </g>
         );
       })}
-    </>
+    </React.Fragment>
   );
 }

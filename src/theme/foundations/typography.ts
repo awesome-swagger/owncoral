@@ -42,8 +42,8 @@ export const typography = {
   },
 
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
+    heading: 'Manrope',
+    body: 'Manrope',
   },
 
   fontSizes: {

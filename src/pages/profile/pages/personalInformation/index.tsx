@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { FiEdit2 } from 'react-icons/fi';
-import type { UserProfileT } from './types';
+import type { UserProfileT } from '../../../../shared-fullstack/types';
 import {
   Box,
   Center,

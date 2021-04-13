@@ -1,13 +1,12 @@
 // @ts-nocheck
 import React, { useMemo } from 'react';
 import { useColorModeValue } from '@chakra-ui/react';
-import { format } from 'date-fns';
-import { Bar } from '@visx/shape';
-import { Group } from '@visx/group';
 import { AxisBottom, AxisLeft } from '@visx/axis';
+import { Group } from '@visx/group';
+import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear } from '@visx/scale';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
-
+import { Bar } from '@visx/shape';
+import { format } from 'date-fns';
 
 export const OverAllCashChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;

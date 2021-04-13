@@ -34,13 +34,13 @@ const hFont = {
     Reference
       https://medium.com/newsbrewer-app/what-s-wrong-with-one-of-the-most-elegant-typefaces-raleway-662e1e7bc7f7
   */
-  fontFamily: `Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
   fontFeatureSettings: 'lnum',
 };
 
 const bodyFont = {
-  fontFamily: `Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
   'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
 };
 
@@ -51,7 +51,7 @@ export const hMargin = {
 
 export const h1 = {
   fontSize: `${96 / 16}rem`,
-  fontWeight: 300,
+  fontWeight: 500,
   letterSpacing: `${-1.5 / 16}em`,
   ...hFont,
   ...hMargin,
@@ -59,7 +59,7 @@ export const h1 = {
 
 export const h2 = {
   fontSize: `${60 / 16}rem`,
-  fontWeight: 300,
+  fontWeight: 500,
   letterSpacing: `${-0.5 / 16}em`,
   ...hFont,
   ...hMargin,
@@ -67,14 +67,14 @@ export const h2 = {
 
 export const h3 = {
   fontSize: `${48 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 600,
   ...hFont,
   ...hMargin,
 };
 
 export const h4 = {
   fontSize: `${34 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 600,
   letterSpacing: `${0.25 / 16}em`,
   ...hFont,
   ...hMargin,
@@ -82,14 +82,14 @@ export const h4 = {
 
 export const h5 = {
   fontSize: `${24 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 600,
   ...hFont,
   ...hMargin,
 };
 
 export const h6 = {
   fontSize: `${20 / 16}rem`,
-  fontWeight: 500,
+  fontWeight: 700,
   letterSpacing: `${0.15 / 16}em`,
   ...hFont,
   ...hMargin,

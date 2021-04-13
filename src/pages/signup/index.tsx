@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useReducer } from 'react';
+import React, { lazy, useCallback, useEffect, useReducer } from 'react';
 import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
+import { ProtectedRoute } from '../../components';
 import { retrieveState, storeState } from '../../lib/utils';
 import { signupRoutes } from './signupRoutes';
+const Error404 = lazy(() => import('../error404'));
 
 export type DivRef = HTMLDivElement;
 export type FormRef = HTMLFormElement;
@@ -32,7 +34,7 @@ function formReducer(state: FormStateT, action: ActionT) {
   }
 }
 
-function Signup() {
+function SignupFlow() {
   const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
   const { url: signupRootUrl } = useRouteMatch();
   const history = useHistory();
@@ -64,10 +66,11 @@ function Signup() {
             <SignupComponent nextStep={createNextStep(currStep)} prevStep={prevStep} />
           </Route>
         ))}
+        <ProtectedRoute path="*" component={Error404} />
       </Switch>
     </StepFormContext.Provider>
   );
 }
 
 // eslint-disable-next-line import/no-default-export
-export default Signup;
+export default SignupFlow;

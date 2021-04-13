@@ -1,20 +1,59 @@
-import { Fragment } from 'react';
-import { Link as BrowserLink, useRouteMatch } from 'react-router-dom';
-import { Button, Heading } from '@chakra-ui/react';
+import React, { Fragment, lazy } from 'react';
+import { Link as BrowserLink, Switch, useRouteMatch } from 'react-router-dom';
+import { Button, Heading, VStack } from '@chakra-ui/react';
 
-import { Container, NavBar } from '../../components';
+import { Container, NavBar, ProtectedRoute } from '../../components';
+
+const OldPortfolio = lazy(() => import('./oldPortfolio'));
+const PortfolioSplash = lazy(() => import('./portfolio/splash'));
 
 const Drafts = () => {
-  const { url: draftsUrl } = useRouteMatch();
+  const { url: draftsRootUrl } = useRouteMatch();
 
+  return (
+    <Switch>
+      <ProtectedRoute exact path={`${draftsRootUrl}`}>
+        <DraftsMain draftsRootUrl={draftsRootUrl} />
+      </ProtectedRoute>
+
+      <ProtectedRoute exact path={draftsRootUrl + '/old-portfolio'} component={OldPortfolio} />
+
+      <ProtectedRoute
+        exact
+        path={draftsRootUrl + '/portfolio/splash'}
+        component={PortfolioSplash}
+      />
+    </Switch>
+  );
+};
+
+const DraftsMain = ({ draftsRootUrl }: { draftsRootUrl: string }) => {
   return (
     <Fragment>
       <NavBar />
       <Container>
-        <Heading>Draft Pages</Heading>
-        <Button as={BrowserLink} to={`${draftsUrl}/old-portfolio`}>
-          Old Portfolio
-        </Button>
+        <Heading textAlign="center">Draft Pages</Heading>
+        <VStack>
+          <Button colorScheme="secondary" as={BrowserLink} to="/investment-profile">
+            New Investment
+          </Button>
+
+          <Button colorScheme="secondary" as={BrowserLink} to="/signup">
+            Signup
+          </Button>
+
+          <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/old-portfolio`}>
+            Old Portfolio
+          </Button>
+
+          <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/portfolio/splash`}>
+            Portfolio Splash screen
+          </Button>
+          
+          <Button colorScheme="secondary" as={BrowserLink} to="/map-box">
+            MapBox
+          </Button>
+        </VStack>
       </Container>
     </Fragment>
   );

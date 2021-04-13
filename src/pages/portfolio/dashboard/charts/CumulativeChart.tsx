@@ -1,9 +1,9 @@
-import { BarStack } from '@visx/shape';
-import { Group } from '@visx/group';
-import { Grid } from '@visx/grid';
 import { AxisBottom } from '@visx/axis';
+import { Grid } from '@visx/grid';
+import { Group } from '@visx/group';
+import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { BarStack } from '@visx/shape';
 
 export const CumulativeChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;

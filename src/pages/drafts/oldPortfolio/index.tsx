@@ -1,6 +1,7 @@
 import React, { Fragment, lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import { Link as BrowserLink } from 'react-router-dom';
+import type { AdminPanelUserInfoT } from '../../../shared-fullstack/types';
 import {
   Box,
   Center,
@@ -22,7 +23,6 @@ import lowPolyHouseSm from '../../../assets/low-poly-1-still-sm.png';
 import { NavBar } from '../../../components';
 import { formatFinancial } from '../../../lib/financialFormatter';
 import theme from '../../../theme';
-import type { UserT } from '../../../userContext';
 import { UserContext } from '../../../userContext';
 import { PortfolioChart } from './chart';
 import type { PropertyDataT } from './fetchData';
@@ -42,8 +42,8 @@ function Portfolio() {
   const [user] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdminLoading, setIsAdminLoading] = useState(true);
-  const [selectedUser, setSelectedUser] = useState<string | null>(user.id);
-  const [adminUserList, setAdminUserList] = useState<any[] | null>(null);
+  const [selectedUser, setSelectedUser] = useState<string | null>(user ? user.id : null);
+  const [adminUserList, setAdminUserList] = useState<AdminPanelUserInfoT[] | null>(null);
   const [portfolio, setPortfolio] = useState<PropertyDataT[] | null>(null);
   const [AdminPanel, setAdminPanel] = useState<any>(null);
 
@@ -59,7 +59,7 @@ function Portfolio() {
 
   // If current user is admin, load the AdminPanel component lazily
   useEffect(() => {
-    if (user.isAdmin) {
+    if ((user || {})?.isAdmin) {
       setAdminPanel(lazy(() => import('./AdminPanel')));
     }
   }, [user]);
@@ -178,7 +178,7 @@ const adminPanelFragment = ({
   isAdminLoading,
 }: {
   AdminPanel: any;
-  user: UserT;
+  user: any;
   selectedUser: string | null;
   setSelectedUser: (userId: string) => void;
   adminUserList: any[] | null;

@@ -1,5 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
-import type { UserProfileT } from './types';
+import type { UserProfileT } from '../../../../shared-fullstack/types';
 import type { useToast } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
@@ -21,7 +21,7 @@ export const fetchCurrentUser = async ({
   toast: ReturnType<typeof useToast>;
 }) => {
   setIsLoading(true);
-  const resp = await fetchWrap('api/currentUser', { method: 'GET' });
+  const resp = await fetchWrap('/api/currentUser', { method: 'GET' });
   if (resp.ok) {
     const wireUser = (await resp.json()) as UserProfileT;
     setBirthDate(splitDate(parseISO(wireUser.birthDate)));
@@ -48,7 +48,8 @@ export const updateCurrentUser = async (
   userPartial: Partial<UserProfileT>,
   toast: ReturnType<typeof useToast>,
 ) => {
-  const resp = await fetchWrap('api/currentUserUpdate', {
+  // TODO: also set UserContext
+  const resp = await fetchWrap('/api/currentUserUpdate', {
     method: 'POST',
     body: JSON.stringify(userPartial),
   });

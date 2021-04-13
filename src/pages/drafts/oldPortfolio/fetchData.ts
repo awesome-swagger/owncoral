@@ -1,4 +1,5 @@
 import type { Dispatch, SetStateAction } from 'react';
+import type { AdminPanelUserInfoT } from '../../../shared-fullstack/types';
 import type { useToast } from '@chakra-ui/react';
 
 import { fetchWrap } from '../../../lib/api';
@@ -38,7 +39,7 @@ export const fetchPortfolio = async ({
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }) => {
   setIsLoading(true);
-  const resp = await fetchWrap('/api/portfolio', {
+  const resp = await fetchWrap('/api/old-portfolio', {
     method: 'POST',
     body: JSON.stringify({ selectedUser }),
   });
@@ -67,7 +68,7 @@ export const fetchAllUsersAdmin = async ({
   toast,
 }: {
   setIsAdminLoading: Dispatch<SetStateAction<boolean>>;
-  setAdminUserList: Dispatch<SetStateAction<any[] | null>>;
+  setAdminUserList: Dispatch<SetStateAction<AdminPanelUserInfoT[] | null>>;
   toast: ReturnType<typeof useToast>;
 }) => {
   setIsAdminLoading(true);

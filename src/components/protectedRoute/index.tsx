@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route, RouteProps, useLocation } from 'react-router-dom';
+import type { UserProfileT } from '../../shared-fullstack/validators';
 
 import { fetchWrap } from '../../lib/api';
-import type { UserT } from '../../userContext';
 import { UserContext } from '../../userContext';
 import { Loading } from '../loading';
 
@@ -34,7 +34,7 @@ export const ProtectedRoute: React.FC<RouteProps> = (props) => {
 };
 
 async function getUser(
-  setUser: (u: UserT) => void,
+  setUser: (u: UserProfileT) => void,
   setIsLoading: (isLoading: boolean) => void,
 ): Promise<void> {
   setIsLoading(true);

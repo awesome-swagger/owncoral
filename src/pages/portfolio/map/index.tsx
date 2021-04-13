@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { Image, Box, Center, Heading, Icon } from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
 import { FiChevronLeft } from 'react-icons/fi';
-import { PopUpBox } from './popUpBox';
-import { Container } from '../../../components';
-import MapImg from '../../../assets/MapsicleMap.png';
-import { DummyData } from '../../../lib/portfolioData';
+import { useHistory } from 'react-router-dom';
+import { Box, Center, Heading, Icon, Image } from '@chakra-ui/react';
 
-export const PortfolioMap = () => {
+import MapImg from '../../../assets/MapsicleMap.png';
+import { Container } from '../../../components';
+import { DummyData } from '../../../lib/portfolioData';
+import { PopUpBox } from './popUpBox';
+
+const PortfolioMap = () => {
   const PortfolioData = DummyData;
 
   const [popUp, setPopUp] = useState(false);
@@ -51,3 +52,6 @@ export const PortfolioMap = () => {
     </Container>
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default PortfolioMap;
