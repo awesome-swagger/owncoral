@@ -13,6 +13,7 @@ import { PropertyCard } from './propertyCard';
 import { ProtectedRoute } from './protectedRoute';
 import { Card } from './card';
 import { MapBox } from './mapBox';
+import { TimeoutModal } from './timeoutModal';
 
 export {
   BackBtn,
@@ -32,4 +33,5 @@ export {
   ProtectedRoute,
   Card,
   MapBox,
+  TimeoutModal,
 };

@@ -1,10 +1,9 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-
 import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
@@ -14,6 +13,7 @@ import {
   PropertyCard,
   ProtectedRoute,
   MapBox,
+  TimeoutModal,
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';
@@ -49,9 +49,9 @@ function App() {
               <Switch>
                 {/* Note: server handles not-logged-in redirection for the SPA bundle */}
                 {authRoutes}
-
                 <Route path="/signup">
                   <SignupFlow />
+                  <TimeoutModal />
                 </Route>
 
                 <Route path="/investment-profile">
