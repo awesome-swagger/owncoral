@@ -1,3 +1,3 @@
-export const GlobalLogoutTimeout = {
-  time: 3000,
+export const GlobalLogoutTimeout: { timer: null | NodeJS.Timeout } = {
+  timer: null,
 };
