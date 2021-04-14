@@ -4,6 +4,7 @@ import { Box, Center, forwardRef } from '@chakra-ui/react';
 
 import theme from '../../theme';
 import { ColorModeButton } from '../colorModeButton';
+import { TimeoutModal } from '../timeoutModal';
 
 // import Logo from '../../assets/coral.svg';
 
@@ -14,6 +15,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
   ({ showColorModeButton = true, children, ...otherProps }, ref) => {
     return (
       <Fragment>
+        <TimeoutModal />
         <Box
           p={6}
           marginX={{ base: '0', md: 'auto' }}

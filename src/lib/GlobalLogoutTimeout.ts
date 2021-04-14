@@ -1,3 +1,3 @@
 export const GlobalLogoutTimeout = {
-  time: null,
+  time: 3000,
 };

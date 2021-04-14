@@ -13,7 +13,6 @@ import {
   PropertyCard,
   ProtectedRoute,
   MapBox,
-  TimeoutModal,
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';
@@ -51,7 +50,6 @@ function App() {
                 {authRoutes}
                 <Route path="/signup">
                   <SignupFlow />
-                  <TimeoutModal />
                 </Route>
 
                 <Route path="/investment-profile">
