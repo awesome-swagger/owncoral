@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { GlobalLogoutTimeout } from '../../lib/GlobalLogoutTimeout';
+import { UserContext } from '../../userContext';
 import {
   Modal,
   ModalBody,
@@ -13,7 +14,19 @@ import {
 } from '@chakra-ui/react';
 
 export const TimeoutModal = () => {
-  const modalTimeout = GlobalLogoutTimeout.time;
+  const [user, setUser] = useContext(UserContext);
+  const [modalTimeout, setModalTimeout] = useState(9999 * 9999 * 9999 * 9999 * 9999);
+
+  const newTimeout = () => {
+    if (user) {
+      setModalTimeout(GlobalLogoutTimeout.time);
+    }
+  };
+
+  newTimeout();
+
+  console.log('user context ===>', modalTimeout);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
