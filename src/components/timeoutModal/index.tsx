@@ -15,7 +15,7 @@ import {
 
 export const TimeoutModal = () => {
   const [user, setUser] = useContext(UserContext);
-  const [modalTimeout, setModalTimeout] = useState(9999 * 9999 * 9999 * 9999 * 9999);
+  const [modalTimeout, setModalTimeout] = useState(99999 * 99999 * 99999 * 99999 * 99999);
 
   const newTimeout = () => {
     if (user) {
@@ -23,15 +23,15 @@ export const TimeoutModal = () => {
     }
   };
 
-  newTimeout();
-
-  console.log('user context ===>', modalTimeout);
-
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
-    const Timer = setTimeout(onOpen, modalTimeout);
+    newTimeout();
   }, []);
+
+  useEffect(() => {
+    const Timer = setTimeout(onOpen, modalTimeout);
+  }, [modalTimeout]);
 
   return (
     <>
