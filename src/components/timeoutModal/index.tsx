@@ -16,15 +16,12 @@ import {
 export const TimeoutModal = () => {
   const [user, setUser] = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  console.log(user);
-
-  const newTimeout = () => (GlobalLogoutTimeout.timer = setTimeout(onOpen, 5000));
 
   useEffect(() => {
     if (user && user.email) {
-      newTimeout();
+      GlobalLogoutTimeout.callback = onOpen;
     }
-  }, []);
+  }, [GlobalLogoutTimeout]);
 
   return (
     <>
