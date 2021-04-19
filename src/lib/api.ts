@@ -26,6 +26,10 @@ export const fetchWrap = (input: RequestInfo, init?: RequestInit) =>
       clearTimeout(GlobalLogoutTimeout.timer);
     }
 
+    if (typeof input === 'string' && input.indexOf('logout') > -1) {
+      return res;
+    }
+
     GlobalLogoutTimeout.timer = setTimeout(GlobalLogoutTimeout.callback, 2000);
     return res;
   });

@@ -14,14 +14,14 @@ import {
 } from '@chakra-ui/react';
 
 export const TimeoutModal = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     if (user && user.email) {
       GlobalLogoutTimeout.callback = onOpen;
     }
-  }, [GlobalLogoutTimeout]);
+  }, [GlobalLogoutTimeout, user]);
 
   return (
     <>
