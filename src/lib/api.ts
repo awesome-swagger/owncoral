@@ -26,7 +26,7 @@ export const fetchWrap = (input: RequestInfo, init?: RequestInit) =>
       clearTimeout(GlobalLogoutTimeout.timer);
     }
 
-    if (typeof input === 'string' && input.indexOf('logout') > -1) {
+    if ((typeof input === 'string' && input.startsWith('/logout?')) || input === '/logout') {
       return res;
     }
 
