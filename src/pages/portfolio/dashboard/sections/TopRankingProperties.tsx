@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Link as BrowserLink } from 'react-router-dom';
-import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/validators';
+import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/types';
 import {
   Box,
   Button,
@@ -21,9 +21,11 @@ import PlaceholderPoly1 from '../../../../assets/low-poly/3-Linden.png';
 import PlaceholderPoly3 from '../../../../assets/low-poly/378-Washington-R02.jpeg';
 import PlaceholderPoly4 from '../../../../assets/low-poly/low-poly-1-still-sm.png';
 import PlaceholderImg from '../../../../assets/Multifamily_Night.png';
+import { SubTitle1, SubTitle2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 // TODO: remove
 import { RankingProperties } from '../../../../lib/rankingProperties';
+import { addressToUrlFragment } from '../../lib';
 
 const SHOW_FEWER_COUNT = 5;
 
@@ -43,9 +45,7 @@ export const TopRankingProperties = ({
 }: TopRankingPropertiesPropsT) => {
   return (
     <Box>
-      <Heading size="xs" as="h6">
-        Your top ranking properties
-      </Heading>
+      <SubTitle1 my="0.6em">Top-Ranking Properties</SubTitle1>
       <Box>
         {properties === null ? (
           <Center w="100%" h={16}>
@@ -53,7 +53,7 @@ export const TopRankingProperties = ({
           </Center>
         ) : properties.length === 0 ? (
           <Center>
-            <Text textStyle="subTitle2">You have no properties</Text>
+            <SubTitle2>You have no properties</SubTitle2>
           </Center>
         ) : (
           <Fragment>
@@ -69,35 +69,42 @@ export const TopRankingProperties = ({
                 Contribution
               </Heading>
             </Flex>
-            {R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.totalContribution || -1)
-              .reverse()
-              .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
-              .map((property: PortfolioDashboardPropertyT, idx) => (
-                <LinkBox key={idx}>
-                  <Flex alignItems="center" mt={2}>
-                    <Image
-                      w={16}
-                      src={PLACEHOLDER_POLYS[idx % 4]}
-                      alt="property_img"
-                      borderRadius="md"
-                    />
-                    <Heading fontSize="sm" w="calc(50% - 4rem)" px={3} isTruncated>
-                      <LinkOverlay as={BrowserLink} to={portfolioRootUrl + '/property-detail'}>
-                        {property.address.line1}
-                      </LinkOverlay>
-                    </Heading>
+            <VStack align="stretch">
+              {R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.totalContribution || -1)
+                .reverse()
+                .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
+                .map((property: PortfolioDashboardPropertyT, idx) => (
+                  <LinkBox key={idx}>
+                    <Flex alignItems="center" mt={2}>
+                      <Image
+                        w={16}
+                        src={PLACEHOLDER_POLYS[idx % 4]}
+                        alt="property_img"
+                        borderRadius="md"
+                      />
+                      <Text w="calc(50% - 4rem)" px={3} isTruncated>
+                        <LinkOverlay
+                          as={BrowserLink}
+                          to={`${portfolioRootUrl}/investment?property=${addressToUrlFragment(
+                            property.address,
+                          )}&entity=${property.legalEntityId}`}
+                        >
+                          {property.address.line1}
+                        </LinkOverlay>
+                      </Text>
 
-                    <Heading textAlign="right" fontSize="sm" w="25%">
-                      {property.address.cityLocality}
-                    </Heading>
-                    <Heading textAlign="right" fontSize="sm" w="25%">
-                      {property.totalContribution
-                        ? '$' + formatFinancial(property.totalContribution)
-                        : 'N/A'}
-                    </Heading>
-                  </Flex>
-                </LinkBox>
-              ))}
+                      <Text textAlign="right" w="25%">
+                        {property.address.cityLocality}
+                      </Text>
+                      <Text textAlign="right" w="25%">
+                        {property.totalContribution
+                          ? '$' + formatFinancial(property.totalContribution)
+                          : 'N/A'}
+                      </Text>
+                    </Flex>
+                  </LinkBox>
+                ))}
+            </VStack>
             {properties.length > SHOW_FEWER_COUNT && (
               <Center>
                 <VStack>

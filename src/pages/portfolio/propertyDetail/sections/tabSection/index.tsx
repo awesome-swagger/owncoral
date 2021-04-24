@@ -1,33 +1,47 @@
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Box, Heading } from '@chakra-ui/react';
+import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
+import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 
-import { TabPanel1 } from './tabPanel1';
-import { TabPanel2 } from './tabPanel2';
-import { TabPanel3 } from './tabPanel3';
+import { DetailsTab } from './detailsTab';
+import { FinanceTab } from './financeTab';
+import { NewsTab } from './newsTab';
 
-export const TabSection = ({ data }: { data: any }) => (
+type TabSectionPropsT = {
+  propertyDetail: PortfolioPropertyDetailT;
+  propertyUriFragmentToId: { [uriFragment: string]: string } | null;
+  adminSelectedUser: string | null;
+};
+export const TabSection = ({
+  propertyDetail,
+  propertyUriFragmentToId,
+  adminSelectedUser,
+}: TabSectionPropsT) => (
   <Box>
     <Tabs>
       <TabList>
         <Tab>
-          <Heading fontSize="md">Finance</Heading>
+          <Text textStyle="subTitle1">Finance</Text>
         </Tab>
         <Tab>
-          <Heading fontSize="md">Property details</Heading>
+          <Text textStyle="subTitle1">Property details</Text>
         </Tab>
         <Tab>
-          <Heading fontSize="md">News</Heading>
+          <Text textStyle="subTitle1">News</Text>
         </Tab>
       </TabList>
 
       <TabPanels>
         <TabPanel px="0">
-          <TabPanel1 data={data} />
+          <FinanceTab
+            propertyDetail={propertyDetail}
+            propertyUriFragmentToId={propertyUriFragmentToId}
+            adminSelectedUser={adminSelectedUser}
+          />
         </TabPanel>
         <TabPanel px="0">
-          <TabPanel2 data={data} />
+          <DetailsTab propertyDetail={propertyDetail} />
         </TabPanel>
         <TabPanel px="0">
-          <TabPanel3 data={data} />
+          <NewsTab />
         </TabPanel>
       </TabPanels>
     </Tabs>

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { FiFilter } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/validators';
+import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/types';
 import { Box, Center, Divider, Flex, Heading, Icon, Spinner, useToast } from '@chakra-ui/react';
 
 import { BackBtn, Container, NavBar } from '../../../components';
@@ -14,47 +14,16 @@ import { PopUpBox } from './popUpBox';
 import { CashFlow, TopRankingProperties, TotalDistribution } from './sections';
 
 type PortfolioDashboardPropsT = {
-  adminSelectedUser: string | null;
+  properties: PortfolioDashboardPropertyT[] | null;
   portfolioRootUrl: string;
 };
-const PortfolioDashboard = ({ adminSelectedUser, portfolioRootUrl }: PortfolioDashboardPropsT) => {
-  const [user] = useContext(UserContext);
-  const [properties, setProperties] = useState<PortfolioDashboardPropertyT[] | null>(null);
-  const currentUserId = user?.id;
-
+const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboardPropsT) => {
   const [popUp, setPopUp] = useState(false);
   const [showAllProperties, setShowAllProperties] = useState(false);
 
   const history = useHistory();
-  const toast = useToast();
 
   const handleClick = () => setShowAllProperties(!showAllProperties);
-  useEffect(() => {
-    (async () => {
-      setProperties(null);
-      const resp = await fetchWrap('/api/portfolio-dashboard', {
-        method: 'POST',
-        body: JSON.stringify({ selectedUser: adminSelectedUser || currentUserId }),
-      });
-
-      if (resp.ok) {
-        const portfolio = await resp.json();
-        setProperties(portfolio);
-        return;
-      }
-
-      switch (resp.status) {
-        default:
-          toast({
-            ...DEFAULT_ERROR_TOAST,
-            ...{
-              description: 'Unable to load portfolio',
-            },
-          });
-          break;
-      }
-    })();
-  }, [adminSelectedUser, currentUserId]);
 
   return (
     <Container showColorModeButton={false}>

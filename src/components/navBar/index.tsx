@@ -9,6 +9,7 @@ import { Portal } from '@visx/tooltip';
 import { bodyText2 } from '../../theme/textStyles';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';
+import { H5i } from '../text';
 
 const navLinks = [
   {
@@ -77,9 +78,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
           <Center h="100%" marginX={5}>
             <Flex h="100%" align="center">
               {/* <Icon as={Logo} w={8} h={8} /> */}
-              <Heading as="h5" size="sm" color="primary.500" m={0}>
-                Coral
-              </Heading>
+              <H5i color="primary.500">Coral</H5i>
             </Flex>
           </Center>
 

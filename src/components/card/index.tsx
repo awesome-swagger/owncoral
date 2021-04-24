@@ -1,4 +1,7 @@
-import { Box, Heading } from '@chakra-ui/react';
+import type { ReactNode } from 'react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+
+import { H5, Overline } from '../text';
 
 export const Card = ({
   title,
@@ -6,20 +9,15 @@ export const Card = ({
   description,
 }: {
   title: string;
-  value: string;
-  description: string;
+  value: ReactNode;
+  description: ReactNode;
 }) => {
+  const gray = useColorModeValue('gray.700', 'gray.200');
   return (
-    <Box layerStyle="card" m="2" p={4} w={40}>
-      <Heading layerStyle="highlightForeground" fontSize="xs">
-        {title}
-      </Heading>
-      <Heading fontSize="2xl" m="0" fontWeight="bold">
-        {value}
-      </Heading>
-      <Heading layerStyle="highlightForeground" w="100%" fontSize="xs">
-        {description}
-      </Heading>
+    <Box layerStyle="card" m="2" p={4} w={40} borderRadius="xl">
+      <Overline color={gray}>{title}</Overline>
+      <H5>{value}</H5>
+      <Text>{description}</Text>
     </Box>
   );
 };

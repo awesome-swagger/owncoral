@@ -1,4 +1,7 @@
-export const GlobalLogoutTimeout: { timer: null | NodeJS.Timeout; callback: () => void } = {
+export const GlobalLogoutTimeout: {
+  timer: null | ReturnType<typeof setTimeout>;
+  callback: () => void
+} = {
   timer: null,
   callback: () => {},
 };

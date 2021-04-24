@@ -1,0 +1,17 @@
+// Only for type-checking
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "declarationDir": "dist",
+    // Make tsc warn us if we're doing something that will break Babel
+    // (which we're using for client-web)
+    // See: https://www.typescriptlang.org/tsconfig#isolatedModules
+    "isolatedModules": true
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": ["**/*.ts"]
+}

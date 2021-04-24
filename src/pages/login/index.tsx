@@ -93,7 +93,7 @@ function LoginForm() {
     >
       <FormControl>
         <Center>
-          <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }} textStyle="bodyText1">
+          <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }}>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
@@ -197,7 +197,7 @@ async function onSubmit({
 
   if (resp.ok) {
     setUser(await resp.json());
-    history.push(redirectUrl ? redirectUrl : '/portfolio');
+    history.push(redirectUrl ? decodeURIComponent(redirectUrl) : '/portfolio');
     return;
   }
 

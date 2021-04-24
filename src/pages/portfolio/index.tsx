@@ -1,6 +1,6 @@
 import React, { Fragment, lazy, useContext, useEffect, useState } from 'react';
 import { Switch, useRouteMatch } from 'react-router-dom';
-import type { AdminPanelUserInfoT } from '../../shared-fullstack/validators';
+import type { AdminPanelUserInfoT, PortfolioDashboardPropertyT } from '../../shared-fullstack/types';
 import { useToast } from '@chakra-ui/react';
 
 import { NavBar, ProtectedRoute } from '../../components';
@@ -10,6 +10,7 @@ import { UserContext } from '../../userContext';
 import Error404 from '../error404';
 import AdminPanel from './AdminPanel';
 import PortfolioDashboard from './dashboard';
+import { addressToUrlFragment } from './lib';
 
 const PortfolioMap = lazy(() => import('./map'));
 const PortfolioPropertyDetail = lazy(() => import('./propertyDetail'));
@@ -18,7 +19,29 @@ const Portfolio = () => {
   const { url: portfolioRootUrl } = useRouteMatch();
   const [adminPanelUserInfo, setAdminPanelUserInfo] = useState<AdminPanelUserInfoT[] | null>(null);
   const [user] = useContext(UserContext);
-  const [adminSelectedUser, setAdminSelectedUser] = useState<string | null>(user?.id || null);
+  const currentUserId = user?.id;
+
+  const [adminSelectedUser, setAdminSelectedUser] = useState<string | null>(
+    // TODO: remove this dev hack
+    process.env.NODE_ENV === 'development'
+      ? '6bb57093-39b5-4bc2-a2f0-42502a5a2688' // Ben Lin
+      : user?.id || null,
+  );
+  const [properties, setProperties] = useState<PortfolioDashboardPropertyT[] | null>(null);
+
+  // Routes for property details page, based on the property address
+  let propertyUriFragmentToId: { [uriFragment: string]: string } | null = null;
+
+  if (properties !== null) {
+    propertyUriFragmentToId = {};
+    properties.forEach((property) => {
+      // FYI: redundant type guard
+      if (propertyUriFragmentToId) {
+        propertyUriFragmentToId[addressToUrlFragment(property.address)] = property.propertyId;
+      }
+    });
+  }
+
   const toast = useToast();
 
   useEffect(() => {
@@ -39,7 +62,36 @@ const Portfolio = () => {
           break;
       }
     })();
-  }, []);
+  }, [toast]);
+
+  useEffect(() => {
+    (async () => {
+      setProperties(null);
+      const resp = await fetchWrap('/api/portfolio-dashboard', {
+        method: 'POST',
+        body: JSON.stringify({
+          impersonatedUserId: adminSelectedUser || currentUserId,
+        }),
+      });
+
+      if (resp.ok) {
+        const portfolio = await resp.json();
+        setProperties(portfolio);
+        return;
+      }
+
+      switch (resp.status) {
+        default:
+          toast({
+            ...DEFAULT_ERROR_TOAST,
+            ...{
+              description: 'Unable to load portfolio',
+            },
+          });
+          break;
+      }
+    })();
+  }, [adminSelectedUser, currentUserId, toast]);
 
   return (
     <Fragment>
@@ -52,17 +104,16 @@ const Portfolio = () => {
       />
       <Switch>
         <ProtectedRoute exact path={portfolioRootUrl}>
-          <PortfolioDashboard
-            adminSelectedUser={adminSelectedUser}
-            portfolioRootUrl={portfolioRootUrl}
-          />
+          <PortfolioDashboard properties={properties} portfolioRootUrl={portfolioRootUrl} />
         </ProtectedRoute>
         <ProtectedRoute exact path={portfolioRootUrl + '/map'} component={PortfolioMap} />
-        <ProtectedRoute
-          exact
-          path={portfolioRootUrl + '/property-detail'}
-          component={PortfolioPropertyDetail}
-        />
+        {/* 404 for invalid property URIs */}
+        <ProtectedRoute path={portfolioRootUrl + '/investment'}>
+          <PortfolioPropertyDetail
+            propertyUriFragmentToId={propertyUriFragmentToId}
+            adminSelectedUser={adminSelectedUser}
+          />
+        </ProtectedRoute>
         <ProtectedRoute path="*" component={Error404} />
       </Switch>
     </Fragment>

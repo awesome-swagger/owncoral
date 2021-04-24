@@ -1,11 +1,10 @@
 import { Box, Flex, Heading, Switch, Text } from '@chakra-ui/react';
 
+import { H6 } from '../../../../components/text';
 import { CumulativeChart } from '../charts';
 export const CashFlow = () => (
   <Box>
-    <Heading size="xs" as="h6">
-      Cumulative returns
-    </Heading>
+    <H6>Cumulative returns</H6>
     <Flex alignItems="center" justifyContent="space-between">
       <Text textStyle="subtitle1">Switch to 5 years hold</Text>
       <Switch size="lg" />
@@ -13,9 +12,7 @@ export const CashFlow = () => (
     <Box h="400px">
       <CumulativeChart />
     </Box>
-    <Heading size="xs" as="h6">
-      Cashflow
-    </Heading>
+    <H6>Cashflow</H6>
     <Flex alignItems="center" justifyContent="space-between">
       <Text textStyle="subtitle1">Switch to 5 years hold</Text>
       <Switch size="lg" />

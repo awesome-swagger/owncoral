@@ -1,6 +1,6 @@
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 import 'whatwg-fetch'; // Polyfill
-import { GlobalLogoutTimeout } from './GlobalLogoutTimeout';
+import { GlobalLogoutTimeout } from './globalLogoutTimeout';
+import { SESSION_TIMEOUT } from '../shared-fullstack/constants';
 
 // ESLint + Typescript can't find this for some reason?
 // eslint-disable-next-line no-undef
@@ -20,16 +20,17 @@ export const fetchWrap = (input: RequestInfo, init?: RequestInit) =>
     // Override defaults above
     ...init,
   }).then((res) => {
-    // clear and reset the timer if we already have, because the session will
-    // be refreshed on eash successful request
+    // clear and reset the timer if we already have, because the session
+    // will be refreshed on each successful request
     if (GlobalLogoutTimeout.timer !== null) {
       clearTimeout(GlobalLogoutTimeout.timer);
     }
 
-    if ((typeof input === 'string' && input.startsWith('/logout?')) || input === '/logout') {
+    const url = (typeof input === 'string') ? input : input.url;
+    if (url === '/logout' || url.startsWith('/logout?')) {
       return res;
     }
 
-    GlobalLogoutTimeout.timer = setTimeout(GlobalLogoutTimeout.callback, 2000);
+    GlobalLogoutTimeout.timer = setTimeout(GlobalLogoutTimeout.callback, SESSION_TIMEOUT);
     return res;
   });

@@ -1,26 +1,24 @@
-import { Box, Heading, Flex, Switch } from '@chakra-ui/react';
+import { Box, Flex, Switch, Text } from '@chakra-ui/react';
+
+import { SubTitle1 } from '../../../../../components/text';
 import { CumulativeChart } from '../../charts';
 
 export const ChartSection = () => (
   <Box>
-    <Heading fontSize="2xl" fontWeight="bold">
-      Cumulative returns
-    </Heading>
+    <SubTitle1 my={2}>Cumulative returns</SubTitle1>
     <Flex alignItems="center" justifyContent="space-between">
-      <Heading fontSize="md">Switch to 5 years hold</Heading>
+      <Text>Switch to 5 years hold</Text>
       <Switch size="lg" />
     </Flex>
-    <Box h="400px">
+    <Box h="380px">
       <CumulativeChart />
     </Box>
-    <Heading fontSize="2xl" fontWeight="bold">
-      Cashflow
-    </Heading>
+    <SubTitle1 my={2}>Cashflow</SubTitle1>
     <Flex alignItems="center" justifyContent="space-between">
-      <Heading fontSize="md">Switch to 5 years hold</Heading>
+      <Text>Switch to 5 years hold</Text>
       <Switch size="lg" />
     </Flex>
-    <Box h="400px">
+    <Box h="380px">
       <CumulativeChart />
     </Box>
   </Box>

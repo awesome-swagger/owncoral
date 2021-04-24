@@ -42,8 +42,8 @@ export const typography = {
   },
 
   fonts: {
-    heading: 'Manrope',
-    body: 'Manrope',
+    heading: 'Gilroy',
+    body: 'Gilroy',
   },
 
   fontSizes: {

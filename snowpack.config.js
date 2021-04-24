@@ -1,6 +1,20 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const httpProxy = require('http-proxy');
-const proxy = httpProxy.createServer({ target: 'http://localhost:3001' });
+let proxy = null;
+try {
+  proxy = httpProxy.createProxyServer({target: 'http://localhost:3001'});
+} catch (e) {
+  console.trace(e);
+}
+if (proxy === null) {
+  throw Error('Unable to start proxy server');
+}
+proxy.on('error', (err, req, res) => {
+  res.writeHead(500, {
+    'Content-Type': 'text/plain'
+  });
+  res.end(err.message);
+});
 
 // This config is only (??) used for development (plugin-webpack maintains its own babel config),
 // and applies to all source files (including e.g. shared-fullstack) via
@@ -51,11 +65,7 @@ module.exports = {
     {
       src: '/api/.*',
       dest: (req, res) => {
-        try {
-          return proxy.web(req, res)
-        } catch (e) {
-          console.trace(e);
-        }
+        return proxy.web(req, res);
       },
     },
     // Enable an SPA Fallback in development

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect, Route, RouteProps, useLocation } from 'react-router-dom';
-import type { UserProfileT } from '../../shared-fullstack/validators';
+import type { UserProfileT } from '../../shared-fullstack/types';
 
 import { fetchWrap } from '../../lib/api';
 import { UserContext } from '../../userContext';
@@ -22,14 +22,20 @@ export const ProtectedRoute: React.FC<RouteProps> = (props) => {
     if (!user) {
       getUser(setUser, setIsLoading);
     }
-  }, []);
+  }, [setUser, user]);
 
   return isLoading ? (
     <Loading />
   ) : user ? (
     <Route {...props} />
   ) : (
-    <Redirect to={location.pathname !== '/' ? `/login?redirect=${location.pathname}` : '/login'} />
+    <Redirect
+      to={
+        location.pathname !== '/'
+          ? `/login?redirect=${encodeURIComponent(location.pathname + location.search || '')}`
+          : '/login'
+      }
+    />
   );
 };
 

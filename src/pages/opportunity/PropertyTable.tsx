@@ -1,6 +1,7 @@
 import type React from 'react';
 import { Heading, Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
 
+import { H5i } from '../../components/text';
 import { formatFinancial } from '../../lib/financialFormatter';
 
 type PropertyTableProps = {
@@ -64,9 +65,9 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
           </Td>
           <Td isNumeric>
             <Tooltip label="updated 2/7/2021" aria-label="A tooltip">
-              <Heading as="h5" size="sm" m={0} colorScheme="primary" variant="colored">
+              <H5i colorScheme="primary" variant="colored">
                 ${formatFinancial(property.markedValueActual)}
-              </Heading>
+              </H5i>
             </Tooltip>
           </Td>
           <Td isNumeric>${formatFinancial(property.markedValuePlanned)}</Td>

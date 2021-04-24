@@ -2,7 +2,6 @@
 Mixins defining Material Design Type system.
 Based on generated code at:
 https://material.io/design/typography/the-type-system.html#type-scale
-using 'Raleway' and 'Nunito'
 
 
 Note that we're using 'rem' units for font sizes because we'll
@@ -34,13 +33,13 @@ const hFont = {
     Reference
       https://medium.com/newsbrewer-app/what-s-wrong-with-one-of-the-most-elegant-typefaces-raleway-662e1e7bc7f7
   */
-  fontFamily: `Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Gilroy, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
   fontFeatureSettings: 'lnum',
 };
 
 const bodyFont = {
-  fontFamily: `Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  fontFamily: `Gilroy, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
   'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
 };
 
@@ -97,14 +96,14 @@ export const h6 = {
 
 export const subTitle1 = {
   fontSize: `${16 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 700,
   letterSpacing: `${0.15 / 16}em`,
   ...bodyFont,
 };
 
 export const subTitle2 = {
   fontSize: `${14 / 16}rem`,
-  fontWeight: 500,
+  fontWeight: 700,
   letterSpacing: `${0.1 / 16}em`,
   ...bodyFont,
 };
@@ -143,7 +142,7 @@ export const overline = {
   textTransform: 'uppercase',
 
   fontSize: `${10 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 700,
   letterSpacing: `${1.5 / 16}em`,
   ...bodyFont,
 };

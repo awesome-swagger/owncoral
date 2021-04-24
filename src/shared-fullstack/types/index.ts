@@ -4,5 +4,7 @@ export type {
   AdminPanelUserInfoT,
   JsonT,
   PortfolioDashboardPropertyT,
+  PortfolioPropertyDetailInvestmentT,
+  PortfolioPropertyDetailT,
   UserProfileT,
 } from '../validators';

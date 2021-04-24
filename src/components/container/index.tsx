@@ -10,18 +10,19 @@ import { TimeoutModal } from '../timeoutModal';
 
 type ContainerPropsT = {
   showColorModeButton?: boolean;
+  padding?: number;
 };
 export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
-  ({ showColorModeButton = true, children, ...otherProps }, ref) => {
+  ({ showColorModeButton = true, padding = 6, children, ...otherProps }, ref) => {
     return (
       <Fragment>
         <TimeoutModal />
         <Box
-          p={6}
+          p={padding}
           marginX={{ base: '0', md: 'auto' }}
-          marginY={{ base: '0', md: 14 }}
+          marginY={{ base: '0', md: 6 }}
           w={{ base: '100vw', md: '80vw' }}
-          maxW={theme.breakpoints.md}
+          maxW={{ base: 'unset', md: theme.breakpoints.sm }}
           minH={{ base: '100vh', md: '80vh' }}
           borderRadius={{ base: 'none', md: '2xl' }}
           layerStyle="muiCardColor"

@@ -1,50 +1,47 @@
-import { Box, Flex, Heading, Icon, Divider } from '@chakra-ui/react';
 import { AiOutlineReload } from 'react-icons/ai';
-import { HiOutlineCash } from 'react-icons/hi';
 import { FaChartLine } from 'react-icons/fa';
+import { HiOutlineCash } from 'react-icons/hi';
+import { Box, Divider, Flex, Icon, Text } from '@chakra-ui/react';
 
-export const InvestmentReturn = ({ data }: { data: any }) => (
-  <Box>
-    <Heading fontSize="xl" fontWeight="bold">
-      Investment returns
-    </Heading>
-    <Box my={4}>
-      <Box>
-        <Flex justifyContent="space-between" alignItems="center">
-          <Heading fontSize="md">
-            <Icon as={AiOutlineReload} mr={3} h={4} w={4} />
-            Return of capital
-          </Heading>
-          <Heading fontSize="md" fontWeight="bold">
-            {data.capitalReturn}
-          </Heading>
-        </Flex>
-        <Divider />
-      </Box>
-      <Box>
-        <Flex justifyContent="space-between" alignItems="center">
-          <Heading fontSize="md">
-            <Icon as={HiOutlineCash} mr={3} h={4} w={4} />
-            Cash-on-cash Return
-          </Heading>
-          <Heading fontSize="md" fontWeight="bold">
-            {data.cashReturn}
-          </Heading>
-        </Flex>
-        <Divider />
-      </Box>
-      <Box>
-        <Flex justifyContent="space-between" alignItems="center">
-          <Heading fontSize="md">
-            <Icon as={FaChartLine} mr={3} h={4} w={4} />
-            Lorem Ipsum
-          </Heading>
-          <Heading fontSize="md" fontWeight="bold">
-            {data.returnRate}
-          </Heading>
-        </Flex>
-        <Divider my={8} />
+import { SubTitle1 } from '../../../../../components/text';
+import { DummyData } from '../../../../../lib/portfolioData';
+
+export const InvestmentReturn = ({ data }: { data: any }) => {
+  const dummyData = DummyData;
+  return (
+    <Box>
+      <SubTitle1 my={2}>Investment returns</SubTitle1>
+      <Box my={4}>
+        <Box>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Text my={2}>
+              <Icon as={AiOutlineReload} mr={3} h={4} w={4} />
+              Return of capital
+            </Text>
+            <Text my={2}>{dummyData.capitalReturn}</Text>
+          </Flex>
+          <Divider />
+        </Box>
+        <Box>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Text my={2}>
+              <Icon as={HiOutlineCash} mr={3} h={4} w={4} />
+              Cash-on-cash Return
+            </Text>
+            <Text my={2}>{dummyData.cashReturn}</Text>
+          </Flex>
+          <Divider />
+        </Box>
+        <Box>
+          <Flex justifyContent="space-between" alignItems="center">
+            <Text my={2}>
+              <Icon as={FaChartLine} mr={3} h={4} w={4} />
+              Lorem Ipsum
+            </Text>
+            <Text my={2}>{dummyData.returnRate}</Text>
+          </Flex>
+        </Box>
       </Box>
     </Box>
-  </Box>
-);
+  );
+};

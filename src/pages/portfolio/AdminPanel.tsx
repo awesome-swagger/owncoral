@@ -2,7 +2,7 @@
 import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import type React from 'react';
 /* eslint-enable import/no-duplicates */
-import type { AdminPanelUserInfoT } from '../../shared-fullstack/validators';
+import type { AdminPanelUserInfoT } from '../../shared-fullstack/types';
 import { Box, Center, Heading, Select, Spinner, Text } from '@chakra-ui/react';
 
 type AdminPanelPropsT = {

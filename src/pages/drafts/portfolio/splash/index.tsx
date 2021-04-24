@@ -23,7 +23,8 @@ const PortfolioSplash = () => {
   const history = useHistory();
   const handleRoute = (route: string) => history.push(`/portfolio/${route}`);
   const handleNextStep = () => {
-    if (step === 1) handleRoute('property-detail');
+    // TODO: remove fake data
+    if (step === 1) handleRoute('property/dummyData');
     else if (step === 'map') setStep(1);
     else setStep(step + 1);
   };

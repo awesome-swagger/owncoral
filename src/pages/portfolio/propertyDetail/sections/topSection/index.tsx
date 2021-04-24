@@ -1,51 +1,53 @@
-import { Heading, Divider, Box } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
+import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
 
-export const TopSection = ({ data }: { data: any }) => (
-  <Box my={6}>
-    <Heading fontSize="md" my={2}>
-      Great business, fair price
-    </Heading>
-    <Heading fontSize="3xl" m="0" fontWeight="bold">
-      {data.street}
-    </Heading>
-    <Heading fontSize="sm" my={2}>
-      {data.cityLocality}, {data.stateRegion}
-    </Heading>
+import { H5, Overline } from '../../../../../components/text';
 
-    <Divider my={6} />
+type TopSectionPropsT = {
+  propertyDetail: PortfolioPropertyDetailT;
+};
+export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
+  return (
+    <Box mt={6}>
+      <Overline>
+        {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
+      </Overline>
+      <H5>{propertyDetail.address.line1}</H5>
 
-    <Heading fontSize="2xl" fontWeight="bold">
-      Apartment building
-    </Heading>
-    <Heading fontSize="md" my={2}>
-      {data.propertyMeasure}
-    </Heading>
-    <Heading
-      borderRadius="full"
-      display="inline-block"
-      cursor="pointer"
-      fontSize="sm"
-      mr={2}
-      py={2}
-      px={3}
-      layerStyle="card"
-      whiteSpace="nowrap"
-    >
-      50% occupied
-    </Heading>
-    <Heading
-      borderRadius="full"
-      display="inline-block"
-      cursor="pointer"
-      fontSize="sm"
-      mr={2}
-      py={2}
-      px={3}
-      layerStyle="card"
-      whiteSpace="nowrap"
-    >
-      Under renovation
-    </Heading>
-    <Divider my={6} />
-  </Box>
-);
+      <Text textStyle="subTitle1">
+        {propertyDetail.numUnits ? propertyDetail.numUnits + ' units' : 'N/A'} ·{' '}
+        {propertyDetail.areaTotal
+          ? propertyDetail.areaTotal.toFixed(0).toLocaleString() + ' ' + propertyDetail.areaUnits
+          : 'N/A'}
+      </Text>
+      {propertyDetail.occupancyStatus !== null && (
+        <Heading
+          borderRadius="full"
+          display="inline-block"
+          fontSize="sm"
+          mr={2}
+          py={2}
+          px={3}
+          layerStyle="card"
+          whiteSpace="nowrap"
+        >
+          {propertyDetail.occupancyStatus}
+        </Heading>
+      )}
+      {propertyDetail.isUnderRenovation && (
+        <Heading
+          borderRadius="full"
+          display="inline-block"
+          fontSize="sm"
+          mr={2}
+          py={2}
+          px={3}
+          layerStyle="card"
+          whiteSpace="nowrap"
+        >
+          Under renovation
+        </Heading>
+      )}
+    </Box>
+  );
+};

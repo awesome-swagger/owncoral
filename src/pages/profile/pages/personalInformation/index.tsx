@@ -8,7 +8,6 @@ import {
   EditableInput,
   EditablePreview,
   Flex,
-  Heading,
   Icon,
   IconButton,
   Spinner,
@@ -22,6 +21,7 @@ import * as R from 'remeda';
 
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
+import { H6i } from '../../../../components/text';
 import { fetchCurrentUser, updateCurrentUser } from './lib';
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
@@ -61,9 +61,9 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <Heading mb={6} mt="0" mx="0" fontSize="lg" align="center">
+      <H6i mb={6} mt="0" mx="0" align="center">
         Personal Information
-      </Heading>
+      </H6i>
 
       {isLoading ? (
         <Center>
@@ -82,9 +82,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
             handleSubmit={makeSubmit('legalLast')}
           />
           <Box p={3} width="100%">
-            <Heading size="xs" as="h6" m={0}>
-              Birthdate
-            </Heading>
+            <H6i>Birthdate</H6i>
             <DayPicker date={birthDate as SplitDateT} onChange={handleDateChange} />
           </Box>
 
@@ -97,9 +95,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           <ReadonlyLine label="Email" value={initialUser?.email} />
           <ReadonlyLine label="Alternate Email" value={initialUser?.emailAlt} />
           <Box p={3} width="100%">
-            <Heading size="xs" as="h6" m={0}>
-              Address
-            </Heading>
+            <H6i>Address</H6i>
             <Text marginY={2}>
               {R.flatMap(
                 [
@@ -116,9 +112,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           </Box>
 
           <Box p={3} width="100%">
-            <Heading size="xs" as="h6" m={0}>
-              I&#39;m an accredited visitor
-            </Heading>
+            <H6i>I&#39;m an accredited visitor</H6i>
             <Switch
               marginY={2}
               size="lg"
@@ -182,9 +176,7 @@ type ReadonlyLinePropsT = {
 const ReadonlyLine = ({ label, value }: ReadonlyLinePropsT) => {
   return (
     <Box p={2} width="100%">
-      <Heading size="xs" as="h6" m={0}>
-        {label}
-      </Heading>
+      <H6i>{label}</H6i>
       <Text marginY={2}>{value || 'N/A'}</Text>
     </Box>
   );

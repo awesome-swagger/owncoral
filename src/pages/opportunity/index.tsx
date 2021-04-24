@@ -23,6 +23,7 @@ import { format as formatDate } from 'date-fns';
 import lowPolyHouseLg from '../../assets/low-poly-1.gif';
 import { BackBtn } from '../../components';
 import { NavBar } from '../../components/navBar';
+import { H5i } from '../../components/text';
 import { propertyData } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
 import theme from '../../theme';
@@ -70,9 +71,7 @@ function Property() {
         <VStack w="85%" minW="340px" maxW={theme.breakpoints.md} paddingX={[3, 4, 6]}>
           <Flex justify="space-between" w="100%">
             <VStack align="left">
-              <Heading as="h5" size="sm" m={0}>
-                {property.name}
-              </Heading>
+              <H5i>{property.name}</H5i>
               <HStack spacing={1}>
                 <Icon as={FiMapPin} />
                 <Text textStyle="bodyText2" verticalAlign="middle">
@@ -82,9 +81,9 @@ function Property() {
             </VStack>
             <VStack align="right" textAlign="right">
               <Text textStyle="bodyText2">Initial Investment</Text>
-              <Heading as="h5" size="sm" m={0} colorScheme="primary" variant="colored">
+              <H5i colorScheme="primary" variant="colored">
                 ${formatFinancial(property.contribution)}
-              </Heading>
+              </H5i>
               <Text textStyle="bodyText2">
                 on {formatDate(property.contributionDate, 'MM/dd/yyyy')}
               </Text>
