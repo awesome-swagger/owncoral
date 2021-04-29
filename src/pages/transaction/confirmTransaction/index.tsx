@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Container, BackBtn } from '../../../components';
 import {
   Heading,
@@ -23,10 +24,11 @@ export const ConfirmTransaction = ({
 }) => {
   const [agreement, setAgreement] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const history = useHistory();
 
   return (
     <Container>
-      <BackBtn handleClick={() => console.log('Clicked')} />
+      <BackBtn handleClick={() => history.goBack()} />
       <Heading size="md">Invest in 3 Linden St</Heading>
       <Text fontSize="md">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </Text>
       <Box px={4} my={8} border="1px" layerStyle="lightBorder">
