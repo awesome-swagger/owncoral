@@ -7,7 +7,7 @@ export const LinkBankAccount = (props: any) => {
 
   const handleOnSuccess = useCallback((token, metadata) => {
     // send token to server
-    props.handleTransaction('confirmTransaction');
+    props.handleTransaction('confirmTrasaction');
   }, []);
 
   return (
