@@ -1,5 +1,5 @@
 import { Box, Spinner, Text } from '@chakra-ui/react';
-import { FlexContainer, BackBtn } from '../../../components';
+import { FlexContainer, BackBtn } from '../../../../components';
 
 export const ProcessingTransaction = ({
   handleTransaction,

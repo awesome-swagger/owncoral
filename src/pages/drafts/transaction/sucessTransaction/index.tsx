@@ -1,7 +1,7 @@
-import { Container } from '../../../components';
-import { Image, Text, Heading, Box, Button, Flex, Divider } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import PropertyImg from '../../../assets/Frame269.png';
+import { Image, Text, Heading, Box, Button, Flex, Divider } from '@chakra-ui/react';
+import { Container } from '../../../../components';
+import PropertyImg from '../../../../assets/Frame269.png';
 
 export const SucessTransaction = () => {
   return (

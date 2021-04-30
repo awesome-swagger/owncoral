@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, BackBtn } from '../../../components';
+import { Container, BackBtn } from '../../../../components';
 import {
   Heading,
   Text,

@@ -1,4 +1,4 @@
-import { FlexContainer, BackBtn } from '../../../components';
+import { FlexContainer, BackBtn } from '../../../../components';
 import { Heading, Text, Button } from '@chakra-ui/react';
 
 export const FailedTransaction = () => {

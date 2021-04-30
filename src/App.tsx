@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-import { Transaction } from './pages/transaction';
-import { LinkBankAccount } from './pages/drafts/linkBankAccount';
+import { Transaction } from './pages/drafts/transaction';
 
 import AppRootStyle from './AppRootStyle';
 import {
@@ -74,7 +73,6 @@ function App() {
 
                 <ProtectedRoute exact path="/map-box" component={MapBox} />
                 <ProtectedRoute exact path="/transaction" component={Transaction} />
-                <ProtectedRoute exact path="/link-bank-account" component={LinkBankAccount} />
 
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/documents" component={Docs} /> */}
