@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 import type { UserProfileT } from './shared-fullstack/types';
+import { LearningCenter } from './pages/drafts/learningCenter';
 
 import AppRootStyle from './AppRootStyle';
 import {
@@ -72,6 +73,7 @@ function App() {
                 <ProtectedRoute exact path="/opportunities/detail" component={OpportunityDetail} />
 
                 <ProtectedRoute exact path="/map-box" component={MapBox} />
+                <ProtectedRoute exact path="/learning-center" component={LearningCenter} />
 
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/documents" component={Docs} /> */}

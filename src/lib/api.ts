@@ -2,7 +2,7 @@ import { SESSION_TIMEOUT_MS } from '../shared-fullstack/constants';
 
 import 'whatwg-fetch'; // Polyfill
 
-import { GlobalLogoutTimeout } from './globalLogoutTimeout';
+import { GlobalLogoutTimeout } from './GlobalLogoutTimeout';
 
 export const fetchWrap = (
   input: RequestInfo, // eslint-disable-line no-undef
