@@ -12,7 +12,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { GlobalLogoutTimeout } from '../../lib/globalLogoutTimeout';
+import { GlobalLogoutTimeout } from '../../lib/GlobalLogoutTimeout';
 import { UserContext } from '../../userContext';
 
 export const TimeoutModal = () => {

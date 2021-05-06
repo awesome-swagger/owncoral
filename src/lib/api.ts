@@ -1,5 +1,5 @@
 import 'whatwg-fetch'; // Polyfill
-import { GlobalLogoutTimeout } from './globalLogoutTimeout';
+import { GlobalLogoutTimeout } from './GlobalLogoutTimeout';
 import { SESSION_TIMEOUT } from '../shared-fullstack/constants';
 
 // ESLint + Typescript can't find this for some reason?
@@ -26,7 +26,7 @@ export const fetchWrap = (input: RequestInfo, init?: RequestInit) =>
       clearTimeout(GlobalLogoutTimeout.timer);
     }
 
-    const url = (typeof input === 'string') ? input : input.url;
+    const url = typeof input === 'string' ? input : input.url;
     if (url === '/logout' || url.startsWith('/logout?')) {
       return res;
     }

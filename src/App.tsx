@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
+import { Transaction } from './pages/drafts/transaction';
 
 import AppRootStyle from './AppRootStyle';
 import {
@@ -32,7 +33,6 @@ const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/step
 const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 const Error404 = lazy(() => import('./pages/error404'));
-
 const headerStyles = { h1, h2, h3, h4, h5, h6 };
 
 function App() {
@@ -72,6 +72,7 @@ function App() {
                 <ProtectedRoute exact path="/opportunities/detail" component={OpportunityDetail} />
 
                 <ProtectedRoute exact path="/map-box" component={MapBox} />
+                <ProtectedRoute exact path="/transaction" component={Transaction} />
 
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/documents" component={Docs} /> */}
