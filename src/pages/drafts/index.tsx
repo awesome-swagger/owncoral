@@ -6,6 +6,7 @@ import { Container, NavBar, ProtectedRoute } from '../../components';
 
 const OldPortfolio = lazy(() => import('./oldPortfolio'));
 const PortfolioSplash = lazy(() => import('./portfolio/splash'));
+const Transaction = lazy(() => import('./transaction'));
 
 const Drafts = () => {
   const { url: draftsRootUrl } = useRouteMatch();
@@ -23,6 +24,8 @@ const Drafts = () => {
         path={draftsRootUrl + '/portfolio/splash'}
         component={PortfolioSplash}
       />
+
+      <ProtectedRoute exact path={draftsRootUrl + '/transaction'} component={Transaction} />
     </Switch>
   );
 };
@@ -52,6 +55,10 @@ const DraftsMain = ({ draftsRootUrl }: { draftsRootUrl: string }) => {
           
           <Button colorScheme="secondary" as={BrowserLink} to="/map-box">
             MapBox
+          </Button>
+
+          <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/transaction`}>
+            Transaction
           </Button>
         </VStack>
       </Container>

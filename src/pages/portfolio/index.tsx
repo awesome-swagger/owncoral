@@ -2,6 +2,7 @@ import React, { Fragment, lazy, useContext, useEffect, useState } from 'react';
 import { Switch, useRouteMatch } from 'react-router-dom';
 import type { AdminPanelUserInfoT, PortfolioDashboardPropertyT } from '../../shared-fullstack/types';
 import { useToast } from '@chakra-ui/react';
+import { parseISO } from 'date-fns';
 
 import { NavBar, ProtectedRoute } from '../../components';
 import { fetchWrap } from '../../lib/api';
@@ -48,6 +49,10 @@ const Portfolio = () => {
     (async () => {
       const resp = await fetchWrap('/api/fetchAllUsers', { method: 'GET' });
 
+      if (resp === null) {
+        return;
+      }
+
       if (resp.ok) {
         setAdminPanelUserInfo(await resp.json());
         return;
@@ -74,8 +79,20 @@ const Portfolio = () => {
         }),
       });
 
+      if (resp === null) {
+        return;
+      }
+
       if (resp.ok) {
         const portfolio = await resp.json();
+
+        // Parse date-string back into date object on each property
+        for (const property of portfolio) {
+          if (property.lastDistributionInitiatedAt) {
+            property.lastDistributionInitiatedAt = parseISO(property.lastDistributionInitiatedAt);
+          }
+        }
+
         setProperties(portfolio);
         return;
       }

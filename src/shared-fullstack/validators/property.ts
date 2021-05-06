@@ -18,8 +18,17 @@ export const PortfolioDashboardProperty = z.object({
   monthlyDistribution: z.number().nullable(),
   cashflowSchedule: Json.nullable(),
 
-  totalDistribution: z.number().nullable(),
-  totalContribution: z.number().nullable(),
+  currentEquity: z.number().nullable(),
+
+  // These default to 0 even if there's been no distribution
+  sumDistributionTotal: z.number(),
+  sumDistributionRental: z.number(),
+  sumDistributionSpecial: z.number(),
+
+  lastDistributionTotal: z.number(),
+  lastDistributionInitiatedAt: z.date().nullable(),
+
+  months: z.number().nullable(),
 });
 
 export type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashboardProperty>;

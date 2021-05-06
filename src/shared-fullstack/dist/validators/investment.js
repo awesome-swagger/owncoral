@@ -12,5 +12,14 @@ exports.PortfolioPropertyDetailInvestment = zod_1.z.object({
     legalEntityName: zod_1.z.string(),
     currentEquity: zod_1.z.number().nullable(),
     currentOwnershipPct: zod_1.z.number().nullable(),
+    sumDistributionTotal: zod_1.z.number(),
+    sumDistributionRental: zod_1.z.number(),
+    sumDistributionSpecial: zod_1.z.number(),
+    // These default to 0 even if there's no distribution
+    lastDistributionTotal: zod_1.z.number(),
+    lastDistributionRental: zod_1.z.number(),
+    lastDistributionSpecial: zod_1.z.number(),
+    // Will be null if there's no distribution yet
+    lastDistributionInitiatedAt: zod_1.z.date().nullable(),
 });
 //# sourceMappingURL=investment.js.map

@@ -1,4 +1,4 @@
-import { Heading, Divider, Box } from '@chakra-ui/react';
+import { Box, Divider, Heading } from '@chakra-ui/react';
 
 export const TopSection = () => (
   <Box my={6}>

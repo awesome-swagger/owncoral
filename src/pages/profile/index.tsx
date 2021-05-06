@@ -7,7 +7,7 @@ import { Account } from './account';
 import { Help } from './help';
 import { Legal } from './legal';
 import { LogoutSelector } from './logoutSelector';
-import { About, Faqs, InvestmentGoal, Notification, PersonalInformation } from './pages';
+import { About, Faqs, Fees, InvestmentGoal, Notification, PersonalInformation } from './pages';
 import { PopUp } from './popup';
 import { ProfileHeader } from './profileHeader';
 
@@ -50,6 +50,8 @@ function Profile() {
       case 4:
         return <About goBack={handleClose} />;
       case 5:
+        return <Fees goBack={handleClose} />;
+      case 6:
         return <Faqs goBack={handleClose} />;
       default:
         return <ProfileContent handleClick={handleClick} />;

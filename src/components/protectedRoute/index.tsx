@@ -46,6 +46,12 @@ async function getUser(
   setIsLoading(true);
 
   const resp = await fetchWrap('/api/currentUser');
+
+  if (resp === null) {
+    setIsLoading(false);
+    return;
+  }
+
   if (resp.ok) {
     setUser(await resp.json());
   }

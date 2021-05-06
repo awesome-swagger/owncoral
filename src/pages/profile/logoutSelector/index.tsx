@@ -7,7 +7,7 @@ import { fetchWrap } from '../../../lib/api';
 
 export const LogoutSelector = ({ popOver }: { popOver: boolean }) => {
   const handleLogout = async () => {
-    await fetchWrap('/api/logout', { method: 'GET' });
+    await fetchWrap('/api/logout', { method: 'GET' }, true);
     window.location.href = '/';
   };
   return (

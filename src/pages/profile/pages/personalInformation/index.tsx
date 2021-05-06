@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { FiEdit2 } from 'react-icons/fi';
 import type { UserProfileT } from '../../../../shared-fullstack/types';
 import {
@@ -17,20 +17,30 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react';
+import { parseISO } from 'date-fns';
 import * as R from 'remeda';
 
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
 import { H6i } from '../../../../components/text';
-import { fetchCurrentUser, updateCurrentUser } from './lib';
+import { UserContext } from '../../../../userContext';
+import { splitDate, updateCurrentUser } from './lib';
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // We're using mostly uncontrolled components (Editables keep their own state),
-  // so just load the user initially
-  const [initialUser, setInitialUser] = useState<UserProfileT | null>(null);
+  // We're using mostly uncontrolled components (Editables have their own state),
+  // but we still load UserContext here to keep initial and post-edit state
+  const [user, setUser] = useContext(UserContext);
   const [birthDate, setBirthDate] = useState<SplitDateT | null>(null);
   const [isAccredited, setIsAccredited] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (user !== null) {
+      setBirthDate(splitDate(parseISO(user.birthDate)));
+      setIsAccredited(user.completedAccreditation);
+    }
+    setIsLoading(false);
+  }, [user]);
 
   const toast = useToast();
 
@@ -48,15 +58,11 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
       Number(newBirthDate.month),
       Number(newBirthDate.day),
     );
-    updateCurrentUser({ birthDate: bdAsDate.toISOString() }, toast);
+    updateCurrentUser({ birthDate: bdAsDate.toISOString() }, { user, setUser, toast });
   };
 
   const makeSubmit = (key: keyof UserProfileT) => (newValue: string) =>
-    updateCurrentUser({ [key]: newValue }, toast);
-
-  useEffect(() => {
-    fetchCurrentUser({ setIsLoading, setBirthDate, setInitialUser, setIsAccredited, toast });
-  }, []);
+    updateCurrentUser({ [key]: newValue }, { user, setUser, toast });
 
   return (
     <Box>
@@ -73,12 +79,12 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
         <VStack spacing={0.25} alignItems="flex-start">
           <EditableLine
             label="First Name"
-            initialValue={initialUser?.legalFirst || ''}
+            initialValue={user?.legalFirst || ''}
             handleSubmit={makeSubmit('legalFirst')}
           />
           <EditableLine
             label="Last Name"
-            initialValue={initialUser?.legalLast || ''}
+            initialValue={user?.legalLast || ''}
             handleSubmit={makeSubmit('legalLast')}
           />
           <Box p={3} width="100%">
@@ -88,22 +94,22 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
 
           <EditableLine
             label="Phone"
-            initialValue={initialUser?.phone || ''}
+            initialValue={user?.phone || ''}
             handleSubmit={makeSubmit('phone')}
           />
 
-          <ReadonlyLine label="Email" value={initialUser?.email} />
-          <ReadonlyLine label="Alternate Email" value={initialUser?.emailAlt} />
+          <ReadonlyLine label="Email" value={user?.email} />
+          <ReadonlyLine label="Alternate Email" value={user?.emailAlt} />
           <Box p={3} width="100%">
             <H6i>Address</H6i>
             <Text marginY={2}>
               {R.flatMap(
                 [
-                  initialUser?.addressResidency.line1,
-                  initialUser?.addressResidency.line2,
-                  initialUser?.addressResidency.line3,
-                  `${initialUser?.addressResidency.cityLocality}, ${initialUser?.addressResidency.stateRegion} ` +
-                    initialUser?.addressResidency.postalCode,
+                  user?.addressResidency.line1,
+                  user?.addressResidency.line2,
+                  user?.addressResidency.line3,
+                  `${user?.addressResidency.cityLocality}, ${user?.addressResidency.stateRegion} ` +
+                    user?.addressResidency.postalCode,
                 ].filter((text) => (text || '').length > 0),
                 // eslint-disable-next-line react/jsx-key
                 (text) => [text, <br />],
@@ -120,7 +126,10 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
               onChange={() => {
                 const newIsAccredited = !isAccredited;
                 setIsAccredited(newIsAccredited);
-                updateCurrentUser({ completedAccreditation: newIsAccredited }, toast);
+                updateCurrentUser(
+                  { completedAccreditation: newIsAccredited },
+                  { user, setUser, toast },
+                );
               }}
             />
           </Box>

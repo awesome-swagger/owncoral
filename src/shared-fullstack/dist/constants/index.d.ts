@@ -1,2 +1,2 @@
-export declare const SessionTimeout: number;
+export declare const SESSION_TIMEOUT_MS: number;
 //# sourceMappingURL=index.d.ts.map

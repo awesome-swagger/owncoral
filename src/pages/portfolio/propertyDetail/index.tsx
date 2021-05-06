@@ -48,6 +48,10 @@ const PortfolioPropertyDetail = ({
         }),
       });
 
+      if (resp === null) {
+        return;
+      }
+
       if (resp.ok) {
         setPropertyDetail(await resp.json());
         return;

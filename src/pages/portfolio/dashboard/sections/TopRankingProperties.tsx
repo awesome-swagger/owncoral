@@ -6,12 +6,13 @@ import {
   Button,
   Center,
   Flex,
-  Heading,
   Image,
+  Link as ChakraLink,
   LinkBox,
   LinkOverlay,
   Spinner,
   Text,
+  useColorModeValue,
   VStack,
 } from '@chakra-ui/react';
 import * as R from 'remeda';
@@ -21,7 +22,7 @@ import PlaceholderPoly1 from '../../../../assets/low-poly/3-Linden.png';
 import PlaceholderPoly3 from '../../../../assets/low-poly/378-Washington-R02.jpeg';
 import PlaceholderPoly4 from '../../../../assets/low-poly/low-poly-1-still-sm.png';
 import PlaceholderImg from '../../../../assets/Multifamily_Night.png';
-import { SubTitle1, SubTitle2 } from '../../../../components/text';
+import { Overline, SubTitle1, SubTitle2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 // TODO: remove
 import { RankingProperties } from '../../../../lib/rankingProperties';
@@ -43,10 +44,20 @@ export const TopRankingProperties = ({
   showAll,
   portfolioRootUrl,
 }: TopRankingPropertiesPropsT) => {
+  const visibleProperties =
+    properties !== null
+      ? R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.currentEquity || -1)
+          .reverse()
+          .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
+      : [];
+
+  // HACK: match background color of body (theme.styles.global.body.bg)
+  const themeBackgroundColor = useColorModeValue('white', 'gray.800');
+
   return (
     <Box>
       <SubTitle1 my="0.6em">Top-Ranking Properties</SubTitle1>
-      <Box>
+      <Box overflowX="auto">
         {properties === null ? (
           <Center w="100%" h={16}>
             <Spinner />
@@ -57,32 +68,71 @@ export const TopRankingProperties = ({
           </Center>
         ) : (
           <Fragment>
-            <Flex>
-              <Heading fontSize="xs" fontWeight="bold" w={16} />
-              <Heading fontSize="xs" fontWeight="bold" w="calc(50% - 4rem)" px={3}>
-                Address
-              </Heading>
-              <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
-                City
-              </Heading>
-              <Heading textAlign="right" fontSize="xs" fontWeight="bold" w="25%">
-                Contribution
-              </Heading>
-            </Flex>
-            <VStack align="stretch">
-              {R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.totalContribution || -1)
-                .reverse()
-                .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
-                .map((property: PortfolioDashboardPropertyT, idx) => (
+            <Flex overflowX="auto">
+              <Box left={0} pos="sticky" w={16} backgroundColor={themeBackgroundColor}>
+                <VStack layerStyle="muiCardColor">
+                  <Flex w={16} h={8} alignItems="center">
+                    <Overline>Property</Overline>
+                  </Flex>
+                  {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
+                    <ChakraLink
+                      key={idx}
+                      as={BrowserLink}
+                      to={`${portfolioRootUrl}/investment?property=${addressToUrlFragment(
+                        property.address,
+                      )}&entity=${property.legalEntityId}`}
+                    >
+                      <Center w={16} h={12}>
+                        <Image
+                          src={PLACEHOLDER_POLYS[idx % 4]}
+                          alt="property_img"
+                          borderRadius="md"
+                          fallback={<Spinner />}
+                        />
+                      </Center>
+                    </ChakraLink>
+                  ))}
+                </VStack>
+              </Box>
+
+              <VStack align="stretch" zIndex={-1}>
+                <Flex h={8} alignItems="center">
+                  <Overline w="10rem" px={3}>
+                    Address
+                  </Overline>
+                  <Overline w="6rem" textAlign="right">
+                    Contribution
+                  </Overline>
+
+                  {/* <Overline w="6rem" textAlign="right"> */}
+                  {/*  Investment Entity */}
+                  {/* </Overline> */}
+
+                  <Overline w="6rem" textAlign="right">
+                    Rental Distribution
+                  </Overline>
+
+                  <Overline w="6rem" textAlign="right">
+                    Special Distribution
+                  </Overline>
+
+                  <Overline w="6rem" textAlign="right">
+                    Total Distribution
+                  </Overline>
+
+                  <Overline w="6rem" textAlign="right">
+                    Return (%)
+                  </Overline>
+
+                  <Overline w="6rem" textAlign="right">
+                    Months
+                  </Overline>
+                </Flex>
+
+                {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
                   <LinkBox key={idx}>
-                    <Flex alignItems="center" mt={2}>
-                      <Image
-                        w={16}
-                        src={PLACEHOLDER_POLYS[idx % 4]}
-                        alt="property_img"
-                        borderRadius="md"
-                      />
-                      <Text w="calc(50% - 4rem)" px={3} isTruncated>
+                    <Flex h={12} alignItems="center">
+                      <Text w="10rem" px={3} isTruncated>
                         <LinkOverlay
                           as={BrowserLink}
                           to={`${portfolioRootUrl}/investment?property=${addressToUrlFragment(
@@ -93,25 +143,52 @@ export const TopRankingProperties = ({
                         </LinkOverlay>
                       </Text>
 
-                      <Text textAlign="right" w="25%">
-                        {property.address.cityLocality}
-                      </Text>
-                      <Text textAlign="right" w="25%">
-                        {property.totalContribution
-                          ? '$' + formatFinancial(property.totalContribution)
+                      <Text w="6rem" textAlign="right">
+                        {property.currentEquity
+                          ? '$' + formatFinancial(property.currentEquity)
                           : 'N/A'}
+                      </Text>
+
+                      {/* <Text w="6rem" textAlign="right"> */}
+                      {/*  {property.legalEntityName} */}
+                      {/* </Text> */}
+
+                      <Text w="6rem" textAlign="right">
+                        ${formatFinancial(property.sumDistributionRental)}
+                      </Text>
+
+                      <Text w="6rem" textAlign="right">
+                        ${formatFinancial(property.sumDistributionSpecial)}
+                      </Text>
+
+                      <Text w="6rem" textAlign="right">
+                        ${formatFinancial(property.sumDistributionTotal)}
+                      </Text>
+
+                      <Text w="6rem" textAlign="right">
+                        {property.currentEquity
+                          ? (
+                              (property.sumDistributionTotal / property.currentEquity) *
+                              100
+                            ).toFixed() + '%'
+                          : 'N/A'}
+                      </Text>
+
+                      <Text w="6rem" textAlign="right">
+                        {property.months !== null ? property.months : 'N/A'}
                       </Text>
                     </Flex>
                   </LinkBox>
                 ))}
-            </VStack>
+              </VStack>
+            </Flex>
             {properties.length > SHOW_FEWER_COUNT && (
-              <Center>
+              <Center mb={1}>
                 <VStack>
                   <Box m={0} h={4}>
                     {!showAll && <Text textStyle="subTitle1">⋯</Text>}
                   </Box>
-                  <Button onClick={handleClick} variant="outline">
+                  <Button onClick={handleClick} variant="outline" colorScheme="secondary">
                     {showAll ? `See fewer` : `See all (${properties.length})`}
                   </Button>
                 </VStack>

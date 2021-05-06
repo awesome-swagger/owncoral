@@ -2,8 +2,8 @@ import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
-import type { UserProfileT } from '../../shared-fullstack/validators';
 import type { UseToastOptions } from '@chakra-ui/react';
+import type { UserProfileT } from '../../shared-fullstack/types';
 import {
   Box,
   Button,
@@ -189,11 +189,19 @@ async function onSubmit({
   redirectUrl,
 }: SubmitParams): Promise<void> {
   setIsLoading(true);
-  const resp = await fetchWrap('/api/login', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
+  const resp = await fetchWrap(
+    '/api/login',
+    {
+      method: 'POST',
+      body: JSON.stringify(data),
+    },
+    true,
+  );
   setIsLoading(false);
+
+  if (resp === null) {
+    return;
+  }
 
   if (resp.ok) {
     setUser(await resp.json());

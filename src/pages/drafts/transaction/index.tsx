@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-
 import { LinkBankAccount } from './linkBankAccount';
 import { ConfirmTransaction } from './confirmTransaction';
 import { ProcessingTransaction } from './processingTransaction';
-import { SucessTransaction } from './sucessTransaction';
+import { SuccessTransaction } from './successTransaction';
 import { FailedTransaction } from './failedTransaction';
 
-export const Transaction = () => {
+const Transaction = () => {
   const [transactionStep, setTransactionStep] = useState('linkBankAccount');
 
-  return (
-    <>
-      {transactionStep === 'linkBankAccount' ? (
-        <LinkBankAccount handleTransaction={setTransactionStep} />
-      ) : transactionStep === 'confirmTrasaction' ? (
-        <ConfirmTransaction handleTransaction={setTransactionStep} />
-      ) : transactionStep === 'processingTransaction' ? (
-        <ProcessingTransaction handleTransaction={setTransactionStep} />
-      ) : (
-        <SucessTransaction />
-      )}
-    </>
-  );
+  const Component = {
+    linkBankAccount: LinkBankAccount,
+    confirmTransaction: ConfirmTransaction,
+    processingTransaction: ProcessingTransaction,
+    successTransaction: SuccessTransaction,
+    failedTransaction: FailedTransaction
+  }[transactionStep];
+  
+  if(!Component) return null;
+
+  return <Component handleTransaction={setTransactionStep} />
 };
+
+// eslint-disable-next-line import/no-default-export
+export default Transaction;

@@ -52,6 +52,10 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
       }),
     });
 
+    if (resp === null) {
+      return;
+    }
+
     if (resp.ok) {
       history.push('/');
       return;
@@ -77,9 +81,13 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
         body: JSON.stringify({ resetToken }),
       });
 
+      if (resp === null) {
+        return;
+      }
+
       setTokenState(resp.ok ? 'valid' : 'invalid');
     })();
-  }, []);
+  }, [resetToken]);
 
   return (
     // TODO: use a Suspense when feature is stable

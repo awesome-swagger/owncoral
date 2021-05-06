@@ -64,9 +64,11 @@ const colorScale = scaleOrdinal({
 });
 
 function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
+  const AXIS_BOTTOM_HEIGHT = 50;
+
   if (width < 10) return null;
   const xMax = width;
-  const yMax = height - margin.top - 100;
+  const yMax = height - margin.top - AXIS_BOTTOM_HEIGHT;
 
   dateScale.rangeRound([0, xMax]);
   dataScale.range([yMax, 0]);

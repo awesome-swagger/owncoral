@@ -44,6 +44,11 @@ export const fetchPortfolio = async ({
     body: JSON.stringify({ selectedUser }),
   });
   setIsLoading(false);
+
+  if (resp === null) {
+    return;
+  }
+
   if (resp.ok) {
     const portfolio = await resp.json();
     setPortfolio(portfolio);
@@ -74,6 +79,10 @@ export const fetchAllUsersAdmin = async ({
   setIsAdminLoading(true);
   const resp = await fetchWrap('/api/fetchAllUsers', { method: 'GET' });
   setIsAdminLoading(false);
+
+  if (resp === null) {
+    return;
+  }
 
   if (resp.ok) {
     setAdminUserList(await resp.json());

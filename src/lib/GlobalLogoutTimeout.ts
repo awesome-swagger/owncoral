@@ -1,7 +1,9 @@
 export const GlobalLogoutTimeout: {
-  timer: null | ReturnType<typeof setTimeout>;
-  callback: () => void
+  timer: ReturnType<typeof setTimeout> | null;
+  timerExpiry: Date | null;
+  callback: () => void;
 } = {
   timer: null,
+  timerExpiry: null,
   callback: () => {},
 };

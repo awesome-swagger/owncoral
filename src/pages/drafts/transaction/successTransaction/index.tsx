@@ -1,9 +1,11 @@
+import { Image, Heading, Box, Button, Flex, Divider } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import { Image, Text, Heading, Box, Button, Flex, Divider } from '@chakra-ui/react';
 import { Container } from '../../../../components';
+import { H6, SubTitle1 } from '../../../../components/text';
+
 import PropertyImg from '../../../../assets/Frame269.png';
 
-export const SucessTransaction = () => {
+export const SuccessTransaction = () => {
   return (
     <Container overflow="hidden">
       <Image
@@ -18,7 +20,7 @@ export const SucessTransaction = () => {
       />
       <Box textAlign="center">
         <Heading size="md">Congratulations!</Heading>
-        <Text fontSize="md">You are now an owner of 13 Linden St</Text>
+        <SubTitle1>You are now an owner of 13 Linden St</SubTitle1>
       </Box>
       <Box pos="absolute" bottom={10} left={4} w="calc(100% - 2rem)">
         <Box px={4} my={8} border="1px" layerStyle="lightBorder">
@@ -27,14 +29,14 @@ export const SucessTransaction = () => {
           </Heading>
           <Divider />
           <Flex justifyContent="space-between" my={4}>
-            <Text fontSize="lg">Total equity</Text>
-            <Text fontSize="lg">$470.000</Text>
+            <H6>Total equity</H6>
+            <H6>$470.000</H6>
           </Flex>
           <Flex justifyContent="space-between" my={4}>
-            <Text fontSize="lg">Your investment</Text>
-            <Text fontSize="lg" fontWeight="500">
+            <H6>Your investment</H6>
+            <H6 fontWeight="500">
               $50.000
-            </Text>
+            </H6>
           </Flex>
         </Box>
         <Link to="/portfolio">

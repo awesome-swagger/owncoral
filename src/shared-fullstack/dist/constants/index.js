@@ -1,5 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SessionTimeout = void 0;
-exports.SessionTimeout = 60 * 30 * 1000; // 30 min
+exports.SESSION_TIMEOUT_MS = void 0;
+exports.SESSION_TIMEOUT_MS = 60 * 30 * 1000; // 30 min
 //# sourceMappingURL=index.js.map

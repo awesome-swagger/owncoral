@@ -56,6 +56,10 @@ export const FinanceTab = ({
         }),
       });
 
+      if (resp === null) {
+        return;
+      }
+
       if (resp.ok) {
         const rawJson = await resp.json();
         if (rawJson.lastDistributionInitiatedAt) {

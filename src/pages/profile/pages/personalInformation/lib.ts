@@ -1,60 +1,43 @@
 import type { Dispatch, SetStateAction } from 'react';
 import type { UserProfileT } from '../../../../shared-fullstack/types';
 import type { useToast } from '@chakra-ui/react';
-import { parseISO } from 'date-fns';
 
 import type { SplitDateT } from '../../../../components/daypicker';
 import { fetchWrap } from '../../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../../lib/errorToastOptions';
 
-export const fetchCurrentUser = async ({
-  setIsLoading,
-  setInitialUser,
-  setIsAccredited,
-  setBirthDate,
-  toast,
-}: {
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
-  setBirthDate: Dispatch<SetStateAction<SplitDateT | null>>;
-  setInitialUser: Dispatch<SetStateAction<UserProfileT | null>>;
-  setIsAccredited: Dispatch<SetStateAction<boolean>>;
-  toast: ReturnType<typeof useToast>;
-}) => {
-  setIsLoading(true);
-  const resp = await fetchWrap('/api/currentUser', { method: 'GET' });
-  if (resp.ok) {
-    const wireUser = (await resp.json()) as UserProfileT;
-    setBirthDate(splitDate(parseISO(wireUser.birthDate)));
-    setIsAccredited(wireUser?.completedAccreditation || false);
-    setInitialUser(wireUser);
-    setIsLoading(false);
-    return;
-  }
-
-  switch (resp.status) {
-    default:
-      toast({
-        ...DEFAULT_ERROR_TOAST,
-        ...{
-          description: 'Unable to load your profile',
-        },
-      });
-      break;
-  }
-};
-
 // Update some subset of fields in for the current user
 export const updateCurrentUser = async (
   userPartial: Partial<UserProfileT>,
-  toast: ReturnType<typeof useToast>,
+  {
+    user,
+    setUser,
+    toast,
+  }: {
+    user: UserProfileT | null;
+    setUser: Dispatch<SetStateAction<UserProfileT | null>>;
+    toast: ReturnType<typeof useToast>;
+  },
 ) => {
   // TODO: also set UserContext
   const resp = await fetchWrap('/api/currentUserUpdate', {
     method: 'POST',
     body: JSON.stringify(userPartial),
   });
+
+  if (resp === null) {
+    return;
+  }
+
   const successToastId = '_SUCCESS';
   if (resp.ok) {
+    if (user !== null) {
+      setUser({
+        ...user,
+        ...userPartial,
+      });
+    }
+
     // Only show one success toast at a time
     // https://chakra-ui.com/docs/feedback/toast#preventing-duplicate-toast
     if (!toast.isActive(successToastId)) {

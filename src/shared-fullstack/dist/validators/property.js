@@ -15,8 +15,14 @@ exports.PortfolioDashboardProperty = zod_1.z.object({
     // TODO: process this on server
     monthlyDistribution: zod_1.z.number().nullable(),
     cashflowSchedule: json_1.Json.nullable(),
-    totalDistribution: zod_1.z.number().nullable(),
-    totalContribution: zod_1.z.number().nullable(),
+    currentEquity: zod_1.z.number().nullable(),
+    // These default to 0 even if there's been no distribution
+    sumDistributionTotal: zod_1.z.number(),
+    sumDistributionRental: zod_1.z.number(),
+    sumDistributionSpecial: zod_1.z.number(),
+    lastDistributionTotal: zod_1.z.number(),
+    lastDistributionInitiatedAt: zod_1.z.date().nullable(),
+    months: zod_1.z.number().nullable(),
 });
 // TODO: define type
 exports.PortfolioPropertyDetail = zod_1.z.object({

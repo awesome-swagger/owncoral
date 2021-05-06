@@ -31,8 +31,13 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     }>;
     monthlyDistribution: z.ZodNullable<z.ZodNumber>;
     cashflowSchedule: z.ZodNullable<z.ZodType<import("./json").JsonT, z.ZodTypeDef, import("./json").JsonT>>;
-    totalDistribution: z.ZodNullable<z.ZodNumber>;
-    totalContribution: z.ZodNullable<z.ZodNumber>;
+    currentEquity: z.ZodNullable<z.ZodNumber>;
+    sumDistributionTotal: z.ZodNumber;
+    sumDistributionRental: z.ZodNumber;
+    sumDistributionSpecial: z.ZodNumber;
+    lastDistributionTotal: z.ZodNumber;
+    lastDistributionInitiatedAt: z.ZodNullable<z.ZodDate>;
+    months: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     propertyId: string;
     legalEntityId: string;
@@ -49,8 +54,13 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     };
     monthlyDistribution: number | null;
     cashflowSchedule: import("./json").JsonT;
-    totalDistribution: number | null;
-    totalContribution: number | null;
+    currentEquity: number | null;
+    sumDistributionTotal: number;
+    sumDistributionRental: number;
+    sumDistributionSpecial: number;
+    lastDistributionTotal: number;
+    lastDistributionInitiatedAt: Date | null;
+    months: number | null;
 }, {
     propertyId: string;
     legalEntityId: string;
@@ -67,8 +77,13 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     };
     monthlyDistribution: number | null;
     cashflowSchedule: import("./json").JsonT;
-    totalDistribution: number | null;
-    totalContribution: number | null;
+    currentEquity: number | null;
+    sumDistributionTotal: number;
+    sumDistributionRental: number;
+    sumDistributionSpecial: number;
+    lastDistributionTotal: number;
+    lastDistributionInitiatedAt: Date | null;
+    months: number | null;
 }>;
 export declare type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashboardProperty>;
 export declare const PortfolioPropertyDetail: z.ZodObject<{

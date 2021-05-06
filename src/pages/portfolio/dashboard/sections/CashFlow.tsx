@@ -1,24 +1,25 @@
 import { Box, Flex, Heading, Switch, Text } from '@chakra-ui/react';
 
-import { H6 } from '../../../../components/text';
+import { SubTitle1 } from '../../../../components/text';
 import { CumulativeChart } from '../charts';
 export const CashFlow = () => (
   <Box>
-    <H6>Cumulative returns</H6>
-    <Flex alignItems="center" justifyContent="space-between">
-      <Text textStyle="subtitle1">Switch to 5 years hold</Text>
-      <Switch size="lg" />
-    </Flex>
+    <SubTitle1>Cumulative returns</SubTitle1>
     <Box h="400px">
       <CumulativeChart />
     </Box>
-    <H6>Cashflow</H6>
     <Flex alignItems="center" justifyContent="space-between">
-      <Text textStyle="subtitle1">Switch to 5 years hold</Text>
+      <Text>Switch to 5 years hold</Text>
       <Switch size="lg" />
     </Flex>
+    <SubTitle1>Cashflow</SubTitle1>
+
     <Box h="400px">
       <CumulativeChart />
     </Box>
+    <Flex alignItems="center" justifyContent="space-between">
+      <Text>Switch to 5 years hold</Text>
+      <Switch size="lg" />
+    </Flex>
   </Box>
 );

@@ -1,5 +1,6 @@
+import { Heading, Button } from '@chakra-ui/react';
 import { FlexContainer, BackBtn } from '../../../../components';
-import { Heading, Text, Button } from '@chakra-ui/react';
+import { SubTitle1 } from '../../../../components/text';
 
 export const FailedTransaction = () => {
   return (
@@ -8,9 +9,9 @@ export const FailedTransaction = () => {
       <Heading size="md" textAlign="center">
         Sorry, we couldn’t process your transaction
       </Heading>
-      <Text fontSize="md" textAlign="center">
+      <SubTitle1 textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </Text>
+      </SubTitle1>
       <Button pos="absolute" bottom={10} left={4} w="calc(100% - 2rem)">
         Try again
       </Button>

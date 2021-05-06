@@ -1,7 +1,6 @@
-import { PersonalInformation } from './personalInformation';
-import { InvestmentGoal } from './investmentGoal';
-import { Notification } from './notification';
-import { About } from './about';
-import { Faqs } from './faqs';
-
-export { PersonalInformation, InvestmentGoal, Notification, About, Faqs };
+export { About } from './about';
+export { Faqs } from './faqs';
+export { Fees } from './fees';
+export { InvestmentGoal } from './investmentGoal';
+export { Notification } from './notification';
+export { PersonalInformation } from './personalInformation';
