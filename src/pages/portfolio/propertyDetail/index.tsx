@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
-import PlaceholderPoly1 from '../../../assets/low-poly/3-Linden.png';
+// import PlaceholderPoly1 from '../../../assets/low-poly/3-Linden.png';
+import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
 import { Container } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
@@ -82,7 +83,7 @@ const PortfolioPropertyDetail = ({
         <Fragment>
           <Image
             borderTopRadius={{ base: 'none', md: '2xl' }}
-            src={PlaceholderPoly1}
+            src={propertyDetail.imageUrls.length > 0 ? propertyDetail.imageUrls[0] : Placeholder}
             alt={propertyDetail.name + ' Image'}
             w="100%"
           />

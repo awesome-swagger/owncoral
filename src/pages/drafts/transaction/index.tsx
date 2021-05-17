@@ -14,12 +14,12 @@ const Transaction = () => {
     confirmTransaction: ConfirmTransaction,
     processingTransaction: ProcessingTransaction,
     successTransaction: SuccessTransaction,
-    failedTransaction: FailedTransaction,
+    failedTransaction: FailedTransaction
   }[transactionStep];
+  
+  if(!Component) return null;
 
-  if (!Component) return null;
-
-  return <Component handleTransaction={setTransactionStep} />;
+  return <Component handleTransaction={setTransactionStep} />
 };
 
 // eslint-disable-next-line import/no-default-export

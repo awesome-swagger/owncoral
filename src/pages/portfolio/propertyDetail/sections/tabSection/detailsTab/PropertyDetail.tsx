@@ -61,34 +61,36 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
           </Text>
         </Box>
       </Flex>
-      <Flex mb={2} minH={10}>
-        <Box mr={4}>
-          <Icon as={FiUsers} />
-        </Box>
-        <Box>
-          <SubTitle1>{dummyData.status}</SubTitle1>
-          <SubTitle2>{dummyData.builtDate}</SubTitle2>
-        </Box>
-      </Flex>
+      {/* <Flex mb={2} minH={10}> */}
+      {/*  <Box mr={4}> */}
+      {/*    <Icon as={FiUsers} /> */}
+      {/*  </Box> */}
+      {/*  <Box> */}
+      {/*    <SubTitle1>{dummyData.status}</SubTitle1> */}
+      {/*    <SubTitle2>{dummyData.builtDate}</SubTitle2> */}
+      {/*  </Box> */}
+      {/* </Flex> */}
       <Flex overflow="auto">
         <Card
           title="Purchase Price"
           value={
             propertyDetail.mdlPurchasePrice
-              ? formatFinancial(propertyDetail.mdlPurchasePrice)
+              ? '$' + formatFinancial(propertyDetail.mdlPurchasePrice)
               : 'N/A'
           }
           description=""
         />
-        <Card
-          title="Price / Unit"
-          value={
-            propertyDetail.mdlPurchasePrice && propertyDetail.numUnits
-              ? formatFinancial(propertyDetail.mdlPurchasePrice / propertyDetail.numUnits)
-              : 'N/A'
-          }
-          description=""
-        />
+        {propertyDetail.mdlPurchasePrice &&
+          propertyDetail.areaUnits &&
+          propertyDetail.areaLiving && (
+            <Card
+              title={`Price / ${propertyDetail.areaUnits}`}
+              value={
+                '$' + formatFinancial(propertyDetail.mdlPurchasePrice / propertyDetail.areaLiving)
+              }
+              description=""
+            />
+          )}
       </Flex>
     </Box>
   );

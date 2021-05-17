@@ -61,6 +61,6 @@ export const Caption = forwardRef<TextProps, 'span'>((props, ref) => (
   <Text textStyle="caption" ref={ref} {...props} />
 ));
 
-export const Overline = forwardRef<TextProps, 'span'>((props, ref) => {
-  return <Text textStyle="overline" colorScheme="colored" variant="colored" ref={ref} {...props} />;
-});
+export const Overline = forwardRef<TextProps, 'span'>((props, ref) => (
+  <Text textStyle="overline" colorScheme="colored" variant="colored" ref={ref} {...props} />
+));

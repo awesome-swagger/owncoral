@@ -28,13 +28,13 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
   return (
     <Container showColorModeButton={false}>
       <Box>
-        <Flex justifyContent="space-between" align="center">
-          <BackBtn handleClick={() => history.goBack()} />
+        <BackBtn top={6} left={6} pos="absolute" handleClick={() => history.goBack()} />
+        <Center>
           <Heading size="sm" as="h5">
             Dashboard
           </Heading>
-          <Icon as={FiFilter} h={4} w={4} cursor="pointer" onClick={() => setPopUp(true)} />
-        </Flex>
+          {/* <Icon as={FiFilter} h={4} w={4} cursor="pointer" onClick={() => setPopUp(true)} /> */}
+        </Center>
         <TotalDistribution properties={properties} />
         <Divider mb={4} />
         <TopRankingProperties
@@ -43,15 +43,15 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
           showAll={showAllProperties}
           portfolioRootUrl={portfolioRootUrl}
         />
-        <Divider m={4} />
-        {properties === null ? (
-          <Center>
-            <Spinner />
-          </Center>
-        ) : (
-          // <div></div>
-          <CashFlow />
-        )}
+        {/* <Divider m={4} /> */}
+        {/* {properties === null ? ( */}
+        {/*  <Center> */}
+        {/*    <Spinner /> */}
+        {/*  </Center> */}
+        {/* ) : ( */}
+        {/*  // <div></div> */}
+        {/*  <CashFlow /> */}
+        {/* )} */}
       </Box>
       {popUp && <PopUpBox handleClose={setPopUp} />}
     </Container>

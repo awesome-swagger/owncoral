@@ -134,8 +134,8 @@ export const FinanceTab = ({
       )}
       <Divider my={4} />
       <InvestmentReturn data={propertyDetail} />
-      <Divider my={4} />
-      <ChartSection />
+      {/* <Divider my={4} /> */}
+      {/* <ChartSection /> */}
     </Box>
   ) : (
     <Center h="100%" w="100%">

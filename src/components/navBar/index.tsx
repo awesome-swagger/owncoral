@@ -1,12 +1,10 @@
 import React, { Fragment } from 'react';
-import { FiFileText, FiHome, FiTrendingUp } from 'react-icons/fi';
+import { FiHome, FiTrendingUp } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
-import { Box, Center, Flex, Heading, HStack, Icon, Spacer, useMediaQuery } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Icon, Spacer, Text, useMediaQuery } from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
 
-// import Logo from '../../assets/coral.svg';
-import { bodyText2 } from '../../theme/textStyles';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';
 import { H5i } from '../text';
@@ -21,11 +19,6 @@ const navLinks = [
     name: 'Opportunities',
     url: '/opportunities/detail',
     icon: FiHome,
-  },
-  {
-    name: 'Documents',
-    url: '/documents',
-    icon: FiFileText,
   },
   {
     name: 'Drafts',
@@ -145,7 +138,9 @@ function NavButtons(props: { currentPageName: string | null }) {
           sx={{ transition: 'all 200ms' }}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
-          <span css={bodyText2}>{name}</span>
+          <Text as="span" textStyle="bodyText2">
+            {name}
+          </Text>
         </Flex>
       ))}
     </Flex>

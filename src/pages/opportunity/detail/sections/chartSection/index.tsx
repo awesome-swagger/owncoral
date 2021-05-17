@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import ChartImg from '../../../../../assets/Chart.png';
-import { CourseCashFlow } from '../../../courseCashFlow';
+import CourseCashFlow from '../../../courseCashFlow';
 
 export const ChartSection = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

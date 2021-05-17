@@ -1,4 +1,4 @@
-const FINANCIAL_UNIT_SUFFIX = ['', 'K', 'MM', 'B', 'T'];
+const FINANCIAL_UNIT_SUFFIX = ['', 'K', 'M', 'B', 'T'];
 
 const round2 = (n: number): number => Math.round(n * 100) / 100;
 

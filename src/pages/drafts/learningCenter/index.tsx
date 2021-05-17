@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Container } from '../../../components';
-import { LearningTabs } from './learningTabs';
 import { Glossary } from './glossary';
+import { LearningTabs } from './learningTabs';
 
-export const LearningCenter = () => {
+function LearningCenter () {
   const [glossaryData, setGlossaryData] = useState<any>(null);
 
   return (
@@ -15,4 +15,7 @@ export const LearningCenter = () => {
       )}
     </Container>
   );
-};
+}
+
+// eslint-disable-next-line import/no-default-export
+export default LearningCenter;

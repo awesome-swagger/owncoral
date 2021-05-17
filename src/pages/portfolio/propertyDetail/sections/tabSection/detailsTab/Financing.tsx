@@ -48,11 +48,20 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
           </Flex>
           <Flex justifyContent="space-between">
             <Text>Acquisition Fee</Text>
-            <Text>${formatFinancial(propertyDetail?.mdlOriginationFee || 0)}</Text>
+            <Text>
+              {propertyDetail.mdlOriginationFee !== null
+                ? '$' + formatFinancial(propertyDetail.mdlOriginationFee)
+                : 'N/A'}
+            </Text>
           </Flex>
           <Flex justifyContent="space-between">
-            <Text>Capex Reserve</Text>
-            <Text>${formatFinancial(propertyDetail?.mdlCapexReserve || 0)}</Text>
+            <Text>Total Capex</Text>
+            <Text>
+              {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
+                ? '$' +
+                  formatFinancial(propertyDetail.mdlCapexReserve + propertyDetail.mdlRenovation)
+                : 'N/A'}
+            </Text>
           </Flex>
           <Divider />
           <Flex justifyContent="space-between">
@@ -60,10 +69,10 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
             <Text>${totalCapitalCost}</Text>
           </Flex>
         </VStack>
-        <Box h={4} />
-        <Button colorScheme="secondary" variant="outline" w="100%">
-          Learn more about Capital Cost
-        </Button>
+        {/* <Box h={4} /> */}
+        {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
+        {/*  Learn more about Capital Cost */}
+        {/* </Button> */}
       </Box>
       <Divider my={8} />
       <Box>
@@ -91,27 +100,27 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
             </Center>
           </Fragment>
         )}
-        <Flex
-          justifyContent="space-between"
-          alignItems="center"
-          px={4}
-          py={2}
-          my={4}
-          border="1px"
-          layerStyle="lightBorder"
-        >
-          <Box>
-            <SubTitle1>Why Coral participates in equity?</SubTitle1>
-            <Text>Crash course</Text>
-          </Box>
-          <Box>
-            <Icon w={6} h={6} as={BsQuestionCircle} />
-          </Box>
-        </Flex>
-        <Box h={4} />
-        <Button colorScheme="secondary" variant="outline" w="100%">
-          Learn more about financing
-        </Button>
+        {/* <Flex */}
+        {/*  justifyContent="space-between" */}
+        {/*  alignItems="center" */}
+        {/*  px={4} */}
+        {/*  py={2} */}
+        {/*  my={4} */}
+        {/*  border="1px" */}
+        {/*  layerStyle="lightBorder" */}
+        {/* > */}
+        {/*  <Box> */}
+        {/*    <SubTitle1>Why Coral participates in equity?</SubTitle1> */}
+        {/*    <Text>Crash course</Text> */}
+        {/*  </Box> */}
+        {/*  <Box> */}
+        {/*    <Icon w={6} h={6} as={BsQuestionCircle} /> */}
+        {/*  </Box> */}
+        {/* </Flex> */}
+        {/* <Box h={4} /> */}
+        {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
+        {/*  Learn more about financing */}
+        {/* </Button> */}
       </Box>
     </Box>
   );

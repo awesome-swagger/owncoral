@@ -1,5 +1,5 @@
-import { Box, Heading, Flex, Center, Icon } from '@chakra-ui/react';
 import { BsQuestionCircle } from 'react-icons/bs';
+import { Box, Center, Flex, Heading, Icon } from '@chakra-ui/react';
 
 export const SourcesAndUses = () => (
   <Box>
@@ -17,8 +17,8 @@ export const SourcesAndUses = () => (
       dolor.
     </Heading>
     <Flex my={4} borderRadius="base" overflow="hidden" h={8} justifyContent="space-between">
-      <Box bg="gray.900" w="20%"></Box> <Box bg="gray.700" w="49%"></Box>
-      <Box bg="black" w="30%"></Box>
+      <Box bg="gray.900" w="20%" /> <Box bg="gray.700" w="49%" />
+      <Box bg="black" w="30%" />
     </Flex>
     <Center justifyContent="space-between" h={14} my={4}>
       <Box>
@@ -77,7 +77,7 @@ export const SourcesAndUses = () => (
         <Heading fontSize="md">$17,800</Heading>
       </Flex>
       <Flex justifyContent="space-between">
-        <Heading fontSize="md">Capex Reserve</Heading>
+        <Heading fontSize="md">Total Capex</Heading>
         <Heading fontSize="md">$131,800</Heading>
       </Flex>
       <Flex my={4} borderTop="1px" borderStyle="dashed" justifyContent="space-between">

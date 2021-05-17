@@ -11,6 +11,7 @@ export const PortfolioDashboardProperty = z.object({
 
   propertyName: z.string(),
   legalEntityName: z.string(),
+  iconUrl: z.string().nullable(),
 
   address: Address,
 
@@ -39,6 +40,7 @@ export const PortfolioPropertyDetail = z.object({
   // legalEntityId: z.string(),
 
   name: z.string().nullable(),
+  imageUrls: z.array(z.string()),
   // legalEntityName: z.string().nullable(),
 
   address: Address,

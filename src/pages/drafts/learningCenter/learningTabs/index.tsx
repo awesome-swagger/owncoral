@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Tab, Tabs, TabList, TabPanels, TabPanel } from '@chakra-ui/react';
 import { GlossaryTab } from '../glossaryTab';
 import { H4 } from '../../../../components/text';
@@ -9,7 +10,7 @@ export const LearningTabs = ({
 }) => (
   <Box>
     <H4>Learning</H4>
-    <Tabs>
+    <Tabs defaultIndex={1}>
       <TabList>
         <Tab>Crash Courses</Tab>
         <Tab>Glossary</Tab>

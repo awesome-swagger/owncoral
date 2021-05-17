@@ -17,20 +17,17 @@ import {
 } from '@chakra-ui/react';
 import * as R from 'remeda';
 
-import PlaceholderPoly2 from '../../../../assets/low-poly/2-Hingham.png';
-import PlaceholderPoly1 from '../../../../assets/low-poly/3-Linden.png';
-import PlaceholderPoly3 from '../../../../assets/low-poly/378-Washington-R02.jpeg';
-import PlaceholderPoly4 from '../../../../assets/low-poly/low-poly-1-still-sm.png';
-import PlaceholderImg from '../../../../assets/Multifamily_Night.png';
+import Placeholder1 from '../../../../assets/low-poly/placeholder-01.png';
+import Placeholder2 from '../../../../assets/low-poly/placeholder-02-poly.png';
 import { Overline, SubTitle1, SubTitle2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 // TODO: remove
-import { RankingProperties } from '../../../../lib/rankingProperties';
+// import { RankingProperties } from '../../../../lib/rankingProperties';
 import { addressToUrlFragment } from '../../lib';
 
 const SHOW_FEWER_COUNT = 5;
 
-const PLACEHOLDER_POLYS = [PlaceholderPoly1, PlaceholderPoly2, PlaceholderPoly3, PlaceholderPoly4];
+const PLACEHOLDERS = [Placeholder1, Placeholder2];
 
 type TopRankingPropertiesPropsT = {
   properties: PortfolioDashboardPropertyT[] | null;
@@ -84,7 +81,7 @@ export const TopRankingProperties = ({
                     >
                       <Center w={16} h={12}>
                         <Image
-                          src={PLACEHOLDER_POLYS[idx % 4]}
+                          src={property.iconUrl || Placeholder2}
                           alt="property_img"
                           borderRadius="md"
                           fallback={<Spinner />}
