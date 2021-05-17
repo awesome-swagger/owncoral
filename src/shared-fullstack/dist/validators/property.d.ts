@@ -4,6 +4,7 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     legalEntityId: z.ZodString;
     propertyName: z.ZodString;
     legalEntityName: z.ZodString;
+    iconUrl: z.ZodNullable<z.ZodString>;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodNullable<z.ZodString>;
@@ -43,6 +44,7 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     legalEntityId: string;
     propertyName: string;
     legalEntityName: string;
+    iconUrl: string | null;
     address: {
         line1: string;
         line2: string | null;
@@ -66,6 +68,7 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     legalEntityId: string;
     propertyName: string;
     legalEntityName: string;
+    iconUrl: string | null;
     address: {
         line1: string;
         line2: string | null;
@@ -89,6 +92,7 @@ export declare type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashbo
 export declare const PortfolioPropertyDetail: z.ZodObject<{
     id: z.ZodString;
     name: z.ZodNullable<z.ZodString>;
+    imageUrls: z.ZodArray<z.ZodString>;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodNullable<z.ZodString>;
@@ -148,6 +152,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     };
     id: string;
     name: string | null;
+    imageUrls: string[];
     numUnits: number | null;
     numBeds: number | null;
     numBaths: number | null;
@@ -182,6 +187,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     };
     id: string;
     name: string | null;
+    imageUrls: string[];
     numUnits: number | null;
     numBeds: number | null;
     numBaths: number | null;

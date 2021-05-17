@@ -11,6 +11,7 @@ exports.PortfolioDashboardProperty = zod_1.z.object({
     legalEntityId: zod_1.z.string(),
     propertyName: zod_1.z.string(),
     legalEntityName: zod_1.z.string(),
+    iconUrl: zod_1.z.string().nullable(),
     address: address_1.Address,
     // TODO: process this on server
     monthlyDistribution: zod_1.z.number().nullable(),
@@ -29,6 +30,7 @@ exports.PortfolioPropertyDetail = zod_1.z.object({
     id: zod_1.z.string(),
     // legalEntityId: z.string(),
     name: zod_1.z.string().nullable(),
+    imageUrls: zod_1.z.array(zod_1.z.string()),
     // legalEntityName: z.string().nullable(),
     address: address_1.Address,
     numUnits: zod_1.z.number().nullable(),
