@@ -75,18 +75,21 @@ const PortfolioPropertyDetail = ({
     currentUserId,
     toast,
   ]);
+  console.log('Property Detail==>', propertyDetail);
+
+  console.log('Image url==>', propertyDetail?.imageUrls);
 
   return (
     // TODO: push spinners down to component level?
     <Container padding={0}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
-          <Image
+          {/* <Image
             borderTopRadius={{ base: 'none', md: '2xl' }}
             src={propertyDetail.imageUrls.length > 0 ? propertyDetail.imageUrls[0] : Placeholder}
             alt={propertyDetail.name + ' Image'}
             w="100%"
-          />
+          /> */}
           <Box p={6}>
             <Icon
               pos="absolute"

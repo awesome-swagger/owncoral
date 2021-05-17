@@ -14,6 +14,7 @@ import { PropertyCard } from './propertyCard';
 import { ProtectedRoute } from './protectedRoute';
 import { SubmitBtn } from './submitBtn';
 import { TimeoutModal } from './timeoutModal';
+import { ImgSlider } from './imgSlider';
 
 export {
   BackBtn,
@@ -34,4 +35,5 @@ export {
   ProtectedRoute,
   SubmitBtn,
   TimeoutModal,
+  ImgSlider,
 };

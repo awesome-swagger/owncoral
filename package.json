@@ -40,6 +40,7 @@
     "react-icons": "^4.2.0",
     "react-input-mask": "^2.0.4",
     "react-plaid-link": "^3.1.0",
+    "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-spring": "^8.0.27",
     "react-swipeable": "^6.1.0",
