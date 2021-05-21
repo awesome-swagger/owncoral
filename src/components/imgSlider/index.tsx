@@ -1,5 +1,6 @@
-import { Carousel } from 'react-responsive-carousel';
+import type React from 'react';
 import { Image, Icon } from '@chakra-ui/react';
+import { Carousel } from 'react-responsive-carousel';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 export const ImgSlider = ({ images }: { images: any }) => {
@@ -52,6 +53,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
         )
       }
       renderIndicator={(onClickHandler, isSelected, index, label) => {
+        // eslint-disable-line max-params
         if (isSelected) {
           return (
             <li
@@ -76,8 +78,8 @@ export const ImgSlider = ({ images }: { images: any }) => {
         );
       }}
     >
-      {images.map((value: string) => (
-        <div>
+      {images.map((value: string, index: Number) => (
+        <div key={`image-${index}`}>
           <Image src={value} alt={value} />
         </div>
       ))}
