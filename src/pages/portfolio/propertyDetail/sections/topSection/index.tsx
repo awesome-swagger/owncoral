@@ -11,6 +11,7 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
   const sliderImages = [Image, Image, Image];
   return (
     <Box mt={6}>
+      <ImgSlider images={sliderImages} />
       <Overline>
         {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
       </Overline>
@@ -21,7 +22,6 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
           ? propertyDetail.areaTotal.toFixed(0).toLocaleString() + ' ' + propertyDetail.areaUnits
           : 'N/A'}
       </Text>
-      <ImgSlider images={sliderImages} />
       {propertyDetail.occupancyStatus !== null && (
         <Heading
           borderRadius="full"
