@@ -7,7 +7,7 @@ import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
 // import PlaceholderPoly1 from '../../../assets/low-poly/3-Linden.png';
 import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
-import { Container } from '../../../components';
+import { Container, ImgSlider } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
 import { useQuery } from '../../../lib/useQuery';
@@ -84,12 +84,23 @@ const PortfolioPropertyDetail = ({
     <Container padding={0}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
-          {/* <Image
-            borderTopRadius={{ base: 'none', md: '2xl' }}
-            src={propertyDetail.imageUrls.length > 0 ? propertyDetail.imageUrls[0] : Placeholder}
-            alt={propertyDetail.name + ' Image'}
-            w="100%"
-          /> */}
+          {propertyDetail.imageUrls.length === 0 ? (
+            <Image
+              borderTopRadius={{ base: 'none', md: '2xl' }}
+              src={Placeholder}
+              alt={propertyDetail.name + ' Image'}
+              w="100%"
+            />
+          ) : propertyDetail.imageUrls.length === 1 ? (
+            <Image
+              borderTopRadius={{ base: 'none', md: '2xl' }}
+              src={propertyDetail.imageUrls[0]}
+              alt={propertyDetail.name + ' Image'}
+              w="100%"
+            />
+          ) : (
+            <ImgSlider images={propertyDetail.imageUrls} />
+          )}
           <Box p={6}>
             <Icon
               pos="absolute"

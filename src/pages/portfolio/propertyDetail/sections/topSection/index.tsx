@@ -1,17 +1,13 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
-import { ImgSlider } from '../../../../../components';
 import { H5, Overline } from '../../../../../components/text';
-import Image from '../../../../../assets/2_hingham.jpg';
 
 type TopSectionPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
-  const sliderImages = [Image, Image, Image];
   return (
     <Box mt={6}>
-      <ImgSlider images={sliderImages} />
       <Overline>
         {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
       </Overline>
