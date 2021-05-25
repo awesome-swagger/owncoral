@@ -5,6 +5,7 @@ import { Container, FlexContainer } from './container';
 import { DayPicker } from './daypicker';
 import { DebugPanel } from './debugPanel';
 import { ErrorFallback, MyErrorHandler } from './errorFallback';
+import { ImgSlider } from './imgSlider';
 import { Loading } from './loading';
 import { MapBox } from './mapBox';
 import { NavBar } from './navBar';
@@ -14,7 +15,6 @@ import { PropertyCard } from './propertyCard';
 import { ProtectedRoute } from './protectedRoute';
 import { SubmitBtn } from './submitBtn';
 import { TimeoutModal } from './timeoutModal';
-import { ImgSlider } from './imgSlider';
 
 export {
   BackBtn,
@@ -25,6 +25,7 @@ export {
   DebugPanel,
   ErrorFallback,
   FlexContainer,
+  ImgSlider,
   Loading,
   MapBox,
   MyErrorHandler,
@@ -35,5 +36,4 @@ export {
   ProtectedRoute,
   SubmitBtn,
   TimeoutModal,
-  ImgSlider,
 };

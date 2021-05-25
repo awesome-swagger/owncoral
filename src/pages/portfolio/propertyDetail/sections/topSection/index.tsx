@@ -1,11 +1,13 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
 import { H5, Overline } from '../../../../../components/text';
+import Image from '../../../../../assets/2_hingham.jpg';
 
 type TopSectionPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
+  const sliderImages = [Image, Image, Image];
   return (
     <Box mt={6}>
       <Overline>
@@ -18,6 +20,7 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
           ? propertyDetail.areaTotal.toFixed(0).toLocaleString() + ' ' + propertyDetail.areaUnits
           : 'N/A'}
       </Text>
+      <ImgSlider images={sliderImages} />
       {propertyDetail.occupancyStatus !== null && (
         <Heading
           borderRadius="full"
@@ -32,7 +35,6 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
           {propertyDetail.occupancyStatus}
         </Heading>
       )}
-
       {propertyDetail.isUnderRenovation && (
         <Heading
           borderRadius="full"

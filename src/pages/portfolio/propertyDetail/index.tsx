@@ -75,9 +75,6 @@ const PortfolioPropertyDetail = ({
     currentUserId,
     toast,
   ]);
-  console.log('Property Detail==>', propertyDetail);
-
-  console.log('Image url==>', propertyDetail?.imageUrls);
 
   return (
     // TODO: push spinners down to component level?
