@@ -21,8 +21,6 @@ import Placeholder1 from '../../../../assets/low-poly/placeholder-01.png';
 import Placeholder2 from '../../../../assets/low-poly/placeholder-02-poly.png';
 import { Overline, SubTitle1, SubTitle2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
-// TODO: remove
-// import { RankingProperties } from '../../../../lib/rankingProperties';
 import { addressToUrlFragment } from '../../lib';
 
 const SHOW_FEWER_COUNT = 5;

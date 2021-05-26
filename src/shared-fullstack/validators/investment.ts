@@ -24,6 +24,8 @@ export const PortfolioPropertyDetailInvestment = z.object({
 
   // Will be null if there's no distribution yet
   lastDistributionInitiatedAt: z.date().nullable(),
+
+  months: z.number().nullable(),
 });
 
 export type PortfolioPropertyDetailInvestmentT = z.infer<typeof PortfolioPropertyDetailInvestment>;

@@ -1,13 +1,14 @@
-import { AiOutlineReload } from 'react-icons/ai';
-import { FaChartLine } from 'react-icons/fa';
-import { HiOutlineCash } from 'react-icons/hi';
+import { FiCalendar, FiRotateCw } from 'react-icons/fi';
+import type { PortfolioPropertyDetailInvestmentT } from '../../../../../shared-fullstack/types';
+import { PortfolioDashboardPropertyT } from '../../../../../shared-fullstack/types';
 import { Box, Divider, Flex, Icon, Text } from '@chakra-ui/react';
 
 import { SubTitle1 } from '../../../../../components/text';
-import { DummyData } from '../../../../../lib/portfolioData';
 
-export const InvestmentReturn = ({ data }: { data: any }) => {
-  const dummyData = DummyData;
+type InvestmentReturnPropertiesPropsT = {
+  investment: PortfolioPropertyDetailInvestmentT;
+};
+export const InvestmentReturn = ({ investment }: InvestmentReturnPropertiesPropsT) => {
   return (
     <Box>
       <SubTitle1 my={2}>Investment returns</SubTitle1>
@@ -15,30 +16,26 @@ export const InvestmentReturn = ({ data }: { data: any }) => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <Text my={2}>
-              <Icon as={AiOutlineReload} mr={3} h={4} w={4} />
-              Return of capital
+              <Icon as={FiRotateCw} mr={3} h={4} w={4} />
+              Cash-on-cash return
             </Text>
-            <Text my={2}>{dummyData.capitalReturn}</Text>
+            <Text my={2}>
+              {investment.currentEquity
+                ? ((investment.sumDistributionTotal / investment.currentEquity) * 100).toFixed() +
+                  '%'
+                : 'N/A'}
+            </Text>
           </Flex>
           <Divider />
         </Box>
+
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <Text my={2}>
-              <Icon as={HiOutlineCash} mr={3} h={4} w={4} />
-              Cash-on-cash Return
+              <Icon as={FiCalendar} mr={3} h={4} w={4} />
+              Average time invested
             </Text>
-            <Text my={2}>{dummyData.cashReturn}</Text>
-          </Flex>
-          <Divider />
-        </Box>
-        <Box>
-          <Flex justifyContent="space-between" alignItems="center">
-            <Text my={2}>
-              <Icon as={FaChartLine} mr={3} h={4} w={4} />
-              Lorem Ipsum
-            </Text>
-            <Text my={2}>{dummyData.returnRate}</Text>
+            <Text my={2}>{investment.months !== null ? investment.months : 'N/A'}</Text>
           </Flex>
         </Box>
       </Box>

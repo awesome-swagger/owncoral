@@ -1,14 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
-import { FiFilter } from 'react-icons/fi';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/types';
-import { Box, Center, Divider, Flex, Heading, Icon, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Center, Divider, Heading, Spinner } from '@chakra-ui/react';
 
-import { BackBtn, Container, NavBar } from '../../../components';
-import { fetchWrap } from '../../../lib/api';
-import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
+import { BackBtn, Container } from '../../../components';
 // TODO: remove
-import { DummyData } from '../../../lib/portfolioData';
 import { UserContext } from '../../../userContext';
 import { PopUpBox } from './popUpBox';
 import { CashFlow, TopRankingProperties, TotalDistribution } from './sections';

@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
-import { FiRotateCw, FiTrendingUp } from 'react-icons/fi';
-import { HiOutlineCash } from 'react-icons/hi';
+import { FiCalendar, FiRotateCw } from 'react-icons/fi';
 import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/types';
 import { Box, Center, Divider, Flex, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
 import { format as formatDate } from 'date-fns';
+import * as R from 'remeda';
 
 import { Card } from '../../../../components';
 import { H5, SubTitle1, SubTitle2 } from '../../../../components/text';
@@ -34,6 +34,11 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
   const totalMonthlyLast: number | null = properties
     ? sum(properties.map((property) => property.lastDistributionTotal || 0))
     : null;
+
+  // Properties that have both month and contribution
+  const withMonthsContribution = (properties || []).filter(
+    (property) => property.currentEquity && property.months !== null,
+  );
 
   const hasDistributions =
     (properties || []).filter((property) => property.lastDistributionInitiatedAt !== null).length >
@@ -140,29 +145,29 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
           <Flex justifyContent="space-between" alignItems="center">
             <Text>
               <Icon as={FiRotateCw} mr={3} h={4} w={4} />
-              Return of capital
+              Cash-on-cash return
             </Text>
-            <Text>1.5%</Text>
+            <Text>
+              {totalDistribution !== null && totalContribution
+                ? ((totalDistribution / totalContribution) * 100).toFixed() + '%'
+                : 'N/A'}
+            </Text>
           </Flex>
           <Divider />
         </Box>
         <Box w="100%">
           <Flex justifyContent="space-between" alignItems="center">
             <Text>
-              <Icon as={HiOutlineCash} mr={3} h={4} w={4} />
-              Cash-on-cash Return
+              <Icon as={FiCalendar} mr={3} h={4} w={4} />
+              Average time invested
             </Text>
-            <Text>3.5%</Text>
-          </Flex>
-          <Divider />
-        </Box>
-        <Box w="100%">
-          <Flex justifyContent="space-between" alignItems="center">
             <Text>
-              <Icon as={FiTrendingUp} mr={3} h={4} w={4} />
-              Lorem Ipsum
+              {(
+                sum(withMonthsContribution.map((p) => (p.months || 0) * (p.currentEquity || 0))) /
+                sum(withMonthsContribution.map((p) => p.currentEquity || 0))
+              ).toFixed()}{' '}
+              months
             </Text>
-            <Text>4.5%</Text>
           </Flex>
         </Box>
       </VStack>

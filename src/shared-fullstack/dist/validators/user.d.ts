@@ -146,4 +146,3 @@ export declare const AdminPanelUserInfo: z.ZodObject<{
     displayName: string | null;
 }>;
 export declare type AdminPanelUserInfoT = z.infer<typeof AdminPanelUserInfo>;
-//# sourceMappingURL=user.d.ts.map

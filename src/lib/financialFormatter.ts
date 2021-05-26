@@ -12,7 +12,7 @@ const round2 = (n: number): number => Math.round(n * 100) / 100;
  *
  * @param n
  */
-export const formatFinancial = (n: number): string => {
+export const formatFinancialSI = (n: number): string => {
   const nDigits = Math.floor(Math.log10(Math.abs(n))) + 1;
   if (nDigits <= 4) {
     return Math.round(n).toLocaleString('en');
@@ -24,3 +24,6 @@ export const formatFinancial = (n: number): string => {
   const nExtra = nDigits % 3 === 1 ? 1 : 0;
   return (n / Math.pow(10, unitIdx * 3)).toFixed(nExtra) + FINANCIAL_UNIT_SUFFIX[unitIdx];
 };
+
+/** Rounds off cents, formats according to locale */
+export const formatFinancial = (n: number): string => Math.round(n).toLocaleString();

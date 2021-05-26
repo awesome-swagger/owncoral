@@ -44,6 +44,13 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     legalEntityId: string;
     propertyName: string;
     legalEntityName: string;
+    currentEquity: number | null;
+    sumDistributionTotal: number;
+    sumDistributionRental: number;
+    sumDistributionSpecial: number;
+    lastDistributionTotal: number;
+    lastDistributionInitiatedAt: Date | null;
+    months: number | null;
     iconUrl: string | null;
     address: {
         line1: string;
@@ -56,18 +63,18 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     };
     monthlyDistribution: number | null;
     cashflowSchedule: import("./json").JsonT;
-    currentEquity: number | null;
-    sumDistributionTotal: number;
-    sumDistributionRental: number;
-    sumDistributionSpecial: number;
-    lastDistributionTotal: number;
-    lastDistributionInitiatedAt: Date | null;
-    months: number | null;
 }, {
     propertyId: string;
     legalEntityId: string;
     propertyName: string;
     legalEntityName: string;
+    currentEquity: number | null;
+    sumDistributionTotal: number;
+    sumDistributionRental: number;
+    sumDistributionSpecial: number;
+    lastDistributionTotal: number;
+    lastDistributionInitiatedAt: Date | null;
+    months: number | null;
     iconUrl: string | null;
     address: {
         line1: string;
@@ -80,13 +87,6 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     };
     monthlyDistribution: number | null;
     cashflowSchedule: import("./json").JsonT;
-    currentEquity: number | null;
-    sumDistributionTotal: number;
-    sumDistributionRental: number;
-    sumDistributionSpecial: number;
-    lastDistributionTotal: number;
-    lastDistributionInitiatedAt: Date | null;
-    months: number | null;
 }>;
 export declare type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashboardProperty>;
 export declare const PortfolioPropertyDetail: z.ZodObject<{
@@ -212,4 +212,3 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlEquity: number | null;
 }>;
 export declare type PortfolioPropertyDetailT = z.infer<typeof PortfolioPropertyDetail>;
-//# sourceMappingURL=property.d.ts.map

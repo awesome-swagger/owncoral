@@ -133,7 +133,8 @@ export const FinanceTab = ({
         <Center>Stay tuned, your first distributions are coming soon!</Center>
       )}
       <Divider my={4} />
-      <InvestmentReturn data={propertyDetail} />
+
+      <InvestmentReturn investment={investment} />
       {/* <Divider my={4} /> */}
       {/* <ChartSection /> */}
     </Box>

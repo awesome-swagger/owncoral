@@ -8,4 +8,3 @@ export declare type JsonT = LiteralT | {
 } | JsonT[];
 export declare const Json: z.ZodSchema<JsonT>;
 export {};
-//# sourceMappingURL=json.d.ts.map
