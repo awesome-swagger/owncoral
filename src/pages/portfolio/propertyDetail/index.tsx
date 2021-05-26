@@ -81,7 +81,7 @@ const PortfolioPropertyDetail = ({
     <Container padding={0}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
-          {propertyDetail.imageUrls.length === 0 ? (
+          {propertyDetail.imageUrls === undefined ? (
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
               src={Placeholder}

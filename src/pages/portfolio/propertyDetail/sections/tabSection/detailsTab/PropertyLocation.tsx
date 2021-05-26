@@ -1,20 +1,21 @@
 import { FiMap } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Icon, Image, Text } from '@chakra-ui/react';
-
 import { H6 } from '../../../../../../components/text';
 import { DummyData } from '../../../../../../lib/portfolioData';
+import { MapBox } from '../../../../../../components';
 
 type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => {
   const dummyData = DummyData;
+  console.log(propertyDetail);
   return (
     <Box>
       <H6>Property Location</H6>
       <Box pos="relative">
-        <Image src={dummyData.mapImg2} alt="map_img" w="100%" />
+        <MapBox propertyLng={-30.5} propertyLat={20.5} />
         <Box h={2} />
         <Center
           borderRadius="full"
