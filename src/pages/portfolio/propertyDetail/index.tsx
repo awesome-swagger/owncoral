@@ -1,5 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
+import { AiOutlineUpload } from 'react-icons/ai';
+import { IoMdClose } from 'react-icons/io';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
@@ -105,10 +106,12 @@ const PortfolioPropertyDetail = ({
               left={10}
               h={8}
               w={8}
-              color="white"
-              as={AiFillCloseCircle}
+              p={1}
+              as={IoMdClose}
               cursor="pointer"
               onClick={() => history.goBack()}
+              borderRadius="full"
+              layerStyle="iconColor"
             />
             <Icon
               pos="absolute"
@@ -117,7 +120,6 @@ const PortfolioPropertyDetail = ({
               h={8}
               w={8}
               p={1}
-              color="white"
               as={FiMoreHorizontal}
               borderRadius="full"
               layerStyle="iconColor"
@@ -130,7 +132,6 @@ const PortfolioPropertyDetail = ({
               h={8}
               w={8}
               p={1}
-              color="white"
               as={AiOutlineUpload}
               borderRadius="full"
               layerStyle="iconColor"
