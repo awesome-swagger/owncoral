@@ -15,7 +15,7 @@ export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => 
     <Box>
       <H6>Property Location</H6>
       <Box pos="relative">
-        <MapBox propertyLng={-30.5} propertyLat={20.5} />
+        <MapBox propertyLng={-71} propertyLat={42} />
         <Box h={2} />
         <Center
           borderRadius="full"

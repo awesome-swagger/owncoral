@@ -19,7 +19,7 @@ export const MapBox = ({
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainer.current || '',
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/amirsaeed92/ckp7azb790prj18qtw1aoj1uu',
       center: [lng, lat],
       zoom: zoom,
     });
@@ -53,7 +53,7 @@ export const MapBox = ({
           source: 'point',
           layout: {
             'icon-image': 'AddressMarker',
-            'icon-size': 0.25,
+            'icon-size': 0.5,
           },
         });
       });
