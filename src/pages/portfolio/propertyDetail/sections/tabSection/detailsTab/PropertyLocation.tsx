@@ -10,12 +10,11 @@ type PropertyLocationPropsT = {
 };
 export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => {
   const dummyData = DummyData;
-  console.log(propertyDetail);
   return (
     <Box>
       <H6>Property Location</H6>
       <Box pos="relative">
-        <MapBox propertyLng={-71} propertyLat={42} />
+        <MapBox propertyDetail={propertyDetail} />
         <Box h={2} />
         <Center
           borderRadius="full"

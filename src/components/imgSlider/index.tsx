@@ -1,10 +1,11 @@
 import type React from 'react';
-import { Image, Icon } from '@chakra-ui/react';
+import { Image, Icon, useColorModeValue } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
+import './style.css';
 export const ImgSlider = ({ images }: { images: any }) => {
+  const BulletColor = useColorModeValue('gray', 'white');
+
   const arrowStyles: React.CSSProperties = {
     position: 'absolute',
     zIndex: 2,
@@ -16,7 +17,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
   };
 
   const indicatorStyles: React.CSSProperties = {
-    background: '#fff',
+    background: BulletColor,
     width: 10,
     height: 10,
     display: 'inline-block',
@@ -53,7 +54,8 @@ export const ImgSlider = ({ images }: { images: any }) => {
           </button>
         )
       }
-      renderIndicator={(onClickHandler, isSelected, index, label) => { // eslint-disable-line max-params
+      renderIndicator={(onClickHandler, isSelected, index, label) => {
+        // eslint-disable-line max-params
         if (isSelected) {
           return (
             <li
@@ -79,8 +81,10 @@ export const ImgSlider = ({ images }: { images: any }) => {
       }}
     >
       {images.map((value: string, index: Number) => (
-        <div key={`image-${index}`}>
-          <Image src={value} alt={value} />
+        <div key={`image-${index}`} className="img-size">
+          <div className="img-wrapper">
+            <Image src={value} alt={value} />
+          </div>
         </div>
       ))}
     </Carousel>

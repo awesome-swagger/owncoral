@@ -99,7 +99,7 @@ const PortfolioPropertyDetail = ({
           ) : (
             <ImgSlider images={propertyDetail.imageUrls} />
           )}
-          <Box p={6}>
+          <Box p={6} pt={0}>
             <Icon
               pos="absolute"
               top={10}
