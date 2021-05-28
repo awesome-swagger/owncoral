@@ -3,6 +3,7 @@ import { Image, Icon, useColorModeValue } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
 import './style.css';
+
 export const ImgSlider = ({ images }: { images: any }) => {
   const BulletColor = useColorModeValue('gray', 'white');
 

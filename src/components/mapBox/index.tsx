@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import AddressPin from '../../assets/AddressPin.png';
 
-export const MapBox = ({ propertyDetail }: { propertyDetail: any }) => {
-  const address = propertyDetail.address;
+export const MapBox = ({ address }: { address: any }) => {
   const apiToken = process.env.SNOWPACK_PUBLIC_MAPBOX_TOKEN as string;
+  const styleUrl = process.env.SNOWPACK_PUBLIC_MAPBOX_STYLE_URL as string;
 
   mapboxgl.accessToken = apiToken;
 
@@ -12,21 +12,23 @@ export const MapBox = ({ propertyDetail }: { propertyDetail: any }) => {
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
 
-  const getLocation = async () => {
-    const response = await fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}.json?access_token=${apiToken}`,
-    );
-    const data = await response.json();
-    console.log('Data ===>', data);
-    setLng(data.features[0].center[0]);
-    setLat(data.features[0].center[1]);
-  };
+  useEffect(()=>{
+    const getLocation = async () => {
+      const response = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}.json?access_token=${apiToken}`,// editorconfig-checker-disable-line
+      );
+      const data = await response.json();
+      setLng(data.features[0].center[0]);
+      setLat(data.features[0].center[1]);
+    };
+
+    getLocation();
+  }, [address, apiToken]);
 
   useEffect(() => {
-    getLocation();
     const map = new mapboxgl.Map({
       container: mapContainer.current || '',
-      style: 'mapbox://styles/amirsaeed92/ckp7azb790prj18qtw1aoj1uu',
+      style: styleUrl,
       center: [lng, lat],
       zoom: 18,
     });
@@ -68,7 +70,7 @@ export const MapBox = ({ propertyDetail }: { propertyDetail: any }) => {
     map.resize();
 
     return () => map.remove();
-  }, [lng, lat]);
+  }, [lng, lat, styleUrl]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '60vh' }}></div>;
+  return <div ref={mapContainer} style={{ width: '100%', height: '60vh' }} />
 };
