@@ -15,6 +15,9 @@ export const ImgSlider = ({ images }: { images: any }) => {
     outline: 'none',
     background: '#00000050',
     borderRadius: '50%',
+    padding: '.25rem',
+    width: '2rem',
+    height: '2rem',
   };
 
   const indicatorStyles: React.CSSProperties = {
@@ -37,9 +40,9 @@ export const ImgSlider = ({ images }: { images: any }) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, left: 5 }}
+            style={{ ...arrowStyles, left: 10 }}
           >
-            <Icon as={FiChevronLeft} color="#FFF" h={8} w={8} />
+            <Icon as={FiChevronLeft} color="#FFF" h={6} w={6} ml="-2px" />
           </button>
         )
       }
@@ -49,9 +52,9 @@ export const ImgSlider = ({ images }: { images: any }) => {
             type="button"
             onClick={onClickHandler}
             title={label}
-            style={{ ...arrowStyles, right: 5 }}
+            style={{ ...arrowStyles, right: 10 }}
           >
-            <Icon as={FiChevronRight} color="#FFF" h={8} w={8} />
+            <Icon as={FiChevronRight} color="#FFF" h={6} w={6} mr="-2px" />
           </button>
         )
       }

@@ -1,23 +1,30 @@
 import type React from 'react';
 import { Box, Icon, Progress, Heading, Button, Flex, Center } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
+import { IoMdClose } from 'react-icons/io';
 
 export const Step8 = ({
   nextStep,
   prevStep,
+  handleClose,
 }: {
   nextStep: React.MouseEventHandler;
   prevStep: React.MouseEventHandler;
+  handleClose: React.MouseEventHandler;
 }) => {
   return (
     <Box>
-      <Icon as={BsChevronLeft} cursor="pointer" onClick={prevStep} />
+      <Flex justifyContent="space-between" alignItems="center">
+        <Icon as={IoMdClose} cursor="pointer" onClick={handleClose} />
+        <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
+          7/7
+        </Box>
+      </Flex>
       <Progress value={100} my={6} colorScheme="primary" borderRadius="full" size="sm" />
       <Heading fontSize="sm" m="0">
         Understanding investor Cash Flow
       </Heading>
       <Heading fontSize="2xl">Takeaways</Heading>
-
       <Flex>
         <Box>
           <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
@@ -32,7 +39,6 @@ export const Step8 = ({
           </Heading>
         </Box>
       </Flex>
-
       <Flex>
         <Box>
           <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
@@ -44,7 +50,6 @@ export const Step8 = ({
           <Heading fontSize="sm">While it increase a bit each year</Heading>
         </Box>
       </Flex>
-
       <Flex>
         <Box>
           <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
@@ -60,7 +65,6 @@ export const Step8 = ({
           </Heading>
         </Box>
       </Flex>
-
       <Flex>
         <Box>
           <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
@@ -75,8 +79,10 @@ export const Step8 = ({
           </Heading>
         </Box>
       </Flex>
-
-      <Button w="calc(100% - 2rem)" pos="absolute" bottom={6} onClick={nextStep}>
+      <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+        <Icon as={BsChevronLeft} />
+      </Button>
+      <Button h={10} pos="absolute" right={4} bottom={6} onClick={nextStep}>
         Finish
       </Button>
     </Box>
