@@ -82,14 +82,15 @@ const PortfolioPropertyDetail = ({
     <Container padding={0}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
-          {((propertyDetail.imageUrls === undefined) || (propertyDetail.imageUrls.length === 0)) ? (
-            <Image
-              borderTopRadius={{ base: 'none', md: '2xl' }}
-              src={Placeholder}
-              alt={propertyDetail.name + ' Image'}
-              w="100%"
-            />
-          ) : (propertyDetail.imageUrls.length === 1) ? (
+          {propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0 ? (
+            <ImgSlider images={[Placeholder, Placeholder, Placeholder]} />
+          ) : // <Image
+          //   borderTopRadius={{ base: 'none', md: '2xl' }}
+          //   src={Placeholder}
+          //   alt={propertyDetail.name + ' Image'}
+          //   w="100%"
+          // />
+          propertyDetail.imageUrls.length === 1 ? (
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
               src={propertyDetail.imageUrls[0]}

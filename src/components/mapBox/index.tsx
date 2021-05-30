@@ -12,10 +12,10 @@ export const MapBox = ({ address }: { address: any }) => {
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
 
-  useEffect(()=>{
+  useEffect(() => {
     const getLocation = async () => {
       const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}.json?access_token=${apiToken}`,// editorconfig-checker-disable-line
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}.json?access_token=${apiToken}`,
       );
       const data = await response.json();
       setLng(data.features[0].center[0]);
@@ -67,10 +67,9 @@ export const MapBox = ({ address }: { address: any }) => {
         });
       });
     });
-    map.resize();
 
     return () => map.remove();
   }, [lng, lat, styleUrl]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '60vh' }} />
+  return <div ref={mapContainer} style={{ width: '100%', height: '60vh' }} />;
 };

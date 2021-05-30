@@ -60,7 +60,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         h={16}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
-        zIndex={1}
+        zIndex={99}
       >
         <Flex align="center" justify="center" layerStyle="navColor" h="100%" w="100%">
           {/* Children are allowed to push the logo right, but not too far */}

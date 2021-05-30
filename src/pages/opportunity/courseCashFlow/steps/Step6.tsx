@@ -1,18 +1,26 @@
 import type React from 'react';
-import { Box, Icon, Progress, Heading, Button, Image } from '@chakra-ui/react';
+import { Box, Icon, Progress, Heading, Button, Image, Flex } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import ChartImg from '../../../../assets/Frame331.png';
+import { IoMdClose } from 'react-icons/io';
 
 export const Step6 = ({
   nextStep,
   prevStep,
+  handleClose,
 }: {
   nextStep: React.MouseEventHandler;
   prevStep: React.MouseEventHandler;
+  handleClose: React.MouseEventHandler;
 }) => {
   return (
     <Box>
-      <Icon as={BsChevronLeft} cursor="pointer" onClick={prevStep} />
+      <Flex justifyContent="space-between" alignItems="center">
+        <Icon as={IoMdClose} cursor="pointer" onClick={handleClose} />
+        <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
+          5/7
+        </Box>
+      </Flex>
       <Progress value={75} my={6} colorScheme="primary" borderRadius="full" size="sm" />
       <Heading fontSize="sm" m="0">
         Understanding investor Cash Flow
@@ -23,15 +31,18 @@ export const Step6 = ({
       </Heading>
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
-        on your cash flow.
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
+        tax on your cash flow.
       </Heading>
       <Image w="100%" src={ChartImg} alt="chart" />
       <Heading fontSize="sm">
         The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income tax
-        on your cash flow.
+        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
+        tax on your cash flow.
       </Heading>
+      <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+        <Icon as={BsChevronLeft} />
+      </Button>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
         <Icon as={BsChevronRight} />
       </Button>

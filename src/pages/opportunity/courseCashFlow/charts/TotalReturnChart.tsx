@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { animated, interpolate,useTransition } from 'react-spring';
+import { animated, interpolate, useTransition } from 'react-spring';
 import { useColorModeValue } from '@chakra-ui/react';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleOrdinal } from '@visx/scale';
-import Pie, { PieArcDatum,ProvidedProps } from '@visx/shape/lib/shapes/Pie';
+import Pie, { PieArcDatum, ProvidedProps } from '@visx/shape/lib/shapes/Pie';
 
 export const TotalReturnChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -51,7 +51,7 @@ function Chart({ width, height, margin = defaultMargin, animate = true }: PiePro
   const radius = Math.min(innerWidth, innerHeight) / 2;
   const centerY = innerHeight / 2;
   const centerX = innerWidth / 2;
-  const donutThickness = 20;
+  const donutThickness = 30;
 
   return (
     <svg width={width} height={height}>
