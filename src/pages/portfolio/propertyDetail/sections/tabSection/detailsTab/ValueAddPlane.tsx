@@ -1,7 +1,8 @@
-import { Box, Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 
-import { H6, SubTitle1 } from '../../../../../../components/text';
+import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import { Box, Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
+
+import { Headline,Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
@@ -12,7 +13,7 @@ export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
   const dummyData = DummyData;
   return (
     <Box>
-      <H6>Value-add plan</H6>
+      <Title3>Value-add plan</Title3>
       {/* TODO: Table? */}
       <VStack w="100%" align="stretch">
         <Flex justifyContent="space-between">
@@ -32,26 +33,26 @@ export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <SubTitle1>Total Capex</SubTitle1>
-          <SubTitle1>
+          <Headline>Total Capex</Headline>
+          <Headline>
             {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
               ? '$' + formatFinancial(propertyDetail.mdlRenovation + propertyDetail.mdlCapexReserve)
               : 'N/A'}
-          </SubTitle1>
+          </Headline>
         </Flex>
       </VStack>
       {/* <Flex my={6}> */}
       {/*  {[1, 2].map((idx) => ( */}
       {/*    <Box mx={2} key={idx}> */}
       {/*      <Image src={dummyData.renovationImg} /> */}
-      {/*      <Text textStyle="caption" textAlign="center"> */}
+      {/*      <Text textStyle="Caption1" textAlign="center"> */}
       {/*        {dummyData.updatePlan} */}
       {/*      </Text> */}
       {/*    </Box> */}
       {/*  ))} */}
       {/* </Flex> */}
       <Divider my={6} />
-      <H6>Rental income</H6>
+      <Title3>Rental income</Title3>
       <Box my={4}>
         <Flex justifyContent="space-between">
           <Text>Current</Text>

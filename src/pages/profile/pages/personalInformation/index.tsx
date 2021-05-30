@@ -22,7 +22,7 @@ import * as R from 'remeda';
 
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
-import { H6i } from '../../../../components/text';
+import { Title3 } from '../../../../components/text';
 import { UserContext } from '../../../../userContext';
 import { splitDate, updateCurrentUser } from './lib';
 
@@ -67,9 +67,9 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <H6i mb={6} mt="0" mx="0" align="center">
+      <Title3 mb={6} mt="0" mx="0" align="center">
         Personal Information
-      </H6i>
+      </Title3>
 
       {isLoading ? (
         <Center>
@@ -88,7 +88,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
             handleSubmit={makeSubmit('legalLast')}
           />
           <Box p={3} width="100%">
-            <H6i>Birthdate</H6i>
+            <Title3>Birthdate</Title3>
             <DayPicker date={birthDate as SplitDateT} onChange={handleDateChange} />
           </Box>
 
@@ -101,7 +101,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           <ReadonlyLine label="Email" value={user?.email} />
           <ReadonlyLine label="Alternate Email" value={user?.emailAlt} />
           <Box p={3} width="100%">
-            <H6i>Address</H6i>
+            <Title3>Address</Title3>
             <Text marginY={2}>
               {R.flatMap(
                 [
@@ -118,7 +118,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           </Box>
 
           <Box p={3} width="100%">
-            <H6i>I&#39;m an accredited visitor</H6i>
+            <Title3>I&#39;m an accredited visitor</Title3>
             <Switch
               marginY={2}
               size="lg"
@@ -185,7 +185,7 @@ type ReadonlyLinePropsT = {
 const ReadonlyLine = ({ label, value }: ReadonlyLinePropsT) => {
   return (
     <Box p={2} width="100%">
-      <H6i>{label}</H6i>
+      <Title3>{label}</Title3>
       <Text marginY={2}>{value || 'N/A'}</Text>
     </Box>
   );

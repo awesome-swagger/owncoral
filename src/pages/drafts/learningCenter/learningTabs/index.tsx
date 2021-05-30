@@ -1,7 +1,8 @@
 import type React from 'react';
-import { Box, Tab, Tabs, TabList, TabPanels, TabPanel } from '@chakra-ui/react';
+import { Box, Tab, TabList, TabPanel,TabPanels, Tabs } from '@chakra-ui/react';
+
+import { Title1 } from '../../../../components/text';
 import { GlossaryTab } from '../glossaryTab';
-import { H4 } from '../../../../components/text';
 
 export const LearningTabs = ({
   handleGlossary,
@@ -9,7 +10,7 @@ export const LearningTabs = ({
   handleGlossary: React.Dispatch<React.SetStateAction<any>>;
 }) => (
   <Box>
-    <H4>Learning</H4>
+    <Title1>Learning</Title1>
     <Tabs defaultIndex={1}>
       <TabList>
         <Tab>Crash Courses</Tab>
@@ -17,7 +18,7 @@ export const LearningTabs = ({
       </TabList>
       <TabPanels>
         <TabPanel>
-          <H4>Crash Courses</H4>
+          <Title1>Crash Courses</Title1>
         </TabPanel>
         <TabPanel>
           <GlossaryTab handleGlossary={handleGlossary} />

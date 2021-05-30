@@ -3,7 +3,7 @@ import type { PortfolioPropertyDetailInvestmentT } from '../../../../../shared-f
 import { PortfolioDashboardPropertyT } from '../../../../../shared-fullstack/types';
 import { Box, Divider, Flex, Icon, Text } from '@chakra-ui/react';
 
-import { SubTitle1 } from '../../../../../components/text';
+import { Headline } from '../../../../../components/text';
 
 type InvestmentReturnPropertiesPropsT = {
   investment: PortfolioPropertyDetailInvestmentT;
@@ -11,7 +11,7 @@ type InvestmentReturnPropertiesPropsT = {
 export const InvestmentReturn = ({ investment }: InvestmentReturnPropertiesPropsT) => {
   return (
     <Box>
-      <SubTitle1 my={2}>Investment returns</SubTitle1>
+      <Headline my={2}>Investment returns</Headline>
       <Box my={4}>
         <Box>
           <Flex justifyContent="space-between" alignItems="center">

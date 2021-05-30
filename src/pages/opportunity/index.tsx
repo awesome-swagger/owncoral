@@ -23,7 +23,7 @@ import { format as formatDate } from 'date-fns';
 import lowPolyHouseLg from '../../assets/low-poly-1.gif';
 import { BackBtn } from '../../components';
 import { NavBar } from '../../components/navBar';
-import { H5i } from '../../components/text';
+import { Title2 } from '../../components/text';
 import { propertyData } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
 import theme from '../../theme';
@@ -71,20 +71,20 @@ function Property() {
         <VStack w="85%" minW="340px" maxW={theme.breakpoints.md} paddingX={[3, 4, 6]}>
           <Flex justify="space-between" w="100%">
             <VStack align="left">
-              <H5i>{property.name}</H5i>
+              <Title2>{property.name}</Title2>
               <HStack spacing={1}>
                 <Icon as={FiMapPin} />
-                <Text textStyle="bodyText2" verticalAlign="middle">
+                <Text textStyle="Body2" verticalAlign="middle">
                   {property.cityLocality}, {property.stateRegion}
                 </Text>
               </HStack>
             </VStack>
             <VStack align="right" textAlign="right">
-              <Text textStyle="bodyText2">Initial Investment</Text>
-              <H5i colorScheme="primary" variant="colored">
+              <Text textStyle="Body2">Initial Investment</Text>
+              <Title2 colorScheme="primary" variant="colored">
                 ${formatFinancial(property.contribution)}
-              </H5i>
-              <Text textStyle="bodyText2">
+              </Title2>
+              <Text textStyle="Body2">
                 on {formatDate(property.contributionDate, 'MM/dd/yyyy')}
               </Text>
             </VStack>

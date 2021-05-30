@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { Box, useColorModeValue } from '@chakra-ui/react';
 
-import { Caption, H5, Overline } from '../text';
+import { Caption1, Overline,Title2 } from '../text';
 
 export const Card = ({
   title,
@@ -16,8 +16,8 @@ export const Card = ({
   return (
     <Box layerStyle="card" m="2" p={4} w={40} borderRadius="xl">
       <Overline color={gray}>{title}</Overline>
-      <H5>{value}</H5>
-      <Caption>{description}</Caption>
+      <Title2>{value}</Title2>
+      <Caption1>{description}</Caption1>
     </Box>
   );
 };

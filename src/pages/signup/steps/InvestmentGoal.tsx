@@ -52,7 +52,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             textAlign="left"
             cursor="pointer"
             key={value}
-            textStyle="bodyText1"
+            textStyle="Body1"
             onClick={() => handleSubmit(value)}
           >
             {label}

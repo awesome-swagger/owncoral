@@ -6,7 +6,7 @@ import { format as formatDate } from 'date-fns';
 import * as R from 'remeda';
 
 import { Card } from '../../../../components';
-import { H5, SubTitle1, SubTitle2 } from '../../../../components/text';
+import { Headline, Subhead,Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 const sum = (arr: number[]) => arr.reduce((n, acc) => n + acc, 0);
@@ -59,7 +59,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
 
   return (
     <Box py={4}>
-      <H5>
+      <Title2>
         {totalContribution !== null ? (
           '$' + formatFinancial(totalContribution)
         ) : (
@@ -67,8 +67,8 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
             <Spinner />
           </Center>
         )}
-      </H5>
-      <SubTitle2>Total amount invested</SubTitle2>
+      </Title2>
+      <Subhead>Total amount invested</Subhead>
       {/* <Flex my={4}> */}
       {/*  <Heading */}
       {/*    borderRadius="full" */}
@@ -100,7 +100,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/*  </Heading> */}
       {/* </Flex> */}
       <Divider my={4} />
-      <SubTitle1>Distributions</SubTitle1>
+      <Headline>Distributions</Headline>
       <Flex overflow="auto" w="100%">
         <Card
           title="Monthly"
@@ -139,7 +139,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
         />
       </Flex>
       <Divider my={4} />
-      <SubTitle1>Investment Returns</SubTitle1>
+      <Headline>Investment Returns</Headline>
       <VStack my={4} spacing={2} w="100%">
         <Box w="100%">
           <Flex justifyContent="space-between" alignItems="center">

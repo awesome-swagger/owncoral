@@ -1,9 +1,10 @@
 import { FiMap } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Icon, Image, Text } from '@chakra-ui/react';
-import { H6 } from '../../../../../../components/text';
-import { DummyData } from '../../../../../../lib/portfolioData';
+
 import { MapBox } from '../../../../../../components';
+import { Title3 } from '../../../../../../components/text';
+import { DummyData } from '../../../../../../lib/portfolioData';
 
 type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -12,7 +13,7 @@ export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => 
   const dummyData = DummyData;
   return (
     <Box>
-      <H6>Property Location</H6>
+      <Title3>Property Location</Title3>
       <Box pos="relative">
         <MapBox address={propertyDetail.address} />
         <Box h={2} />

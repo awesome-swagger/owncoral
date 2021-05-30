@@ -1,7 +1,9 @@
+/* eslint-disable max-params */
 import type React from 'react';
-import { Image, Icon, useColorModeValue } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
+import { Icon, Image, Spinner, useColorModeValue } from '@chakra-ui/react';
+
 import './style.css';
 
 export const ImgSlider = ({ images }: { images: any }) => {
@@ -87,7 +89,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
       {images.map((value: string, index: Number) => (
         <div key={`image-${index}`} className="img-size">
           <div className="img-wrapper">
-            <Image src={value} alt={value} />
+            <Image src={value} alt={`Property image #${index}`} fallback={<Spinner />} />
           </div>
         </div>
       ))}

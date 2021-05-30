@@ -19,7 +19,7 @@ import * as R from 'remeda';
 
 import Placeholder1 from '../../../../assets/low-poly/placeholder-01.png';
 import Placeholder2 from '../../../../assets/low-poly/placeholder-02-poly.png';
-import { Overline, SubTitle1, SubTitle2 } from '../../../../components/text';
+import { Headline, Overline, Subhead } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../lib';
 
@@ -51,7 +51,7 @@ export const TopRankingProperties = ({
 
   return (
     <Box>
-      <SubTitle1 my="0.6em">Top-Ranking Properties</SubTitle1>
+      <Headline my="0.6em">Top-Ranking Properties</Headline>
       <Box overflowX="auto">
         {properties === null ? (
           <Center w="100%" h={16}>
@@ -59,7 +59,7 @@ export const TopRankingProperties = ({
           </Center>
         ) : properties.length === 0 ? (
           <Center>
-            <SubTitle2>You have no properties</SubTitle2>
+            <Subhead>You have no properties</Subhead>
           </Center>
         ) : (
           <Fragment>
@@ -181,7 +181,7 @@ export const TopRankingProperties = ({
               <Center mb={1}>
                 <VStack>
                   <Box m={0} h={4}>
-                    {!showAll && <Text textStyle="subTitle1">⋯</Text>}
+                    {!showAll && <Text textStyle="Headline">⋯</Text>}
                   </Box>
                   <Button onClick={handleClick} variant="outline" colorScheme="secondary">
                     {showAll ? `See fewer` : `See all (${properties.length})`}

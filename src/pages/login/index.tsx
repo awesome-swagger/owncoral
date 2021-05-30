@@ -2,15 +2,14 @@ import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
-import type { UseToastOptions } from '@chakra-ui/react';
 import type { UserProfileT } from '../../shared-fullstack/types';
+import type { UseToastOptions } from '@chakra-ui/react';
 import {
   Box,
   Button,
   Center,
   FormControl,
   FormHelperText,
-  Heading,
   Icon,
   IconButton,
   Input,
@@ -20,17 +19,20 @@ import {
   Link as ChakraLink,
   Spacer,
   Spinner,
+  useColorModeValue,
   useToast,
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
 
+import Logo from '../../assets/coral-logo-wtext.svg';
 import { ColorModeButton } from '../../components';
-// import Logo from '../../assets/coral.svg';
 import { fetchWrap } from '../../lib/api';
 import { UserContext } from '../../userContext';
 
 function Login() {
+  const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
+
   return (
     <Fragment>
       <Center>
@@ -52,10 +54,9 @@ function Login() {
         >
           <Center>
             <VStack>
-              {/* <Icon as={Logo} w={14} h={14} /> */}
-              <Heading size="md" color="primary.500">
-                Coral
-              </Heading>
+              <Box h={2} />
+              <Icon as={Logo} w="80%" h="50px" sx={{ fill: logoFillColor }} />
+              <Box h={2} />
               <LoginForm />
             </VStack>
           </Center>
@@ -142,7 +143,7 @@ function LoginForm() {
                 />
               </InputRightElement>
             </InputGroup>
-            <FormHelperText textStyle="caption">{errors.password?.message}&nbsp;</FormHelperText>
+            <FormHelperText textStyle="Caption1">{errors.password?.message}&nbsp;</FormHelperText>
             <Box h={2} />
             <Button isLoading={isLoading} type="submit" size="lg" spinner={<Spinner />}>
               Log In
@@ -152,7 +153,7 @@ function LoginForm() {
               Forgot Password?
             </ChakraLink>
 
-            <FormHelperText textStyle="caption" layerStyle="highLightColor" textAlign="center">
+            <FormHelperText textStyle="Caption1" layerStyle="highLightColor" textAlign="center">
               Don&apos;t have an account? <br />
               <ChakraLink as={RouterLink} to="/signup">
                 Sign up for Coral

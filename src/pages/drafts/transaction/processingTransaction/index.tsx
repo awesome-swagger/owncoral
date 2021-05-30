@@ -1,7 +1,8 @@
 import type React from 'react';
 import { Box, Spinner, Text } from '@chakra-ui/react';
-import { FlexContainer, BackBtn } from '../../../../components';
-import { H6 } from '../../../../components/text';
+
+import { BackBtn,FlexContainer } from '../../../../components';
+import { Title3 } from '../../../../components/text';
 
 export const ProcessingTransaction = ({
   handleTransaction,
@@ -10,7 +11,7 @@ export const ProcessingTransaction = ({
 }) => {
   // TODO: once the processing is succeeded, handleTransaction('successTransaction') will be called,
   // when it is failed, handleTransaction('failedTransaction') will be called
-  
+
   // if processing succeeded handleTransaction('successTransaction') else handleTransaction('failedTransaction')
 
   return (
@@ -23,7 +24,7 @@ export const ProcessingTransaction = ({
       />
       <Box textAlign="center">
         <Spinner />
-        <H6>Processing your transaction...</H6>
+        <Title3>Processing your transaction...</Title3>
       </Box>
     </FlexContainer>
   );

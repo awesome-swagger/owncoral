@@ -5,7 +5,7 @@ import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstac
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 
 import { Card } from '../../../../../../components';
-import { H6, SubTitle1, SubTitle2 } from '../../../../../../components/text';
+import { Headline, Subhead,Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
@@ -17,16 +17,16 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
 
   return (
     <Box>
-      <H6>Property details</H6>
+      <Title3>Property details</Title3>
       {propertyDetail.numStories !== null && (
         <Flex mb={2} minH={10}>
           <Box mr={4}>
             <Icon as={GiStairs} />
           </Box>
           <Box>
-            <SubTitle1>
+            <Headline>
               {propertyDetail.numStories ? propertyDetail.numStories + ' stories' : 'single story'}
-            </SubTitle1>
+            </Headline>
           </Box>
         </Flex>
       )}
@@ -36,14 +36,14 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
             <Icon as={FaRegBuilding} />
           </Box>
           <Box>
-            <SubTitle1>
+            <Headline>
               {propertyDetail.numUnits} apartment unit{propertyDetail.numUnits > 1 && 's'}
-            </SubTitle1>
+            </Headline>
             {propertyDetail.numBeds !== null && propertyDetail.numBaths !== null && (
-              <SubTitle2>
+              <Subhead>
                 {propertyDetail.numBeds} bed{propertyDetail.numBeds > 1 && 's'} •{' '}
                 {propertyDetail.numBaths} bath{propertyDetail.numBaths > 1 && 's'}
-              </SubTitle2>
+              </Subhead>
             )}
           </Box>
         </Flex>
@@ -53,9 +53,9 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
           <Icon as={FiSquare} />
         </Box>
         <Box>
-          <SubTitle1>
+          <Headline>
             {propertyDetail.areaLiving} {propertyDetail.areaUnits} of living space
-          </SubTitle1>
+          </Headline>
           <Text>
             {propertyDetail.areaLotSize} {propertyDetail.areaUnits} lot size
           </Text>
@@ -66,8 +66,8 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
       {/*    <Icon as={FiUsers} /> */}
       {/*  </Box> */}
       {/*  <Box> */}
-      {/*    <SubTitle1>{dummyData.status}</SubTitle1> */}
-      {/*    <SubTitle2>{dummyData.builtDate}</SubTitle2> */}
+      {/*    <Headline>{dummyData.status}</Headline> */}
+      {/*    <Subhead>{dummyData.builtDate}</Subhead> */}
       {/*  </Box> */}
       {/* </Flex> */}
       <Flex overflow="auto">

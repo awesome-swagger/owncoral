@@ -27,7 +27,7 @@ const AdminPanel: React.FC<AdminPanelPropsT> = ({
           <Heading size="xs" as="h6" color="darkred">
             Admin&nbsp;
           </Heading>
-          <Text textStyle="subTitle2">View as User</Text>
+          <Text textStyle="Subhead">View as User</Text>
         </Center>
 
         {isAdminLoading ? (

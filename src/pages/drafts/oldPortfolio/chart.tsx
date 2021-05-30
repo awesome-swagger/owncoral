@@ -184,12 +184,12 @@ export const PortfolioChart = withTooltip<PortfolioChartProps, ChartDataT>(
         {(tooltipOpen || true) && tooltipData && (
           <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
             <Center>
-              <Text textStyle="caption">{format(tooltipData.t, `MMM yyyy`)}</Text>
+              <Text textStyle="Caption1">{format(tooltipData.t, `MMM yyyy`)}</Text>
             </Center>
-            <Text textStyle="caption" layerStyle="primaryTooltipColor">
+            <Text textStyle="Caption1" layerStyle="primaryTooltipColor">
               ${tooltipData.actual} distributed
             </Text>
-            <Text textStyle="caption" layerStyle="secondaryTooltipColor">
+            <Text textStyle="Caption1" layerStyle="secondaryTooltipColor">
               ${tooltipData.expected} projected
             </Text>
           </Tooltip>

@@ -107,7 +107,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
                 <Heading mt={8} mb={2} variant="colored" colorScheme="primary">
                   Welcome to Coral
                 </Heading>
-                <Text textStyle="subTitle1">
+                <Text textStyle="Headline">
                   To sign in for the first time, create a new password now
                 </Text>
               </Fragment>

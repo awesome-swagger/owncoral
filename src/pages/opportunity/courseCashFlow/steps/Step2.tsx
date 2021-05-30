@@ -1,8 +1,8 @@
 import type React from 'react';
-import { Box, Icon, Progress, Heading, Button, Flex } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
-import { IoMdClose } from 'react-icons/io';
 import { HiOutlineCash } from 'react-icons/hi';
+import { FiX } from 'react-icons/fi';
+import { Box, Icon, Progress, Heading, Button, Flex } from '@chakra-ui/react';
 
 export const Step2 = ({
   nextStep,
@@ -16,7 +16,7 @@ export const Step2 = ({
   return (
     <Box>
       <Flex justifyContent="space-between" alignItems="center">
-        <Icon as={IoMdClose} cursor="pointer" onClick={handleClose} />
+        <Icon as={FiX} cursor="pointer" onClick={handleClose} />
         <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
           1/7
         </Box>

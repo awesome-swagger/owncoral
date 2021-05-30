@@ -1,6 +1,6 @@
 import type React from 'react';
+import { FiX } from 'react-icons/fi';
 import { Box, Icon, Image, Heading, Button, Center } from '@chakra-ui/react';
-import { IoMdClose } from 'react-icons/io';
 import Frame from '../../../../assets/Frame614.png';
 
 export const Step1 = ({
@@ -12,7 +12,7 @@ export const Step1 = ({
 }) => {
   return (
     <Box h="100%">
-      <Icon as={IoMdClose} cursor="pointer" onClick={handleClose} />
+      <Icon as={FiX} cursor="pointer" onClick={handleClose} />
       <Center flexDirection="column" textAlign="center" h="100%">
         <Image src={Frame} alt="frame" />
         <Heading fontSize="2xl">What is investor cash flow?</Heading>

@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  Heading,
   Box,
-  Flex,
-  Divider,
   Button,
   Checkbox,
-  useDisclosure,
-  ModalOverlay,
+  Divider,
+  Flex,
+  Heading,
   Modal,
   ModalBody,
-  ModalContent,
   ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { Container, BackBtn } from '../../../../components';
-import { H6, SubTitle1 } from '../../../../components/text';
+
+import { BackBtn,Container } from '../../../../components';
+import { Headline,Title3 } from '../../../../components/text';
 
 export const ConfirmTransaction = ({
   handleTransaction,
@@ -30,33 +31,29 @@ export const ConfirmTransaction = ({
     <Container>
       <BackBtn handleClick={() => history.goBack()} />
       <Heading size="md">Invest in 3 Linden St</Heading>
-      <SubTitle1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </SubTitle1>
+      <Headline>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </Headline>
       <Box px={4} my={8} border="1px" layerStyle="lightBorder">
         <Heading size="xs" textAlign="center">
           3 Linden St
         </Heading>
         <Divider />
         <Flex justifyContent="space-between" my={4}>
-          <H6>Total equity</H6>
-          <H6>$470.000</H6>
+          <Title3>Total equity</Title3>
+          <Title3>$470.000</Title3>
         </Flex>
         <Flex justifyContent="space-between" my={4}>
-          <H6>Your investment</H6>
-          <H6 fontWeight="500">
-            $50.000
-          </H6>
+          <Title3>Your investment</Title3>
+          <Title3 fontWeight="500">$50.000</Title3>
         </Flex>
       </Box>
       <Box pos="absolute" w="calc(100% - 2rem)" left={4} bottom={10}>
         <Box border="1px" layerStyle="lightBorder" p={4} mb={4}>
           <Flex alignItems="center">
             <Checkbox onChange={() => setAgreement(!agreement)} />
-            <H6 ml={4}>
-              I agree with the
-            </H6>
-            <H6 layerStyle="highLightColor" cursor="pointer" ml={1} onClick={() => onOpen()}>
+            <Title3 ml={4}>I agree with the</Title3>
+            <Title3 layerStyle="highLightColor" cursor="pointer" ml={1} onClick={() => onOpen()}>
               legal agreement
-            </H6>
+            </Title3>
           </Flex>
         </Box>
         <Button
@@ -73,7 +70,7 @@ export const ConfirmTransaction = ({
           <ModalBody my={4}>
             <ModalCloseButton />
             <Heading size="md">Legal agreement</Heading>
-            <H6>
+            <Title3>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -85,7 +82,7 @@ export const ConfirmTransaction = ({
               enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
               consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
               quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
-            </H6>
+            </Title3>
           </ModalBody>
         </ModalContent>
       </Modal>

@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
-import { H6, SubTitle1 } from '../../../../components/text';
+import { Headline,Title3 } from '../../../../components/text';
 
 // Source: https://docs.google.com/spreadsheets/d/1w7acu5FjTN3Sxs_kEoN0mZEjIDHr20ZY-vbqWZb4C_s/edit#gid=313667754
 
@@ -24,12 +24,12 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <H6 align="center">FAQ</H6>
+      <Title3 align="center">FAQ</Title3>
       <Box h={2} />
       <Accordion allowToggle>
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">Who can invest with Coral?</SubTitle1>
+            <Headline align="left">Who can invest with Coral?</Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -62,7 +62,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">How does a Coral investment work?</SubTitle1>
+            <Headline align="left">How does a Coral investment work?</Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -105,7 +105,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">What is the share price of a property?</SubTitle1>
+            <Headline align="left">What is the share price of a property?</Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -139,7 +139,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">How do I earn returns on my Coral investment? </SubTitle1>
+            <Headline align="left">How do I earn returns on my Coral investment? </Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -167,7 +167,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">What is the Share Price of a property? </SubTitle1>
+            <Headline align="left">What is the Share Price of a property? </Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -210,10 +210,10 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">
+            <Headline align="left">
               How do I know Coral is making property management decision that are in my best
               interest?
-            </SubTitle1>
+            </Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -229,9 +229,9 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">
+            <Headline align="left">
               What is the term? When can I expect to get my money back?
-            </SubTitle1>
+            </Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>
@@ -257,9 +257,9 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
         <Box bg="gray.300" p=".5px" />
         <AccordionItem layerStyle="accordionColor">
           <AccordionButton>
-            <SubTitle1 align="left">
+            <Headline align="left">
               Will I ever be required to contribute additional capital to a property I invest?
-            </SubTitle1>
+            </Headline>
             <AccordionIcon ml="auto" />
           </AccordionButton>
           <AccordionPanel pt={4}>

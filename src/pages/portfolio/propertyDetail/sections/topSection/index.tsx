@@ -1,6 +1,8 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
+
 import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
-import { H5, Overline } from '../../../../../components/text';
+import { Box, Heading, Text } from '@chakra-ui/react';
+
+import { Overline,Title2 } from '../../../../../components/text';
 
 type TopSectionPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -11,8 +13,8 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
       <Overline>
         {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
       </Overline>
-      <H5>{propertyDetail.address.line1}</H5>
-      <Text textStyle="subTitle1">
+      <Title2>{propertyDetail.address.line1}</Title2>
+      <Text textStyle="Headline">
         {propertyDetail.numUnits ? propertyDetail.numUnits + ' units' : 'N/A'} ·{' '}
         {propertyDetail.areaTotal
           ? propertyDetail.areaTotal.toFixed(0).toLocaleString() + ' ' + propertyDetail.areaUnits

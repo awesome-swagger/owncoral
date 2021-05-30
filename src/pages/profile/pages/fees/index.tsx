@@ -2,7 +2,7 @@ import type React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
-import { H6, SubTitle1 } from '../../../../components/text';
+import { Headline,Title3 } from '../../../../components/text';
 
 // Source: https://www.notion.so/coralmoney/Coral-s-fees-f525884af90a46379a0fde551b69ef87
 
@@ -10,14 +10,14 @@ export const Fees = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <H6 align="center">Fees</H6>
+      <Title3 align="center">Fees</Title3>
       <Box h={2} />
       <Text my="0.6em">
         We aim to make the cost of co-ownership comparable the cost of DIY. We charge three core
         fees to acquire, operate, and sell the property.
       </Text>
 
-      <SubTitle1 my="1.2em">What you pay &rarr; What you get</SubTitle1>
+      <Headline my="1.2em">What you pay &rarr; What you get</Headline>
 
       <Text my="0.6em">
         <b>Acquisition Fee:</b> 2% purchase price &rarr; We find and analyze the property, prepare a

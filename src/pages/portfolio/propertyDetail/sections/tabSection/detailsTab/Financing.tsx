@@ -3,7 +3,7 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 
-import { H6, SubTitle1 } from '../../../../../../components/text';
+import { Headline,Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
@@ -28,7 +28,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
   return (
     <Box>
       <Box>
-        <SubTitle1 my="0.6em">Total capital costs</SubTitle1>
+        <Headline my="0.6em">Total capital costs</Headline>
         <VStack align="stretch">
           <Flex justifyContent="space-between">
             <Text>Purchase price</Text>
@@ -76,7 +76,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
       </Box>
       <Divider my={8} />
       <Box>
-        <H6>Financing</H6>
+        <Title3>Financing</Title3>
 
         {propertyDetail.mdlEquity !== null && propertyDetail.mdlMortgage !== null && equityPct && (
           <Fragment>
@@ -87,11 +87,11 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
 
             <Center justifyContent="space-between" h={14} my={4}>
               <Box w={equityPct}>
-                <SubTitle1>Equity</SubTitle1>
+                <Headline>Equity</Headline>
                 <Text>${formatFinancial(propertyDetail.mdlEquity)}</Text>
               </Box>
               <Box h="100%" borderLeft="1px" px={4} w={1.0 - equityPct}>
-                <SubTitle1>Loan</SubTitle1>
+                <Headline>Loan</Headline>
                 <Text>${formatFinancial(propertyDetail.mdlMortgage)}</Text>
               </Box>
               {/* <Box pl={8}> */}
@@ -110,7 +110,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
         {/*  layerStyle="lightBorder" */}
         {/* > */}
         {/*  <Box> */}
-        {/*    <SubTitle1>Why Coral participates in equity?</SubTitle1> */}
+        {/*    <Headline>Why Coral participates in equity?</Headline> */}
         {/*    <Text>Crash course</Text> */}
         {/*  </Box> */}
         {/*  <Box> */}

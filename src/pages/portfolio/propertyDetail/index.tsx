@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { AiOutlineUpload } from 'react-icons/ai';
-import { IoMdClose } from 'react-icons/io';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
@@ -84,18 +84,13 @@ const PortfolioPropertyDetail = ({
         <Fragment>
           {propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0 ? (
             <ImgSlider images={[Placeholder, Placeholder, Placeholder]} />
-          ) : // <Image
-          //   borderTopRadius={{ base: 'none', md: '2xl' }}
-          //   src={Placeholder}
-          //   alt={propertyDetail.name + ' Image'}
-          //   w="100%"
-          // />
-          propertyDetail.imageUrls.length === 1 ? (
+          ) : propertyDetail.imageUrls.length === 1 ? (
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
               src={propertyDetail.imageUrls[0]}
               alt={propertyDetail.name + ' Image'}
               w="100%"
+              fallback={<Spinner />}
             />
           ) : (
             <ImgSlider images={propertyDetail.imageUrls} />
@@ -108,7 +103,7 @@ const PortfolioPropertyDetail = ({
               h={8}
               w={8}
               p={1}
-              as={IoMdClose}
+              as={FiX}
               cursor="pointer"
               onClick={() => history.goBack()}
               borderRadius="full"

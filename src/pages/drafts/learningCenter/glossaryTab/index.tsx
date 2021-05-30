@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
+import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+
 import { Option } from '../../../../components';
-import { H6, SubTitle1 } from '../../../../components/text';
+import { Headline,Title3 } from '../../../../components/text';
 import { GlossaryData } from '../../../../lib/glossaryData';
 
 export const GlossaryTab = ({
@@ -12,9 +13,10 @@ export const GlossaryTab = ({
 }) => {
   const [searchValue, setSearchValue] = useState('');
 
-  const FilteredValue = GlossaryData.filter((val) => (
-    searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
-  ));
+  const FilteredValue = GlossaryData.filter(
+    (val) =>
+      searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+  );
 
   return (
     <Box>
@@ -32,13 +34,13 @@ export const GlossaryTab = ({
         {FilteredValue.length !== 0 ? (
           FilteredValue.map((val: any, index: Number) => (
             <Option key={`option-${index}`} onClick={() => handleGlossary(val)}>
-              <SubTitle1>{val.name}</SubTitle1>
+              <Headline>{val.name}</Headline>
             </Option>
           ))
         ) : (
           <Box textAlign="center" mt={12}>
-            <H6>Ooops!</H6>
-            <SubTitle1>Sorry, there is no result that fit with your search</SubTitle1>
+            <Title3>Ooops!</Title3>
+            <Headline>Sorry, there is no result that fit with your search</Headline>
           </Box>
         )}
       </Box>

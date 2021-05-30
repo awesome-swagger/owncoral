@@ -1,8 +1,7 @@
 /*
-Mixins defining Material Design Type system.
-Based on generated code at:
-https://material.io/design/typography/the-type-system.html#type-scale
+Mixins for defining font styles. See full typography set here:
 
+https://www.figma.com/file/UqsFod3JLcsbhPmXAZMPxQ/Coral---Team-Library?node-id=0%3A1
 
 Note that we're using 'rem' units for font sizes because we'll
 be defining a global scale at the root (html) tag.
@@ -22,101 +21,90 @@ References
 - https://codepen.io/liujimj/pen/xxRgwmE
 */
 
-import { css, jsx } from '@emotion/react';
-
+// Gilroy + system fonts
 const hFont = {
-  /*
-    Raleway has pretty, but funny-looking numbers.
-    Switch back to standard 'lining numerals' instead of default 'text figures' for
-    all headers.
-
-    Reference
-      https://medium.com/newsbrewer-app/what-s-wrong-with-one-of-the-most-elegant-typefaces-raleway-662e1e7bc7f7
-  */
   fontFamily: `Gilroy, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
-  fontFeatureSettings: 'lnum',
 };
 
+// Gilroy + system font fallbacks
 const bodyFont = {
   fontFamily: `Gilroy, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
   'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
 };
 
-export const hMargin = {
-  marginBlockStart: '0.6em',
-  marginBlockEnd: '0.6em',
-};
-
 export const h1 = {
   fontSize: `${96 / 16}rem`,
-  fontWeight: 500,
+  fontWeight: 600,
   letterSpacing: `${-1.5 / 16}em`,
   ...hFont,
-  ...hMargin,
 };
 
-export const h2 = {
-  fontSize: `${60 / 16}rem`,
-  fontWeight: 500,
-  letterSpacing: `${-0.5 / 16}em`,
-  ...hFont,
-  ...hMargin,
-};
-
-export const h3 = {
-  fontSize: `${48 / 16}rem`,
+export const XLargeTitle = {
+  fontSize: `${56 / 16}rem`,
+  lineHeight: `${66 / 16}rem`,
   fontWeight: 600,
+  letterSpacing: `${-0.4 / 16}em`,
   ...hFont,
-  ...hMargin,
 };
 
-export const h4 = {
+export const LargeTitle = {
   fontSize: `${34 / 16}rem`,
+  lineHeight: `${42 / 16}rem`,
   fontWeight: 600,
   letterSpacing: `${0.25 / 16}em`,
   ...hFont,
-  ...hMargin,
 };
 
-export const h5 = {
-  fontSize: `${24 / 16}rem`,
+export const Title1 = {
+  fontSize: `${28 / 16}rem`,
+  lineHeight: `${34 / 16}rem`,
   fontWeight: 600,
   ...hFont,
-  ...hMargin,
 };
 
-export const h6 = {
+export const Title2 = {
+  fontSize: `${22 / 16}rem`,
+  lineHeight: `${28 / 16}rem`,
+  fontWeight: 600,
+  ...hFont,
+};
+
+export const Title3 = {
   fontSize: `${20 / 16}rem`,
-  fontWeight: 700,
+  lineHeight: `${24 / 16}rem`,
+  fontWeight: 600,
   letterSpacing: `${0.15 / 16}em`,
   ...hFont,
-  ...hMargin,
 };
 
-export const subTitle1 = {
+export const Headline = {
   fontSize: `${16 / 16}rem`,
-  fontWeight: 700,
+  lineHeight: `${22 / 16}rem`,
+  fontWeight: 600,
   letterSpacing: `${0.15 / 16}em`,
   ...bodyFont,
 };
 
-export const subTitle2 = {
+export const Subhead = {
   fontSize: `${14 / 16}rem`,
-  fontWeight: 700,
+  lineHeight: `${20 / 16}rem`,
+  fontWeight: 400,
   letterSpacing: `${0.1 / 16}em`,
   ...bodyFont,
 };
 
-export const bodyText1 = {
+export const Body1 = {
   fontSize: `${16 / 16}rem`,
+  lineHeight: `${22 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.5 / 16}em`,
   ...bodyFont,
 };
 
-export const bodyText2 = {
+export const Body2 = {
   fontSize: `${14 / 16}rem`,
+  lineHeight: `${20 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.25 / 16}em`,
   ...bodyFont,
@@ -131,13 +119,23 @@ export const button = {
   ...bodyFont,
 };
 
-export const caption = {
+export const Caption1 = {
   fontSize: `${12 / 16}rem`,
+  lineHeight: `${16 / 16}rem`,
   fontWeight: 400,
   letterSpacing: `${0.4 / 16}em`,
   ...bodyFont,
 };
 
+export const Caption2 = {
+  fontSize: `${10 / 16}rem`,
+  lineHeight: `${12 / 16}rem`,
+  fontWeight: 400,
+  letterSpacing: `${0.4 / 16}em`,
+  ...bodyFont,
+};
+
+// TODO: deprecate
 export const overline = {
   textTransform: 'uppercase',
 

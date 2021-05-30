@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-import type { UserProfileT } from './shared-fullstack/types';
 
 import AppRootStyle from './AppRootStyle';
 import {
@@ -17,7 +17,7 @@ import {
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';
-import { h1, h2, h3, h4, h5, h6 } from './theme/textStyles';
+import { h1, LargeTitle, Title1, Title2, Title3,XLargeTitle } from './theme/textStyles';
 import { UserContext } from './userContext';
 
 const Login = lazy(() => import('./pages/login'));
@@ -33,7 +33,7 @@ const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 const Error404 = lazy(() => import('./pages/error404'));
 
-const headerStyles = { h1, h2, h3, h4, h5, h6 };
+const headerStyles = { h1, h2: XLargeTitle, h3: LargeTitle, h4: Title1, h5: Title2, h6: Title3 };
 
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);

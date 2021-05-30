@@ -263,7 +263,7 @@ function PropertyCard(props: PropertyCardProps) {
                     ${formatFinancial(property.monthlyDistribution)}
                   </Text>
                   {/* TODO: Actual Date */}
-                  <Text textStyle="caption">last paid {formatDate(new Date(), `MMM yyyy`)}</Text>
+                  <Text textStyle="Caption1">last paid {formatDate(new Date(), `MMM yyyy`)}</Text>
                 </Fragment>
               ) : (
                 <Text variant="colored" colorScheme="gray">
@@ -282,12 +282,12 @@ function PropertyCard(props: PropertyCardProps) {
                   N/A
                 </Text>
               )}
-              <Text textStyle="caption">total to-date</Text>
+              <Text textStyle="Caption1">total to-date</Text>
             </Box>
           </Flex>
 
           <Center>
-            <Text textStyle="subTitle1">
+            <Text textStyle="Headline">
               <Box as="span" textStyle="h6" layerStyle={highlightForeground}>
                 ${formatFinancial(property.totalContribution)}
               </Box>

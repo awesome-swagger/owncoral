@@ -19,13 +19,13 @@ export const TabSection = ({
     <Tabs>
       <TabList>
         <Tab>
-          <Text textStyle="subTitle1">Performance</Text>
+          <Text textStyle="Headline">Performance</Text>
         </Tab>
         <Tab>
-          <Text textStyle="subTitle1">Property details</Text>
+          <Text textStyle="Headline">Property details</Text>
         </Tab>
         <Tab>
-          <Text textStyle="subTitle1">News</Text>
+          <Text textStyle="Headline">News</Text>
         </Tab>
       </TabList>
 

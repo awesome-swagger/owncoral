@@ -39,9 +39,6 @@ code {
   border-color: red !important;
   animation: shake 0.5s linear;
 }
-.mapboxgl-control-container {
-  display: none;
-}
 
 @keyframes shake {
   8%,

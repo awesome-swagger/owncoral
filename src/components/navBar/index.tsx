@@ -2,12 +2,22 @@ import React, { Fragment } from 'react';
 import { FiHome, FiTrendingUp } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
-import { Box, Center, Flex, HStack, Icon, Spacer, Text, useMediaQuery } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  Icon,
+  Spacer,
+  Text,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
 
+import Logo from '../../assets/coral-logo-wtext.svg';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';
-import { H5i } from '../text';
 
 const navLinks = [
   {
@@ -47,6 +57,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
   const footerHeight = 20;
+  const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
 
   return (
     <Fragment>
@@ -60,7 +71,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         h={16}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
-        zIndex={99}
+        zIndex={5}
       >
         <Flex align="center" justify="center" layerStyle="navColor" h="100%" w="100%">
           {/* Children are allowed to push the logo right, but not too far */}
@@ -70,8 +81,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 
           <Center h="100%" marginX={5}>
             <Flex h="100%" align="center">
-              {/* <Icon as={Logo} w={8} h={8} /> */}
-              <H5i color="primary.500">Coral</H5i>
+              <Icon as={Logo} w="8em" h="2em" sx={{ fill: logoFillColor }} />
             </Flex>
           </Center>
 
@@ -138,7 +148,7 @@ function NavButtons(props: { currentPageName: string | null }) {
           sx={{ transition: 'all 200ms' }}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
-          <Text as="span" textStyle="bodyText2">
+          <Text as="span" textStyle="Body2">
             {name}
           </Text>
         </Flex>

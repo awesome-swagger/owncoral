@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
-import { IoMdClose } from 'react-icons/io';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
+import { FiX } from 'react-icons/fi';
 import { Container } from '../container';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
@@ -22,6 +22,7 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
   useEffect(() => {
     if (zoom) setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500);
     else setImage(Map);
+  // eslint-disable-next-line
   }, [zoom]);
 
   const handleZoom = () => {
@@ -41,7 +42,7 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
     <Container>
       <Box pos="relative">
         <Center pos="absolute" h="100%" cursor="pointer" onClick={() => handleClose()}>
-          <Icon as={IoMdClose} />
+          <Icon as={FiX} />
         </Center>
         <Box textAlign="center" borderRadius="full" boxShadow="xs" py={2} w="56" mx="auto">
           <Heading layerStyle="grayHeading" fontSize="sm" m="0">

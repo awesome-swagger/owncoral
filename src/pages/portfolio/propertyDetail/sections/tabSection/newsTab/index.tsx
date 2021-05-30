@@ -1,6 +1,6 @@
 import { Box, Center } from '@chakra-ui/react';
 
-import { SubTitle1 } from '../../../../../../components/text';
+import { Headline } from '../../../../../../components/text';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
 export const NewsTab = () => {
@@ -8,7 +8,7 @@ export const NewsTab = () => {
   return (
     <Box layerStyle="lightBorder">
       <Center>
-        <SubTitle1>Coming Soon, please stay tuned!</SubTitle1>
+        <Headline>Coming Soon, please stay tuned!</Headline>
       </Center>
       {/* {dummyData.news.map((value: any, index: number) => ( */}
       {/*  <Box pos="relative" pl={6} key={index}> */}

@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Heading, Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
 
-import { H5i } from '../../components/text';
+import { Title2 } from '../../components/text';
 import { formatFinancial } from '../../lib/financialFormatter';
 
 type PropertyTableProps = {
@@ -21,7 +21,7 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
       </Thead>
       <Tbody>
         <Tr>
-          <Td textStyle="subTitle1">Monthly Distributions</Td>
+          <Td textStyle="Headline">Monthly Distributions</Td>
           <Td isNumeric>
             $
             {formatFinancial(
@@ -41,16 +41,16 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
         </Tr>
         <Tr>
           <Td paddingBottom={0} colSpan={3}>
-            <Text textStyle="bodyText2">Pro Rata</Text>
+            <Text textStyle="Body2">Pro Rata</Text>
           </Td>
         </Tr>
         <Tr>
-          <Td textStyle="subTitle1">Gross Rental Income</Td>
+          <Td textStyle="Headline">Gross Rental Income</Td>
           <Td isNumeric>${formatFinancial(period === 'last' ? 0 : 0)}</Td>
           <Td isNumeric>${formatFinancial(period === 'last' ? 0 : 0)}</Td>
         </Tr>
         <Tr>
-          <Td textStyle="subTitle1">Operating Expenses</Td>
+          <Td textStyle="Headline">Operating Expenses</Td>
           <Td isNumeric>${formatFinancial(period === 'last' ? 0 : 0)}</Td>
           <Td isNumeric>${formatFinancial(period === 'last' ? 0 : 0)}</Td>
         </Tr>
@@ -58,16 +58,16 @@ export function PropertyTable({ property, period }: PropertyTableProps): React.R
           <Td colSpan={3} />
         </Tr>
         <Tr>
-          <Td textStyle="subTitle1">
+          <Td textStyle="Headline">
             <Tooltip label="Based on NOI/Cap rate" aria-label="A tooltip">
               Fair Market Value of Ownership
             </Tooltip>
           </Td>
           <Td isNumeric>
             <Tooltip label="updated 2/7/2021" aria-label="A tooltip">
-              <H5i colorScheme="primary" variant="colored">
+              <Title2 colorScheme="primary" variant="colored">
                 ${formatFinancial(property.markedValueActual)}
-              </H5i>
+              </Title2>
             </Tooltip>
           </Td>
           <Td isNumeric>${formatFinancial(property.markedValuePlanned)}</Td>
