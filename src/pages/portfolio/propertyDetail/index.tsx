@@ -107,6 +107,7 @@ const PortfolioPropertyDetail = ({
               cursor="pointer"
               onClick={() => history.goBack()}
               borderRadius="full"
+              boxShadow="base"
               layerStyle="iconColor"
             />
             <Icon
@@ -118,6 +119,7 @@ const PortfolioPropertyDetail = ({
               p={1}
               as={FiMoreHorizontal}
               borderRadius="full"
+              boxShadow="base"
               layerStyle="iconColor"
             />
             <Icon
@@ -130,6 +132,7 @@ const PortfolioPropertyDetail = ({
               p={1}
               as={AiOutlineUpload}
               borderRadius="full"
+              boxShadow="base"
               layerStyle="iconColor"
             />
             <TopSection propertyDetail={propertyDetail} />

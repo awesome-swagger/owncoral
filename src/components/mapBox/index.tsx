@@ -45,6 +45,7 @@ export const MapBox = ({ address }: { address: any }) => {
     map.on('idle', function () {
       map.resize();
     });
+    map.scrollZoom.disable();
 
     map.on('load', function () {
       map.loadImage(AddressPin, function (error: any, image: any) {
