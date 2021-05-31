@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 
 // @ts-ignore
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 
 import AddressPin from '../../assets/AddressPin.png';
 
