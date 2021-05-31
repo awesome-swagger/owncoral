@@ -22,8 +22,7 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
   useEffect(() => {
     if (zoom) setTimeout(() => setImage(House), 100) && setTimeout(() => setRemove(true), 500);
     else setImage(Map);
-  // eslint-disable-next-line
-  }, [zoom]);
+  }, [zoom, Map, House]);
 
   const handleZoom = () => {
     if (zoom === false) {

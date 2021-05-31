@@ -32,7 +32,6 @@ export const TimeoutModal = () => {
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>You&#39;ve been signed out</ModalHeader>
-        <ModalCloseButton />
         <ModalBody>For your security, you were signed out due to inactivity.</ModalBody>
         <ModalFooter>
           <Button

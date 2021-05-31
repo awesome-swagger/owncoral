@@ -10,30 +10,30 @@ type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => {
-  const dummyData = DummyData;
   return (
     <Box>
-      <Title3>Property Location</Title3>
+      <Title3 mb={3}>Property location</Title3>
       <Box pos="relative">
         <MapBox address={propertyDetail.address} />
         <Box h={2} />
-        <Center
-          borderRadius="full"
-          layerStyle="iconColor"
-          pos="absolute"
-          bottom={4}
-          right={4}
-          p={2}
-          cursor="pointer"
-        >
-          <Icon h={4} w={4} as={FiMap} />
-        </Center>
+        {/* Simplify this */}
+        {/* <Center */}
+        {/*  borderRadius="full" */}
+        {/*  layerStyle="iconColor" */}
+        {/*  pos="absolute" */}
+        {/*  bottom={4} */}
+        {/*  right={4} */}
+        {/*  p={2} */}
+        {/*  cursor="pointer" */}
+        {/* > */}
+        {/*  <Icon h={4} w={4} as={FiMap} /> */}
+        {/* </Center> */}
       </Box>
-      <Text>{dummyData.propertyLocation}</Text>
+      {propertyDetail.description && <Text>{propertyDetail.description}</Text>}
 
-      <Button colorScheme="secondary" variant="outline" my={4} w="100%">
-        Learn more about location
-      </Button>
+      {/* <Button colorScheme="secondary" variant="outline" my={4} w="100%"> */}
+      {/*  Learn more about location */}
+      {/* </Button> */}
     </Box>
   );
 };

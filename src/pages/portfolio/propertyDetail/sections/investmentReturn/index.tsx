@@ -1,9 +1,8 @@
 import { FiCalendar, FiRotateCw } from 'react-icons/fi';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../shared-fullstack/types';
-import { PortfolioDashboardPropertyT } from '../../../../../shared-fullstack/types';
 import { Box, Divider, Flex, Icon, Text } from '@chakra-ui/react';
 
-import { Headline } from '../../../../../components/text';
+import { Title3 } from '../../../../../components/text';
 
 type InvestmentReturnPropertiesPropsT = {
   investment: PortfolioPropertyDetailInvestmentT;
@@ -11,8 +10,8 @@ type InvestmentReturnPropertiesPropsT = {
 export const InvestmentReturn = ({ investment }: InvestmentReturnPropertiesPropsT) => {
   return (
     <Box>
-      <Headline my={2}>Investment returns</Headline>
-      <Box my={4}>
+      <Title3 my={6}>Investment returns</Title3>
+      <Box mb={6}>
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <Text my={2}>
@@ -35,7 +34,7 @@ export const InvestmentReturn = ({ investment }: InvestmentReturnPropertiesProps
               <Icon as={FiCalendar} mr={3} h={4} w={4} />
               Average time invested
             </Text>
-            <Text my={2}>{investment.months !== null ? investment.months : 'N/A'}</Text>
+            <Text my={2}>{investment.months !== null ? investment.months + ' months' : 'N/A'}</Text>
           </Flex>
         </Box>
       </Box>

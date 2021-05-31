@@ -110,7 +110,7 @@ export const Body2 = {
   ...bodyFont,
 };
 
-export const button = {
+export const Button = {
   // Ignore MUI here, uppercase looks dated
   // text-transform: uppercase;
   fontSize: `${14 / 16}rem`,
@@ -135,11 +135,10 @@ export const Caption2 = {
   ...bodyFont,
 };
 
-// TODO: deprecate
-export const overline = {
+export const Overline = {
   textTransform: 'uppercase',
-
-  fontSize: `${10 / 16}rem`,
+  fontSize: `${12 / 16}rem`,
+  lineHeight: `${16 / 16}rem`,
   fontWeight: 700,
   letterSpacing: `${1.5 / 16}em`,
   ...bodyFont,

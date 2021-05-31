@@ -1,19 +1,16 @@
-
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
 
-import { Headline,Title3 } from '../../../../../../components/text';
+import { Headline, Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
-import { DummyData } from '../../../../../../lib/portfolioData';
 
 type ValueAddPlanePropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
-  const dummyData = DummyData;
   return (
     <Box>
-      <Title3>Value-add plan</Title3>
+      <Title3 mb={6}>Value-add plan</Title3>
       {/* TODO: Table? */}
       <VStack w="100%" align="stretch">
         <Flex justifyContent="space-between">
@@ -52,17 +49,26 @@ export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
       {/*  ))} */}
       {/* </Flex> */}
       <Divider my={6} />
-      <Title3>Rental income</Title3>
-      <Box my={4}>
+      <Title3 my={6}>Rental income</Title3>
+
+      <VStack w="100%" align="stretch" my={4}>
         <Flex justifyContent="space-between">
           <Text>Current</Text>
-          <Text>${formatFinancial(propertyDetail.rentalIncomeMonthlyTarget || 0)}</Text>
+          <Text>
+            {propertyDetail.rentalIncomeMonthlyCurrent !== null
+              ? '$' + formatFinancial(propertyDetail.rentalIncomeMonthlyCurrent)
+              : 'N/A'}
+          </Text>
         </Flex>
         <Flex justifyContent="space-between">
           <Text>Target</Text>
-          <Text>${formatFinancial(propertyDetail.rentalIncomeMonthlyTarget || 0)}</Text>
+          <Text>
+            {propertyDetail.rentalIncomeMonthlyTarget !== null
+              ? '$' + formatFinancial(propertyDetail.rentalIncomeMonthlyTarget)
+              : 'N/A'}
+          </Text>
         </Flex>
-      </Box>
+      </VStack>
 
       {/* <Button variant="outline" colorScheme="secondary" w="100%"> */}
       {/*  Learn more about the rental income{' '} */}

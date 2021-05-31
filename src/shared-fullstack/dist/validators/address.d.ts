@@ -25,3 +25,4 @@ export declare const Address: z.ZodObject<{
     country: string;
 }>;
 export declare type AddressT = z.infer<typeof Address>;
+//# sourceMappingURL=address.d.ts.map

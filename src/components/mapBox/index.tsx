@@ -1,5 +1,9 @@
-import { useState, useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+import { useEffect, useRef, useState } from 'react';
+import { Box } from '@chakra-ui/react';
+
+// @ts-ignore
+import mapboxgl from '!mapbox-gl';
+
 import AddressPin from '../../assets/AddressPin.png';
 
 export const MapBox = ({ address }: { address: any }) => {
@@ -8,14 +12,18 @@ export const MapBox = ({ address }: { address: any }) => {
 
   mapboxgl.accessToken = apiToken;
 
-  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const mapContainer = <Box ref={mapContainerRef} w="100%" h="25em" />;
+
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
 
   useEffect(() => {
     const getLocation = async () => {
       const response = await fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}.json?access_token=${apiToken}`,// editorconfig-checker-disable-line
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/` +
+          `${address.line1}%20${address.cityLocality}%20${address.stateRegion}%20${address.country}` +
+          `.json?access_token=${apiToken}`,
       );
       const data = await response.json();
       setLng(data.features[0].center[0]);
@@ -27,14 +35,19 @@ export const MapBox = ({ address }: { address: any }) => {
 
   useEffect(() => {
     const map = new mapboxgl.Map({
-      container: mapContainer.current || '',
+      container: mapContainerRef.current || '',
       style: styleUrl,
       center: [lng, lat],
-      zoom: 18,
+      zoom: 12,
+    });
+    map.resize();
+
+    map.on('idle', function () {
+      map.resize();
     });
 
     map.on('load', function () {
-      map.loadImage(AddressPin, function (error, image: any) {
+      map.loadImage(AddressPin, function (error: any, image: any) {
         if (error) throw error;
 
         map.addImage('AddressMarker', image);
@@ -71,5 +84,5 @@ export const MapBox = ({ address }: { address: any }) => {
     return () => map.remove();
   }, [lng, lat, styleUrl]);
 
-  return <div ref={mapContainer} style={{ width: '100%', height: '60vh' }} />
+  return mapContainer;
 };

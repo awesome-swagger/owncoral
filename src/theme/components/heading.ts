@@ -1,6 +1,6 @@
 import { mode } from '@chakra-ui/theme-tools';
 
-import { h1, LargeTitle, Title1, Title2, Title3,XLargeTitle } from '../textStyles';
+import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from '../textStyles';
 
 const baseStyle = {
   // Set weight for individual styles
@@ -29,7 +29,7 @@ const variants = {
       (props.colorScheme || 'auto') === 'auto' ? defaultColorScheme : props.colorScheme;
 
     return {
-      color: mode(`${colorScheme}.800`, `${colorScheme}.100`)(props),
+      color: mode(`${colorScheme}.700`, `${colorScheme}.300`)(props),
     };
   },
 };

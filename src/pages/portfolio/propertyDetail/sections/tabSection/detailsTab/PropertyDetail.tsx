@@ -5,7 +5,7 @@ import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstac
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 
 import { Card } from '../../../../../../components';
-import { Headline, Subhead,Title3 } from '../../../../../../components/text';
+import { Headline, Subhead, Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
@@ -17,7 +17,7 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
 
   return (
     <Box>
-      <Title3>Property details</Title3>
+      <Title3 my={6}>Property details</Title3>
       {propertyDetail.numStories !== null && (
         <Flex mb={2} minH={10}>
           <Box mr={4}>

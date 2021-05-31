@@ -13,11 +13,11 @@ export const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => {
   return (
     <Box>
       <PropertyLocation propertyDetail={propertyDetail} />
-      <Divider my={8} />
+      <Divider my={6} />
       <PropertyDetail propertyDetail={propertyDetail} />
-      <Divider my={8} />
+      <Divider my={6} />
       <ValueAddPlane propertyDetail={propertyDetail} />
-      <Divider my={8} />
+      <Divider my={6} />
       <Financing propertyDetail={propertyDetail} />
     </Box>
   );

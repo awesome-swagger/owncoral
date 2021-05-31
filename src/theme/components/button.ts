@@ -2,7 +2,7 @@ import { theme as baseTheme } from '@chakra-ui/theme';
 import { mode } from '@chakra-ui/theme-tools';
 import * as R from 'remeda';
 
-import { button } from '../textStyles';
+import { Button as ButtonStyle } from '../textStyles';
 
 type Dict = Record<string, any>;
 
@@ -33,8 +33,8 @@ export const Button = {
   baseStyle: {
     // Rounded buttons
     borderRadius: 'full',
-    // Use MUI button typography
-    ...button,
+    // Button typography
+    ...ButtonStyle,
   },
   sizes: {
     xl: {

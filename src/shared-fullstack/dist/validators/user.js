@@ -1,27 +1,31 @@
-import { z } from 'zod';
-import { Address } from './address';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AdminPanelUserInfo = exports.UserProfile = void 0;
+const zod_1 = require("zod");
+const address_1 = require("./address");
 // Mostly matches franklin.user_self in /db/schema/user.sql
 // We expand address into its own object
-export const UserProfile = z.object({
-    id: z.string(),
-    isAdmin: z.boolean(),
-    email: z.string().email(),
-    emailAlt: z.string().email(),
-    isVerifiedPrimary: z.boolean(),
-    isVerifiedAlt: z.boolean(),
-    legalFirst: z.string(),
-    legalLast: z.string(),
-    phone: z.string(),
-    phoneAlt: z.string(),
-    addressMailing: Address,
-    addressResidency: Address,
-    taxPayerId: z.string(),
-    is1099Eligible: z.boolean(),
-    completedAccreditation: z.boolean(),
-    birthDate: z.string(),
+exports.UserProfile = zod_1.z.object({
+    id: zod_1.z.string(),
+    isAdmin: zod_1.z.boolean(),
+    email: zod_1.z.string().email(),
+    emailAlt: zod_1.z.string().email(),
+    isVerifiedPrimary: zod_1.z.boolean(),
+    isVerifiedAlt: zod_1.z.boolean(),
+    legalFirst: zod_1.z.string(),
+    legalLast: zod_1.z.string(),
+    phone: zod_1.z.string(),
+    phoneAlt: zod_1.z.string(),
+    addressMailing: address_1.Address,
+    addressResidency: address_1.Address,
+    taxPayerId: zod_1.z.string(),
+    is1099Eligible: zod_1.z.boolean(),
+    completedAccreditation: zod_1.z.boolean(),
+    birthDate: zod_1.z.string(),
 });
-export const AdminPanelUserInfo = z.object({
-    id: z.string(),
-    email: z.string().email().nullable(),
-    displayName: z.string().nullable(),
+exports.AdminPanelUserInfo = zod_1.z.object({
+    id: zod_1.z.string(),
+    email: zod_1.z.string().email().nullable(),
+    displayName: zod_1.z.string().nullable(),
 });
+//# sourceMappingURL=user.js.map

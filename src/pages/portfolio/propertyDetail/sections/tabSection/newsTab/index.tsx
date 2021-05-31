@@ -7,8 +7,8 @@ export const NewsTab = () => {
   // const dummyData = DummyData;
   return (
     <Box layerStyle="lightBorder">
-      <Center>
-        <Headline>Coming Soon, please stay tuned!</Headline>
+      <Center my={6}>
+        <Headline>Coming soon, please stay tuned!</Headline>
       </Center>
       {/* {dummyData.news.map((value: any, index: number) => ( */}
       {/*  <Box pos="relative" pl={6} key={index}> */}

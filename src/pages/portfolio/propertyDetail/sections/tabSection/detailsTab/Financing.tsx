@@ -3,7 +3,7 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 
-import { Headline,Title3 } from '../../../../../../components/text';
+import { Headline, Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
@@ -28,7 +28,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
   return (
     <Box>
       <Box>
-        <Headline my="0.6em">Total capital costs</Headline>
+        <Title3 my={6}>Total capital costs</Title3>
         <VStack align="stretch">
           <Flex justifyContent="space-between">
             <Text>Purchase price</Text>
@@ -47,7 +47,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
             </Text>
           </Flex>
           <Flex justifyContent="space-between">
-            <Text>Acquisition Fee</Text>
+            <Text>Acquisition fee</Text>
             <Text>
               {propertyDetail.mdlOriginationFee !== null
                 ? '$' + formatFinancial(propertyDetail.mdlOriginationFee)
@@ -55,7 +55,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
             </Text>
           </Flex>
           <Flex justifyContent="space-between">
-            <Text>Total Capex</Text>
+            <Text>Total capex</Text>
             <Text>
               {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
                 ? '$' +
@@ -63,8 +63,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                 : 'N/A'}
             </Text>
           </Flex>
-          <Divider />
-          <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between" fontWeight={600}>
             <Text>Total capital cost</Text>
             <Text>${totalCapitalCost}</Text>
           </Flex>
@@ -74,9 +73,9 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
         {/*  Learn more about Capital Cost */}
         {/* </Button> */}
       </Box>
-      <Divider my={8} />
+      <Divider my={6} />
       <Box>
-        <Title3>Financing</Title3>
+        <Title3 my={6}>Financing</Title3>
 
         {propertyDetail.mdlEquity !== null && propertyDetail.mdlMortgage !== null && equityPct && (
           <Fragment>

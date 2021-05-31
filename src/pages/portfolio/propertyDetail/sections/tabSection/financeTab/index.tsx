@@ -8,7 +8,7 @@ import { Box, Center, Divider, Flex, Icon, Spinner, Text, useToast } from '@chak
 import { format as formatDate, parseISO } from 'date-fns';
 
 import { Card } from '../../../../../../components';
-import { Headline } from '../../../../../../components/text';
+import { Title3 } from '../../../../../../components/text';
 import { fetchWrap } from '../../../../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
@@ -106,7 +106,7 @@ export const FinanceTab = ({
           <Divider mb={2} />
         </Fragment>
       )}
-      <Headline my={4}>Distributions</Headline>
+      <Title3 my={4}>Distributions</Title3>
       {investment.lastDistributionInitiatedAt !== null ? (
         <Flex overflow="auto">
           <Card

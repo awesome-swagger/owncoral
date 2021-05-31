@@ -82,7 +82,7 @@
     "prettier": "^2.0.5",
     "snowpack": "3.0.13",
     "snowpack-plugin-svgr": "^0.1.2",
-    "typescript": "^4.0.0",
+    "typescript": "^4.2.4",
     "zod": "next"
   },
   "browserslist": "> 0.5% in US, last 2 versions, not dead, not OperaMini all, not UCAndroid >0"

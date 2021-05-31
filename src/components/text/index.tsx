@@ -1,23 +1,15 @@
 import type { HeadingProps, TextProps } from '@chakra-ui/react';
-import { forwardRef, Heading, Text } from '@chakra-ui/react';
+import { forwardRef, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 
 export const H1 = forwardRef<HeadingProps, 'h1'>((props, ref) => (
   <Heading as="h1" size="2xl" ref={ref} {...props} />
 ));
 
-export const H1i = forwardRef<HeadingProps, 'h1'>((props, ref) => (
-  <Heading as="h1" m={0} size="2xl" ref={ref} {...props} />
-));
-
-export const H2 = forwardRef<HeadingProps, 'h2'>((props, ref) => (
+export const XLargeTitle = forwardRef<HeadingProps, 'h2'>((props, ref) => (
   <Heading as="h2" size="xl" ref={ref} {...props} />
 ));
 
-export const H2i = forwardRef<HeadingProps, 'h2'>((props, ref) => (
-  <Heading as="h2" m={0} size="xl" ref={ref} {...props} />
-));
-
-export const XLargeTitle = forwardRef<HeadingProps, 'h3'>((props, ref) => (
+export const LargeTitle = forwardRef<HeadingProps, 'h3'>((props, ref) => (
   <Heading as="h3" size="lg" ref={ref} {...props} />
 ));
 
@@ -50,5 +42,5 @@ export const Caption2 = forwardRef<TextProps, 'span'>((props, ref) => (
 ));
 
 export const Overline = forwardRef<TextProps, 'span'>((props, ref) => (
-  <Text textStyle="overline" colorScheme="colored" variant="colored" ref={ref} {...props} />
+  <Text textStyle="Overline" colorScheme="gray" variant="colored" ref={ref} {...props} />
 ));

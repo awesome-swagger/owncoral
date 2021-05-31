@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+
   <!-- Generated with https://realfavicongenerator.net/ -->
   <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png">
-  <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#bc5151">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="mask-icon" href="%PUBLIC_URL%/safari-pinned-tab.svg" color="#ff8686">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ff8686">
   <!--
     manifest.json provides metadata used when your web app is installed on a
     user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -37,7 +38,7 @@
 
     @font-face {
       font-family: "Gilroy";
-      src: url("./fonts/Gilroy-BoldItalic.otf") format('opentype');
+      src: url("%PUBLIC_URL%/fonts/Gilroy-BoldItalic.otf") format('opentype');
       font-display: fallback;
       font-weight: bold;
       font-style: italic;
@@ -45,7 +46,7 @@
 
     @font-face {
       font-family: "Gilroy";
-      src: url("./fonts/Gilroy-Semibold.otf") format('opentype');
+      src: url("%PUBLIC_URL%/fonts/Gilroy-Semibold.otf") format('opentype');
       font-display: fallback;
       font-weight: 600;
       font-style: normal;
@@ -53,7 +54,7 @@
 
     @font-face {
       font-family: "Gilroy";
-      src: url("./fonts/Gilroy-BlackItalic.otf") format('opentype');
+      src: url("%PUBLIC_URL%/fonts/Gilroy-BlackItalic.otf") format('opentype');
       font-display: fallback;
       font-weight: 900;
       font-style: italic;
@@ -182,6 +183,7 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgauufDlRCQxvVNZkLyr724uAApYcSwUI&libraries=places&callback=initMap"></script>
   <!-- editorconfig-checker-enable -->
 
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css' rel='stylesheet' />
   <!--
     Notice the use of %PUBLIC_URL% in the tags above.
     It will be replaced with the URL of the `public` folder during the build.

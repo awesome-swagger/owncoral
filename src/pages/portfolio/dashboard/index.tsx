@@ -4,6 +4,7 @@ import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/type
 import { Box, Center, Divider, Heading, Spinner } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
+import { LargeTitle } from '../../../components/text';
 // TODO: remove
 import { UserContext } from '../../../userContext';
 import { PopUpBox } from './popUpBox';
@@ -25,11 +26,8 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
     <Container showColorModeButton={false}>
       <Box>
         <BackBtn top={6} left={6} pos="absolute" handleClick={() => history.goBack()} />
-        <Center>
-          <Heading size="sm" as="h5">
-            Dashboard
-          </Heading>
-          {/* <Icon as={FiFilter} h={4} w={4} cursor="pointer" onClick={() => setPopUp(true)} /> */}
+        <Center mb={4}>
+          <LargeTitle>Dashboard</LargeTitle>
         </Center>
         <TotalDistribution properties={properties} />
         <Divider mb={4} />

@@ -19,7 +19,7 @@ import * as R from 'remeda';
 
 import Placeholder1 from '../../../../assets/low-poly/placeholder-01.png';
 import Placeholder2 from '../../../../assets/low-poly/placeholder-02-poly.png';
-import { Headline, Overline, Subhead } from '../../../../components/text';
+import { Overline, Subhead, Title3 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../lib';
 
@@ -51,7 +51,7 @@ export const TopRankingProperties = ({
 
   return (
     <Box>
-      <Headline my="0.6em">Top-Ranking Properties</Headline>
+      <Title3>Top-Ranking Properties</Title3>
       <Box overflowX="auto">
         {properties === null ? (
           <Center w="100%" h={16}>
@@ -178,16 +178,9 @@ export const TopRankingProperties = ({
               </VStack>
             </Flex>
             {properties.length > SHOW_FEWER_COUNT && (
-              <Center mb={1}>
-                <VStack>
-                  <Box m={0} h={4}>
-                    {!showAll && <Text textStyle="Headline">⋯</Text>}
-                  </Box>
-                  <Button onClick={handleClick} variant="outline" colorScheme="secondary">
-                    {showAll ? `See fewer` : `See all (${properties.length})`}
-                  </Button>
-                </VStack>
-              </Center>
+              <Button my={4} onClick={handleClick} variant="link" colorScheme="primary">
+                {showAll ? `› See fewer properties` : `› See all ${properties.length} properties`}
+              </Button>
             )}
           </Fragment>
         )}

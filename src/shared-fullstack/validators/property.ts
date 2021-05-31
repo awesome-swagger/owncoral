@@ -40,6 +40,8 @@ export const PortfolioPropertyDetail = z.object({
   // legalEntityId: z.string(),
 
   name: z.string().nullable(),
+  description: z.string().nullable(),
+
   imageUrls: z.array(z.string()),
   // legalEntityName: z.string().nullable(),
 

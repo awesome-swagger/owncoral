@@ -36,6 +36,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
   return (
     <Carousel
       showStatus={false}
+      autoPlay={false}
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
           <button

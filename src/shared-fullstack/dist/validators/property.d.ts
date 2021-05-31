@@ -92,6 +92,7 @@ export declare type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashbo
 export declare const PortfolioPropertyDetail: z.ZodObject<{
     id: z.ZodString;
     name: z.ZodNullable<z.ZodString>;
+    description: z.ZodNullable<z.ZodString>;
     imageUrls: z.ZodArray<z.ZodString>;
     address: z.ZodObject<{
         line1: z.ZodString;
@@ -152,6 +153,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     };
     id: string;
     name: string | null;
+    description: string | null;
     imageUrls: string[];
     numUnits: number | null;
     numBeds: number | null;
@@ -187,6 +189,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     };
     id: string;
     name: string | null;
+    description: string | null;
     imageUrls: string[];
     numUnits: number | null;
     numBeds: number | null;
@@ -212,3 +215,4 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlEquity: number | null;
 }>;
 export declare type PortfolioPropertyDetailT = z.infer<typeof PortfolioPropertyDetail>;
+//# sourceMappingURL=property.d.ts.map
