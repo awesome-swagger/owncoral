@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import type { UserProfileT } from './shared-fullstack/types';
@@ -9,7 +9,7 @@ import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
   ErrorFallback,
-  Loading,
+  SplashScreen,
   MapBox,
   MyErrorHandler,
   PropertyCard,
@@ -17,7 +17,7 @@ import {
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';
-import { h1, LargeTitle, Title1, Title2, Title3,XLargeTitle } from './theme/textStyles';
+import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from './theme/textStyles';
 import { UserContext } from './userContext';
 
 const Login = lazy(() => import('./pages/login'));
@@ -38,13 +38,18 @@ const headerStyles = { h1, h2: XLargeTitle, h3: LargeTitle, h4: Title1, h5: Titl
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);
 
+  const splashScreen = document.getElementById('splash-screen');
+  if (splashScreen && !splashScreen.hasAttribute('hidden')) {
+    splashScreen.setAttribute('hidden', 'true');
+  }
+
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
       <UserContext.Provider value={[user, setUser]}>
         <ChakraProvider theme={AppTheme}>
           <Global styles={[AppRootStyle, headerStyles]} />
           <DebugPanel />
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<SplashScreen />}>
             <Router>
               <Switch>
                 {/* Note: server handles not-logged-in redirection for the SPA bundle */}
