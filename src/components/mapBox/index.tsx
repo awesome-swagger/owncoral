@@ -46,6 +46,7 @@ export const MapBox = ({ address }: { address: any }) => {
       map.resize();
     });
     map.scrollZoom.disable();
+    map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', function () {
       map.loadImage(AddressPin, function (error: any, image: any) {
