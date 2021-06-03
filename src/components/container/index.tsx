@@ -28,9 +28,8 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           layerStyle="muiCardColor"
           pos="relative"
           boxShadow="md"
-          overflow="hidden"
           ref={ref}
-          // overflow="hidden auto"
+          overflow="hidden"
           {...otherProps}
         >
           {/* <Logo style={{ position: 'absolute', top: '1.5rem', right: '0px', height: '2rem' }} /> */}

@@ -17,7 +17,15 @@ import HouseImg from '../../../assets/Multifamily_Night.png';
 const OpportunityDetail = () => (
   <Container>
     <Image src={HouseImg} alt="house_img" w="100%" />
-    <Icon pos="absolute" top={10} left={10} h={8} w={8} color="white" as={AiFillCloseCircle} />
+    <Icon
+      pos="absolute"
+      top={10}
+      left={10}
+      h={8}
+      w={8}
+      as={AiFillCloseCircle}
+      color="white"
+    />
     <Icon
       pos="absolute"
       top={10}
@@ -25,10 +33,10 @@ const OpportunityDetail = () => (
       h={8}
       w={8}
       p={1}
-      color="white"
       as={FiMoreHorizontal}
       borderRadius="full"
       layerStyle="iconColor"
+      color="grey"
     />
     <Icon
       pos="absolute"
@@ -38,21 +46,17 @@ const OpportunityDetail = () => (
       h={8}
       w={8}
       p={1}
-      color="white"
       as={AiOutlineUpload}
       borderRadius="full"
       layerStyle="iconColor"
+      color="grey"
     />
     <TopSection />
     <TabSection />
-    <ChartSection />
-    <Divider my={6} />
-    <WhatWeLove />
-    <Divider my={6} />
-    <PropertyLocation />
-    <Divider my={6} />
-    <AssetSection />
-    <Divider my={6} />
+    <ChartSection /> <Divider my={6} />
+    <WhatWeLove /> <Divider my={6} />
+    <PropertyLocation /> <Divider my={6} />
+    <AssetSection /> <Divider my={6} />
     <RenovationSection /> <Divider my={6} />
     <SourcesAndUses />
     <Button w="100%" mt={12}>
