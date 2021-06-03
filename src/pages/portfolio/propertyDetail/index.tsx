@@ -1,7 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import { AiOutlineUpload } from 'react-icons/ai';
-import { FiMoreHorizontal } from 'react-icons/fi';
-import { FiX } from 'react-icons/fi';
+import { FiMoreHorizontal, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
@@ -41,13 +40,16 @@ const PortfolioPropertyDetail = ({
       if (propertyId === null) {
         return;
       }
+      const requestOptions = {
+        propertyId,
+      };
+      if (user?.isAdmin) {
+        Object.assign(requestOptions, { impersonatedUserId: adminSelectedUser || currentUserId });
+      }
 
       const resp = await fetchWrap('/api/portfolio-property-detail', {
         method: 'POST',
-        body: JSON.stringify({
-          propertyId,
-          impersonatedUserId: adminSelectedUser || currentUserId,
-        }),
+        body: JSON.stringify(requestOptions),
       });
 
       if (resp === null) {
@@ -75,6 +77,7 @@ const PortfolioPropertyDetail = ({
     adminSelectedUser,
     currentUserId,
     toast,
+    user,
   ]);
 
   return (

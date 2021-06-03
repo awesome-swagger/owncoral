@@ -47,6 +47,8 @@ const Portfolio = () => {
 
   useEffect(() => {
     (async () => {
+      if (!user || !user.isAdmin) return;
+
       const resp = await fetchWrap('/api/fetchAllUsers', { method: 'GET' });
 
       if (resp === null) {
@@ -67,16 +69,19 @@ const Portfolio = () => {
           break;
       }
     })();
-  }, [toast]);
+  }, [toast, user]);
 
   useEffect(() => {
     (async () => {
       setProperties(null);
+      const requestOptions = user?.isAdmin
+        ? {
+            impersonatedUserId: adminSelectedUser || currentUserId,
+          }
+        : {};
       const resp = await fetchWrap('/api/portfolio-dashboard', {
         method: 'POST',
-        body: JSON.stringify({
-          impersonatedUserId: adminSelectedUser || currentUserId,
-        }),
+        body: JSON.stringify(requestOptions),
       });
 
       if (resp === null) {
@@ -108,17 +113,19 @@ const Portfolio = () => {
           break;
       }
     })();
-  }, [adminSelectedUser, currentUserId, toast]);
+  }, [adminSelectedUser, currentUserId, toast, user]);
 
   return (
     <Fragment>
       <NavBar />
-      <AdminPanel
-        isLoading={adminPanelUserInfo === null}
-        selectedUser={adminSelectedUser}
-        setSelectedUser={setAdminSelectedUser}
-        userList={adminPanelUserInfo}
-      />
+      {user?.isAdmin && (
+        <AdminPanel
+          isLoading={adminPanelUserInfo === null}
+          selectedUser={adminSelectedUser}
+          setSelectedUser={setAdminSelectedUser}
+          userList={adminPanelUserInfo}
+        />
+      )}
       <Switch>
         <ProtectedRoute exact path={portfolioRootUrl}>
           <PortfolioDashboard properties={properties} portfolioRootUrl={portfolioRootUrl} />

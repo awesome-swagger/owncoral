@@ -47,13 +47,17 @@ export const FinanceTab = ({
         return;
       }
 
+      const requestOptions = {
+        propertyId,
+        legalEntityId,
+      };
+      if (user?.isAdmin) {
+        Object.assign(requestOptions, { impersonatedUserId: adminSelectedUser || currentUserId });
+      }
+
       const resp = await fetchWrap('/api/portfolio-property-detail/finance', {
         method: 'POST',
-        body: JSON.stringify({
-          propertyId,
-          legalEntityId,
-          impersonatedUserId: adminSelectedUser || currentUserId,
-        }),
+        body: JSON.stringify(requestOptions),
       });
 
       if (resp === null) {
@@ -86,6 +90,7 @@ export const FinanceTab = ({
     legalEntityId,
     propertyId,
     toast,
+    user,
   ]);
 
   return investment !== null ? (

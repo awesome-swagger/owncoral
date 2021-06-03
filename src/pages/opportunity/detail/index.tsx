@@ -1,18 +1,19 @@
-import { Image, Button, Divider, Icon } from '@chakra-ui/react';
 import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal } from 'react-icons/fi';
+import { Button, Divider, Icon,Image } from '@chakra-ui/react';
+
+import HouseImg from '../../../assets/Multifamily_Night.png';
+import { Container } from '../../../components';
 import {
-  TopSection,
-  TabSection,
+  AssetSection,
   ChartSection,
   PropertyLocation,
-  AssetSection,
-  WhatWeLove,
   RenovationSection,
   SourcesAndUses,
+  TabSection,
+  TopSection,
+  WhatWeLove,
 } from './sections';
-import { Container } from '../../../components';
-import HouseImg from '../../../assets/Multifamily_Night.png';
 
 const OpportunityDetail = () => (
   <Container>
