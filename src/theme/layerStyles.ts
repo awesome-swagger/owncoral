@@ -122,7 +122,7 @@ export const layerStyles = {
   },
   accordionColor: {
     bg: 'gray.100',
-    _hover: { bg: 'primary.100' },
+    _hover: { bg: 'secondary.800' },
     '.chakra-ui-dark &': {
       bg: 'whiteAlpha.100',
       _hover: { bg: 'secondary.800' },
