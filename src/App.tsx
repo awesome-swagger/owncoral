@@ -1,7 +1,7 @@
-import React, { lazy, Suspense, useEffect, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import type { UserProfileT } from './shared-fullstack/types';
+import type { UserProfileT } from '@app/shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
 
@@ -9,7 +9,6 @@ import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
   ErrorFallback,
-  SplashScreen,
   MapBox,
   MyErrorHandler,
   PropertyCard,
@@ -49,7 +48,8 @@ function App() {
         <ChakraProvider theme={AppTheme}>
           <Global styles={[AppRootStyle, headerStyles]} />
           <DebugPanel />
-          <Suspense fallback={<SplashScreen />}>
+          {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+          <Suspense fallback={<Fragment />}>
             <Router>
               <Switch>
                 {/* Note: server handles not-logged-in redirection for the SPA bundle */}
