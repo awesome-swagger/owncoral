@@ -120,14 +120,6 @@ export const layerStyles = {
       color: 'primary.200',
     },
   },
-  accordionColor: {
-    bg: 'gray.100',
-    _hover: { bg: 'secondary.800' },
-    '.chakra-ui-dark &': {
-      bg: 'whiteAlpha.100',
-      _hover: { bg: 'secondary.800' },
-    },
-  },
   popUpColor: {
     bg: 'white',
     '.chakra-ui-dark &': {

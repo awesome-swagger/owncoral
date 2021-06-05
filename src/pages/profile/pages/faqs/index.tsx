@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   Accordion,
   AccordionButton,
@@ -25,9 +24,9 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
     <Box>
       <BackBtn handleClick={goBack} />
       <Title2 my={4}>FAQS</Title2>
-      <Box borderRadius="2xl" overflow="hidden">
+      <Box border="1px" borderColor="gray.500" borderRadius="2xl" overflow="hidden">
         <Accordion allowToggle>
-          <AccordionItem layerStyle="accordionColor">
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 Who can invest with Coral?
@@ -64,8 +63,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 How does a Coral investment work?
@@ -109,8 +108,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 What is the share price of a property?
@@ -146,8 +145,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 How do I earn returns on my Coral investment?{' '}
@@ -176,8 +175,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 What is the Share Price of a property?{' '}
@@ -221,8 +220,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 How do I know Coral is making property management decision that are in my best
@@ -240,8 +239,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 What is the term? When can I expect to get my money back?
@@ -268,8 +267,8 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.600" p=".3px" />
-          <AccordionItem layerStyle="accordionColor">
+          <Box bg="gray.500" p=".3px" />
+          <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
                 Will I ever be required to contribute additional capital to a property I invest?
