@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, TermsAndPrivacyModal } from '../../../components';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -27,23 +27,15 @@ type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
-const PopUpContent = {
-  privacy: {
-    title: 'Privacy & Policay',
-    text: 'Privacy & Policy: Lorem ipsum dolor sit amet',
-  },
-  terms: {
-    title: 'Terms & Conditions',
-    text: 'Terms & Conditions: Lorem ipsum dolor sit amet',
-  },
-};
 
 export const CreateAccount = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const { handleSubmit, register, setValue, errors } = useForm();
     const form = useContext(StepFormContext);
-    const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
     const [showPassword, setShowPassword] = useState(false);
+
+    // Terms And Privacy Modal
+    const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const onSubmit = useCallback(
@@ -157,14 +149,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             provided by Coral
           </Text>
           <SubmitBtn label="Continue" />
-          <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay />
-            <ModalContent minH="450px">
-              <ModalHeader>{PopUpContent[activepopup].title}</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>{PopUpContent[activepopup].text}</ModalBody>
-            </ModalContent>
-          </Modal>
+          <TermsAndPrivacyModal activePopup={activepopup} isOpen={isOpen} onClose={onClose} />
         </Container>
       </form>
     );
