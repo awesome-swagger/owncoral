@@ -17,9 +17,11 @@ import {
   Spinner,
   Text,
   useToast,
+  Checkbox,
+  useDisclosure,
 } from '@chakra-ui/react';
 
-import { BackBtn } from '../../components';
+import { BackBtn, TermsAndPrivacyModal } from '../../components';
 import { fetchWrap } from '../../lib/api';
 
 // We check the password reset token and show 404 if not valid
@@ -32,6 +34,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
   const { handleSubmit, register, errors } = useForm();
   const { resetToken } = useParams<{ resetToken: string }>();
   const [showPassword, setShowPassword] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [tokenState, setTokenState] = useState<TokenStateT>('loading');
   const toast = useToast();
@@ -166,10 +169,15 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
               Must be at least 8 characters
             </Text>
 
-            <Text m="0" bottom={24} pos="absolute" fontSize="xs" textAlign="center">
-              By clicking the button below, you agree with the terms and conditions and privacy
-              policy provided by Coral
-            </Text>
+            <Center bottom={24} pos="absolute">
+              <Checkbox mr={2} size="lg" />
+              <Text m="0" fontSize="xs">
+                I certify that I am 18 years of age or older, and I agree to the{' '}
+                <span onClick={onOpen} style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+                  User Agreement and Privacy Policy
+                </span>
+              </Text>
+            </Center>
             <Button
               isDisabled={errors?.password}
               type="submit"
@@ -182,6 +190,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
               Set New Password and Log In
             </Button>
           </Box>
+          <TermsAndPrivacyModal activePopup={'privacy'} isOpen={isOpen} onClose={onClose} />
         </form>
       )}
     </Fragment>
