@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { Link as BrowserLink } from 'react-router-dom';
 import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/types';
 import {
@@ -6,6 +7,7 @@ import {
   Button,
   Center,
   Flex,
+  Icon,
   Image,
   Link as ChakraLink,
   LinkBox,
@@ -26,6 +28,32 @@ import { addressToUrlFragment } from '../../lib';
 const SHOW_FEWER_COUNT = 5;
 
 const PLACEHOLDERS = [Placeholder1, Placeholder2];
+
+/*
+ * Small hack to force Top Ranking list to always show h-scroll on iOS / macOS,
+ * which hides scrollbars when not scrolling (even when overscroll: scroll is set)
+ *
+ * Reference:
+ *   https://stackoverflow.com/a/10100209
+ *   https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+ */
+const iosForcedScrollX = {
+  '::-webkit-scrollbar': {
+    '-webkit-appearance': 'none',
+    width: '7px',
+    height: '7px',
+  },
+
+  '::-webkit-scrollbar-thumb': {
+    'border-radius': '100vh',
+    'background-color': 'rgba(0, 0, 0, .5)',
+    'box-shadow': '0 0 1px rgba(255, 255, 255, .5)',
+  },
+
+  '::-webkit-scrollbar-corner': {
+    'background-color': 'inherit',
+  },
+};
 
 type TopRankingPropertiesPropsT = {
   properties: PortfolioDashboardPropertyT[] | null;
@@ -49,24 +77,40 @@ export const TopRankingProperties = ({
   // HACK: match background color of body (theme.styles.global.body.bg)
   const themeBackgroundColor = useColorModeValue('white', 'gray.800');
 
+  // Shared sizing constraints between property columns
+  const rowSpacing = 6;
+  const propertyColWidth = 16;
+  const propertyRowHeight = 12;
+
   return (
     <Box>
-      <Title3>Top-Ranking Properties</Title3>
+      <Title3 mb={3}>Top-Ranking Properties</Title3>
       <Box overflowX="auto">
         {properties === null ? (
           <Center w="100%" h={16}>
             <Spinner />
           </Center>
         ) : properties.length === 0 ? (
-          <Center>
-            <Subhead>You have no properties</Subhead>
+          <Center my={4}>
+            <Text textStyle="Body1">You have no properties</Text>
           </Center>
         ) : (
           <Fragment>
-            <Flex overflowX="auto">
-              <Box left={0} pos="sticky" w={16} backgroundColor={themeBackgroundColor}>
-                <VStack layerStyle="muiCardColor">
-                  <Flex w={16} h={8} alignItems="center">
+            <Flex
+              overflowX="scroll"
+              overflowY="auto"
+              paddingBottom={3}
+              paddingRight={3}
+              sx={iosForcedScrollX}
+            >
+              <Box
+                left={0}
+                pos="sticky"
+                w={propertyColWidth}
+                backgroundColor={themeBackgroundColor}
+              >
+                <VStack layerStyle="muiCardColor" spacing={rowSpacing}>
+                  <Flex w={propertyColWidth} h={8} alignItems="center">
                     <Overline>Property</Overline>
                   </Flex>
                   {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
@@ -77,7 +121,7 @@ export const TopRankingProperties = ({
                         property.address,
                       )}&entity=${property.legalEntityId}`}
                     >
-                      <Center w={16} h={12}>
+                      <Center w={propertyColWidth} h={propertyRowHeight}>
                         <Image
                           src={property.iconUrl || Placeholder2}
                           alt="property_img"
@@ -90,13 +134,13 @@ export const TopRankingProperties = ({
                 </VStack>
               </Box>
 
-              <VStack align="stretch" zIndex={-1}>
+              <VStack align="stretch" zIndex={-1} spacing={rowSpacing}>
                 <Flex h={8} alignItems="center">
                   <Overline w="10rem" px={3}>
                     Address
                   </Overline>
                   <Overline w="6rem" textAlign="right">
-                    Contribution
+                    Contrib.
                   </Overline>
 
                   {/* <Overline w="6rem" textAlign="right"> */}
@@ -104,15 +148,15 @@ export const TopRankingProperties = ({
                   {/* </Overline> */}
 
                   <Overline w="6rem" textAlign="right">
-                    Rental Distribution
+                    Rental Distrib.
                   </Overline>
 
                   <Overline w="6rem" textAlign="right">
-                    Special Distribution
+                    Special Distrib.
                   </Overline>
 
                   <Overline w="6rem" textAlign="right">
-                    Total Distribution
+                    Total Distrib.
                   </Overline>
 
                   <Overline w="6rem" textAlign="right">
@@ -120,13 +164,13 @@ export const TopRankingProperties = ({
                   </Overline>
 
                   <Overline w="6rem" textAlign="right">
-                    Months
+                    # Months
                   </Overline>
                 </Flex>
 
                 {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
                   <LinkBox key={idx}>
-                    <Flex h={12} alignItems="center">
+                    <Flex h={propertyRowHeight} alignItems="center">
                       <Text w="10rem" px={3} isTruncated>
                         <LinkOverlay
                           as={BrowserLink}
@@ -179,7 +223,17 @@ export const TopRankingProperties = ({
             </Flex>
             {properties.length > SHOW_FEWER_COUNT && (
               <Button my={4} onClick={handleClick} variant="link" colorScheme="primary">
-                {showAll ? `› See fewer properties` : `› See all ${properties.length} properties`}
+                {showAll ? (
+                  <Fragment>
+                    <Icon as={FiChevronUp} />
+                    &nbsp;See fewer properties
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <Icon as={FiChevronDown} />
+                    &nbsp;`See all ${properties.length} properties`
+                  </Fragment>
+                )}
               </Button>
             )}
           </Fragment>

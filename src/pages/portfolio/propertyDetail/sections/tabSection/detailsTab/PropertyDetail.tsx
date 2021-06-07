@@ -19,9 +19,9 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
     <Box>
       <Title3 my={6}>Property details</Title3>
       {propertyDetail.numStories !== null && (
-        <Flex mb={2} minH={10}>
+        <Flex mb={6}>
           <Box mr={4}>
-            <Icon as={GiStairs} />
+            <Icon as={GiStairs} verticalAlign="text-top" />
           </Box>
           <Box>
             <Headline>
@@ -31,9 +31,9 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
         </Flex>
       )}
       {propertyDetail.numUnits !== null && (
-        <Flex mb={2} minH={10}>
+        <Flex mb={6} minH={10}>
           <Box mr={4}>
-            <Icon as={FaRegBuilding} />
+            <Icon as={FaRegBuilding} verticalAlign="text-top" />
           </Box>
           <Box>
             <Headline>
@@ -48,9 +48,9 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
           </Box>
         </Flex>
       )}
-      <Flex mb={2} minH={10}>
+      <Flex mb={6} minH={10}>
         <Box mr={4}>
-          <Icon as={FiSquare} />
+          <Icon as={FiSquare} verticalAlign="text-top" />
         </Box>
         <Box>
           <Headline>

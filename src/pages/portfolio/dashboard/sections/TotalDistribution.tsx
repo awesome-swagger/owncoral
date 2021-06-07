@@ -70,7 +70,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
         )}
       </Title1>
       <Box h={2} />
-      <Text textStyle="BodyText2">Total amount invested</Text>
+      <Text textStyle="Body2">Total amount invested</Text>
       {/* <Flex my={4}> */}
       {/*  <Heading */}
       {/*    borderRadius="full" */}
@@ -164,11 +164,13 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
               Average time invested
             </Text>
             <Text>
-              {(
-                sum(withMonthsContribution.map((p) => (p.months || 0) * (p.currentEquity || 0))) /
-                sum(withMonthsContribution.map((p) => p.currentEquity || 0))
-              ).toFixed()}{' '}
-              months
+              {withMonthsContribution.length > 0
+                ? (
+                    sum(
+                      withMonthsContribution.map((p) => (p.months || 0) * (p.currentEquity || 0)),
+                    ) / sum(withMonthsContribution.map((p) => p.currentEquity || 0))
+                  ).toFixed() + ' months'
+                : 'N/A'}
             </Text>
           </Flex>
         </Box>

@@ -100,7 +100,7 @@ export const FinanceTab = ({
           <Flex alignItems="center">
             <Icon as={FiPieChart} mr={2} h={6} w={6} />
             <Text marginY={4}>
-              You invested {formatFinancial(investment.currentEquity)} for{' '}
+              You invested ${formatFinancial(investment.currentEquity)} for{' '}
               {investment.currentOwnershipPct === 1.0
                 ? '100'
                 : (investment.currentOwnershipPct * 100.0).toPrecision(2).toString()}

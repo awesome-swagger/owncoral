@@ -15,7 +15,8 @@ const coral = {
   '800': '#8a4c4c',
   '900': '#5e3f3e',
   // More saturated
-  highlight: '#fd7065',
+  highlight: '#ff5d5d',
+  // highlight: '#ff7065',
 };
 
 const ultramarine = {

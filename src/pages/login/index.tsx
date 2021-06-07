@@ -19,6 +19,7 @@ import {
   Link as ChakraLink,
   Spacer,
   Spinner,
+  Text,
   useColorModeValue,
   useToast,
   VStack,
@@ -39,23 +40,24 @@ function Login() {
         <Box
           boxShadow="xl"
           rounded="3xl"
-          w="60%"
-          minW="300px"
-          maxW="350px"
+          w="65%"
+          minW="320px"
+          maxW="370px"
           pos="fixed"
           left="50%"
           top="50%"
           m={[2, 3]}
-          p={[8, 10]}
+          paddingX={[7, 10]}
+          paddingY={[6, 8]}
           layerStyle="LoginColor"
           sx={{
             transform: 'translate(-50%, -50%)',
           }}
         >
-          <Center>
-            <VStack>
+          <Center w="100%">
+            <VStack w="100%">
               <Box h={2} />
-              <Icon as={Logo} w="80%" h="50px" sx={{ fill: logoFillColor }} />
+              <Icon as={Logo} w="100%" h="50px" sx={{ fill: logoFillColor }} />
               <Box h={2} />
               <LoginForm />
             </VStack>
@@ -84,6 +86,7 @@ function LoginForm() {
 
   return (
     <form
+      style={{ width: '100%' }}
       onSubmit={handleSubmit(async (data: FormContents) => {
         const query = new URLSearchParams(location.search);
 
@@ -145,20 +148,31 @@ function LoginForm() {
             </InputGroup>
             <FormHelperText textStyle="Caption1">{errors.password?.message}&nbsp;</FormHelperText>
             <Box h={2} />
-            <Button isLoading={isLoading} type="submit" size="lg" spinner={<Spinner />}>
+            <Button
+              w="100%"
+              colorScheme="gray"
+              isLoading={isLoading}
+              type="submit"
+              size="lg"
+              spinner={<Spinner />}
+            >
               Log In
             </Button>
             <Box h={2} />
-            <ChakraLink as={RouterLink} to="/forgot">
-              Forgot Password?
-            </ChakraLink>
 
-            <FormHelperText textStyle="Caption1" layerStyle="highLightColor" textAlign="center">
-              Don&apos;t have an account? <br />
-              <ChakraLink as={RouterLink} to="/signup">
-                Sign up for Coral
+            <Text textStyle="Caption1" textAlign="center">
+              <ChakraLink as={RouterLink} to="/forgot">
+                Forgot Password?
               </ChakraLink>
-            </FormHelperText>
+              <br />
+              <br />
+
+              <ChakraLink to="https://www.owncoral.com/early-access" isExternal>
+                Don&apos;t have an account?
+                <br />
+                Join the waitlist
+              </ChakraLink>
+            </Text>
           </VStack>
         </Center>
       </FormControl>

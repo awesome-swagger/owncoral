@@ -49,7 +49,7 @@ export const Help = ({
           }}
         />
         <Heading fontSize="sm" m="0">
-          FAQS
+          FAQ
         </Heading>
       </Option>
       {/* <Option icon={false}>

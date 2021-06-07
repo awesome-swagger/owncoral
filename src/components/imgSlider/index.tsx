@@ -2,7 +2,7 @@
 import type React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
-import { Icon, Image, Spinner, useColorModeValue } from '@chakra-ui/react';
+import { AspectRatio, Icon, Image, Spinner, useColorModeValue } from '@chakra-ui/react';
 
 import './style.css';
 
@@ -36,6 +36,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
   return (
     <Carousel
       showStatus={false}
+      showThumbs={false}
       autoPlay={false}
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
@@ -87,12 +88,10 @@ export const ImgSlider = ({ images }: { images: any }) => {
         );
       }}
     >
-      {images.map((value: string, index: Number) => (
-        <div key={`image-${index}`} className="img-size">
-          <div className="img-wrapper">
-            <Image src={value} alt={`Property image #${index}`} fallback={<Spinner />} />
-          </div>
-        </div>
+      {images.map((src: string, idx: number) => (
+        <AspectRatio ratio={4 / 3} key={idx}>
+          <Image src={src} alt={`Property image #${idx}`} />
+        </AspectRatio>
       ))}
     </Carousel>
   );

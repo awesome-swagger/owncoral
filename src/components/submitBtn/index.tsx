@@ -1,5 +1,6 @@
 import type React from 'react';
-import { Button } from '@chakra-ui/react';
+import type { ButtonProps } from '@chakra-ui/react';
+import { Button, forwardRef, Heading } from '@chakra-ui/react';
 
 type SubmitBtnProps = {
   label: string;
@@ -7,12 +8,8 @@ type SubmitBtnProps = {
   disabled?: boolean;
 };
 
-export const SubmitBtn: React.FC<SubmitBtnProps> = ({
-  label,
-  onClick,
-  disabled,
-}: SubmitBtnProps) => {
-  return (
+export const SubmitBtn = forwardRef<SubmitBtnProps & ButtonProps, 'button'>(
+  ({ label, ...buttonProps }, ref) => (
     <Button
       pos="absolute"
       bottom={10}
@@ -20,11 +17,11 @@ export const SubmitBtn: React.FC<SubmitBtnProps> = ({
       w="calc(100% - 3rem)"
       h={12}
       type="submit"
-      onClick={onClick}
-      disabled={disabled}
       cursor="pointer"
+      ref={ref}
+      {...buttonProps}
     >
       {label}
     </Button>
-  );
-};
+  ),
+);

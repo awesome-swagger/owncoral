@@ -32,7 +32,6 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           overflow="hidden"
           {...otherProps}
         >
-          {/* <Logo style={{ position: 'absolute', top: '1.5rem', right: '0px', height: '2rem' }} /> */}
           {children}
         </Box>
         {showColorModeButton && <ColorModeButton pos="fixed" top={6} right={6} />}

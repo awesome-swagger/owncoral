@@ -10,6 +10,7 @@ import {
   OrderedList,
   Text,
   UnorderedList,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
@@ -19,12 +20,14 @@ import { Title2 } from '../../../../components/text';
 
 // TODO: switch to using markdown:
 //   https://github.com/remarkjs/react-markdown
-export const Faqs = ({ goBack }: { goBack: () => void }) => {
+export const Faq = ({ goBack }: { goBack: () => void }) => {
+  const dividerColor = useColorModeValue('gray.200', 'gray.800');
+
   return (
     <Box>
       <BackBtn handleClick={goBack} />
-      <Title2 my={4}>FAQS</Title2>
-      <Box border="1px" borderColor="gray.500" borderRadius="2xl" overflow="hidden">
+      <Title2 my={4}>FAQ</Title2>
+      <Box borderRadius="2xl" overflow="hidden">
         <Accordion allowToggle>
           <AccordionItem>
             <AccordionButton>
@@ -41,10 +44,11 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
               </Text>
               <br />
               <Text textStyle="BodyText1">
-                You generally qualify as an accredited investor if any of the following are true:
+                You generally qualify as an accredited investor{' '}
+                <u>if any of the following are true</u>:
               </Text>
               <br />
-              <UnorderedList>
+              <UnorderedList fontWeight="600">
                 <ListItem>Annual income greater than $200k (for the last 2 years)</ListItem>
                 <ListItem>
                   Joint household income greater than $300k (for the last 2 years)
@@ -63,7 +67,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
@@ -108,7 +112,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
@@ -145,7 +149,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
@@ -175,7 +179,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
@@ -220,7 +224,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">
@@ -239,12 +243,12 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
-              <Text textStyle="BodyText1" py={2} align="left">
-                What is the term? When can I expect to get my money back?
-              </Text>
+              <Headline py={2} align="left">
+                What is the investment term, or, when can I expect to get my money back?
+              </Headline>
               <AccordionIcon ml="auto" />
             </AccordionButton>
             <AccordionPanel pt={4}>
@@ -267,7 +271,7 @@ export const Faqs = ({ goBack }: { goBack: () => void }) => {
             </AccordionPanel>
           </AccordionItem>
 
-          <Box bg="gray.500" p=".3px" />
+          <Box bg={dividerColor} p=".3px" />
           <AccordionItem>
             <AccordionButton>
               <Text textStyle="BodyText1" py={2} align="left">

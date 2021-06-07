@@ -1,19 +1,23 @@
 import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FiExternalLink, FiEye, FiEyeOff } from 'react-icons/fi';
 import {
   Box,
+  Center,
+  Checkbox,
   Heading,
   Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
+  Link as ChakraLink,
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
 
-import { BackBtn, Container, SubmitBtn, TermsAndPrivacyModal } from '../../../components';
+import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { Caption1 } from '../../../theme/textStyles';
 import type { FormRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -27,17 +31,14 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     const { handleSubmit, register, setValue, errors } = useForm();
     const form = useContext(StepFormContext);
     const [showPassword, setShowPassword] = useState(false);
-
-    // Terms And Privacy Modal
-    const [activepopup, setActivepopup] = useState<'privacy' | 'terms'>('privacy');
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [agreementChecked, setAgreementChecked] = useState(false);
 
     const onSubmit = useCallback(
       (data) => {
         form.dispatch({ type: 'update-form', payload: { step5: data } });
         nextStep();
       },
-      [handleSubmit],
+      [form, nextStep],
     );
 
     useEffect(() => {
@@ -45,7 +46,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
 
       setValue('email', formState?.step5?.email || '');
       setValue('password', formState?.step5?.password || '');
-    }, []);
+    }, [form.formState, setValue]);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
@@ -111,39 +112,27 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             Must be at least 8 characters
           </Text>
 
-          <Text
-            w=" calc(100% - 3rem)"
-            fontSize="sm"
-            colorScheme="gray"
-            pos="absolute"
-            bottom={24}
-            left={6}
-            textAlign="center"
-          >
-            By tapping “Continue” in the button below, you agree with the{' '}
-            <span
-              onClick={() => {
-                setActivepopup('terms');
-                onOpen();
-              }}
-              style={{ textDecoration: 'underline', cursor: 'pointer' }}
+          <Center w="calc(100% - 3rem)" bottom="6.5rem" pos="absolute">
+            <Checkbox
+              size="lg"
+              sx={{ '.chakra-checkbox__label': Caption1 }}
+              isChecked={agreementChecked}
+              onChange={(e) => setAgreementChecked(!agreementChecked)}
             >
-              terms and conditions
-            </span>{' '}
-            and{' '}
-            <span
-              onClick={() => {
-                setActivepopup('privacy');
-                onOpen();
-              }}
-              style={{ textDecoration: 'underline', cursor: 'pointer' }}
-            >
-              privacy policy
-            </span>{' '}
-            provided by Coral
-          </Text>
-          <SubmitBtn label="Continue" />
-          <TermsAndPrivacyModal activePopup={activepopup} isOpen={isOpen} onClose={onClose} />
+              I certify that I am 18 years of age or older, and I agree to the{' '}
+              <ChakraLink href="https://www.owncoral.com/user-agreement" isExternal>
+                User Agreement
+                <Icon as={FiExternalLink} w={3} h={3} verticalAlign="baseline" />
+              </ChakraLink>
+              {' and '}
+              <ChakraLink href="https://www.owncoral.com/privacy" isExternal>
+                Privacy Policy
+                <Icon as={FiExternalLink} w={3} h={3} verticalAlign="baseline" />
+              </ChakraLink>
+              Ò
+            </Checkbox>
+          </Center>
+          <SubmitBtn label="Continue" isDisabled={!agreementChecked} />
         </Container>
       </form>
     );

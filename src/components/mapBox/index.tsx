@@ -45,6 +45,7 @@ export const MapBox = ({ address }: { address: any }) => {
     map.on('idle', function () {
       map.resize();
     });
+    map.dragPan.disable();
     map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl());
 
