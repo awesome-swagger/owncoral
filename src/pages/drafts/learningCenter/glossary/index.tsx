@@ -1,8 +1,8 @@
 import type React from 'react';
-import { Box, ListItem, UnorderedList } from '@chakra-ui/react';
+import { Box, ListItem, UnorderedList, Text } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
-import { Headline, Title1, Title3 } from '../../../../components/text';
+import { Headline, Title2, Caption1 } from '../../../../components/text';
 
 export const Glossary = ({
   data,
@@ -14,20 +14,24 @@ export const Glossary = ({
   return (
     <Box>
       <BackBtn handleClick={() => handleGlossary(null)} />
-      <Title1>{data.name}</Title1>
-      <Headline>{data.description}</Headline>
-      <Title3>How to Calculate</Title3>
+      <Title2 my={4}>{data.name}</Title2>
+      <Text textStyle="Body1">{data.description}</Text>
+      <Headline mt={6} mb={2}>
+        How to Calculate
+      </Headline>
       <UnorderedList mx={4}>
         <ListItem>
-          <Headline>{data.howToCalculate}</Headline>
+          <Text textStyle="Body1">{data.howToCalculate}</Text>
         </ListItem>
       </UnorderedList>
       <Box layerStyle="card" p={4} my={4}>
-        <Title3>Example</Title3>
-        <Headline>{data.example}</Headline>
+        <Caption1 mb={2}>Example</Caption1>
+        <Text textStyle="Body1">{data.example}</Text>
       </Box>
-      <Title3>Other notes</Title3>
-      <Headline>{data.note}</Headline>
+      <Headline mt={6} mb={2}>
+        Other notes
+      </Headline>
+      <Text textStyle="Body1">{data.note}</Text>
     </Box>
   );
 };

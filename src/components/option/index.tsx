@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Flex, Heading } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 export const Option = ({
   children,

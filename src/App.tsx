@@ -1,4 +1,4 @@
-import React, { Fragment, lazy, Suspense, useEffect, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import type { UserProfileT } from '@app/shared-fullstack/types';
@@ -12,6 +12,7 @@ import {
   MyErrorHandler,
   PropertyCard,
   ProtectedRoute,
+  MapBox,
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';

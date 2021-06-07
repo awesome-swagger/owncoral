@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
 import { Option } from '../../../../components';
-import { Headline,Title3 } from '../../../../components/text';
+import { Headline, Title3 } from '../../../../components/text';
 import { GlossaryData } from '../../../../lib/glossaryData';
 
 export const GlossaryTab = ({
@@ -20,7 +20,7 @@ export const GlossaryTab = ({
 
   return (
     <Box>
-      <InputGroup>
+      <InputGroup mb={4}>
         <InputLeftElement>
           <Icon as={BsSearch} />
         </InputLeftElement>
@@ -30,7 +30,7 @@ export const GlossaryTab = ({
           value={searchValue}
         />
       </InputGroup>
-      <Box h="100%">
+      <Box borderRadius="2xl" overflow="hidden">
         {FilteredValue.length !== 0 ? (
           FilteredValue.map((val: any, index: Number) => (
             <Option key={`option-${index}`} onClick={() => handleGlossary(val)}>

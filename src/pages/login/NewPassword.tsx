@@ -21,10 +21,11 @@ import {
   Text,
   useToast,
   VStack,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 import NoTextLogo from '../../assets/coral_logo-notext.svg';
-import { BackBtn, Container } from '../../components';
+import { BackBtn, Container, TermsAndPrivacyModal } from '../../components';
 import { Subhead, Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { Caption1 } from '../../theme/textStyles';
@@ -40,6 +41,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
   const { resetToken } = useParams<{ resetToken: string }>();
   const [showPassword, setShowPassword] = useState(false);
   const [agreementChecked, setAgreementChecked] = useState(!isWelcome);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [tokenState, setTokenState] = useState<TokenStateT>('loading');
   const toast = useToast();
