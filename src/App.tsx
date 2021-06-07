@@ -30,6 +30,7 @@ const Property = lazy(() => import('./pages/opportunity'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
+const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
 const headerStyles = { h1, h2: XLargeTitle, h3: LargeTitle, h4: Title1, h5: Title2, h6: Title3 };
@@ -55,28 +56,48 @@ function App() {
                 {/* Note: server handles not-logged-in redirection for the SPA bundle */}
                 {authRoutes}
 
-                <Route path="/signup">
-                  <SignupFlow />
-                </Route>
-
-                <Route path="/investment-profile">
-                  <InvestmentProfileFlow />
-                </Route>
-
                 <ProtectedRoute exact path="/">
                   <Redirect to="/portfolio" />
                 </ProtectedRoute>
 
-                <ProtectedRoute path="/drafts" component={Drafts} />
-
                 <ProtectedRoute path="/portfolio" component={Portfolio} />
 
                 <ProtectedRoute exact path="/property/:address" component={Property} />
-                <ProtectedRoute exact path="/profile" component={Profile} />
-                <ProtectedRoute exact path="/property-card" component={PropertyCard} />
-                <ProtectedRoute exact path="/opportunities/detail" component={OpportunityDetail} />
 
-                <ProtectedRoute exact path="/map-box" component={MapBox} />
+                <ProtectedRoute exact path="/profile" component={Profile} />
+
+                <ProtectedRoute path="/coming-soon" component={ComingSoon} />
+
+                {process.env.NODE_ENV === 'development' && (
+                  <Route path="/signup">
+                    <SignupFlow />
+                  </Route>
+                )}
+
+                {process.env.NODE_ENV === 'development' && (
+                  <Route path="/investment-profile">
+                    <InvestmentProfileFlow />
+                  </Route>
+                )}
+
+                {process.env.NODE_ENV === 'development' && (
+                  <ProtectedRoute path="/drafts" component={Drafts} />
+                )}
+
+                {process.env.NODE_ENV === 'development' && (
+                  <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+                )}
+                {process.env.NODE_ENV === 'development' && (
+                  <ProtectedRoute
+                    exact
+                    path="/opportunities/detail"
+                    component={OpportunityDetail}
+                  />
+                )}
+
+                {process.env.NODE_ENV === 'development' && (
+                  <ProtectedRoute exact path="/map-box" component={MapBox} />
+                )}
 
                 <ProtectedRoute path="*" component={Error404} />
                 {/* <Route exact path="/documents" component={Docs} /> */}

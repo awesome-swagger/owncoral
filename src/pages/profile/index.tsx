@@ -7,7 +7,7 @@ import { Account } from './account';
 import { Help } from './help';
 import { Legal } from './legal';
 import { LogoutSelector } from './logoutSelector';
-import { About, Faqs, Fees, InvestmentGoal, Notification, PersonalInformation } from './pages';
+import { About, Faq, Fees, InvestmentGoal, Notification, PersonalInformation } from './pages';
 import { PopUp } from './popup';
 import { ProfileHeader } from './profileHeader';
 
@@ -52,7 +52,7 @@ function Profile() {
       case 5:
         return <Fees goBack={handleClose} />;
       case 6:
-        return <Faqs goBack={handleClose} />;
+        return <Faq goBack={handleClose} />;
       default:
         return <ProfileContent handleClick={handleClick} />;
     }

@@ -12,6 +12,7 @@ import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
 import { Text } from './components/text';
+import { Accordion } from './components/accordion';
 // Foundational style overrides
 import { colors } from './foundations/colors';
 import { shadows } from './foundations/shadows';
@@ -41,6 +42,7 @@ const overrides = {
     Input,
     Heading,
     Text,
+    Accordion,
   },
 };
 

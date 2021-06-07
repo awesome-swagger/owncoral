@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { FiHome, FiTrendingUp } from 'react-icons/fi';
+import { FiBell, FiKey, FiTag } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -15,27 +15,41 @@ import {
 } from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
 
+import Academy from '../../assets/academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';
 
 const navLinks = [
   {
+    name: 'Listings',
+    url: '/coming-soon/listings',
+    icon: FiTag,
+  },
+  {
+    name: 'Academy',
+    url: '/coming-soon/academy',
+    icon: Academy,
+  },
+  {
     name: 'Portfolio',
     url: '/portfolio',
-    icon: FiTrendingUp,
+    icon: FiKey,
   },
   {
-    name: 'Opportunities',
-    url: '/opportunities/detail',
-    icon: FiHome,
+    name: 'Notifications',
+    url: '/coming-soon/notifications',
+    icon: FiBell,
   },
-  {
+];
+
+if (process.env.NODE_ENV === 'development') {
+  navLinks.push({
     name: 'Drafts',
     url: '/drafts',
     icon: HiOutlineDocument,
-  },
-];
+  });
+}
 
 /*
   Layout

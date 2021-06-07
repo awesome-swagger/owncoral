@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
-// import PlaceholderPoly1 from '../../../assets/low-poly/3-Linden.png';
 import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
 import { Container, ImgSlider } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
@@ -113,6 +112,7 @@ const PortfolioPropertyDetail = ({
               boxShadow="base"
               layerStyle="iconColor"
             />
+            {/*
             <Icon
               pos="absolute"
               top={10}
@@ -137,7 +137,7 @@ const PortfolioPropertyDetail = ({
               borderRadius="full"
               boxShadow="base"
               layerStyle="iconColor"
-            />
+            /> */}
             <TopSection propertyDetail={propertyDetail} />
             <Box h={4} />
             <TabSection

@@ -26,7 +26,7 @@ Material Design guidelines. For example, [./textStyles.ts](./textStyles.ts) cont
 styles, which you can use like:
 
 ```js
-<Text textStyle='caption'>This is a caption</Text>
+<Text textStyle='Caption1'>This is Caption1 text</Text>
 ```
 
 We also extended Chakra's color system with `primary` (Coral-like) and `secondary` 
