@@ -1,8 +1,9 @@
 import type React from 'react';
+import { Box, Icon, Progress, Button, Flex, Text } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
+import { Title2, Headline } from '../../../../components/text';
 import { HiOutlineCash } from 'react-icons/hi';
 import { FiX } from 'react-icons/fi';
-import { Box, Icon, Progress, Heading, Button, Flex } from '@chakra-ui/react';
 
 export const Step2 = ({
   nextStep,
@@ -22,45 +23,47 @@ export const Step2 = ({
         </Box>
       </Flex>
       <Progress value={15} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-      <Heading fontSize="sm" m="0">
-        Understanding investor Cash Flow
-      </Heading>
-      <Heading fontSize="2xl">Where does the cash flow come from?</Heading>
-      <Heading fontSize="md">The cash flow is derived from these sources:</Heading>
-      <Flex mb={4}>
-        <Box>
-          <Icon
-            p={2}
-            h={10}
-            w={10}
-            borderRadius="xl"
-            layerStyle="selectionBox"
-            as={HiOutlineCash}
-          />
-        </Box>
-        <Box ml={4}>
-          <Heading fontSize="md">Rental Revenue</Heading>
-          <Heading fontSize="sm">tenants pay rent</Heading>
-        </Box>
-      </Flex>
-      <Flex mb={4}>
-        <Box>
-          <Icon p={2} h={10} w={10} borderRadius="xl" layerStyle="selectionBox" as={BsGraphUp} />
-        </Box>
-        <Box ml={4}>
-          <Heading fontSize="md">Realized Appreciation</Heading>
-          <Heading fontSize="sm">
-            The property increases in value, and we choose to return cash to investors through a
-            higher loan balance.
-          </Heading>
-        </Box>
-      </Flex>
-      <Box layerStyle="selectionBox" p={4}>
-        <Heading fontSize="sm" m="0">
-          Note: at the sale of the property, you&#39;ll also receive (as a part of your cash flow)
-          any unused cash that had been reserved to cover specific cash outflows, such as
-          maintenance and repair.
-        </Heading>
+      <Title2 my={4}>Where does Investor Cash Flow comes from?</Title2>
+      <Text textStyle="Body1" fontWeight="500">
+        The cash flow is derived from these sources:
+      </Text>
+      <Box my={6}>
+        <Flex mb={4}>
+          <Box>
+            <Icon
+              p={2}
+              h={10}
+              w={10}
+              borderRadius="xl"
+              layerStyle="selectionBox"
+              as={HiOutlineCash}
+            />
+          </Box>
+          <Box ml={4}>
+            <Headline>Rental Revenue</Headline>
+            <Text textStyle="Body2">tenants pay rent</Text>
+          </Box>
+        </Flex>
+        <Flex>
+          <Box>
+            <Icon p={2} h={10} w={10} borderRadius="xl" layerStyle="selectionBox" as={BsGraphUp} />
+          </Box>
+          <Box ml={4}>
+            <Headline>Realized Appreciation</Headline>
+            <Text textStyle="Body2">
+              The property increases in value, and we choose to return cash to investors through a
+              higher loan balance.
+            </Text>
+          </Box>
+        </Flex>
+      </Box>
+      <Box layerStyle="selectionBox" borderRadius="2xl" p={4} mt={8}>
+        <Headline>Note</Headline>
+        <Text textStyle="Body2">
+          At the sale of the property, you&#39;ll also receive (as a part of your cash flow) any
+          unused cash that had been reserved to cover specific cash outflows, such as maintenance
+          and repair.
+        </Text>
       </Box>
       <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
         <Icon as={BsChevronLeft} />

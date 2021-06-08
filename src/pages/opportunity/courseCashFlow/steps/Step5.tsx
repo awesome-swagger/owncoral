@@ -1,7 +1,19 @@
 import type React from 'react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-import { Box, Icon, Progress, Heading, Button, Center, Flex, Link } from '@chakra-ui/react';
+import {
+  Box,
+  Icon,
+  Progress,
+  Button,
+  Center,
+  Flex,
+  Link,
+  Text,
+  UnorderedList,
+  ListItem,
+} from '@chakra-ui/react';
+import { Title2 } from '../../../../components/text';
 import { OverAllCashChart } from '../charts';
 
 export const Step5 = ({
@@ -22,22 +34,31 @@ export const Step5 = ({
         </Box>
       </Flex>
       <Progress value={60} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-      <Heading fontSize="sm" m="0">
-        Understanding investor Cash Flow
-      </Heading>
-      <Heading fontSize="2xl">Overall Cash Flow</Heading>
-      <Heading fontSize="md">
+      <Title2 my={4}>Overall Cash Flow</Title2>
+      <Text textStyle="Body1" fontWeight="500">
         The overall cash flow includes distributions that come from both rental revenue and realized
-        appreciation, as well as any remaining reserve (unused cash that had been reserved).
-      </Heading>
+        appreciation, as well as any remaining reserve.
+      </Text>
       <Center w="100%" h={200}>
         <OverAllCashChart />
       </Center>
-      <Heading fontSize="sm">
-        You’ll notice that the very little cash flow comes in the form of income — this is by
-        design. Income tax is the highest tax rate, and thus the least desirable one.
-      </Heading>
-      <Link>Learn more on depreciation</Link>
+      <UnorderedList d="flex" justifyContent="space-between" px={2} mb={4} mt={-6}>
+        <ListItem>
+          <Text textStyle="Body2">Operating Cash Flow</Text>
+        </ListItem>
+        <ListItem>
+          <Text textStyle="Body2">Recognized appreciation</Text>
+        </ListItem>
+      </UnorderedList>
+      <Text textStyle="Body2">
+        The overall cash flow includes distributions that come from both rental revenue and realized
+        appreciation, as well as any remaining reserve.
+      </Text>
+      <Link>
+        <Text textStyle="Body1" mt={4}>
+          Learn more on depreciation
+        </Text>
+      </Link>
 
       <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
         <Icon as={BsChevronLeft} />

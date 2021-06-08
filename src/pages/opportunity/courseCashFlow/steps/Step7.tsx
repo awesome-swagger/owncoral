@@ -1,7 +1,8 @@
 import type React from 'react';
+import { Box, Icon, Progress, Button, Center, Flex, Text } from '@chakra-ui/react';
+import { Title2, Subhead } from '../../../../components/text';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-import { Box, Icon, Progress, Heading, Button, Center, Flex } from '@chakra-ui/react';
 import { TotalReturnChart } from '../charts';
 
 export const Step7 = ({
@@ -22,24 +23,11 @@ export const Step7 = ({
         </Box>
       </Flex>
       <Progress value={87} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-      <Heading fontSize="sm" m="0">
-        Understanding investor Cash Flow
-      </Heading>
-      <Heading fontSize="2xl">Total Return</Heading>
-      <Heading fontSize="md">
+      <Title2 my={4}>Total Return</Title2>
+      <Text textStyle="Body1" fontWeight="500">
         The total return shows you what’s taxable, and at what rate. Capital gains tax is a much
-        lower rate than income tax -
-      </Heading>
-      <Heading fontSize="sm">
-        The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
-        tax on your cash flow.
-      </Heading>
-      <Heading fontSize="sm">
-        The expenses and depreciation of the building are tax write-offs that offset the rental
-        revenue of the property. This means that you&#39;ll likely pay very little (if any) income
-        tax on your cash flow.
-      </Heading>
+        lower rate than income tax.
+      </Text>
       <Flex
         p={4}
         w="fit-content"
@@ -52,17 +40,11 @@ export const Step7 = ({
         left="50%"
         top={6}
       >
-        <Heading fontSize="xs" m="0">
-          TAXABLE INCOME
-        </Heading>
-        <Heading fontSize="md" fontWeight="bold" m="0" pos="relative">
-          $3k
-        </Heading>
+        <Subhead>TAXABLE INCOME</Subhead>
+        <Subhead fontWeight="bold">$3k</Subhead>
       </Flex>
-      <Center w="100%" h="200px">
-        <Heading pos="absolute" fontSize="2xl" fontWeight="bold">
-          $181
-        </Heading>
+      <Center w="100%" h="220px">
+        <Title2 pos="absolute">$181</Title2>
         <TotalReturnChart />
       </Center>
       <Flex justifyContent="space-between" pos="relative" top="-65px" px={4}>
@@ -77,12 +59,8 @@ export const Step7 = ({
           position="relative"
           flexDirection="column"
         >
-          <Heading fontSize="xs" m="0">
-            CAPITAL GAINS
-          </Heading>
-          <Heading fontSize="md" fontWeight="bold" m="0">
-            $78k
-          </Heading>
+          <Subhead>CAPITAL GAINS</Subhead>
+          <Subhead fontWeight="bold">$78k</Subhead>
         </Box>
         <Box
           p={4}
@@ -94,12 +72,8 @@ export const Step7 = ({
           position="relative"
           flexDirection="column"
         >
-          <Heading fontSize="xs" m="0">
-            RETURN OF CAPITAL
-          </Heading>
-          <Heading fontSize="md" fontWeight="bold" m="0">
-            $10k
-          </Heading>
+          <Subhead m="0">RETURN OF CAPITAL</Subhead>
+          <Subhead fontWeight="bold">$10k</Subhead>
         </Box>
       </Flex>
       <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>

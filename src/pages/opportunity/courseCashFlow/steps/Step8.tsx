@@ -1,7 +1,8 @@
 import type React from 'react';
 import { BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-import { Box, Icon, Progress, Heading, Button, Flex, Center } from '@chakra-ui/react';
+import { Box, Icon, Progress, Button, Flex, Center, Text } from '@chakra-ui/react';
+import { Title2 } from '../../../../components/text';
 
 export const Step8 = ({
   nextStep,
@@ -21,64 +22,62 @@ export const Step8 = ({
         </Box>
       </Flex>
       <Progress value={100} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-      <Heading fontSize="sm" m="0">
-        Understanding investor Cash Flow
-      </Heading>
-      <Heading fontSize="2xl">Takeaways</Heading>
-      <Flex>
-        <Box>
-          <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
-            <Heading fontSize="md">1</Heading>
-          </Center>
-        </Box>
-        <Box pl={4}>
-          <Heading fontSize="md">Investor cash flow is actual cash</Heading>
-          <Heading fontSize="sm">
-            It’s deposited into your bank account on a monthly basis and derived from rental
-            revenue, realized appreciation, and any unused reserves.
-          </Heading>
-        </Box>
-      </Flex>
-      <Flex>
-        <Box>
-          <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
-            <Heading fontSize="md">2</Heading>
-          </Center>
-        </Box>
-        <Box pl={4}>
-          <Heading fontSize="md">It is generally smooth and consistent</Heading>
-          <Heading fontSize="sm">While it increase a bit each year</Heading>
-        </Box>
-      </Flex>
-      <Flex>
-        <Box>
-          <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
-            <Heading fontSize="md">3</Heading>
-          </Center>
-        </Box>
-        <Box pl={4}>
-          <Heading fontSize="md">Cash flow from realized appreciation is generally spiky</Heading>
-          <Heading fontSize="sm">
-            Larger distributions about one time every 5 years. It comes from the sale of the
-            property or through a refinancing/construction earn-out (our bank acknowledges the
-            increased property value, and provides incremental debt).
-          </Heading>
-        </Box>
-      </Flex>
-      <Flex>
-        <Box>
-          <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
-            <Heading fontSize="md">4</Heading>
-          </Center>
-        </Box>
-        <Box pl={4}>
-          <Heading fontSize="md">It’s extremely tax-efficient as a result of depreciation</Heading>
-          <Heading fontSize="sm">
-            Most isn&#39;t taxed at the income tax rate, but is instead deferred to capital gains (a
-            much lower tax rate).
-          </Heading>
-        </Box>
-      </Flex>
+      <Title2 my={4}>Takeaways</Title2>
+      <Box my={4}>
+        <Flex mt={4}>
+          <Box>
+            <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
+              <Title2>1</Title2>
+            </Center>
+          </Box>
+          <Box pl={4}>
+            <Text textStyle="Body1" fontWeight="600">
+              Investor cash flow is actual cash disbursed to investors
+            </Text>
+            <Text mt={2} textStyle="Body2">
+              It’s deposited into your bank account on a monthly basis and derived from rental
+              revenue, realized appreciation, and any unused reserves.
+            </Text>
+          </Box>
+        </Flex>
+        <Flex mt={4}>
+          <Box>
+            <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
+              <Title2>2</Title2>
+            </Center>
+          </Box>
+          <Box pl={4}>
+            <Text textStyle="Body1" fontWeight="600">
+              It comes from two main sources
+            </Text>
+            <Text mt={2} textStyle="Body2">
+              <span style={{ fontWeight: 600 }}>Rental revenue:</span> which typically creates
+              smooth and consistent cash flow (increasing a bit each year).
+            </Text>
+            <Text mt={2} textStyle="Body2">
+              <span style={{ fontWeight: 600 }}>Realized appreciation:</span> which typically
+              generally spiky cash flow (larger distributions about one time every 5 years from
+              refinancing/construction earn-out or the sale of the property)
+            </Text>
+          </Box>
+        </Flex>
+        <Flex mt={4}>
+          <Box>
+            <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
+              <Title2>3</Title2>
+            </Center>
+          </Box>
+          <Box pl={4}>
+            <Text textStyle="Body1" fontWeight="600">
+              It is extremely tax-efficient
+            </Text>
+            <Text mt={2} textStyle="Body2">
+              Thanks to depreciation; most isn't taxed at the income tax rate, but is instead
+              deferred to capital gains (a much lower tax rate).
+            </Text>
+          </Box>
+        </Flex>
+      </Box>
       <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
         <Icon as={BsChevronLeft} />
       </Button>
