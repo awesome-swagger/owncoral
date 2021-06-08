@@ -12,15 +12,41 @@ export const GlossaryTab = ({
   handleGlossary: React.Dispatch<React.SetStateAction<any>>;
 }) => {
   const [searchValue, setSearchValue] = useState('');
-
   const FilteredValue = GlossaryData.filter(
     (val) =>
       searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
+  let firstLetter = '';
+
+  const sortedValue =
+    FilteredValue.length !== 0 ? (
+      FilteredValue.map((val: any, index: Number) => {
+        const name = val.name;
+        return (
+          <>
+            {name.charAt(0) != firstLetter ? (
+              <Headline className="sibling" my={4}>
+                {((firstLetter = name.charAt(0)), firstLetter)}
+              </Headline>
+            ) : (
+              ''
+            )}
+            <Option key={`option-${index}`} onClick={() => handleGlossary(val)}>
+              {name}
+            </Option>
+          </>
+        );
+      })
+    ) : (
+      <Box textAlign="center" mt={12}>
+        <Title3>Ooops!</Title3>
+        <Headline>Sorry, there is no result that fit with your search</Headline>
+      </Box>
+    );
 
   return (
     <Box>
-      <InputGroup mb={4}>
+      <InputGroup mt={4}>
         <InputLeftElement>
           <Icon as={BsSearch} />
         </InputLeftElement>
@@ -30,20 +56,7 @@ export const GlossaryTab = ({
           value={searchValue}
         />
       </InputGroup>
-      <Box borderRadius="2xl" overflow="hidden">
-        {FilteredValue.length !== 0 ? (
-          FilteredValue.map((val: any, index: Number) => (
-            <Option key={`option-${index}`} onClick={() => handleGlossary(val)}>
-              <Headline>{val.name}</Headline>
-            </Option>
-          ))
-        ) : (
-          <Box textAlign="center" mt={12}>
-            <Title3>Ooops!</Title3>
-            <Headline>Sorry, there is no result that fit with your search</Headline>
-          </Box>
-        )}
-      </Box>
+      <Box>{sortedValue}</Box>
     </Box>
   );
 };

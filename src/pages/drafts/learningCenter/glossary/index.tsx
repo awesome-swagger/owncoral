@@ -24,7 +24,7 @@ export const Glossary = ({
           <Text textStyle="Body1">{data.howToCalculate}</Text>
         </ListItem>
       </UnorderedList>
-      <Box layerStyle="card" p={4} my={4}>
+      <Box layerStyle="card" p={4} my={4} borderRadius="2xl">
         <Caption1 mb={2}>Example</Caption1>
         <Text textStyle="Body1">{data.example}</Text>
       </Box>
