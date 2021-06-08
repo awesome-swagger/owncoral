@@ -7,11 +7,13 @@ export const Option = ({
   onClick,
   icon = true,
   borderRadius = false,
+  className = '',
 }: {
   children: ReactNode;
   onClick?: any;
   icon?: boolean;
   borderRadius?: boolean;
+  className: string;
 }) => {
   return (
     <Flex
@@ -25,6 +27,7 @@ export const Option = ({
       alignItems="center"
       textStyle="h5"
       onClick={onClick}
+      className={className}
     >
       {children}
       {icon ? (

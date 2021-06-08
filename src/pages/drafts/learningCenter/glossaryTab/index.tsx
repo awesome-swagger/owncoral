@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 
@@ -25,13 +25,13 @@ export const GlossaryTab = ({
         return (
           <>
             {name.charAt(0) != firstLetter ? (
-              <Headline className="sibling" my={4}>
+              <Headline className="title" my={4}>
                 {((firstLetter = name.charAt(0)), firstLetter)}
               </Headline>
             ) : (
               ''
             )}
-            <Option key={`option-${index}`} onClick={() => handleGlossary(val)}>
+            <Option key={`option-${index}`} onClick={() => handleGlossary(val)} className="option">
               {name}
             </Option>
           </>
@@ -43,6 +43,15 @@ export const GlossaryTab = ({
         <Headline>Sorry, there is no result that fit with your search</Headline>
       </Box>
     );
+
+  useEffect(() => {
+    let titles = document.getElementsByClassName('title');
+    for (let i = 0; i < titles.length; i++) {
+      let title = titles[i];
+      const classNames = title.previousElementSibling?.getAttribute('class') + ' ' + ' last_option';
+      title.previousElementSibling?.setAttribute('class', classNames);
+    }
+  }, [searchValue]);
 
   return (
     <Box>
