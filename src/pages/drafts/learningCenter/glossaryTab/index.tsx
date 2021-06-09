@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-
 import { Option } from '../../../../components';
 import { Headline, Title3 } from '../../../../components/text';
 import { GlossaryData } from '../../../../lib/glossaryData';
+import './style.css';
 
 export const GlossaryTab = ({
   handleGlossary,
