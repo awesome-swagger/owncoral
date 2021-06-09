@@ -12,7 +12,7 @@ export const BackToProperty = ({
   prevStep: React.MouseEventHandler;
 }) => {
   return (
-    <Box>
+    <Box pb={40}>
       <Icon as={BsChevronLeft} cursor="pointer" onClick={prevStep} />
       <Center pt={20} flexDirection="column">
         <Image src={Frame} alt="frame" />
