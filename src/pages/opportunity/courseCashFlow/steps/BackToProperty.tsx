@@ -17,7 +17,7 @@ export const BackToProperty = ({
       <Icon as={BsChevronLeft} cursor="pointer" onClick={prevStep} />
       <Center pt={20} flexDirection="column">
         <Image src={Frame} alt="frame" />
-        <Title2 textAlign="center">Well done! Investor Cash Flow lesson completed!</Title2>{' '}
+        <Title2 textAlign="center">Well done! Investor Cash Flow lesson completed!</Title2>
       </Center>
 
       <Box w="calc(100% - 2rem)" pos="absolute" bottom={6}>
