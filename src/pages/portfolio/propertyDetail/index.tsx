@@ -118,7 +118,7 @@ const PortfolioPropertyDetail = ({
               p={1}
               as={FiX}
               cursor="pointer"
-              onClick={() => history.goBack()}
+              onClick={() => history.push('/portfolio')}
               borderRadius="full"
               boxShadow="base"
               layerStyle="iconColor"
