@@ -1,12 +1,19 @@
 /* eslint-disable max-params */
+// eslint-disable-next-line import/no-duplicates
 import type React from 'react';
+// eslint-disable-next-line import/no-duplicates
+import type { ReactElement } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
-import { AspectRatio, Icon, Image, Spinner, useColorModeValue } from '@chakra-ui/react';
+import { AspectRatio, Icon, Image, useColorModeValue } from '@chakra-ui/react';
 
 import './style.css';
 
-export const ImgSlider = ({ images }: { images: any }) => {
+type ImgSliderPropsT = {
+  images: string[];
+  fallback?: ReactElement;
+};
+export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const BulletColor = useColorModeValue('gray', 'white');
 
   const arrowStyles: React.CSSProperties = {
@@ -90,7 +97,7 @@ export const ImgSlider = ({ images }: { images: any }) => {
     >
       {images.map((src: string, idx: number) => (
         <AspectRatio ratio={4 / 3} key={idx}>
-          <Image src={src} alt={`Property image #${idx}`} />
+          <Image src={src} alt={`Property image #${idx}`} fallback={fallback} />
         </AspectRatio>
       ))}
     </Carousel>

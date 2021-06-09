@@ -9,10 +9,10 @@ import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
   ErrorFallback,
+  MapBox,
   MyErrorHandler,
   PropertyCard,
   ProtectedRoute,
-  MapBox,
 } from './components';
 import Portfolio from './pages/portfolio';
 import AppTheme from './theme';
@@ -30,9 +30,6 @@ const Property = lazy(() => import('./pages/opportunity'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
-const TermsAndConditions = lazy(() => import('./pages/termsAndConditions'));
-const PrivacyPolicy = lazy(() => import('./pages/privacyPolicy'));
-
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
@@ -64,12 +61,11 @@ function App() {
                 </ProtectedRoute>
 
                 <ProtectedRoute path="/portfolio" component={Portfolio} />
+
                 <ProtectedRoute exact path="/property/:address" component={Property} />
 
                 <ProtectedRoute exact path="/profile" component={Profile} />
 
-                <ProtectedRoute exact path="/terms-and-conditions" component={TermsAndConditions} />
-                <ProtectedRoute exact path="/privacy-policy" component={PrivacyPolicy} />
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
                 {process.env.NODE_ENV === 'development' && (

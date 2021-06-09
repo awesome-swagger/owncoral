@@ -10,7 +10,7 @@ export const LearningTabs = ({
   handleGlossary: React.Dispatch<React.SetStateAction<any>>;
 }) => (
   <Box>
-    <Title1 my={4}> Academy</Title1>
+    <Title1 my={4}> Academy </Title1>
     <Tabs defaultIndex={1}>
       <TabList>
         <Tab>Crash Courses</Tab>

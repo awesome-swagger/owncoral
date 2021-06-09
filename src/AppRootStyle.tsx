@@ -8,6 +8,7 @@ const AppRootStyle = css`
   body {
     min-width: 360px; /* smallest common device size */
     overscroll-behavior: none;
+    overflow-x: hidden;
   }
 
   /*

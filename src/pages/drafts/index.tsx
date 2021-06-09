@@ -31,6 +31,7 @@ const Drafts = () => {
       <ProtectedRoute exact path={draftsRootUrl + '/transaction'} component={Transaction} />
 
       <ProtectedRoute exact path={draftsRootUrl + '/learning-center'} component={LearningCenter} />
+
       <ProtectedRoute exact path={draftsRootUrl + '/course-cash'} component={CourseCashFlow} />
     </Switch>
   );

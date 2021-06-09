@@ -231,7 +231,7 @@ export const TopRankingProperties = ({
                 ) : (
                   <Fragment>
                     <Icon as={FiChevronDown} />
-                    &nbsp;`See all ${properties.length} properties`
+                    &nbsp;See all {properties.length} properties
                   </Fragment>
                 )}
               </Button>
