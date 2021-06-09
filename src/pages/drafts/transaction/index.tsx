@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react';
 import { LinkBankAccount } from './linkBankAccount';
 import { ConfirmTransaction } from './confirmTransaction';

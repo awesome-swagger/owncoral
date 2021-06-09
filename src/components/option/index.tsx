@@ -13,7 +13,7 @@ export const Option = ({
   onClick?: any;
   icon?: boolean;
   borderRadius?: boolean;
-  className: string;
+  className?: string;
 }) => {
   return (
     <Flex

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiExternalLink, FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
 import { Link as BrowserLink, useHistory, useParams } from 'react-router-dom';
@@ -21,11 +21,10 @@ import {
   Text,
   useToast,
   VStack,
-  useDisclosure,
 } from '@chakra-ui/react';
 
 import NoTextLogo from '../../assets/coral_logo-notext.svg';
-import { BackBtn, Container, TermsAndPrivacyModal } from '../../components';
+import { BackBtn, Container } from '../../components';
 import { Subhead, Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { Caption1 } from '../../theme/textStyles';
@@ -41,7 +40,6 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
   const { resetToken } = useParams<{ resetToken: string }>();
   const [showPassword, setShowPassword] = useState(false);
   const [agreementChecked, setAgreementChecked] = useState(!isWelcome);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [tokenState, setTokenState] = useState<TokenStateT>('loading');
   const toast = useToast();
@@ -207,7 +205,6 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
               Set New Password and Log In
             </Button>
           </Box>
-          <TermsAndPrivacyModal activePopup={'privacy'} isOpen={isOpen} onClose={onClose} />
         </form>
       )}
     </Container>

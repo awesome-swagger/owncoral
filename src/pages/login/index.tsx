@@ -86,7 +86,7 @@ function LoginForm() {
 
   return (
     <form
-      style={{ width: '100%' }}
+      css={{ width: '100%' }}
       onSubmit={handleSubmit(async (data: FormContents) => {
         const query = new URLSearchParams(location.search);
 
@@ -167,7 +167,7 @@ function LoginForm() {
               <br />
               <br />
 
-              <ChakraLink to="https://www.owncoral.com/early-access" isExternal>
+              <ChakraLink href="https://www.owncoral.com/early-access" isExternal>
                 Don&apos;t have an account?
                 <br />
                 Join the waitlist

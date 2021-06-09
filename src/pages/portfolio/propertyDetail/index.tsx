@@ -92,10 +92,21 @@ const PortfolioPropertyDetail = ({
               src={propertyDetail.imageUrls[0]}
               alt={propertyDetail.name + ' Image'}
               w="100%"
-              fallback={<Spinner />}
+              fallback={
+                <Center>
+                  <Spinner />
+                </Center>
+              }
             />
           ) : (
-            <ImgSlider images={propertyDetail.imageUrls} />
+            <ImgSlider
+              images={propertyDetail.imageUrls}
+              fallback={
+                <Center>
+                  <Spinner />
+                </Center>
+              }
+            />
           )}
           <Box p={6} pt={0}>
             <Icon
