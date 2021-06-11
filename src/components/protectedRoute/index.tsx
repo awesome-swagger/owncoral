@@ -14,7 +14,7 @@ import { Loading } from '../loading';
  * we will try to query for the current user multiple times.
  */
 export const ProtectedRoute: React.FC<RouteProps> = (props) => {
-  const [user, setUser, locationHistory, setLocationHistory] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   const [isLoading, setIsLoading] = useState<boolean>(!user);
   const location = useLocation();
 
@@ -23,7 +23,6 @@ export const ProtectedRoute: React.FC<RouteProps> = (props) => {
       getUser(setUser, setIsLoading);
     }
   }, [setUser, user]);
-  useEffect(() => setLocationHistory([...locationHistory, location.pathname]), []);
 
   return isLoading ? (
     <Loading />

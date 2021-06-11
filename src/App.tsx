@@ -37,7 +37,6 @@ const headerStyles = { h1, h2: XLargeTitle, h3: LargeTitle, h4: Title1, h5: Titl
 
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);
-  const [locationHistory, setLocationHistory] = useState<Array<String>>([]);
 
   const splashScreen = document.getElementById('splash-screen');
   if (splashScreen && !splashScreen.hasAttribute('hidden')) {
@@ -46,7 +45,7 @@ function App() {
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
-      <UserContext.Provider value={[user, setUser, locationHistory, setLocationHistory]}>
+      <UserContext.Provider value={[user, setUser]}>
         <ChakraProvider theme={AppTheme}>
           <Global styles={[AppRootStyle, headerStyles]} />
           <DebugPanel />

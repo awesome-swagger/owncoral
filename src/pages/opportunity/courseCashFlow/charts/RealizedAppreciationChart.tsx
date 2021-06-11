@@ -41,7 +41,7 @@ export type BarsProps = {
 };
 
 function Chart({ width, height, events = false }: BarsProps) {
-  const barColor = useColorModeValue('#4E504F', '#4E504F');
+  const barColor = useColorModeValue('#4E504F', '#F1F1F1');
   // bounds
   const xMax = width;
   const yMax = height - verticalMargin;
@@ -68,6 +68,12 @@ function Chart({ width, height, events = false }: BarsProps) {
   );
   const formatDate = (t: Date) => format(t, 'M');
 
+  const tickLabelProps = () =>
+    ({
+      fill: barColor,
+      fontSize: 12,
+    } as const);
+
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <Group top={verticalMargin / 2}>
@@ -88,7 +94,15 @@ function Chart({ width, height, events = false }: BarsProps) {
             />
           );
         })}
-        <AxisBottom scale={xScale} tickFormat={formatDate} top={yMax} />;
+        <AxisBottom
+          scale={xScale}
+          tickFormat={formatDate}
+          top={yMax}
+          tickLabelProps={tickLabelProps}
+          tickStroke="none"
+          stroke={barColor}
+        />
+        ;
       </Group>
     </svg>
   );

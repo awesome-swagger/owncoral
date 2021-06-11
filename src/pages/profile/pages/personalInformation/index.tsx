@@ -25,19 +25,22 @@ import type { SplitDateT } from '../../../../components/daypicker';
 import { Title3 } from '../../../../components/text';
 import { UserContext } from '../../../../userContext';
 import { splitDate, updateCurrentUser } from './lib';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // We're using mostly uncontrolled components (Editables have their own state),
   // but we still load UserContext here to keep initial and post-edit state
-  const [user, setUser, locationHistory] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   const [birthDate, setBirthDate] = useState<SplitDateT | null>(null);
   const [isAccredited, setIsAccredited] = useState<boolean>(false);
   const history = useHistory();
-  const prevLocation = locationHistory[locationHistory.length - 1];
+  let query = useQuery();
 
-  console.log('prev location', prevLocation);
   useEffect(() => {
     if (user !== null) {
       setBirthDate(splitDate(parseISO(user.birthDate)));
@@ -71,7 +74,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn
-        handleClick={() => (prevLocation !== '/profile' ? history.goBack() : goBack())}
+        handleClick={() => (query.get('overlay') === '1' ? history.goBack() : goBack())}
         pos="absolute"
       />
       <Title3 mb={6} mt="0" mx="0" align="center">
