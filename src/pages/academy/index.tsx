@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { Fragment,useState } from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
-import { Container } from '../../components';
+import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
 import ComingSoon from '../coming-soon';
 import { Glossary } from './glossary';
@@ -11,13 +12,16 @@ function Academy() {
   const [glossaryData, setGlossaryData] = useState<any>(null);
 
   return (
-    <Container>
-      {glossaryData ? (
-        <Glossary data={glossaryData} handleGlossary={setGlossaryData} />
-      ) : (
-        <AcademyTabs handleGlossary={setGlossaryData} />
-      )}
-    </Container>
+    <Fragment>
+      <NavBar />
+      <Container>
+        {glossaryData ? (
+          <Glossary data={glossaryData} handleGlossary={setGlossaryData} />
+        ) : (
+          <AcademyTabs handleGlossary={setGlossaryData} />
+        )}
+      </Container>
+    </Fragment>
   );
 }
 
