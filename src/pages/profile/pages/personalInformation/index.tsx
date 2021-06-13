@@ -1,4 +1,5 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FiEdit2 } from 'react-icons/fi';
 import type { UserProfileT } from '../../../../shared-fullstack/types';
 import {
@@ -20,16 +21,12 @@ import {
 import { parseISO } from 'date-fns';
 import * as R from 'remeda';
 
+import { useQuery } from '../../../../lib/useQuery';
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
 import { Title3 } from '../../../../components/text';
 import { UserContext } from '../../../../userContext';
 import { splitDate, updateCurrentUser } from './lib';
-import { useHistory, useLocation } from 'react-router-dom';
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);

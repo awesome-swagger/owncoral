@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Heading, Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
+import { Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
 
 import { Title2 } from '../../components/text';
 import { formatFinancial } from '../../lib/financialFormatter';

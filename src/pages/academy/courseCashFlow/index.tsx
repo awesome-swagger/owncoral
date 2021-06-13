@@ -19,7 +19,11 @@ const CourseCashFlow = ({
   return (
     wrapper ? (
       <Container h={{ base: 'calc(100vh - 4rem)', md: '700px' }}>
-        <StepComp prevStep={prevStep} nextStep={nextStep} handleClose={handleClose} />
+        <StepComp
+          prevStep={prevStep}
+          nextStep={nextStep}
+          handleClose={()=>window.location.href='/academy'} // eslint-disable-line no-return-assign
+        />
       </Container>
     ) : (
       <StepComp prevStep={prevStep} nextStep={nextStep} handleClose={handleClose} />

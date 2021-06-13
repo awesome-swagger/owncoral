@@ -28,7 +28,7 @@ const navLinks = [
   },
   {
     name: 'Academy',
-    url: '/coming-soon/academy',
+    url: '/academy',
     icon: Academy,
   },
   {

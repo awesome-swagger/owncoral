@@ -24,6 +24,7 @@ const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
 const ForgotPassword = lazy(() => import('./pages/login/ForgotPassword'));
 const NewPassword = lazy(() => import('./pages/login/NewPassword'));
 
+const LearningCenter = lazy(() => import('./pages/academy/learningCenter'));
 const Drafts = lazy(() => import('./pages/drafts'));
 const Profile = lazy(() => import('./pages/profile'));
 const Property = lazy(() => import('./pages/opportunity'));
@@ -67,6 +68,8 @@ function App() {
                 <ProtectedRoute exact path="/profile" component={Profile} />
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
+
+                <ProtectedRoute path="/academy" component={LearningCenter} />
 
                 {process.env.NODE_ENV === 'development' && (
                   <Route path="/signup">

@@ -1,6 +1,7 @@
 import type React from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
+import ComingSoon from '../../../coming-soon';
 import { Title1 } from '../../../../components/text';
 import { GlossaryTab } from '../glossaryTab';
 
@@ -18,7 +19,7 @@ export const LearningTabs = ({
       </TabList>
       <TabPanels>
         <TabPanel>
-          <Title1>Crash Courses</Title1>
+          <ComingSoon isPage={false} />
         </TabPanel>
         <TabPanel>
           <GlossaryTab handleGlossary={handleGlossary} />

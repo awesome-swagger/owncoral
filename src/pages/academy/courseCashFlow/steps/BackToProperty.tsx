@@ -32,9 +32,9 @@ export const BackToProperty = ({
         overflow="hidden"
       >
         <Box p={4}>
-          <Text textStyle="Body1" fontWeight="600">
+          {/* <Text textStyle="Body1" fontWeight="600">
             Equity and Debt
-          </Text>
+          </Text> */}
           <Text textStyle="Body2">Crash course</Text>
         </Box>
         <Icon as={Academy} h="auto" w="auto" />
