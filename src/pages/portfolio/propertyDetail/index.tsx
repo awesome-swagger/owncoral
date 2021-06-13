@@ -3,7 +3,7 @@ import { AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
-import { Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Center, Icon, Image, Spinner, AspectRatio, useToast } from '@chakra-ui/react';
 
 import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
 import { Container, ImgSlider } from '../../../components';
@@ -84,30 +84,25 @@ const PortfolioPropertyDetail = ({
     <Container padding={0}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
-          {propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0 ? (
-            <ImgSlider images={[Placeholder, Placeholder, Placeholder]} />
-          ) : propertyDetail.imageUrls.length === 1 ? (
-            <Image
-              borderTopRadius={{ base: 'none', md: '2xl' }}
-              src={propertyDetail.imageUrls[0]}
-              alt={propertyDetail.name + ' Image'}
-              w="100%"
-              fallback={
-                <Center>
-                  <Spinner />
-                </Center>
-              }
-            />
-          ) : (
-            <ImgSlider
-              images={propertyDetail.imageUrls}
-              fallback={
-                <Center>
-                  <Spinner />
-                </Center>
-              }
-            />
-          )}
+          <AspectRatio ratio={4 / 3}>
+            {
+              <Image
+                borderTopRadius={{ base: 'none', md: '2xl' }}
+                src={
+                  propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0
+                    ? Placeholder
+                    : propertyDetail.imageUrls[0]
+                }
+                alt={propertyDetail.name + ' Image'}
+                w="100%"
+                fallback={
+                  <Center>
+                    <Spinner />
+                  </Center>
+                }
+              />
+            }
+          </AspectRatio>
           <Box p={6} pt={0}>
             <Icon
               pos="absolute"

@@ -1,35 +1,23 @@
 import type React from 'react';
-import { Fragment,useState } from 'react';
+import { Fragment } from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
 import ComingSoon from '../coming-soon';
-import { Glossary } from './glossary';
 import { GlossaryTab } from './glossary/GlossaryTab';
 
 function Academy() {
-  const [glossaryData, setGlossaryData] = useState<any>(null);
-
   return (
     <Fragment>
       <NavBar />
       <Container>
-        {glossaryData ? (
-          <Glossary data={glossaryData} handleGlossary={setGlossaryData} />
-        ) : (
-          <AcademyTabs handleGlossary={setGlossaryData} />
-        )}
+        <AcademyTabs />
       </Container>
     </Fragment>
   );
 }
 
-const AcademyTabs = ({
-  handleGlossary,
-}: {
-  handleGlossary: React.Dispatch<React.SetStateAction<any>>;
-}) => (
+const AcademyTabs = () => (
   <Box>
     <Title1 my={4}> Academy </Title1>
     <Tabs defaultIndex={1}>
@@ -42,7 +30,7 @@ const AcademyTabs = ({
           <ComingSoon isPage={false} />
         </TabPanel>
         <TabPanel>
-          <GlossaryTab handleGlossary={handleGlossary} />
+          <GlossaryTab />
         </TabPanel>
       </TabPanels>
     </Tabs>

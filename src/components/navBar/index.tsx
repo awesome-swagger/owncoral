@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
 
-import Academy from '../../assets/academy.svg';
+import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';

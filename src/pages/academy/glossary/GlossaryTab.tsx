@@ -1,17 +1,15 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { BsSearch } from 'react-icons/bs';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import './style.css';
-
-import { Option } from '../../../components';
 import { Headline, Title3 } from '../../../components/text';
 import { GlossaryData } from '../../../lib/glossaryData';
+import { useHistory } from 'react-router-dom';
+import { Option } from '../../../components';
+import { BsSearch } from 'react-icons/bs';
 
-export const GlossaryTab = ({
-  handleGlossary,
-}: {
-  handleGlossary: React.Dispatch<React.SetStateAction<any>>;
-}) => {
+import './style.css';
+
+export const GlossaryTab = () => {
+  const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
   const FilteredValue = GlossaryData.filter(
     (val) =>
@@ -36,7 +34,11 @@ export const GlossaryTab = ({
               {((firstLetter = val.name.charAt(0)), firstLetter)}
             </Headline>
           )}
-          <Option key={`option-${index}`} onClick={() => handleGlossary(val)} className="option">
+          <Option
+            key={`option-${index}`}
+            onClick={() => history.push(`/academy/${val.name}`)}
+            className="option"
+          >
             {val.name}
           </Option>
         </Fragment>

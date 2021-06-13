@@ -1,50 +1,49 @@
-import type React from 'react';
 import { Fragment } from 'react';
 import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { BackBtn, Container } from '../../../components';
+import { Caption1, Headline, Title2, Title3 } from '../../../components/text';
+import { useParams, useHistory } from 'react-router-dom';
+import { GlossaryData } from '../../../lib/glossaryData';
 
-import { BackBtn } from '../../../components';
-import { Caption1, Headline, Title2 } from '../../../components/text';
+export const Glossary = () => {
+  const history = useHistory();
+  const { title } = useParams<{ title: string }>();
 
-export const Glossary = ({
-  data,
-  handleGlossary,
-}: {
-  data: any;
-  handleGlossary: React.Dispatch<React.SetStateAction<any>>;
-}) => {
+  const FilteredData = GlossaryData.filter((val) => val.name.includes(title))[0];
+
   return (
-    <Box>
-      <BackBtn handleClick={() => handleGlossary(null)} />
-      <Title2 my={4}>{data.name}</Title2>
-      {data.description && data.description !== '' && (
-        <Text textStyle="Body1">{data.description}</Text>
+    <Container>
+      <BackBtn handleClick={() => history.goBack()} />
+      <Title2 my={4}>{FilteredData.name}</Title2>
+      {FilteredData.description && FilteredData.description !== '' && (
+        <Text textStyle="Body1">{FilteredData.description}</Text>
       )}
-      {data.howToCalculate && data.howToCalculate !== '' && (
+      {FilteredData.howToCalculate && FilteredData.howToCalculate !== '' && (
         <Fragment>
           <Headline mt={6} mb={2}>
             How to Calculate
           </Headline>
           <UnorderedList mx={4}>
             <ListItem>
-              <Text textStyle="Body1">{data.howToCalculate}</Text>
+              <Text textStyle="Body1">{FilteredData.howToCalculate}</Text>
             </ListItem>
           </UnorderedList>
         </Fragment>
       )}
-      {data.example && data.example !== '' && (
+      {FilteredData.example && FilteredData.example !== '' && (
         <Box layerStyle="card" p={4} my={4} borderRadius="2xl">
           <Caption1 mb={2}>Example</Caption1>
-          <Text textStyle="Body1">{data.example}</Text>
+          <Text textStyle="Body1">{FilteredData.example}</Text>
         </Box>
       )}
-      {data.note && data.note !== '' && (
+      {FilteredData.note && FilteredData.note !== '' && (
         <Fragment>
           <Headline mt={6} mb={2}>
             Other notes
           </Headline>
-          <Text textStyle="Body1">{data.note}</Text>
+          <Text textStyle="Body1">{FilteredData.note}</Text>
         </Fragment>
       )}
-    </Box>
+    </Container>
   );
 };

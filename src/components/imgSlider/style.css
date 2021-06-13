@@ -187,13 +187,11 @@
 }
 .carousel .slide {
   min-width: 100%;
-  margin: 0;
   position: relative;
   text-align: center;
 }
 .carousel .slide img {
   vertical-align: top;
-  border: 0;
 }
 .carousel .slide iframe {
   display: inline-block;
@@ -227,7 +225,7 @@
 }
 .carousel .control-dots {
   position: absolute;
-  bottom: 0;
+  bottom: -1rem;
   margin: 10px 0;
   padding: 0;
   text-align: center;
@@ -236,7 +234,7 @@
 }
 @media (min-width: 960px) {
   .carousel .control-dots {
-    bottom: 0;
+    bottom: -1rem;
   }
 }
 .carousel .control-dots .dot {

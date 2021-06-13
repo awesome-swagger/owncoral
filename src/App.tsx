@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
+import { Glossary } from './pages/academy/glossary';
 
 import AppRootStyle from './AppRootStyle';
 import {
@@ -24,7 +25,7 @@ const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
 const ForgotPassword = lazy(() => import('./pages/login/ForgotPassword'));
 const NewPassword = lazy(() => import('./pages/login/NewPassword'));
 
-const LearningCenter = lazy(() => import('./pages/academy/learningCenter'));
+const LearningCenter = lazy(() => import('./pages/academy'));
 const Drafts = lazy(() => import('./pages/drafts'));
 const Profile = lazy(() => import('./pages/profile'));
 const Property = lazy(() => import('./pages/opportunity'));
@@ -69,7 +70,8 @@ function App() {
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
-                <ProtectedRoute path="/academy" component={LearningCenter} />
+                <ProtectedRoute exact path="/academy" component={LearningCenter} />
+                <ProtectedRoute path="/academy/:title" component={Glossary} />
 
                 {process.env.NODE_ENV === 'development' && (
                   <Route path="/signup">
