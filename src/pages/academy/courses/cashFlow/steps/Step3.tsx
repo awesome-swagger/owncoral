@@ -5,8 +5,8 @@ import {
   Progress,
   Button,
   Center,
+  Divider,
   Flex,
-  Link,
   Text,
   UnorderedList,
   ListItem,
@@ -14,10 +14,10 @@ import {
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
 
-import { Title2 } from '../../../../components/text';
-import { OverAllCashChart } from '../charts';
+import { Title2 } from '../../../../../components/text';
+import { RentalRevenueChart } from '../charts';
 
-export const Step5 = ({
+export const Step3 = ({
   nextStep,
   prevStep,
   handleClose,
@@ -30,36 +30,32 @@ export const Step5 = ({
     <Flex justifyContent="space-between" alignItems="center">
       <Icon as={FiX} cursor="pointer" onClick={handleClose} />
       <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-        4/7
+        2/7
       </Box>
     </Flex>
-    <Progress value={60} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-    <Title2 my={4}>Overall Cash Flow</Title2>
+    <Progress value={30} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+    <Title2 my={4}>Rental revenue</Title2>
     <Text textStyle="Body1" fontWeight="500">
-      The overall cash flow includes distributions that come from both rental revenue and realized
-      appreciation, as well as any remaining reserve.
+      Rental revenue is the first way to make money with Coral properties. Rent is collected from
+      tenants, and expenses are paid. What remains is the profit.
     </Text>
-    <Center w="100%" h={200}>
-      <OverAllCashChart />
+    <Divider mt={2} />
+    <Divider pos="relative" top={12} />
+    <Center w="100%" h={175}>
+      <RentalRevenueChart />
     </Center>
-    <UnorderedList d="flex" justifyContent="space-between" px={2} mb={4} mt={-6}>
+    <UnorderedList d="flex" justifyContent="center" mb={4} mt={-6}>
       <ListItem>
         <Text textStyle="Body2">Operating Cash Flow</Text>
       </ListItem>
-      <ListItem>
-        <Text textStyle="Body2">Recognized appreciation</Text>
-      </ListItem>
     </UnorderedList>
-    <Text textStyle="Body2">
-      The overall cash flow includes distributions that come from both rental revenue and realized
-      appreciation, as well as any remaining reserve.
-    </Text>
-    <Link>
-      <Text textStyle="Body1" mt={4}>
-        Learn more on depreciation
-      </Text>
-    </Link>
 
+    <Text textStyle="Body2">
+      Cash flow derived from rental revenue typically looks pretty smooth for Coral properties,
+      growing year over year as a result of renovations or general market trends (annual increases),
+      or improved operational efficiencies. Occasionally, we may plan for vacancies so that we can
+      renovate units.
+    </Text>
     <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />
     </Button>

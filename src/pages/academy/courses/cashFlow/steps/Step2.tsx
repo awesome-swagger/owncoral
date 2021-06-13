@@ -4,7 +4,7 @@ import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
 import { HiOutlineCash } from 'react-icons/hi';
 
-import { Title2, Headline } from '../../../../components/text';
+import { Title2, Headline } from '../../../../../components/text';
 
 export const Step2 = ({
   nextStep,
@@ -61,8 +61,8 @@ export const Step2 = ({
       <Headline>Note</Headline>
       <Text textStyle="Body2">
         At the sale of the property, you&#39;ll also receive (as a part of your cash flow) any
-        unused cash that had been reserved to cover specific cash outflows, such as maintenance
-        and repair.
+        unused cash that had been reserved to cover specific cash outflows, such as maintenance and
+        repair.
       </Text>
     </Box>
     <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>

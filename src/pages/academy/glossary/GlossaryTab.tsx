@@ -3,9 +3,9 @@ import { BsSearch } from 'react-icons/bs';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import './style.css';
 
-import { Option } from '../../../../components';
-import { Headline, Title3 } from '../../../../components/text';
-import { GlossaryData } from '../../../../lib/glossaryData';
+import { Option } from '../../../components';
+import { Headline, Title3 } from '../../../components/text';
+import { GlossaryData } from '../../../lib/glossaryData';
 
 export const GlossaryTab = ({
   handleGlossary,
@@ -13,8 +13,9 @@ export const GlossaryTab = ({
   handleGlossary: React.Dispatch<React.SetStateAction<any>>;
 }) => {
   const [searchValue, setSearchValue] = useState('');
-  const FilteredValue = GlossaryData.filter((val) =>
-    searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+  const FilteredValue = GlossaryData.filter(
+    (val) =>
+      searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
   let firstLetter = '';
 
@@ -25,7 +26,10 @@ export const GlossaryTab = ({
         <Headline>Sorry, there is no result that fit with your search</Headline>
       </Box>
     ) : (
-      FilteredValue.map((val: any, index: Number) => ( // eslint-disable-line no-return-assign
+      FilteredValue.map((
+        val: any,
+        index: Number, // eslint-disable-line no-return-assign
+      ) => (
         <Fragment key={`${index}`}>
           {val.name.charAt(0) !== firstLetter && (
             <Headline className="title" my={4}>

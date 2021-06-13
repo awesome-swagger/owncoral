@@ -2,9 +2,9 @@ import type React from 'react';
 import { Box, Icon, Button, Flex, Center, Image, Text } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 
-import { Title2 } from '../../../../components/text';
-import Academy from '../../../../assets/academy-1.svg';
-import Frame from '../../../../assets/Frame615.png';
+import { Title2 } from '../../../../../components/text';
+import Academy from '../../../../../assets/academy-1.svg';
+import Frame from '../../../../../assets/Frame615.png';
 
 export const BackToProperty = ({
   handleClose,

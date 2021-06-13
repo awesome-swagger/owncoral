@@ -3,7 +3,7 @@ import { Box, Icon, Progress, Button, Center, Flex, Text } from '@chakra-ui/reac
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
 
-import { Title2, Subhead } from '../../../../components/text';
+import { Title2, Subhead } from '../../../../../components/text';
 import { TotalReturnChart } from '../charts';
 
 export const Step7 = ({
@@ -25,8 +25,8 @@ export const Step7 = ({
     <Progress value={87} my={6} colorScheme="primary" borderRadius="full" size="sm" />
     <Title2 my={4}>Total Return</Title2>
     <Text textStyle="Body1" fontWeight="500">
-      The total return shows you what’s taxable, and at what rate. Capital gains tax is a much
-      lower rate than income tax.
+      The total return shows you what’s taxable, and at what rate. Capital gains tax is a much lower
+      rate than income tax.
     </Text>
     <Flex
       p={4}

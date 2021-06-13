@@ -13,7 +13,7 @@ import {
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
 
-import { Title2 } from '../../../../components/text';
+import { Title2 } from '../../../../../components/text';
 import { RealizedAppreciationChart } from '../charts';
 
 export const Step4 = ({
@@ -46,11 +46,11 @@ export const Step4 = ({
       </ListItem>
     </UnorderedList>
     <Text textStyle="Body2">
-      Selling the property is one way to realize the gains from an increase in property value.
-      Coral also realizes this appreciation by working with our lender to recognize the increased
-      value of the property and increase our loan balance accordingly. This happens in the form of
-      a construction earn-out (where we receive additional funds from our lender upon completion
-      of construction) or refinancing (a new loan).
+      Selling the property is one way to realize the gains from an increase in property value. Coral
+      also realizes this appreciation by working with our lender to recognize the increased value of
+      the property and increase our loan balance accordingly. This happens in the form of a
+      construction earn-out (where we receive additional funds from our lender upon completion of
+      construction) or refinancing (a new loan).
     </Text>
     <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />

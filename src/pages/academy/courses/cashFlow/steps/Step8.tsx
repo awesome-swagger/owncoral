@@ -3,7 +3,7 @@ import { Box, Icon, Progress, Button, Flex, Center, Text } from '@chakra-ui/reac
 import { BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
 
-import { Title2 } from '../../../../components/text';
+import { Title2 } from '../../../../../components/text';
 
 export const Step8 = ({
   nextStep,
@@ -51,8 +51,8 @@ export const Step8 = ({
             It comes from two main sources
           </Text>
           <Text mt={2} textStyle="Body2">
-            <span style={{ fontWeight: 600 }}>Rental revenue:</span> which typically creates
-            smooth and consistent cash flow (increasing a bit each year).
+            <span style={{ fontWeight: 600 }}>Rental revenue:</span> which typically creates smooth
+            and consistent cash flow (increasing a bit each year).
           </Text>
           <Text mt={2} textStyle="Body2">
             <span style={{ fontWeight: 600 }}>Realized appreciation:</span> which typically
@@ -72,8 +72,8 @@ export const Step8 = ({
             It is extremely tax-efficient
           </Text>
           <Text mt={2} textStyle="Body2">
-            Thanks to depreciation; most isn’t taxed at the income tax rate, but is instead
-            deferred to capital gains (a much lower tax rate).
+            Thanks to depreciation; most isn’t taxed at the income tax rate, but is instead deferred
+            to capital gains (a much lower tax rate).
           </Text>
         </Box>
       </Flex>
