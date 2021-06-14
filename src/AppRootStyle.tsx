@@ -2,13 +2,15 @@ import { css } from '@emotion/react';
 
 const AppRootStyle = css`
   html {
-    // overscroll-behavior: none;
+    overflow-x: hidden;
   }
 
   body {
+    width: 100vw;
     min-width: 360px; /* smallest common device size */
     overscroll-behavior: none;
     overflow-x: hidden;
+    position: relative;
   }
 
   /*

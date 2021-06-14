@@ -51,13 +51,15 @@ if (process.env.NODE_ENV === 'development') {
   });
 }
 
+const navBarTopBreakpoint = 'lg';
+
 /*
   Layout
     Children are inlined into top left area. Logo is centered, but
     can be pushed rightward by children (children can take up to 50% area).
 
-    Below md breakpoint, nav buttons are shown in a bottom bar.
-    At md and above, nav buttons are inlined into top right.
+    Below /navBarTopBreakpoint/ breakpoint, nav buttons are shown in a bottom bar.
+    At /navBarTopBreakpoint/ and above, nav buttons are inlined into top right.
 
 
   Styling
@@ -102,7 +104,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
           <Flex flexBasis={0} flexGrow={1}>
             <Spacer />
             <HStack h="100%" pr={3} justify="right" align="center" spacing={3}>
-              <Box h="100%" display={{ base: 'none', md: 'block' }}>
+              <Box h="100%" display={{ base: 'none', [navBarTopBreakpoint]: 'block' }}>
                 <NavButtons currentPageName={currentPageName} />
               </Box>
               {/* TODO: profile menu */}
@@ -115,7 +117,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 
       {/* This goes at bottom of content to match footer height */}
       <Portal>
-        <Box display={{ md: 'none' }} h={footerHeight} />
+        <Box display={{ [navBarTopBreakpoint]: 'none' }} h={footerHeight} />
       </Portal>
 
       {/* Provide a default bgColor backing transparency in dark mode */}
@@ -126,7 +128,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         w="100%"
         boxShadow="xs"
         h={footerHeight}
-        display={{ md: 'none' }}
+        display={{ [navBarTopBreakpoint]: 'none' }}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
         zIndex={1}
@@ -141,15 +143,22 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 
 function NavButtons(props: { currentPageName: string | null }) {
   const [isTouch] = useMediaQuery('(pointer: coarse)');
+  const navBarTopBreakpoint = 'lg';
 
   return (
-    <Flex h="100%" as="nav">
+    <Flex
+      as="nav"
+      w={{ base: '100%', [navBarTopBreakpoint]: 'unset' }}
+      maxW={{ base: '450px', [navBarTopBreakpoint]: 'unset' }}
+      h="100%"
+    >
       {navLinks.map(({ name, url, icon }) => (
         <Flex
           as={Link}
           to={url}
           direction="column"
           align="center"
+          flex="1 1 0px"
           key={name}
           p={1}
           m={0}
