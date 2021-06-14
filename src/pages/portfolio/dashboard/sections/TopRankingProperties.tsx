@@ -67,6 +67,11 @@ export const TopRankingProperties = ({
   showAll,
   portfolioRootUrl,
 }: TopRankingPropertiesPropsT) => {
+  const propertyDetailUrl = (property: PortfolioDashboardPropertyT) =>
+    `${portfolioRootUrl}/investment?property=${addressToUrlFragment(property.address)}&entity=${
+      property.legalEntityId
+    }`;
+
   const visibleProperties =
     properties !== null
       ? R.sortBy(properties, (p: PortfolioDashboardPropertyT) => p.currentEquity || -1)
@@ -108,19 +113,14 @@ export const TopRankingProperties = ({
                 pos="sticky"
                 w={propertyColWidth}
                 backgroundColor={themeBackgroundColor}
+                zIndex={1}
               >
                 <VStack layerStyle="muiCardColor" spacing={rowSpacing}>
                   <Flex w={propertyColWidth} h={8} alignItems="center">
                     <Overline>Property</Overline>
                   </Flex>
                   {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
-                    <ChakraLink
-                      key={idx}
-                      as={BrowserLink}
-                      to={`${portfolioRootUrl}/investment?property=${addressToUrlFragment(
-                        property.address,
-                      )}&entity=${property.legalEntityId}`}
-                    >
+                    <ChakraLink key={idx} as={BrowserLink} to={propertyDetailUrl(property)}>
                       <Center w={propertyColWidth} h={propertyRowHeight}>
                         <Image
                           src={property.iconUrl || Placeholder2}
@@ -134,7 +134,7 @@ export const TopRankingProperties = ({
                 </VStack>
               </Box>
 
-              <VStack align="stretch" zIndex={-1} spacing={rowSpacing}>
+              <VStack align="stretch" zIndex={0} spacing={rowSpacing}>
                 <Flex h={8} alignItems="center">
                   <Overline w="10rem" px={3}>
                     Address
@@ -169,54 +169,53 @@ export const TopRankingProperties = ({
                 </Flex>
 
                 {visibleProperties.map((property: PortfolioDashboardPropertyT, idx) => (
-                  <LinkBox key={idx}>
-                    <Flex h={propertyRowHeight} alignItems="center">
-                      <Text w="10rem" px={3} isTruncated>
-                        <LinkOverlay
-                          as={BrowserLink}
-                          to={`${portfolioRootUrl}/investment?property=${addressToUrlFragment(
-                            property.address,
-                          )}&entity=${property.legalEntityId}`}
-                        >
-                          {property.address.line1}
-                        </LinkOverlay>
-                      </Text>
+                  <LinkBox
+                    w="100%"
+                    display="flex"
+                    key={idx}
+                    h={propertyRowHeight}
+                    alignItems="center"
+                  >
+                    <Text fontWeight="600" w="10rem" px={3} isTruncated>
+                      <LinkOverlay as={BrowserLink} to={propertyDetailUrl(property)}>
+                        {property.address.line1}
+                      </LinkOverlay>
+                    </Text>
 
-                      <Text w="6rem" textAlign="right">
-                        {property.currentEquity
-                          ? '$' + formatFinancial(property.currentEquity)
-                          : 'N/A'}
-                      </Text>
+                    <Text w="6rem" textAlign="right">
+                      {property.currentEquity
+                        ? '$' + formatFinancial(property.currentEquity)
+                        : 'N/A'}
+                    </Text>
 
-                      {/* <Text w="6rem" textAlign="right"> */}
-                      {/*  {property.legalEntityName} */}
-                      {/* </Text> */}
+                    {/* <Text w="6rem" textAlign="right"> */}
+                    {/*  {property.legalEntityName} */}
+                    {/* </Text> */}
 
-                      <Text w="6rem" textAlign="right">
-                        ${formatFinancial(property.sumDistributionRental)}
-                      </Text>
+                    <Text w="6rem" textAlign="right">
+                      ${formatFinancial(property.sumDistributionRental)}
+                    </Text>
 
-                      <Text w="6rem" textAlign="right">
-                        ${formatFinancial(property.sumDistributionSpecial)}
-                      </Text>
+                    <Text w="6rem" textAlign="right">
+                      ${formatFinancial(property.sumDistributionSpecial)}
+                    </Text>
 
-                      <Text w="6rem" textAlign="right">
-                        ${formatFinancial(property.sumDistributionTotal)}
-                      </Text>
+                    <Text w="6rem" textAlign="right">
+                      ${formatFinancial(property.sumDistributionTotal)}
+                    </Text>
 
-                      <Text w="6rem" textAlign="right">
-                        {property.currentEquity
-                          ? (
-                              (property.sumDistributionTotal / property.currentEquity) *
-                              100
-                            ).toFixed() + '%'
-                          : 'N/A'}
-                      </Text>
+                    <Text w="6rem" textAlign="right">
+                      {property.currentEquity
+                        ? (
+                            (property.sumDistributionTotal / property.currentEquity) *
+                            100
+                          ).toFixed() + '%'
+                        : 'N/A'}
+                    </Text>
 
-                      <Text w="6rem" textAlign="right">
-                        {property.months !== null ? property.months : 'N/A'}
-                      </Text>
-                    </Flex>
+                    <Text w="6rem" textAlign="right">
+                      {property.months !== null ? property.months : 'N/A'}
+                    </Text>
                   </LinkBox>
                 ))}
               </VStack>

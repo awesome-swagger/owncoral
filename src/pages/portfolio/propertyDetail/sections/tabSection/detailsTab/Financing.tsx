@@ -16,7 +16,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
           propertyDetail.mdlPurchasePrice +
             propertyDetail.mdlClosingCost +
             (propertyDetail?.mdlOriginationFee || 0) +
-            (propertyDetail?.mdlCapexReserve || 0),
+            (propertyDetail?.mdlCapexReserve || 0) +
+            (propertyDetail?.mdlRenovation || 0),
         )
       : 'N/A';
 

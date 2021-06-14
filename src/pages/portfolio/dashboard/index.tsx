@@ -25,9 +25,8 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
   return (
     <Container showColorModeButton={false}>
       <Box>
-        <BackBtn top={6} left={6} pos="absolute" handleClick={() => history.goBack()} />
         <Center mb={4}>
-          <LargeTitle>Dashboard</LargeTitle>
+          <LargeTitle>Portfolio</LargeTitle>
         </Center>
         <TotalDistribution properties={properties} />
         <Divider mb={4} />

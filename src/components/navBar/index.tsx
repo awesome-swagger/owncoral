@@ -72,19 +72,22 @@ const navBarTopBreakpoint = 'lg';
 export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
+  const headerHeight = 16;
   const footerHeight = 20;
   const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
 
   return (
     <Fragment>
+      {/* Spacer to match fixed header */}
+      <Box h={headerHeight} />
       {/* Provide a default bgColor backing transparency in dark mode */}
       <Box
         as="header"
-        pos="sticky"
+        pos="fixed"
         top={0}
         w="100%"
         boxShadow="xs"
-        h={16}
+        h={headerHeight}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
         zIndex={5}

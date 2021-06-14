@@ -8,7 +8,7 @@ const OldPortfolio = lazy(() => import('./oldPortfolio'));
 const PortfolioSplash = lazy(() => import('./portfolio/splash'));
 const Transaction = lazy(() => import('./transaction'));
 
-const CourseCashFlow = lazy(() => import('../academy/courseCashFlow'));
+const CourseCashFlow = lazy(() => import('../academy/courses/cashFlow'));
 
 const Drafts = () => {
   const { url: draftsRootUrl } = useRouteMatch();

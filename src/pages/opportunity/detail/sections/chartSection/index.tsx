@@ -1,14 +1,15 @@
 import {
   Box,
-  Image,
   Heading,
+  Image,
   Modal,
-  ModalOverlay,
   ModalContent,
+  ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import ChartImg from '../../../../../assets/Chart.png';
-import CourseCashFlow from '../../../../academy/courseCashFlow';
+import CourseCashFlow from '../../../../academy/courses/cashFlow';
 
 export const ChartSection = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();

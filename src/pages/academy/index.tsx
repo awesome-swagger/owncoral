@@ -1,5 +1,4 @@
-import type React from 'react';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';

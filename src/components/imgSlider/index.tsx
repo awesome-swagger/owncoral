@@ -1,12 +1,5 @@
 /* eslint-disable max-params */
-// eslint-disable-next-line import/no-duplicates
-import type React from 'react';
-import { useState } from 'react';
-// eslint-disable-next-line import/no-duplicates
-import type { ReactElement } from 'react';
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
-
-import { Carousel } from 'react-responsive-carousel';
+import React, { ReactElement, useState } from 'react';
 import {
   Icon,
   Image,
@@ -18,13 +11,16 @@ import {
   useDisclosure,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { Carousel } from 'react-responsive-carousel';
 
 import './style.css';
 
 type ImgSliderPropsT = {
-  images: any;
+  images: string[];
   fallback?: ReactElement;
 };
+
 export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const BulletColor = useColorModeValue('gray', 'white');
   const [image, setImage] = useState('');

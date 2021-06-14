@@ -9,11 +9,13 @@ const ComingSoon = ({ isPage = true }:{ isPage?: boolean }) => {
   return isPage ? (
     <Fragment>
       <NavBar />
-      <Center w="100%" h="100vh" pos="fixed" top={0}>
+      <Center w="100%" h="100vh" pos="fixed" top={0} p={[10, 14]}>
         <VStack align="center">
           <Icon as={BsGear} h={{ base: 28, md: 40 }} w={{ base: 28, md: 40 }} />
           <Title2>Coming Soon</Title2>
-          <Text textStyle="Body1">Stay tuned, we&rsquo;re hard at work on this feature!</Text>
+          <Text textStyle="Body1" align="center">
+            Stay tuned, we&rsquo;re hard at work on this feature!
+          </Text>
         </VStack>
       </Center>
     </Fragment>

@@ -3,7 +3,7 @@ import { AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
-import { Box, Center, Icon, Image, Spinner, AspectRatio, useToast } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
 import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
 import { Container, ImgSlider } from '../../../components';
@@ -85,8 +85,7 @@ const PortfolioPropertyDetail = ({
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
           <AspectRatio ratio={4 / 3}>
-            {
-              <Image
+            <Image
                 borderTopRadius={{ base: 'none', md: '2xl' }}
                 src={
                   propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0
@@ -101,7 +100,6 @@ const PortfolioPropertyDetail = ({
                   </Center>
                 }
               />
-            }
           </AspectRatio>
           <Box p={6} pt={0}>
             <Icon
@@ -115,7 +113,6 @@ const PortfolioPropertyDetail = ({
               cursor="pointer"
               onClick={() => history.push('/portfolio')}
               borderRadius="full"
-              boxShadow="base"
               layerStyle="iconColor"
             />
             {/*

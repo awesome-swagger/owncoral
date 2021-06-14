@@ -1,19 +1,19 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { Headline, Title3 } from '../../../components/text';
-import { GlossaryData } from '../../../lib/glossaryData';
+import { useState, useEffect, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Option } from '../../../components';
+import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
+import { Headline, Title3 } from '../../../components/text';
+import { Option } from '../../../components';
 
+import { GlossaryData } from '../../../lib/glossaryData';
+import { titleToUrlFragment } from './lib';
 import './style.css';
 
 export const GlossaryTab = () => {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
-  const FilteredValue = GlossaryData.filter(
-    (val) =>
-      searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+  const FilteredValue = GlossaryData.filter((val) =>
+    searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
   let firstLetter = '';
 
@@ -24,11 +24,8 @@ export const GlossaryTab = () => {
         <Headline>Sorry, there is no result that fit with your search</Headline>
       </Box>
     ) : (
-      FilteredValue.map((
-        val: any,
-        index: Number, // eslint-disable-line no-return-assign
-      ) => (
-        <Fragment key={`${index}`}>
+      FilteredValue.map(( val: any, index: number) => ( // eslint-disable-line no-return-assign
+        <Fragment key={index}>
           {val.name.charAt(0) !== firstLetter && (
             <Headline className="title" my={4}>
               {((firstLetter = val.name.charAt(0)), firstLetter)}
@@ -36,7 +33,7 @@ export const GlossaryTab = () => {
           )}
           <Option
             key={`option-${index}`}
-            onClick={() => history.push(`/academy/${val.name}`)}
+            onClick={() => history.push(`/academy/glossary/${titleToUrlFragment(val.name)}`)}
             className="option"
           >
             {val.name}

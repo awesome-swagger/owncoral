@@ -1,15 +1,18 @@
 import { Fragment } from 'react';
 import { Box, ListItem, Text, UnorderedList } from '@chakra-ui/react';
+import { useParams, useHistory } from 'react-router-dom';
 import { BackBtn, Container } from '../../../components';
 import { Caption1, Headline, Title2, Title3 } from '../../../components/text';
-import { useParams, useHistory } from 'react-router-dom';
 import { GlossaryData } from '../../../lib/glossaryData';
+import { titleToUrlFragment } from './lib';
 
 export const Glossary = () => {
   const history = useHistory();
   const { title } = useParams<{ title: string }>();
 
-  const FilteredData = GlossaryData.filter((val) => val.name.includes(title))[0];
+  const FilteredData = GlossaryData.find(val => titleToUrlFragment(val.name).includes(title));
+
+  if(!FilteredData) return null;
 
   return (
     <Container>
