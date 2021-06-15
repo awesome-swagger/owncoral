@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
-import ComingSoon from '../coming-soon';
 import { GlossaryTab } from './glossary/GlossaryTab';
+import { Courses } from './courses';
 
 function Academy() {
   return (
@@ -25,8 +25,10 @@ const AcademyTabs = () => (
         <Tab>Glossary</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel>
-          <ComingSoon isPage={false} />
+        <TabPanel p="0">
+          <Box>
+            <Courses />
+          </Box>
         </TabPanel>
         <TabPanel>
           <GlossaryTab />
