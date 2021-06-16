@@ -14,7 +14,7 @@ export const ColorModeButton = forwardRef<Omit<IconButtonProps, 'aria-label'>, '
   (props, ref) => {
     const { colorMode, toggleColorMode } = useColorMode();
     const [isTouch] = useMediaQuery('(pointer: coarse)');
-    const isDev = process.env.NODE_ENV === 'development';
+    const isDev = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development';
 
     return isDev ? (
       <IconButton

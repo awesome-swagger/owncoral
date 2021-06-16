@@ -12,7 +12,7 @@ export const TopSection = ({ propertyDetail }: TopSectionPropsT) => {
     propertyDetail.numBeds ? propertyDetail.numBeds + ' beds' : null,
     propertyDetail.numBaths ? propertyDetail.numBaths + ' baths' : null,
     propertyDetail.areaLiving
-      ? propertyDetail.areaLiving.toFixed(0).toLocaleString() + ' ' + propertyDetail.areaUnits
+      ? Math.round(propertyDetail.areaLiving).toLocaleString() + ' ' + propertyDetail.areaUnits
       : null,
   ]
     .filter((s) => s !== null)

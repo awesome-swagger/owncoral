@@ -6,7 +6,7 @@ import { UserContext } from '../../userContext';
 
 export function DebugPanel() {
   const [user] = useContext(UserContext);
-  return process.env.NODE_ENV === 'development' ? (
+  return import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' ? (
     <div
       css={css`
         background-color: rgba(0, 0, 0, 0);

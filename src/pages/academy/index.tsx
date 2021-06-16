@@ -1,21 +1,18 @@
-import React, { Fragment } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { Fragment } from 'react';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
-import { GlossaryTab } from './glossary/GlossaryTab';
 import { Courses } from './courses';
+import { GlossaryTab } from './glossary/GlossaryTab';
 
-function Academy() {
-  return (
-    <Fragment>
-      <NavBar />
-      <Container>
-        <AcademyTabs />
-      </Container>
-    </Fragment>
-  );
-}
+const Academy = () => (
+  <Fragment>
+    <NavBar />
+    <Container>
+      <AcademyTabs />
+    </Container>
+  </Fragment>
+);
 
 const AcademyTabs = () => {
   const { tab } = useParams<{ tab: string }>();

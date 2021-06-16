@@ -79,26 +79,26 @@ function App() {
                 <ProtectedRoute path="/academy/glossary/:title" component={Glossary} />
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <Route path="/signup">
                     <SignupFlow />
                   </Route>
                 )}
 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <Route path="/investment-profile">
                     <InvestmentProfileFlow />
                   </Route>
                 )}
 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <ProtectedRoute path="/drafts" component={Drafts} />
                 )}
 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <ProtectedRoute exact path="/property-card" component={PropertyCard} />
                 )}
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <ProtectedRoute
                     exact
                     path="/opportunities/detail"
@@ -106,7 +106,7 @@ function App() {
                   />
                 )}
 
-                {process.env.NODE_ENV === 'development' && (
+                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <ProtectedRoute exact path="/map-box" component={MapBox} />
                 )}
 

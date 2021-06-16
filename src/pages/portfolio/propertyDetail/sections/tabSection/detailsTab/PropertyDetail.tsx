@@ -7,14 +7,11 @@ import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { Card } from '../../../../../../components';
 import { Headline, Subhead, Title3 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
-import { DummyData } from '../../../../../../lib/portfolioData';
 
 type PropertyDetailPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
-  const dummyData = DummyData;
-
   return (
     <Box>
       <Title3 my={6}>Property details</Title3>
@@ -53,12 +50,16 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
           <Icon as={FiSquare} verticalAlign="text-top" />
         </Box>
         <Box>
-          <Headline>
-            {propertyDetail.areaLiving} {propertyDetail.areaUnits} of living space
-          </Headline>
-          <Text>
-            {propertyDetail.areaLotSize} {propertyDetail.areaUnits} lot size
-          </Text>
+          {propertyDetail.areaLiving !== null && (
+            <Headline>
+              {propertyDetail.areaLiving.toLocaleString()} {propertyDetail.areaUnits}
+            </Headline>
+          )}
+          {propertyDetail.areaLotSize !== null && (
+            <Text>
+              {propertyDetail.areaLotSize.toLocaleString()} {propertyDetail.areaUnits} lot size
+            </Text>
+          )}
         </Box>
       </Flex>
       {/* <Flex mb={2} minH={10}> */}

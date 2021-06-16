@@ -43,7 +43,7 @@ const navLinks = [
   },
 ];
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development') {
   navLinks.push({
     name: 'Drafts',
     url: '/drafts',

@@ -12,7 +12,7 @@ const Glossary = () => {
     titleToUrlFragment(val.name).includes(title),
   );
 
-  if (!FilteredData) return null;
+  if(!FilteredData) return null;
 
   return (
     <Container>

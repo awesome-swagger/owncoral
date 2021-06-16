@@ -24,7 +24,7 @@ const Portfolio = () => {
 
   const [adminSelectedUser, setAdminSelectedUser] = useState<string | null>(
     // TODO: remove this dev hack
-    process.env.NODE_ENV === 'development'
+    import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development'
       ? '6bb57093-39b5-4bc2-a2f0-42502a5a2688' // Ben Lin
       : user?.id || null,
   );

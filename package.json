@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "snowpack dev",
+    "start-prod": "SNOWPACK_PUBLIC_CORAL_ENV=production yarn start",
     "build": "snowpack build",
     "test": "web-test-runner \"src/**/*.test.{ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",

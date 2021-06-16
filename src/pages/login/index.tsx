@@ -82,7 +82,7 @@ function LoginForm() {
   const toast = useToast();
   const location = useLocation();
 
-  const isDev = process.env.NODE_ENV === 'development';
+  const isDev = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development';
 
   return (
     <form
