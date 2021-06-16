@@ -2,9 +2,9 @@ import { useParams, useHistory } from 'react-router-dom';
 import { BackBtn, Container } from '../../../components';
 import { Title2 } from '../../../components/text';
 import { GlossaryData } from '../../../lib/glossaryData';
-import { titleToUrlFragment } from './lib';
+import { titleToUrlFragment } from '../lib';
 
-export const Glossary = () => {
+const Glossary = () => {
   const history = useHistory();
   const { title } = useParams<{ title: string }>();
 
@@ -24,3 +24,5 @@ export const Glossary = () => {
     </Container>
   );
 };
+
+export default Glossary;

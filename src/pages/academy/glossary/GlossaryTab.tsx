@@ -6,14 +6,15 @@ import { Headline, Title3 } from '../../../components/text';
 import { Option } from '../../../components';
 
 import { GlossaryData } from '../../../lib/glossaryData';
-import { titleToUrlFragment } from './lib';
+import { titleToUrlFragment } from '../lib';
 import './style.css';
 
 export const GlossaryTab = () => {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
-  const FilteredValue = GlossaryData.filter((val) =>
-    searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+  const FilteredValue = GlossaryData.filter(
+    (val) =>
+      searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
   );
   let firstLetter = '';
 
@@ -24,7 +25,10 @@ export const GlossaryTab = () => {
         <Headline>Sorry, there is no result that fit with your search</Headline>
       </Box>
     ) : (
-      FilteredValue.map(( val: any, index: number) => ( // eslint-disable-line no-return-assign
+      FilteredValue.map((
+        val: any,
+        index: number, // eslint-disable-line no-return-assign
+      ) => (
         <Fragment key={index}>
           {val.name.charAt(0) !== firstLetter && (
             <Headline className="title" my={4}>

@@ -19,7 +19,7 @@ function Academy() {
 const AcademyTabs = () => (
   <Box>
     <Title1 my={4}> Academy </Title1>
-    <Tabs defaultIndex={1}>
+    <Tabs>
       <TabList>
         <Tab>Crash Courses</Tab>
         <Tab>Glossary</Tab>

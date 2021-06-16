@@ -18,7 +18,6 @@ import AppTheme from './theme';
 import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from './theme/textStyles';
 import { UserContext } from './userContext';
 
-import { Glossary } from './pages/academy/glossary';
 import Portfolio from './pages/portfolio';
 
 const Login = lazy(() => import('./pages/login'));
@@ -33,6 +32,8 @@ const Property = lazy(() => import('./pages/opportunity'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
+const Glossary = lazy(() => import('./pages/academy/glossary'));
+const CourseDetail = lazy(() => import('./pages/academy/courses/courseDetail'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
@@ -73,6 +74,7 @@ function App() {
 
                 <ProtectedRoute exact path="/academy" component={LearningCenter} />
                 <ProtectedRoute path="/academy/glossary/:title" component={Glossary} />
+                <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
 
                 {process.env.NODE_ENV === 'development' && (
                   <Route path="/signup">
