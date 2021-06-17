@@ -13,10 +13,11 @@ import {
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
-import { BackBtn,Container } from '../../../../components';
-import { Headline,Title3 } from '../../../../components/text';
+import { BackBtn, Container } from '../../../../components';
+import { Headline, Title3 } from '../../../../components/text';
 
 export const ConfirmTransaction = ({
   handleTransaction,
@@ -26,6 +27,7 @@ export const ConfirmTransaction = ({
   const [agreement, setAgreement] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const history = useHistory();
+  const highLightColor = useColorModeValue('secondary.700', 'secondary.300');
 
   return (
     <Container>
@@ -51,7 +53,7 @@ export const ConfirmTransaction = ({
           <Flex alignItems="center">
             <Checkbox onChange={() => setAgreement(!agreement)} />
             <Title3 ml={4}>I agree with the</Title3>
-            <Title3 layerStyle="highLightColor" cursor="pointer" ml={1} onClick={() => onOpen()}>
+            <Title3 color={highLightColor} cursor="pointer" ml={1} onClick={() => onOpen()}>
               legal agreement
             </Title3>
           </Flex>

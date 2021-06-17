@@ -33,6 +33,7 @@ import { UserContext } from '../../userContext';
 
 function Login() {
   const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
+  const loginColor = useColorModeValue('inherit', 'whiteAlpha.100');
 
   return (
     <Fragment>
@@ -49,7 +50,7 @@ function Login() {
           m={[2, 3]}
           paddingX={[7, 10]}
           paddingY={[6, 8]}
-          layerStyle="LoginColor"
+          bg={loginColor}
           sx={{
             transform: 'translate(-50%, -50%)',
           }}

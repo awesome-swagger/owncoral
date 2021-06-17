@@ -102,18 +102,6 @@ export const layerStyles = {
       _hover: { bg: { base: 'rgba(255, 255, 255, 0.12)' }, shadow: 'md' },
     },
   },
-  resultHeading: {
-    color: 'primary.700',
-    '.chakra-ui-dark &': {
-      color: 'primary.300',
-    },
-  },
-  borderColor: {
-    borderColor: 'gray.700',
-    '.chakra-ui-dark &': {
-      borderColor: 'gray.200',
-    },
-  },
   highlightForeground: {
     color: 'primary.800',
     '.chakra-ui-dark &': {
@@ -124,36 +112,6 @@ export const layerStyles = {
     bg: 'white',
     '.chakra-ui-dark &': {
       bg: 'gray.600',
-    },
-  },
-  LoginColor: {
-    bg: 'inherit',
-    '.chakra-ui-dark &': {
-      bg: 'whiteAlpha.100',
-    },
-  },
-  highLightColor: {
-    color: 'secondary.700',
-    '.chakra-ui-dark &': {
-      color: 'secondary.300',
-    },
-  },
-  chartFillOpacity: {
-    fillOpacity: '0.2',
-    '.chakra-ui-dark &': {
-      fillOpacity: '1',
-    },
-  },
-  primaryTooltipColor: {
-    color: 'primary.900',
-    '.chakra-ui-dark &': {
-      color: 'primary.100',
-    },
-  },
-  secondaryTooltipColor: {
-    color: 'secondary.900',
-    '.chakra-ui-dark &': {
-      color: 'secondary.100',
     },
   },
   iconColor: {

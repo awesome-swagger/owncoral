@@ -58,7 +58,6 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             {label}
           </Box>
         ))}
-        <SubmitBtn label="Continue" onClick={handleSubmit} />
       </Container>
     );
   },
