@@ -1,6 +1,7 @@
 import type React from 'react';
-import { Box, Switch, FormControl, FormLabel, Heading } from '@chakra-ui/react';
-import { Option, BackBtn } from '../../../../components';
+import { Box, FormControl, FormLabel, Heading, Switch } from '@chakra-ui/react';
+
+import { BackBtn,Option } from '../../../../components';
 
 export const Notification = ({ goBack }: { goBack: () => void }) => {
   return (
@@ -12,7 +13,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
       <Heading mb={6} mt="0" mx="0" fontSize="lg" align="center">
         Notifications
       </Heading>
-      <Option icon={false}>
+      <Option icon={null}>
         <FormControl justifyContent="space-between" display="flex" alignItems="center">
           <FormLabel fontSize="sm" htmlFor="Portfolio" mb="0" cursor="pointer">
             Portfolio
@@ -24,7 +25,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
         New incomes, overal returns cash on cash or more.
       </Heading>
 
-      <Option icon={false}>
+      <Option icon={null}>
         <FormControl justifyContent="space-between" display="flex" alignItems="center">
           <FormLabel fontSize="sm" htmlFor="Opportunities" mb="0" cursor="pointer">
             Opportunities
@@ -39,7 +40,7 @@ export const Notification = ({ goBack }: { goBack: () => void }) => {
         News and properties added to wishlist.
       </Heading>
 
-      <Option icon={false}>
+      <Option icon={null}>
         <FormControl justifyContent="space-between" display="flex" alignItems="center">
           <FormLabel fontSize="sm" htmlFor="Features" mb="0" cursor="pointer">
             Features and recommendations

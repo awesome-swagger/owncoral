@@ -12,6 +12,7 @@ import {
 import { ProfileContent } from '../../pages/profile';
 import { UserContext } from '../../userContext';
 
+// TODO: fix for desktop
 export const ProfilePopOver = () => {
   const history = useHistory();
   const handleClick = (overlayNo: Number) => history.push(`/profile?overlay=${overlayNo}`);
@@ -29,7 +30,7 @@ export const ProfilePopOver = () => {
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />
-        <ProfileContent handleClick={handleClick} popOver={true} />
+        <ProfileContent />
       </PopoverContent>
     </Popover>
   );

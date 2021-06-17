@@ -39,19 +39,20 @@ const PLACEHOLDERS = [Placeholder1, Placeholder2];
  */
 const iosForcedScrollX = {
   '::-webkit-scrollbar': {
-    '-webkit-appearance': 'none',
+    // Note: maybe it should be -webkit-appearance
+    WebkitAppearance: 'none',
     width: '7px',
     height: '7px',
   },
 
   '::-webkit-scrollbar-thumb': {
-    'border-radius': '100vh',
-    'background-color': 'rgba(0, 0, 0, .5)',
-    'box-shadow': '0 0 1px rgba(255, 255, 255, .5)',
+    borderRadius: '100vh',
+    backgroundColor: 'rgba(0, 0, 0, .5)',
+    boxShadow: '0 0 1px rgba(255, 255, 255, .5)',
   },
 
   '::-webkit-scrollbar-corner': {
-    'background-color': 'inherit',
+    backgroundColor: 'inherit',
   },
 };
 
@@ -80,7 +81,7 @@ export const TopRankingProperties = ({
       : [];
 
   // HACK: match background color of body (theme.styles.global.body.bg)
-  const themeBackgroundColor = useColorModeValue('white', 'gray.800');
+  const themeBackgroundColor = useColorModeValue('gray.100', 'gray.800');
 
   // Shared sizing constraints between property columns
   const rowSpacing = 6;

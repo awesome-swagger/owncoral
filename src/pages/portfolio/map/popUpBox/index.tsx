@@ -1,5 +1,6 @@
 import type React from 'react';
-import { Box, Heading, Center } from '@chakra-ui/react';
+import { Box, Center, Heading } from '@chakra-ui/react';
+
 import { Container, Option } from '../../../../components';
 
 export const PopUpBox = ({
@@ -23,7 +24,7 @@ export const PopUpBox = ({
           <Heading fontSize="lg" fontWeight="bold">
             Select market
           </Heading>
-          <Option icon={false}>
+          <Option icon={null}>
             <Center>
               <Heading fontSize="md" m="0">
                 Greater Boston Area
@@ -34,7 +35,7 @@ export const PopUpBox = ({
             </Center>
           </Option>
           <Box h={1} />
-          <Option icon={false}>
+          <Option icon={null}>
             <Center>
               <Heading fontSize="md" m="0">
                 Shinjuku

@@ -2,6 +2,7 @@ import React, { Fragment, ReactNode } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Flex, Icon } from '@chakra-ui/react';
 
+// TODO: consolidate with option and use this component
 type OptionGroupPropsT = {};
 export const OptionGroup: React.FC<OptionGroupPropsT> = ({ children }) => {
   return (

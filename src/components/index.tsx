@@ -2,6 +2,7 @@ export { BackBtn } from './backBtn';
 export { Card } from './card';
 export { ColorModeButton } from './colorModeButton';
 export { Container, FlexContainer } from './container';
+export { CourseCard } from './courseCard';
 export { DayPicker } from './daypicker';
 export { DebugPanel } from './debugPanel';
 export { ErrorFallback, MyErrorHandler } from './errorFallback';

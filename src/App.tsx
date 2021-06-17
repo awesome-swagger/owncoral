@@ -67,7 +67,9 @@ function App() {
 
                 <ProtectedRoute exact path="/property/:address" component={Property} />
 
-                <ProtectedRoute exact path="/profile" component={Profile} />
+                <ProtectedRoute path="/profile">
+                  <Profile />
+                </ProtectedRoute>
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 

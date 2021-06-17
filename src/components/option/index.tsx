@@ -1,26 +1,29 @@
+/* eslint-disable import/no-duplicates */
 import type { ReactNode } from 'react';
+import type React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Flex, Icon } from '@chakra-ui/react';
+import { Flex, Icon, useColorModeValue } from '@chakra-ui/react';
 
 export const Option = ({
   children,
   onClick,
-  icon = true,
+  icon = FiChevronRight,
   borderRadius = false,
   className = '',
 }: {
   children: ReactNode;
   onClick?: any;
-  icon?: boolean;
+  icon?: React.ElementType | null;
   borderRadius?: boolean;
   className?: string;
 }) => {
+  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.200');
   return (
     <Flex
       as="li"
       p={3}
       borderTop="1px"
-      borderColor="gray.200"
+      borderColor={borderColor}
       marginTop="-1px"
       layerStyle="selectionBox"
       textAlign="left"
@@ -33,9 +36,9 @@ export const Option = ({
       className={className}
     >
       {children}
-      {icon ? (
+      {icon && (
         <Icon
-          as={FiChevronRight}
+          as={icon}
           color="gray.500"
           h={4}
           w={4}
@@ -46,8 +49,6 @@ export const Option = ({
             transform: 'translateY(-50%)',
           }}
         />
-      ) : (
-        ''
       )}
     </Flex>
   );

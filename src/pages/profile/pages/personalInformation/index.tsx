@@ -21,10 +21,10 @@ import {
 import { parseISO } from 'date-fns';
 import * as R from 'remeda';
 
-import { useQuery } from '../../../../lib/useQuery';
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
 import { Title3 } from '../../../../components/text';
+import { useQuery } from '../../../../lib/useQuery';
 import { UserContext } from '../../../../userContext';
 import { splitDate, updateCurrentUser } from './lib';
 
@@ -35,8 +35,6 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   const [user, setUser] = useContext(UserContext);
   const [birthDate, setBirthDate] = useState<SplitDateT | null>(null);
   const [isAccredited, setIsAccredited] = useState<boolean>(false);
-  const history = useHistory();
-  let query = useQuery();
 
   useEffect(() => {
     if (user !== null) {
@@ -70,10 +68,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
 
   return (
     <Box>
-      <BackBtn
-        handleClick={() => (query.get('overlay') === '1' ? history.goBack() : goBack())}
-        pos="absolute"
-      />
+      <BackBtn handleClick={goBack} pos="absolute" />
       <Title3 mb={6} mt="0" mx="0" align="center">
         Personal Information
       </Title3>
