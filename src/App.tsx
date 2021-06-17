@@ -72,7 +72,10 @@ function App() {
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
-                <ProtectedRoute exact path="/academy" component={LearningCenter} />
+                <ProtectedRoute exact path="/academy">
+                  <Redirect to="/academy/courses" />
+                </ProtectedRoute>
+                <ProtectedRoute exact path="/academy/:tab" component={LearningCenter} />
                 <ProtectedRoute path="/academy/glossary/:title" component={Glossary} />
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
 
