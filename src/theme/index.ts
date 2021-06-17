@@ -7,21 +7,20 @@
 import type { ColorModeOptions } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 
+import { Accordion } from './components/accordion';
 // Component style overrides
 import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
 import { Text } from './components/text';
-import { Accordion } from './components/accordion';
 // Foundational style overrides
 import { colors } from './foundations/colors';
 import { shadows } from './foundations/shadows';
 import { typography } from './foundations/typography';
 import { layerStyles } from './layerStyles';
-import * as textStyles from './textStyles';
-
 // Global style overrides
-// import styles from './styles';
+import { styles } from './styles';
+import * as textStyles from './textStyles';
 
 const config: ColorModeOptions = {
   initialColorMode: 'light',
@@ -35,6 +34,7 @@ const overrides = {
   config,
   textStyles,
   layerStyles,
+  styles,
 
   // Other foundational style overrides go here
   components: {

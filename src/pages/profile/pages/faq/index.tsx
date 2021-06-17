@@ -17,6 +17,8 @@ import {
 import { BackBtn } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 
+// Source: https://docs.google.com/spreadsheets/d/1w7acu5FjTN3Sxs_kEoN0mZEjIDHr20ZY-vbqWZb4C_s/edit#gid=313667754
+
 // TODO: switch to using markdown:
 //   https://github.com/remarkjs/react-markdown
 export const Faq = ({ goBack }: { goBack: () => void }) => {

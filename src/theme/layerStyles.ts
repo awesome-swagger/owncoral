@@ -32,7 +32,7 @@ export const layerStyles = {
     },
   },
   selectionBox: {
-    bg: 'gray.100',
+    bg: 'white',
     color: 'black',
     _hover: { bg: 'primary.100' },
     selected: { bg: 'gray.300' },
@@ -66,7 +66,7 @@ export const layerStyles = {
     },
   },
   navColor: {
-    bg: 'white',
+    bg: 'gray.50',
     '.chakra-ui-dark &': {
       bg: 'rgba(255, 255, 255, 0.05)',
     },

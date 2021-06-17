@@ -3,14 +3,14 @@ import { Box, Text } from '@chakra-ui/react';
 import { css } from '@emotion/react';
 
 import { BackBtn } from '../../../../components';
-import { Headline,Title3 } from '../../../../components/text';
+import { Headline, Title3 } from '../../../../components/text';
 
-export const About = ({ goBack }: { goBack: () => void }) => {
+export const LegalStructure = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box overflow="auto">
       <BackBtn handleClick={goBack} pos="absolute" />
 
-      <Title3 align="center">About Coral</Title3>
+      <Title3 align="center">Legal Structure</Title3>
       <Headline my="0.6em">Co-ownership, simplified</Headline>
       <Text my="0.6em">You own the property and profit from it. We manage it.</Text>
       <Text my="0.6em">Coral is the modern way to buy and own investment properties.</Text>

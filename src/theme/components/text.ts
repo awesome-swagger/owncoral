@@ -9,7 +9,7 @@ const variants = {
       (props.colorScheme || 'auto') === 'auto' ? defaultColorScheme : props.colorScheme;
 
     return {
-      color: mode(`${colorScheme}.700`, `${colorScheme}.300`)(props),
+      color: mode(`${colorScheme}.500`, `${colorScheme}.500`)(props),
     };
   },
 };

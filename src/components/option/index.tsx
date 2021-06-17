@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Icon } from '@chakra-ui/react';
 
 export const Option = ({
   children,
@@ -17,27 +17,32 @@ export const Option = ({
 }) => {
   return (
     <Flex
-      m="1px 0"
+      as="li"
       p={3}
+      borderTop="1px"
+      borderColor="gray.200"
+      marginTop="-1px"
       layerStyle="selectionBox"
       textAlign="left"
       cursor="pointer"
       pos="relative"
       borderRadius={borderRadius ? 'full' : ''}
       alignItems="center"
-      textStyle="h5"
+      textStyle="BodyText2"
       onClick={onClick}
       className={className}
     >
       {children}
       {icon ? (
-        <FiChevronRight
+        <Icon
+          as={FiChevronRight}
+          color="gray.500"
+          h={4}
+          w={4}
+          pos="absolute"
+          right={3}
+          top="50%"
           style={{
-            height: '1rem',
-            width: '1rem',
-            position: 'absolute',
-            right: '0.75rem',
-            top: '50%',
             transform: 'translateY(-50%)',
           }}
         />

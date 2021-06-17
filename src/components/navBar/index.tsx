@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { FiBell, FiKey, FiTag } from 'react-icons/fi';
+import { FiBell, FiKey, FiTag, FiUser } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -19,6 +19,8 @@ import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
 import { ColorModeButton } from '../colorModeButton';
 import { ProfilePopOver } from '../profilePopOver';
+
+const NAV_ZINDEX = 5;
 
 const navLinks = [
   {
@@ -40,6 +42,11 @@ const navLinks = [
     name: 'Notifications',
     url: '/coming-soon/notifications',
     icon: FiBell,
+  },
+  {
+    name: 'Profile',
+    url: '/profile',
+    icon: FiUser,
   },
 ];
 
@@ -90,7 +97,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         h={headerHeight}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
-        zIndex={5}
+        zIndex={NAV_ZINDEX}
       >
         <Flex align="center" justify="center" layerStyle="navColor" h="100%" w="100%">
           {/* Children are allowed to push the logo right, but not too far */}
@@ -110,9 +117,10 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
               <Box h="100%" display={{ base: 'none', [navBarTopBreakpoint]: 'block' }}>
                 <NavButtons currentPageName={currentPageName} />
               </Box>
-              {/* TODO: profile menu */}
+              TODO: profile menu
               <ColorModeButton />
-              <ProfilePopOver />
+              {/* TODO: Re-enable for desktop (old Profile Popover)
+              <ProfilePopOver /> */}
             </HStack>
           </Flex>
         </Flex>
@@ -134,7 +142,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         display={{ [navBarTopBreakpoint]: 'none' }}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
-        zIndex={1}
+        zIndex={NAV_ZINDEX}
       >
         <Center layerStyle="navColor" h="100%" w="100%" paddingBottom={3}>
           <NavButtons currentPageName={currentPageName} />
@@ -151,7 +159,7 @@ function NavButtons(props: { currentPageName: string | null }) {
   return (
     <Flex
       as="nav"
-      w={{ base: '100%', [navBarTopBreakpoint]: 'unset' }}
+      w={{ base: '100%', [navBarTopBreakpoint]: '380px' }}
       maxW={{ base: '450px', [navBarTopBreakpoint]: 'unset' }}
       h="100%"
     >
