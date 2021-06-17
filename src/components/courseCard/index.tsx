@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Image, Box } from '@chakra-ui/react';
+import type React from 'react';
+import { Image, Flex, Center } from '@chakra-ui/react';
 import { Headline, Subhead } from '../../components/text';
 
 export const CourseCard: React.FC<{
@@ -17,12 +17,6 @@ export const CourseCard: React.FC<{
       textAlign="center"
       layerStyle="selectionBox"
       width="calc(50% - 1rem)"
-      height={
-        ((windowWidth > 623 && windowWidth < 768) || windowWidth < 426) ? 'auto' : 'fit-content'
-      }
-      top={
-        (windowWidth > 623 && windowWidth < 768) || (windowWidth < 426) ? 0 : -top
-      }
       minWidth={40}
       maxWidth={44}
       height="224px"

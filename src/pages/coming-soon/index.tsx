@@ -5,7 +5,7 @@ import { Center, Icon, Text, VStack } from '@chakra-ui/react';
 import { NavBar } from '../../components';
 import { Title2 } from '../../components/text';
 
-const ComingSoon = ({ isPage = true }:{ isPage?: boolean }) => {
+const ComingSoon = ({ isPage = true }: { isPage?: boolean }) => {
   return isPage ? (
     <Fragment>
       <NavBar />
@@ -28,6 +28,6 @@ const ComingSoon = ({ isPage = true }:{ isPage?: boolean }) => {
       </VStack>
     </Center>
   );
-}
+};
 // eslint-disable-next-line import/no-default-export
 export default ComingSoon;

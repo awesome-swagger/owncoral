@@ -2,6 +2,7 @@ import { BackBtn } from './backBtn';
 import { Card } from './card';
 import { ColorModeButton } from './colorModeButton';
 import { Container, FlexContainer } from './container';
+import { CourseCard } from './courseCard';
 import { DayPicker } from './daypicker';
 import { DebugPanel } from './debugPanel';
 import { ErrorFallback, MyErrorHandler } from './errorFallback';
@@ -15,13 +16,13 @@ import { PropertyCard } from './propertyCard';
 import { ProtectedRoute } from './protectedRoute';
 import { SubmitBtn } from './submitBtn';
 import { TimeoutModal } from './timeoutModal';
-import { CourseCard } from './courseCard';
 
 export {
   BackBtn,
   Card,
   ColorModeButton,
   Container,
+  CourseCard,
   DayPicker,
   DebugPanel,
   ErrorFallback,
@@ -37,5 +38,4 @@ export {
   ProtectedRoute,
   SubmitBtn,
   TimeoutModal,
-  CourseCard,
 };

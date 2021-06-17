@@ -97,7 +97,7 @@ export const Subhead = {
 export const Body1 = {
   fontSize: `${16 / 16}rem`,
   lineHeight: `${22 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 500,
   letterSpacing: `${0.5 / 16}em`,
   ...bodyFont,
 };
@@ -105,7 +105,7 @@ export const Body1 = {
 export const Body2 = {
   fontSize: `${14 / 16}rem`,
   lineHeight: `${20 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 500,
   letterSpacing: `${0.25 / 16}em`,
   ...bodyFont,
 };
@@ -122,7 +122,7 @@ export const Button = {
 export const Caption1 = {
   fontSize: `${12 / 16}rem`,
   lineHeight: `${16 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 500,
   letterSpacing: `${0.4 / 16}em`,
   ...bodyFont,
 };
@@ -130,7 +130,7 @@ export const Caption1 = {
 export const Caption2 = {
   fontSize: `${10 / 16}rem`,
   lineHeight: `${12 / 16}rem`,
-  fontWeight: 400,
+  fontWeight: 500,
   letterSpacing: `${0.4 / 16}em`,
   ...bodyFont,
 };

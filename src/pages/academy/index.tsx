@@ -1,9 +1,11 @@
 import { Fragment } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
+import ComingSoon from '../coming-soon';
 import { Courses } from './courses';
-import { GlossaryTab } from './glossary/GlossaryTab';
+import { Glossary } from './glossary';
 
 const Academy = () => (
   <Fragment>
@@ -17,7 +19,7 @@ const Academy = () => (
 const AcademyTabs = () => {
   const { tab } = useParams<{ tab: string }>();
   const history = useHistory();
-  console.log(tab);
+
   return (
     <Box>
       <Title1 my={4}> Academy </Title1>
@@ -28,12 +30,14 @@ const AcademyTabs = () => {
         </TabList>
         <TabPanels>
           <TabPanel p="0">
-            <Box>
+            {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' ? (
               <Courses />
-            </Box>
+            ) : (
+              <ComingSoon isPage={false} />
+            )}
           </TabPanel>
           <TabPanel>
-            <GlossaryTab />
+            <Glossary />
           </TabPanel>
         </TabPanels>
       </Tabs>

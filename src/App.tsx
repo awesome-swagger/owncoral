@@ -18,21 +18,20 @@ import AppTheme from './theme';
 import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from './theme/textStyles';
 import { UserContext } from './userContext';
 
-import Portfolio from './pages/portfolio';
-
 const Login = lazy(() => import('./pages/login'));
 const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
 const ForgotPassword = lazy(() => import('./pages/login/ForgotPassword'));
 const NewPassword = lazy(() => import('./pages/login/NewPassword'));
 
-const LearningCenter = lazy(() => import('./pages/academy'));
+const Academy = lazy(() => import('./pages/academy'));
 const Drafts = lazy(() => import('./pages/drafts'));
+const Portfolio = lazy(() => import('./pages/portfolio'));
 const Profile = lazy(() => import('./pages/profile'));
 const Property = lazy(() => import('./pages/opportunity'));
 const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
 const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
-const Glossary = lazy(() => import('./pages/academy/glossary'));
+const GlossaryDetail = lazy(() => import('./pages/academy/glossary/glossaryDetail'));
 const CourseDetail = lazy(() => import('./pages/academy/courses/courseDetail'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
@@ -73,11 +72,11 @@ function App() {
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
                 <ProtectedRoute exact path="/academy">
-                  <Redirect to="/academy/courses" />
+                  <Redirect to="/academy/glossary" />
                 </ProtectedRoute>
-                <ProtectedRoute exact path="/academy/:tab" component={LearningCenter} />
-                <ProtectedRoute path="/academy/glossary/:title" component={Glossary} />
+                <ProtectedRoute exact path="/academy/:tab" component={Academy} />
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
+                <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
                 {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
                   <Route path="/signup">
