@@ -1,5 +1,4 @@
-import { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
 import {
   Avatar,
   IconButton,
@@ -14,8 +13,6 @@ import { UserContext } from '../../userContext';
 
 // TODO: fix for desktop
 export const ProfilePopOver = () => {
-  const history = useHistory();
-  const handleClick = (overlayNo: Number) => history.push(`/profile?overlay=${overlayNo}`);
   const [user] = useContext(UserContext);
 
   return (

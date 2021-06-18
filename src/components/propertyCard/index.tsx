@@ -40,7 +40,7 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
   return (
     <Container>
       <Box pos="relative">
-        <Center pos="absolute" h="100%" cursor="pointer" onClick={() => handleClose()}>
+        <Center pos="absolute" h="100%" cursor="pointer" onClick={handleClose}>
           <Icon as={FiX} />
         </Center>
         <Box textAlign="center" borderRadius="full" boxShadow="xs" py={2} w="56" mx="auto">

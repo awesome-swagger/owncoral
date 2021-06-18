@@ -1,43 +1,55 @@
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Box, Icon, Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-import { BsSearch } from 'react-icons/bs';
-import { Headline, Title3 } from '../../../components/text';
-import { Option } from '../../../components';
+import * as R from 'remeda';
 
-import { GlossaryData } from '../../../lib/glossaryData';
+import { Option, OptionGroup } from '../../../components';
+import { Headline, Overline, Title2 } from '../../../components/text';
 import { titleToUrlFragment } from '../lib';
-import './style.css';
+import { GlossaryData } from './glossaryData';
 
 export const Glossary = () => {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState('');
-  const FilteredValue = GlossaryData.filter((val) =>
-    searchValue === '' || val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+  let entriesGroupedByFirstLetter = R.toPairs(
+    R.groupBy(
+      GlossaryData.filter(
+        (val) =>
+          searchValue === '' ||
+          val.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()),
+      ),
+      (val) => val.name.charAt(0),
+    ),
   );
-  let firstLetter = '';
+  entriesGroupedByFirstLetter = R.sortBy(
+    entriesGroupedByFirstLetter,
+    ([firstLetter]) => firstLetter,
+  );
 
   const searchResults =
-    FilteredValue.length === 0 ? (
+    entriesGroupedByFirstLetter.length === 0 ? (
       <Box textAlign="center" mt={12}>
-        <Title3>Ooops!</Title3>
+        <Title2>Ooops!</Title2>
         <Headline>Sorry, there is no result that fit with your search</Headline>
       </Box>
     ) : (
-      FilteredValue.map(( val: any, index: number) => ( // eslint-disable-line no-return-assign
+      entriesGroupedByFirstLetter.map(([firstLetter, entries], index) => (
         <Fragment key={index}>
-          {val.name.charAt(0) !== firstLetter && (
-            <Headline className="title" my={4}>
-              {((firstLetter = val.name.charAt(0)), firstLetter)}
-            </Headline>
-          )}
-          <Option
-            key={`option-${index}`}
-            onClick={() => history.push(`/academy/glossary/${titleToUrlFragment(val.name)}`)}
-            className="option"
-          >
-            {val.name}
-          </Option>
+          <Overline ml={3} mb={2} mt={3}>
+            {firstLetter}
+          </Overline>
+          <OptionGroup>
+            {entries.map(({ name }, index) => (
+              <Option
+                key={`option-${index}`}
+                onClick={() => history.push(`/academy/glossary/${titleToUrlFragment(name)}`)}
+                className="option"
+              >
+                {name}
+              </Option>
+            ))}
+          </OptionGroup>
         </Fragment>
       ))
     );
@@ -52,9 +64,9 @@ export const Glossary = () => {
 
   return (
     <Box>
-      <InputGroup mt={4}>
+      <InputGroup mt={4} mb={4}>
         <InputLeftElement>
-          <Icon as={BsSearch} />
+          <Icon as={FiSearch} />
         </InputLeftElement>
         <Input
           placeholder="Search..."

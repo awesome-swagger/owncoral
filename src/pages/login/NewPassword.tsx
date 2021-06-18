@@ -60,9 +60,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
       }),
     });
 
-    if (resp === null) {
-      return;
-    }
+    if (resp === null) return;
 
     if (resp.ok) {
       history.push('/');

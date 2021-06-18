@@ -1,8 +1,7 @@
 /* eslint-disable import/no-duplicates */
-import type { ChangeEvent } from 'react';
-import type React from 'react';
+import type { ChangeEvent, FC } from 'react';
 /* eslint-enable import/no-duplicates */
-import { Box, Center, Heading, Select, Spinner, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Heading, Select, Spinner, Text } from '@chakra-ui/react';
 
 type AdminPanelPropsT = {
   selectedUser: any;
@@ -10,7 +9,7 @@ type AdminPanelPropsT = {
   userList: any;
   isAdminLoading: boolean;
 };
-const AdminPanel: React.FC<AdminPanelPropsT> = ({
+const AdminPanel: FC<AdminPanelPropsT> = ({
   isAdminLoading,
   selectedUser,
   setSelectedUser,
@@ -37,13 +36,11 @@ const AdminPanel: React.FC<AdminPanelPropsT> = ({
         ) : (
           <Select value={selectedUser || undefined} onChange={handleChange}>
             {/* TODO: fix types */}
-            {(userList || []).map(({ id, email, displayName }: { [key: string]: any }) => {
-              return (
-                <option key={id} value={id}>
-                  {`${displayName} <${email}>`}
-                </option>
-              );
-            })}
+            {(userList || []).map(({ id, email, displayName }: { [key: string]: any }) => (
+              <option key={id} value={id}>
+                {`${displayName} <${email}>`}
+              </option>
+            ))}
           </Select>
         )}
       </Box>

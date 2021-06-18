@@ -1,3 +1,1 @@
-import { CumulativeChart } from './CumulativeChart';
-
-export { CumulativeChart }
+export { CumulativeChart } from './CumulativeChart';

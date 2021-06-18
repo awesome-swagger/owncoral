@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import { Heading } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
@@ -57,18 +57,15 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
         When is your Birthday?
       </Heading>
       <DayPicker date={date} onChange={handleDateChange} />
-      <Heading size="xs" color="red">
-        {age < 18 ? 'You are under 18!' : ''}
-      </Heading>
-
+      {age < 18 && (
+        <Heading size="xs" color="red">
+          You are under 18!
+        </Heading>
+      )}
       <SubmitBtn
         onClick={onSubmit}
         label="Continue"
-        disabled={
-          Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18
-            ? false
-            : true
-        }
+        disabled={(Number(date.year) > currentYear || !date.month || Number(date.day) > 31 || age < 18)}
       />
     </Container>
   );

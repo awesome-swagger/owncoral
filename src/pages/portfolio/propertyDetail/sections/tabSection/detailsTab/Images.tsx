@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
-import { Title3 } from '../../../../../../components/text';
 import { ImgSlider } from '../../../../../../components';
+import { Title2 } from '../../../../../../components/text';
 
 type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -13,7 +13,7 @@ export const Images = ({ propertyDetail }: PropertyLocationPropsT) => {
 
   return (
     <Box>
-      <Title3 my={4}>Images</Title3>
+      <Title2 my={4}>Photos</Title2>
       <ImgSlider images={newImages} />
     </Box>
   );

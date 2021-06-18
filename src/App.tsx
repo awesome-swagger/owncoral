@@ -15,7 +15,14 @@ import {
   ProtectedRoute,
 } from './components';
 import AppTheme from './theme';
-import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from './theme/textStyles';
+import {
+  Headline,
+  LargeTitle,
+  Title1,
+  Title2,
+  XLargeTitle,
+  XXLargeTitle,
+} from './theme/textStyles';
 import { UserContext } from './userContext';
 
 const Login = lazy(() => import('./pages/login'));
@@ -36,8 +43,14 @@ const CourseDetail = lazy(() => import('./pages/academy/courses/courseDetail'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
-const headerStyles = { h1, h2: XLargeTitle, h3: LargeTitle, h4: Title1, h5: Title2, h6: Title3 };
-
+const headerStyles = {
+  h1: XXLargeTitle,
+  h2: XLargeTitle,
+  h3: LargeTitle,
+  h4: Title1,
+  h5: Title2,
+  h6: Headline,
+};
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);
 
@@ -45,6 +58,8 @@ function App() {
   if (splashScreen && !splashScreen.hasAttribute('hidden')) {
     splashScreen.setAttribute('hidden', 'true');
   }
+
+  const isDev = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development';
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
@@ -80,35 +95,28 @@ function App() {
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
                 <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <Route path="/signup">
-                    <SignupFlow />
-                  </Route>
-                )}
+                {isDev && (
+                  <>
+                    <Route path="/signup">
+                      <SignupFlow />
+                    </Route>
 
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <Route path="/investment-profile">
-                    <InvestmentProfileFlow />
-                  </Route>
-                )}
+                    <Route path="/investment-profile">
+                      <InvestmentProfileFlow />
+                    </Route>
 
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <ProtectedRoute path="/drafts" component={Drafts} />
-                )}
+                    <ProtectedRoute path="/drafts" component={Drafts} />
 
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <ProtectedRoute exact path="/property-card" component={PropertyCard} />
-                )}
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <ProtectedRoute
-                    exact
-                    path="/opportunities/detail"
-                    component={OpportunityDetail}
-                  />
-                )}
+                    <ProtectedRoute exact path="/property-card" component={PropertyCard} />
 
-                {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <ProtectedRoute exact path="/map-box" component={MapBox} />
+                    <ProtectedRoute
+                      exact
+                      path="/opportunities/detail"
+                      component={OpportunityDetail}
+                    />
+                    
+                    <ProtectedRoute exact path="/map-box" component={MapBox} />
+                  </>
                 )}
 
                 <ProtectedRoute path="*" component={Error404} />

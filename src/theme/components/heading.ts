@@ -1,6 +1,6 @@
 import { mode } from '@chakra-ui/theme-tools';
 
-import { h1, LargeTitle, Title1, Title2, Title3, XLargeTitle } from '../textStyles';
+import { Headline, LargeTitle, Title1, Title2, XLargeTitle, XXLargeTitle } from '../textStyles';
 
 const baseStyle = {
   // Set weight for individual styles
@@ -8,12 +8,12 @@ const baseStyle = {
 };
 
 const sizes = {
-  '2xl': h1,
+  '2xl': XXLargeTitle,
   xl: XLargeTitle,
   lg: LargeTitle,
   md: Title1,
   sm: Title2,
-  xs: Title3,
+  xs: Headline,
 };
 const defaultProps = {
   size: 'md',

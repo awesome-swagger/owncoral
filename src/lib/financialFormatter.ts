@@ -1,6 +1,6 @@
 const FINANCIAL_UNIT_SUFFIX = ['', 'K', 'M', 'B', 'T'];
 
-const round2 = (n: number): number => Math.round(n * 100) / 100;
+// const round2 = (n: number): number => Math.round(n * 100) / 100;
 
 /**
  * Formats a monetary amount by rounding to the nearest

@@ -1,5 +1,4 @@
-import type { ReactNode } from 'react';
-import React, { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { Fragment } from 'react';
 import {
   FiDollarSign,
   FiExternalLink,
@@ -9,18 +8,16 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { Box, Icon, Link as ChakraLink, Portal, VStack } from '@chakra-ui/react';
+import { Box, Icon, Link as ChakraLink, VStack } from '@chakra-ui/react';
 
-import { Container, NavBar, Option, ProtectedRoute } from '../../components';
+import { Container, NavBar, Option, OptionGroup, ProtectedRoute } from '../../components';
 import { Overline } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import Error404 from '../error404';
 import {
   Faq,
   Fees,
-  InvestmentGoal,
   LegalStructure,
-  Notification,
   PersonalInformation,
 } from './pages';
 import { ProfileHeader } from './profileHeader';
@@ -62,18 +59,6 @@ function Profile() {
     </Fragment>
   );
 }
-
-// TODO: extract into global component
-const OptionGroup = ({ children }: { children: ReactNode }) => (
-  <Box
-    as="ul"
-    filter="drop-shadow(0px 2px 8px rgba(50, 53, 56, 0.04))"
-    borderRadius="2xl"
-    overflow="hidden"
-  >
-    {children}
-  </Box>
-);
 
 export const ProfileContent = () => {
   const { url: profileUrl } = useRouteMatch();

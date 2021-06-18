@@ -11,13 +11,12 @@ type stepProps = {
   prevStep: () => void;
 };
 const Types = [
-  {
-    value: 'LLC, Single-Member LLC',
-  },
+  { value: 'LLC, Single-Member LLC' },
   { value: 'S Coporation' },
   { value: 'Limited Partnership' },
   { value: 'C Corporation' },
 ];
+
 export const EntityType = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);

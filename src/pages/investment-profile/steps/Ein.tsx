@@ -41,6 +41,7 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
       }),
     [einNumber],
   );
+
   return (
     <div ref={ref}>
       <Container>

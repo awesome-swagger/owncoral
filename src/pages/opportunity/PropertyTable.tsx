@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { ReactElement } from 'react';
 import { Table, Tbody, Td, Text, Th, Thead, Tooltip, Tr } from '@chakra-ui/react';
 
 import { Title2 } from '../../components/text';
@@ -9,7 +9,7 @@ type PropertyTableProps = {
   period: 'last' | 'total';
 };
 
-export function PropertyTable({ property, period }: PropertyTableProps): React.ReactElement {
+export function PropertyTable({ property, period }: PropertyTableProps): ReactElement {
   return (
     <Table>
       <Thead>

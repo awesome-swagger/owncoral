@@ -38,9 +38,7 @@ const ForgotPassword: React.FC = () => {
     });
     setIsLoading(false);
 
-    if (resp === null) {
-      return;
-    }
+    if (resp === null) return;
 
     // 429 on too many reset requests — we report success anyway
     if (resp.ok || resp.status === 429) {

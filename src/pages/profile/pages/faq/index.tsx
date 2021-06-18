@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   Accordion,
   AccordionButton,
@@ -26,8 +25,10 @@ export const Faq = ({ goBack }: { goBack: () => void }) => {
 
   return (
     <Box>
-      <BackBtn handleClick={goBack} />
-      <Title2 my={4}>FAQ</Title2>
+      <BackBtn handleClick={goBack} pos="absolute" />
+      <Title2 mt={2} mb={6} align="center">
+        FAQ
+      </Title2>
       <Box borderRadius="2xl" overflow="hidden">
         <Accordion allowToggle>
           <AccordionItem>

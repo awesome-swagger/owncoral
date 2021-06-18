@@ -1,8 +1,8 @@
 import type React from 'react';
-import { Box, Spinner, Text } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 
-import { BackBtn,FlexContainer } from '../../../../components';
-import { Title3 } from '../../../../components/text';
+import { BackBtn, FlexContainer } from '../../../../components';
+import { Title2 } from '../../../../components/text';
 
 export const ProcessingTransaction = ({
   handleTransaction,
@@ -24,7 +24,7 @@ export const ProcessingTransaction = ({
       />
       <Box textAlign="center">
         <Spinner />
-        <Title3>Processing your transaction...</Title3>
+        <Title2>Processing your transaction...</Title2>
       </Box>
     </FlexContainer>
   );

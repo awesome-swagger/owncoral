@@ -6,7 +6,7 @@ import { format as formatDate } from 'date-fns';
 import * as R from 'remeda';
 
 import { Card } from '../../../../components';
-import { Headline, Overline, Subhead, Title1, Title3 } from '../../../../components/text';
+import { Headline, Overline, Subhead, Title1, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 const sum = (arr: number[]) => arr.reduce((n, acc) => n + acc, 0);
@@ -102,7 +102,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/*  </Heading> */}
       {/* </Flex> */}
       <Divider mt={2} />
-      <Title3 my={6}>Distributions</Title3>
+      <Title2 my={6}>Distributions</Title2>
       <Flex overflow="auto" w="100%">
         <Card
           title="Monthly"
@@ -141,7 +141,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
         />
       </Flex>
       <Divider my={6} />
-      <Title3>Investment returns</Title3>
+      <Title2>Investment returns</Title2>
       <VStack my={4} spacing={2} w="100%">
         <Box w="100%">
           <Flex justifyContent="space-between" alignItems="center">

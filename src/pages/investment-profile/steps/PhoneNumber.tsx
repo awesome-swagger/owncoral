@@ -41,6 +41,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
         }),
       [phoneNumber],
     );
+
     return (
       <div ref={ref}>
         <Container>

@@ -3,7 +3,7 @@ import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstac
 import { Box, Button, Center, Icon, Image, Text } from '@chakra-ui/react';
 
 import { MapBox } from '../../../../../../components';
-import { Title3 } from '../../../../../../components/text';
+import { Title2 } from '../../../../../../components/text';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
 type PropertyLocationPropsT = {
@@ -12,7 +12,7 @@ type PropertyLocationPropsT = {
 export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => {
   return (
     <Box>
-      <Title3 mb={3}>Property location</Title3>
+      <Title2 mb={3}>Property location</Title2>
       <Box pos="relative">
         <MapBox address={propertyDetail.address} />
         <Box h={2} />

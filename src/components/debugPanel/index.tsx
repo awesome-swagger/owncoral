@@ -6,7 +6,10 @@ import { UserContext } from '../../userContext';
 
 export function DebugPanel() {
   const [user] = useContext(UserContext);
-  return import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' ? (
+
+  if (import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV !== 'development') return null;
+
+  return (
     <div
       css={css`
         background-color: rgba(0, 0, 0, 0);
@@ -28,5 +31,5 @@ export function DebugPanel() {
           : 'No profile loaded'}
       </pre>
     </div>
-  ) : null;
+  );
 }

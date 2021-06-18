@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaChartLine } from 'react-icons/fa';
 import { FiMap } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';

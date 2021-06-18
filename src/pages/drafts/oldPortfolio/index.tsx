@@ -1,4 +1,5 @@
-import React, { Fragment, lazy, Suspense, useContext, useEffect, useState } from 'react';
+import type React from 'react';
+import { Fragment, lazy, Suspense, useContext, useEffect, useState } from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import { Link as BrowserLink } from 'react-router-dom';
 import type { AdminPanelUserInfoT } from '../../../shared-fullstack/types';
@@ -50,12 +51,12 @@ function Portfolio() {
   // First, get all users (if we're an admin)
   useEffect(() => {
     fetchAllUsersAdmin({ setIsAdminLoading, setAdminUserList, toast });
-  }, []);
+  }, [toast]);
 
   // Portfolio depends on the selected user (or current user)
   useEffect(() => {
     fetchPortfolio({ selectedUser, setPortfolio, setIsLoading, toast });
-  }, [selectedUser]);
+  }, [selectedUser, toast]);
 
   // If current user is admin, load the AdminPanel component lazily
   useEffect(() => {

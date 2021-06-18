@@ -1,7 +1,7 @@
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
 
-import { Headline, Title3 } from '../../../../../../components/text';
+import { Headline, Title2 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 
 type ValueAddPlanePropsT = {
@@ -10,7 +10,7 @@ type ValueAddPlanePropsT = {
 export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
   return (
     <Box>
-      <Title3 mb={6}>Value-add plan</Title3>
+      <Title2 mb={6}>Value-add plan</Title2>
       {/* TODO: Table? */}
       <VStack w="100%" align="stretch">
         <Flex justifyContent="space-between">
@@ -49,7 +49,7 @@ export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
       {/*  ))} */}
       {/* </Flex> */}
       <Divider my={6} />
-      <Title3 my={6}>Rental income</Title3>
+      <Title2 my={6}>Rental income</Title2>
 
       <VStack w="100%" align="stretch" my={4}>
         <Flex justifyContent="space-between">

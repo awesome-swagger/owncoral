@@ -1,4 +1,4 @@
-import React, { createContext, lazy, useCallback, useEffect, useReducer } from 'react';
+import { createContext, lazy, useCallback, useEffect, useReducer } from 'react';
 import { Redirect, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { ProtectedRoute } from '../../../components';

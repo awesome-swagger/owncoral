@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { FiMapPin } from 'react-icons/fi';
 import { useHistory, useParams } from 'react-router-dom';
 import {

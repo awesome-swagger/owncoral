@@ -1,25 +1,11 @@
-import { BirthDate } from './BirthDate';
-import { CreateAccount } from './CreateAccount';
-import { InvestmentExperience } from './InvestmentExperience';
-import { InvestmentGoal } from './InvestmentGoal';
-import { Investor } from './Investor';
-import { Name } from './Name';
-import { NetWorth } from './NetWorth';
-import { Residency } from './Residency';
-import { Result } from './Result';
-import { VerifyEmail } from './VerifyEmail';
-import { WelcomeCoral } from './WelcomeCoral';
-
-export {
-  BirthDate,
-  CreateAccount,
-  InvestmentExperience,
-  InvestmentGoal,
-  Investor,
-  Name,
-  NetWorth,
-  Residency,
-  Result,
-  VerifyEmail,
-  WelcomeCoral,
-};
+export { BirthDate } from './BirthDate';
+export { CreateAccount } from './CreateAccount';
+export { InvestmentExperience } from './InvestmentExperience';
+export { InvestmentGoal } from './InvestmentGoal';
+export { Investor } from './Investor';
+export { Name } from './Name';
+export { NetWorth } from './NetWorth';
+export { Residency } from './Residency';
+export { Result } from './Result';
+export { VerifyEmail } from './VerifyEmail';
+export { WelcomeCoral } from './WelcomeCoral';

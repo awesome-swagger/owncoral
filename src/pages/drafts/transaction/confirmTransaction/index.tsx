@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../../components';
-import { Headline, Title3 } from '../../../../components/text';
+import { Headline, Title2 } from '../../../../components/text';
 
 export const ConfirmTransaction = ({
   handleTransaction,
@@ -40,22 +40,22 @@ export const ConfirmTransaction = ({
         </Heading>
         <Divider />
         <Flex justifyContent="space-between" my={4}>
-          <Title3>Total equity</Title3>
-          <Title3>$470.000</Title3>
+          <Title2>Total equity</Title2>
+          <Title2>$470.000</Title2>
         </Flex>
         <Flex justifyContent="space-between" my={4}>
-          <Title3>Your investment</Title3>
-          <Title3 fontWeight="500">$50.000</Title3>
+          <Title2>Your investment</Title2>
+          <Title2 fontWeight="500">$50.000</Title2>
         </Flex>
       </Box>
       <Box pos="absolute" w="calc(100% - 2rem)" left={4} bottom={10}>
         <Box border="1px" layerStyle="lightBorder" p={4} mb={4}>
           <Flex alignItems="center">
             <Checkbox onChange={() => setAgreement(!agreement)} />
-            <Title3 ml={4}>I agree with the</Title3>
-            <Title3 color={highLightColor} cursor="pointer" ml={1} onClick={() => onOpen()}>
+            <Title2 ml={4}>I agree with the</Title2>
+            <Title2 color={highLightColor} cursor="pointer" ml={1} onClick={onOpen}>
               legal agreement
-            </Title3>
+            </Title2>
           </Flex>
         </Box>
         <Button
@@ -72,7 +72,7 @@ export const ConfirmTransaction = ({
           <ModalBody my={4}>
             <ModalCloseButton />
             <Heading size="md">Legal agreement</Heading>
-            <Title3>
+            <Title2>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
               exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -84,7 +84,7 @@ export const ConfirmTransaction = ({
               enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
               consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
               quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
-            </Title3>
+            </Title2>
           </ModalBody>
         </ModalContent>
       </Modal>

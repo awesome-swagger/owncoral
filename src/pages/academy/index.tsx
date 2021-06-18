@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory,useParams } from 'react-router-dom';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
 import ComingSoon from '../coming-soon';
@@ -36,7 +37,7 @@ const AcademyTabs = () => {
               <ComingSoon isPage={false} />
             )}
           </TabPanel>
-          <TabPanel>
+          <TabPanel p="0">
             <Glossary />
           </TabPanel>
         </TabPanels>

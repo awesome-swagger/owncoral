@@ -1,5 +1,5 @@
 /* eslint-disable max-params */
-import React, { ReactElement, useState } from 'react';
+import { CSSProperties, ReactElement, useState } from 'react';
 import {
   Icon,
   Image,
@@ -26,7 +26,7 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const [image, setImage] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const arrowStyles: React.CSSProperties = {
+  const arrowStyles: CSSProperties = {
     position: 'absolute',
     zIndex: 2,
     top: 'calc(50% - 15px)',
@@ -39,7 +39,7 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
     height: '2rem',
   };
 
-  const indicatorStyles: React.CSSProperties = {
+  const indicatorStyles: CSSProperties = {
     background: BulletColor,
     width: 10,
     height: 10,
