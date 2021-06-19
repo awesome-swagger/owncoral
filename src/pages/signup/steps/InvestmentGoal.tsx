@@ -1,7 +1,7 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { Box, Heading, Progress } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -54,9 +54,8 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             key={value}
             textStyle="Body1"
             onClick={() => handleSubmit(value)}
-          >
-            {label}
-          </Box>
+            children={label}
+          />
         ))}
       </Container>
     );

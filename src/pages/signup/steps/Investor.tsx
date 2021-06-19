@@ -25,7 +25,6 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         <Box ref={ref} layerStyle="noSelect">
           <Container>
             <BackBtn handleClick={prevStep} />
-
             <Heading size="md" mt={8} mb={2} textAlign="left">
               Are you an accredited investor?
             </Heading>
@@ -44,9 +43,8 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               h={12}
               variant="outline"
               onClick={handleSubmit}
-            >
-              Yes
-            </Button>
+              children="Yes"
+            />
             <Button
               onClick={() => setAvailable('Not Available')}
               pos="absolute"
@@ -55,9 +53,8 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               w="calc(100% - 3rem)"
               h={12}
               variant="outline"
-            >
-              No
-            </Button>
+              children="No"
+            />
           </Container>
         </Box>
       ) : (
@@ -79,9 +76,7 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
       <Text fontSize="md" textAlign="center">
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
       </Text>
-      <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
-        Dismiss
-      </Button>
+      <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12} children="Dismiss" />
     </FlexContainer>
   );
 };

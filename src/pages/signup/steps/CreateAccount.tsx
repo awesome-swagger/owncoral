@@ -13,7 +13,6 @@ import {
   InputRightElement,
   Link as ChakraLink,
   Text,
-  useDisclosure,
 } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn } from '../../../components';
@@ -52,17 +51,12 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container layerStyle="noSelect">
           <BackBtn handleClick={prevStep} />
-
           <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             Let’s create your account
           </Heading>
-          <Text fontSize="md" textAlign="left">
-            Lorem ipsum dolor sir amet
-          </Text>
+          <Text fontSize="md" textAlign="left" children="Lorem ipsum dolor sir amet" />
           <Box mt={8}>
-            <Text fontSize="md" textAlign="left">
-              Email
-            </Text>
+            <Text fontSize="md" textAlign="left" children="Email" />
             <Input
               h={12}
               mt={2}
@@ -108,10 +102,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             className={errors.password ? 'shake_animation' : ''}
             textAlign="left"
             m="0.5rem 0"
-          >
-            Must be at least 8 characters
-          </Text>
-
+            children="Must be at least 8 characters"
+          />
           <Center w="calc(100% - 3rem)" bottom="6.5rem" pos="absolute">
             <Checkbox
               size="lg"

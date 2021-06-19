@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useContext } from 'react';
+import { forwardRef, useCallback, useContext } from 'react';
 import { Box, Heading, Progress } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
@@ -33,9 +33,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
       <Box ref={ref} layerStyle="noSelect">
         <Container>
           <BackBtn handleClick={prevStep} />
-
           <Progress mt={8} colorScheme="primary" borderRadius="full" size="sm" value={80} />
-
           <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             How much investing experience do you have?
           </Heading>
@@ -52,9 +50,8 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
               cursor="pointer"
               key={value}
               onClick={() => handleSubmit(value)}
-            >
-              {label}
-            </Box>
+              children={label}
+            />
           ))}
         </Container>
       </Box>

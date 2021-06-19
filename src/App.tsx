@@ -67,9 +67,7 @@ function App() {
 
                 <ProtectedRoute exact path="/property/:address" component={Property} />
 
-                <ProtectedRoute path="/profile">
-                  <Profile />
-                </ProtectedRoute>
+                <ProtectedRoute path="/profile" component={Profile} />
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
@@ -81,15 +79,11 @@ function App() {
                 <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
                 {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <Route path="/signup">
-                    <SignupFlow />
-                  </Route>
+                  <Route path="/signup" component={SignupFlow} />
                 )}
 
                 {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
-                  <Route path="/investment-profile">
-                    <InvestmentProfileFlow />
-                  </Route>
+                  <Route path="/investment-profile" component={InvestmentProfileFlow} />
                 )}
 
                 {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' && (
@@ -125,18 +119,15 @@ function App() {
 // Note: we're not using a <Fragment> here, because the <Switch> component
 // which contains this block does not work with Fragments
 const authRoutes = [
-  <Route exact path="/login" key="/login">
-    <Login />
-  </Route>,
-  <Route exact path="/forgot" key="/forgot">
-    <ForgotPassword />
-  </Route>,
-  <Route exact path="/forgot-check-email" key="/forgot-check-email">
-    <ForgotCheckEmail />
-  </Route>,
-  <Route exact path="/new-password/:resetToken" key="/new-password/:resetToken">
-    <NewPassword />
-  </Route>,
+  <Route exact path="/login" key="/login" component={Login} />,
+  <Route exact path="/forgot" key="/forgot" component={ForgotPassword} />,
+  <Route exact path="/forgot-check-email" key="/forgot-check-email" component={ForgotCheckEmail} />,
+  <Route
+    exact
+    path="/new-password/:resetToken"
+    key="/new-password/:resetToken"
+    component={NewPassword}
+  />,
   <Route exact path="/welcome-to-coral/:resetToken" key="/welcome-to-coral/:resetToken">
     <NewPassword isWelcome />
   </Route>,

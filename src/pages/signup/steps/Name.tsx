@@ -76,9 +76,8 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
           h={12}
           type="submit"
           disabled={!firstName || !lastName}
-        >
-          Continue
-        </Button>
+          children="Continue"
+        />
       </Container>
     </form>
   );

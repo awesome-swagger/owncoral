@@ -34,7 +34,7 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   );
 
   useEffect(() => {
-    if( Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18 )
+    if (Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18)
       form.dispatch({ type: 'update-form', payload: { step3: date } });
   }, [date]);
 
@@ -52,7 +52,6 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   return (
     <Container ref={ref} layerStyle="noSelect">
       <BackBtn handleClick={prevStep} />
-
       <Heading size="md" mt={8} mb={2} textAlign="left">
         When is your Birthday?
       </Heading>
@@ -60,7 +59,6 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
       <Heading size="xs" color="red">
         {age < 18 ? 'You are under 18!' : ''}
       </Heading>
-
       <SubmitBtn
         onClick={onSubmit}
         label="Continue"
