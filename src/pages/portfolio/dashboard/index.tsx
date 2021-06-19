@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/types';
-import { Box, Center, Divider, Heading, Spinner } from '@chakra-ui/react';
+import { Box, Center, Divider } from '@chakra-ui/react';
 
-import { BackBtn, Container } from '../../../components';
+import { Container } from '../../../components';
 import { LargeTitle } from '../../../components/text';
 // TODO: remove
-import { UserContext } from '../../../userContext';
 import { PopUpBox } from './popUpBox';
-import { CashFlow, TopRankingProperties, TotalDistribution } from './sections';
+import { Properties, TotalDistribution } from './sections';
 
 type PortfolioDashboardPropsT = {
   properties: PortfolioDashboardPropertyT[] | null;
@@ -17,8 +15,6 @@ type PortfolioDashboardPropsT = {
 const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboardPropsT) => {
   const [popUp, setPopUp] = useState(false);
   const [showAllProperties, setShowAllProperties] = useState(false);
-
-  const history = useHistory();
 
   const handleClick = () => setShowAllProperties(!showAllProperties);
 
@@ -30,7 +26,7 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
         </Center>
         <TotalDistribution properties={properties} />
         <Divider mb={4} />
-        <TopRankingProperties
+        <Properties
           properties={properties}
           handleClick={handleClick}
           showAll={showAllProperties}

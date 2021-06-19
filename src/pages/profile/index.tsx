@@ -13,13 +13,9 @@ import { Box, Icon, Link as ChakraLink, VStack } from '@chakra-ui/react';
 import { Container, NavBar, Option, OptionGroup, ProtectedRoute } from '../../components';
 import { Overline } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
+import { useScrollToTop } from '../../lib/useScrollToTop';
 import Error404 from '../error404';
-import {
-  Faq,
-  Fees,
-  LegalStructure,
-  PersonalInformation,
-} from './pages';
+import { Faq, Fees, LegalStructure, PersonalInformation } from './pages';
 import { ProfileHeader } from './profileHeader';
 
 function Profile() {
@@ -28,6 +24,8 @@ function Profile() {
   const goBack = () => {
     history.push(profileUrl);
   };
+
+  useScrollToTop();
 
   return (
     <Fragment>

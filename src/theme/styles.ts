@@ -1,9 +1,12 @@
 import { GlobalStyleProps, mode } from '@chakra-ui/theme-tools';
 
+export const lightBg = 'gray.50';
+export const darkBg = 'gray.800';
+
 export const styles = {
   global: (props: GlobalStyleProps) => ({
     body: {
-      bg: mode('gray.50', 'gray.800')(props),
+      bg: mode(lightBg, darkBg)(props),
     },
   }),
 };
