@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { Container } from '../../../../components';
 import { Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, BackToProperty } from './steps';
 
@@ -6,7 +6,7 @@ const CourseCashFlow = ({
   handleClose,
   wrapper = true,
 }: {
-  handleClose: React.MouseEventHandler;
+  handleClose: MouseEventHandler;
   wrapper?: boolean;
 }) => {
   const [step, setStep] = useState(0);

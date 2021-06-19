@@ -3,8 +3,9 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "start": "snowpack dev",
-    "start-prod": "SNOWPACK_PUBLIC_CORAL_ENV=production yarn start",
+    "start:dev": "SNOWPACK_PUBLIC_CORAL_ENV=development snowpack dev",
+    "start:prod": "SNOWPACK_PUBLIC_CORAL_ENV=production yarn start",
+    "start": "yarn start:dev",
     "build": "snowpack build",
     "test": "web-test-runner \"src/**/*.test.{ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",

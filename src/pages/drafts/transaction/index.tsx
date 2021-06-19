@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { LinkBankAccount } from './linkBankAccount';
 import { ConfirmTransaction } from './confirmTransaction';
 import { ProcessingTransaction } from './processingTransaction';

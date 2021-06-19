@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom } from '@visx/axis';
 import { Group } from '@visx/group';
@@ -7,9 +7,9 @@ import { scaleBand, scaleLinear } from '@visx/scale';
 import { Bar } from '@visx/shape';
 import { format } from 'date-fns';
 
-export const RentalRevenueChart = () => {
-  return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
-};
+export const RentalRevenueChart = () => (
+  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
+);
 
 const data = [
   {

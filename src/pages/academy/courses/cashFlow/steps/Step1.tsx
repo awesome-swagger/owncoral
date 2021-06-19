@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { MouseEventHandler } from 'react';
 import { Box, Icon, Image, Button, Center, Text } from '@chakra-ui/react';
 import { FiX } from 'react-icons/fi';
 import { Title2 } from '../../../../../components/text';
@@ -8,8 +8,8 @@ export const Step1 = ({
   handleClose,
   nextStep,
 }: {
-  handleClose: React.MouseEventHandler;
-  nextStep: React.MouseEventHandler;
+  handleClose: MouseEventHandler;
+  nextStep: MouseEventHandler;
 }) => (
   <Box h="100%">
     <Icon as={FiX} cursor="pointer" onClick={handleClose} />

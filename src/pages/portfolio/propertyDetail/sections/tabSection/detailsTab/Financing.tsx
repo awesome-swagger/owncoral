@@ -3,7 +3,7 @@ import { BsQuestionCircle } from 'react-icons/bs';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 
-import { Headline, Title3 } from '../../../../../../components/text';
+import { Headline, Title2 } from '../../../../../../components/text';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
@@ -29,7 +29,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
   return (
     <Box>
       <Box>
-        <Title3 my={6}>Total capital costs</Title3>
+        <Title2 my={6}>Total capital costs</Title2>
         <VStack align="stretch">
           <Flex justifyContent="space-between">
             <Text>Purchase price</Text>
@@ -76,7 +76,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
       </Box>
       <Divider my={6} />
       <Box>
-        <Title3 my={6}>Financing</Title3>
+        <Title2 my={6}>Financing</Title2>
 
         {propertyDetail.mdlEquity !== null && propertyDetail.mdlMortgage !== null && equityPct && (
           <Fragment>

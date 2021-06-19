@@ -2,7 +2,7 @@ import { FiCalendar, FiRotateCw } from 'react-icons/fi';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../shared-fullstack/types';
 import { Box, Divider, Flex, Icon, Text } from '@chakra-ui/react';
 
-import { Title3 } from '../../../../../components/text';
+import { Title2 } from '../../../../../components/text';
 
 type InvestmentReturnPropertiesPropsT = {
   investment: PortfolioPropertyDetailInvestmentT;
@@ -10,7 +10,7 @@ type InvestmentReturnPropertiesPropsT = {
 export const InvestmentReturn = ({ investment }: InvestmentReturnPropertiesPropsT) => {
   return (
     <Box>
-      <Title3 my={6}>Investment returns</Title3>
+      <Title2 my={6}>Investment returns</Title2>
       <Box mb={6}>
         <Box>
           <Flex justifyContent="space-between" alignItems="center">

@@ -123,19 +123,17 @@ const TaxID = ({
   );
 };
 
-const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
-  return (
-    <FlexContainer layerStyle="noSelect">
-      <BackBtn handleClick={goBack} pos="absolute" top={6} left={6} />
-      <Heading size="md" as="h4" textAlign="center">
-        Sorry, Coral is only available for U.S. residents
-      </Heading>
-      <Text fontSize="md" textAlign="center">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </Text>
-      <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
-        Dismiss
-      </Button>
-    </FlexContainer>
-  );
-};
+const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => (
+  <FlexContainer layerStyle="noSelect">
+    <BackBtn handleClick={goBack} pos="absolute" top={6} left={6} />
+    <Heading size="md" as="h4" textAlign="center">
+      Sorry, Coral is only available for U.S. residents
+    </Heading>
+    <Text fontSize="md" textAlign="center">
+      Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+    </Text>
+    <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
+      Dismiss
+    </Button>
+  </FlexContainer>
+);

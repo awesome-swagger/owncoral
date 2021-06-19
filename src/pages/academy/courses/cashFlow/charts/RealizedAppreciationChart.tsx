@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom } from '@visx/axis';
 import { Group } from '@visx/group';

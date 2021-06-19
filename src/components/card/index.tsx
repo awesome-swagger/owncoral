@@ -13,6 +13,7 @@ export const Card = ({
   description: ReactNode;
 }) => {
   const gray = useColorModeValue('gray.700', 'gray.200');
+
   return (
     <Box layerStyle="card" m="2" p={4} w={40} borderRadius="xl">
       <Overline color={gray}>{title}</Overline>

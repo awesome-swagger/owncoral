@@ -30,6 +30,7 @@ export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
 
       setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
     }, []);
+
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>

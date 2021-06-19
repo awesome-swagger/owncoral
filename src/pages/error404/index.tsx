@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { Center, Icon, Text, VStack } from '@chakra-ui/react';
 

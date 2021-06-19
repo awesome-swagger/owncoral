@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { animated, interpolate, useTransition } from 'react-spring';
 import { useColorModeValue } from '@chakra-ui/react';
 import { Group } from '@visx/group';
@@ -117,7 +117,7 @@ function AnimatedPie<Datum>({
     leave: animate ? fromLeaveTransition : enterUpdateTransition,
   });
   return (
-    <React.Fragment>
+    <Fragment>
       {transitions.map(({ item: arc, props, key }: { item: any; props: any; key: string }) => {
         const hasSpaceForLabel = arc.endAngle - arc.startAngle >= 0.1;
 
@@ -139,6 +139,6 @@ function AnimatedPie<Datum>({
           </g>
         );
       })}
-    </React.Fragment>
+    </Fragment>
   );
 }

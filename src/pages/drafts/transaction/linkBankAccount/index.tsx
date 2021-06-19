@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { PlaidLink } from 'react-plaid-link';
 import { FlexContainer } from '../../../../components';

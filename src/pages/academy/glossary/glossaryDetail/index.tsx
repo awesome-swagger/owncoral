@@ -1,8 +1,9 @@
+import { Fragment } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { BackBtn, Container } from '../../../../components';
 import { Title2 } from '../../../../components/text';
-import { GlossaryData } from '../../../../lib/glossaryData';
 import { titleToUrlFragment } from '../../lib';
+import { GlossaryData } from '../glossaryData';
 
 const GlossaryDetail = () => {
   const history = useHistory();
@@ -12,15 +13,19 @@ const GlossaryDetail = () => {
     titleToUrlFragment(val.name).includes(title),
   );
 
-  if(!FilteredData) return null;
-
   return (
     <Container>
       <BackBtn handleClick={() => history.goBack()} />
-      <Title2 fontFamily="serif" fontStyle="italic" fontWeight="semibold" my={4}>
-        {FilteredData.name}
-      </Title2>
-      {FilteredData.jsx}
+      {FilteredData ? (
+        <Fragment>
+          <Title2 my={4}>{FilteredData.name}</Title2>
+          {FilteredData.jsx}
+        </Fragment>
+      ) : (
+        <Title2 textAlign="center" mt={20}>
+          Not Found
+        </Title2>
+      )}
     </Container>
   );
 };

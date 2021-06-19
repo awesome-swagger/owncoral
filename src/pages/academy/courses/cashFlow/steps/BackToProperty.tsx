@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { MouseEventHandler } from 'react';
 import { Box, Icon, Button, Flex, Center, Image, Text } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 
@@ -10,8 +10,8 @@ export const BackToProperty = ({
   handleClose,
   prevStep,
 }: {
-  handleClose: React.MouseEventHandler;
-  prevStep: React.MouseEventHandler;
+  handleClose: MouseEventHandler;
+  prevStep: MouseEventHandler;
 }) => (
   <Box pb={40}>
     <Icon as={BsChevronLeft} cursor="pointer" onClick={prevStep} />

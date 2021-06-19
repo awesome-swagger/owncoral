@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { MouseEventHandler } from 'react';
 import { Box, Icon, Progress, Button, Flex, Center, Text } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
@@ -10,9 +10,9 @@ export const Step8 = ({
   prevStep,
   handleClose,
 }: {
-  nextStep: React.MouseEventHandler;
-  prevStep: React.MouseEventHandler;
-  handleClose: React.MouseEventHandler;
+  nextStep: MouseEventHandler;
+  prevStep: MouseEventHandler;
+  handleClose: MouseEventHandler;
 }) => (
   <Box>
     <Flex justifyContent="space-between" alignItems="center">

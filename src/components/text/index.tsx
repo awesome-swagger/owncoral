@@ -1,7 +1,7 @@
 import type { HeadingProps, TextProps } from '@chakra-ui/react';
-import { forwardRef, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { forwardRef, Heading, Text } from '@chakra-ui/react';
 
-export const H1 = forwardRef<HeadingProps, 'h1'>((props, ref) => (
+export const XXLargeTitle = forwardRef<HeadingProps, 'h1'>((props, ref) => (
   <Heading as="h1" size="2xl" ref={ref} {...props} />
 ));
 
@@ -21,10 +21,6 @@ export const Title2 = forwardRef<HeadingProps, 'h5'>((props, ref) => (
   <Heading as="h5" size="sm" ref={ref} {...props} />
 ));
 
-export const Title3 = forwardRef<HeadingProps, 'h6'>((props, ref) => (
-  <Heading as="h6" size="xs" ref={ref} {...props} />
-));
-
 export const Headline = forwardRef<TextProps, 'span'>((props, ref) => (
   <Text textStyle="Headline" ref={ref} {...props} />
 ));
@@ -37,8 +33,8 @@ export const Caption1 = forwardRef<TextProps, 'span'>((props, ref) => (
   <Text textStyle="Caption1" ref={ref} {...props} />
 ));
 
-export const Caption2 = forwardRef<TextProps, 'span'>((props, ref) => (
-  <Text textStyle="Caption2" ref={ref} {...props} />
+export const Meta = forwardRef<TextProps, 'span'>((props, ref) => (
+  <Text textStyle="Meta" ref={ref} {...props} />
 ));
 
 export const Overline = forwardRef<TextProps, 'span'>((props, ref) => (

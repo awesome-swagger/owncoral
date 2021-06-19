@@ -1,9 +1,8 @@
-import { forwardRef, useContext } from 'react';
+import { forwardRef } from 'react';
 import { Box, Button, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';
-import { StepFormContext } from './index';
 
 type stepProps = {
   nextStep: () => void;
@@ -12,8 +11,6 @@ type stepProps = {
 
 export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
-    const form = useContext(StepFormContext);
-
     const borderColor = useColorModeValue('gray.700', 'gray.200');
 
     return (

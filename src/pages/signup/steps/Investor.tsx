@@ -19,6 +19,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     form.dispatch({ type: 'update-form', payload: { step4: 'yes' } });
     nextStep();
   }, []);
+
   return (
     <div>
       {available === 'Available' ? (
@@ -64,19 +65,19 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   );
 });
 
-const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
-  return (
-    <FlexContainer layerStyle="noSelect">
-      <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
-        <FiChevronLeft style={{ width: '1rem', height: '1rem' }} />
-      </Box>
-      <Heading size="md" as="h4" textAlign="center">
-        Coral is currently available to accredited investors only
-      </Heading>
-      <Text fontSize="md" textAlign="center">
-        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-      </Text>
-      <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12} children="Dismiss" />
-    </FlexContainer>
-  );
-};
+const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
+  <FlexContainer layerStyle="noSelect">
+    <Box pos="absolute" left={6} top={6} h={4} w={4} cursor="pointer" onClick={goBack}>
+      <FiChevronLeft style={{ width: '1rem', height: '1rem' }} />
+    </Box>
+    <Heading size="md" as="h4" textAlign="center">
+      Coral is currently available to accredited investors only
+    </Heading>
+    <Text fontSize="md" textAlign="center">
+      Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+    </Text>
+    <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
+      Dismiss
+    </Button>
+  </FlexContainer>
+);

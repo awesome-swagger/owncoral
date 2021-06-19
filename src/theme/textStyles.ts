@@ -33,18 +33,19 @@ const bodyFont = {
   'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif`,
 };
 
-export const h1 = {
-  fontSize: `${96 / 16}rem`,
+export const XXLargeTitle = {
+  fontSize: `${48 / 16}rem`,
+  lineHeight: `${56 / 16}rem`,
   fontWeight: 600,
-  letterSpacing: `${-1.5 / 16}em`,
+  letterSpacing: `${-0.22 / 16}em`,
   ...hFont,
 };
 
 export const XLargeTitle = {
-  fontSize: `${56 / 16}rem`,
-  lineHeight: `${66 / 16}rem`,
+  fontSize: `${40 / 16}rem`,
+  lineHeight: `${48 / 16}rem`,
   fontWeight: 600,
-  letterSpacing: `${-0.4 / 16}em`,
+  letterSpacing: `${-0.12 / 16}em`,
   ...hFont,
 };
 
@@ -52,29 +53,23 @@ export const LargeTitle = {
   fontSize: `${34 / 16}rem`,
   lineHeight: `${42 / 16}rem`,
   fontWeight: 600,
-  letterSpacing: `${0.25 / 16}em`,
+  letterSpacing: `${-0.12 / 16}em`,
   ...hFont,
 };
 
 export const Title1 = {
   fontSize: `${28 / 16}rem`,
-  lineHeight: `${34 / 16}rem`,
+  lineHeight: `${36 / 16}rem`,
   fontWeight: 600,
+  letterSpacing: `${-0.41 / 16}em`,
   ...hFont,
 };
 
 export const Title2 = {
-  fontSize: `${22 / 16}rem`,
-  lineHeight: `${28 / 16}rem`,
-  fontWeight: 600,
-  ...hFont,
-};
-
-export const Title3 = {
   fontSize: `${20 / 16}rem`,
   lineHeight: `${24 / 16}rem`,
   fontWeight: 600,
-  letterSpacing: `${0.15 / 16}em`,
+  letterSpacing: `${0.35 / 16}em`,
   ...hFont,
 };
 
@@ -82,7 +77,7 @@ export const Headline = {
   fontSize: `${16 / 16}rem`,
   lineHeight: `${22 / 16}rem`,
   fontWeight: 600,
-  letterSpacing: `${0.15 / 16}em`,
+  letterSpacing: `${-0.31 / 16}em`,
   ...bodyFont,
 };
 
@@ -90,7 +85,7 @@ export const Subhead = {
   fontSize: `${14 / 16}rem`,
   lineHeight: `${20 / 16}rem`,
   fontWeight: 400,
-  letterSpacing: `${0.1 / 16}em`,
+  letterSpacing: `${-0.15 / 16}em`,
   ...bodyFont,
 };
 
@@ -98,7 +93,7 @@ export const Body1 = {
   fontSize: `${16 / 16}rem`,
   lineHeight: `${22 / 16}rem`,
   fontWeight: 500,
-  letterSpacing: `${0.5 / 16}em`,
+  letterSpacing: `${-0.31 / 16}em`,
   ...bodyFont,
 };
 
@@ -106,16 +101,7 @@ export const Body2 = {
   fontSize: `${14 / 16}rem`,
   lineHeight: `${20 / 16}rem`,
   fontWeight: 500,
-  letterSpacing: `${0.25 / 16}em`,
-  ...bodyFont,
-};
-
-export const Button = {
-  // Ignore MUI here, uppercase looks dated
-  // text-transform: uppercase;
-  fontSize: `${14 / 16}rem`,
-  fontWeight: 500,
-  letterSpacing: `${1.25 / 16}em`,
+  letterSpacing: `${-0.15 / 16}em`,
   ...bodyFont,
 };
 
@@ -123,15 +109,15 @@ export const Caption1 = {
   fontSize: `${12 / 16}rem`,
   lineHeight: `${16 / 16}rem`,
   fontWeight: 500,
-  letterSpacing: `${0.4 / 16}em`,
+  letterSpacing: `${0 / 16}em`,
   ...bodyFont,
 };
 
-export const Caption2 = {
+export const Meta = {
   fontSize: `${10 / 16}rem`,
   lineHeight: `${12 / 16}rem`,
   fontWeight: 500,
-  letterSpacing: `${0.4 / 16}em`,
+  letterSpacing: `${0.12 / 16}em`,
   ...bodyFont,
 };
 
@@ -141,5 +127,14 @@ export const Overline = {
   lineHeight: `${16 / 16}rem`,
   fontWeight: 700,
   letterSpacing: `${1.5 / 16}em`,
+  ...bodyFont,
+};
+
+export const Button = {
+  // Ignore MUI here, uppercase looks dated
+  // text-transform: uppercase;
+  fontSize: `${14 / 16}rem`,
+  fontWeight: 500,
+  letterSpacing: `${1.25 / 16}em`,
   ...bodyFont,
 };

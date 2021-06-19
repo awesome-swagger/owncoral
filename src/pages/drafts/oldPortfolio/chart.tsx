@@ -1,4 +1,3 @@
-import type React from 'react';
 import { Center, Text, useColorModeValue } from '@chakra-ui/react';
 import { getColor } from '@chakra-ui/theme-tools';
 import { AxisBottom, AxisLeft } from '@visx/axis';

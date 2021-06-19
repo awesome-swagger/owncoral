@@ -1,5 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import { FiEdit2 } from 'react-icons/fi';
 import type { UserProfileT } from '../../../../shared-fullstack/types';
 import {
@@ -23,8 +22,7 @@ import * as R from 'remeda';
 
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
-import { Title3 } from '../../../../components/text';
-import { useQuery } from '../../../../lib/useQuery';
+import { Title2 } from '../../../../components/text';
 import { UserContext } from '../../../../userContext';
 import { splitDate, updateCurrentUser } from './lib';
 
@@ -69,9 +67,9 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   return (
     <Box>
       <BackBtn handleClick={goBack} pos="absolute" />
-      <Title3 mb={6} mt="0" mx="0" align="center">
+      <Title2 mt={2} mb={4} align="center">
         Personal Information
-      </Title3>
+      </Title2>
 
       {isLoading ? (
         <Center>
@@ -90,7 +88,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
             handleSubmit={makeSubmit('legalLast')}
           />
           <Box p={3} width="100%">
-            <Title3>Birthdate</Title3>
+            <Title2>Birthdate</Title2>
             <DayPicker date={birthDate as SplitDateT} onChange={handleDateChange} />
           </Box>
 
@@ -103,7 +101,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           <ReadonlyLine label="Email" value={user?.email} />
           <ReadonlyLine label="Alternate Email" value={user?.emailAlt} />
           <Box p={3} width="100%">
-            <Title3>Address</Title3>
+            <Title2>Address</Title2>
             <Text marginY={2}>
               {R.flatMap(
                 [
@@ -120,7 +118,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           </Box>
 
           <Box p={3} width="100%">
-            <Title3>I&#39;m an accredited visitor</Title3>
+            <Title2>I&#39;m an accredited visitor</Title2>
             <Switch
               marginY={2}
               size="lg"
@@ -149,7 +147,9 @@ type EditableLinePropsT = {
 const EditableLine = ({ label, initialValue, handleSubmit }: EditableLinePropsT) => {
   const EditIcon = () => {
     const { isEditing, getEditButtonProps } = useEditableControls();
-    return !isEditing ? (
+    if (isEditing) return null;
+
+    return (
       <Fragment>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <IconButton
@@ -160,7 +160,7 @@ const EditableLine = ({ label, initialValue, handleSubmit }: EditableLinePropsT)
           {...getEditButtonProps()}
         />
       </Fragment>
-    ) : null;
+    );
   };
 
   return (
@@ -184,11 +184,9 @@ type ReadonlyLinePropsT = {
   label: string;
   value: string | undefined | null;
 };
-const ReadonlyLine = ({ label, value }: ReadonlyLinePropsT) => {
-  return (
-    <Box p={2} width="100%">
-      <Title3>{label}</Title3>
-      <Text marginY={2}>{value || 'N/A'}</Text>
-    </Box>
-  );
-};
+const ReadonlyLine = ({ label, value }: ReadonlyLinePropsT) => (
+  <Box p={2} width="100%">
+    <Title2>{label}</Title2>
+    <Text marginY={2}>{value || 'N/A'}</Text>
+  </Box>
+);

@@ -13,6 +13,7 @@ type stepProps = {
 export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
   const history = useHistory();
+
   return (
     <FlexContainer ref={ref}>
       <BackBtn

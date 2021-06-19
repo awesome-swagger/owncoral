@@ -1,6 +1,4 @@
-import type React from 'react';
 import { Box, Button, Heading, Text, useColorModeValue } from '@chakra-ui/react';
-
 import { BackBtn, FlexContainer } from '../../../components';
 
 type stepProps = {

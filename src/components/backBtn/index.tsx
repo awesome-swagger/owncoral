@@ -1,9 +1,9 @@
-import type React from 'react';
+import type { Dispatch } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { forwardRef, Icon, IconButton, IconButtonProps } from '@chakra-ui/react';
 
 type BackBtnProps = {
-  handleClick: React.Dispatch<any>;
+  handleClick: Dispatch<any>;
   'aria-label'?: string;
 };
 

@@ -8,9 +8,9 @@ import { scaleBand, scaleLinear } from '@visx/scale';
 import { Bar } from '@visx/shape';
 import { format } from 'date-fns';
 
-export const OverAllCashChart = () => {
-  return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
-};
+export const OverAllCashChart = () => (
+  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
+);
 
 const data = [
   {

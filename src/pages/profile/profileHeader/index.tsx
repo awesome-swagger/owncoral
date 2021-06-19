@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
-import { BiCamera } from 'react-icons/bi';
-import { Avatar, AvatarBadge, Box, Center, Heading, Spinner } from '@chakra-ui/react';
+// import { BiCamera } from 'react-icons/bi';
+// import { Avatar, AvatarBadge, Box, Center, Heading, Spinner } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { Headline, Title1 } from '../../../components/text';
-import theme from '../../../theme';
 import { UserContext } from '../../../userContext';
 
 export const ProfileHeader = () => {
@@ -11,7 +11,7 @@ export const ProfileHeader = () => {
   const [user] = useContext(UserContext);
 
   return (
-    <Box>
+    <Box mb={4}>
       {/* <Center m=".5rem 0"> */}
       {/*  <Avatar */}
       {/*    size="lg" */}
@@ -24,7 +24,7 @@ export const ProfileHeader = () => {
       {/*    </AvatarBadge> */}
       {/*  </Avatar> */}
       {/* </Center> */}
-      <Title1 mt={4} mb={2} align="center">
+      <Title1 mb={2} align="center">
         {[user?.legalFirst, user?.legalLast].join(' ')}
       </Title1>
       <Headline align="center">{user?.email}</Headline>
