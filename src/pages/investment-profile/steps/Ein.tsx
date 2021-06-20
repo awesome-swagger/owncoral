@@ -26,20 +26,21 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
     } else {
       setError(true);
     }
-  }, [einNumber]);
+  }, [einNumber, form, nextStep]);
 
   useEffect(() => {
     const formState = form.formState;
 
     setEinNumber(formState?.step9?.einNumber || '');
-  }, []);
+  }, [form.formState]);
+
   useEffect(
     () =>
       form.dispatch({
         type: 'update-form',
         payload: { step9: { einNumber } },
       }),
-    [einNumber],
+    [einNumber, form],
   );
 
   return (

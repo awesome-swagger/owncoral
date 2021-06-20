@@ -17,19 +17,22 @@ export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
     const { handleSubmit, register, setValue, control } = useForm();
     const form = useContext(StepFormContext);
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step13: data },
-      });
-      nextStep();
-    }, []);
+    const onSubmit = useCallback(
+      (data) => {
+        form.dispatch({
+          type: 'update-form',
+          payload: { step13: data },
+        });
+        nextStep();
+      },
+      [form, nextStep],
+    );
 
     useEffect(() => {
       const formState = form.formState;
 
       setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
-    }, []);
+    }, [form.formState, setValue]);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

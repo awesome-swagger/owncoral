@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback,useContext, useEffect } from 'react';
+import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { Heading, Input, Text } from '@chakra-ui/react';
@@ -17,19 +17,22 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
     const { handleSubmit, register, setValue } = useForm();
     const form = useContext(StepFormContext);
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step16: data },
-      });
-      nextStep();
-    }, []);
+    const onSubmit = useCallback(
+      (data) => {
+        form.dispatch({
+          type: 'update-form',
+          payload: { step16: data },
+        });
+        nextStep();
+      },
+      [form, nextStep],
+    );
 
     useEffect(() => {
       const formState = form.formState;
 
       setValue('entity_phone_number', formState?.step16?.entity_phone_number || '');
-    }, []);
+    }, [form.formState, setValue]);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

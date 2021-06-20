@@ -41,11 +41,7 @@ function Property() {
     <Fragment>
       <NavBar>
         <HStack align="center">
-          <BackBtn
-            handleClick={() => {
-              history.push('/portfolio');
-            }}
-          />
+          <BackBtn handleClick={() => history.push('/portfolio')} />
           <VStack>
             <Heading as="h6" size="xs" m={0} isTruncated>
               {property.name}

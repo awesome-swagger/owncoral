@@ -30,7 +30,7 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
       />
       <Box h={40} w={40} borderRadius="50%" />
       <Heading size="md" mt={8} textAlign="center">
-        Congratulations! Your profile is now complete{' '}
+        Congratulations! Your profile is now complete
       </Heading>
       <Text fontSize="md" m="0" textAlign="center">
         You are ready to start investing in Coral.

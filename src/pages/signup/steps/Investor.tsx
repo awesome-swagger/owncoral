@@ -18,7 +18,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   const handleSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step4: 'yes' } });
     nextStep();
-  }, []);
+  }, [form, nextStep]);
 
   return (
     <div>

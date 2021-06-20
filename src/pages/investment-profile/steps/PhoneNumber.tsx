@@ -27,19 +27,20 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       } else {
         setError(true);
       }
-    }, [phoneNumber]);
+    }, [phoneNumber, form, nextStep]);
 
     useEffect(() => {
       const formState = form.formState;
       setPhoneNumber(formState?.step3?.phoneNumber || '');
-    }, []);
+    }, [form.formState]);
+
     useEffect(
       () =>
         form.dispatch({
           type: 'update-form',
           payload: { step3: { phoneNumber } },
         }),
-      [phoneNumber],
+      [phoneNumber, form],
     );
 
     return (

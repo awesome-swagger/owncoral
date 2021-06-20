@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useContext, useEffect, useMemo,useState } from 'react';
+import { forwardRef, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
@@ -42,6 +42,7 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
     }, [date]);
 
     const form = useContext(StepFormContext);
+
     const handleDateChange = useCallback(
       (newDate) => {
         setDate((prevState) => ({
@@ -55,14 +56,18 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
     const onSubmit = useCallback(() => {
       form.dispatch({ type: 'update-form', payload: { step11: date } });
       nextStep();
-    }, [date]);
-    useEffect(() => form.dispatch({ type: 'update-form', payload: { step11: date } }), [date]);
+    }, [date, nextStep]);
+
+    useEffect(() => form.dispatch({ type: 'update-form', payload: { step11: date } }), [
+      date,
+      form,
+    ]);
 
     useEffect(() => {
       const formState = form.formState;
-
       setDate(formState?.step11 || initialDate);
-    }, []);
+    }, [form.formState]);
+
     return (
       <div ref={ref}>
         <Container>
