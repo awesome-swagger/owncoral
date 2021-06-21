@@ -57,17 +57,17 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
     const onSubmit = useCallback(() => {
       form.dispatch({ type: 'update-form', payload: { step13: date } });
       nextStep();
-    }, [date, form, nextStep]);
+    }, [date, form.dispatch, nextStep]);
 
     useEffect(() => {
       const formState = form.formState;
-
       setDate(formState?.step13 || initialDate);
-    }, [form.formState]);
+      // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
       form.dispatch({ type: 'update-form', payload: { step13: date } });
-    }, [date, form]);
+    }, [date, form.dispatch]);
 
     return (
       <div ref={ref}>

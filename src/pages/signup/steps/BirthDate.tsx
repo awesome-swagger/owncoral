@@ -36,18 +36,18 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   useEffect(() => {
     if (Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18)
       form.dispatch({ type: 'update-form', payload: { step3: date } });
-  }, [date, age, currentYear, form]);
+  }, [date, age, currentYear, form.dispatch]);
 
   const onSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step3: date } });
     nextStep();
-  }, [date, form, nextStep]);
+  }, [date, form.dispatch, nextStep]);
 
   useEffect(() => {
     const formState = form.formState;
-
     setDate(formState?.step3 || initialDate);
-  }, [form.formState]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Container ref={ref} layerStyle="noSelect">

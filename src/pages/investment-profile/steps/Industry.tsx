@@ -15,18 +15,21 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
   const { handleSubmit, setValue, register } = useForm();
   const form = useContext(StepFormContext);
 
-  const onSubmit = useCallback((data) => {
-    form.dispatch({
-      type: 'update-form',
-      payload: { step10: data },
-    });
-    nextStep();
-  }, []);
+  const onSubmit = useCallback(
+    (data) => {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step10: data },
+      });
+      nextStep();
+    },
+    [form.dispatch, nextStep],
+  );
 
   useEffect(() => {
     const formState = form.formState;
-
     setValue('industry', formState?.step10?.industry || '');
+    // eslint-disable-next-line
   }, []);
   return (
     <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

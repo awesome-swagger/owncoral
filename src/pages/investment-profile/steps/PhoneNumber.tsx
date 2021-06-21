@@ -27,12 +27,13 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
       } else {
         setError(true);
       }
-    }, [phoneNumber, form, nextStep]);
+    }, [phoneNumber, form.dispatch, nextStep]);
 
     useEffect(() => {
       const formState = form.formState;
       setPhoneNumber(formState?.step3?.phoneNumber || '');
-    }, [form.formState]);
+      // eslint-disable-next-line
+    }, []);
 
     useEffect(
       () =>
@@ -40,7 +41,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
           type: 'update-form',
           payload: { step3: { phoneNumber } },
         }),
-      [phoneNumber, form],
+      [phoneNumber, form.dispatch],
     );
 
     return (

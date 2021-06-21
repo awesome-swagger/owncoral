@@ -21,10 +21,13 @@ const netWorth = [
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
 
-  const handleSubmit = useCallback((value) => {
-    form.dispatch({ type: 'update-form', payload: { step9: value } });
-    nextStep();
-  }, []);
+  const handleSubmit = useCallback(
+    (value) => {
+      form.dispatch({ type: 'update-form', payload: { step9: value } });
+      nextStep();
+    },
+    [form.dispatch, nextStep],
+  );
 
   return (
     <Box ref={ref} layerStyle="noSelect">

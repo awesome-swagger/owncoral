@@ -32,7 +32,7 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
         setAvailable(value);
       }
     },
-    [form, nextStep],
+    [form.dispatch, nextStep],
   );
 
   return (
@@ -83,7 +83,7 @@ const TaxID = ({
   const handleSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step1: { taxID } } });
     nextStep();
-  }, [taxID, form, nextStep]);
+  }, [taxID, form.dispatch, nextStep]);
 
   return (
     <Container layerStyle="noSelect">

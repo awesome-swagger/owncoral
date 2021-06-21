@@ -61,7 +61,6 @@
   box-sizing: border-box;
 }
 .carousel img {
-  height: 100%;
   display: inline-block;
   pointer-events: none;
 }

@@ -24,10 +24,13 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
-    const handleSubmit = useCallback((value) => {
-      form.dispatch({ type: 'update-form', payload: { step10: value } });
-      nextStep();
-    }, []);
+    const handleSubmit = useCallback(
+      (value) => {
+        form.dispatch({ type: 'update-form', payload: { step10: value } });
+        nextStep();
+      },
+      [form.dispatch, nextStep],
+    );
 
     return (
       <Box ref={ref} layerStyle="noSelect">
