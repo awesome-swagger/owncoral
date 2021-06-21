@@ -62,6 +62,17 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   );
 };
 
+const arrowStyles: CSSProperties = {
+  position: "absolute",
+  top: "50%",
+  zIndex: 2,
+  transform : "translateY(-50%)",
+  borderRadius: "50%",
+  background: "#00000050",
+  color: "#fff",
+  outline: "none"
+};
+
 const CenterCarousel = ({
   images,
   fallback,
@@ -74,6 +85,7 @@ const CenterCarousel = ({
   onOpen: any;
 }) => {
   const BulletColor = useColorModeValue('gray', 'white');
+
   const indicatorStyles: CSSProperties = {
     background: BulletColor,
     width: 10,
@@ -101,14 +113,7 @@ const CenterCarousel = ({
             title={label}
             aria-label="left-arrow"
             icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-            position="absolute"
-            top="50%"
-            left={2}
-            zIndex="2"
-            transform="translateY(-50%)"
-            borderRadius="50%"
-            bg="#00000050"
-            color="#fff"
+            style={{...arrowStyles, left: 2}}
           />
         )
       }
@@ -120,14 +125,7 @@ const CenterCarousel = ({
             title={label}
             aria-label="right-arrow"
             icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-            position="absolute"
-            top="50%"
-            right={2}
-            zIndex="2"
-            transform="translateY(-50%)"
-            borderRadius="50%"
-            bg="#00000050"
-            color="#fff"
+            style={{...arrowStyles, right: 2}}
           />
         )
       }
@@ -200,14 +198,7 @@ const FullCarousel = ({
           title={label}
           aria-label="left-arrow"
           icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-          position="absolute"
-          top="50%"
-          left={2}
-          zIndex="2"
-          transform="translateY(-50%)"
-          borderRadius="50%"
-          bg="#00000050"
-          color="#fff"
+          style={{...arrowStyles, left: 2}}
         />
       )
     }
@@ -219,14 +210,7 @@ const FullCarousel = ({
           title={label}
           aria-label="right-arrow"
           icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-          position="absolute"
-          top="50%"
-          right={2}
-          zIndex="2"
-          transform="translateY(-50%)"
-          borderRadius="50%"
-          bg="#00000050"
-          color="#fff"
+          style={{...arrowStyles, right: 2}}
         />
       )
     }

@@ -6,7 +6,7 @@ import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { AspectRatio, Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
 import Placeholder from '../../../assets/low-poly-placeholder.png';
-import { Container, ImgSlider } from '../../../components';
+import { Container } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
 import { useQuery } from '../../../lib/useQuery';
