@@ -5,6 +5,7 @@ import {
   Image,
   Box,
   AspectRatio,
+  IconButton,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -13,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
+
 import './style.css';
 
 type ImgSliderPropsT = {
@@ -24,19 +26,6 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const BulletColor = useColorModeValue('gray', 'white');
   const [image, setImage] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const arrowStyles: CSSProperties = {
-    position: 'absolute',
-    zIndex: 2,
-    top: 'calc(50% - 15px)',
-    cursor: 'pointer',
-    outline: 'none',
-    background: '#00000050',
-    borderRadius: '50%',
-    padding: '.25rem',
-    width: '2rem',
-    height: '2rem',
-  };
 
   const indicatorStyles: CSSProperties = {
     background: BulletColor,
@@ -60,26 +49,34 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
         autoPlay={false}
         renderArrowPrev={(onClickHandler, hasPrev, label) =>
           hasPrev && (
-            <button
+            <IconButton
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, left: 10 }}
-            >
-              <Icon as={FiChevronLeft} color="#FFF" h={6} w={6} ml="-2px" />
-            </button>
+              aria-label="left-arrow"
+              icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
+              position="absolute"
+              top="50%"
+              left={2}
+              zIndex="2"
+              transform="translateY(-50%)"
+            />
           )
         }
         renderArrowNext={(onClickHandler, hasNext, label) =>
           hasNext && (
-            <button
+            <IconButton
               type="button"
               onClick={onClickHandler}
               title={label}
-              style={{ ...arrowStyles, right: 10 }}
-            >
-              <Icon as={FiChevronRight} color="#FFF" h={6} w={6} mr="-2px" />
-            </button>
+              aria-label="right-arrow"
+              icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
+              position="absolute"
+              top="50%"
+              right={2}
+              zIndex="2"
+              transform="translateY(-50%)"
+            />
           )
         }
         renderIndicator={(onClickHandler, isSelected, index, label) => {
