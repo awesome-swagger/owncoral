@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
-
 import './style.css';
 
 type ImgSliderPropsT = {
