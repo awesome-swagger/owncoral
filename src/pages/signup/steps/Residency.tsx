@@ -32,7 +32,7 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
         setAvailable(value);
       }
     },
-    [available, form, nextStep],
+    [form, nextStep],
   );
 
   return (

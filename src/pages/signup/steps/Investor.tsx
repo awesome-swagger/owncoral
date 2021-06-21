@@ -44,8 +44,9 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               h={12}
               variant="outline"
               onClick={handleSubmit}
-              children="Yes"
-            />
+            >
+              Yes
+            </Button>
             <Button
               onClick={() => setAvailable('Not Available')}
               pos="absolute"
@@ -54,8 +55,9 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               w="calc(100% - 3rem)"
               h={12}
               variant="outline"
-              children="No"
-            />
+            >
+              No
+            </Button>
           </Container>
         </Box>
       ) : (

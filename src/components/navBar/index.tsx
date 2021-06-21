@@ -99,11 +99,11 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
         zIndex={NAV_ZINDEX}
-        sx={{ 'overscroll-behavior': 'none' }}
+        sx={{ overscrollBehavior: 'none' }}
       >
         <Flex align="stretch" justify="center" bg={navColor} h="100%" w="100%">
           <Center h="100%" marginX={6}>
-            <Icon as={Logo} w="8em" h="2em" sx={{ fill: logoFillColor }} />
+            <Icon as={Logo} w="6em" h="1.5em" sx={{ fill: logoFillColor }} />
           </Center>
 
           {!isBottomNav && (
@@ -181,7 +181,7 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
           color={props.currentPageName === name ? activeColor : inactiveColor}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
-          <Text as="span" textStyle="Caption1">
+          <Text as="span" textStyle="Caption1" fontWeight="normal">
             {name}
           </Text>
         </Flex>

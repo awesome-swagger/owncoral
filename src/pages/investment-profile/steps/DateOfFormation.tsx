@@ -56,7 +56,7 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
     const onSubmit = useCallback(() => {
       form.dispatch({ type: 'update-form', payload: { step11: date } });
       nextStep();
-    }, [date, nextStep]);
+    }, [date, form, nextStep]);
 
     useEffect(() => form.dispatch({ type: 'update-form', payload: { step11: date } }), [
       date,

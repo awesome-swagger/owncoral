@@ -1,19 +1,20 @@
 /* eslint-disable max-params */
 import { CSSProperties, ReactElement, useState } from 'react';
-import {
-  Icon,
-  Image,
-  Box,
-  AspectRatio,
-  IconButton,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  useDisclosure,
-  useColorModeValue,
-} from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { Carousel } from 'react-responsive-carousel';
+import {
+  AspectRatio,
+  Box,
+  Icon,
+  IconButton,
+  Image,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOverlay,
+  useColorModeValue,
+  useDisclosure,
+} from '@chakra-ui/react';
 
 import './style.css';
 
@@ -81,16 +82,13 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
         }
         renderIndicator={(onClickHandler, isSelected, index, label) => {
           // eslint-disable-line max-params
-          if (isSelected) {
-            return (
-              <li
-                style={{ ...indicatorStyles, background: '#000' }}
-                aria-label={`Selected: ${label} ${index + 1}`}
-                title={`Selected: ${label} ${index + 1}`}
-              />
-            );
-          }
-          return (
+          return (isSelected) ? (
+            <li
+              style={{ ...indicatorStyles, background: '#000' }}
+              aria-label={`Selected: ${label} ${index + 1}`}
+              title={`Selected: ${label} ${index + 1}`}
+            />
+            ) : (
             <li
               style={indicatorStyles}
               onClick={onClickHandler}
@@ -105,30 +103,28 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
           );
         }}
       >
-        {images?.map((src: string, idx: number) => {
-          return (
-            <AspectRatio
-              mx={4}
-              my={6}
-              ratio={4 / 3}
-              key={idx}
-              cursor="pointer"
-              overflow="hidden"
-              borderRadius="2xl"
-              boxShadow="sm"
-              onClick={() => {
-                setImage(src);
-                onOpen();
-              }}
-            >
-              <Image src={src} alt={`Property image #${idx}`} fallback={fallback} />
-            </AspectRatio>
-          );
-        })}
+        {images?.map((src: string, idx: number) => (
+          <AspectRatio
+            mx={4}
+            my={6}
+            ratio={4 / 3}
+            key={idx}
+            cursor="pointer"
+            overflow="hidden"
+            borderRadius="2xl"
+            boxShadow="sm"
+            onClick={() => {
+              setImage(src);
+              onOpen();
+            }}
+          >
+            <Image src={src} alt={`Property image #${idx}`} fallback={fallback} />
+          </AspectRatio>
+        ))}
       </Carousel>
-      <Modal isOpen={isOpen} onClose={onClose} size="full">
+      <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside" isCentered>
         <ModalOverlay />
-        <ModalContent h="auto">
+        <ModalContent h="auto" borderRadius={25} overflow="hidden">
           <Icon
             pos="absolute"
             top={10}
@@ -143,7 +139,16 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
             boxShadow="base"
             layerStyle="iconColor"
           />
-          <Image w="100%" src={image} alt="property_image" fallback={fallback} />
+          <ModalBody p={0}>
+            <Image
+              w="100%"
+              maxW="800px"
+              maxH="600px"
+              src={image}
+              alt="property_image"
+              fallback={fallback}
+            />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </Box>

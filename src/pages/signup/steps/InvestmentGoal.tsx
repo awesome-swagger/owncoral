@@ -25,16 +25,13 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
-    const handleSubmit = useCallback(
-      (value) => {
-        form.dispatch({
-          type: 'update-form',
-          payload: { step8: value },
-        });
-        nextStep();
-      },
-      [form, nextStep],
-    );
+    const handleSubmit = useCallback((value) => {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step8: value },
+      });
+      nextStep();
+    }, [form, nextStep]);
 
     return (
       <Container ref={ref} layerStyle="noSelect">
@@ -57,8 +54,9 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             key={value}
             textStyle="Body1"
             onClick={() => handleSubmit(value)}
-            children={label}
-          />
+          >
+            {label}
+          </Box>
         ))}
       </Container>
     );

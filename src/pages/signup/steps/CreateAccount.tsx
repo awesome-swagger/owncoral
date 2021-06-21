@@ -54,9 +54,13 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             Let’s create your account
           </Heading>
-          <Text fontSize="md" textAlign="left" children="Lorem ipsum dolor sir amet" />
+          <Text fontSize="md" textAlign="left">
+            Lorem ipsum dolor sir amet
+          </Text>
           <Box mt={8}>
-            <Text fontSize="md" textAlign="left" children="Email" />
+            <Text fontSize="md" textAlign="left">
+              Email
+            </Text>
             <Input
               h={12}
               mt={2}
@@ -102,8 +106,10 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
             className={errors.password ? 'shake_animation' : ''}
             textAlign="left"
             m="0.5rem 0"
-            children="Must be at least 8 characters"
-          />
+          >
+            Must be at least 8 characters
+          </Text>
+
           <Center w="calc(100% - 3rem)" bottom="6.5rem" pos="absolute">
             <Checkbox
               size="lg"

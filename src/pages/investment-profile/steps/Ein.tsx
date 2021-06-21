@@ -34,13 +34,11 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
     setEinNumber(formState?.step9?.einNumber || '');
   }, [form.formState]);
 
-  useEffect(
-    () =>
-      form.dispatch({
-        type: 'update-form',
-        payload: { step9: { einNumber } },
-      }),
-    [einNumber, form],
+  useEffect(() =>
+    form.dispatch({
+      type: 'update-form',
+      payload: { step9: { einNumber } },
+    }), [einNumber, form]
   );
 
   return (
