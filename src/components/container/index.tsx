@@ -20,7 +20,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
         p={padding}
         marginX={{ base: '0', md: 'auto' }}
         marginY={{ base: '0', md: 6 }}
-        w={{ base: '100vw', md: '80vw' }}
+        w={{ base: '100%', md: '80vw' }}
         maxW={{ base: 'unset', md: theme.breakpoints.sm }}
         minH={{ base: '100vh', md: '80vh' }}
         borderRadius={{ base: 'none', md: '2xl' }}
@@ -32,10 +32,10 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
         {...otherProps}
       >
         {children}
+        {showColorModeButton && <ColorModeButton pos="fixed" top={16} right={6} />}
       </Box>
-      {showColorModeButton && <ColorModeButton pos="fixed" top={6} right={6} />}
     </Fragment>
-  )
+  ),
 );
 
 export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (

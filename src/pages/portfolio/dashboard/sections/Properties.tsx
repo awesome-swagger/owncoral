@@ -289,7 +289,7 @@ const FadeOutGradient = ({
         // Hide gradient when table is scrolled far left
         opacity={Math.min(tableLeftScrollDist / 32, 1)}
         pos="absolute"
-        w="5rem"
+        w={{ base: '2rem', md: '3rem' }}
         h="calc(100% - 1rem)"
         left="4rem"
         top="0"
@@ -300,14 +300,14 @@ const FadeOutGradient = ({
         // Hide gradient when table is scrolled far right
         opacity={Math.min(tableRightScrollDist / 32, 1)}
         pos="absolute"
-        w="5rem"
+        w={{ base: '3rem', md: '4.5rem' }}
         h="calc(100% - 1rem)"
         /*
       HACK:
         match breakpoint and width of Container to place 'fade out' gradient
         on RHS of table
       */
-        left={{ base: 'calc(100vw - 6.5rem)', md: `calc(${theme.breakpoints.sm} - 6.5rem)` }}
+        left={{ base: 'calc(100vw - 4.5rem)', md: `calc(${theme.breakpoints.sm} - 6rem)` }}
         top="0"
         background={tableGrad}
       />

@@ -1,3 +1,4 @@
+export { AboutCoral } from './aboutCoral';
 export { Faq } from './faq';
 export { Fees } from './fees';
 export { InvestmentGoal } from './investmentGoal';

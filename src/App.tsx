@@ -66,7 +66,7 @@ function App() {
       <UserContext.Provider value={[user, setUser]}>
         <ChakraProvider theme={AppTheme}>
           <Global styles={[AppRootStyle, headerStyles]} />
-          <DebugPanel />
+          {/* <DebugPanel /> */}
           {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
           <Suspense fallback={<Fragment />}>
             <Router>
@@ -82,7 +82,9 @@ function App() {
 
                 <ProtectedRoute exact path="/property/:address" component={Property} />
 
-                <ProtectedRoute path="/profile" component={Profile} />
+                <ProtectedRoute path="/profile">
+                  <Profile />
+                </ProtectedRoute>
 
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
@@ -94,18 +96,27 @@ function App() {
                 <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
                 {isDev && (
-                  <>
-                    <Route path="/signup" component={SignupFlow} />
-                    <Route path="/investment-profile" component={InvestmentProfileFlow} />
+                  <Fragment>
+                    <Route path="/signup">
+                      <SignupFlow />
+                    </Route>
+
+                    <Route path="/investment-profile">
+                      <InvestmentProfileFlow />
+                    </Route>
+
                     <ProtectedRoute path="/drafts" component={Drafts} />
+
                     <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+
                     <ProtectedRoute
                       exact
                       path="/opportunities/detail"
                       component={OpportunityDetail}
                     />
+
                     <ProtectedRoute exact path="/map-box" component={MapBox} />
-                  </>
+                  </Fragment>
                 )}
 
                 <ProtectedRoute path="*" component={Error404} />
@@ -122,15 +133,18 @@ function App() {
 // Note: we're not using a <Fragment> here, because the <Switch> component
 // which contains this block does not work with Fragments
 const authRoutes = [
-  <Route exact path="/login" key="/login" component={Login} />,
-  <Route exact path="/forgot" key="/forgot" component={ForgotPassword} />,
-  <Route exact path="/forgot-check-email" key="/forgot-check-email" component={ForgotCheckEmail} />,
-  <Route
-    exact
-    path="/new-password/:resetToken"
-    key="/new-password/:resetToken"
-    component={NewPassword}
-  />,
+  <Route exact path="/login" key="/login">
+    <Login />
+  </Route>,
+  <Route exact path="/forgot" key="/forgot">
+    <ForgotPassword />
+  </Route>,
+  <Route exact path="/forgot-check-email" key="/forgot-check-email">
+    <ForgotCheckEmail />
+  </Route>,
+  <Route exact path="/new-password/:resetToken" key="/new-password/:resetToken">
+    <NewPassword />
+  </Route>,
   <Route exact path="/welcome-to-coral/:resetToken" key="/welcome-to-coral/:resetToken">
     <NewPassword isWelcome />
   </Route>,

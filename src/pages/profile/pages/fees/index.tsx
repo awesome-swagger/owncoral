@@ -1,46 +1,66 @@
-import { Box, Text } from '@chakra-ui/react';
+import type React from 'react';
+import { Fragment } from 'react';
+import { Box, ListItem, Text,UnorderedList } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 
 // Source: https://www.notion.so/coralmoney/Coral-s-fees-f525884af90a46379a0fde551b69ef87
 
+const Sb: React.FC = (props) => <span style={{ fontWeight: 600 }}>{props.children}</span>;
+
 export const Fees = ({ goBack }: { goBack: () => void }) => (
-  <Box>
+  <Fragment>
     <BackBtn handleClick={goBack} pos="absolute" />
     <Title2 mt={2} mb={4} align="center">
       Fees
     </Title2>
     <Box h={2} />
     <Text my="0.6em">
-      We aim to make the cost of co-ownership comparable the cost of DIY. We charge three core
-      fees to acquire, operate, and sell the property.
+      We aim to make the cost of co-ownership comparable the cost of DIY. We charge three core fees
+      to acquire, operate, and sell the property.
     </Text>
 
-    <Headline my="1.2em">What you pay &rarr; What you get</Headline>
+    <Headline my="1.2em">What you pay, what you get</Headline>
 
-    <Text my="0.6em">
-      <b>Acquisition Fee:</b> 2% purchase price &rarr; We find and analyze the property, prepare a
-      business plan, set up the legal infrastructure, secure financing and find your co-owners.
-    </Text>
-    <Text my="0.6em">
-      <b>Property Management Fee:</b> 8% annual rental revenue &rarr; We find and vet tenants,
-      collect rent, manage maintenance and repairs, find and manage vendors, set rental rates,
-      manage budget.
-    </Text>
-    <Text my="0.6em">
-      <b>Sale Fee:</b> 3% sale price &rarr; We serve as your broker to find great buyers and sell
-      the property (or your allocation of the property).
-    </Text>
+    <UnorderedList spacing={6}>
+      <ListItem>
+        <Text textStyle="Body2">
+          <Sb>Acquisition Fee:</Sb> 2% purchase price
+        </Text>
+        <Text textStyle="Caption1">
+          We find and analyze the property, prepare a business plan, set up the legal
+          infrastructure, secure financing and find your co-owners.
+        </Text>
+      </ListItem>
+      <ListItem>
+        <Text textStyle="Body2">
+          <Sb>Property Management Fee:</Sb> 8% annual rental revenue
+        </Text>
+        <Text textStyle="Caption1">
+          We find and vet tenants, collect rent, manage maintenance and repairs, find and manage
+          vendors, set rental rates, manage budget.
+        </Text>
+      </ListItem>
+      <ListItem>
+        <Text textStyle="Body2">
+          <Sb>Sale Fee:</Sb> 3% sale price
+        </Text>
+        <Text textStyle="Caption1">
+          We serve as your broker to find great buyers and sell the property (or your allocation of
+          the property).
+        </Text>
+      </ListItem>
+    </UnorderedList>
 
     <br />
     <Text my="0.6em">
       <i>
         Typical real estate investing platforms and solutions (from crowdfunding to REITs) charge
-        expensive advisory fees and take a cut out of your profits (in addition to fees we
-        charge). We don&rsquo;t. Without the expensive fees, more of your money is free to
-        compound: your growth goes to you.
+        expensive advisory fees and take a cut out of your profits (in addition to fees we charge).
+        We don&rsquo;t. Without the expensive fees, more of your money is free to compound: your
+        growth goes to you.
       </i>
     </Text>
-  </Box>
+  </Fragment>
 );

@@ -31,7 +31,7 @@ const Example = ({ children }: { children: any }) => (
 );
 const Notes = ({ children }: { children: any }) => (
   <Fragment>
-    <Headline mt={6} mb={2} fontFamily="serif" fontStyle="italic" fontWeight="semibold">
+    <Headline mt={6} mb={2}>
       Other notes
     </Headline>
     <Text textStyle="Body1">{children}</Text>
@@ -600,7 +600,7 @@ export const GlossaryData = [
     jsx: (
       <Box>
         <Description>
-          The Total Property Costs is the total amount of money (capital) to buy and own the
+          The Total Property Costs consist of the total amount of money (capital) to buy and own the
           property through Coral, including improvements. This sum includes the purchase price of
           the property, closing costs, acquisition fee and budgeted capital expenditure (renovations
           and a reserve for ongoing maintenance and repairs). It is also equal to Equity + Loan

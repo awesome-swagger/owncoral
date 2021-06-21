@@ -4,18 +4,21 @@ import {
   FiExternalLink,
   FiFile,
   FiHelpCircle,
+  FiInfo,
   FiLogOut,
+  FiMoon,
+  FiSun,
   FiUser,
 } from 'react-icons/fi';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { Box, Icon, Link as ChakraLink, VStack } from '@chakra-ui/react';
+import { Box, Icon, Link as ChakraLink, useColorMode, VStack } from '@chakra-ui/react';
 
 import { Container, NavBar, Option, OptionGroup, ProtectedRoute } from '../../components';
 import { Overline } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { useScrollToTop } from '../../lib/useScrollToTop';
 import Error404 from '../error404';
-import { Faq, Fees, LegalStructure, PersonalInformation } from './pages';
+import { AboutCoral, Faq, Fees, LegalStructure, PersonalInformation } from './pages';
 import { ProfileHeader } from './profileHeader';
 
 function Profile() {
@@ -40,6 +43,10 @@ function Profile() {
             <PersonalInformation goBack={goBack} />
           </ProtectedRoute>
 
+          <ProtectedRoute path={profileUrl + '/about-coral'}>
+            <AboutCoral goBack={goBack} />
+          </ProtectedRoute>
+
           <ProtectedRoute path={profileUrl + '/fees'}>
             <Fees goBack={goBack} />
           </ProtectedRoute>
@@ -61,6 +68,7 @@ function Profile() {
 export const ProfileContent = () => {
   const { url: profileUrl } = useRouteMatch();
   const history = useHistory();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Fragment>
@@ -86,6 +94,10 @@ export const ProfileContent = () => {
             About
           </Overline>
           <OptionGroup>
+            <Option onClick={() => history.push(profileUrl + '/about-coral')}>
+              <Icon as={FiInfo} h={4} w={4} marginRight={4} />
+              About Coral
+            </Option>
             <Option onClick={() => history.push(profileUrl + '/fees')}>
               <Icon as={FiDollarSign} h={4} w={4} marginRight={4} />
               Fees
@@ -132,6 +144,10 @@ export const ProfileContent = () => {
         </Box>
         <Box w="100%">
           <OptionGroup>
+            <Option onClick={toggleColorMode}>
+              <Icon as={colorMode === 'light' ? FiMoon : FiSun} h={4} w={4} mr={4} />
+              Use {colorMode === 'light' ? 'Dark' : 'Light'} Mode
+            </Option>
             <Option
               onClick={async () => {
                 await fetchWrap('/api/logout', { method: 'GET' }, true);
@@ -139,7 +155,7 @@ export const ProfileContent = () => {
               }}
             >
               <Icon as={FiLogOut} h={4} w={4} mr={4} />
-              Log out
+              Log Out
             </Option>
           </OptionGroup>
         </Box>

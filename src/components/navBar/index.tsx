@@ -6,7 +6,6 @@ import {
   Box,
   Center,
   Flex,
-  HStack,
   Icon,
   Spacer,
   Text,
@@ -18,7 +17,6 @@ import { Portal } from '@visx/tooltip';
 
 import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
-import { ColorModeButton } from '../colorModeButton';
 
 const NAV_ZINDEX = 5;
 
@@ -62,9 +60,6 @@ const navBarTopBreakpoint = 'md';
 
 /*
   Layout
-    Children are inlined into top left area. Logo is centered, but
-    can be pushed rightward by children (children can take up to 50% area).
-
     Below /navBarTopBreakpoint/ breakpoint, nav buttons are shown in a bottom bar.
     At /navBarTopBreakpoint/ and above, nav buttons are inlined into top right.
 
@@ -82,16 +77,13 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
   const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
-  const headerHeight = 16;
+  const headerHeight = `${13 / 4}rem`;
   const mobileFooterExtraHeight = 3;
-  const footerHeight = isTouch ? `${19 / 4}rem` : `${(19 - mobileFooterExtraHeight) / 4}rem`;
-  const shouldCenterLogo = useBreakpointValue({ base: true, [navBarTopBreakpoint]: false });
+  const footerHeight = isTouch ? `${16 / 4}rem` : `${(16 - mobileFooterExtraHeight) / 4}rem`;
+  const isBottomNav = useBreakpointValue({ base: true, [navBarTopBreakpoint]: false });
 
-  /*
-   * TODO: Simplify
-   *
-   * Too many levels of spacers, flexes, etc.
-   */
+  const navColor = useColorModeValue('gray.50', 'whiteAlpha.200');
+
   return (
     <Fragment>
       {/* Spacer to match fixed header */}
@@ -109,26 +101,17 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         zIndex={NAV_ZINDEX}
         sx={{ 'overscroll-behavior': 'none' }}
       >
-        <Flex align="stretch" justify="center" layerStyle="navColor" h="100%" w="100%">
-          {/* Children are allowed to push the logo right, but not too far */}
-          <Box flexBasis={0} flexGrow={shouldCenterLogo ? 1 : 0} maxW="50%">
-            {props.children}
-          </Box>
-
-          <Center h="100%" marginX={5}>
+        <Flex align="stretch" justify="center" bg={navColor} h="100%" w="100%">
+          <Center h="100%" marginX={6}>
             <Icon as={Logo} w="8em" h="2em" sx={{ fill: logoFillColor }} />
           </Center>
 
-          <Flex flexBasis={0} flexGrow={1}>
-            <HStack h="100%" pr={3} justify="flex-end" align="center" spacing={3} flexGrow={1}>
-              <Box h="100%" display={{ base: 'none', [navBarTopBreakpoint]: 'block' }}>
-                <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
-              </Box>
-              <ColorModeButton />
-              {/* TODO: Re-enable for desktop (old Profile Popover)
-              <ProfilePopOver /> */}
-            </HStack>
-          </Flex>
+          {!isBottomNav && (
+            <Fragment>
+              <Spacer />
+              <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
+            </Fragment>
+          )}
         </Flex>
       </Box>
 
@@ -152,7 +135,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         sx={{ 'overscroll-behavior': 'none' }}
       >
         {/* Extra space at bottom on mobile to avoid */}
-        <Center layerStyle="navColor" h="100%" w="100%" pb={isTouch ? mobileFooterExtraHeight : 0}>
+        <Center bg={navColor} h="100%" w="100%" pb={isTouch ? mobileFooterExtraHeight : 0}>
           <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
         </Center>
       </Box>
@@ -162,6 +145,13 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 
 function NavButtons(props: { currentPageName: string | null; isTouch: boolean }) {
   const navBarTopBreakpoint = 'lg';
+
+  const hoverColors = useColorModeValue(
+    { color: 'black', bg: 'secondary.100' },
+    { color: 'white', bg: 'secondary.800' },
+  );
+  const inactiveColor = useColorModeValue('gray.500', 'gray.400');
+  const activeColor = useColorModeValue('black', 'white');
 
   return (
     <Flex
@@ -183,11 +173,12 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
           m={0}
           h="100%"
           justify="center"
-          layerStyle={props.currentPageName === name ? 'navButton.active' : 'navButton'}
           borderRadius="lg"
           // Button-press effect for desktop
           _active={props.isTouch ? {} : { transform: 'scale(0.9)' }}
           sx={{ transition: 'all 200ms' }}
+          _hover={hoverColors}
+          color={props.currentPageName === name ? activeColor : inactiveColor}
         >
           <Icon as={icon} w={5} h={5} aria-label={name} m={0} />
           <Text as="span" textStyle="Caption1">
@@ -200,7 +191,7 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
 }
 
 function getCurrentPageName(path: string): string | null {
-  const filteredLink = navLinks.find(link => path.startsWith(link.url));
+  const filteredLink = navLinks.find((link) => path.startsWith(link.url));
 
   return filteredLink ? filteredLink.name : null;
 }

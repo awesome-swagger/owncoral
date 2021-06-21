@@ -34,41 +34,13 @@ export const layerStyles = {
   selectionBox: {
     bg: 'white',
     color: 'black',
-    _hover: { bg: 'primary.100' },
+    _hover: { bg: 'secondary.100' },
     selected: { bg: 'gray.300' },
     '.chakra-ui-dark &': {
       bg: 'whiteAlpha.100',
       color: 'white',
       _hover: { bg: 'secondary.800' },
       selected: { bg: 'whiteAlpha.400' },
-    },
-  },
-  navButton: {
-    color: 'gray.500',
-    _hover: { color: 'black', bg: 'primary.100' },
-    '.chakra-ui-dark &': {
-      color: 'gray.400',
-      _hover: {
-        color: 'white',
-        bg: 'secondary.800',
-      },
-    },
-    active: {
-      color: 'black',
-      _hover: { color: 'black', bg: 'primary.100' },
-      '.chakra-ui-dark &': {
-        color: 'white',
-        _hover: {
-          color: 'white',
-          bg: 'secondary.800',
-        },
-      },
-    },
-  },
-  navColor: {
-    bg: 'gray.50',
-    '.chakra-ui-dark &': {
-      bg: 'rgba(255, 255, 255, 0.05)',
     },
   },
   muiCardColor: {

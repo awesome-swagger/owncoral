@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { AspectRatio, Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
-import Placeholder from '../../../assets/low-poly/placeholder-02-poly.png';
+import Placeholder from '../../../assets/low-poly-placeholder.png';
 import { Container, ImgSlider } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
@@ -86,20 +86,20 @@ const PortfolioPropertyDetail = ({
         <Fragment>
           <AspectRatio ratio={4 / 3}>
             <Image
-                borderTopRadius={{ base: 'none', md: '2xl' }}
-                src={
-                  propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0
-                    ? Placeholder
-                    : propertyDetail.imageUrls[0]
-                }
-                alt={propertyDetail.name + ' Image'}
-                w="100%"
-                fallback={
-                  <Center>
-                    <Spinner />
-                  </Center>
-                }
-              />
+              borderTopRadius={{ base: 'none', md: '2xl' }}
+              src={
+                propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0
+                  ? Placeholder
+                  : propertyDetail.imageUrls[0]
+              }
+              alt={propertyDetail.name + ' Image'}
+              w="100%"
+              fallback={
+                <Center>
+                  <Spinner />
+                </Center>
+              }
+            />
           </AspectRatio>
           <Box p={6} pt={0}>
             <Icon
