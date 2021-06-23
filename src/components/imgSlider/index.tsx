@@ -108,24 +108,26 @@ const CenterCarousel = ({
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
           <IconButton
+            left={2}
             type="button"
             onClick={onClickHandler}
             title={label}
             aria-label="left-arrow"
             icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-            style={{ ...arrowStyles, left: 2 }}
+            style={{ ...arrowStyles }}
           />
         )
       }
       renderArrowNext={(onClickHandler, hasNext, label) =>
         hasNext && (
           <IconButton
+            right={2}
             type="button"
             onClick={onClickHandler}
             title={label}
             aria-label="right-arrow"
             icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-            style={{ ...arrowStyles, right: 2 }}
+            style={{ ...arrowStyles }}
           />
         )
       }
