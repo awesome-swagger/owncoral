@@ -37,7 +37,7 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
       />
       <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside" isCentered>
         <ModalOverlay />
-        <ModalContent h="auto" borderRadius={25} overflow="hidden">
+        <ModalContent borderRadius={25} overflow="hidden">
           <Icon
             pos="absolute"
             zIndex="1"
@@ -53,7 +53,7 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
             boxShadow="base"
             layerStyle="iconColor"
           />
-          <ModalBody p={0}>
+          <ModalBody p={0} overflow="hidden">
             <FullCarousel images={images} fallback={fallback} imageIndex={imageIndex} />
           </ModalBody>
         </ModalContent>
@@ -63,14 +63,14 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
 };
 
 const arrowStyles: CSSProperties = {
-  position: "absolute",
-  top: "50%",
+  position: 'absolute',
+  top: '50%',
   zIndex: 2,
-  transform : "translateY(-50%)",
-  borderRadius: "50%",
-  background: "#00000050",
-  color: "#fff",
-  outline: "none"
+  transform: 'translateY(-50%)',
+  borderRadius: '50%',
+  background: '#00000050',
+  color: '#fff',
+  outline: 'none',
 };
 
 const CenterCarousel = ({
@@ -113,7 +113,7 @@ const CenterCarousel = ({
             title={label}
             aria-label="left-arrow"
             icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-            style={{...arrowStyles, left: 2}}
+            style={{ ...arrowStyles, left: 2 }}
           />
         )
       }
@@ -125,7 +125,7 @@ const CenterCarousel = ({
             title={label}
             aria-label="right-arrow"
             icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-            style={{...arrowStyles, right: 2}}
+            style={{ ...arrowStyles, right: 2 }}
           />
         )
       }
@@ -184,7 +184,6 @@ const FullCarousel = ({
   imageIndex: number;
 }) => (
   <Carousel
-    dynamicHeight={true}
     selectedItem={imageIndex}
     infiniteLoop
     showStatus={false}
@@ -193,32 +192,33 @@ const FullCarousel = ({
     renderArrowPrev={(onClickHandler, hasPrev, label) =>
       hasPrev && (
         <IconButton
+          left={2}
           type="button"
           onClick={onClickHandler}
           title={label}
           aria-label="left-arrow"
           icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-          style={{...arrowStyles, left: 2}}
+          style={{ ...arrowStyles }}
         />
       )
     }
     renderArrowNext={(onClickHandler, hasNext, label) =>
       hasNext && (
         <IconButton
+          right={2}
           type="button"
           onClick={onClickHandler}
           title={label}
           aria-label="right-arrow"
           icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-          style={{...arrowStyles, right: 2}}
+          style={{ ...arrowStyles }}
         />
       )
     }
   >
     {images?.map((src: string, idx: number) => (
       <Image
-        w="100%"
-        height="auto"
+        h="calc(100vh - 7.5rem)"
         src={src}
         alt={`Property image #${idx}`}
         key={idx}
