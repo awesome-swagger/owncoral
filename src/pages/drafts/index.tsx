@@ -28,8 +28,6 @@ const Drafts = () => {
       />
 
       <ProtectedRoute exact path={draftsRootUrl + '/transaction'} component={Transaction} />
-
-      <ProtectedRoute exact path={draftsRootUrl + '/course/cash-flow'} component={CourseCashFlow} />
     </Switch>
   );
 };
@@ -64,10 +62,6 @@ const DraftsMain = ({ draftsRootUrl }: { draftsRootUrl: string }) => (
 
         <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/transaction`}>
           Transaction
-        </Button>
-
-        <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/course/cash-flow`}>
-          Course Cash Flow
         </Button>
       </VStack>
     </Container>

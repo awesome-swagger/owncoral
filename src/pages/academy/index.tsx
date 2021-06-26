@@ -1,10 +1,9 @@
 import { Fragment } from 'react';
-import { useHistory,useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
 import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
-import ComingSoon from '../coming-soon';
 import { Courses } from './courses';
 import { Glossary } from './glossary';
 
@@ -24,18 +23,14 @@ const AcademyTabs = () => {
   return (
     <Box>
       <Title1 my={4}> Academy </Title1>
-      <Tabs defaultIndex={tab === 'courses' ? 0 : 1}>
+      <Tabs defaultIndex={tab === 'glossary' ? 1 : 0}>
         <TabList>
           <Tab onClick={() => history.push('/academy/courses')}>Crash Courses</Tab>
           <Tab onClick={() => history.push('/academy/glossary')}>Glossary</Tab>
         </TabList>
         <TabPanels>
           <TabPanel p="0">
-            {import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development' ? (
-              <Courses />
-            ) : (
-              <ComingSoon isPage={false} />
-            )}
+            <Courses />
           </TabPanel>
           <TabPanel p="0">
             <Glossary />

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { InView } from 'react-intersection-observer';
 import { Box } from '@chakra-ui/react';
 
 // @ts-ignore
@@ -13,7 +14,18 @@ export const MapBox = ({ address }: { address: any }) => {
   mapboxgl.accessToken = apiToken;
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
-  const mapContainer = <Box ref={mapContainerRef} w="100%" h="25em" />;
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const mapContainer = (
+    <InView
+      onChange={() => {
+        if (mapRef.current !== null) {
+          mapRef.current.resize();
+        }
+      }}
+    >
+      <Box ref={mapContainerRef} w="100%" h="25em" />
+    </InView>
+  );
 
   const [lng, setLng] = useState(0);
   const [lat, setLat] = useState(0);
@@ -34,17 +46,14 @@ export const MapBox = ({ address }: { address: any }) => {
   }, [address, apiToken]);
 
   useEffect(() => {
-    const map = new mapboxgl.Map({
+    mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current || '',
       style: styleUrl,
       center: [lng, lat],
       zoom: 12,
     });
-    map.resize();
+    const map = mapRef.current;
 
-    map.on('idle', function () {
-      map.resize();
-    });
     map.dragPan.disable();
     map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl());
@@ -82,6 +91,10 @@ export const MapBox = ({ address }: { address: any }) => {
           },
         });
       });
+    });
+
+    map.once('idle', function () {
+      map.resize();
     });
 
     return () => map.remove();

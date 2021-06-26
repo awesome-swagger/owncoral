@@ -40,6 +40,7 @@ const SignupFlow = lazy(() => import('./pages/signup'));
 const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 const GlossaryDetail = lazy(() => import('./pages/academy/glossary/glossaryDetail'));
 const CourseDetail = lazy(() => import('./pages/academy/courses/courseDetail'));
+const CourseCashFlow = lazy(() => import('./pages/academy/courses/cashFlow'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
@@ -89,11 +90,14 @@ function App() {
                 <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
                 <ProtectedRoute exact path="/academy">
-                  <Redirect to="/academy/glossary" />
+                  <Redirect to="/academy/courses" />
                 </ProtectedRoute>
+
                 <ProtectedRoute exact path="/academy/:tab" component={Academy} />
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
                 <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
+
+                <ProtectedRoute exact path="/academy/unit/cash-flow" component={CourseCashFlow} />
 
                 {isDev && (
                   <Fragment>
