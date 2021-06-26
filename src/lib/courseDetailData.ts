@@ -1,16 +1,32 @@
+import Fringilla from '../assets/crash-course/fringilla.png';
 import Fundamentals from '../assets/crash-course/fundamentals.png';
+import Optimization from '../assets/crash-course/optimization.png';
 import Sources from '../assets/crash-course/sources.png';
 import Understanding from '../assets/crash-course/understanding.png';
 import Valuing from '../assets/crash-course/valuing.png';
-import Optimization from '../assets/crash-course/optimization.png';
-import Fringilla from '../assets/crash-course/fringilla.png';
 
-export const Data: {
+export type CourseT = {
   name: string;
   image: string;
   lesson: number;
-  value: { title: string; slides: number }[];
-}[] = [
+  isComingSoon?: boolean;
+  value: { title: string; slides: number; url?: string }[];
+};
+export const Data: CourseT[] = [
+  {
+    name: 'Understanding Coral listings',
+    image: Understanding,
+    lesson: 5,
+    isComingSoon: false,
+    value: [
+      { title: 'Investor cash flow', slides: 7, url: '/academy/unit/cash-flow' },
+      { title: 'Ownership structure', slides: 7 },
+      { title: 'Operating expenses', slides: 7 },
+      { title: 'Capital expenditure', slides: 7 },
+      { title: 'Financing with commercial loans', slides: 7 },
+      { title: 'Realizing appreciation without selling', slides: 7 },
+    ],
+  },
   {
     name: 'Real estate fundamentals',
     image: Fundamentals,
@@ -43,19 +59,6 @@ export const Data: {
       { title: 'Income-based method: using cap rate', slides: 7 },
       { title: 'Sales-based method: using comps', slides: 7 },
       { title: 'Net asset value (NAV)', slides: 7 },
-    ],
-  },
-  {
-    name: 'Understanding Coral listings (opportunities)?',
-    image: Understanding,
-    lesson: 5,
-    value: [
-      { title: 'Ownership structure', slides: 7 },
-      { title: 'Investor cash flow', slides: 7 },
-      { title: 'Operating expenses', slides: 7 },
-      { title: 'Capital expenditure', slides: 7 },
-      { title: 'Financing with commercial loans', slides: 7 },
-      { title: 'Realizing appreciation without selling', slides: 7 },
     ],
   },
   {

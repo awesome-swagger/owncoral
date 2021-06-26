@@ -12,10 +12,10 @@ const Calculation = ({ children }: { children: any }) => (
       How to Calculate
     </Headline>
     <Text
-      textStyle="Body2"
-      fontFamily="Georgia, Bookman, Palatino, 'Times New Roman', serif"
-      fontStyle="italic"
-      fontWeight="600"
+      fontSize="1.125rem"
+      letterSpacing="0.02rem"
+      fontFamily="Times, 'Times New Roman', Bookman, Palatino, serif"
+      fontWeight="400"
       mx={4}
     >
       {' '}
@@ -51,8 +51,7 @@ export const GlossaryData = [
         </Description>
         <Calculation>
           Amortization per Month
-          <br />
-          Total Monthly Payment - Principal Payment ✕️ Interest Rate
+          <br />= Total Monthly Payment - Principal Payment ✕️ Interest Rate
         </Calculation>
         <Example>
           <Text>A property is purchased for $3M with a $2M loan and $1M in equity:</Text>

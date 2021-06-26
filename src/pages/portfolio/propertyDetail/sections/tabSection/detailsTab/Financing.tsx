@@ -4,7 +4,7 @@ import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstac
 import { Box, Button, Center, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
 
 import { Headline, Title2 } from '../../../../../../components/text';
-import { formatFinancial } from '../../../../../../lib/financialFormatter';
+import { formatFinancial, formatFinancialSI } from '../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -23,8 +23,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
 
   // Equity percentage for graphing leverage
   const equityPct: number | null =
-    propertyDetail.mdlEquity !== null && propertyDetail.mdlMortgage !== null
-      ? propertyDetail.mdlEquity / (propertyDetail.mdlEquity + propertyDetail.mdlMortgage)
+    propertyDetail.mdlEquity !== null && propertyDetail.mdlCurrentMortgage !== null
+      ? propertyDetail.mdlEquity / (propertyDetail.mdlEquity + propertyDetail.mdlCurrentMortgage)
       : null;
   return (
     <Box>
@@ -65,7 +65,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
             </Text>
           </Flex>
           <Flex justifyContent="space-between" fontWeight={600}>
-            <Text>Total capital cost</Text>
+            <Text>Total property cost</Text>
             <Text>${totalCapitalCost}</Text>
           </Flex>
         </VStack>
@@ -78,28 +78,41 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
       <Box>
         <Title2 my={6}>Financing</Title2>
 
-        {propertyDetail.mdlEquity !== null && propertyDetail.mdlMortgage !== null && equityPct && (
-          <Fragment>
-            <Flex my={4} borderRadius="base" overflow="hidden" h={8} justifyContent="space-between">
-              <Box bg="gray.900" w={equityPct} />
-              <Box bg="gray.700" w={1 - equityPct} />
-            </Flex>
+        {propertyDetail.mdlEquity !== null &&
+          propertyDetail.mdlCurrentMortgage !== null &&
+          equityPct && (
+            <Fragment>
+              <Flex
+                my={4}
+                borderRadius="full"
+                overflow="hidden"
+                h={3}
+                justifyContent="space-between"
+              >
+                <Box bg="green.900" w={equityPct} />
+                <Box bg="green.300" w={1 - equityPct} />
+              </Flex>
 
-            <Center justifyContent="space-between" h={14} my={4}>
-              <Box w={equityPct}>
-                <Headline>Equity</Headline>
-                <Text>${formatFinancial(propertyDetail.mdlEquity)}</Text>
-              </Box>
-              <Box h="100%" borderLeft="1px" px={4} w={1.0 - equityPct}>
-                <Headline>Loan</Headline>
-                <Text>${formatFinancial(propertyDetail.mdlMortgage)}</Text>
-              </Box>
-              {/* <Box pl={8}> */}
-              {/*  <Icon w={6} h={6} as={BsQuestionCircle} /> */}
-              {/* </Box> */}
-            </Center>
-          </Fragment>
-        )}
+              <Flex>
+                <Box flexGrow={1}>Initial Equity</Box>
+                <Box align="right" w="4rem">
+                  {(equityPct * 100).toFixed(1)}%
+                </Box>
+                <Box align="right" w="4rem">
+                  ${formatFinancialSI(propertyDetail.mdlEquity)}
+                </Box>
+              </Flex>
+              <Flex>
+                <Box flexGrow={1}>Outstanding Loan Balance</Box>
+                <Box align="right" w="4rem">
+                  {((1 - equityPct) * 100).toFixed(1)}%
+                </Box>
+                <Box align="right" w="4rem">
+                  ${formatFinancialSI(propertyDetail.mdlCurrentMortgage)}
+                </Box>
+              </Flex>
+            </Fragment>
+          )}
         {/* <Flex */}
         {/*  justifyContent="space-between" */}
         {/*  alignItems="center" */}

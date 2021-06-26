@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import type { BoxProps, FlexProps } from '@chakra-ui/react';
-import { Box, forwardRef } from '@chakra-ui/react';
+import { Box, forwardRef, Text } from '@chakra-ui/react';
 
 import theme from '../../theme';
 import { ColorModeButton } from '../colorModeButton';
@@ -19,7 +19,8 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
       <Box
         p={padding}
         marginX={{ base: '0', md: 'auto' }}
-        marginY={{ base: '0', md: 6 }}
+        marginTop={{ base: '0', md: 6 }}
+        marginBottom={{ base: '0', md: 2 }}
         w={{ base: '100%', md: '80vw' }}
         maxW={{ base: 'unset', md: theme.breakpoints.sm }}
         minH={{ base: '100vh', md: '80vh' }}
@@ -34,6 +35,10 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
         {children}
         {showColorModeButton && <ColorModeButton pos="fixed" top={16} right={6} />}
       </Box>
+      <Text textAlign="center" textStyle="Body1" color="gray.500" fontStyle="italic">
+        Optimized for mobile experience
+      </Text>
+      <Box h={4} />
     </Fragment>
   ),
 );

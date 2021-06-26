@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import {
   AspectRatio,
   Box,
+  Center,
   Icon,
   IconButton,
   Image,

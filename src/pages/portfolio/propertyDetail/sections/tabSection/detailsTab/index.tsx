@@ -10,18 +10,16 @@ import { Images } from './Images';
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
-export const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => {
-  return (
-    <Box>
-      <PropertyLocation propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <PropertyDetail propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <ValueAddPlane propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <Financing propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <Images propertyDetail={propertyDetail} />
-    </Box>
-  );
-};
+export const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => (
+  <Box>
+    <Images propertyDetail={propertyDetail} />
+    <Divider my={6} />
+    <PropertyLocation propertyDetail={propertyDetail} />
+    <Divider my={6} />
+    <PropertyDetail propertyDetail={propertyDetail} />
+    <Divider my={6} />
+    <ValueAddPlane propertyDetail={propertyDetail} />
+    <Divider my={6} />
+    <Financing propertyDetail={propertyDetail} />
+  </Box>
+);

@@ -76,6 +76,7 @@ export const PortfolioPropertyDetail = z.object({
   mdlRenovation: z.number().nullable(),
   mdlCapexReserve: z.number().nullable(),
   mdlMortgage: z.number().nullable(),
+  mdlCurrentMortgage: z.number().nullable(),
   mdlEquity: z.number().nullable(),
 });
 

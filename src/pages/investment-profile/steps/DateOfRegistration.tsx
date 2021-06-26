@@ -43,7 +43,6 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
     }, [date]);
 
     const form = useContext(StepFormContext);
-
     const handleDateChange = useCallback(
       (newDate) => {
         setDate((prevState) => ({
