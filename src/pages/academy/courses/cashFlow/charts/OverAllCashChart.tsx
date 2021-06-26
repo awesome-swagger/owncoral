@@ -1,143 +1,145 @@
 // @ts-nocheck
-import React, { useMemo } from 'react';
-import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
-import { scaleBand, scaleLinear } from '@visx/scale';
-import { Bar } from '@visx/shape';
-import { format } from 'date-fns';
+import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { BarStack } from '@visx/shape';
+import { useColorModeValue } from '@chakra-ui/react';
 
-export const OverAllCashChart = () => (
-  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
-);
+export const OverAllCashChart = () => {
+  return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
+};
 
-const data = [
-  {
-    t: new Date(2021, 0, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 1, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 2, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 3, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 4, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 5, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 6, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 7, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 8, 1),
-    expected: 500,
-  },
-  {
-    t: new Date(2021, 9, 1),
-    expected: 500,
-  },
-];
-const verticalMargin = 120;
-
-// accessors
-const barLabel = (d: any) => d.t;
-const chartData = (d: any) => Number(d.expected) * 100;
-
-export type BarsProps = {
+export type BarStackProps = {
   width: number;
   height: number;
+  margin?: { top: number; right: number; bottom: number; left: number };
   events?: boolean;
 };
 
-function Chart({ width, height, events = false }: BarsProps) {
-  const barColor = useColorModeValue('#4E504F', '#F1F1F1');
-  // bounds
-  const xMax = width;
-  const yMax = height - verticalMargin;
-  const paddingInner = 0.35;
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
+const data = [
+  { name: 'Clo.', operatingCashFlow: '3', recognizedAppreciation: '2' },
+  { name: '21', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '22', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '23', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '24', operatingCashFlow: '3', recognizedAppreciation: '3' },
+  { name: '25', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '26', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '26', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '27', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '28', operatingCashFlow: '3', recognizedAppreciation: '0' },
+  { name: '29', operatingCashFlow: '3', recognizedAppreciation: '15' },
+];
 
-  // scales, memoize for performance
-  const x = (d: any) => d.t;
+const keys = Object.keys(data[0]).filter((d) => d !== 'name');
 
-  const xScale = scaleBand({
-    range: [0, xMax],
-    round: true,
-    domain: data.map(x),
-    paddingInner: paddingInner,
-    paddingOuter: 0.5,
+const dataTotals = data.reduce((allTotals, currentDate: any) => {
+  const totalData = keys.reduce((dailyTotal, k) => {
+    dailyTotal += Number(currentDate[k]); // eslint-disable-line no-param-reassign
+    return dailyTotal;
+  }, 0);
+  allTotals.push(totalData);
+  return allTotals;
+}, [] as number[]);
+
+function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
+  const barColor1 = useColorModeValue('#074851', '#48CAE4');
+  const barColor2 = useColorModeValue('#80ECD1', '#F1FAEE');
+  const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
+
+  // accessors
+  const getDate = (d: any) => d.name;
+
+  // scales
+  const dateScale = scaleBand<string>({
+    domain: data.map(getDate),
   });
-  const yScale = useMemo(
-    () =>
-      scaleLinear<number>({
-        range: [yMax, 10],
-        round: true,
-        domain: [0, Math.max(...data.map(chartData))],
-      }),
-    [yMax],
-  );
-  const formatDate = (t: Date) => format(t, 'M');
+  const dataScale = scaleLinear<number>({
+    domain: [0, Math.max(...dataTotals)],
+    nice: true,
+  });
+  const colorScale = scaleOrdinal({
+    domain: keys,
+    range: [barColor1, barColor2],
+  });
 
-  const tickLabelProps = () =>
-    ({
-      fill: barColor,
-      fontSize: 12,
-    } as const);
+  const leftAxisData = [
+    { name: '0' },
+    { name: '$5k' },
+    { name: '$10k' },
+    { name: '$15k' },
+    { name: '$20k' },
+  ];
+
+  const getAxisData = ({ name }) => name;
+
+  const leftScale = scaleBand({
+    domain: leftAxisData.map(getAxisData),
+  });
+
+  if (width < 10) return null;
+  const xMax = width - margin.left;
+  const yMax = height - margin.top - 100;
+
+  dateScale.rangeRound([0, xMax]);
+  dataScale.range([yMax, 0]);
+
+  leftScale.range([height - 90, 0]);
 
   return width < 10 ? null : (
-    <svg width={width} height={height}>
-      <Group top={verticalMargin / 2} left={10}>
-        {data.map((d) => {
-          const letter = barLabel(d);
-          const barWidth = xScale.bandwidth();
-          const barHeight = yMax - (yScale(chartData(d)) ?? 0);
-          const barX = xScale(letter);
-          const barY = yMax - barHeight;
-          return (
-            <Bar
-              key={`bar-${letter}`}
-              x={barX}
-              y={barY}
-              width={barWidth}
-              height={barHeight}
-              fill={barColor}
-            />
-          );
-        })}
+    <div style={{ position: 'relative', paddingTop: '20px' }}>
+      <svg width={width} height={height}>
+        <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />
+        <Group left={margin.left} top={margin.top}>
+          <BarStack
+            data={data}
+            keys={keys}
+            x={getDate}
+            xScale={dateScale}
+            yScale={dataScale}
+            color={colorScale}
+          >
+            {(barStacks) =>
+              barStacks.map((barStack) =>
+                barStack.bars.map((bar) => (
+                  <rect
+                    key={`bar-stack-${barStack.index}-${bar.index}`}
+                    x={bar.x + 12}
+                    y={bar.y}
+                    height={bar.height}
+                    width={bar.width - 24}
+                    fill={bar.color}
+                  />
+                )),
+              )
+            }
+          </BarStack>
+        </Group>
         <AxisBottom
-          scale={xScale}
-          tickFormat={formatDate}
-          top={yMax}
-          tickLabelProps={tickLabelProps}
+          left={margin.left}
+          top={yMax + margin.top}
+          scale={dateScale}
+          stroke={textColor}
           tickStroke="none"
-          stroke={barColor}
+          tickLabelProps={() => ({
+            fill: textColor,
+            fontSize: 15,
+            textAnchor: 'middle',
+          })}
         />
         <AxisLeft
-          numTicks={3}
-          scale={yScale}
-          tickFormat={formatDate}
-          left={5}
-          tickLabelProps={tickLabelProps}
+          left={margin.left}
+          scale={leftScale}
           tickStroke="none"
           stroke="none"
+          tickLabelProps={() => ({
+            fill: textColor,
+            fontSize: 15,
+            textAnchor: 'end',
+          })}
         />
-      </Group>
-    </svg>
+      </svg>
+    </div>
   );
 }

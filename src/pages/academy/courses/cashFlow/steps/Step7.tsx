@@ -73,7 +73,7 @@ export const Step7 = ({
         flexDirection="column"
       >
         <Subhead m="0">RETURN OF CAPITAL</Subhead>
-        <Subhead fontWeight="bold">$10k</Subhead>
+        <Subhead fontWeight="bold">$100k</Subhead>
       </Box>
     </Flex>
     <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>

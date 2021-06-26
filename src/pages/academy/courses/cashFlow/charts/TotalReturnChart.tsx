@@ -12,9 +12,9 @@ export const TotalReturnChart = () => (
 
 const ChartData = [
   {
-    Google: '3',
-    Firefox: '78',
-    Opera: '100',
+    TaxableIncome: '3',
+    CapitalGains: '78',
+    ReturnOfCapital: '100',
   },
 ];
 
@@ -25,11 +25,6 @@ const PieData = DataNames.map((name) => ({
 }));
 
 const usage = (d: { usage: number }) => d.usage;
-
-const PieColor = scaleOrdinal({
-  domain: DataNames,
-  range: ['#232525', '#888888', '#DFDFDF'],
-});
 
 const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
 
@@ -42,7 +37,16 @@ export type PieProps = {
 
 function Chart({ width, height, margin = defaultMargin, animate = true }: PieProps) {
   const BgColor = useColorModeValue('#FFFFFF', '#FFFFFF00');
+  const pieColor1 = useColorModeValue('#232525', '#232525');
+  const pieColor2 = useColorModeValue('#888888', '#232525');
+  const pieColor3 = useColorModeValue('#DFDFDF', '#232525');
+
   const [chartValue, setChartValue] = useState<string | null>(null);
+
+  const PieColor = scaleOrdinal({
+    domain: DataNames,
+    range: [pieColor1, pieColor2, pieColor3],
+  });
 
   if (width < 10) return null;
 
