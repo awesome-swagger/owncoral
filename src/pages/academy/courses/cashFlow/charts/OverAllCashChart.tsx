@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
@@ -19,17 +18,17 @@ export type BarStackProps = {
 
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
 const data = [
-  { name: 'Clo.', operatingCashFlow: '3', recognizedAppreciation: '2' },
-  { name: '21', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '22', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '23', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '24', operatingCashFlow: '3', recognizedAppreciation: '3' },
-  { name: '25', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '26', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '26', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '27', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '28', operatingCashFlow: '3', recognizedAppreciation: '0' },
-  { name: '29', operatingCashFlow: '3', recognizedAppreciation: '15' },
+  { name: 'Clo.', operatingCashFlow: '2', recognizedAppreciation: '2' },
+  { name: '21', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '22', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '23', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '24', operatingCashFlow: '2', recognizedAppreciation: '3' },
+  { name: '25', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '26', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '26', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '27', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '28', operatingCashFlow: '2', recognizedAppreciation: '0' },
+  { name: '29', operatingCashFlow: '2', recognizedAppreciation: '15' },
 ];
 
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
@@ -72,7 +71,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
     { name: '$20k' },
   ];
 
-  const getAxisData = ({ name }) => name;
+  const getAxisData = ({ name }: { name: string }) => name;
 
   const leftScale = scaleBand({
     domain: leftAxisData.map(getAxisData),
@@ -129,6 +128,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
           })}
         />
         <AxisLeft
+          top={11}
           left={margin.left}
           scale={leftScale}
           tickStroke="none"

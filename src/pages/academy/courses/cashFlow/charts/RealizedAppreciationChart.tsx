@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
@@ -72,7 +70,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
     { name: '$20k' },
   ];
 
-  const getAxisData = ({ name }) => name;
+  const getAxisData = ({ name }: { name: string }) => name;
 
   const leftScale = scaleBand({
     domain: leftAxisData.map(getAxisData),
@@ -129,6 +127,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
           })}
         />
         <AxisLeft
+          top={11}
           left={margin.left}
           scale={leftScale}
           tickStroke="none"

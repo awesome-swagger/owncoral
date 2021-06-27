@@ -41,8 +41,7 @@ export const Step3 = ({
         Rental revenue is the first way to make money with Coral properties. Rent is collected from
         tenants, and expenses are paid. What remains is the profit.
       </Text>
-      <Divider mt={2} />
-      <Divider pos="relative" top={12} />
+
       <Center w="100%" h={250}>
         <RentalRevenueChart />
       </Center>
