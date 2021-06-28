@@ -1,8 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Progress, Button, Image, Flex, Text } from '@chakra-ui/react';
+import { Box, Icon, Button, Image, Flex, Text } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
 import ChartImg from '../../../../../assets/Frame331.png';
 
@@ -22,8 +22,7 @@ export const Step6 = ({
         5/7
       </Box>
     </Flex>
-    <Progress value={75} my={6} colorScheme="primary" borderRadius="full" size="sm" />
-
+    <ProgressBar total={7} value={5} />
     <Title2 fontSize="2xl" my={4}>
       Tax efficiency
     </Title2>
@@ -41,7 +40,7 @@ export const Step6 = ({
       capital&rdquo; and other taxable income as &ldquo;income&rdquo;. The tax form (a K-1) we
       provide you with each year also reflects this reality.
     </Text>
-    <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />
     </Button>
     <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

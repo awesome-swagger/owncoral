@@ -1,8 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Progress, Button, Flex, Center, Text } from '@chakra-ui/react';
+import { Box, Icon, Button, Flex, Center, Text } from '@chakra-ui/react';
 import { BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
 
 export const Step8 = ({
@@ -21,7 +21,7 @@ export const Step8 = ({
         7/7
       </Box>
     </Flex>
-    <Progress value={100} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+    <ProgressBar total={7} value={7} />
     <Title2 my={4}>Takeaways</Title2>
     <Box my={4}>
       <Flex mt={4}>
@@ -78,7 +78,7 @@ export const Step8 = ({
         </Box>
       </Flex>
     </Box>
-    <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />
     </Button>
     <Button h={10} pos="absolute" right={4} bottom={6} onClick={nextStep}>

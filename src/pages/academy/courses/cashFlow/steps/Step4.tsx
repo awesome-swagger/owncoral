@@ -1,17 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import {
-  Box,
-  Icon,
-  Progress,
-  Button,
-  Center,
-  Flex,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Icon, Button, Center, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
 import { RealizedAppreciationChart } from '../charts';
 
@@ -34,7 +25,7 @@ export const Step4 = ({
           3/7
         </Box>
       </Flex>
-      <Progress value={45} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+      <ProgressBar total={7} value={3} />
       <Title2 my={4}>Realized Appreciation</Title2>
       <Text textStyle="Body1" fontWeight="500">
         The second source of cash flow is the appreciation of the property itself.
@@ -55,7 +46,15 @@ export const Step4 = ({
         a construction earn-out (where we receive additional funds from our lender upon completion
         of construction) or refinancing (a new loan).
       </Text>
-      <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+      <Button
+        colorScheme="white"
+        w={10}
+        h={10}
+        pos="absolute"
+        bottom={6}
+        left={4}
+        onClick={prevStep}
+      >
         <Icon as={BsChevronLeft} />
       </Button>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

@@ -51,6 +51,24 @@ const baseVariants = {
         _active: { bg: mode(`gray.500`, `whiteAlpha.800`)(props) },
       };
     }
+    if (c === 'white') {
+      const bg = mode(`white`, `whiteAlpha.600`)(props);
+      const fg = mode('black', `gray.900`)(props);
+
+      return {
+        bg,
+
+        color: fg,
+        boxShadow: 'xs',
+        _hover: {
+          bg: mode(`gray.300`, `whiteAlpha.700`)(props),
+          _disabled: {
+            bg,
+          },
+        },
+        _active: { bg: mode(`gray.400`, `whiteAlpha.800`)(props) },
+      };
+    }
 
     const { bg = `${c}.500`, color = 'white', hoverBg = `${c}.600`, activeBg = `${c}.700` } =
       accessibleColorMap[c] || {};
@@ -84,7 +102,7 @@ const baseVariants = {
     component, which is too much boilerplate
     */
 const variants = R.mapValues(baseVariants, (baseVariant) => (props: Dict) => {
-  const defaultColorScheme = mode('primary', 'secondary')(props);
+  const defaultColorScheme = mode('dark', 'secondary')(props);
   const colorScheme =
     (props.colorScheme || 'auto') === 'auto' ? defaultColorScheme : props.colorScheme;
 
@@ -94,7 +112,7 @@ const variants = R.mapValues(baseVariants, (baseVariant) => (props: Dict) => {
 export const Button = {
   baseStyle: {
     // Rounded buttons
-    borderRadius: '2xl',
+    borderRadius: 'full',
     // Button typography
     ...ButtonStyle,
   },

@@ -34,7 +34,14 @@ const ultramarine = {
   highlight: '#7db7ff',
 };
 
+const dark = {
+  '500': '#1B1E1E',
+  '600': '#373737',
+  '700': '#494949',
+};
+
 export const colors = {
   primary: coral,
   secondary: ultramarine,
+  dark: dark,
 };

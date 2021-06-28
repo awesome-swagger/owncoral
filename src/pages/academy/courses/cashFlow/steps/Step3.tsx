@@ -1,18 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import {
-  Box,
-  Icon,
-  Progress,
-  Button,
-  Center,
-  Divider,
-  Flex,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Icon, Button, Center, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
 import { RentalRevenueChart } from '../charts';
 
@@ -35,7 +25,7 @@ export const Step3 = ({
           2/7
         </Box>
       </Flex>
-      <Progress value={30} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+      <ProgressBar total={7} value={2} />
       <Title2 my={4}>Rental revenue</Title2>
       <Text textStyle="Body1" fontWeight="500">
         Rental revenue is the first way to make money with Coral properties. Rent is collected from
@@ -58,7 +48,15 @@ export const Step3 = ({
         increases), or improved operational efficiencies. Occasionally, we may plan for vacancies so
         that we can renovate units.
       </Text>
-      <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+      <Button
+        colorScheme="white"
+        w={10}
+        h={10}
+        pos="absolute"
+        bottom={6}
+        left={4}
+        onClick={prevStep}
+      >
         <Icon as={BsChevronLeft} />
       </Button>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

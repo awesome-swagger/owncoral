@@ -20,7 +20,11 @@ const CourseCashFlow = ({
   return wrapper ? (
     <Fragment>
       <NavBar />
-      <Container h={{ base: 'calc(100vh - 4rem)', md: '700px' }}>
+      <Container
+        minH={{ base: 'calc(100vh - 4rem)' }}
+        h={{ base: 'auto', md: '700px' }}
+        pb={{ base: 20 }}
+      >
         <StepComp
           prevStep={prevStep}
           nextStep={nextStep}

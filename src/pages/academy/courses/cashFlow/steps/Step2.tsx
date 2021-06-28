@@ -1,10 +1,10 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Progress, Button, Flex, Text } from '@chakra-ui/react';
+import { Box, Icon, Button, Flex, Text } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
+import { Title2, Headline } from '../../../../../components/text';
+import { ProgressBar } from '../../../../../components';
 import { FiX } from 'react-icons/fi';
 import { HiOutlineCash } from 'react-icons/hi';
-
-import { Title2, Headline } from '../../../../../components/text';
 
 export const Step2 = ({
   nextStep,
@@ -22,7 +22,7 @@ export const Step2 = ({
         1/7
       </Box>
     </Flex>
-    <Progress value={15} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+    <ProgressBar total={7} value={1} />
     <Title2 my={4}>Where does Investor Cash Flow comes from?</Title2>
     <Text textStyle="Body1" fontWeight="500">
       The cash flow is derived from these sources:
@@ -65,7 +65,7 @@ export const Step2 = ({
         repair.
       </Text>
     </Box>
-    <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />
     </Button>
     <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

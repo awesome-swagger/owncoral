@@ -1,8 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Progress, Button, Center, Flex, Text } from '@chakra-ui/react';
+import { Box, Icon, Button, Center, Flex, Text } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2, Subhead } from '../../../../../components/text';
 import { TotalReturnChart } from '../charts';
 
@@ -22,7 +22,7 @@ export const Step7 = ({
         6/7
       </Box>
     </Flex>
-    <Progress value={87} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+    <ProgressBar total={7} value={6} />
     <Title2 my={4}>Total Return</Title2>
     <Text textStyle="Body1" fontWeight="500">
       The total return shows you what’s taxable, and at what rate. Capital gains tax is a much lower
@@ -76,7 +76,7 @@ export const Step7 = ({
         <Subhead fontWeight="bold">$100k</Subhead>
       </Box>
     </Flex>
-    <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
       <Icon as={BsChevronLeft} />
     </Button>
     <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>

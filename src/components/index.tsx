@@ -16,3 +16,4 @@ export { PropertyCard } from './propertyCard';
 export { ProtectedRoute } from './protectedRoute';
 export { SubmitBtn } from './submitBtn';
 export { TimeoutModal } from './timeoutModal';
+export { ProgressBar } from './progressBar';

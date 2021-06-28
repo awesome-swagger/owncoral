@@ -1,18 +1,8 @@
 import type { MouseEventHandler } from 'react';
-import {
-  Box,
-  Icon,
-  Progress,
-  Button,
-  Center,
-  Flex,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Icon, Button, Center, Flex, Link, Text, useColorModeValue } from '@chakra-ui/react';
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
 import { FiX } from 'react-icons/fi';
-
+import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
 import { OverAllCashChart } from '../charts';
 
@@ -35,7 +25,7 @@ export const Step5 = ({
           4/7
         </Box>
       </Flex>
-      <Progress value={60} my={6} colorScheme="primary" borderRadius="full" size="sm" />
+      <ProgressBar total={7} value={4} />
       <Title2 my={4}>Overall Cash Flow</Title2>
       <Text textStyle="Body1" fontWeight="500">
         The overall cash flow includes distributions that come from both rental revenue and realized
@@ -64,7 +54,15 @@ export const Step5 = ({
         </Text>
       </Link>
 
-      <Button w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
+      <Button
+        colorScheme="white"
+        w={10}
+        h={10}
+        pos="absolute"
+        bottom={6}
+        left={4}
+        onClick={prevStep}
+      >
         <Icon as={BsChevronLeft} />
       </Button>
       <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
