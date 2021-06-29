@@ -100,4 +100,16 @@ export const layerStyles = {
       borderColor: 'whiteAlpha.400',
     },
   },
+  operatingColor: {
+    bg: '#074851',
+    '.chakra-ui-dark &': {
+      bg: '#48CAE4',
+    },
+  },
+  recognizedColor: {
+    bg: '#80ECD1',
+    '.chakra-ui-dark &': {
+      bg: '#F1FAEE',
+    },
+  },
 };

@@ -1,23 +1,17 @@
 import { Fragment, MouseEventHandler, useState } from 'react';
-
+import { useParams } from 'react-router-dom';
 import { Container, NavBar } from '../../../../components';
-import { BackToProperty, Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8 } from './steps';
+import { Data } from './cashFlowData';
+import { titleToUrlFragment } from '../../lib';
 
-const CourseCashFlow = ({
-  handleClose,
-  wrapper = true,
-}: {
-  handleClose: MouseEventHandler;
-  wrapper?: boolean;
-}) => {
-  const [step, setStep] = useState(0);
+const CourseCashFlow = () => {
+  const { title } = useParams<{ title: string }>();
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+  const FilteredData = Data.find(({ name }: { name: string }) =>
+    titleToUrlFragment(name).includes(title),
+  );
 
-  const StepComp = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, BackToProperty][step];
-
-  return wrapper ? (
+  return (
     <Fragment>
       <NavBar />
       <Container
@@ -25,15 +19,9 @@ const CourseCashFlow = ({
         h={{ base: 'auto', md: '700px' }}
         pb={{ base: 20 }}
       >
-        <StepComp
-          prevStep={prevStep}
-          nextStep={nextStep}
-          handleClose={() => (window.location.href = '/academy')} // eslint-disable-line no-return-assign
-        />
+        {FilteredData.jsx}
       </Container>
     </Fragment>
-  ) : (
-    <StepComp prevStep={prevStep} nextStep={nextStep} handleClose={handleClose} />
   );
 };
 

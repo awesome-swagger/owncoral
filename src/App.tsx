@@ -97,7 +97,10 @@ function App() {
                 <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
                 <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
-                <ProtectedRoute exact path="/academy/unit/cash-flow" component={CourseCashFlow} />
+                <ProtectedRoute exact path="/academy/unit/cash-flow">
+                  <Redirect to="/academy/unit/cash-flow/1" />
+                </ProtectedRoute>
+                <ProtectedRoute path="/academy/unit/cash-flow/:title" component={CourseCashFlow} />
 
                 {isDev && (
                   <Fragment>
