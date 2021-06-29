@@ -1,9 +1,10 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Button, Center, Flex, Link, Text, useColorModeValue } from '@chakra-ui/react';
-import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
-import { FiX } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { Box, Button, Center, Flex, Icon, Link, Text, useColorModeValue } from '@chakra-ui/react';
+
 import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
+import theme from '../../../../../theme';
 import { OverAllCashChart } from '../charts';
 
 export const Step5 = ({
@@ -17,6 +18,7 @@ export const Step5 = ({
 }) => {
   const operatingColor = useColorModeValue('#074851', '#48CAE4');
   const recognizedColor = useColorModeValue('#80ECD1', '#F1FAEE');
+
   return (
     <Box>
       <Flex justifyContent="space-between" alignItems="center">
@@ -58,15 +60,22 @@ export const Step5 = ({
         colorScheme="white"
         w={10}
         h={10}
-        pos="absolute"
-        bottom={6}
-        left={4}
+        pos="fixed"
+        bottom={{ base: '5rem', md: 16 }}
+        left={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
         onClick={prevStep}
       >
-        <Icon as={BsChevronLeft} />
+        <Icon as={FiChevronLeft} />
       </Button>
-      <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
-        <Icon as={BsChevronRight} />
+      <Button
+        w={10}
+        h={10}
+        pos="fixed"
+        bottom={{ base: '5rem', md: 16 }}
+        right={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+        onClick={nextStep}
+      >
+        <Icon as={FiChevronRight} />
       </Button>
     </Box>
   );

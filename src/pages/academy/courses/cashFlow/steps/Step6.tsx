@@ -1,10 +1,11 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Button, Image, Flex, Text } from '@chakra-ui/react';
-import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
-import { FiX } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { Box, Button, Flex, Icon, Image, Text } from '@chakra-ui/react';
+
+import ChartImg from '../../../../../assets/Frame331.png';
 import { ProgressBar } from '../../../../../components';
 import { Title2 } from '../../../../../components/text';
-import ChartImg from '../../../../../assets/Frame331.png';
+import theme from '../../../../../theme';
 
 export const Step6 = ({
   nextStep,
@@ -40,11 +41,26 @@ export const Step6 = ({
       capital&rdquo; and other taxable income as &ldquo;income&rdquo;. The tax form (a K-1) we
       provide you with each year also reflects this reality.
     </Text>
-    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
-      <Icon as={BsChevronLeft} />
+    <Button
+      colorScheme="white"
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      left={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={prevStep}
+    >
+      <Icon as={FiChevronLeft} />
     </Button>
-    <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
-      <Icon as={BsChevronRight} />
+    <Button
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      right={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={nextStep}
+    >
+      <Icon as={FiChevronRight} />
     </Button>
   </Box>
 );

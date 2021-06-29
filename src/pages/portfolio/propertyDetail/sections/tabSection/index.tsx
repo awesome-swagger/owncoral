@@ -1,9 +1,21 @@
 import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Text,
+} from '@chakra-ui/react';
 
-import { DetailsTab } from './detailsTab';
-import { FinanceTab } from './financeTab';
-import { NewsTab } from './newsTab';
+const DetailsTab = lazy(() => import('./detailsTab'));
+const FinanceTab = lazy(() => import('./financeTab'));
+const NewsTab = lazy(() => import('./newsTab'));
+import type React from 'react';
+import { lazy, Suspense } from 'react';
 
 type TabSectionPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -14,36 +26,50 @@ export const TabSection = ({
   propertyDetail,
   propertyUriFragmentToId,
   adminSelectedUser,
-}: TabSectionPropsT) => (
-  <Box>
-    <Tabs>
-      <TabList>
-        <Tab>
-          <Text textStyle="Headline">Performance</Text>
-        </Tab>
-        <Tab>
-          <Text textStyle="Headline">Property details</Text>
-        </Tab>
-        <Tab>
-          <Text textStyle="Headline">News</Text>
-        </Tab>
-      </TabList>
+}: TabSectionPropsT) => {
+  const fallback = (
+    <Center>
+      <Spinner />
+    </Center>
+  );
 
-      <TabPanels>
-        <TabPanel px="0">
-          <FinanceTab
-            propertyDetail={propertyDetail}
-            propertyUriFragmentToId={propertyUriFragmentToId}
-            adminSelectedUser={adminSelectedUser}
-          />
-        </TabPanel>
-        <TabPanel px="0">
-          <DetailsTab propertyDetail={propertyDetail} />
-        </TabPanel>
-        <TabPanel px="0">
-          <NewsTab />
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
-  </Box>
-);
+  return (
+    <Box>
+      <Tabs>
+        <TabList>
+          <Tab>
+            <Text textStyle="Headline">Performance</Text>
+          </Tab>
+          <Tab>
+            <Text textStyle="Headline">Property details</Text>
+          </Tab>
+          <Tab>
+            <Text textStyle="Headline">News</Text>
+          </Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel px="0">
+            <Suspense fallback={fallback}>
+              <FinanceTab
+                propertyDetail={propertyDetail}
+                propertyUriFragmentToId={propertyUriFragmentToId}
+                adminSelectedUser={adminSelectedUser}
+              />
+            </Suspense>
+          </TabPanel>
+          <TabPanel px="0">
+            <Suspense fallback={fallback}>
+              <DetailsTab propertyDetail={propertyDetail} />
+            </Suspense>
+          </TabPanel>
+          <TabPanel px="0">
+            <Suspense fallback={fallback}>
+              <NewsTab />
+            </Suspense>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </Box>
+  );
+};

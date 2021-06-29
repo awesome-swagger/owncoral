@@ -21,6 +21,7 @@ export const CourseCard: React.FC<{
     height="224px"
     mx={2}
     my={3}
+    pos="relative"
     filter="drop-shadow(0px 2px 8px rgba(56, 53, 50, 0.04))"
   >
     <Flex

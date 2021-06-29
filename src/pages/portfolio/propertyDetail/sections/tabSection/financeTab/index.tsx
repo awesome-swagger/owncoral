@@ -22,7 +22,7 @@ type FinanceTabPropsT = {
   adminSelectedUser: string | null;
   propertyDetail: PortfolioPropertyDetailT;
 };
-export const FinanceTab = ({
+const FinanceTab = ({
   propertyDetail,
   propertyUriFragmentToId,
   adminSelectedUser,
@@ -149,3 +149,6 @@ export const FinanceTab = ({
     </Center>
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default FinanceTab;

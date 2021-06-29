@@ -46,4 +46,3 @@ export declare const PortfolioPropertyDetailInvestment: z.ZodObject<{
     months: number | null;
 }>;
 export declare type PortfolioPropertyDetailInvestmentT = z.infer<typeof PortfolioPropertyDetailInvestment>;
-//# sourceMappingURL=investment.d.ts.map

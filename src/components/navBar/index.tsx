@@ -132,7 +132,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
         zIndex={NAV_ZINDEX}
-        sx={{ 'overscroll-behavior': 'none' }}
+        sx={{ overscrollBehavior: 'none' }}
       >
         {/* Extra space at bottom on mobile to avoid */}
         <Center bg={navColor} h="100%" w="100%" pb={isTouch ? mobileFooterExtraHeight : 0}>

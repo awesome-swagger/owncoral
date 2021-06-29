@@ -38,7 +38,7 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
       />
       <Modal isOpen={isOpen} onClose={onClose} size="3xl" scrollBehavior="inside" isCentered>
         <ModalOverlay />
-        <ModalContent borderRadius={25} overflow="hidden">
+        <ModalContent h="auto" borderRadius={25} overflow="hidden">
           <Icon
             pos="absolute"
             zIndex="1"
@@ -54,8 +54,16 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
             boxShadow="base"
             layerStyle="iconColor"
           />
-          <ModalBody p={0} overflow="hidden">
-            <FullCarousel images={images} fallback={fallback} imageIndex={imageIndex} />
+          <ModalBody p={0} borderRadius="2xl" boxShadow="sm" h="100%">
+            <Image
+              w="100%"
+              maxW="800px"
+              maxH="600px"
+              src={images[imageIndex]}
+              alt="property_image"
+              fallback={fallback}
+              sx={{ objectFit: 'contain' }}
+            />
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -109,26 +117,24 @@ const CenterCarousel = ({
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
           <IconButton
-            left={2}
             type="button"
             onClick={onClickHandler}
             title={label}
             aria-label="left-arrow"
             icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-            style={{ ...arrowStyles }}
+            style={{ ...arrowStyles, left: 2 }}
           />
         )
       }
       renderArrowNext={(onClickHandler, hasNext, label) =>
         hasNext && (
           <IconButton
-            right={2}
             type="button"
             onClick={onClickHandler}
             title={label}
             aria-label="right-arrow"
             icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-            style={{ ...arrowStyles }}
+            style={{ ...arrowStyles, right: 2 }}
           />
         )
       }
@@ -176,61 +182,3 @@ const CenterCarousel = ({
     </Carousel>
   );
 };
-
-const FullCarousel = ({
-  images,
-  fallback,
-  imageIndex,
-}: {
-  images: any;
-  fallback: any;
-  imageIndex: number;
-}) => (
-  <Carousel
-    selectedItem={imageIndex}
-    infiniteLoop
-    showStatus={false}
-    showThumbs={false}
-    autoPlay={false}
-    renderArrowPrev={(onClickHandler, hasPrev, label) =>
-      hasPrev && (
-        <IconButton
-          left={2}
-          type="button"
-          onClick={onClickHandler}
-          title={label}
-          aria-label="left-arrow"
-          icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-          style={{ ...arrowStyles }}
-        />
-      )
-    }
-    renderArrowNext={(onClickHandler, hasNext, label) =>
-      hasNext && (
-        <IconButton
-          right={2}
-          type="button"
-          onClick={onClickHandler}
-          title={label}
-          aria-label="right-arrow"
-          icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-          style={{ ...arrowStyles }}
-        />
-      )
-    }
-  >
-    {images?.map((src: string, idx: number) => (
-      <Image
-        h="calc(100vh - 7.5rem)"
-        src={src}
-        alt={`Property image #${idx}`}
-        key={idx}
-        cursor="pointer"
-        overflow="hidden"
-        borderRadius="2xl"
-        boxShadow="sm"
-        fallback={fallback}
-      />
-    ))}
-  </Carousel>
-);

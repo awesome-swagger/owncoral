@@ -1,5 +1,6 @@
-import { Box } from '@chakra-ui/react';
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import { Box, Center, Spinner } from '@chakra-ui/react';
+
 import { ImgSlider } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
 
@@ -14,7 +15,14 @@ export const Images = ({ propertyDetail }: PropertyLocationPropsT) => {
   return (
     <Box>
       <Title2 my={4}>Photos</Title2>
-      <ImgSlider images={newImages} />
+      <ImgSlider
+        images={newImages}
+        fallback={
+          <Center w="100%" h="40vh">
+            <Spinner />
+          </Center>
+        }
+      />
     </Box>
   );
 };

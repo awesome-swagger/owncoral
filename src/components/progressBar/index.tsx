@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 
 export const ProgressBar: React.FC<{ value: number; total: number }> = ({ value, total }) => {
@@ -15,7 +16,7 @@ export const ProgressBar: React.FC<{ value: number; total: number }> = ({ value,
           bg={ind < value ? bgColor1 : bgColor2}
           width="-webkit-fill-available"
           key={ind}
-        ></Box>
+        />
       ))}
     </Flex>
   );

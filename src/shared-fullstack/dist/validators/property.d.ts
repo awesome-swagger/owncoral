@@ -139,7 +139,9 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlBrokerFee: z.ZodNullable<z.ZodNumber>;
     mdlRenovation: z.ZodNullable<z.ZodNumber>;
     mdlCapexReserve: z.ZodNullable<z.ZodNumber>;
+    mdlPrincipalReserve: z.ZodNullable<z.ZodNumber>;
     mdlMortgage: z.ZodNullable<z.ZodNumber>;
+    mdlCurrentMortgage: z.ZodNullable<z.ZodNumber>;
     mdlEquity: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     address: {
@@ -175,7 +177,9 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlBrokerFee: number | null;
     mdlRenovation: number | null;
     mdlCapexReserve: number | null;
+    mdlPrincipalReserve: number | null;
     mdlMortgage: number | null;
+    mdlCurrentMortgage: number | null;
     mdlEquity: number | null;
 }, {
     address: {
@@ -211,8 +215,9 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlBrokerFee: number | null;
     mdlRenovation: number | null;
     mdlCapexReserve: number | null;
+    mdlPrincipalReserve: number | null;
     mdlMortgage: number | null;
+    mdlCurrentMortgage: number | null;
     mdlEquity: number | null;
 }>;
 export declare type PortfolioPropertyDetailT = z.infer<typeof PortfolioPropertyDetail>;
-//# sourceMappingURL=property.d.ts.map

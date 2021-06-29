@@ -31,12 +31,14 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   // We're using mostly uncontrolled components (Editables have their own state),
   // but we still load UserContext here to keep initial and post-edit state
   const [user, setUser] = useContext(UserContext);
-  const [birthDate, setBirthDate] = useState<SplitDateT | null>(null);
+  const [birthDate, setBirthDate] = useState<SplitDateT>({ day: '', month: '', year: '' });
   const [isAccredited, setIsAccredited] = useState<boolean>(false);
 
   useEffect(() => {
     if (user !== null) {
-      setBirthDate(splitDate(parseISO(user.birthDate)));
+      if (user.birthDate !== null) {
+        setBirthDate(splitDate(parseISO(user.birthDate)));
+      }
       setIsAccredited(user.completedAccreditation);
     }
     setIsLoading(false);
@@ -52,11 +54,21 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
     } as SplitDateT;
     /* eslint-enable @typescript-eslint/consistent-type-assertions */
     setBirthDate(newBirthDate);
+  };
 
+  const handleDateBlur = () => {
+    if (
+      birthDate === null ||
+      isNaN(parseInt(birthDate.year, 10)) ||
+      isNaN(parseInt(birthDate.month, 10)) ||
+      isNaN(parseInt(birthDate.day, 10))
+    ) {
+      return;
+    }
     const bdAsDate = new Date(
-      Number(newBirthDate.year),
-      Number(newBirthDate.month),
-      Number(newBirthDate.day),
+      Number(birthDate.year),
+      Number(birthDate.month),
+      Number(birthDate.day),
     );
     updateCurrentUser({ birthDate: bdAsDate.toISOString() }, { user, setUser, toast });
   };
@@ -89,7 +101,11 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           />
           <Box p={3} width="100%">
             <Title2>Birthdate</Title2>
-            <DayPicker date={birthDate as SplitDateT} onChange={handleDateChange} />
+            <DayPicker
+              date={birthDate as SplitDateT}
+              onChange={handleDateChange}
+              onBlur={handleDateBlur}
+            />
           </Box>
 
           <EditableLine
@@ -99,8 +115,8 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
           />
 
           <ReadonlyLine label="Email" value={user?.email} />
-          <ReadonlyLine label="Alternate Email" value={user?.emailAlt} />
-          <Box p={3} width="100%">
+          {user?.emailAlt && <ReadonlyLine label="Alternate Email" value={user.emailAlt} />}
+          {/* <Box p={3} width="100%">
             <Title2>Address</Title2>
             <Text marginY={2}>
               {R.flatMap(
@@ -115,9 +131,9 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
                 (text) => [text, <br />],
               )}
             </Text>
-          </Box>
+          </Box> */}
 
-          <Box p={3} width="100%">
+          {/* <Box p={3} width="100%">
             <Title2>I&#39;m an accredited visitor</Title2>
             <Switch
               marginY={2}
@@ -132,7 +148,7 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
                 );
               }}
             />
-          </Box>
+          </Box> */}
         </VStack>
       )}
     </Box>
@@ -151,9 +167,9 @@ const EditableLine = ({ label, initialValue, handleSubmit }: EditableLinePropsT)
 
     return (
       <Fragment>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;
         <IconButton
-          icon={<Icon as={FiEdit2} />}
+          icon={<Icon h={4} w={4} as={FiEdit2} />}
           variant="unstyled"
           aria-label={'Edit ' + label}
           _focus={{ boxShadow: 0, outline: 0 }}
@@ -170,7 +186,7 @@ const EditableLine = ({ label, initialValue, handleSubmit }: EditableLinePropsT)
       </Text>
       <Editable w="100%" defaultValue={initialValue} onSubmit={handleSubmit}>
         <Flex alignItems="center">
-          <EditablePreview />
+          <EditablePreview cursor="pointer" />
           <EditIcon />
         </Flex>
 

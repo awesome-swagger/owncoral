@@ -18,10 +18,9 @@ export const LegalStructure = ({ goBack }: { goBack: () => void }) => (
     </Text>
 
     <Text mb={6}>
-      Each property is owned by an individual Series within a Series LLC. You purchase ownership in
-      the Series, which owns (or will own) the individual property. This is a “pass through entity”
-      which allows you to receive all the benefits of direct ownership including tax benefits and
-      funds from operations (the economic interests of the property).
+      We create a property LLC for each property. You become a co-owner of property by way of the
+      LLC, a “pass-through entity” which allows you to receive all the benefits of direct ownership
+      including tax benefits and funds from operations.
     </Text>
 
     <Text mb={6}>

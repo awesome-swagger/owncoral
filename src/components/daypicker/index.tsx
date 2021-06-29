@@ -1,4 +1,6 @@
+/* eslint-disable import/no-duplicates */
 import type React from 'react';
+import type { FocusEvent } from 'react';
 import { Flex, Input, Select, Spacer } from '@chakra-ui/react';
 
 export type SplitDateT = {
@@ -9,6 +11,7 @@ export type SplitDateT = {
 type DayPickerProps = {
   date: SplitDateT;
   onChange: (newDate: Partial<SplitDateT>) => void;
+  onBlur?: any;
 };
 
 export const months = [
@@ -26,7 +29,7 @@ export const months = [
   'Dec',
 ];
 
-export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
+export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange, onBlur }) => {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth();
   const currentDate = new Date().getDate();
@@ -42,6 +45,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         placeholder="Month"
         variant="filled"
         value={date.month}
+        onBlur={onBlur}
         onChange={(e) =>
           onChange({
             month: e.target.value,
@@ -72,6 +76,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         colorScheme="gray"
         variant="filled"
         value={date.day}
+        onBlur={onBlur}
         onChange={(e: any) => onChange({ day: e.target.value })}
       />
       <Spacer />
@@ -88,6 +93,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange }) => {
         colorScheme="gray"
         variant="filled"
         value={date.year}
+        onBlur={onBlur}
         onChange={(e: any) => onChange({ year: e.target.value })}
       />
     </Flex>

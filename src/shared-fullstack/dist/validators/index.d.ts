@@ -10,4 +10,3 @@ export type { AdminPanelUserInfoT } from './user';
 export type { UserProfileT } from './user';
 export { AdminPanelUserInfo } from './user';
 export { UserProfile } from './user';
-//# sourceMappingURL=index.d.ts.map

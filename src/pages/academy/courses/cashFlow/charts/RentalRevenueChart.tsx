@@ -1,13 +1,13 @@
+import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom, AxisLeft } from '@visx/axis';
+import { BarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
-import { BarStack } from '@visx/shape';
-import { useColorModeValue } from '@chakra-ui/react';
 
-export const RentalRevenueChart = () => {
-  return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
-};
+export const RentalRevenueChart = () => (
+  <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
+)
 
 export type BarStackProps = {
   width: number;
@@ -42,7 +42,7 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
   return allTotals;
 }, [] as number[]);
 
-function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
+const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   const barColor = useColorModeValue('#074851', '#48CAE4');
   const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
 
@@ -85,7 +85,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
 
   leftScale.range([height - 90, 0]);
 
-  return width < 10 ? null : (
+  return (
     <div style={{ position: 'relative', paddingTop: '20px' }}>
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />

@@ -57,7 +57,6 @@ const baseVariants = {
 
       return {
         bg,
-
         color: fg,
         boxShadow: 'xs',
         _hover: {

@@ -1,9 +1,10 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Button, Center, Flex, Text } from '@chakra-ui/react';
-import { BsChevronRight, BsChevronLeft } from 'react-icons/bs';
-import { FiX } from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { Box, Button, Center, Flex, Icon, Text } from '@chakra-ui/react';
+
 import { ProgressBar } from '../../../../../components';
-import { Title2, Subhead } from '../../../../../components/text';
+import { Subhead,Title2 } from '../../../../../components/text';
+import theme from '../../../../../theme';
 import { TotalReturnChart } from '../charts';
 
 export const Step7 = ({
@@ -76,11 +77,26 @@ export const Step7 = ({
         <Subhead fontWeight="bold">$100k</Subhead>
       </Box>
     </Flex>
-    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
-      <Icon as={BsChevronLeft} />
+    <Button
+      colorScheme="white"
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      left={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={prevStep}
+    >
+      <Icon as={FiChevronLeft} />
     </Button>
-    <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
-      <Icon as={BsChevronRight} />
+    <Button
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      right={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={nextStep}
+    >
+      <Icon as={FiChevronRight} />
     </Button>
   </Box>
 );

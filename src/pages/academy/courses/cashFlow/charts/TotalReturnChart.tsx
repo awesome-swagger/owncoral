@@ -35,7 +35,7 @@ export type PieProps = {
   animate?: boolean;
 };
 
-function Chart({ width, height, margin = defaultMargin, animate = true }: PieProps) {
+const Chart = ({ width, height, margin = defaultMargin, animate = true }: PieProps) => {
   const BgColor = useColorModeValue('#FFFFFF', '#FFFFFF00');
   const pieColor1 = useColorModeValue('#232525', '#232525');
   const pieColor2 = useColorModeValue('#888888', '#232525');

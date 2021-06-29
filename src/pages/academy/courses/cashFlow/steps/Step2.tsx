@@ -1,10 +1,12 @@
 import type { MouseEventHandler } from 'react';
-import { Box, Icon, Button, Flex, Text } from '@chakra-ui/react';
-import { BsChevronRight, BsChevronLeft, BsGraphUp } from 'react-icons/bs';
-import { Title2, Headline } from '../../../../../components/text';
-import { ProgressBar } from '../../../../../components';
-import { FiX } from 'react-icons/fi';
+import { BsGraphUp } from 'react-icons/bs';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { HiOutlineCash } from 'react-icons/hi';
+import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
+
+import { ProgressBar } from '../../../../../components';
+import { Headline, Title2 } from '../../../../../components/text';
+import theme from '../../../../../theme';
 
 export const Step2 = ({
   nextStep,
@@ -65,11 +67,26 @@ export const Step2 = ({
         repair.
       </Text>
     </Box>
-    <Button colorScheme="white" w={10} h={10} pos="absolute" bottom={6} left={4} onClick={prevStep}>
-      <Icon as={BsChevronLeft} />
+    <Button
+      colorScheme="white"
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      left={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={prevStep}
+    >
+      <Icon as={FiChevronLeft} />
     </Button>
-    <Button w={10} h={10} pos="absolute" bottom={6} right={4} onClick={nextStep}>
-      <Icon as={BsChevronRight} />
+    <Button
+      w={10}
+      h={10}
+      pos="fixed"
+      bottom={{ base: '5rem', md: 16 }}
+      right={{ base: 4, md: `calc(50vw - ${theme.breakpoints.sm} / 2 + 1rem)` }}
+      onClick={nextStep}
+    >
+      <Icon as={FiChevronRight} />
     </Button>
   </Box>
 );

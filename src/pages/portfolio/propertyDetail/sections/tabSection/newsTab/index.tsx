@@ -3,7 +3,7 @@ import { Box, Center } from '@chakra-ui/react';
 import { Headline } from '../../../../../../components/text';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
-export const NewsTab = () => {
+const NewsTab = () => {
   // const dummyData = DummyData;
   return (
     <Box layerStyle="lightBorder">
@@ -23,3 +23,6 @@ export const NewsTab = () => {
     </Box>
   );
 };
+
+// eslint-disable-next-line import/no-default-export
+export default NewsTab;

@@ -39,7 +39,7 @@ export const Option = ({
       borderColor={borderColor}
       sx={{
         '&:first-of-type': {
-          'border-top': 'unset',
+          borderTop: 'unset',
         },
       }}
       layerStyle="selectionBox"

@@ -2,24 +2,29 @@ import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstac
 import { Box, Divider } from '@chakra-ui/react';
 
 import { Financing } from './Financing';
+import { Images } from './Images';
 import { PropertyDetail } from './PropertyDetail';
 import { PropertyLocation } from './PropertyLocation';
 import { ValueAddPlane } from './ValueAddPlane';
-import { Images } from './Images';
 
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
-export const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => (
-  <Box>
-    <Images propertyDetail={propertyDetail} />
-    <Divider my={6} />
-    <PropertyLocation propertyDetail={propertyDetail} />
-    <Divider my={6} />
-    <PropertyDetail propertyDetail={propertyDetail} />
-    <Divider my={6} />
-    <ValueAddPlane propertyDetail={propertyDetail} />
-    <Divider my={6} />
-    <Financing propertyDetail={propertyDetail} />
-  </Box>
-);
+const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => {
+  return (
+    <Box>
+      <Images propertyDetail={propertyDetail} />
+      <Divider my={6} />
+      <PropertyLocation propertyDetail={propertyDetail} />
+      <Divider my={6} />
+      <PropertyDetail propertyDetail={propertyDetail} />
+      <Divider my={6} />
+      <ValueAddPlane propertyDetail={propertyDetail} />
+      <Divider my={6} />
+      <Financing propertyDetail={propertyDetail} />
+    </Box>
+  );
+};
+
+// eslint-disable-next-line import/no-default-export
+export default DetailsTab;
