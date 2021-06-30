@@ -3,7 +3,7 @@
 import { Fragment } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-import { Caption1, Headline } from '../../../components/text';
+import { Caption1, Headline } from '../../../../components/text';
 
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
 const Calculation = ({ children }: { children: any }) => (

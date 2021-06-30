@@ -1,8 +1,10 @@
-import { Fragment, MouseEventHandler, useState } from 'react';
+import { Fragment, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, NavBar } from '../../../../components';
 import { Data } from './cashFlowData';
 import { titleToUrlFragment } from '../../lib';
+
+const Error404 = lazy(() => import('../../../error404'));
 
 const CourseCashFlow = () => {
   const { title } = useParams<{ title: string }>();
@@ -11,7 +13,7 @@ const CourseCashFlow = () => {
     titleToUrlFragment(name).includes(title),
   );
 
-  return (
+  return FilteredData ? (
     <Fragment>
       <NavBar />
       <Container
@@ -22,6 +24,8 @@ const CourseCashFlow = () => {
         {FilteredData.jsx}
       </Container>
     </Fragment>
+  ) : (
+    <Error404 />
   );
 };
 

@@ -39,7 +39,7 @@ export const ChartSection = () => {
           h={{ base: 'calc(100vh - 4rem)', md: '700px' }}
           overflow="hidden"
         >
-          <CourseCashFlow wrapper={false} handleClose={onClose} />
+          <CourseCashFlow />
         </ModalContent>
       </Modal>
     </Box>
