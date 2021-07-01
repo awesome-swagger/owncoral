@@ -8,6 +8,7 @@ const Error404 = lazy(() => import('../../../error404'));
 
 const CourseCashFlow = () => {
   const { title } = useParams<{ title: string }>();
+  if(!title) return Data[0].jsx;
 
   const FilteredData = Data.find(({ name }: { name: string }) =>
     titleToUrlFragment(name).includes(title),

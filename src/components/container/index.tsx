@@ -6,8 +6,6 @@ import theme from '../../theme';
 import { ColorModeButton } from '../colorModeButton';
 import { TimeoutModal } from '../timeoutModal';
 
-// import Logo from '../../assets/coral.svg';
-
 type ContainerPropsT = {
   showColorModeButton?: boolean;
   padding?: number;
@@ -25,7 +23,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           marginBottom={{ base: '0', md: 2 }}
           w={{ base: '100%', md: '80vw' }}
           maxW={{ base: 'unset', md: theme.breakpoints.sm }}
-          minH={{ base: '100vh', md: '80vh' }}
+          minH={{ base: 'unset', md: '80vh' }}
           borderRadius={{ base: 'none', md: '2xl' }}
           layerStyle="muiCardColor"
           pos="relative"
@@ -38,11 +36,13 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           {showColorModeButton && <ColorModeButton pos="fixed" top={16} right={6} />}
         </Box>
         {showMobileTag && (
-          <Text textAlign="center" textStyle="Body1" color="gray.500" fontStyle="italic">
-            Optimized for mobile experience
-          </Text>
+          <Fragment>
+            <Text textAlign="center" textStyle="Body1" color="gray.500" fontStyle="italic">
+              Optimized for mobile experience
+            </Text>
+            <Box h={4} />
+          </Fragment>
         )}
-        <Box h={4} />
       </Fragment>
     );
   },

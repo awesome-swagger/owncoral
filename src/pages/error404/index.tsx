@@ -1,12 +1,14 @@
 import { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
 import { FiAlertTriangle } from 'react-icons/fi';
+import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
+
 import { NavBar } from '../../components';
 import { Title2 } from '../../components/text';
 
 const Error404 = () => {
   const history = useHistory();
+
   return (
     <Fragment>
       <NavBar />
