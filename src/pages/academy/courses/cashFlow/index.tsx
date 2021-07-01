@@ -18,7 +18,7 @@ const CourseCashFlow = () => {
       <NavBar />
       <Container
         minH={{ base: 'calc(100vh - 4rem)' }}
-        h={{ base: 'auto', md: '700px' }}
+        h={{ base: 'auto', md: '750px' }}
         pb={{ base: 20 }}
       >
         {FilteredData.jsx}

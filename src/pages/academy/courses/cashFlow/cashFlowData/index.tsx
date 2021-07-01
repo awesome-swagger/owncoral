@@ -5,12 +5,7 @@ import { HiOutlineCash } from 'react-icons/hi';
 import { Box, Button, Center, Flex, Icon, Image, Text, Link } from '@chakra-ui/react';
 import { Title2, Headline, Subhead } from '../../../../../components/text';
 import { ProgressBar } from '../../../../../components';
-import {
-  RentalRevenueChart,
-  RealizedAppreciationChart,
-  OverAllCashChart,
-  TotalReturnChart,
-} from '../charts';
+import { RentalRevenueChart, RealizedAppreciationChart, OverAllCashChart } from '../charts';
 import ChartImg from '../../../../../assets/Frame331.png';
 import Academy from '../../../../../assets/academy-1.svg';
 import Frame from '../../../../../assets/Frame615.png';
@@ -118,10 +113,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            1/7
+            1/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={1} />
+        <ProgressBar total={6} value={1} />
         <Title2 my={4}>Where does Investor Cash Flow comes from?</Title2>
         <Text textStyle="Body1" fontWeight="500">
           The cash flow is derived from these sources:
@@ -183,10 +178,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            2/7
+            2/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={2} />
+        <ProgressBar total={6} value={2} />
         <Title2 my={4}>Rental revenue</Title2>
         <Text textStyle="Body1" fontWeight="500">
           Rental revenue is the first way to make money with Coral properties. Rent is collected
@@ -221,10 +216,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            3/7
+            3/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={3} />
+        <ProgressBar total={6} value={3} />
         <Title2 my={4}>Realized Appreciation</Title2>
         <Text textStyle="Body1" fontWeight="500">
           The second source of cash flow is the appreciation of the property itself.
@@ -257,10 +252,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            4/7
+            4/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={4} />
+        <ProgressBar total={6} value={4} />
         <Title2 my={4}>Overall Cash Flow</Title2>
         <Text textStyle="Body1" fontWeight="500">
           The overall cash flow includes distributions that come from both rental revenue and
@@ -283,12 +278,6 @@ export const Data = [
           The overall cash flow includes distributions that come from both rental revenue and
           realized appreciation, as well as any remaining reserve.
         </Text>
-        <Link>
-          <Text textStyle="Body1" mt={4}>
-            Learn more on depreciation
-          </Text>
-        </Link>
-
         <PrevBtn />
         <NextBtn nextStep="6" />
       </Box>
@@ -301,10 +290,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            5/7
+            5/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={5} />
+        <ProgressBar total={6} value={5} />
         <Title2 fontSize="2xl" my={4}>
           Tax efficiency
         </Title2>
@@ -313,15 +302,16 @@ export const Data = [
           investor.
         </Text>
         <Text textStyle="Body2" my={4}>
-          The expenses and depreciation of the building are tax write-offs that offset the rental
-          revenue of the property. This means that you&apos;ll likely pay very little (if any)
-          income tax on your cash flow.
+          The expenses and depreciation of the building are tax write-offs that offset the taxable
+          income (from rental revenue) of the property. This means that you'll likely pay very
+          little (if any) income tax on your cash flow most years.
         </Text>
         <Image w="100%" src={ChartImg} alt="chart" />
         <Text textStyle="Body2">
-          We do all this for you — so the tax flow chart shows non-taxable income as &ldquo;return
-          of capital&rdquo; and other taxable income as &ldquo;income&rdquo;. The tax form (a K-1)
-          we provide you with each year also reflects this reality.
+          Depreciation lowers your cost basis. The difference between the sale price and the
+          adjusted cost basis is considered "depreciation recapture" which (for real estate
+          property) is capped at 25% tax rate. Each year, you receive a tax form (K-1) from Coral
+          that breaks all of this down so there's no guesswork.
         </Text>
         <PrevBtn />
         <NextBtn nextStep="7" />
@@ -335,79 +325,10 @@ export const Data = [
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
           <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            6/7
+            6/6
           </Box>
         </Flex>
-        <ProgressBar total={7} value={6} />
-        <Title2 my={4}>Total Return</Title2>
-        <Text textStyle="Body1" fontWeight="500">
-          The total return shows you what’s taxable, and at what rate. Capital gains tax is a much
-          lower rate than income tax.
-        </Text>
-        <Flex
-          p={4}
-          w="fit-content"
-          textAlign="left"
-          boxShadow="base"
-          borderRadius="2xl"
-          background="inherit"
-          position="relative"
-          flexDirection="column"
-          left="50%"
-          top={6}
-        >
-          <Subhead>TAXABLE INCOME</Subhead>
-          <Subhead fontWeight="bold">$3k</Subhead>
-        </Flex>
-        <Center w="100%" h="220px">
-          <Title2 pos="absolute">$181</Title2>
-          <TotalReturnChart />
-        </Center>
-        <Flex justifyContent="space-between" pos="relative" top="-65px" px={4}>
-          <Box
-            top={-6}
-            p={4}
-            w="fit-content"
-            textAlign="left"
-            boxShadow="base"
-            borderRadius="2xl"
-            background="inherit"
-            position="relative"
-            flexDirection="column"
-          >
-            <Subhead>CAPITAL GAINS</Subhead>
-            <Subhead fontWeight="bold">$78k</Subhead>
-          </Box>
-          <Box
-            p={4}
-            w="fit-content"
-            textAlign="left"
-            boxShadow="base"
-            borderRadius="2xl"
-            background="inherit"
-            position="relative"
-            flexDirection="column"
-          >
-            <Subhead m="0">RETURN OF CAPITAL</Subhead>
-            <Subhead fontWeight="bold">$100k</Subhead>
-          </Box>
-        </Flex>
-        <PrevBtn />
-        <NextBtn nextStep="8" />
-      </Box>
-    ),
-  },
-  {
-    name: '8',
-    jsx: (
-      <Box>
-        <Flex justifyContent="space-between" alignItems="center">
-          <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            7/7
-          </Box>
-        </Flex>
-        <ProgressBar total={7} value={7} />
+        <ProgressBar total={6} value={6} />
         <Title2 my={4}>Takeaways</Title2>
         <Box my={4}>
           <Flex mt={4}>
@@ -458,8 +379,8 @@ export const Data = [
                 It is extremely tax-efficient
               </Text>
               <Text mt={2} textStyle="Body2">
-                Thanks to depreciation; most isn’t taxed at the income tax rate, but is instead
-                deferred to capital gains (a much lower tax rate).
+                Depreciation offsets your cash flow, resulting in most taxes being deferred to the
+                point of sale (and often paid at a lower rate - a max of 25%).
               </Text>
             </Box>
           </Flex>
