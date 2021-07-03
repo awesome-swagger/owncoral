@@ -8,6 +8,7 @@ export { DebugPanel } from './debugPanel';
 export { ErrorFallback, MyErrorHandler } from './errorFallback';
 export { ImgSlider } from './imgSlider';
 export { Loading } from './loading';
+export { LogPageViews } from './logPageViews';
 export { MapBox } from './mapBox';
 export { NavBar } from './navBar';
 export { Option, OptionGroup } from './option';

@@ -28,7 +28,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "importsNotUsedAsValues": "error",
-    "types": ["chai", "mocha", "node", "snowpack-env"],
     // Make tsc warn us if we're doing something that will break Babel
     // (which we're using via Snowpack)
     // See: https://www.typescriptlang.org/tsconfig#isolatedModules

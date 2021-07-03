@@ -2,8 +2,8 @@ import { useHistory } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { BsGraphUp } from 'react-icons/bs';
 import { HiOutlineCash } from 'react-icons/hi';
-import { Box, Button, Center, Flex, Icon, Image, Link, Text } from '@chakra-ui/react';
-import { Headline, Subhead, Title2 } from '../../../../../components/text';
+import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
+import { Headline, Title2 } from '../../../../../components/text';
 import { ProgressBar } from '../../../../../components';
 import { RentalRevenueChart, RealizedAppreciationChart, OverAllCashChart } from '../charts';
 import ChartImg from '../../../../../assets/Frame331.png';
@@ -303,15 +303,15 @@ export const Data = [
         </Text>
         <Text textStyle="Body2" my={4}>
           The expenses and depreciation of the building are tax write-offs that offset the taxable
-          income (from rental revenue) of the property. This means that you'll likely pay very
+          income (from rental revenue) of the property. This means that you’ll likely pay very
           little (if any) income tax on your cash flow most years.
         </Text>
         <Image w="100%" src={ChartImg} alt="chart" />
         <Text textStyle="Body2">
           Depreciation lowers your cost basis. The difference between the sale price and the
-          adjusted cost basis is considered "depreciation recapture" which (for real estate
+          adjusted cost basis is considered “depreciation recapture” which (for real estate
           property) is capped at 25% tax rate. Each year, you receive a tax form (K-1) from Coral
-          that breaks all of this down so there's no guesswork.
+          that breaks all of this down so there’s no guesswork.
         </Text>
         <PrevBtn />
         <NextBtn nextStep="7" />

@@ -31,6 +31,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
     propertyDetail.mdlEquity !== null && propertyDetail.mdlCurrentMortgage !== null
       ? propertyDetail.mdlEquity / (propertyDetail.mdlEquity + propertyDetail.mdlCurrentMortgage)
       : null;
+
   return (
     <Box>
       <Box>

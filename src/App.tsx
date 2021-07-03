@@ -9,6 +9,7 @@ import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
   ErrorFallback,
+  LogPageViews,
   MapBox,
   MyErrorHandler,
   PropertyCard,
@@ -71,64 +72,69 @@ function App() {
           {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
           <Suspense fallback={<Fragment />}>
             <Router>
-              <Switch>
-                {/* Note: server handles not-logged-in redirection for the SPA bundle */}
-                {authRoutes}
+              <LogPageViews>
+                <Switch>
+                  {/* Note: server handles not-logged-in redirection for the SPA bundle */}
+                  {authRoutes}
 
-                <ProtectedRoute exact path="/">
-                  <Redirect to="/portfolio" />
-                </ProtectedRoute>
+                  <ProtectedRoute exact path="/">
+                    <Redirect to="/portfolio" />
+                  </ProtectedRoute>
 
-                <ProtectedRoute path="/portfolio" component={Portfolio} />
+                  <ProtectedRoute path="/portfolio" component={Portfolio} />
 
-                <ProtectedRoute exact path="/property/:address" component={Property} />
+                  <ProtectedRoute exact path="/property/:address" component={Property} />
 
-                <ProtectedRoute path="/profile">
-                  <Profile />
-                </ProtectedRoute>
+                  <ProtectedRoute path="/profile">
+                    <Profile />
+                  </ProtectedRoute>
 
-                <ProtectedRoute path="/coming-soon" component={ComingSoon} />
+                  <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
-                <ProtectedRoute exact path="/academy">
-                  <Redirect to="/academy/courses" />
-                </ProtectedRoute>
+                  <ProtectedRoute exact path="/academy">
+                    <Redirect to="/academy/courses" />
+                  </ProtectedRoute>
 
-                <ProtectedRoute exact path="/academy/:tab" component={Academy} />
-                <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
-                <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
+                  <ProtectedRoute exact path="/academy/:tab" component={Academy} />
+                  <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
+                  <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
 
-                <ProtectedRoute exact path="/academy/unit/cash-flow">
-                  <Redirect to="/academy/unit/cash-flow/1" />
-                </ProtectedRoute>
-                <ProtectedRoute path="/academy/unit/cash-flow/:title" component={CourseCashFlow} />
+                  <ProtectedRoute exact path="/academy/unit/cash-flow">
+                    <Redirect to="/academy/unit/cash-flow/1" />
+                  </ProtectedRoute>
+                  <ProtectedRoute
+                    path="/academy/unit/cash-flow/:title"
+                    component={CourseCashFlow}
+                  />
 
-                <ProtectedRoute path="*" component={Error404} />
+                  {isDev && (
+                    <Fragment>
+                      <Route path="/signup">
+                        <SignupFlow />
+                      </Route>
 
-                {isDev && (
-                  <Fragment>
-                    <Route path="/signup">
-                      <SignupFlow />
-                    </Route>
+                      <Route path="/investment-profile">
+                        <InvestmentProfileFlow />
+                      </Route>
 
-                    <Route path="/investment-profile">
-                      <InvestmentProfileFlow />
-                    </Route>
+                      <ProtectedRoute path="/drafts" component={Drafts} />
 
-                    <ProtectedRoute path="/drafts" component={Drafts} />
+                      <ProtectedRoute exact path="/property-card" component={PropertyCard} />
 
-                    <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+                      <ProtectedRoute
+                        exact
+                        path="/opportunities/detail"
+                        component={OpportunityDetail}
+                      />
 
-                    <ProtectedRoute
-                      exact
-                      path="/opportunities/detail"
-                      component={OpportunityDetail}
-                    />
+                      <ProtectedRoute exact path="/map-box" component={MapBox} />
+                    </Fragment>
+                  )}
 
-                    <ProtectedRoute exact path="/map-box" component={MapBox} />
-                  </Fragment>
-                )}
-                {/* <Route exact path="/documents" component={Docs} /> */}
-              </Switch>
+                  <ProtectedRoute path="*" component={Error404} />
+                  {/* <Route exact path="/documents" component={Docs} /> */}
+                </Switch>
+              </LogPageViews>
             </Router>
           </Suspense>
         </ChakraProvider>

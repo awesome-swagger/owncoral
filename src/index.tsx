@@ -6,7 +6,10 @@ import 'normalize.css';
 import './index.css';
 
 import App from './App';
+import { initAnalytics } from './lib/initAnalytics';
 import AppTheme from './theme';
+
+initAnalytics();
 
 ReactDOM.render(
   <StrictMode>
