@@ -1,9 +1,10 @@
 import type React from 'react';
 import { Link as BrowserLink } from 'react-router-dom';
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { FlexContainer } from '../../components';
 
 const ForgotCheckEmail: React.FC = () => (
-  <Flex p={6} w="100%" h="100vh" align="center" justify="center" direction="column">
+  <FlexContainer>
     <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
     <Heading mt={8}>Check your email</Heading>
     <Text>We sent password reset instructions to your email inbox</Text>
@@ -24,7 +25,7 @@ const ForgotCheckEmail: React.FC = () => (
     >
       Back to Coral
     </Button>
-  </Flex>
+  </FlexContainer>
 );
 
 // eslint-disable-next-line import/no-default-export

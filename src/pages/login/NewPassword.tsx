@@ -97,121 +97,110 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
 
   return (
     // TODO: use a Suspense when feature is stable
-    <Container showColorModeButton={false} padding={0}>
+    <Container showColorModeButton={false}>
       {tokenState === 'loading' && (
         <Center h="100vh" w="100%">
           <Spinner />
         </Center>
       )}
-      {tokenState === 'invalid' && <ExpiredLink />}
-      {tokenState === 'valid' && (
+      {tokenState === 'valid' && <ExpiredLink />}
+      {tokenState === 'invalid' && (
         <form onSubmit={handleSubmit(onSubmit)}>
           {!isWelcome && <BackBtn handleClick={handleClick} />}
-          <Box
-            p={6}
-            w="100%"
-            pos="relative"
-            h={{
-              // Pretty much a hack for Mobile Safari
-              base: `${window.innerHeight}px`,
-              md: 'calc(100vh - 4.5rem)',
-            }}
-          >
-            {isWelcome ? (
-              <VStack align="center" spacing={4}>
-                <Icon as={NoTextLogo} w="50px" h="50px" />
-                <Title2 mt={8}>Welcome to Coral</Title2>
-                <Subhead>To sign in for the first time, please create a new password.</Subhead>
-              </VStack>
-            ) : (
-              <Heading mt={8} mb={2}>
-                Create a new password
-              </Heading>
-            )}
+          {isWelcome ? (
+            <VStack align="center" spacing={4}>
+              <Icon as={NoTextLogo} w="50px" h="50px" />
+              <Title2 mt={8}>Welcome to Coral</Title2>
+              <Subhead>To sign in for the first time, please create a new password.</Subhead>
+            </VStack>
+          ) : (
+            <Heading mt={8} mb={2}>
+              Create a new password
+            </Heading>
+          )}
 
-            <Text m="2rem 0 0.5rem 0" w="100%">
-              Password
-            </Text>
-            <FormControl isInvalid={errors?.password}>
-              <InputGroup>
-                <InputLeftElement pointerEvents="none">
-                  <Icon as={FiLock} />
-                </InputLeftElement>
+          <Text m="2rem 0 0.5rem 0" w="100%">
+            Password
+          </Text>
+          <FormControl isInvalid={errors?.password}>
+            <InputGroup>
+              <InputLeftElement pointerEvents="none">
+                <Icon as={FiLock} />
+              </InputLeftElement>
 
-                <Input
-                  name="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Password"
-                  defaultValue=""
-                  ref={register({
-                    required: true,
-                    minLength: {
-                      message: 'Please enter at least 8 characters',
-                      value: 8,
-                    },
-                  })}
-                  pl={8}
+              <Input
+                name="password"
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                defaultValue=""
+                ref={register({
+                  required: true,
+                  minLength: {
+                    message: 'Please enter at least 8 characters',
+                    value: 8,
+                  },
+                })}
+                pl={8}
+              />
+
+              <InputRightElement>
+                <IconButton
+                  onClick={() => setShowPassword(!showPassword)}
+                  variant="unstyled"
+                  aria-label={(showPassword ? 'Hide' : 'Show') + ' password'}
+                  sx={{
+                    '&:focus': { boxShadow: 'none' },
+                  }}
+                  icon={<Icon as={showPassword ? FiEyeOff : FiEye} />}
                 />
+              </InputRightElement>
+            </InputGroup>
 
-                <InputRightElement>
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    variant="unstyled"
-                    aria-label={(showPassword ? 'Hide' : 'Show') + ' password'}
-                    sx={{
-                      '&:focus': { boxShadow: 'none' },
-                    }}
-                    icon={<Icon as={showPassword ? FiEyeOff : FiEye} />}
-                  />
-                </InputRightElement>
-              </InputGroup>
-
-              <FormHelperText
-                textStyle="Caption1"
-                color={errors.password ? 'red.500' : 'gray'}
-                className={errors.password ? 'shake_animation' : ''}
-                textAlign="left"
-                m="0.5rem 0"
-              >
-                Must be at least 8 characters
-              </FormHelperText>
-            </FormControl>
-
-            {isWelcome && (
-              <Center w="calc(100% - 3rem)" bottom="4.5rem" pos="absolute">
-                <Checkbox
-                  size="lg"
-                  sx={{ '.chakra-checkbox__label': Caption1 }}
-                  isChecked={agreementChecked}
-                  onChange={(e) => setAgreementChecked(!agreementChecked)}
-                >
-                  I certify that I am 18 years of age or older, and I agree to the{' '}
-                  <ChakraLink href="https://www.owncoral.com/user-agreement" isExternal>
-                    User Agreement{' '}
-                    <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
-                  </ChakraLink>
-                  {' and '}
-                  <ChakraLink href="https://www.owncoral.com/privacy" isExternal>
-                    Privacy Policy{' '}
-                    <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
-                  </ChakraLink>
-                </Checkbox>
-              </Center>
-            )}
-
-            <Button
-              isDisabled={!agreementChecked}
-              type="submit"
-              pos="absolute"
-              bottom={4}
-              left={6}
-              w="calc(100% - 3rem)"
-              h={12}
-              colorScheme="auto"
+            <FormHelperText
+              textStyle="Caption1"
+              color={errors.password ? 'red.500' : 'gray'}
+              className={errors.password ? 'shake_animation' : ''}
+              textAlign="left"
+              m="0.5rem 0"
             >
-              Set New Password and Log In
-            </Button>
-          </Box>
+              Must be at least 8 characters
+            </FormHelperText>
+          </FormControl>
+
+          {isWelcome && (
+            <Center w="calc(100% - 3rem)" bottom="4.5rem" pos="absolute">
+              <Checkbox
+                size="lg"
+                sx={{ '.chakra-checkbox__label': Caption1 }}
+                isChecked={agreementChecked}
+                onChange={(e) => setAgreementChecked(!agreementChecked)}
+              >
+                I certify that I am 18 years of age or older, and I agree to the{' '}
+                <ChakraLink href="https://www.owncoral.com/user-agreement" isExternal>
+                  User Agreement{' '}
+                  <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
+                </ChakraLink>
+                {' and '}
+                <ChakraLink href="https://www.owncoral.com/privacy" isExternal>
+                  Privacy Policy{' '}
+                  <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
+                </ChakraLink>
+              </Checkbox>
+            </Center>
+          )}
+
+          <Button
+            isDisabled={!agreementChecked}
+            type="submit"
+            pos="absolute"
+            bottom={4}
+            left={6}
+            w="calc(100% - 3rem)"
+            h={12}
+            colorScheme="auto"
+          >
+            Set New Password and Log In
+          </Button>
         </form>
       )}
     </Container>
@@ -220,7 +209,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
 
 const ExpiredLink = () => {
   return (
-    <Box p={6} w="100%" h="100vh" pos="relative">
+    <Box>
       <Heading mt={8} mb={2}>
         Expired link
       </Heading>

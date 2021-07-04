@@ -16,7 +16,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 
-import { BackBtn } from '../../components';
+import { BackBtn, Container } from '../../components';
 import { fetchWrap } from '../../lib/api';
 
 const ForgotPassword: React.FC = () => {
@@ -60,8 +60,8 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Box p={6} w="100%" h="100vh" pos="relative">
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <BackBtn
           handleClick={() => {
             history.push('/login');
@@ -109,8 +109,8 @@ const ForgotPassword: React.FC = () => {
         >
           Send Instructions
         </Button>
-      </Box>
-    </form>
+      </form>
+    </Container>
   );
 };
 
