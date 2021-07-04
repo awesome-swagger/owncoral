@@ -8,7 +8,7 @@ const Error404 = lazy(() => import('../../../error404'));
 
 const CourseCashFlow = () => {
   const { title } = useParams<{ title: string }>();
-  if(!title) return Data[0].jsx;
+  if (!title) return Data[0].jsx;
 
   const FilteredData = Data.find(({ name }: { name: string }) =>
     titleToUrlFragment(name).includes(title),
@@ -18,9 +18,9 @@ const CourseCashFlow = () => {
     <Fragment>
       <NavBar />
       <Container
-        minH={{ base: 'calc(100vh - 4rem)' }}
-        h={{ base: 'auto', md: '750px' }}
-        pb={{ base: 20 }}
+        minH={{ base: 'calc(100vh - 8rem)' }}
+        h={{ base: 'auto', md: '725px' }}
+        pb={{ base: 16 }}
       >
         {FilteredData.jsx}
       </Container>
