@@ -106,6 +106,7 @@ const ForgotPassword: React.FC = () => {
           isLoading={isLoading}
           spinner={<Spinner />}
           type="submit"
+          colorScheme="stripe"
         >
           Send Instructions
         </Button>

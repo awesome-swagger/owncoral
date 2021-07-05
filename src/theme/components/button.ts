@@ -68,6 +68,26 @@ const baseVariants = {
         _active: { bg: mode(`gray.400`, `whiteAlpha.800`)(props) },
       };
     }
+    if (c === 'stripe') {
+      const primary = mode(`red.500`, `whiteAlpha.600`)(props);
+      const fg = mode(`white`, `gray.900`)(props);
+
+      return {
+        textShadow: '0 0 2px red',
+        bg: 'transparent',
+        color: primary,
+        border: '2px solid',
+        borderColor: primary,
+        _hover: {
+          bg: primary,
+          color: 'white',
+          _disabled: {
+            bg: primary,
+          },
+        },
+        _active: { bg: mode(`red.400`, `whiteAlpha.800`)(props) },
+      };
+    }
 
     const { bg = `${c}.500`, color = 'white', hoverBg = `${c}.600`, activeBg = `${c}.700` } =
       accessibleColorMap[c] || {};

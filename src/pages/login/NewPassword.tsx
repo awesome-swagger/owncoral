@@ -197,7 +197,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
             left={6}
             w="calc(100% - 3rem)"
             h={12}
-            colorScheme="auto"
+            colorScheme="stripe"
           >
             Set New Password and Log In
           </Button>
