@@ -73,7 +73,6 @@ const baseVariants = {
       const fg = mode(`white`, `gray.900`)(props);
 
       return {
-        textShadow: '0 0 2px red',
         bg: 'transparent',
         color: primary,
         border: '2px solid',
