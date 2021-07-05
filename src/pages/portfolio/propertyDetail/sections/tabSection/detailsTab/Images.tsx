@@ -18,7 +18,7 @@ export const Images = ({ propertyDetail }: PropertyLocationPropsT) => {
       <ImgSlider
         images={newImages}
         fallback={
-          <Center w="100%" h="40vh">
+          <Center w="100%" h={(window.innerHeight / 100) * 40}>
             <Spinner />
           </Center>
         }

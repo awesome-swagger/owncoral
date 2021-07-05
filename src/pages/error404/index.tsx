@@ -12,7 +12,7 @@ const Error404 = () => {
   return (
     <Fragment>
       <NavBar />
-      <Center align="center" w="100%" h="100vh" pos="fixed" top={0}>
+      <Center align="center" w="100%" h={window.innerHeight} pos="fixed" top={0}>
         <VStack>
           <Icon as={FiAlertTriangle} h={{ base: 28, md: 40 }} w={{ base: 28, md: 40 }} />
           <Title2>Ooops!</Title2>

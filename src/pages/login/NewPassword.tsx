@@ -99,7 +99,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
     // TODO: use a Suspense when feature is stable
     <Container showColorModeButton={false}>
       {tokenState === 'loading' && (
-        <Center h="100vh" w="100%">
+        <Center h={window.innerHeight} w="100%">
           <Spinner />
         </Center>
       )}

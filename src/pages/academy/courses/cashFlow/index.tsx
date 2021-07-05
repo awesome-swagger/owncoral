@@ -18,7 +18,7 @@ const CourseCashFlow = () => {
     <Fragment>
       <NavBar />
       <Container
-        minH={{ base: 'calc(100vh - 8rem)' }}
+        minH={{ base: `calc(${window.innerHeight}px - 8rem)` }}
         h={{ base: 'auto', md: '725px' }}
         pb={{ base: 16 }}
       >

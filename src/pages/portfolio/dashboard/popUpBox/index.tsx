@@ -8,7 +8,14 @@ export const PopUpBox = ({
 }: {
   handleClose: React.Dispatch<React.SetStateAction<boolean>>;
 }) => (
-  <Box w="100vw" h="100vh" pos="fixed" top="0" left="0" bg="blackAlpha.400">
+  <Box
+    w={window.innerWidth}
+    h={window.innerHeight}
+    pos="fixed"
+    top="0"
+    left="0"
+    bg="blackAlpha.400"
+  >
     <Container>
       <Box w="100%" h="100%" pos="absolute" top="0" left="0" onClick={() => handleClose(false)} />
       <Box

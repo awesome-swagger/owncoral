@@ -19,7 +19,7 @@ const ComingSoon = ({ isPage = true }: { isPage?: boolean }) => {
   return isPage ? (
     <Fragment>
       <NavBar />
-      <Center w="100%" h="100vh" pos="fixed" top={0} p={[10, 14]}>
+      <Center w="100%" h={window.innerHeight} pos="fixed" top={0} p={[10, 14]}>
         <ComingSoonSplash />
       </Center>
     </Fragment>
