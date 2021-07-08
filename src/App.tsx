@@ -107,8 +107,6 @@ function App() {
                     component={CourseCashFlow}
                   />
 
-                  <ProtectedRoute path="*" component={Error404} />
-
                   {isDev && (
                     <Fragment>
                       <Route path="/signup">
@@ -134,6 +132,8 @@ function App() {
                   )}
 
                   {/* <Route exact path="/documents" component={Docs} /> */}
+
+                  <ProtectedRoute path="*" component={Error404} />
                 </Switch>
               </LogPageViews>
             </Router>

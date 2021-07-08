@@ -46,7 +46,7 @@ const iosForcedScrollX = {
   },
 
   '::-webkit-scrollbar-thumb': {
-    borderRadius: '100vh',
+    borderRadius: `${window.innerHeight}px`,
     backgroundColor: 'rgba(0, 0, 0, .5)',
     boxShadow: '0 0 1px rgba(255, 255, 255, .5)',
   },
@@ -307,7 +307,7 @@ const FadeOutGradient = ({
         match breakpoint and width of Container to place 'fade out' gradient
         on RHS of table
       */
-        left={{ base: 'calc(100vw - 4.5rem)', md: `calc(${theme.breakpoints.sm} - 6rem)` }}
+        left={{ base: `calc(${window.innerWidth}px - 4.5rem)`, md: `calc(${theme.breakpoints.sm} - 6rem)` }}
         top="0"
         background={tableGrad}
       />
