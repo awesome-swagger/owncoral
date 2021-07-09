@@ -8,24 +8,25 @@ import { Caption1, Headline } from '../../../../components/text';
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
 const Calculation = ({ children }: { children: any }) => (
   <Fragment>
-    <Headline mt={6} mb={2}>
-      How to Calculate
-    </Headline>
-    <Text
-      fontSize="1.125rem"
-      letterSpacing="0.02rem"
-      fontFamily="Times, 'Times New Roman', Bookman, Palatino, serif"
-      fontWeight="400"
-      mx={4}
-    >
-      {' '}
-      {children}{' '}
-    </Text>
+    <Box layerStyle="card" my={4} p={4} borderRadius="2xl">
+      <Headline mb={2} opacity="0.5">
+        How to Calculate
+      </Headline>
+      <Text
+        fontSize="1.125rem"
+        letterSpacing="0.02rem"
+        fontFamily="Times, 'Times New Roman', Bookman, Palatino, serif"
+        fontWeight="400"
+      >
+        {' '}
+        {children}{' '}
+      </Text>
+    </Box>
   </Fragment>
 );
 const Example = ({ children }: { children: any }) => (
-  <Box layerStyle="card" p={4} my={4} borderRadius="2xl">
-    <Caption1 mb={2}>Example</Caption1>
+  <Box my={4}>
+    <Headline mb={2}>Example</Headline>
     <Text textStyle="Body1">{children}</Text>
   </Box>
 );
