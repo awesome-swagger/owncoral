@@ -13,9 +13,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 
+const CoralPlanTab = lazy(() => import('./coralPlanTab'));
 const DetailsTab = lazy(() => import('./detailsTab'));
 const FinanceTab = lazy(() => import('./financeTab'));
-const CoralPlanTab = lazy(() => import('./coralPlanTab'));
 const NewsTab = lazy(() => import('./newsTab'));
 
 type TabSectionPropsT = {

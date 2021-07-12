@@ -3,6 +3,7 @@ import RenovationImg from '../../../../../../../assets/CapturaRenovation.png';
 import { Headline, Title2 } from '../../../../../../../components/text';
 import { ScrollSlider } from '../../../../../../../components';
 import { Box, Flex, Image, UnorderedList, ListItem } from '@chakra-ui/react';
+import { Title2 } from '../../../../../../../components/text';
 
 type RenovationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;

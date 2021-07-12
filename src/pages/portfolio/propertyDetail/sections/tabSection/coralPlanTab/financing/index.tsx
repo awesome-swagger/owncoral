@@ -1,17 +1,17 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
-import type React from 'react';
-import { Fragment } from 'react';
+import React from 'react';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
-import { FiChevronRight } from 'react-icons/fi';
 import { Box, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
+import { FiChevronRight } from 'react-icons/fi';
 import { Title2 } from '../../../../../../../components/text';
-import { formatFinancial, formatFinancialSI } from '../../../../../../../lib/financialFormatter';
+import { formatFinancialSI } from '../../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
+
 export const Financing = ({ propertyDetail }: FinancingPropsT) => {
   // Equity percentage for graphing leverage
   const equityPct: number | null =
@@ -28,7 +28,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
           propertyDetail.mdlCurrentMortgage !== null &&
           propertyDetail.mdlMortgage !== null &&
           equityPct && (
-            <Fragment>
+            <React.Fragment>
               <Flex
                 my={4}
                 borderRadius="full"
@@ -88,7 +88,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                 <Icon as={FiChevronRight} mr={1} />
                 <Text>Learn more about financing</Text>
               </Flex>
-            </Fragment>
+            </React.Fragment>
           )}
         {/* <Flex */}
         {/*  justifyContent="space-between" */}

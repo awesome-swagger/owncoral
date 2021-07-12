@@ -1,10 +1,10 @@
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Divider } from '@chakra-ui/react';
-import { ValueAddPlan } from './valueAddPlan';
+import { Financing } from './financing';
+import { PropertyCosts } from './propertyCosts';
 import { Renovation } from './renovation';
 import { RentalIncome } from './rentalIncome';
-import { PropertyCosts } from './propertyCosts';
-import { Financing } from './financing';
+import { ValueAddPlan } from './valueAddPlan';
 
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -25,4 +25,5 @@ const CoralPlanTab = ({ propertyDetail }: DetailsTabPropsT) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default CoralPlanTab;

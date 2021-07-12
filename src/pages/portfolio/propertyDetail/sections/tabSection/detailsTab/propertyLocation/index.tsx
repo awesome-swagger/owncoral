@@ -1,6 +1,5 @@
-import { FiMap } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
-import { Box, Button, Center, Icon, Image, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 import { MapBox } from '../../../../../../../components';
 import { Title2 } from '../../../../../../../components/text';

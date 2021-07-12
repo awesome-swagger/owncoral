@@ -1,5 +1,5 @@
 import { FaRegBuilding } from 'react-icons/fa';
-import { FiSquare, FiUsers } from 'react-icons/fi';
+import { FiSquare } from 'react-icons/fi';
 import { GiStairs } from 'react-icons/gi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';

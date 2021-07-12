@@ -1,10 +1,8 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import type React from 'react';
-import { Fragment } from 'react';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
-import type { IconProps } from '@chakra-ui/react';
-import { Box, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
+import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 
 import { Title2 } from '../../../../../../../components/text';
 import { formatFinancial } from '../../../../../../../lib/financialFormatter';
