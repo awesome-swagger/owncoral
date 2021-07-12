@@ -151,7 +151,7 @@ const PortfolioPropertyDetail = ({
           </Box>
         </Fragment>
       ) : (
-        <Center h={window.innerHeight} w="100%">
+        <Center w="100%" h={window.innerHeight}>
           <Spinner />
         </Center>
       )}

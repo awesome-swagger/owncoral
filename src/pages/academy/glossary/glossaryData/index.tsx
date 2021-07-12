@@ -3,13 +3,13 @@
 import { Fragment } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-import { Caption1, Headline } from '../../../../components/text';
+import { Headline } from '../../../../components/text';
 
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
 const Calculation = ({ children }: { children: any }) => (
   <Fragment>
     <Box layerStyle="card" my={4} p={4} borderRadius="2xl">
-      <Headline mb={2} opacity="0.5">
+      <Headline mb={2} opacity="0.5" casing="uppercase">
         How to Calculate
       </Headline>
       <Text
