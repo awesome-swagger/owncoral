@@ -1,17 +1,16 @@
 import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
+import { ScrollSlider } from '../../../../../components';
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
+
+const images = [RenovationImg, RenovationImg, RenovationImg];
 
 export const RenovationSection = () => (
   <Box>
     <Heading fontSize="2xl" fontWeight="bold">
       Renovations
     </Heading>
-    <Flex className="custom_scroll" overflow="auto" my={6}>
-      <Image mx={2} src={RenovationImg} />
-      <Image mx={2} src={RenovationImg} />
-      <Image mx={2} src={RenovationImg} />
-    </Flex>
+    <ScrollSlider images={images} />
     <Heading fontSize="md">
       The property is currently vacant and needs a gut renovation. We expect to renovate with new
       appliances, flooring, cabinetry etc. to bring this property up to date and online for rental.
