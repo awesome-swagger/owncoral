@@ -2,30 +2,17 @@
 // TODO: refactor render function
 import type React from 'react';
 import { Fragment } from 'react';
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
+import { FiChevronRight } from 'react-icons/fi';
 import { Box, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
-
-import { Title2 } from '../../../../../../components/text';
-import { formatFinancial, formatFinancialSI } from '../../../../../../lib/financialFormatter';
+import { Title2 } from '../../../../../../../components/text';
+import { formatFinancial, formatFinancialSI } from '../../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
 export const Financing = ({ propertyDetail }: FinancingPropsT) => {
-  const totalCapitalCost =
-    propertyDetail.mdlPurchasePrice !== null && propertyDetail.mdlClosingCost !== null
-      ? formatFinancial(
-          propertyDetail.mdlPurchasePrice +
-            propertyDetail.mdlClosingCost +
-            (propertyDetail?.mdlOriginationFee || 0) +
-            (propertyDetail?.mdlCapexReserve || 0) +
-            (propertyDetail?.mdlBrokerFee || 0) +
-            (propertyDetail?.mdlPrincipalReserve || 0) +
-            (propertyDetail?.mdlRenovation || 0),
-        )
-      : 'N/A';
-
   // Equity percentage for graphing leverage
   const equityPct: number | null =
     propertyDetail.mdlEquity !== null && propertyDetail.mdlCurrentMortgage !== null
@@ -34,61 +21,6 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
 
   return (
     <Box>
-      <Box>
-        <Title2 my={6}>Total property costs</Title2>
-        <VStack align="stretch">
-          <Flex justifyContent="space-between">
-            <Text>Purchase price</Text>
-            <Text>
-              {propertyDetail.mdlPurchasePrice !== null
-                ? '$' + formatFinancial(propertyDetail.mdlPurchasePrice)
-                : 'N/A'}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between">
-            <Text>Closing costs</Text>
-            <Text>
-              {propertyDetail.mdlClosingCost !== null && propertyDetail.mdlBrokerFee !== null
-                ? '$' + formatFinancial(propertyDetail.mdlClosingCost + propertyDetail.mdlBrokerFee)
-                : 'N/A'}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between">
-            <Text>Acquisition fee</Text>
-            <Text>
-              {propertyDetail.mdlOriginationFee !== null
-                ? '$' + formatFinancial(propertyDetail.mdlOriginationFee)
-                : 'N/A'}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between">
-            <Text>Principal Reserve</Text>
-            <Text>
-              {propertyDetail.mdlPrincipalReserve !== null
-                ? '$' + formatFinancial(propertyDetail.mdlPrincipalReserve)
-                : 'N/A'}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between">
-            <Text>Total capex</Text>
-            <Text>
-              {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
-                ? '$' +
-                  formatFinancial(propertyDetail.mdlCapexReserve + propertyDetail.mdlRenovation)
-                : 'N/A'}
-            </Text>
-          </Flex>
-          <Flex justifyContent="space-between" fontWeight={600}>
-            <Text>Total property cost</Text>
-            <Text>${totalCapitalCost}</Text>
-          </Flex>
-        </VStack>
-        {/* <Box h={4} /> */}
-        {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
-        {/*  Learn more about Capital Cost */}
-        {/* </Button> */}
-      </Box>
-      <Divider my={6} />
       <Box>
         <Title2 my={6}>Financing</Title2>
 
@@ -151,6 +83,10 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                 <Box align="right" w="4rem">
                   ${formatFinancialSI(propertyDetail.mdlCurrentMortgage)}
                 </Box>
+              </Flex>
+              <Flex alignItems="center" cursor="pointer" mt={6}>
+                <Icon as={FiChevronRight} mr={1} />
+                <Text>Learn more about financing</Text>
               </Flex>
             </Fragment>
           )}

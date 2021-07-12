@@ -1,13 +1,13 @@
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import { Box, Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
 
-import { Headline, Title2 } from '../../../../../../components/text';
-import { formatFinancial } from '../../../../../../lib/financialFormatter';
+import { Headline, Title2 } from '../../../../../../../components/text';
+import { formatFinancial } from '../../../../../../../lib/financialFormatter';
 
-type ValueAddPlanePropsT = {
+type ValueAddPlanPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
 };
-export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
+export const ValueAddPlan = ({ propertyDetail }: ValueAddPlanPropsT) => {
   return (
     <Box>
       <Title2 mb={6}>Value-add plan</Title2>
@@ -48,27 +48,6 @@ export const ValueAddPlane = ({ propertyDetail }: ValueAddPlanePropsT) => {
       {/*    </Box> */}
       {/*  ))} */}
       {/* </Flex> */}
-      <Divider my={6} />
-      <Title2 my={6}>Rental income</Title2>
-
-      <VStack w="100%" align="stretch" my={4}>
-        <Flex justifyContent="space-between">
-          <Text>Current</Text>
-          <Text>
-            {propertyDetail.rentalIncomeMonthlyCurrent !== null
-              ? '$' + formatFinancial(propertyDetail.rentalIncomeMonthlyCurrent)
-              : 'N/A'}
-          </Text>
-        </Flex>
-        <Flex justifyContent="space-between">
-          <Text>Target</Text>
-          <Text>
-            {propertyDetail.rentalIncomeMonthlyTarget !== null
-              ? '$' + formatFinancial(propertyDetail.rentalIncomeMonthlyTarget)
-              : 'N/A'}
-          </Text>
-        </Flex>
-      </VStack>
 
       {/* <Button variant="outline" colorScheme="secondary" w="100%"> */}
       {/*  Learn more about the rental income{' '} */}

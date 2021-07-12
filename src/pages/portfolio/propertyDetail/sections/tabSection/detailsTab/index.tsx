@@ -1,11 +1,9 @@
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Divider } from '@chakra-ui/react';
 
-import { Financing } from './Financing';
-import { Images } from './Images';
-import { PropertyDetail } from './PropertyDetail';
-import { PropertyLocation } from './PropertyLocation';
-import { ValueAddPlane } from './ValueAddPlane';
+import { Images } from './images';
+import { PropertyDetail } from './propertyDetail';
+import { PropertyLocation } from './propertyLocation';
 
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -18,10 +16,6 @@ const DetailsTab = ({ propertyDetail }: DetailsTabPropsT) => {
       <PropertyLocation propertyDetail={propertyDetail} />
       <Divider my={6} />
       <PropertyDetail propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <ValueAddPlane propertyDetail={propertyDetail} />
-      <Divider my={6} />
-      <Financing propertyDetail={propertyDetail} />
     </Box>
   );
 };

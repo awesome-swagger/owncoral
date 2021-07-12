@@ -1,8 +1,8 @@
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import { Box, Center, Spinner } from '@chakra-ui/react';
 
-import { ImgSlider } from '../../../../../../components';
-import { Title2 } from '../../../../../../components/text';
+import { ImgSlider } from '../../../../../../../components';
+import { Title2 } from '../../../../../../../components/text';
 
 type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;

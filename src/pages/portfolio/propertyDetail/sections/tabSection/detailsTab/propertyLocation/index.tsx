@@ -1,10 +1,9 @@
 import { FiMap } from 'react-icons/fi';
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import { Box, Button, Center, Icon, Image, Text } from '@chakra-ui/react';
 
-import { MapBox } from '../../../../../../components';
-import { Title2 } from '../../../../../../components/text';
-import { DummyData } from '../../../../../../lib/portfolioData';
+import { MapBox } from '../../../../../../../components';
+import { Title2 } from '../../../../../../../components/text';
 
 type PropertyLocationPropsT = {
   propertyDetail: PortfolioPropertyDetailT;

@@ -1,12 +1,12 @@
 import { FaRegBuilding } from 'react-icons/fa';
 import { FiSquare, FiUsers } from 'react-icons/fi';
 import { GiStairs } from 'react-icons/gi';
-import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
+import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 
-import { Card } from '../../../../../../components';
-import { Headline, Subhead, Title2 } from '../../../../../../components/text';
-import { formatFinancial } from '../../../../../../lib/financialFormatter';
+import { Card } from '../../../../../../../components';
+import { Headline, Subhead, Title2 } from '../../../../../../../components/text';
+import { formatFinancial } from '../../../../../../../lib/financialFormatter';
 
 type PropertyDetailPropsT = {
   propertyDetail: PortfolioPropertyDetailT;

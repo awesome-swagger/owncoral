@@ -1,3 +1,5 @@
+import type React from 'react';
+import { lazy, Suspense } from 'react';
 import type { PortfolioPropertyDetailT } from '../../../../../shared-fullstack/types';
 import {
   Box,
@@ -13,9 +15,8 @@ import {
 
 const DetailsTab = lazy(() => import('./detailsTab'));
 const FinanceTab = lazy(() => import('./financeTab'));
+const CoralPlanTab = lazy(() => import('./coralPlanTab'));
 const NewsTab = lazy(() => import('./newsTab'));
-import type React from 'react';
-import { lazy, Suspense } from 'react';
 
 type TabSectionPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -37,13 +38,16 @@ export const TabSection = ({
     <Box>
       <Tabs>
         <TabList>
-          <Tab>
+          <Tab px={3}>
             <Text textStyle="Headline">Performance</Text>
           </Tab>
-          <Tab>
+          <Tab px={3}>
             <Text textStyle="Headline">Property details</Text>
           </Tab>
-          <Tab>
+          <Tab px={3}>
+            <Text textStyle="Headline">Coral Plan</Text>
+          </Tab>
+          <Tab px={3}>
             <Text textStyle="Headline">News</Text>
           </Tab>
         </TabList>
@@ -61,6 +65,11 @@ export const TabSection = ({
           <TabPanel px="0">
             <Suspense fallback={fallback}>
               <DetailsTab propertyDetail={propertyDetail} />
+            </Suspense>
+          </TabPanel>
+          <TabPanel px="0">
+            <Suspense fallback={fallback}>
+              <CoralPlanTab propertyDetail={propertyDetail} />
             </Suspense>
           </TabPanel>
           <TabPanel px="0">
