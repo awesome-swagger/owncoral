@@ -1,7 +1,7 @@
-.invisible_scroll::-webkit-scrollbar {
-  display: none;
-}
-.invisible_scroll {
+.invisible-scroll {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+.invisible-scroll::-webkit-scrollbar {
+  display: none;
 }

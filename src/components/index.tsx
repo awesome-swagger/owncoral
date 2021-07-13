@@ -16,6 +16,6 @@ export { ProfilePopOver } from './profilePopOver';
 export { ProgressBar } from './progressBar';
 export { PropertyCard } from './propertyCard';
 export { ProtectedRoute } from './protectedRoute';
+export { ScrollSlider } from './scrollSlider';
 export { SubmitBtn } from './submitBtn';
 export { TimeoutModal } from './timeoutModal';
-export { ScrollSlider } from './scrollSlider';
