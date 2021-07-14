@@ -10,9 +10,7 @@ type RenovationPropsT = {
 export const Renovation = ({ propertyDetail }: RenovationPropsT) => {
   return (
     <Box>
-      <Flex className="custom_scroll" overflow="auto" my={6}>
-        <ScrollSlider images={propertyDetail.imageUrls} />
-      </Flex>
+      <ScrollSlider images={propertyDetail.imageUrls} />
       <Title2 my={6}>Renovation</Title2>
       <UnorderedList>
         <ListItem>Add 1 bathroom to each unit</ListItem>
