@@ -1,21 +1,19 @@
 /* eslint-disable max-params */
-import { CSSProperties, ReactElement, useState } from 'react';
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
-import { Carousel } from 'react-responsive-carousel';
+import { useEmblaCarousel } from 'embla-carousel/react';
+import React, { useState, useEffect, useCallback, ReactElement } from 'react';
+import { FiX } from 'react-icons/fi';
+import { PrevButton, NextButton, DotButton } from './EmblaCarouselButtons';
 import {
   AspectRatio,
   Box,
   Icon,
-  IconButton,
   Image,
   Modal,
   ModalBody,
   ModalContent,
   ModalOverlay,
-  useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-
 import './style.css';
 
 type ImgSliderPropsT = {
@@ -70,17 +68,6 @@ export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   );
 };
 
-const arrowStyles: CSSProperties = {
-  position: 'absolute',
-  top: '50%',
-  zIndex: 2,
-  transform: 'translateY(-50%)',
-  borderRadius: '50%',
-  background: '#00000050',
-  color: '#fff',
-  outline: 'none',
-};
-
 const CenterCarousel = ({
   images,
   fallback,
@@ -92,92 +79,113 @@ const CenterCarousel = ({
   setImageIndex: any;
   onOpen: any;
 }) => {
-  const BulletColor = useColorModeValue('gray', 'white');
+  const [viewportRef, embla]: any = useEmblaCarousel({
+    loop: true,
+    draggable: true,
+    dragFree: true,
+    inViewThreshold: 20,
+  });
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [parallaxValues, setParallaxValues] = useState([]);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
 
-  const indicatorStyles: CSSProperties = {
-    background: BulletColor,
-    width: 10,
-    height: 10,
-    display: 'inline-block',
-    margin: '0 8px',
-    borderRadius: '50%',
-    outline: 'none',
-    opacity: '.7',
-  };
+  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
+  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+  const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [embla]);
+
+  const PARALLAX_FACTOR = 1.2;
+
+  const onSelect = useCallback(() => {
+    if (!embla) return;
+    setSelectedIndex(embla.selectedScrollSnap());
+    setPrevBtnEnabled(embla.canScrollPrev());
+    setNextBtnEnabled(embla.canScrollNext());
+  }, [embla, setSelectedIndex]);
+
+  const onScroll = useCallback(() => {
+    if (!embla) return;
+
+    const engine = embla.dangerouslyGetEngine();
+    const scrollProgress = embla.scrollProgress();
+
+    const styles = embla.scrollSnapList().map((scrollSnap: number, index: number) => {
+      if (!embla.slidesInView().includes(index)) return 0;
+      let diffToTarget = scrollSnap - scrollProgress;
+
+      if (engine.options.loop) {
+        engine.slideLooper.loopPoints.forEach((loopItem: any) => {
+          const target = loopItem.getTarget();
+          if (index === loopItem.index && target !== 0) {
+            const sign = Math.sign(target);
+            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
+            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+          }
+        });
+      }
+      return diffToTarget * (-1 / PARALLAX_FACTOR) * 100;
+    });
+    setParallaxValues(styles);
+  }, [embla, setParallaxValues]);
+
+  useEffect(() => {
+    if (!embla) return;
+    onSelect();
+    setScrollSnaps(embla.scrollSnapList());
+    onScroll();
+    embla.on('select', onSelect);
+    embla.on('scroll', onScroll);
+    embla.on('resize', onScroll);
+  }, [embla, onSelect, onScroll, setScrollSnaps]);
+  images.map((val: string, idx: number) => console.log(`${idx} : image ==> ${val}`));
 
   return (
-    <Carousel
-      infiniteLoop
-      centerMode
-      centerSlidePercentage={70}
-      showStatus={false}
-      showThumbs={false}
-      autoPlay={false}
-      renderArrowPrev={(onClickHandler, hasPrev, label) =>
-        hasPrev && (
-          <IconButton
-            type="button"
-            onClick={onClickHandler}
-            title={label}
-            aria-label="left-arrow"
-            icon={<Icon as={FiChevronLeft} h={6} w={6} ml="-2px" />}
-            style={{ ...arrowStyles, left: 2 }}
-          />
-        )
-      }
-      renderArrowNext={(onClickHandler, hasNext, label) =>
-        hasNext && (
-          <IconButton
-            type="button"
-            onClick={onClickHandler}
-            title={label}
-            aria-label="right-arrow"
-            icon={<Icon as={FiChevronRight} h={6} w={6} mr="-2px" />}
-            style={{ ...arrowStyles, right: 2 }}
-          />
-        )
-      }
-      renderIndicator={(onClickHandler, isSelected, index, label) => {
-        // eslint-disable-line max-params
-        return isSelected ? (
-          <li
-            style={{ ...indicatorStyles, background: '#000' }}
-            aria-label={`Selected: ${label} ${index + 1}`}
-            title={`Selected: ${label} ${index + 1}`}
-          />
-        ) : (
-          <li
-            style={indicatorStyles}
-            onClick={onClickHandler}
-            onKeyDown={onClickHandler}
-            value={index}
+    <Box className="embla">
+      <Box className="embla__viewport" ref={viewportRef}>
+        <Box className="embla__container">
+          {images?.map((src: string, idx: number) => (
+            <Box
+              className="embla__slide"
+              key={idx}
+              onClick={() => {
+                setImageIndex(idx);
+                onOpen();
+              }}
+            >
+              <Box className="embla__slide__inner" h={{ base: '250px', sm: '300px' }}>
+                <Box
+                  className="embla__slide__parallax"
+                  style={{ transform: `translateX(${parallaxValues[idx]}%)` }}
+                >
+                  <AspectRatio
+                    mx={2}
+                    my={6}
+                    ratio={4 / 3}
+                    cursor="pointer"
+                    overflow="hidden"
+                    boxShadow="sm"
+                    borderRadius="2xl"
+                  >
+                    <Image src={src} alt={`Property image #${idx}`} fallback={fallback} />
+                  </AspectRatio>
+                </Box>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      </Box>
+      <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+      <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+      <Box className="embla__dots">
+        {scrollSnaps.map((_, index) => (
+          <DotButton
             key={index}
-            role="button"
-            tabIndex={0}
-            title={`${label} ${index + 1}`}
-            aria-label={`${label} ${index + 1}`}
+            selected={index === selectedIndex}
+            onClick={() => scrollTo(index)}
           />
-        );
-      }}
-    >
-      {images?.map((src: string, idx: number) => (
-        <AspectRatio
-          mx={4}
-          my={6}
-          ratio={4 / 3}
-          key={idx}
-          cursor="pointer"
-          overflow="hidden"
-          borderRadius="2xl"
-          boxShadow="sm"
-          onClick={() => {
-            setImageIndex(idx);
-            onOpen();
-          }}
-        >
-          <Image src={src} alt={`Property image #${idx}`} fallback={fallback} />
-        </AspectRatio>
-      ))}
-    </Carousel>
+        ))}
+      </Box>
+    </Box>
   );
 };
