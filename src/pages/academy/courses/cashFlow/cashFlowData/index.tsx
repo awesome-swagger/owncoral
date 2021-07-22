@@ -9,6 +9,7 @@ import { RentalRevenueChart, RealizedAppreciationChart, OverAllCashChart } from 
 import ChartImg from '../../../../../assets/Frame331.png';
 import Academy from '../../../../../assets/academy-1.svg';
 import Frame from '../../../../../assets/Frame615.png';
+import { useScrollToTop } from '../../../../../lib/useScrollToTop';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -17,7 +18,7 @@ const CloseBtn = () => {
 
 const FlowStartBtn = () => {
   const history = useHistory();
-  window.scrollTo(0, 0);
+  useScrollToTop();
 
   return (
     <Button
@@ -57,7 +58,7 @@ const NextBtn = ({
   finishBtn?: boolean;
 }) => {
   const history = useHistory();
-  window.scrollTo(0, 0);
+  useScrollToTop();
   return (
     <Button
       w={finishBtn ? 'auto' : 10}
@@ -71,8 +72,6 @@ const NextBtn = ({
 
 const PrevBtn = ({ background = true }: { background?: boolean }) => {
   const history = useHistory();
-  window.scrollTo(0, 0);
-
   return background ? (
     <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
       <Icon as={FiChevronLeft} />
