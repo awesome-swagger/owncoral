@@ -17,6 +17,8 @@ const CloseBtn = () => {
 
 const FlowStartBtn = () => {
   const history = useHistory();
+  window.scrollTo(0, 0);
+
   return (
     <Button
       pos="absolute"
@@ -32,6 +34,7 @@ const FlowStartBtn = () => {
 
 const FlowEndBtn = () => {
   const history = useHistory();
+
   return (
     <Box
       p={4}
@@ -54,6 +57,7 @@ const NextBtn = ({
   finishBtn?: boolean;
 }) => {
   const history = useHistory();
+  window.scrollTo(0, 0);
   return (
     <Button
       w={finishBtn ? 'auto' : 10}
@@ -67,6 +71,8 @@ const NextBtn = ({
 
 const PrevBtn = ({ background = true }: { background?: boolean }) => {
   const history = useHistory();
+  window.scrollTo(0, 0);
+
   return background ? (
     <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
       <Icon as={FiChevronLeft} />
