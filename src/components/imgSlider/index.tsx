@@ -1,6 +1,6 @@
 /* eslint-disable max-params */
 import { useEmblaCarousel } from 'embla-carousel/react';
-import React, { useState, useEffect, useCallback, ReactElement } from 'react';
+import { useState, useEffect, useCallback, ReactElement } from 'react';
 import { FiX } from 'react-icons/fi';
 import { PrevButton, NextButton, DotButton } from './EmblaCarouselButtons';
 import {
@@ -24,7 +24,6 @@ type ImgSliderPropsT = {
 export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const [imageIndex, setImageIndex] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <Box>
       <CenterCarousel
@@ -138,7 +137,6 @@ const CenterCarousel = ({
     embla.on('scroll', onScroll);
     embla.on('resize', onScroll);
   }, [embla, onSelect, onScroll, setScrollSnaps]);
-  images.map((val: string, idx: number) => console.log(`${idx} : image ==> ${val}`));
 
   return (
     <Box className="embla">

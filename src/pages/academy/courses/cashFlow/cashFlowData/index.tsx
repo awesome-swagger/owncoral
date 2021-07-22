@@ -58,9 +58,6 @@ const NextBtn = ({
     <Button
       w={finishBtn ? 'auto' : 10}
       h={10}
-      pos="absolute"
-      bottom={6}
-      right={4}
       onClick={() => history.push(`/academy/unit/cash-flow/${nextStep}`)}
     >
       {finishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
@@ -71,21 +68,22 @@ const NextBtn = ({
 const PrevBtn = ({ background = true }: { background?: boolean }) => {
   const history = useHistory();
   return background ? (
-    <Button
-      colorScheme="white"
-      w={10}
-      h={10}
-      pos="absolute"
-      bottom={6}
-      left={4}
-      onClick={() => history.goBack()}
-    >
+    <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
       <Icon as={FiChevronLeft} />
     </Button>
   ) : (
     <Icon as={FiChevronLeft} cursor="pointer" onClick={() => history.goBack()} />
   );
 };
+const BtnsWrapper = (props: any) => (
+  <Flex
+    justifyContent="space-between"
+    w="calc(100% - 3rem)"
+    pos={{ base: 'fixed', md: 'absolute' }}
+    bottom={{ base: 20, md: 6 }}
+    {...props}
+  />
+);
 
 export const Data = [
   {
@@ -166,8 +164,10 @@ export const Data = [
             and repair.
           </Text>
         </Box>
-        <PrevBtn />
-        <NextBtn nextStep="3" />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="3" />
+        </BtnsWrapper>
       </Box>
     ),
   },
@@ -204,8 +204,10 @@ export const Data = [
           increases), or improved operational efficiencies. Occasionally, we may plan for vacancies
           so that we can renovate units.
         </Text>
-        <PrevBtn />
-        <NextBtn nextStep="4" />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="4" />
+        </BtnsWrapper>
       </Box>
     ),
   },
@@ -240,8 +242,10 @@ export const Data = [
           the form of a construction earn-out (where we receive additional funds from our lender
           upon completion of construction) or refinancing (a new loan).
         </Text>
-        <PrevBtn />
-        <NextBtn nextStep="5" />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="5" />
+        </BtnsWrapper>
       </Box>
     ),
   },
@@ -278,8 +282,10 @@ export const Data = [
           The overall cash flow includes distributions that come from both rental revenue and
           realized appreciation, as well as any remaining reserve.
         </Text>
-        <PrevBtn />
-        <NextBtn nextStep="6" />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="6" />
+        </BtnsWrapper>
       </Box>
     ),
   },
@@ -313,8 +319,10 @@ export const Data = [
           property) is capped at 25% tax rate. Each year, you receive a tax form (K-1) from Coral
           that breaks all of this down so there’s no guesswork.
         </Text>
-        <PrevBtn />
-        <NextBtn nextStep="7" />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="7" />
+        </BtnsWrapper>
       </Box>
     ),
   },
@@ -385,8 +393,10 @@ export const Data = [
             </Box>
           </Flex>
         </Box>
-        <PrevBtn />
-        <NextBtn finishBtn={true} />
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn finishBtn={true} />
+        </BtnsWrapper>
       </Box>
     ),
   },
