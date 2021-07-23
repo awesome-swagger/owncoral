@@ -12,7 +12,6 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react';
-
 const CoralPlanTab = lazy(() => import('./coralPlanTab'));
 const DetailsTab = lazy(() => import('./detailsTab'));
 const FinanceTab = lazy(() => import('./financeTab'));
@@ -36,7 +35,7 @@ export const TabSection = ({
 
   return (
     <Box>
-      <Tabs>
+      <Tabs isLazy>
         <TabList>
           <Tab px={3}>
             <Text textStyle="Headline">Performance</Text>
