@@ -80,8 +80,7 @@ const CenterCarousel = ({
 }) => {
   const [viewportRef, embla]: any = useEmblaCarousel({
     loop: true,
-    draggable: true,
-    dragFree: true,
+    draggable: false,
     inViewThreshold: 20,
   });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
