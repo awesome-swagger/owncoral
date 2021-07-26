@@ -55,7 +55,6 @@ export const TabSection = ({
           <TabPanel px="0">
             <Suspense fallback={fallback}>
               <FinanceTab
-                propertyDetail={propertyDetail}
                 propertyUriFragmentToId={propertyUriFragmentToId}
                 adminSelectedUser={adminSelectedUser}
               />

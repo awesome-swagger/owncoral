@@ -1,11 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
-import type {
-  PortfolioPropertyDetailInvestmentT,
-  PortfolioPropertyDetailT,
-} from '../../../../../../shared-fullstack/types';
-import { Box, Center, Divider, Flex, Icon, Spinner, Text, useToast } from '@chakra-ui/react';
+import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
+import { Box, Center, Divider, Flex, Spinner, useToast } from '@chakra-ui/react';
 import { format as formatDate, parseISO } from 'date-fns';
-
 import { Card } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
 import { fetchWrap } from '../../../../../../lib/api';
@@ -18,13 +14,8 @@ import { InvestmentReturn } from '../../investmentReturn';
 type FinanceTabPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
   adminSelectedUser: string | null;
-  propertyDetail: PortfolioPropertyDetailT;
 };
-const FinanceTab = ({
-  propertyDetail,
-  propertyUriFragmentToId,
-  adminSelectedUser,
-}: FinanceTabPropsT) => {
+const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPropsT) => {
   const query = useQuery();
   const propertyUriFragment = query.get('property');
   const legalEntityId = query.get('entity');
