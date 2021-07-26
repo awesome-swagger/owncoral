@@ -1,5 +1,4 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { FiPieChart } from 'react-icons/fi';
 import type {
   PortfolioPropertyDetailInvestmentT,
   PortfolioPropertyDetailT,
@@ -14,7 +13,6 @@ import { DEFAULT_ERROR_TOAST } from '../../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../../lib/useQuery';
 import { UserContext } from '../../../../../../userContext';
-import { ChartSection } from '../../chartSection';
 import { InvestmentReturn } from '../../investmentReturn';
 
 type FinanceTabPropsT = {
@@ -95,22 +93,6 @@ const FinanceTab = ({
 
   return investment !== null ? (
     <Box>
-      {investment.currentEquity !== null && investment?.currentOwnershipPct !== null && (
-        <Fragment>
-          <Flex alignItems="center">
-            <Icon as={FiPieChart} mr={2} h={6} w={6} />
-            <Text marginY={4}>
-              You invested ${formatFinancial(investment.currentEquity)} for{' '}
-              {investment.currentOwnershipPct === 1.0
-                ? '100'
-                : (investment.currentOwnershipPct * 100.0).toPrecision(2).toString()}
-              % ownership
-            </Text>
-          </Flex>
-
-          <Divider mb={2} />
-        </Fragment>
-      )}
       <Title2 my={4}>Distributions</Title2>
       {investment.lastDistributionInitiatedAt !== null ? (
         <Flex overflow="auto">

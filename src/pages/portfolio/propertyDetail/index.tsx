@@ -141,8 +141,11 @@ const PortfolioPropertyDetail = ({
               boxShadow="base"
               layerStyle="iconColor"
             /> */}
-            <TopSection propertyDetail={propertyDetail} />
-            <Box h={4} />
+            <TopSection
+              propertyDetail={propertyDetail}
+              propertyUriFragmentToId={propertyUriFragmentToId}
+              adminSelectedUser={adminSelectedUser}
+            />
             <TabSection
               propertyDetail={propertyDetail}
               propertyUriFragmentToId={propertyUriFragmentToId}

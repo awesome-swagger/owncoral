@@ -37,16 +37,16 @@ export const TabSection = ({
     <Box>
       <Tabs isLazy>
         <TabList>
-          <Tab px={3}>
+          <Tab px={3} py={6}>
             <Text textStyle="Headline">Performance</Text>
           </Tab>
-          <Tab px={3}>
+          <Tab px={3} py={6}>
             <Text textStyle="Headline">Property details</Text>
           </Tab>
-          <Tab px={3}>
+          <Tab px={3} py={6}>
             <Text textStyle="Headline">Coral Plan</Text>
           </Tab>
-          <Tab px={3}>
+          <Tab px={3} py={6}>
             <Text textStyle="Headline">News</Text>
           </Tab>
         </TabList>
