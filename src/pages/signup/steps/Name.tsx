@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Heading, Input, Text } from '@chakra-ui/react';
+import { Button, Heading, Input, Text, FormLabel } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { FormRef } from '../index';
@@ -20,7 +20,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
 
   const onSubmit = useCallback(
     (data) => {
-      form.dispatch({ type: 'update-form', payload: { step2: data } });
+      form.dispatch({ type: 'update-form', payload: { step1: data } });
       nextStep();
     },
     [handleSubmit],
@@ -28,7 +28,7 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
 
   const handleChange = useCallback(
     (data) => {
-      form.dispatch({ type: 'update-form', payload: { step2: data } });
+      form.dispatch({ type: 'update-form', payload: { step1: data } });
     },
     [handleSubmit],
   );
@@ -36,8 +36,8 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
   useEffect(() => {
     const formState = form.formState;
 
-    setValue('firstName', formState?.step2?.firstName);
-    setValue('lastName', formState?.step2?.lastName);
+    setValue('firstName', formState?.step1?.firstName);
+    setValue('lastName', formState?.step1?.lastName);
   }, []);
 
   return (
@@ -45,29 +45,39 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
       <Container layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
         <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
-          What’s your full name?
+          Tell us about yourself
         </Heading>
         <Text fontSize="md" textAlign="left">
-          Lorem ipsum dolor sir
+          Please enter your full legal name. Your legal name should match any form of government ID.
         </Text>
-        <Input
-          placeholder="First Name"
-          name="firstName"
-          ref={register}
-          h={12}
-          mt={8}
-          variant="filled"
-          onChange={handleSubmit(handleChange)}
-        />
-        <Input
-          placeholder="Last Name"
-          name="lastName"
-          ref={register}
-          h={12}
-          mt={8}
-          variant="filled"
-          onChange={handleSubmit(handleChange)}
-        />
+        <FormLabel mt={8}>
+          <Text layerStyle="labelColor" fontSize="md">
+            FIRST NAME
+          </Text>
+          <Input
+            placeholder="First Name"
+            name="firstName"
+            ref={register}
+            h={12}
+            mt={1}
+            variant="filled"
+            onChange={handleSubmit(handleChange)}
+          />
+        </FormLabel>
+        <FormLabel mt={8}>
+          <Text layerStyle="labelColor" fontSize="md">
+            LAST NAME
+          </Text>
+          <Input
+            placeholder="Last Name"
+            name="lastName"
+            ref={register}
+            h={12}
+            mt={1}
+            variant="filled"
+            onChange={handleSubmit(handleChange)}
+          />
+        </FormLabel>
         <Button
           pos="absolute"
           bottom={10}

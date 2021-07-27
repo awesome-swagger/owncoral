@@ -1,6 +1,5 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
-
+import { Box, Heading, Text } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
@@ -9,20 +8,20 @@ type stepProps = {
   nextStep: () => void;
   prevStep: () => void;
 };
-type investmentGoal = {
+type incomeType = {
   value: number;
   label: string;
 };
 
-const investmentGoals: investmentGoal[] = [
-  { value: 0, label: 'Diversification' },
-  { value: 1, label: 'Steady cash flow (income)' },
-  { value: 2, label: 'Overall returns' },
-  { value: 3, label: 'Tax-efficiency / benefits' },
-  { value: 4, label: "I'm not sure" },
+const householdIncomes: incomeType[] = [
+  { value: 0, label: 'Less than $200,000' },
+  { value: 1, label: 'Between $200,000 and $300,000' },
+  { value: 2, label: 'Between $1M and $5M' },
+  { value: 3, label: 'Between $5M and $10 million' },
+  { value: 4, label: 'Greater than $10 million' },
 ];
 
-export const InvestmentGoal = forwardRef<DivRef, stepProps>(
+export const HouseholdIncome = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
 
@@ -30,28 +29,31 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
       (value) => {
         form.dispatch({
           type: 'update-form',
-          payload: { step6: value },
+          payload: { step8: value },
         });
+        nextStep();
       },
       [form, nextStep],
     );
 
     return (
-      <Container ref={ref} layerStyle="noSelect" pb={32}>
+      <Container ref={ref} layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
-        <ProgressBar total={7} value={2} />
+        <ProgressBar total={7} value={5} />
         <Heading size="md" mt={8} mb={2} textAlign="left">
-          What goals do you want to achieve through investment property ownership?
+          What is your current household income?
         </Heading>
-        <Text fontSize="md">Select all that apply</Text>
+        <Text fontSize="md">
+          We need to know you better in order to comply with SEC regulations.
+        </Text>
         <Box mt={8}>
-          {investmentGoals.map(({ value, label }) => (
+          {householdIncomes.map(({ value, label }) => (
             <Box
               px={6}
               py={3}
               mt={2}
               layerStyle={
-                value === form?.formState?.step6 ? 'selectionBox.selected' : 'selectionBox'
+                value === form?.formState?.step8 ? 'selectionBox.selected' : 'selectionBox'
               }
               borderRadius="full"
               textAlign="left"
@@ -64,18 +66,6 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
             </Box>
           ))}
         </Box>
-        <Button
-          pos="absolute"
-          bottom={10}
-          left={6}
-          w="calc(100% - 3rem)"
-          h={12}
-          cursor="pointer"
-          disabled={!form?.formState?.step6}
-          onClick={nextStep}
-        >
-          Continue
-        </Button>
       </Container>
     );
   },

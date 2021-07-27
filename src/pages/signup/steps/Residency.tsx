@@ -26,7 +26,7 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   const handleSubmit = useCallback(
     (value) => {
       if (value === 'Available') {
-        form.dispatch({ type: 'update-form', payload: { step1: value } });
+        form.dispatch({ type: 'update-form', payload: { step2: value } });
         nextStep();
       } else {
         setAvailable(value);
@@ -81,7 +81,7 @@ const TaxID = ({
   const [taxID, setTaxID] = useState<string>('');
 
   const handleSubmit = useCallback(() => {
-    form.dispatch({ type: 'update-form', payload: { step1: { taxID } } });
+    form.dispatch({ type: 'update-form', payload: { step2: { taxID } } });
     nextStep();
   }, [taxID, form.dispatch, nextStep]);
 

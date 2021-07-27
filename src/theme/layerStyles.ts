@@ -112,4 +112,10 @@ export const layerStyles = {
       bg: '#F1FAEE',
     },
   },
+  labelColor: {
+    color: '#6F8283',
+    '.chakra-ui-dark &': {
+      color: '#FFFFFFB8',
+    },
+  },
 };

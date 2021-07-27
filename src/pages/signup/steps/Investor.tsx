@@ -16,7 +16,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   const [available, setAvailable] = useState('Available');
 
   const handleSubmit = useCallback(() => {
-    form.dispatch({ type: 'update-form', payload: { step4: 'yes' } });
+    form.dispatch({ type: 'update-form', payload: { step3: 'yes' } });
     nextStep();
   }, [form, nextStep]);
 
@@ -30,11 +30,8 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               Are you an accredited investor?
             </Heading>
             <Text fontSize="md" textAlign="left">
-              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-              officia consequat duis enim velit mollit.
-            </Text>
-            <Text fontSize="sm" color="gray.500" textAlign="left">
-              Amet minim mollit non deserunt ullamco est.
+              You are an accredited investor if any of the first three statements below are true.
+              Select all that apply.
             </Text>
             <Button
               pos="absolute"

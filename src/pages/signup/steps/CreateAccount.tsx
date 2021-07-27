@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  FormLabel,
   Link as ChakraLink,
   Text,
 } from '@chakra-ui/react';
@@ -34,7 +35,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
 
     const onSubmit = useCallback(
       (data) => {
-        form.dispatch({ type: 'update-form', payload: { step5: data } });
+        form.dispatch({ type: 'update-form', payload: { step4: data } });
         nextStep();
       },
       [form, nextStep],
@@ -43,8 +44,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     useEffect(() => {
       const formState = form.formState;
 
-      setValue('email', formState?.step5?.email || '');
-      setValue('password', formState?.step5?.password || '');
+      setValue('email', formState?.step4?.email || '');
+      setValue('password', formState?.step4?.password || '');
     }, [form.formState, setValue]);
 
     return (
@@ -54,11 +55,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
           <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             Let’s create your account
           </Heading>
-          <Text fontSize="md" textAlign="left">
-            Lorem ipsum dolor sir amet
-          </Text>
-          <Box mt={8}>
-            <Text fontSize="md" textAlign="left">
+          <FormLabel mt={8}>
+            <Text layerStyle="labelColor" fontSize="md" textAlign="left">
               Email
             </Text>
             <Input
@@ -70,9 +68,9 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
               type="email"
               variant="filled"
             />
-          </Box>
-          <Box mt={4}>
-            <Text fontSize="md" textAlign="left">
+          </FormLabel>
+          <FormLabel mt={4}>
+            <Text layerStyle="labelColor" fontSize="md" textAlign="left">
               Password
             </Text>
             <InputGroup>
@@ -98,7 +96,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
                 />
               </InputRightElement>
             </InputGroup>
-          </Box>
+          </FormLabel>
 
           <Text
             fontSize="sm"

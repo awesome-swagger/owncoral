@@ -1,11 +1,14 @@
 import {
-  BirthDate,
   CreateAccount,
   InvestmentExperience,
   InvestmentGoal,
+  InvestmentTypes,
   Investor,
   Name,
   NetWorth,
+  HouseholdIncome,
+  Work,
+  AllocateToRealState,
   Residency,
   Result,
   VerifyEmail,
@@ -17,16 +20,12 @@ type SignupRouteT = { path: string; component: any };
 // Paths are relative to signup path (e.g. '/name' corresponds to '/signup/name', if '/signup' is the parent path)
 export const signupRoutes: Array<SignupRouteT> = [
   {
-    path: '/residency',
-    component: Residency,
-  },
-  {
     path: '/name',
     component: Name,
   },
   {
-    path: '/birthdate',
-    component: BirthDate,
+    path: '/residency',
+    component: Residency,
   },
   {
     path: '/investor',
@@ -45,16 +44,32 @@ export const signupRoutes: Array<SignupRouteT> = [
     component: WelcomeCoral,
   },
   {
+    path: '/investment-experience',
+    component: InvestmentExperience,
+  },
+  {
     path: '/investment-goal',
     component: InvestmentGoal,
+  },
+  {
+    path: '/investment-types',
+    component: InvestmentTypes,
   },
   {
     path: '/networth',
     component: NetWorth,
   },
   {
-    path: '/investment-experience',
-    component: InvestmentExperience,
+    path: '/household-income',
+    component: HouseholdIncome,
+  },
+  {
+    path: '/work',
+    component: Work,
+  },
+  {
+    path: '/allocate-to-real-state',
+    component: AllocateToRealState,
   },
   {
     path: '/result',

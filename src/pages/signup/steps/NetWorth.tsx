@@ -1,7 +1,6 @@
 import { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Progress } from '@chakra-ui/react';
-
-import { BackBtn, Container } from '../../../components';
+import { Box, Heading, Text } from '@chakra-ui/react';
+import { BackBtn, Container, ProgressBar } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
 
@@ -10,12 +9,11 @@ type stepProps = {
   prevStep: () => void;
 };
 const netWorth = [
-  { value: '$500k or less' },
-  { value: '$500k - $1m' },
-  { value: '$1m - $3m' },
-  { value: '$3m - $5m' },
-  { value: '$10m or more' },
-  { value: 'I would prefer not to say' },
+  { value: 'Less than $500,000' },
+  { value: 'Between $500,000 and $1M' },
+  { value: 'Between $1M and $5M' },
+  { value: 'Between $5M and $10 million' },
+  { value: 'Greater than $10 million' },
 ];
 
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
@@ -33,27 +31,32 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     <Box ref={ref} layerStyle="noSelect">
       <Container>
         <BackBtn handleClick={prevStep} />
-
-        <Progress mt={8} borderRadius="full" colorScheme="primary" size="sm" value={40} />
-
+        <ProgressBar total={7} value={4} />
         <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
-          What is your net worth?
+          What is your approximate net worth (jointly with your spouse, if married)?
         </Heading>
-        {netWorth.map(({ value }) => (
-          <Box
-            px={6}
-            py={3}
-            mt={2}
-            layerStyle={value === form?.formState?.step9 ? 'selectionBox.selected' : 'selectionBox'}
-            borderRadius="full"
-            textAlign="left"
-            cursor="pointer"
-            key={value}
-            onClick={() => handleSubmit(value)}
-          >
-            {value}
-          </Box>
-        ))}
+        <Text fontSize="md">
+          We need to know you better in order to comply with SEC regulations.
+        </Text>
+        <Box mt={8}>
+          {netWorth.map(({ value }) => (
+            <Box
+              px={6}
+              py={3}
+              mt={2}
+              layerStyle={
+                value === form?.formState?.step9 ? 'selectionBox.selected' : 'selectionBox'
+              }
+              borderRadius="full"
+              textAlign="left"
+              cursor="pointer"
+              key={value}
+              onClick={() => handleSubmit(value)}
+            >
+              {value}
+            </Box>
+          ))}
+        </Box>
       </Container>
     </Box>
   );
