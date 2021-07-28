@@ -18,6 +18,7 @@ const netWorth = [
 
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
+  const formStep = form?.formState?.step9;
 
   const handleSubmit = useCallback(
     (value) => {
@@ -44,9 +45,7 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
               px={6}
               py={3}
               mt={2}
-              layerStyle={
-                value === form?.formState?.step9 ? 'selectionBox.selected' : 'selectionBox'
-              }
+              layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
               borderRadius="full"
               textAlign="left"
               cursor="pointer"

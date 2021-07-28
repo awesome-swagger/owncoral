@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
-
+import { Center, Icon, Button, Heading, Text } from '@chakra-ui/react';
+import { FiMail } from 'react-icons/fi';
 import { BackBtn, FlexContainer } from '../../../components';
 import type { DivRef } from '../index';
 
@@ -13,7 +13,9 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => (
     <FlexContainer ref={ref} layerStyle="noSelect">
       <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
-      <Box h={40} w={40} borderRadius="50%" bg="gray.200" />
+      <Center h={16} w={16} borderRadius="50%" layerStyle="card">
+        <Icon as={FiMail} color="primary.500" h={6} w={6} />
+      </Center>
       <Heading size="md" as="h4" mt={8} textAlign="center">
         Please verify your email address
       </Heading>
@@ -21,7 +23,6 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
         An email has been sent to <b>johndoe@gmail.com</b>. Please follow the instructions in the
         verification email to finish creating your Coral account.
       </Text>
-
       <Text
         pos="absolute"
         bottom={24}
@@ -44,5 +45,5 @@ export const VerifyEmail = forwardRef<DivRef, stepProps>(
         Resend verification email
       </Button>
     </FlexContainer>
-  )
+  ),
 );

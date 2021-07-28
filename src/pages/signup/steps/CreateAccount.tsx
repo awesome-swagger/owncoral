@@ -29,9 +29,10 @@ type stepProps = {
 export const CreateAccount = forwardRef<FormRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const { handleSubmit, register, setValue, errors } = useForm();
-    const form = useContext(StepFormContext);
     const [showPassword, setShowPassword] = useState(false);
     const [agreementChecked, setAgreementChecked] = useState(false);
+    const form = useContext(StepFormContext);
+    const formStep = formState?.step4;
 
     const onSubmit = useCallback(
       (data) => {
@@ -42,10 +43,8 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     );
 
     useEffect(() => {
-      const formState = form.formState;
-
-      setValue('email', formState?.step4?.email || '');
-      setValue('password', formState?.step4?.password || '');
+      setValue('email', formStep?.email || '');
+      setValue('password', formStep?.password || '');
     }, [form.formState, setValue]);
 
     return (

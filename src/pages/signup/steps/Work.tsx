@@ -14,6 +14,7 @@ type stepProps = {
 export const Work = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const { handleSubmit, register, watch, setValue } = useForm();
   const form = useContext(StepFormContext);
+  const formStep = form.formState?.step9;
 
   const currentRole = watch('currentRole');
   const currentEmployer = watch('currentEmployer');
@@ -35,11 +36,9 @@ export const Work = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
   );
 
   useEffect(() => {
-    const formState = form.formState;
-
-    setValue('currentRole', formState?.step9?.currentRole);
-    setValue('currentEmployer', formState?.step9?.currentEmployer);
-    setValue('linkedInProfile', formState?.step9?.linkedInProfile);
+    setValue('currentRole', formStep?.currentRole);
+    setValue('currentEmployer', formStep?.currentEmployer);
+    setValue('linkedInProfile', formStep?.linkedInProfile);
   }, []);
 
   return (

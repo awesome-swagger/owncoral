@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
-
+import { Box, Heading, Text, Button, Icon, Flex } from '@chakra-ui/react';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FiCircle } from 'react-icons/fi';
 import { BackBtn, Container, ProgressBar } from '../../../components';
 import type { DivRef } from '../index';
 import { StepFormContext } from '../index';
@@ -27,12 +28,17 @@ const investmentTypes: investmentType[] = [
 export const InvestmentTypes = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
+    const formStep = form?.formState?.step7;
 
     const handleSubmit = useCallback(
       (value) => {
+        const selectedVal = formStep ? formStep : [];
+        const filterVal = selectedVal.filter((item: Number) => item !== value);
+        const checkVal = selectedVal.includes(value);
+
         form.dispatch({
           type: 'update-form',
-          payload: { step7: value },
+          payload: { step7: checkVal ? filterVal : [...selectedVal, value] },
         });
       },
       [form, nextStep],
@@ -48,13 +54,12 @@ export const InvestmentTypes = forwardRef<DivRef, stepProps>(
         <Text fontSize="md">Select all that apply</Text>
         <Box mt={8}>
           {investmentTypes.map(({ value, label }) => (
-            <Box
+            <Flex
+              alignItems="center"
               px={6}
               py={3}
               mt={2}
-              layerStyle={
-                value === form?.formState?.step7 ? 'selectionBox.selected' : 'selectionBox'
-              }
+              layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
               borderRadius="full"
               textAlign="left"
               cursor="pointer"
@@ -62,8 +67,16 @@ export const InvestmentTypes = forwardRef<DivRef, stepProps>(
               textStyle="Body1"
               onClick={() => handleSubmit(value)}
             >
+              <Icon
+                as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
+                layerStyle="iconColor"
+                bg="transparent !important"
+                h={5}
+                w={5}
+                mr={2}
+              />
               {label}
-            </Box>
+            </Flex>
           ))}
         </Box>
         <Button
@@ -73,7 +86,7 @@ export const InvestmentTypes = forwardRef<DivRef, stepProps>(
           w="calc(100% - 3rem)"
           h={12}
           cursor="pointer"
-          disabled={!form?.formState?.step7}
+          disabled={!formStep?.length}
           onClick={nextStep}
         >
           Continue

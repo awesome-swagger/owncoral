@@ -24,6 +24,7 @@ const householdIncomes: incomeType[] = [
 export const HouseholdIncome = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
+    const formStep = form?.formState?.step8;
 
     const handleSubmit = useCallback(
       (value) => {
@@ -52,9 +53,7 @@ export const HouseholdIncome = forwardRef<DivRef, stepProps>(
               px={6}
               py={3}
               mt={2}
-              layerStyle={
-                value === form?.formState?.step8 ? 'selectionBox.selected' : 'selectionBox'
-              }
+              layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
               borderRadius="full"
               textAlign="left"
               cursor="pointer"

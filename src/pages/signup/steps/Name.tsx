@@ -14,6 +14,7 @@ type stepProps = {
 export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const { handleSubmit, register, watch, setValue } = useForm();
   const form = useContext(StepFormContext);
+  const formStep = form.formState?.step1;
 
   const firstName = watch('firstName');
   const lastName = watch('lastName');
@@ -34,10 +35,8 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
   );
 
   useEffect(() => {
-    const formState = form.formState;
-
-    setValue('firstName', formState?.step1?.firstName);
-    setValue('lastName', formState?.step1?.lastName);
+    setValue('firstName', formStep?.firstName);
+    setValue('lastName', formStep?.lastName);
   }, []);
 
   return (

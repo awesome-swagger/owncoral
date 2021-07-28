@@ -22,6 +22,7 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   const age = currentYear - Number(date.year);
 
   const form = useContext(StepFormContext);
+  const formStep = form?.formState?.step3;
 
   const handleDateChange = useCallback(
     (newDate) => {
@@ -44,8 +45,7 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   }, [date, form.dispatch, nextStep]);
 
   useEffect(() => {
-    const formState = form.formState;
-    setDate(formState?.step3 || initialDate);
+    setDate(formStep || initialDate);
     // eslint-disable-next-line
   }, []);
 

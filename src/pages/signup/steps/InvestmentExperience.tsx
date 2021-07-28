@@ -24,6 +24,7 @@ const experience: experience[] = [
 export const InvestmentExperience = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
+    const formStep = form?.formState?.step5;
 
     const handleSubmit = useCallback(
       (value) => {
@@ -37,9 +38,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
       <Box ref={ref} layerStyle="noSelect">
         <Container>
           <BackBtn handleClick={prevStep} />
-
           <ProgressBar total={7} value={1} />
-
           <Heading size="md" as="h4" mt={8} textAlign="left">
             How long have you been investing?
           </Heading>
@@ -49,9 +48,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
                 px={6}
                 py={3}
                 mt={2}
-                layerStyle={
-                  value === form?.formState?.step5 ? 'selectionBox.selected' : 'selectionBox'
-                }
+                layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
                 borderRadius="full"
                 textAlign="left"
                 cursor="pointer"
