@@ -24,13 +24,13 @@ const householdIncomes: incomeType[] = [
 export const HouseholdIncome = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => {
     const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step8;
+    const formStep = form?.formState?.step9;
 
     const handleSubmit = useCallback(
       (value) => {
         form.dispatch({
           type: 'update-form',
-          payload: { step8: value },
+          payload: { step9: value },
         });
         nextStep();
       },

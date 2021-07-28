@@ -32,7 +32,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     const [showPassword, setShowPassword] = useState(false);
     const [agreementChecked, setAgreementChecked] = useState(false);
     const form = useContext(StepFormContext);
-    const formStep = formState?.step4;
+    const formStep = form?.formState?.step4;
 
     const onSubmit = useCallback(
       (data) => {

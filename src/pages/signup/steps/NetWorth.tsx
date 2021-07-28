@@ -18,11 +18,11 @@ const netWorth = [
 
 export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
   const form = useContext(StepFormContext);
-  const formStep = form?.formState?.step9;
+  const formStep = form?.formState?.step8;
 
   const handleSubmit = useCallback(
     (value) => {
-      form.dispatch({ type: 'update-form', payload: { step9: value } });
+      form.dispatch({ type: 'update-form', payload: { step8: value } });
       nextStep();
     },
     [form.dispatch, nextStep],
