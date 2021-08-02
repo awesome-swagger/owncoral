@@ -103,7 +103,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/* </Flex> */}
       <Divider mt={2} />
       <Title2 my={6}>Distributions</Title2>
-      <HStack w="100%" spacing={3}>
+      <HStack alignItems="stretch" w="100%" spacing={3}>
         <Card
           title="Monthly"
           value={
