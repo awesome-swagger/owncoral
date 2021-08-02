@@ -53,7 +53,6 @@ export const PortfolioPropertyDetail = z.object({
   numStories: z.number().nullable(),
 
   areaUnits: z.string().nullable(),
-  areaTotal: z.number().nullable(),
   areaLiving: z.number().nullable(),
   areaLotSize: z.number().nullable(),
 

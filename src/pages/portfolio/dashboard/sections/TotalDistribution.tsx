@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import { FiCalendar, FiRotateCw } from 'react-icons/fi';
 import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/types';
-import { Box, Center, Divider, Flex, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
+import { Box, Center, Divider, Flex, HStack, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
 import { format as formatDate } from 'date-fns';
 import * as R from 'remeda';
 
 import { Card } from '../../../../components';
-import { Headline, Overline, Subhead, Title1, Title2 } from '../../../../components/text';
+import { Overline, Title1, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 const sum = (arr: number[]) => arr.reduce((n, acc) => n + acc, 0);
@@ -103,7 +103,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/* </Flex> */}
       <Divider mt={2} />
       <Title2 my={6}>Distributions</Title2>
-      <Flex overflow="auto" w="100%">
+      <HStack w="100%" spacing={3}>
         <Card
           title="Monthly"
           value={
@@ -115,7 +115,17 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
               </Center>
             )
           }
-          description={maxMonth !== null && formatDate(maxMonth, 'MMM yyyy')}
+          description={
+            maxMonth !== null ? (
+              formatDate(maxMonth, 'MMM yyyy')
+            ) : (
+              <Text>
+                &nbsp;
+                <br />
+                &nbsp;
+              </Text>
+            )
+          }
         />
 
         <Card
@@ -139,7 +149,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
             )
           }
         />
-      </Flex>
+      </HStack>
       <Divider my={6} />
       <Title2>Investment returns</Title2>
       <VStack my={4} spacing={2} w="100%">

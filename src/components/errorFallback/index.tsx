@@ -1,5 +1,9 @@
-export const ErrorFallback = ({ error, resetErrorBoundary } : {
-  error: any; resetErrorBoundary: any;
+export const ErrorFallback = ({
+  error,
+  resetErrorBoundary,
+}: {
+  error: any;
+  resetErrorBoundary: any;
 }) => (
   <div role="alert">
     <p>Something went wrong:</p>
