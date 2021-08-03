@@ -1,10 +1,11 @@
 import { useEffect, useCallback } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { Box, Heading, Center, Icon, Image } from '@chakra-ui/react';
+import { Box, Flex, Center, Icon, Image, Button } from '@chakra-ui/react';
 import { FaChartLine } from 'react-icons/fa';
-import { FiMap } from 'react-icons/fi';
+import { FiMap, FiInfo, FiChevronLeft } from 'react-icons/fi';
 import MapImg from '../../../../assets/Frame269.png';
 import { Container, PropertyCard } from '../../../../components';
+import { Title2 } from '../../../../components/text';
 import { DummyData } from '../../../../lib/portfolioData';
 import './embla.css';
 
@@ -35,27 +36,26 @@ const PortfolioSplash = () => {
   ];
   return (
     <Container px="0">
-      <Box px={6} mb={6} pos="relative">
-        <Box textAlign="center" borderRadius="full" boxShadow="xs" py={2} w="56" mx="auto">
-          <Heading layerStyle="grayHeading" fontSize="sm" m="0">
-            {PortfolioData?.stateRegion}
-          </Heading>
-          <Heading fontSize="sm" m="0">
-            {PortfolioData?.cityLocality}
-          </Heading>
+      <Flex justifyContent="space-between" alignItems="center" px={6} mb={6}>
+        <Button colorScheme="white" w={10} h={10}>
+          <Icon as={FiChevronLeft} />
+        </Button>
+        <Title2>{PortfolioData?.stateRegion}</Title2>
+        <Button colorScheme="white" w={10} h={10}>
+          <Icon as={FiInfo} />
+        </Button>
+      </Flex>
+      <Box className="embla">
+        <Box className="embla__viewport" ref={viewportRef}>
+          <Box className="embla__container">
+            {slides.map((val, ind) => (
+              <Box className="embla__slide" key={ind}>
+                <Box className="embla__slide__inner">{val}</Box>
+              </Box>
+            ))}
+          </Box>
         </Box>
       </Box>
-      <div className="embla">
-        <div className="embla__viewport" ref={viewportRef}>
-          <div className="embla__container">
-            {slides.map((val, ind) => (
-              <div className="embla__slide" key={ind}>
-                <div className="embla__slide__inner">{val}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </Container>
   );
 };
