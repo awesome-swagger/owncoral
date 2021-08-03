@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Icon, Center, Heading, Image } from '@chakra-ui/react';
+import { Box, Button, Icon, Center, Image } from '@chakra-ui/react';
 import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
-import { FiX } from 'react-icons/fi';
-import { Container } from '../container';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
+import { FiMapPin } from 'react-icons/fi';
 import { CardStyle, ImgZoomOut, ImgZoomIn, ImgZoom, CardImg, CardGradient } from './styleProps';
 
 import MapImg from '../../assets/Map.png';
 import HouseImg from '../../assets/Multifamily_Night.png';
 
-export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: () => void }) => {
+export const PropertyCard = ({ data }: { data: any }) => {
   const Map = MapImg;
   const House = HouseImg;
 
@@ -38,21 +37,13 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
   };
 
   return (
-    <Container>
-      <Box pos="relative">
-        <Center pos="absolute" h="100%" cursor="pointer" onClick={handleClose}>
-          <Icon as={FiX} />
-        </Center>
-        <Box textAlign="center" borderRadius="full" boxShadow="xs" py={2} w="56" mx="auto">
-          <Heading layerStyle="grayHeading" fontSize="sm" m="0">
-            {data.stateRegion}
-          </Heading>
-          <Heading fontSize="sm" m="0">
-            {data.cityLocality}
-          </Heading>
-        </Box>
-      </Box>
-      <Box h={{ base: '500px', sm: '550px', md: '650px' }} style={CardStyle} mt={6} p={4}>
+    <Box>
+      <Box
+        h={{ base: '500px', sm: '550px', md: '650px' }}
+        style={CardStyle}
+        borderRadius="2xl"
+        p={4}
+      >
         {!remove && (
           <Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />
         )}
@@ -61,9 +52,12 @@ export const PropertyCard = ({ data, handleClose }: { data: any; handleClose: ()
         <CardTop data={data} />
         <CardBottom data={data} />
       </Box>
-      <Center my={6}>
+      <Center pos="relative" mt={10}>
+        <Button top={-16} pos="absolute" border="4px" borderColor="white" h={12} w={12}>
+          <Icon h={6} w={6} as={FiMapPin} />
+        </Button>
         <Icon onClick={handleZoom} as={zoomOut ? AiOutlineZoomIn : AiOutlineZoomOut} h={6} w={6} />
       </Center>
-    </Container>
+    </Box>
   );
 };
