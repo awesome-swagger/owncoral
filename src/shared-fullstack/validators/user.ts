@@ -26,6 +26,8 @@ export const UserProfile = z.object({
   is1099Eligible: z.boolean(),
   completedAccreditation: z.boolean(),
   birthDate: z.string(),
+
+  numInvestments: z.number().nullable(),
 });
 
 export type UserProfileT = z.infer<typeof UserProfile>;

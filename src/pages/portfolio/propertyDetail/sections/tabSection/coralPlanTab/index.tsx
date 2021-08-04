@@ -1,5 +1,6 @@
 import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Box, Divider } from '@chakra-ui/react';
+
 import { Financing } from './financing';
 import { PropertyCosts } from './propertyCosts';
 import { Renovation } from './renovation';
@@ -14,7 +15,7 @@ const CoralPlanTab = ({ propertyDetail }: DetailsTabPropsT) => {
   return (
     <Box>
       <ValueAddPlan propertyDetail={propertyDetail} />
-      <Renovation propertyDetail={propertyDetail} />
+      {/* <Renovation propertyDetail={propertyDetail} /> */}
       <Divider my={6} />
       <RentalIncome propertyDetail={propertyDetail} />
       <Divider my={6} />

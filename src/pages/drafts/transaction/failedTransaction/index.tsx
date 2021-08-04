@@ -1,6 +1,6 @@
-import { Button,Heading } from '@chakra-ui/react';
+import { Button, Heading } from '@chakra-ui/react';
 
-import { BackBtn,FlexContainer } from '../../../../components';
+import { BackBtn, FlexContainer } from '../../../../components';
 import { Headline } from '../../../../components/text';
 
 export const FailedTransaction = () => (

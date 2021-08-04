@@ -1,19 +1,15 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
+import { ChevronRight } from 'react-feather';
 import { Box, Heading, Icon } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
-import { ChevronRight } from 'react-feather';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-type experience = {
+type ExperienceT = {
   value: number;
   label: string;
 };
-const experience: experience[] = [
+const experience: ExperienceT[] = [
   { value: 0, label: '0-2 years ' },
   { value: 1, label: '2-5 years ' },
   { value: 2, label: '5-10 years ' },
@@ -21,8 +17,8 @@ const experience: experience[] = [
   { value: 4, label: 'More than 20 years ' },
 ];
 
-export const InvestmentExperience = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
     const form = useContext(StepFormContext);
     const formStep = form?.formState?.step5;
 
@@ -31,7 +27,7 @@ export const InvestmentExperience = forwardRef<DivRef, stepProps>(
         form.dispatch({ type: 'update-form', payload: { step5: value } });
         nextStep();
       },
-      [form.dispatch, nextStep],
+      [form, nextStep],
     );
 
     return (

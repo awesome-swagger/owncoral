@@ -1,17 +1,12 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Heading, Input, Text, FormLabel } from '@chakra-ui/react';
+import { Button, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { FormRef } from '../index';
+import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const Work = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
   const { handleSubmit, register, watch, setValue } = useForm();
   const form = useContext(StepFormContext);
   const formStep = form.formState?.step9;
@@ -25,20 +20,21 @@ export const Work = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
       form.dispatch({ type: 'update-form', payload: { step9: data } });
       nextStep();
     },
-    [handleSubmit],
+    [form, nextStep],
   );
 
   const handleChange = useCallback(
     (data) => {
       form.dispatch({ type: 'update-form', payload: { step9: data } });
     },
-    [handleSubmit],
+    [form],
   );
 
   useEffect(() => {
     setValue('currentRole', formStep?.currentRole);
     setValue('currentEmployer', formStep?.currentEmployer);
     setValue('linkedInProfile', formStep?.linkedInProfile);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -24,9 +24,9 @@ import * as R from 'remeda';
 import PlaceholderIcon from '../../../../assets/low-poly-placeholder-icon.png';
 import { Overline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
+import { addressToUrlFragment } from '../../../../lib/urlFragments';
 import theme from '../../../../theme';
 import { darkBg, lightBg } from '../../../../theme/styles';
-import { addressToUrlFragment } from '../../lib';
 
 const SHOW_FEWER_COUNT = 5;
 /*
@@ -307,7 +307,7 @@ const FadeOutGradient = ({
         match breakpoint and width of Container to place 'fade out' gradient
         on RHS of table
       */
-        left={{ base: `calc(${window.innerWidth}px - 4.5rem)`, md: `calc(${theme.breakpoints.sm} - 6rem)` }}
+        left={{ base: 'calc(100vw - 4.5rem)', md: `calc(${theme.breakpoints.sm} - 6rem)` }}
         top="0"
         background={tableGrad}
       />

@@ -26,12 +26,12 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
     } else {
       setError(true);
     }
-  }, [ssnNumber, form.dispatch, nextStep]);
+  }, [ssnNumber]);
 
   useEffect(() => {
     const formState = form.formState;
+
     setSsnNumber(formState?.step4?.ssnNumber || '');
-    // eslint-disable-next-line
   }, []);
 
   useEffect(
@@ -40,7 +40,7 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         type: 'update-form',
         payload: { step4: { ssnNumber } },
       }),
-    [ssnNumber, form.dispatch],
+    [ssnNumber],
   );
 
   return (

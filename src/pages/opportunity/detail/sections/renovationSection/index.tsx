@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
+import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
+
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
 import { ScrollSlider } from '../../../../../components';
 
@@ -48,7 +49,7 @@ export const RenovationSection = () => (
       </Box>
     </Flex>
     <Box px={4} my={4} textAlign="center" border="1px" layerStyle="lightBorder">
-      <Heading fontSize="lg"> Learn more about renovations</Heading>
+      <Heading fontSize="lg"> Learn more about renovations </Heading>
     </Box>
   </Box>
 );

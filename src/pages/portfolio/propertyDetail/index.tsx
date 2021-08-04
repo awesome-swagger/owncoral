@@ -1,17 +1,16 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
-import { AiOutlineUpload } from 'react-icons/ai';
-import { FiMoreHorizontal, FiX } from 'react-icons/fi';
+import { FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
 import { AspectRatio, Box, Center, Icon, Image, Spinner, useToast } from '@chakra-ui/react';
 
-import Placeholder from '../../../assets/low-poly-placeholder.png';
 import { Container } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
 import { useQuery } from '../../../lib/useQuery';
 import { UserContext } from '../../../userContext';
 import { TabSection, TopSection } from './sections';
+import Placeholder from '../../../assets/low-poly-placeholder.png';
 
 type PortfolioPropertyDetailPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;

@@ -1,6 +1,6 @@
-import { Box, FormControl, FormLabel, Heading,Switch } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Heading, Switch } from '@chakra-ui/react';
 
-import { BackBtn,Option } from '../../../../components';
+import { BackBtn, Option } from '../../../../components';
 
 export const Notification = ({ goBack }: { goBack: () => void }) => (
   <Box>

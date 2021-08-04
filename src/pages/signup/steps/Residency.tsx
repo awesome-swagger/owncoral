@@ -3,24 +3,19 @@ import InputMask from 'react-input-mask';
 import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, FlexContainer } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { ContextT, StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
+type AvailableT = 'Available' | 'taxID' | 'notAvailable';
 
-type availableT = 'Available' | 'taxID' | 'notAvailable';
-
-const initialQuestions: { value: availableT; label: string }[] = [
+const initialQuestions: { value: AvailableT; label: string }[] = [
   { value: 'Available', label: 'Yes' },
   { value: 'taxID', label: 'I Have a Tax ID' },
   { value: 'notAvailable', label: 'No' },
 ];
 
-export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
-  const [available, setAvailable] = useState<availableT>('Available');
+export const Residency = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
+  const [available, setAvailable] = useState<AvailableT>('Available');
   const form = useContext(StepFormContext);
 
   const handleSubmit = useCallback(
@@ -32,7 +27,7 @@ export const Residency = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
         setAvailable(value);
       }
     },
-    [form.dispatch, nextStep],
+    [form, nextStep],
   );
 
   return (
@@ -77,13 +72,13 @@ const TaxID = ({
   nextStep,
   form,
   goBack,
-}: stepProps & { form: ContextT } & { goBack: React.Dispatch<any> }) => {
+}: StepPropsT & { form: ContextT } & { goBack: React.Dispatch<any> }) => {
   const [taxID, setTaxID] = useState<string>('');
 
   const handleSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step2: { taxID } } });
     nextStep();
-  }, [taxID, form.dispatch, nextStep]);
+  }, [taxID, form, nextStep]);
 
   return (
     <Container layerStyle="noSelect">

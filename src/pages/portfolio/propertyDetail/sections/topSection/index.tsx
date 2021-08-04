@@ -1,17 +1,18 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
+import { AiOutlineDollar } from 'react-icons/ai';
 import type {
   PortfolioPropertyDetailT,
   PortfolioPropertyDetailInvestmentT,
 } from '../../../../../shared-fullstack/types';
 import { Box, Flex, Icon, Divider, Text, Center, Spinner, useToast } from '@chakra-ui/react';
+import { parseISO } from 'date-fns';
+
 import { Caption1, Overline, Title2 } from '../../../../../components/text';
 import { DEFAULT_ERROR_TOAST } from '../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../lib/useQuery';
 import { fetchWrap } from '../../../../../lib/api';
 import { UserContext } from '../../../../../userContext';
-import { format as formatDate, parseISO } from 'date-fns';
-import { AiOutlineDollar } from 'react-icons/ai';
 
 type TopSectionPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
@@ -109,7 +110,6 @@ export const TopSection = ({
       <Text my={2} textStyle="Body2" colorScheme="gray" variant="colored">
         {propertySummary}
       </Text>
-
       {[
         propertyDetail.occupancyStatus,
         propertyDetail.isUnderRenovation ? 'Under renovation' : null,

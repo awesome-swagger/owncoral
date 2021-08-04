@@ -1,13 +1,9 @@
 import { forwardRef, useCallback, useContext } from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
 const netWorth = [
   { value: 'Less than $500,000' },
   { value: 'Between $500,000 and $1M' },
@@ -16,7 +12,7 @@ const netWorth = [
   { value: 'Greater than $10 million' },
 ];
 
-export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const NetWorth = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
   const form = useContext(StepFormContext);
   const formStep = form?.formState?.step8;
 
@@ -25,7 +21,7 @@ export const NetWorth = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
       form.dispatch({ type: 'update-form', payload: { step8: value } });
       nextStep();
     },
-    [form.dispatch, nextStep],
+    [form, nextStep],
   );
 
   return (

@@ -1,5 +1,6 @@
-import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
+import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
+
 import { ScrollSlider } from '../../../../../components';
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
 

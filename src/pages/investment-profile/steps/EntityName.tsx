@@ -16,21 +16,18 @@ export const EntityName = forwardRef<FormRef, stepProps>(
     const { handleSubmit, setValue, register } = useForm();
     const form = useContext(StepFormContext);
 
-    const onSubmit = useCallback(
-      (data) => {
-        form.dispatch({
-          type: 'update-form',
-          payload: { step6: data },
-        });
-        nextStep();
-      },
-      [form.dispatch, nextStep],
-    );
+    const onSubmit = useCallback((data) => {
+      form.dispatch({
+        type: 'update-form',
+        payload: { step6: data },
+      });
+      nextStep();
+    }, []);
 
     useEffect(() => {
       const formState = form.formState;
+
       setValue('entity_name', formState?.step6?.entity_name || '');
-      // eslint-disable-next-line
     }, []);
 
     return (

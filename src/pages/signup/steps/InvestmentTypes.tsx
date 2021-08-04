@@ -1,21 +1,17 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Text, Button, Icon, Flex } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
+import { Box, Button, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-type investmentType = {
+type InvestmentT = {
   value: number;
   label: string;
 };
 
-const investmentTypes: investmentType[] = [
+const investmentTypes: InvestmentT[] = [
   { value: 0, label: 'Publicly traded stocks' },
   { value: 1, label: 'Bonds' },
   { value: 2, label: 'Real estate (for investment purposes)' },
@@ -25,8 +21,8 @@ const investmentTypes: investmentType[] = [
   { value: 6, label: 'Other alternative assets' },
 ];
 
-export const InvestmentTypes = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const InvestmentTypes = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
     const form = useContext(StepFormContext);
     const formStep = form?.formState?.step7;
 
@@ -41,7 +37,7 @@ export const InvestmentTypes = forwardRef<DivRef, stepProps>(
           payload: { step7: checkVal ? filterVal : [...selectedVal, value] },
         });
       },
-      [form, nextStep],
+      [form, formStep],
     );
 
     return (

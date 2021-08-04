@@ -1,5 +1,5 @@
-import { Box, Heading, Flex, Icon } from '@chakra-ui/react';
 import { FiMapPin } from 'react-icons/fi';
+import { Box, Flex, Heading, Icon } from '@chakra-ui/react';
 
 export const WhatWeLove = () => (
   <Box>

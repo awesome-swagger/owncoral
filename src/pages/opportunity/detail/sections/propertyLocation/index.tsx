@@ -1,4 +1,5 @@
-import { Heading, Box, Image, UnorderedList, ListItem } from '@chakra-ui/react';
+import { Box, Heading, Image, ListItem, UnorderedList } from '@chakra-ui/react';
+
 import Map from '../../../../../assets/Map2.png';
 
 export const PropertyLocation = () => (

@@ -7,7 +7,7 @@ import * as R from 'remeda';
 
 import { Card } from '../../../../components';
 import { Overline, Title1, Title2 } from '../../../../components/text';
-import { formatFinancial } from '../../../../lib/financialFormatter';
+import { formatFinancial, formatFinancialSI } from '../../../../lib/financialFormatter';
 
 const sum = (arr: number[]) => arr.reduce((n, acc) => n + acc, 0);
 
@@ -41,16 +41,16 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
   );
 
   const hasDistributions =
-    (properties || []).filter((property) => property.lastDistributionInitiatedAt !== null).length >
-    0;
+    (properties || []).filter((property) => property.lastDistributionMonth !== null).length > 0;
 
+  // TODO: remove/simplify this logic, we always return distributions for current month now
   const maxMonth: Date | null =
     hasDistributions && properties
       ? new Date(
           Math.max(
             ...properties.map((property) =>
-              property.lastDistributionInitiatedAt !== null
-                ? property.lastDistributionInitiatedAt.getTime()
+              property.lastDistributionMonth !== null
+                ? property.lastDistributionMonth.getTime()
                 : -1,
             ),
           ),
@@ -115,17 +115,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
               </Center>
             )
           }
-          description={
-            maxMonth !== null ? (
-              formatDate(maxMonth, 'MMM yyyy')
-            ) : (
-              <Text>
-                &nbsp;
-                <br />
-                &nbsp;
-              </Text>
-            )
-          }
+          description={maxMonth !== null ? formatDate(maxMonth, 'MMM yyyy') : ''}
         />
 
         <Card
@@ -143,8 +133,8 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
             totalDistributionRental !== null &&
             totalDistributionSpecial !== null && (
               <Fragment>
-                ${formatFinancial(totalDistributionRental)} rental
-                <br />${formatFinancial(totalDistributionSpecial)} special
+                ${formatFinancialSI(totalDistributionRental)} rental
+                <br />${formatFinancialSI(totalDistributionSpecial)} special
               </Fragment>
             )
           }

@@ -1,10 +1,11 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import React from 'react';
+import { FiChevronRight } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
 import { Box, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
-import { FiChevronRight } from 'react-icons/fi';
+
 import { Title2 } from '../../../../../../../components/text';
 import { formatFinancialSI } from '../../../../../../../lib/financialFormatter';
 
@@ -84,10 +85,10 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                   ${formatFinancialSI(propertyDetail.mdlCurrentMortgage)}
                 </Box>
               </Flex>
-              <Flex alignItems="center" cursor="pointer" mt={6}>
-                <Icon as={FiChevronRight} mr={1} />
-                <Text>Learn more about financing</Text>
-              </Flex>
+              {/* <Flex alignItems="center" cursor="pointer" mt={6}> */}
+              {/*  <Icon as={FiChevronRight} mr={1} /> */}
+              {/*  <Text>Learn more about financing</Text> */}
+              {/* </Flex> */}
             </React.Fragment>
           )}
         {/* <Flex */}

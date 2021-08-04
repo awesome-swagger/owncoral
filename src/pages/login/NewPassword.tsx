@@ -103,8 +103,8 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
           <Spinner />
         </Center>
       )}
-      {tokenState === 'valid' && <ExpiredLink />}
-      {tokenState === 'invalid' && (
+      {tokenState === 'invalid' && <ExpiredLink />}
+      {tokenState === 'valid' && (
         <form onSubmit={handleSubmit(onSubmit)}>
           {!isWelcome && <BackBtn handleClick={handleClick} />}
           {isWelcome ? (

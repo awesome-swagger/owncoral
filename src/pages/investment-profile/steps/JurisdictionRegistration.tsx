@@ -23,13 +23,15 @@ export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
         payload: { step13: data },
       });
       nextStep();
-    }, [form, nextStep]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
       const formState = form.formState;
 
       setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
-    }, [form.formState, setValue]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

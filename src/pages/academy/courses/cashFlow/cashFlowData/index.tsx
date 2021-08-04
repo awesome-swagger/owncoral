@@ -1,15 +1,15 @@
-import { useHistory } from 'react-router-dom';
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { BsGraphUp } from 'react-icons/bs';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { HiOutlineCash } from 'react-icons/hi';
+import { useHistory } from 'react-router-dom';
 import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import { Headline, Title2 } from '../../../../../components/text';
-import { ProgressBar } from '../../../../../components';
-import { RentalRevenueChart, RealizedAppreciationChart, OverAllCashChart } from '../charts';
-import ChartImg from '../../../../../assets/Frame331.png';
+
 import Academy from '../../../../../assets/academy-1.svg';
+import ChartImg from '../../../../../assets/Frame331.png';
 import Frame from '../../../../../assets/Frame615.png';
-import { useScrollToTop } from '../../../../../lib/useScrollToTop';
+import { ProgressBar } from '../../../../../components';
+import { Headline, Title2 } from '../../../../../components/text';
+import { OverAllCashChart,RealizedAppreciationChart, RentalRevenueChart } from '../charts';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -18,7 +18,6 @@ const CloseBtn = () => {
 
 const FlowStartBtn = () => {
   const history = useHistory();
-  useScrollToTop();
 
   return (
     <Button
@@ -58,7 +57,7 @@ const NextBtn = ({
   finishBtn?: boolean;
 }) => {
   const history = useHistory();
-  useScrollToTop();
+
   return (
     <Button
       w={finishBtn ? 'auto' : 10}
@@ -72,6 +71,7 @@ const NextBtn = ({
 
 const PrevBtn = ({ background = true }: { background?: boolean }) => {
   const history = useHistory();
+
   return background ? (
     <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
       <Icon as={FiChevronLeft} />
@@ -80,6 +80,7 @@ const PrevBtn = ({ background = true }: { background?: boolean }) => {
     <Icon as={FiChevronLeft} cursor="pointer" onClick={() => history.goBack()} />
   );
 };
+
 const BtnsWrapper = (props: any) => (
   <Flex
     justifyContent="space-between"

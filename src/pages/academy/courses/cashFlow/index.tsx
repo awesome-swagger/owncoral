@@ -1,6 +1,7 @@
 import { Fragment, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, NavBar } from '../../../../components';
+import { useScrollToTop } from '../../../../lib/useScrollToTop';
 import { Data } from './cashFlowData';
 import { titleToUrlFragment } from '../../lib';
 
@@ -13,6 +14,8 @@ const CourseCashFlow = () => {
   const FilteredData = Data.find(({ name }: { name: string }) =>
     titleToUrlFragment(name).includes(title),
   );
+
+  useScrollToTop();
 
   return FilteredData ? (
     <Fragment>

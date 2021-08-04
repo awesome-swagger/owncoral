@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
 import { Box, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
 import { format as formatDate, parseISO } from 'date-fns';
+
 import { Card } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
 import { fetchWrap } from '../../../../../../lib/api';
@@ -55,8 +56,8 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
 
       if (resp.ok) {
         const rawJson = await resp.json();
-        if (rawJson.lastDistributionInitiatedAt) {
-          rawJson.lastDistributionInitiatedAt = parseISO(rawJson.lastDistributionInitiatedAt);
+        if (rawJson.lastDistributionMonth) {
+          rawJson.lastDistributionMonth = parseISO(rawJson.lastDistributionMonth);
         }
         setInvestment(rawJson);
         return;
@@ -85,14 +86,14 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
   return investment !== null ? (
     <Box>
       <Title2 my={4}>Distributions</Title2>
-      {investment.lastDistributionInitiatedAt !== null ? (
-        <HStack alignItems="stretch" w="100%" spacing={3}>
+      {investment.lastDistributionMonth !== null ? (
+        <HStack spacing={3} alignItems="stretch">
           <Card
             title="Monthly"
             value={'$' + formatFinancial(investment.lastDistributionTotal)}
             description={
-              investment.lastDistributionInitiatedAt
-                ? formatDate(investment.lastDistributionInitiatedAt, 'MMM yyyy')
+              investment.lastDistributionMonth
+                ? formatDate(investment.lastDistributionMonth, 'MMM yyyy')
                 : ''
             }
           />

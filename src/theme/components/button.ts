@@ -36,7 +36,7 @@ const baseVariants = {
     const { colorScheme: c } = props;
 
     if (c === 'gray') {
-      const bg = mode(`gray.800`, `whiteAlpha.600`)(props);
+      const bg = mode(`gray.800`, `whiteAlpha.800`)(props);
       const fg = mode(`white`, `gray.900`)(props);
 
       return {
@@ -101,7 +101,7 @@ const baseVariants = {
     component, which is too much boilerplate
     */
 const variants = R.mapValues(baseVariants, (baseVariant) => (props: Dict) => {
-  const defaultColorScheme = mode('dark', 'secondary')(props);
+  const defaultColorScheme = mode('gray', 'secondary')(props);
   const colorScheme =
     (props.colorScheme || 'auto') === 'auto' ? defaultColorScheme : props.colorScheme;
 

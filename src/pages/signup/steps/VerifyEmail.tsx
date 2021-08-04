@@ -1,16 +1,11 @@
 import { forwardRef } from 'react';
-import { Center, Icon, Button, Heading, Text } from '@chakra-ui/react';
 import { FiMail } from 'react-icons/fi';
+import { Button, Center, Heading, Icon, Text } from '@chakra-ui/react';
 import { BackBtn, FlexContainer } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const VerifyEmail = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => (
+export const VerifyEmail = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => (
     <FlexContainer ref={ref} layerStyle="noSelect">
       <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
       <Center h={16} w={16} borderRadius="50%" layerStyle="card">

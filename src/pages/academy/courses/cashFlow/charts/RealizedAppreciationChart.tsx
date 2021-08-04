@@ -1,9 +1,9 @@
 import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom, AxisLeft } from '@visx/axis';
-import { BarStack } from '@visx/shape';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
+import { BarStack } from '@visx/shape';
 
 export const RealizedAppreciationChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>

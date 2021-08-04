@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { LinkBankAccount } from './linkBankAccount';
+
 import { ConfirmTransaction } from './confirmTransaction';
+import { FailedTransaction } from './failedTransaction';
+import { LinkBankAccount } from './linkBankAccount';
 import { ProcessingTransaction } from './processingTransaction';
 import { SuccessTransaction } from './successTransaction';
-import { FailedTransaction } from './failedTransaction';
 
 const Transaction = () => {
   const [transactionStep, setTransactionStep] = useState('linkBankAccount');
@@ -13,12 +14,12 @@ const Transaction = () => {
     confirmTransaction: ConfirmTransaction,
     processingTransaction: ProcessingTransaction,
     successTransaction: SuccessTransaction,
-    failedTransaction: FailedTransaction
+    failedTransaction: FailedTransaction,
   }[transactionStep];
-  
-  if(!Component) return null;
 
-  return <Component handleTransaction={setTransactionStep} />
+  if (!Component) return null;
+
+  return <Component handleTransaction={setTransactionStep} />;
 };
 
 // eslint-disable-next-line import/no-default-export

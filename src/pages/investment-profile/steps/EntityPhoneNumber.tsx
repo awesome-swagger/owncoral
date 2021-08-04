@@ -23,13 +23,15 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
         payload: { step16: data },
       });
       nextStep();
-    }, [form, nextStep]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
       const formState = form.formState;
 
       setValue('entity_phone_number', formState?.step16?.entity_phone_number || '');
-    }, [form.formState, setValue]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

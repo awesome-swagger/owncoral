@@ -3,8 +3,12 @@ export type {
   AddressT,
   AdminPanelUserInfoT,
   JsonT,
+  ListingsMutateInterestRequestParamsT,
+  ListingsPropertyDetailT,
+  ListingsPropertyT,
   PortfolioDashboardPropertyT,
   PortfolioPropertyDetailInvestmentT,
   PortfolioPropertyDetailT,
+  SourcesUsesT,
   UserProfileT,
 } from '../validators';

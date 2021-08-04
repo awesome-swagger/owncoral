@@ -7,11 +7,11 @@ import { parseISO } from 'date-fns';
 import { NavBar, ProtectedRoute } from '../../components';
 import { fetchWrap } from '../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
+import { addressToUrlFragment } from '../../lib/urlFragments';
 import { UserContext } from '../../userContext';
 import Error404 from '../error404';
 import AdminPanel from './AdminPanel';
 import PortfolioDashboard from './dashboard';
-import { addressToUrlFragment } from './lib';
 
 const PortfolioMap = lazy(() => import('./map'));
 const PortfolioPropertyDetail = lazy(() => import('./propertyDetail'));
@@ -93,8 +93,8 @@ const Portfolio = () => {
 
         // Parse date-string back into date object on each property
         for (const property of portfolio) {
-          if (property.lastDistributionInitiatedAt) {
-            property.lastDistributionInitiatedAt = parseISO(property.lastDistributionInitiatedAt);
+          if (property.lastDistributionMonth) {
+            property.lastDistributionMonth = parseISO(property.lastDistributionMonth);
           }
         }
 

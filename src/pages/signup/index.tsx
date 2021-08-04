@@ -18,6 +18,11 @@ export type ContextT = {
   dispatch?: any;
 };
 
+export type StepPropsT = {
+  nextStep: () => void;
+  prevStep: () => void;
+}
+
 type ActionT = {
   type: string;
   payload: { [key: string]: any };

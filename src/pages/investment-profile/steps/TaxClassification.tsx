@@ -1,6 +1,6 @@
 import { forwardRef, useContext } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Box, Icon, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Icon, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { DivRef } from './index';

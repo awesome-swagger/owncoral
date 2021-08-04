@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
 import { FiAlertTriangle } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
 
 import { NavBar } from '../../components';

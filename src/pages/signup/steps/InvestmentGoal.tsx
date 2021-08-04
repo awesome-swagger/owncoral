@@ -1,21 +1,17 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Flex, Box, Heading, Text, Button, Icon } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
+import { Box, Button, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-type investmentGoal = {
+type InvestmentGoalT = {
   value: number;
   label: string;
 };
 
-const investmentGoals: investmentGoal[] = [
+const investmentGoals: InvestmentGoalT[] = [
   { value: 0, label: 'Diversification' },
   { value: 1, label: 'Steady cash flow (income)' },
   { value: 2, label: 'Overall returns' },
@@ -23,8 +19,8 @@ const investmentGoals: investmentGoal[] = [
   { value: 4, label: "I'm not sure" },
 ];
 
-export const InvestmentGoal = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const InvestmentGoal = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
     const form = useContext(StepFormContext);
     const formStep = form?.formState?.step6;
 
@@ -39,7 +35,7 @@ export const InvestmentGoal = forwardRef<DivRef, stepProps>(
           payload: { step6: checkVal ? filterVal : [...selectedVal, value] },
         });
       },
-      [form, nextStep],
+      [form, formStep],
     );
 
     return (

@@ -2,32 +2,26 @@ import React, { forwardRef, useCallback, useContext, useEffect, useState } from 
 import { useForm } from 'react-hook-form';
 import { FiExternalLink, FiEye, FiEyeOff } from 'react-icons/fi';
 import {
-  Box,
   Center,
   Checkbox,
+  FormLabel,
   Heading,
   Icon,
   IconButton,
   Input,
   InputGroup,
   InputRightElement,
-  FormLabel,
   Link as ChakraLink,
   Text,
 } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn } from '../../../components';
 import { Caption1 } from '../../../theme/textStyles';
-import type { FormRef } from '../index';
+import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const CreateAccount = forwardRef<FormRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const CreateAccount = forwardRef<FormRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
     const { handleSubmit, register, setValue, errors } = useForm();
     const [showPassword, setShowPassword] = useState(false);
     const [agreementChecked, setAgreementChecked] = useState(false);
@@ -45,7 +39,7 @@ export const CreateAccount = forwardRef<FormRef, stepProps>(
     useEffect(() => {
       setValue('email', formStep?.email || '');
       setValue('password', formStep?.password || '');
-    }, [form.formState, setValue]);
+    }, [formStep, setValue]);
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>

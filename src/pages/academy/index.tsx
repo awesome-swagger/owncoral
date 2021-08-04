@@ -22,7 +22,7 @@ const AcademyTabs = () => {
 
   return (
     <Box>
-      <Title1 my={4}> Academy </Title1>
+      <Title1 mb={4}>Academy</Title1>
       <Tabs defaultIndex={tab === 'glossary' ? 1 : 0}>
         <TabList>
           <Tab onClick={() => history.push('/academy/courses')}>Crash Courses</Tab>

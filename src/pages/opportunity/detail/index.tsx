@@ -1,6 +1,6 @@
 import { AiFillCloseCircle, AiOutlineUpload } from 'react-icons/ai';
 import { FiMoreHorizontal } from 'react-icons/fi';
-import { Button, Divider, Icon,Image } from '@chakra-ui/react';
+import { Button, Divider, Icon, Image } from '@chakra-ui/react';
 
 import HouseImg from '../../../assets/Multifamily_Night.png';
 import { Container } from '../../../components';
@@ -18,15 +18,7 @@ import {
 const OpportunityDetail = () => (
   <Container>
     <Image src={HouseImg} alt="house_img" w="100%" />
-    <Icon
-      pos="absolute"
-      top={10}
-      left={10}
-      h={8}
-      w={8}
-      as={AiFillCloseCircle}
-      color="white"
-    />
+    <Icon pos="absolute" top={10} left={10} h={8} w={8} as={AiFillCloseCircle} color="white" />
     <Icon
       pos="absolute"
       top={10}

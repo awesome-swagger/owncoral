@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { Address } from './address';
 import { Json } from './json';
+import { SourcesUses } from './propertyFinancials';
 
 // For method `portfolioDashboardPost` in
 // `@app/server/controllers/portfolio.ts`
@@ -27,57 +28,84 @@ export const PortfolioDashboardProperty = z.object({
   sumDistributionSpecial: z.number(),
 
   lastDistributionTotal: z.number(),
-  lastDistributionInitiatedAt: z.date().nullable(),
+  lastDistributionMonth: z.date().nullable(),
 
   months: z.number().nullable(),
 });
-
 export type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashboardProperty>;
 
-// TODO: define type
-export const PortfolioPropertyDetail = z.object({
-  id: z.string(),
-  // legalEntityId: z.string(),
-
-  name: z.string().nullable(),
-  description: z.string().nullable(),
-
-  imageUrls: z.array(z.string()),
-  // legalEntityName: z.string().nullable(),
+export const ListingsProperty = z.object({
+  propertyId: z.string(),
+  name: z.string(),
 
   address: Address,
 
-  numUnits: z.number().nullable(),
-  numBeds: z.number().nullable(),
-  numBaths: z.number().nullable(),
-  numStories: z.number().nullable(),
-
   areaUnits: z.string().nullable(),
   areaLiving: z.number().nullable(),
-  areaLotSize: z.number().nullable(),
+  numUnits: z.number().nullable(),
+  cardImageUrl: z.string().nullable(),
 
-  descriptionMarkdown: z.string().nullable(),
-  occupancyStatus: z.string().nullable(),
-  isUnderRenovation: z.boolean(),
+  listingIrr: z.number(),
+  listingCashDist: z.number(),
 
-  // TODO: not nullable (and in property.sql)
-  ccyCode: z.string().max(3).nullable(),
-  rentalIncomeMonthlyCurrent: z.number().nullable(),
-  rentalIncomeMonthlyTarget: z.number().nullable(),
-
-  // ownershipPct: z.number().nullable(),
-  // initialEquity: z.number().nullable(),
-
-  mdlPurchasePrice: z.number().nullable(),
-  mdlClosingCost: z.number().nullable(),
-  mdlOriginationFee: z.number().nullable(),
-  mdlBrokerFee: z.number().nullable(),
-  mdlRenovation: z.number().nullable(),
-  mdlCapexReserve: z.number().nullable(),
-  mdlPrincipalReserve: z.number().nullable(),
-  mdlMortgage: z.number().nullable(),
-  mdlCurrentMortgage: z.number().nullable(),
   mdlEquity: z.number().nullable(),
 });
+export type ListingsPropertyT = z.infer<typeof ListingsProperty>;
 
+const BasePropertyDetail = z
+  .object({
+    id: z.string(),
+
+    name: z.string().nullable(),
+    description: z.string().nullable(),
+    imageUrls: z.array(z.string()),
+
+    address: Address,
+
+    numUnits: z.number().nullable(),
+    numBeds: z.number().nullable(),
+    numBaths: z.number().nullable(),
+    numStories: z.number().nullable(),
+
+    areaUnits: z.string().nullable(),
+    areaLiving: z.number().nullable(),
+    areaLotSize: z.number().nullable(),
+
+    descriptionMarkdown: z.string().nullable(),
+    occupancyStatus: z.string().nullable(),
+    isUnderRenovation: z.boolean(),
+
+    // TODO: not nullable (and in property.sql)
+    ccyCode: z.string().max(3).nullable(),
+    rentalIncomeMonthlyCurrent: z.number().nullable(),
+    rentalIncomeMonthlyTarget: z.number().nullable(),
+  })
+  .merge(SourcesUses);
+
+export const PortfolioPropertyDetail = BasePropertyDetail.extend({
+  mdlCurrentMortgage: z.number().nullable(),
+});
 export type PortfolioPropertyDetailT = z.infer<typeof PortfolioPropertyDetail>;
+
+export const ListingsPropertyDetail = BasePropertyDetail.extend({
+  listingIrr: z.number(),
+  listingCashDist: z.number(),
+
+  keyDistances: z.string(),
+  whyLove1: z.string(),
+  whyLove2: z.string(),
+  whyLove3: z.string(),
+
+  hasInterest: z.boolean(),
+  interestAmt: z.number().nullable(),
+});
+export type ListingsPropertyDetailT = z.infer<typeof ListingsPropertyDetail>;
+
+export const ListingsMutateInterestRequestParams = z.object({
+  propertyId: z.string().uuid(),
+  hasInterest: z.boolean(),
+  interestAmt: z.number().positive().nullable(),
+});
+export type ListingsMutateInterestRequestParamsT = z.infer<
+  typeof ListingsMutateInterestRequestParams
+>;

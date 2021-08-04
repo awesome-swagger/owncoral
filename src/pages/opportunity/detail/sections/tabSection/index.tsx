@@ -1,4 +1,4 @@
-import { Box, Tabs, TabList, TabPanels, Tab, TabPanel, Heading } from '@chakra-ui/react';
+import { Box, Heading,Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 
 export const TabSection = () => (
   <Tabs>

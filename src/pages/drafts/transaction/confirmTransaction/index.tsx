@@ -12,8 +12,8 @@ import {
   ModalCloseButton,
   ModalContent,
   ModalOverlay,
-  useDisclosure,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../../components';

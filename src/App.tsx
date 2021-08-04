@@ -33,6 +33,7 @@ const NewPassword = lazy(() => import('./pages/login/NewPassword'));
 
 const Academy = lazy(() => import('./pages/academy'));
 const Drafts = lazy(() => import('./pages/drafts'));
+const Listings = lazy(() => import('./pages/listings'));
 const Portfolio = lazy(() => import('./pages/portfolio'));
 const Profile = lazy(() => import('./pages/profile'));
 const Property = lazy(() => import('./pages/opportunity'));
@@ -61,7 +62,7 @@ function App() {
     splashScreen.setAttribute('hidden', 'true');
   }
 
-  const isDev = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development';
+  const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
@@ -76,6 +77,10 @@ function App() {
                 <Switch>
                   {/* Note: server handles not-logged-in redirection for the SPA bundle */}
                   {authRoutes}
+
+                  <Route path="/listings">
+                    <Listings />
+                  </Route>
 
                   <ProtectedRoute exact path="/">
                     <Redirect to="/portfolio" />
@@ -107,7 +112,7 @@ function App() {
                     component={CourseCashFlow}
                   />
 
-                  {isDev && (
+                  {!isProd && (
                     <Fragment>
                       <Route path="/signup">
                         <SignupFlow />

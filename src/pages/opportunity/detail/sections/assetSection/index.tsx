@@ -1,6 +1,6 @@
-import { Box, Heading, Icon, Flex, Center } from '@chakra-ui/react';
-import { FiMapPin } from 'react-icons/fi';
 import { BsQuestionCircle } from 'react-icons/bs';
+import { FiMapPin } from 'react-icons/fi';
+import { Box, Center,Flex, Heading, Icon } from '@chakra-ui/react';
 
 export const AssetSection = () => (
   <Box>

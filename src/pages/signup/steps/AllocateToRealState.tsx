@@ -2,19 +2,15 @@ import React, { forwardRef, useCallback, useContext } from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-type investmentType = {
+type InvestmentT = {
   value: number;
   label: string;
 };
 
-const investment: investmentType[] = [
+const investment: InvestmentT[] = [
   { value: 0, label: '$1,000 - $10,000' },
   { value: 1, label: 'Between $10,000 and $100,000' },
   { value: 2, label: 'Between $100,000 and $250,000' },
@@ -22,8 +18,8 @@ const investment: investmentType[] = [
   { value: 4, label: 'Greater than $500,000' },
 ];
 
-export const AllocateToRealState = forwardRef<DivRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
+export const AllocateToRealState = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
     const form = useContext(StepFormContext);
     const formStep = form?.formState?.step10;
 

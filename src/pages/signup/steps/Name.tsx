@@ -1,17 +1,12 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, Heading, Input, Text, FormLabel } from '@chakra-ui/react';
+import { Button, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
-import type { FormRef } from '../index';
+import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
   const { handleSubmit, register, watch, setValue } = useForm();
   const form = useContext(StepFormContext);
   const formStep = form.formState?.step1;
@@ -24,19 +19,20 @@ export const Name = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: step
       form.dispatch({ type: 'update-form', payload: { step1: data } });
       nextStep();
     },
-    [handleSubmit],
+    [form, nextStep],
   );
 
   const handleChange = useCallback(
     (data) => {
       form.dispatch({ type: 'update-form', payload: { step1: data } });
     },
-    [handleSubmit],
+    [form],
   );
 
   useEffect(() => {
     setValue('firstName', formStep?.firstName);
     setValue('lastName', formStep?.lastName);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

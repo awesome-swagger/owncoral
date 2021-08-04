@@ -26,12 +26,14 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
     } else {
       setError(true);
     }
-  }, [einNumber, form.dispatch, nextStep]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [einNumber]);
 
   useEffect(() => {
     const formState = form.formState;
+
     setEinNumber(formState?.step9?.einNumber || '');
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(
@@ -40,7 +42,7 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
         type: 'update-form',
         payload: { step9: { einNumber } },
       }),
-    [einNumber, form.dispatch],
+    [einNumber], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return (

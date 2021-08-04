@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import type { PortfolioDashboardPropertyT } from '../../../shared-fullstack/types';
-import { Box, Center, Divider } from '@chakra-ui/react';
+import { Box, Divider } from '@chakra-ui/react';
 
 import { Container } from '../../../components';
-import { LargeTitle } from '../../../components/text';
-// TODO: remove
+import { Title1 } from '../../../components/text';
 import { PopUpBox } from './popUpBox';
 import { Properties, TotalDistribution } from './sections';
 
@@ -21,9 +20,7 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
   return (
     <Container showColorModeButton={false}>
       <Box>
-        <Center mb={4}>
-          <LargeTitle>Portfolio</LargeTitle>
-        </Center>
+        <Title1 mb={4}>Portfolio</Title1>
         <TotalDistribution properties={properties} />
         <Divider mb={4} />
         <Properties

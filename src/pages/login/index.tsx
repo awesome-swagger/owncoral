@@ -220,8 +220,16 @@ async function onSubmit({
   }
 
   if (resp.ok) {
-    setUser(await resp.json());
-    history.push(redirectUrl ? decodeURIComponent(redirectUrl) : '/portfolio');
+    const re = await resp.json();
+    setUser(re);
+
+    history.push(
+      redirectUrl
+        ? decodeURIComponent(redirectUrl)
+        : re.numInvestments
+        ? '/portfolio'
+        : '/listings',
+    );
     return;
   }
 

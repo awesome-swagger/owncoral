@@ -37,16 +37,6 @@ export const ValueAddPlan = ({ propertyDetail }: ValueAddPlanPropsT) => (
         </Headline>
       </Flex>
     </VStack>
-    {/* <Flex my={6}> */}
-    {/*  {[1, 2].map((idx) => ( */}
-    {/*    <Box mx={2} key={idx}> */}
-    {/*      <Image src={dummyData.renovationImg} /> */}
-    {/*      <Text textStyle="Caption1" textAlign="center"> */}
-    {/*        {dummyData.updatePlan} */}
-    {/*      </Text> */}
-    {/*    </Box> */}
-    {/*  ))} */}
-    {/* </Flex> */}
 
     {/* <Button variant="outline" colorScheme="secondary" w="100%"> */}
     {/*  Learn more about the rental income{' '} */}

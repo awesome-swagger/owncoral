@@ -1,24 +1,35 @@
-import React, { Dispatch, forwardRef, useCallback, useContext, useState } from 'react';
-import { Box, Button, Heading, Text, Flex, Icon, Input, Center, Divider } from '@chakra-ui/react';
-import { AiOutlineWarning } from 'react-icons/ai';
+import React, {
+  Dispatch,
+  forwardRef,
+  Fragment,
+  useCallback,
+  useContext,
+  useState
+} from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FiCircle } from 'react-icons/fi';
+import { FiAlertTriangle, FiCircle } from 'react-icons/fi';
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Heading,
+  Icon,
+  Input,
+  Text
+} from '@chakra-ui/react';
 import { BackBtn, Container, FlexContainer } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-type accreditedInvestorType = {
+type AccreditedInvestorT = {
   value: number;
   label: string;
   desc?: string;
 };
 
-const accreditedInvestor: accreditedInvestorType[] = [
+const accreditedInvestor: AccreditedInvestorT[] = [
   {
     value: 0,
     label: 'Yes, I have had $200k in income (or $300k jointly with my spouse)',
@@ -29,7 +40,7 @@ const accreditedInvestor: accreditedInvestorType[] = [
   { value: 3, label: 'No, none of the above are true' },
 ];
 
-export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Investor = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
   const form = useContext(StepFormContext);
   const [available, setAvailable] = useState('Available');
   const formStep = form?.formState?.step3;
@@ -45,7 +56,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         payload: { step3: checkVal ? filterVal : [...selectedVal, value] },
       });
     },
-    [form, nextStep],
+    [form, formStep],
   );
 
   return (
@@ -63,13 +74,12 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
             </Text>
             <Box mt={8}>
               {accreditedInvestor.map(({ value, label, desc }, ind) => (
-                <>
-                  {ind === 0 ? '' : <Divider />}
+                <Fragment key={value}>
+                  {ind === 0 && <Divider />}
                   <Flex
                     px={2}
                     py={3}
                     mt={2}
-                    key={value}
                     textAlign="left"
                     cursor="pointer"
                     textStyle="Body1"
@@ -95,7 +105,7 @@ export const Investor = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
                       )}
                     </Box>
                   </Flex>
-                </>
+                </Fragment>
               ))}
             </Box>
             <Button
@@ -123,13 +133,13 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
   <FlexContainer layerStyle="noSelect">
     <BackBtn handleClick={goBack} top={6} left={6} pos="absolute" />
     <Center h={16} w={16} borderRadius="50%" layerStyle="card">
-      <Icon as={AiOutlineWarning} color="green.500" h={6} w={6} />
+      <Icon as={FiAlertTriangle} color="green.500" h={6} w={6} />
     </Center>
     <Heading size="md" as="h4" textAlign="center">
       Coral is currently available to accredited investors only
     </Heading>
     <Text my={4} fontSize="md" textAlign="center">
-      But we're working on that! Please input your email address below if you'd like to be added to
+      But we&#39;re working on that! Please input your email address below if you&#39;d like to be added to
       the waitlist.
     </Text>
     <Input h={12} mt={2} placeholder="Email" name="email" type="email" variant="filled" />

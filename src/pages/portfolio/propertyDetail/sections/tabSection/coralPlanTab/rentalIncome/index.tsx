@@ -1,6 +1,7 @@
 import { FiChevronRight } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
-import { Box, VStack, Flex, Text, Icon } from '@chakra-ui/react';
+import { Box, Flex, Icon, Text, VStack } from '@chakra-ui/react';
+
 import { Title2 } from '../../../../../../../components/text';
 import { formatFinancial } from '../../../../../../../lib/financialFormatter';
 
@@ -29,9 +30,9 @@ export const RentalIncome = ({ propertyDetail }: ValueAddPlanPropsT) => (
         </Text>
       </Flex>
     </VStack>
-    <Flex alignItems="center" cursor="pointer" mt={6}>
-      <Icon as={FiChevronRight} mr={1} />
-      <Text>Learn more about our target rental income</Text>
-    </Flex>
+    {/* <Flex alignItems="center" cursor="pointer" mt={6}> */}
+    {/*  <Icon as={FiChevronRight} mr={1} /> */}
+    {/*  <Text>Learn more about our target rental income</Text> */}
+    {/* </Flex> */}
   </Box>
 );

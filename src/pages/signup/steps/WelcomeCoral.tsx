@@ -1,15 +1,11 @@
 import { useContext } from 'react';
-import { Image, Button, Heading, Text } from '@chakra-ui/react';
+import { Button, Heading, Image, Text } from '@chakra-ui/react';
 import { BackBtn, FlexContainer } from '../../../components';
-import Logo from '../../../assets/coral_logo_with_shadow.png';
 import { StepFormContext } from '../index';
+import type { StepPropsT } from '../index';
+import Logo from '../../../assets/coral_logo_with_shadow.png';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const WelcomeCoral = ({ nextStep, prevStep }: stepProps) => {
+export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
   const { formState } = useContext(StepFormContext);
 
   function capitalizeFirstLetter(val: string) {

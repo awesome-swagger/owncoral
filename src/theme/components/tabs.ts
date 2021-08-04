@@ -1,3 +1,5 @@
+import { mode } from '@chakra-ui/theme-tools';
+
 // Reference:
 // https://github.com/chakra-ui/chakra-ui/blob/main/packages/theme/src/components/tabs.ts
 type Dict = Record<string, any>;
@@ -8,6 +10,7 @@ const baseStyleTab = (props: Dict) => {
       zIndex: 'unset',
       boxShadow: 'unset',
     },
+    color: 'gray.400',
   };
 };
 

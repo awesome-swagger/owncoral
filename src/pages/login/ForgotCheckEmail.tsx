@@ -1,6 +1,7 @@
 import type React from 'react';
 import { Link as BrowserLink } from 'react-router-dom';
 import { Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+
 import { FlexContainer } from '../../components';
 
 const ForgotCheckEmail: React.FC = () => (

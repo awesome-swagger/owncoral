@@ -2,13 +2,8 @@ import { forwardRef, useCallback, useContext, useEffect, useState } from 'react'
 import { Heading } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
-import type { DivRef } from '../index';
+import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
-
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
 
 const initialDate = {
   year: '2000',
@@ -16,7 +11,7 @@ const initialDate = {
   day: '30',
 };
 
-export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const BirthDate = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
   const [date, setDate] = useState(initialDate);
   const currentYear = new Date().getFullYear();
   const age = currentYear - Number(date.year);
@@ -37,12 +32,14 @@ export const BirthDate = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: 
   useEffect(() => {
     if (Number(date.year) <= currentYear && date.month && Number(date.day) <= 31 && age >= 18)
       form.dispatch({ type: 'update-form', payload: { step3: date } });
-  }, [date, age, currentYear, form.dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
 
   const onSubmit = useCallback(() => {
     form.dispatch({ type: 'update-form', payload: { step3: date } });
     nextStep();
-  }, [date, form.dispatch, nextStep]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
 
   useEffect(() => {
     setDate(formStep || initialDate);
