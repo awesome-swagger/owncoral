@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
-import { Box, Center, Divider, Flex, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
 import { format as formatDate, parseISO } from 'date-fns';
 import { Card } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
@@ -86,7 +86,7 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
     <Box>
       <Title2 my={4}>Distributions</Title2>
       {investment.lastDistributionInitiatedAt !== null ? (
-        <Flex overflow="auto">
+        <HStack alignItems="stretch" w="100%" spacing={3}>
           <Card
             title="Monthly"
             value={'$' + formatFinancial(investment.lastDistributionTotal)}
@@ -106,7 +106,7 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
               </Fragment>
             }
           />
-        </Flex>
+        </HStack>
       ) : (
         <Center>Stay tuned, your first distributions are coming soon!</Center>
       )}

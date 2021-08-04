@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Icon, Center, Image } from '@chakra-ui/react';
-import { AiOutlineZoomIn, AiOutlineZoomOut } from 'react-icons/ai';
 import { CardTop } from '../propertyCard/CardTop';
 import { CardBottom } from '../propertyCard/CardBottom';
 import { FiMapPin } from 'react-icons/fi';
@@ -14,8 +13,8 @@ export const PropertyCard = ({ data }: { data: any }) => {
   const House = HouseImg;
 
   const [remove, setRemove] = useState(false);
-  const [zoom, setZoom] = useState(false);
-  const [zoomOut, setZoomOut] = useState(true);
+  const [zoom, setZoom] = useState(true);
+  const [zoomOut, setZoomOut] = useState(false);
   const [image, setImage] = useState(Map);
 
   useEffect(() => {
@@ -37,13 +36,8 @@ export const PropertyCard = ({ data }: { data: any }) => {
   };
 
   return (
-    <Box>
-      <Box
-        h={{ base: '500px', sm: '550px', md: '650px' }}
-        style={CardStyle}
-        borderRadius="2xl"
-        p={4}
-      >
+    <Box h="100%">
+      <Box style={CardStyle} borderRadius="2xl" p={4}>
         {!remove && (
           <Image src={Map} alt="map" style={zoom ? (zoomOut ? CardImg : ImgZoom) : CardImg} />
         )}
@@ -53,10 +47,17 @@ export const PropertyCard = ({ data }: { data: any }) => {
         <CardBottom data={data} />
       </Box>
       <Center pos="relative" mt={10}>
-        <Button top={-16} pos="absolute" border="4px" borderColor="white" h={12} w={12}>
+        <Button
+          top={-16}
+          pos="absolute"
+          border="4px"
+          borderColor="white"
+          h={12}
+          w={12}
+          onClick={handleZoom}
+        >
           <Icon h={6} w={6} as={FiMapPin} />
         </Button>
-        <Icon onClick={handleZoom} as={zoomOut ? AiOutlineZoomIn : AiOutlineZoomOut} h={6} w={6} />
       </Center>
     </Box>
   );

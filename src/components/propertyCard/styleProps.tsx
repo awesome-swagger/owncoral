@@ -6,6 +6,7 @@ export const CardStyle: CSSProperties = {
   justifyContent: 'space-between',
   overflow: 'hidden',
   position: 'relative',
+  height: '100%',
 };
 
 export const CardGradient: CSSProperties = {

@@ -2,7 +2,7 @@ import { FaRegBuilding } from 'react-icons/fa';
 import { FiSquare } from 'react-icons/fi';
 import { GiStairs } from 'react-icons/gi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
-import { Box, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex, Icon, Text, HStack } from '@chakra-ui/react';
 
 import { Card } from '../../../../../../../components';
 import { Headline, Subhead, Title2 } from '../../../../../../../components/text';
@@ -71,7 +71,7 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
       {/*    <Subhead>{dummyData.builtDate}</Subhead> */}
       {/*  </Box> */}
       {/* </Flex> */}
-      <Flex overflow="auto">
+      <HStack alignItems="stretch" w="100%" spacing={3}>
         <Card
           title="Purchase Price"
           value={
@@ -92,7 +92,7 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
               description=""
             />
           )}
-      </Flex>
+      </HStack>
     </Box>
   );
 };
