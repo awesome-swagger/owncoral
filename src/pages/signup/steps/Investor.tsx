@@ -1,24 +1,7 @@
-import React, {
-  Dispatch,
-  forwardRef,
-  Fragment,
-  useCallback,
-  useContext,
-  useState
-} from 'react';
+import React, { Dispatch, forwardRef, Fragment, useCallback, useContext, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiAlertTriangle, FiCircle } from 'react-icons/fi';
-import {
-  Box,
-  Button,
-  Center,
-  Divider,
-  Flex,
-  Heading,
-  Icon,
-  Input,
-  Text
-} from '@chakra-ui/react';
+import { Box, Button, Center, Divider, Flex, Heading, Icon, Input, Text } from '@chakra-ui/react';
 import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
@@ -40,94 +23,96 @@ const accreditedInvestor: AccreditedInvestorT[] = [
   { value: 3, label: 'No, none of the above are true' },
 ];
 
-export const Investor = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
-  const form = useContext(StepFormContext);
-  const [available, setAvailable] = useState('Available');
-  const formStep = form?.formState?.step3;
+export const Investor = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
+    const form = useContext(StepFormContext);
+    const [available, setAvailable] = useState('Available');
+    const formStep = form?.formState?.step3;
 
-  const handleSubmit = useCallback(
-    (value) => {
-      const selectedVal = formStep ? formStep : [];
-      const filterVal = selectedVal.filter((item: Number) => item !== value);
-      const checkVal = selectedVal.includes(value);
+    const handleSubmit = useCallback(
+      (value) => {
+        const selectedVal = formStep ? formStep : [];
+        const filterVal = selectedVal.filter((item: Number) => item !== value);
+        const checkVal = selectedVal.includes(value);
 
-      form.dispatch({
-        type: 'update-form',
-        payload: { step3: checkVal ? filterVal : [...selectedVal, value] },
-      });
-    },
-    [form, formStep],
-  );
+        form.dispatch({
+          type: 'update-form',
+          payload: { step3: checkVal ? filterVal : [...selectedVal, value] },
+        });
+      },
+      [form, formStep],
+    );
 
-  return (
-    <div>
-      {available === 'Available' ? (
-        <Box ref={ref} layerStyle="noSelect">
-          <Container>
-            <BackBtn handleClick={prevStep} />
-            <Heading size="md" mt={8} mb={2} textAlign="left">
-              Are you an accredited investor?
-            </Heading>
-            <Text fontSize="md" textAlign="left">
-              You are an accredited investor if any of the first three statements below are true.
-              Select all that apply.
-            </Text>
-            <Box mt={8}>
-              {accreditedInvestor.map(({ value, label, desc }, ind) => (
-                <Fragment key={value}>
-                  {ind === 0 && <Divider />}
-                  <Flex
-                    px={2}
-                    py={3}
-                    mt={2}
-                    textAlign="left"
-                    cursor="pointer"
-                    textStyle="Body1"
-                    fontWeight="600"
-                    onClick={() => handleSubmit(value)}
-                  >
-                    <Icon
-                      as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                      layerStyle="iconColor"
-                      bg="transparent !important"
-                      h={5}
-                      w={5}
-                      mr={2}
-                    />
-                    <Box>
-                      {label}
-                      {desc ? (
-                        <Text textStyle="Subhead" mt={2}>
-                          {desc}
-                        </Text>
-                      ) : (
-                        ''
-                      )}
-                    </Box>
-                  </Flex>
-                </Fragment>
-              ))}
-            </Box>
-            <Button
-              pos="absolute"
-              bottom={10}
-              left={6}
-              w="calc(100% - 3rem)"
-              h={12}
-              cursor="pointer"
-              disabled={!formStep?.length}
-              onClick={formStep?.includes(3) ? () => setAvailable('Not Available') : nextStep}
-            >
-              Continue
-            </Button>
-          </Container>
-        </Box>
-      ) : (
-        <NotAvailable goBack={() => setAvailable('Available')} />
-      )}
-    </div>
-  );
-});
+    return (
+      <div>
+        {available === 'Available' ? (
+          <Box ref={ref} layerStyle="noSelect">
+            <Container pb={28}>
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8} mb={2} textAlign="left">
+                Are you an accredited investor?
+              </Heading>
+              <Text fontSize="md" textAlign="left">
+                You are an accredited investor if any of the first three statements below are true.
+                Select all that apply.
+              </Text>
+              <Box mt={8}>
+                {accreditedInvestor.map(({ value, label, desc }, ind) => (
+                  <Fragment key={value}>
+                    {ind === 0 && <Divider />}
+                    <Flex
+                      px={2}
+                      py={3}
+                      mt={2}
+                      textAlign="left"
+                      cursor="pointer"
+                      textStyle="Body1"
+                      fontWeight="600"
+                      onClick={() => handleSubmit(value)}
+                    >
+                      <Icon
+                        as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
+                        layerStyle="iconColor"
+                        bg="transparent !important"
+                        h={5}
+                        w={5}
+                        mr={2}
+                      />
+                      <Box>
+                        {label}
+                        {desc ? (
+                          <Text textStyle="Subhead" mt={2}>
+                            {desc}
+                          </Text>
+                        ) : (
+                          ''
+                        )}
+                      </Box>
+                    </Flex>
+                  </Fragment>
+                ))}
+              </Box>
+              <Button
+                pos="absolute"
+                bottom={10}
+                left={6}
+                w="calc(100% - 3rem)"
+                h={12}
+                cursor="pointer"
+                disabled={!formStep?.length}
+                onClick={formStep?.includes(3) ? () => setAvailable('Not Available') : nextStep}
+              >
+                Continue
+              </Button>
+            </Container>
+          </Box>
+        ) : (
+          <NotAvailable goBack={() => setAvailable('Available')} />
+        )}
+      </div>
+    );
+  },
+);
 
 const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
   <FlexContainer layerStyle="noSelect">
@@ -139,8 +124,8 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
       Coral is currently available to accredited investors only
     </Heading>
     <Text my={4} fontSize="md" textAlign="center">
-      But we&#39;re working on that! Please input your email address below if you&#39;d like to be added to
-      the waitlist.
+      But we&#39;re working on that! Please input your email address below if you&#39;d like to be
+      added to the waitlist.
     </Text>
     <Input h={12} mt={2} placeholder="Email" name="email" type="email" variant="filled" />
     <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>

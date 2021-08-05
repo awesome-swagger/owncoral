@@ -39,7 +39,7 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       w="100%"
       pos="relative"
       h={{
-        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight} - 6rem)`,
+        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight} - 6.5rem)`,
         [NAVBAR_TOP_BREAKPOINT]: `calc(${window.innerHeight}px - ${headerHeight} - 8rem)`,
       }}
       maxHeight={{ base: 'unset', [NAVBAR_TOP_BREAKPOINT]: '550px' }}

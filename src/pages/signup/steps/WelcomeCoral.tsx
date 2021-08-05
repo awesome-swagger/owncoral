@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Button, Heading, Image, Text } from '@chakra-ui/react';
+import { Button, Heading, Image, Text, Box } from '@chakra-ui/react';
 import { BackBtn, FlexContainer } from '../../../components';
 import { StepFormContext } from '../index';
 import type { StepPropsT } from '../index';
@@ -38,6 +38,7 @@ export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
       >
         Continue
       </Button>
+      <Box h={28} />
     </FlexContainer>
   );
 };

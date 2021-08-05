@@ -37,7 +37,7 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
 
   return (
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
-      <Container layerStyle="noSelect">
+      <Container pb={28} layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
         <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
           Tell us about yourself

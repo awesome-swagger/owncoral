@@ -43,7 +43,7 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
 
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
-        <Container layerStyle="noSelect">
+        <Container pb={36} layerStyle="noSelect">
           <BackBtn handleClick={prevStep} />
           <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
             Let’s create your account

@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { FiMail } from 'react-icons/fi';
-import { Button, Center, Heading, Icon, Text } from '@chakra-ui/react';
+import { Button, Center, Heading, Icon, Text, Box } from '@chakra-ui/react';
 import { BackBtn, FlexContainer } from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 
@@ -39,6 +39,7 @@ export const VerifyEmail = forwardRef<DivRef, StepPropsT>(
       >
         Resend verification email
       </Button>
+      <Box h={28} />
     </FlexContainer>
   ),
 );

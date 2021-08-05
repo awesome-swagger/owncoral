@@ -93,7 +93,12 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
   }, [embla, onSelect]);
 
   return (
-    <Container px="0" showColorModeButton={false}>
+    <Container
+      px="0"
+      overflow="visible"
+      showColorModeButton={false}
+      h={{ base: `calc(${window.innerHeight}px - 8rem)`, md: 'auto' }}
+    >
       <Box userSelect="none">
         <Title2 px={6} mb={6}>
           Listings / Greater Boston Area

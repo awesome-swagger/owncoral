@@ -1,5 +1,5 @@
 import { FiCheck } from 'react-icons/fi';
-import { Button, Center, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react';
+import { Button, Box, Center, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import { BackBtn, FlexContainer } from '../../../components';
 import type { StepPropsT } from '../index';
 
@@ -22,6 +22,7 @@ export const Result = ({ nextStep, prevStep }: StepPropsT) => {
       <Button pos="absolute" bottom={10} left={6} onClick={nextStep} w="calc(100% - 3rem)" h={12}>
         Submit
       </Button>
+      <Box h={28} />
     </FlexContainer>
   );
 };
