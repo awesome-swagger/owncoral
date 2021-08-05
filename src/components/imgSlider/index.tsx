@@ -1,8 +1,6 @@
 /* eslint-disable max-params */
-import { useEmblaCarousel } from 'embla-carousel/react';
-import { useState, useEffect, useCallback, ReactElement } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
-import { PrevButton, NextButton, DotButton } from './EmblaCarouselButtons';
 import {
   AspectRatio,
   Box,
@@ -13,8 +11,13 @@ import {
   ModalContent,
   ModalOverlay,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
+import { useEmblaCarousel } from 'embla-carousel/react';
+
 import './style.css';
+
+import { DotButton, NextButton, PrevButton } from './EmblaCarouselButtons';
 
 type ImgSliderPropsT = {
   images: string[];
@@ -24,6 +27,7 @@ type ImgSliderPropsT = {
 export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
   const [imageIndex, setImageIndex] = useState(0);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box>
       <CenterCarousel
@@ -78,9 +82,13 @@ const CenterCarousel = ({
   setImageIndex: any;
   onOpen: any;
 }) => {
+  const [isTouch] = useMediaQuery('(pointer: coarse)');
+
   const [viewportRef, embla]: any = useEmblaCarousel({
     loop: true,
-    draggable: false,
+    draggable: isTouch,
+    dragFree: false,
+    skipSnaps: true,
     inViewThreshold: 20,
   });
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
@@ -89,9 +97,9 @@ const CenterCarousel = ({
   const [parallaxValues, setParallaxValues] = useState([]);
   const [scrollSnaps, setScrollSnaps] = useState([]);
 
-  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
-  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
-  const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [embla]);
+  const scrollPrev = useCallback(() => embla?.scrollPrev(), [embla]);
+  const scrollNext = useCallback(() => embla?.scrollNext(), [embla]);
+  const scrollTo = useCallback((index) => embla?.scrollTo(index), [embla]);
 
   const PARALLAX_FACTOR = 1.2;
 
@@ -116,9 +124,7 @@ const CenterCarousel = ({
         engine.slideLooper.loopPoints.forEach((loopItem: any) => {
           const target = loopItem.getTarget();
           if (index === loopItem.index && target !== 0) {
-            const sign = Math.sign(target);
-            if (sign === -1) diffToTarget = scrollSnap - (1 + scrollProgress);
-            if (sign === 1) diffToTarget = scrollSnap + (1 - scrollProgress);
+            diffToTarget = scrollSnap + (1 - Math.sign(target) * scrollProgress);
           }
         });
       }
@@ -136,7 +142,6 @@ const CenterCarousel = ({
     embla.on('scroll', onScroll);
     embla.on('resize', onScroll);
   }, [embla, onSelect, onScroll, setScrollSnaps]);
-
   return (
     <Box className="embla">
       <Box className="embla__viewport" ref={viewportRef}>

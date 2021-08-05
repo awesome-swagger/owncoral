@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import type { ListingsPropertyT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyT } from '../../shared-fullstack/types';
 import {
   Box,
   Center,

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Center, Spinner } from '@chakra-ui/react';
 
 import { ImgSlider } from '../../../../components';

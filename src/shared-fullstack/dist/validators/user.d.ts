@@ -64,6 +64,7 @@ export declare const UserProfile: z.ZodObject<{
     is1099Eligible: z.ZodBoolean;
     completedAccreditation: z.ZodBoolean;
     birthDate: z.ZodString;
+    numInvestments: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     id: string;
     isAdmin: boolean;
@@ -97,6 +98,7 @@ export declare const UserProfile: z.ZodObject<{
     is1099Eligible: boolean;
     completedAccreditation: boolean;
     birthDate: string;
+    numInvestments: number | null;
 }, {
     id: string;
     isAdmin: boolean;
@@ -130,6 +132,7 @@ export declare const UserProfile: z.ZodObject<{
     is1099Eligible: boolean;
     completedAccreditation: boolean;
     birthDate: string;
+    numInvestments: number | null;
 }>;
 export declare type UserProfileT = z.infer<typeof UserProfile>;
 export declare const AdminPanelUserInfo: z.ZodObject<{

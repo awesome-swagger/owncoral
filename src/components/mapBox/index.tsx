@@ -23,7 +23,7 @@ export const MapBox = ({ address }: { address: any }) => {
         }
       }}
     >
-      <Box ref={mapContainerRef} w="100%" h="25em" />
+      <Box ref={mapContainerRef} w="100%" h="25em" borderRadius="2xl" />
     </InView>
   );
 

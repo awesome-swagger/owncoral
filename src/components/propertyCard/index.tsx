@@ -1,12 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Button, Icon, Center, Image } from '@chakra-ui/react';
-import { CardTop } from '../propertyCard/CardTop';
-import { CardBottom } from '../propertyCard/CardBottom';
+import React, { useEffect, useState } from 'react';
 import { FiMapPin } from 'react-icons/fi';
-import { CardStyle, ImgZoomOut, ImgZoomIn, ImgZoom, CardImg, CardGradient } from './styleProps';
+import { Box, Button, Center, Icon, Image } from '@chakra-ui/react';
 
 import MapImg from '../../assets/Map.png';
 import HouseImg from '../../assets/Multifamily_Night.png';
+
+import { CardBottom } from '../propertyCard/CardBottom';
+import { CardTop } from '../propertyCard/CardTop';
+import {
+  CardGradient,
+  CardImg,
+  CardStyle,
+  ImgZoom,
+  ImgZoomIn,
+  ImgZoomOut
+} from './styleProps';
 
 export const PropertyCard = ({ data }: { data: any }) => {
   const Map = MapImg;

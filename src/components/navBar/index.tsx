@@ -17,13 +17,15 @@ import { Portal } from '@visx/tooltip';
 
 import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
+import { useNavHeight } from '../../lib/useNavHeight';
 
 const NAV_ZINDEX = 5;
+const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
 const navLinks = [
   {
     name: 'Listings',
-    url: '/coming-soon/listings',
+    url: '/listings',
     icon: FiTag,
   },
   {
@@ -48,7 +50,7 @@ const navLinks = [
   },
 ];
 
-if (import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development') {
+if (!isProd) {
   navLinks.push({
     name: 'Drafts',
     url: '/drafts',
@@ -56,7 +58,8 @@ if (import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'development') {
   });
 }
 
-const navBarTopBreakpoint = 'md';
+// Past this size, navbar only shown on top bar (no footer)
+export const NAVBAR_TOP_BREAKPOINT = 'md';
 
 /*
   Layout
@@ -77,10 +80,8 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
   const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
-  const headerHeight = `${13 / 4}rem`;
-  const mobileFooterExtraHeight = 3;
-  const footerHeight = isTouch ? `${16 / 4}rem` : `${(16 - mobileFooterExtraHeight) / 4}rem`;
-  const isBottomNav = useBreakpointValue({ base: true, [navBarTopBreakpoint]: false });
+  const { headerHeight, footerHeight, extraHeight } = useNavHeight();
+  const isBottomNav = useBreakpointValue({ base: true, [NAVBAR_TOP_BREAKPOINT]: false });
 
   const navColor = useColorModeValue('gray.50', 'whiteAlpha.200');
 
@@ -117,7 +118,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 
       {/* This goes at bottom of content to match footer height */}
       <Portal>
-        <Box display={{ [navBarTopBreakpoint]: 'none' }} h={footerHeight} />
+        <Box display={{ [NAVBAR_TOP_BREAKPOINT]: 'none' }} h={footerHeight} />
       </Portal>
 
       {/* Provide a default bgColor backing transparency in dark mode */}
@@ -128,14 +129,14 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         w="100%"
         boxShadow="xs"
         h={footerHeight}
-        display={{ [navBarTopBreakpoint]: 'none' }}
+        display={{ [NAVBAR_TOP_BREAKPOINT]: 'none' }}
         /* match theme.styles.global.body.bg for dark mode */
         bgColor="gray.800"
         zIndex={NAV_ZINDEX}
         sx={{ overscrollBehavior: 'none' }}
       >
         {/* Extra space at bottom on mobile to avoid */}
-        <Center bg={navColor} h="100%" w="100%" pb={isTouch ? mobileFooterExtraHeight : 0}>
+        <Center bg={navColor} h="100%" w="100%" pb={isTouch ? extraHeight : 0}>
           <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
         </Center>
       </Box>

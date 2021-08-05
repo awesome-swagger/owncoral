@@ -1,4 +1,4 @@
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Box, Divider } from '@chakra-ui/react';
 
 import { Images } from './Images';

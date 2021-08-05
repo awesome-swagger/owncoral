@@ -12,7 +12,7 @@ export declare const PortfolioPropertyDetailInvestment: z.ZodObject<{
     lastDistributionTotal: z.ZodNumber;
     lastDistributionRental: z.ZodNumber;
     lastDistributionSpecial: z.ZodNumber;
-    lastDistributionInitiatedAt: z.ZodNullable<z.ZodDate>;
+    lastDistributionMonth: z.ZodNullable<z.ZodDate>;
     months: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     propertyId: string;
@@ -27,7 +27,7 @@ export declare const PortfolioPropertyDetailInvestment: z.ZodObject<{
     lastDistributionTotal: number;
     lastDistributionRental: number;
     lastDistributionSpecial: number;
-    lastDistributionInitiatedAt: Date | null;
+    lastDistributionMonth: Date | null;
     months: number | null;
 }, {
     propertyId: string;
@@ -42,7 +42,7 @@ export declare const PortfolioPropertyDetailInvestment: z.ZodObject<{
     lastDistributionTotal: number;
     lastDistributionRental: number;
     lastDistributionSpecial: number;
-    lastDistributionInitiatedAt: Date | null;
+    lastDistributionMonth: Date | null;
     months: number | null;
 }>;
 export declare type PortfolioPropertyDetailInvestmentT = z.infer<typeof PortfolioPropertyDetailInvestment>;

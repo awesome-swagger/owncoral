@@ -1,4 +1,4 @@
-import { Flex, Box, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 
 export const CardTop = ({ data }: { data: any }) => (
   <Flex justifyContent="space-between" flexWrap="wrap">

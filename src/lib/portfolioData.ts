@@ -1,6 +1,6 @@
-import PropertyImg from '../assets/Multifamily_Night.png';
-import MapImg2 from '../assets/Map2.png';
 import RenovationImg from '../assets/CapturaRenovation.png';
+import MapImg2 from '../assets/Map2.png';
+import PropertyImg from '../assets/Multifamily_Night.png';
 
 export const DummyData = {
   street: '3 Linden St',

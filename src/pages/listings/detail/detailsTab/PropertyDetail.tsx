@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { FaRegBuilding } from 'react-icons/fa';
 import { FiSquare, FiUsers } from 'react-icons/fi';
 import { GiStairs } from 'react-icons/gi';
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
 
 import { Card } from '../../../../components';

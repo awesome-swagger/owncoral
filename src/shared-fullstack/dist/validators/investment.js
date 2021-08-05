@@ -17,6 +17,6 @@ export const PortfolioPropertyDetailInvestment = z.object({
     lastDistributionRental: z.number(),
     lastDistributionSpecial: z.number(),
     // Will be null if there's no distribution yet
-    lastDistributionInitiatedAt: z.date().nullable(),
+    lastDistributionMonth: z.date().nullable(),
     months: z.number().nullable(),
 });

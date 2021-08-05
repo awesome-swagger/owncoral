@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Button, Divider, Flex, Image, Text, VStack } from '@chakra-ui/react';
 
 import { Headline, Title2 } from '../../../../components/text';

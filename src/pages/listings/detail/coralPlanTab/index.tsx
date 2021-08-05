@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Divider } from '@chakra-ui/react';
 
 import { Financing } from '../coralPlanTab/Financing';

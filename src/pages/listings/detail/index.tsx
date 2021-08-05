@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
   ListingsPropertyDetailT,
-} from '@app/shared-fullstack/types';
+} from '../../../shared-fullstack/types';
 import {
   AspectRatio,
   Box,

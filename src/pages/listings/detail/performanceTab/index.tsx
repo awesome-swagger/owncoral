@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { FiDollarSign, FiMapPin, FiTag } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import type { ListingsPropertyDetailT } from '@app/shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import {
   Box,
   Divider,
