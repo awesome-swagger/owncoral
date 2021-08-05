@@ -16,18 +16,14 @@ export const Images = ({ listingsDetail }: PropertyLocationPropsT) => {
   return (
     <Fragment>
       <Title2 my={4}>Photos</Title2>
-      {newImages ? (
-        <ImgSlider
-          images={newImages}
-          fallback={
-            <Center w="100%" h={window.innerHeight * 0.4}>
-              <Spinner />
-            </Center>
-          }
-        />
-      ) : (
-        ''
-      )}
+      <ImgSlider
+        images={newImages}
+        fallback={
+          <Center w="100%" h={window.innerHeight * 0.4}>
+            <Spinner />
+          </Center>
+        }
+      />
     </Fragment>
   );
 };

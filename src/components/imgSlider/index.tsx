@@ -155,7 +155,10 @@ const CenterCarousel = ({
                 onOpen();
               }}
             >
-              <Box className="embla__slide__inner" h={{ base: '250px', sm: '300px' }}>
+              <Box
+                className="embla__slide__inner"
+                h={{ base: '250px !important', sm: '300px !important' }}
+              >
                 <Box
                   className="embla__slide__parallax"
                   style={{ transform: `translateX(${parallaxValues[idx]}%)` }}
