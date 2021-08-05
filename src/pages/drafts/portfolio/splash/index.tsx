@@ -1,6 +1,6 @@
 import { useEffect, useCallback, Fragment } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { Box, Flex, Center, Icon, Image, Button } from '@chakra-ui/react';
+import { Box, Flex, Center, Icon, Button } from '@chakra-ui/react';
 import { FaChartLine } from 'react-icons/fa';
 import { FiMap, FiInfo, FiChevronLeft } from 'react-icons/fi';
 import MapImg from '../../../../assets/Frame269.png';

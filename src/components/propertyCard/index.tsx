@@ -7,14 +7,7 @@ import HouseImg from '../../assets/Multifamily_Night.png';
 
 import { CardBottom } from '../propertyCard/CardBottom';
 import { CardTop } from '../propertyCard/CardTop';
-import {
-  CardGradient,
-  CardImg,
-  CardStyle,
-  ImgZoom,
-  ImgZoomIn,
-  ImgZoomOut
-} from './styleProps';
+import { CardGradient, CardImg, CardStyle, ImgZoom, ImgZoomIn, ImgZoomOut } from './styleProps';
 
 export const PropertyCard = ({ data }: { data: any }) => {
   const Map = MapImg;
@@ -58,7 +51,7 @@ export const PropertyCard = ({ data }: { data: any }) => {
         <Button
           top={-16}
           pos="absolute"
-          border="4px"
+          border="3px solid"
           borderColor="white"
           h={12}
           w={12}

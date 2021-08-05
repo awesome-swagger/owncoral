@@ -19,3 +19,4 @@ export { ProtectedRoute } from './protectedRoute';
 export { ScrollSlider } from './scrollSlider';
 export { SubmitBtn } from './submitBtn';
 export { TimeoutModal } from './timeoutModal';
+export { ListingCard } from './listingCard';

@@ -1,29 +1,16 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import { useEmblaCarousel } from 'embla-carousel/react';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
-import {
-  Box,
-  Center,
-  Flex,
-  Image,
-  Spinner,
-  Text,
-  useColorModeValue,
-  useMediaQuery,
-  useToast,
-  VStack,
-} from '@chakra-ui/react';
-
-import { Container, NavBar, ProtectedRoute } from '../../components';
-import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
-import { Overline, Subhead, Title1, Title2 } from '../../components/text';
+import { Box, Center, Spinner, useToast, VStack } from '@chakra-ui/react';
+import { Container, NavBar, ProtectedRoute, ListingCard } from '../../components';
+import { Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
-import { formatFinancial } from '../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../lib/urlFragments';
-import { useNavHeight } from '../../lib/useNavHeight';
 import Error404 from '../error404';
 import ListingDetail from './detail';
+import './embla.css';
 
 const Listings = () => {
   const { url: listingsRootUrl } = useRouteMatch();
@@ -85,136 +72,54 @@ type ListingsMainPropsT = {
 };
 const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
   const history = useHistory();
+  const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ skipSnaps: true });
+
+  const onSlideClick = useCallback(
+    (listing) => {
+      if (emblaApi && emblaApi.clickAllowed())
+        history.push(listingsRootUrl + '/detail?property=' + addressToUrlFragment(listing.address));
+    },
+    [emblaApi],
+  );
+  const onSelect = useCallback(() => {
+    if (!embla) return;
+  }, [embla]);
+
+  useEffect(() => {
+    if (!embla) return;
+    embla.on('select', onSelect);
+    onSelect();
+  }, [embla, onSelect]);
 
   return (
-    <Container showColorModeButton={false}>
+    <Container px="0" showColorModeButton={false}>
       <Box userSelect="none">
-        <Title2 mb={6}>Listings / Greater Boston Area</Title2>
+        <Title2 px={6} mb={6}>
+          Listings / Greater Boston Area
+        </Title2>
         {listings === null ? (
           <Center h="100%" minH="50vh">
             <Spinner />
           </Center>
         ) : (
-          <VStack spacing={12}>
-            {listings.map((listing, idx) => (
-              <ListingCard
-                listing={listing}
-                history={history}
-                listingRootUrl={listingsRootUrl}
-                key={idx}
-              />
-            ))}
-          </VStack>
+          <Box className="embla" ref={emblaRef}>
+            <Box className="embla__viewport" ref={viewportRef}>
+              <Box className="embla__container">
+                {listings.map((listing, idx) => (
+                  <Box className="embla__slide" key={idx}>
+                    <Box className="embla__slide__inner">
+                      <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          </Box>
         )}
       </Box>
     </Container>
   );
-};
-
-type ListingCardPropsT = {
-  listing: ListingsPropertyT;
-  history: ReturnType<typeof useHistory>;
-  listingRootUrl: string;
-};
-const ListingCard = ({ listing, history, listingRootUrl }: ListingCardPropsT) => {
-  const [isTouch] = useMediaQuery('(pointer: coarse)');
-  const { headerHeight, footerHeight, extraHeight } = useNavHeight();
-  const isLightMode = useColorModeValue(true, false);
-  const background = isLightMode
-    ? 'linear-gradient(0deg, rgb(129, 133, 146) 0%, rgb(174, 176, 182) ' +
-      '25%, rgb(208, 199, 197) 40%, rgb(228, 219, 217) ' +
-      '50%, rgb(208, 199, 197) 60%, rgb(174, 176, 182)  ' +
-      '75%, rgb(129, 133, 146) 100%)'
-    : 'whiteAlpha.200';
-
-  return listing.cardImageUrl ? (
-    <Box
-      w="100%"
-      pos="relative"
-      h={{
-        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight} - 6rem)`,
-        [NAVBAR_TOP_BREAKPOINT]: `calc(${window.innerHeight}px - ${headerHeight} - 8rem)`,
-      }}
-      maxHeight={{ base: 'unset', [NAVBAR_TOP_BREAKPOINT]: '550px' }}
-      boxShadow="sm"
-      borderRadius="3xl"
-      _hover={
-        isLightMode
-          ? { filter: 'saturate(1.35) contrast(1.1)' }
-          : { filter: 'saturate(1.35) contrast(1.1) brightness(1.1)', bgColor: 'whiteAlpha.300' }
-      }
-      _active={isTouch ? {} : { transform: 'translateY(1px) translateX(0.5px)' }}
-      transition="all 200ms"
-      color="white"
-      cursor="pointer"
-      onClick={() =>
-        history.push(listingRootUrl + '/detail?property=' + addressToUrlFragment(listing.address))
-      }
-      background={background}
-    >
-      <Box pos="absolute" top={0} left={0} w="100%" px={5} py={6}>
-        <Flex justify="space-between" align="baseline">
-          <Title1>{listing.name}</Title1>
-          {listing.mdlEquity !== null && (
-            <Text>${formatFinancial(Math.round(listing.mdlEquity * 0.01))}</Text>
-          )}
-        </Flex>
-        <Flex justify="space-between" align="baseline">
-          <Subhead>
-            {[
-              `${listing.numUnits} units`,
-              listing.areaLiving !== null
-                ? `${listing.areaLiving.toLocaleString()} ${listing.areaUnits}`
-                : null,
-            ]
-              .filter((tag) => tag !== null)
-              .join(' · ')}
-          </Subhead>
-          {listing.mdlEquity !== null && <Subhead>price per share</Subhead>}
-        </Flex>
-      </Box>
-
-      {/* TODO: Remove IRR and distribution checks after cleaning up data */}
-      <VStack pos="absolute" bottom={0} left={0} w="100%" px={5} py={8} align="stretch" spacing={2}>
-        <Flex justify="space-between" align="baseline">
-          <Overline sx={{ color: 'inherit' }}>
-            {listing.listingCashDist !== null ? 'Target cash distribution' : ''}
-          </Overline>
-
-          <Overline sx={{ color: 'inherit' }}>
-            {listing.listingIrr !== null ? 'Target IRR' : ''}
-          </Overline>
-        </Flex>
-        <Flex justify="space-between" align="baseline">
-          <Title2>
-            {listing.listingCashDist !== null
-              ? Math.round(listing.listingCashDist * 100) + '%'
-              : ''}
-          </Title2>
-          <Title2>
-            {listing.listingIrr !== null
-              ? `${Math.round(listing.listingIrr * 100) - 1}-${
-                  Math.round(listing.listingIrr * 100) + 1
-                }%`
-              : ''}
-          </Title2>
-        </Flex>
-      </VStack>
-
-      <Image
-        src={listing.cardImageUrl}
-        h="100%"
-        w="100%"
-        objectFit="cover"
-        borderRadius="3xl"
-        fallback={
-          <Center h="100%">
-            <Spinner />
-          </Center>
-        }
-      />
-    </Box>
-  ) : null;
 };
 
 // eslint-disable-next-line import/no-default-export
