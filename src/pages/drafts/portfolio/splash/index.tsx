@@ -7,7 +7,6 @@ import MapImg from '../../../../assets/Frame269.png';
 import { Container, PropertyCard, NavBar } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { DummyData } from '../../../../lib/portfolioData';
-import './embla.css';
 
 /*
   TODO:
@@ -57,11 +56,14 @@ const PortfolioSplash = () => {
           <Box className="embla__viewport" ref={viewportRef}>
             <Box
               className="embla__container"
+              pb={6}
               h={{ base: `calc(${window.innerHeight}px - 14rem)`, md: 'calc(725px - 7rem)' }}
             >
               {slides.map((val, ind) => (
-                <Box className="embla__slide" key={ind}>
-                  <Box className="embla__slide__inner">{val}</Box>
+                <Box className="embla__slide" minW="85%" p="0" mx={2} key={ind}>
+                  <Box className="embla__slide__inner" h="100%">
+                    {val}
+                  </Box>
                 </Box>
               ))}
             </Box>

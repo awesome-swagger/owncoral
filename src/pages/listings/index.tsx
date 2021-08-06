@@ -2,15 +2,16 @@ import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
-import { Box, Center, Spinner, useToast, VStack } from '@chakra-ui/react';
+import { Box, Center, Spinner, useToast } from '@chakra-ui/react';
 import { Container, NavBar, ProtectedRoute, ListingCard } from '../../components';
+import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
 import { Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
+import { useNavHeight } from '../../lib/useNavHeight';
 import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
 import { addressToUrlFragment } from '../../lib/urlFragments';
 import Error404 from '../error404';
 import ListingDetail from './detail';
-import './embla.css';
 
 const Listings = () => {
   const { url: listingsRootUrl } = useRouteMatch();
@@ -74,6 +75,7 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
   const history = useHistory();
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [emblaRef, emblaApi] = useEmblaCarousel({ skipSnaps: true });
+  const { headerHeight, footerHeight, extraHeight } = useNavHeight();
 
   const onSlideClick = useCallback(
     (listing) => {
@@ -97,23 +99,27 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
       px="0"
       overflow="visible"
       showColorModeButton={false}
-      h={{ base: `calc(${window.innerHeight}px - 8rem)`, md: 'auto' }}
+      h={{
+        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight})`,
+        [NAVBAR_TOP_BREAKPOINT]: 'auto',
+      }}
+      minH="0"
     >
       <Box userSelect="none">
         <Title2 px={6} mb={6}>
           Listings / Greater Boston Area
         </Title2>
         {listings === null ? (
-          <Center h="100%" minH="50vh">
+          <Center h="100%" minH="70vh">
             <Spinner />
           </Center>
         ) : (
           <Box className="embla" ref={emblaRef}>
             <Box className="embla__viewport" ref={viewportRef}>
-              <Box className="embla__container">
+              <Box className="embla__container" pb={6}>
                 {listings.map((listing, idx) => (
-                  <Box className="embla__slide" key={idx}>
-                    <Box className="embla__slide__inner">
+                  <Box className="embla__slide" minW="85%" mx={2} key={idx}>
+                    <Box className="embla__slide__inner" overflow="visible">
                       <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
                     </Box>
                   </Box>
