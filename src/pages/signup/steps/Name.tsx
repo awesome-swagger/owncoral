@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Button, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
 import type { FormRef, StepPropsT } from '../index';
@@ -37,51 +37,46 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
 
   return (
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
-      <Container pb={28} layerStyle="noSelect">
-        <BackBtn handleClick={prevStep} />
-        <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
-          Tell us about yourself
-        </Heading>
-        <Text fontSize="md" textAlign="left">
-          Please enter your full legal name. Your legal name should match any form of government ID.
-        </Text>
-        <FormLabel mt={8}>
-          <Text layerStyle="labelColor" fontSize="md">
-            FIRST NAME
+      <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
+        <Box>
+          <BackBtn handleClick={prevStep} />
+          <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
+            Tell us about yourself
+          </Heading>
+          <Text fontSize="md" textAlign="left">
+            Please enter your full legal name. Your legal name should match any form of government
+            ID.
           </Text>
-          <Input
-            placeholder="First Name"
-            name="firstName"
-            ref={register}
-            h={12}
-            mt={1}
-            variant="filled"
-            onChange={handleSubmit(handleChange)}
-          />
-        </FormLabel>
-        <FormLabel mt={8}>
-          <Text layerStyle="labelColor" fontSize="md">
-            LAST NAME
-          </Text>
-          <Input
-            placeholder="Last Name"
-            name="lastName"
-            ref={register}
-            h={12}
-            mt={1}
-            variant="filled"
-            onChange={handleSubmit(handleChange)}
-          />
-        </FormLabel>
-        <Button
-          pos="absolute"
-          bottom={10}
-          left={6}
-          w="calc(100% - 3rem)"
-          h={12}
-          type="submit"
-          disabled={!firstName || !lastName}
-        >
+          <FormLabel mt={8}>
+            <Text layerStyle="labelColor" fontSize="md">
+              FIRST NAME
+            </Text>
+            <Input
+              placeholder="First Name"
+              name="firstName"
+              ref={register}
+              h={12}
+              mt={1}
+              variant="filled"
+              onChange={handleSubmit(handleChange)}
+            />
+          </FormLabel>
+          <FormLabel mt={8}>
+            <Text layerStyle="labelColor" fontSize="md">
+              LAST NAME
+            </Text>
+            <Input
+              placeholder="Last Name"
+              name="lastName"
+              ref={register}
+              h={12}
+              mt={1}
+              variant="filled"
+              onChange={handleSubmit(handleChange)}
+            />
+          </FormLabel>
+        </Box>
+        <Button h={12} type="submit" disabled={!firstName || !lastName}>
           Continue
         </Button>
       </Container>

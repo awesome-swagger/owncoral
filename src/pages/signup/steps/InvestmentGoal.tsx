@@ -39,50 +39,49 @@ export const InvestmentGoal = forwardRef<DivRef, StepPropsT>(
     );
 
     return (
-      <Container ref={ref} layerStyle="noSelect" pb={32}>
-        <BackBtn handleClick={prevStep} />
-        <ProgressBar total={7} value={2} />
-        <Heading size="md" mt={8} mb={2} textAlign="left">
-          What goals do you want to achieve through investment property ownership?
-        </Heading>
-        <Text fontSize="md">Select all that apply</Text>
-        <Box mt={8}>
-          {investmentGoals.map(({ value, label }) => (
-            <Flex
-              px={6}
-              py={3}
-              mt={2}
-              key={value}
-              textAlign="left"
-              alignItems="center"
-              borderRadius="full"
-              cursor="pointer"
-              textStyle="Body1"
-              onClick={() => handleSubmit(value)}
-              layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
-            >
-              <Icon
-                as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                layerStyle="iconColor"
-                bg="transparent !important"
-                h={5}
-                w={5}
-                mr={2}
-              />
-              {label}
-            </Flex>
-          ))}
+      <Container
+        d="flex"
+        flexDir="column"
+        justifyContent="space-between"
+        ref={ref}
+        layerStyle="noSelect"
+      >
+        <Box>
+          <BackBtn handleClick={prevStep} />
+          <ProgressBar total={7} value={2} />
+          <Heading size="md" mt={8} mb={2} textAlign="left">
+            What goals do you want to achieve through investment property ownership?
+          </Heading>
+          <Text fontSize="md">Select all that apply</Text>
+          <Box my={8}>
+            {investmentGoals.map(({ value, label }) => (
+              <Flex
+                px={6}
+                py={3}
+                mt={2}
+                key={value}
+                textAlign="left"
+                alignItems="center"
+                borderRadius="full"
+                cursor="pointer"
+                textStyle="Body1"
+                onClick={() => handleSubmit(value)}
+                layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
+              >
+                <Icon
+                  as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
+                  layerStyle="iconColor"
+                  bg="transparent !important"
+                  h={5}
+                  w={5}
+                  mr={2}
+                />
+                {label}
+              </Flex>
+            ))}
+          </Box>
         </Box>
-        <Button
-          pos="absolute"
-          bottom={10}
-          left={6}
-          w="calc(100% - 3rem)"
-          h={12}
-          cursor="pointer"
-          disabled={!formStep?.length}
-          onClick={nextStep}
-        >
+        <Button h={12} cursor="pointer" disabled={!formStep?.length} onClick={nextStep}>
           Continue
         </Button>
       </Container>

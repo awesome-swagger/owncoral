@@ -38,7 +38,7 @@ export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
           <Heading size="md" as="h4" mt={8} textAlign="left">
             How long have you been investing?
           </Heading>
-          <Box mt={8}>
+          <Box my={8}>
             {experience.map(({ value, label }) => (
               <Box
                 px={6}

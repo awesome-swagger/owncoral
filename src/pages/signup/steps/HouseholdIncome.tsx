@@ -43,7 +43,7 @@ export const HouseholdIncome = forwardRef<DivRef, StepPropsT>(
         <Text fontSize="md">
           We need to know you better in order to comply with SEC regulations.
         </Text>
-        <Box mt={8}>
+        <Box my={8}>
           {householdIncomes.map(({ value, label }) => (
             <Box
               px={6}

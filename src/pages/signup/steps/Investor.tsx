@@ -47,56 +47,54 @@ export const Investor = forwardRef<DivRef, StepPropsT>(
       <div>
         {available === 'Available' ? (
           <Box ref={ref} layerStyle="noSelect">
-            <Container pb={28}>
-              <BackBtn handleClick={prevStep} />
-              <Heading size="md" mt={8} mb={2} textAlign="left">
-                Are you an accredited investor?
-              </Heading>
-              <Text fontSize="md" textAlign="left">
-                You are an accredited investor if any of the first three statements below are true.
-                Select all that apply.
-              </Text>
-              <Box mt={8}>
-                {accreditedInvestor.map(({ value, label, desc }, ind) => (
-                  <Fragment key={value}>
-                    {ind === 0 && <Divider />}
-                    <Flex
-                      px={2}
-                      py={3}
-                      mt={2}
-                      textAlign="left"
-                      cursor="pointer"
-                      textStyle="Body1"
-                      fontWeight="600"
-                      onClick={() => handleSubmit(value)}
-                    >
-                      <Icon
-                        as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                        layerStyle="iconColor"
-                        bg="transparent !important"
-                        h={5}
-                        w={5}
-                        mr={2}
-                      />
-                      <Box>
-                        {label}
-                        {desc ? (
-                          <Text textStyle="Subhead" mt={2}>
-                            {desc}
-                          </Text>
-                        ) : (
-                          ''
-                        )}
-                      </Box>
-                    </Flex>
-                  </Fragment>
-                ))}
+            <Container d="flex" flexDir="column" justifyContent="space-between">
+              <Box>
+                <BackBtn handleClick={prevStep} />
+                <Heading size="md" mt={8} mb={2} textAlign="left">
+                  Are you an accredited investor?
+                </Heading>
+                <Text fontSize="md" textAlign="left">
+                  You are an accredited investor if any of the first three statements below are
+                  true. Select all that apply.
+                </Text>
+                <Box my={8}>
+                  {accreditedInvestor.map(({ value, label, desc }, ind) => (
+                    <Fragment key={value}>
+                      {ind === 0 && <Divider />}
+                      <Flex
+                        px={2}
+                        py={3}
+                        mt={2}
+                        textAlign="left"
+                        cursor="pointer"
+                        textStyle="Body1"
+                        fontWeight="600"
+                        onClick={() => handleSubmit(value)}
+                      >
+                        <Icon
+                          as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
+                          layerStyle="iconColor"
+                          bg="transparent !important"
+                          h={5}
+                          w={5}
+                          mr={2}
+                        />
+                        <Box>
+                          {label}
+                          {desc ? (
+                            <Text textStyle="Subhead" mt={2}>
+                              {desc}
+                            </Text>
+                          ) : (
+                            ''
+                          )}
+                        </Box>
+                      </Flex>
+                    </Fragment>
+                  ))}
+                </Box>
               </Box>
               <Button
-                pos="absolute"
-                bottom={10}
-                left={6}
-                w="calc(100% - 3rem)"
                 h={12}
                 cursor="pointer"
                 disabled={!formStep?.length}

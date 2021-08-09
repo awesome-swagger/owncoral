@@ -14,59 +14,61 @@ const initialQuestions: { value: AvailableT; label: string }[] = [
   { value: 'notAvailable', label: 'No' },
 ];
 
-export const Residency = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
-  const [available, setAvailable] = useState<AvailableT>('Available');
-  const form = useContext(StepFormContext);
+export const Residency = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
+    const [available, setAvailable] = useState<AvailableT>('Available');
+    const form = useContext(StepFormContext);
 
-  const handleSubmit = useCallback(
-    (value) => {
-      if (value === 'Available') {
-        form.dispatch({ type: 'update-form', payload: { step2: value } });
-        nextStep();
-      } else {
-        setAvailable(value);
-      }
-    },
-    [form, nextStep],
-  );
+    const handleSubmit = useCallback(
+      (value) => {
+        if (value === 'Available') {
+          form.dispatch({ type: 'update-form', payload: { step2: value } });
+          nextStep();
+        } else {
+          setAvailable(value);
+        }
+      },
+      [form, nextStep],
+    );
 
-  return (
-    <Box ref={ref} layerStyle="noSelect">
-      {available === 'Available' ? (
-        <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading as="h4" size="md" mt={8} mb={6} textAlign="left">
-            Are you a U.S resident?
-          </Heading>
-          {initialQuestions.map(({ value, label }) => (
-            <Box
-              key={value}
-              px={6}
-              py={3}
-              mt={2}
-              borderRadius="full"
-              textAlign="left"
-              cursor="pointer"
-              onClick={() => handleSubmit(value)}
-              layerStyle="selectionBox"
-            >
-              {label}
-            </Box>
-          ))}
-        </Container>
-      ) : available === 'taxID' ? (
-        <TaxID
-          goBack={() => setAvailable('Available')}
-          form={form}
-          nextStep={nextStep}
-          prevStep={prevStep}
-        />
-      ) : (
-        <NotAvailable goBack={() => setAvailable('Available')} />
-      )}
-    </Box>
-  );
-});
+    return (
+      <Box ref={ref} layerStyle="noSelect">
+        {available === 'Available' ? (
+          <Container>
+            <BackBtn handleClick={prevStep} />
+            <Heading as="h4" size="md" mt={8} mb={6} textAlign="left">
+              Are you a U.S resident?
+            </Heading>
+            {initialQuestions.map(({ value, label }) => (
+              <Box
+                key={value}
+                px={6}
+                py={3}
+                mt={2}
+                borderRadius="full"
+                textAlign="left"
+                cursor="pointer"
+                onClick={() => handleSubmit(value)}
+                layerStyle="selectionBox"
+              >
+                {label}
+              </Box>
+            ))}
+          </Container>
+        ) : available === 'taxID' ? (
+          <TaxID
+            goBack={() => setAvailable('Available')}
+            form={form}
+            nextStep={nextStep}
+            prevStep={prevStep}
+          />
+        ) : (
+          <NotAvailable goBack={() => setAvailable('Available')} />
+        )}
+      </Box>
+    );
+  },
+);
 
 const TaxID = ({
   nextStep,
@@ -81,37 +83,31 @@ const TaxID = ({
   }, [taxID, form, nextStep]);
 
   return (
-    <Container layerStyle="noSelect">
-      <BackBtn handleClick={goBack} />
-      <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
-        Please enter your Tax ID
-      </Heading>
-      <Text fontSize="md" textAlign="left">
-        Lorem ipsum dolor sir
-      </Text>
-      <Input
-        as={InputMask}
-        mask="999-99-9999"
-        type="tel"
-        maskPlaceholder="0"
-        placeholder="XXX-XX-XXXX"
-        fontFamily="monospace"
-        className="mask_input"
-        h={12}
-        mt={8}
-        value={taxID}
-        variant="filled"
-        onChange={(e: any) => setTaxID(e.target.value)}
-      />
-      <Button
-        pos="absolute"
-        bottom={10}
-        left={6}
-        w="calc(100% - 3rem)"
-        h={12}
-        disabled={!taxID.length}
-        onClick={() => handleSubmit()}
-      >
+    <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
+      <Box>
+        <BackBtn handleClick={goBack} />
+        <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+          Please enter your Tax ID
+        </Heading>
+        <Text fontSize="md" textAlign="left">
+          Lorem ipsum dolor sir
+        </Text>
+        <Input
+          as={InputMask}
+          mask="999-99-9999"
+          type="tel"
+          maskPlaceholder="0"
+          placeholder="XXX-XX-XXXX"
+          fontFamily="monospace"
+          className="mask_input"
+          h={12}
+          mt={8}
+          value={taxID}
+          variant="filled"
+          onChange={(e: any) => setTaxID(e.target.value)}
+        />
+      </Box>
+      <Button h={12} disabled={!taxID.length} onClick={() => handleSubmit()}>
         Continue
       </Button>
     </Container>

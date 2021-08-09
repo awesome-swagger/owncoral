@@ -42,7 +42,7 @@ export const AllocateToRealState = forwardRef<DivRef, StepPropsT>(
           How much do you intend to allocate to real estate through Coral in the next 12 months?
         </Heading>
         <Text fontSize="md">This helps us gauge demand, which helps us serve you better.</Text>
-        <Box mt={8}>
+        <Box my={8}>
           {investment.map(({ value, label }) => (
             <Box
               px={6}
