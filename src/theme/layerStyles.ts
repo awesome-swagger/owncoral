@@ -80,12 +80,6 @@ export const layerStyles = {
       color: 'primary.200',
     },
   },
-  popUpColor: {
-    bg: 'white',
-    '.chakra-ui-dark &': {
-      bg: 'gray.600',
-    },
-  },
   iconColor: {
     color: 'gray',
     bgColor: 'white',
@@ -110,12 +104,6 @@ export const layerStyles = {
     bg: '#80ECD1',
     '.chakra-ui-dark &': {
       bg: '#F1FAEE',
-    },
-  },
-  labelColor: {
-    color: '#6F8283',
-    '.chakra-ui-dark &': {
-      color: '#FFFFFFB8',
     },
   },
 };

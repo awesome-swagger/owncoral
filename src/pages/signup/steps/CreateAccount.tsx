@@ -51,7 +51,7 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
               Let’s create your account
             </Heading>
             <FormLabel mt={8}>
-              <Text layerStyle="labelColor" fontSize="md" textAlign="left">
+              <Text variant="label" fontSize="md" textAlign="left">
                 Email
               </Text>
               <Input
@@ -65,7 +65,7 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
               />
             </FormLabel>
             <FormLabel mt={4}>
-              <Text layerStyle="labelColor" fontSize="md" textAlign="left">
+              <Text variant="label" fontSize="md" textAlign="left">
                 Password
               </Text>
               <InputGroup>

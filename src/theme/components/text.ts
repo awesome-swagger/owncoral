@@ -12,6 +12,11 @@ const variants = {
       color: mode(`${colorScheme}.500`, `${colorScheme}.500`)(props),
     };
   },
+  label: (props: Dict) => {
+    return {
+      color: mode('#6F8283', '#FFFFFFB8')(props),
+    };
+  },
 };
 
 export const Text = {

@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Box, Center, Heading } from '@chakra-ui/react';
 
-import { Container, Option } from '../../../../components';
+import { Container, Option, FilterPopUp } from '../../../../components';
 
 export const PopUpBox = ({
   handleClose,
@@ -11,15 +11,7 @@ export const PopUpBox = ({
   <Box w="100vw" h={window.innerHeight} pos="fixed" top="0" left="0" bg="blackAlpha.400">
     <Container>
       <Box w="100%" h="100%" pos="absolute" top="0" left="0" onClick={() => handleClose(false)} />
-      <Box
-        layerStyle="popUpColor"
-        borderTopRadius="2xl"
-        position="absolute"
-        bottom="0"
-        left="0"
-        w="100%"
-        p={4}
-      >
+      <FilterPopUp>
         <Heading fontSize="lg" fontWeight="bold">
           Filter by market
         </Heading>
@@ -87,7 +79,7 @@ export const PopUpBox = ({
             </Heading>
           </Center>
         </Option>
-      </Box>
+      </FilterPopUp>
     </Container>
   </Box>
 );

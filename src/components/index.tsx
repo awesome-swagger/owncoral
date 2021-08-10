@@ -20,3 +20,4 @@ export { ScrollSlider } from './scrollSlider';
 export { SubmitBtn } from './submitBtn';
 export { TimeoutModal } from './timeoutModal';
 export { ListingCard } from './listingCard';
+export { FilterPopUp } from './filterPopUp';

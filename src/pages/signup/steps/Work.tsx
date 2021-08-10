@@ -48,7 +48,7 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
           </Heading>
 
           <FormLabel mt={8}>
-            <Text layerStyle="labelColor">CURRENT ROLE OR TITLE</Text>
+            <Text variant="label">CURRENT ROLE OR TITLE</Text>
             <Input
               placeholder="Your current Role or Title"
               name="currentRole"
@@ -61,7 +61,7 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
             />
           </FormLabel>
           <FormLabel mt={8}>
-            <Text layerStyle="labelColor">CURRENT EMPLOYER</Text>
+            <Text variant="label">CURRENT EMPLOYER</Text>
             <Input
               placeholder="Your current employer"
               name="currentEmployer"
@@ -73,11 +73,11 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
               disabled={linkedInProfile}
             />
           </FormLabel>
-          <Text textAlign="center" layerStyle="labelColor" my={8}>
+          <Text textAlign="center" variant="label" my={8}>
             Or share
           </Text>
           <FormLabel mt={8}>
-            <Text layerStyle="labelColor">YOUR LINKEDIN PROFILE</Text>
+            <Text variant="label">YOUR LINKEDIN PROFILE</Text>
             <Input
               placeholder="linkedIn.com/in/yourprofilename"
               name="linkedInProfile"
