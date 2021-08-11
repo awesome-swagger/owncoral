@@ -1,12 +1,9 @@
 import { Box, Center } from '@chakra-ui/react';
-
 import { Headline } from '../../../../../../components/text';
-import { DummyData } from '../../../../../../lib/portfolioData';
 
 const NewsTab = () => {
-  // const dummyData = DummyData;
   return (
-    <Box layerStyle="lightBorder">
+    <Box>
       <Center my={6}>
         <Headline>Coming soon, please stay tuned!</Headline>
       </Center>

@@ -16,7 +16,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { BackBtn, Container } from '../../../../components';
+import { BackBtn, Container, BoxLightBorder } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 
 export const ConfirmTransaction = ({
@@ -34,7 +34,7 @@ export const ConfirmTransaction = ({
       <BackBtn handleClick={() => history.goBack()} />
       <Heading size="md">Invest in 3 Linden St</Heading>
       <Headline>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </Headline>
-      <Box px={4} my={8} border="1px" layerStyle="lightBorder">
+      <BoxLightBorder px={4} my={8}>
         <Heading size="xs" textAlign="center">
           3 Linden St
         </Heading>
@@ -47,9 +47,9 @@ export const ConfirmTransaction = ({
           <Title2>Your investment</Title2>
           <Title2 fontWeight="500">$50.000</Title2>
         </Flex>
-      </Box>
+      </BoxLightBorder>
       <Box pos="absolute" w="calc(100% - 2rem)" left={4} bottom={10}>
-        <Box border="1px" layerStyle="lightBorder" p={4} mb={4}>
+        <BoxLightBorder p={4} mb={4}>
           <Flex alignItems="center">
             <Checkbox onChange={() => setAgreement(!agreement)} />
             <Title2 ml={4}>I agree with the</Title2>
@@ -57,7 +57,7 @@ export const ConfirmTransaction = ({
               legal agreement
             </Title2>
           </Flex>
-        </Box>
+        </BoxLightBorder>
         <Button
           w="100%"
           disabled={agreement ? false : true}

@@ -1,4 +1,5 @@
-import { Box, Heading,Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Box, Heading, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { BoxLightBorder } from '../../../../../components';
 
 export const TabSection = () => (
   <Tabs>
@@ -22,11 +23,11 @@ export const TabSection = () => (
           <Heading layerStyle="highlightForeground" w="100%" fontSize="sm">
             Great business, fair price
           </Heading>
-          <Box border="1px" textAlign="center" cursor="pointer" layerStyle="lightBorder">
+          <BoxLightBorder textAlign="center" cursor="pointer">
             <Heading fontWeight="bold" fontSize="sm">
               What’s this?
             </Heading>
-          </Box>
+          </BoxLightBorder>
         </Box>
       </TabPanel>
       <TabPanel px="0">
@@ -40,11 +41,11 @@ export const TabSection = () => (
           <Heading layerStyle="highlightForeground" w="100%" fontSize="sm">
             Great business, fair price
           </Heading>
-          <Box border="1px" textAlign="center" cursor="pointer" layerStyle="lightBorder">
+          <BoxLightBorder textAlign="center" cursor="pointer">
             <Heading fontWeight="bold" fontSize="sm">
               What’s this?
             </Heading>
-          </Box>
+          </BoxLightBorder>
         </Box>
       </TabPanel>
     </TabPanels>

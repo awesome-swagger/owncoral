@@ -2,7 +2,7 @@ import { FiMapPin } from 'react-icons/fi';
 import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
-import { ScrollSlider } from '../../../../../components';
+import { ScrollSlider, BoxLightBorder } from '../../../../../components';
 
 const images = [RenovationImg, RenovationImg, RenovationImg];
 export const RenovationSection = () => (
@@ -48,8 +48,8 @@ export const RenovationSection = () => (
         <Heading fontSize="sm">Monthly rental income ($76,200 annually)</Heading>
       </Box>
     </Flex>
-    <Box px={4} my={4} textAlign="center" border="1px" layerStyle="lightBorder">
+    <BoxLightBorder px={4} my={4} textAlign="center">
       <Heading fontSize="lg"> Learn more about renovations </Heading>
-    </Box>
+    </BoxLightBorder>
   </Box>
 );

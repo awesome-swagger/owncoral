@@ -134,14 +134,13 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           </VStack>
         </Fragment>
       )}
-      {/* <Flex */}
+      {/* <FlexLightBorder */}
       {/*  justifyContent="space-between" */}
       {/*  alignItems="center" */}
       {/*  px={4} */}
       {/*  py={2} */}
       {/*  my={4} */}
       {/*  border="1px" */}
-      {/*  layerStyle="lightBorder" */}
       {/* > */}
       {/*  <Box> */}
       {/*    <Headline>Why Coral participates in equity?</Headline> */}
@@ -150,7 +149,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
       {/*  <Box> */}
       {/*    <Icon w={6} h={6} as={BsQuestionCircle} /> */}
       {/*  </Box> */}
-      {/* </Flex> */}
+      {/* </FlexLightBorder> */}
       {/* <Box h={4} /> */}
       {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
       {/*  Learn more about financing */}

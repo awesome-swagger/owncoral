@@ -80,8 +80,6 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/*    mr={2} */}
       {/*    py={2} */}
       {/*    px={3} */}
-      {/*    border="1px" */}
-      {/*    layerStyle="lightBorder" */}
       {/*    whiteSpace="nowrap" */}
       {/*  > */}
       {/*    All markets */}
@@ -95,7 +93,6 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
       {/*    py={2} */}
       {/*    px={3} */}
       {/*    border="1px" */}
-      {/*    layerStyle="lightBorder" */}
       {/*    whiteSpace="nowrap" */}
       {/*  > */}
       {/*    All entities */}

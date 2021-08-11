@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Box, Center, Heading, Icon, Image } from '@chakra-ui/react';
+import { Box, Center, Heading, Icon, Image, useColorModeValue } from '@chakra-ui/react';
 
 import MapImg from '../../../assets/MapsicleMap.png';
 import { Container } from '../../../components';
@@ -10,7 +10,7 @@ import { PopUpBox } from './popUpBox';
 
 const PortfolioMap = () => {
   const PortfolioData = DummyData;
-
+  const grayHeading = useColorModeValue('gray.400', 'gray.600');
   const [popUp, setPopUp] = useState(false);
   const history = useHistory();
 
@@ -39,7 +39,7 @@ const PortfolioMap = () => {
           mx="auto"
           onClick={() => setPopUp(true)}
         >
-          <Heading layerStyle="grayHeading" fontSize="sm" m="0">
+          <Heading color={grayHeading} fontSize="sm" m="0">
             {PortfolioData.stateRegion}
           </Heading>
           <Heading fontSize="sm" m="0">

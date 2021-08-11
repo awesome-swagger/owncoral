@@ -1,5 +1,5 @@
 import { Box, Heading, Image, ListItem, UnorderedList } from '@chakra-ui/react';
-
+import { BoxLightBorder } from '../../../../../components';
 import Map from '../../../../../assets/Map2.png';
 
 export const PropertyLocation = () => (
@@ -35,8 +35,8 @@ export const PropertyLocation = () => (
         <Heading fontSize="md">14 min drive/25 min train to downtown Boston</Heading>
       </ListItem>
     </UnorderedList>
-    <Box border="1px" textAlign="center" my={4} layerStyle="lightBorder">
+    <BoxLightBorder textAlign="center" my={4}>
       <Heading fontSize="md"> Learn more about location</Heading>
-    </Box>
+    </BoxLightBorder>
   </Box>
 );

@@ -7,7 +7,7 @@ import {
   ModalOverlay,
   useDisclosure,
 } from '@chakra-ui/react';
-
+import { BoxLightBorder } from '../../../../../components';
 import ChartImg from '../../../../../assets/Chart.png';
 import CourseCashFlow from '../../../../academy/courses/cashFlow';
 
@@ -17,19 +17,19 @@ export const ChartSection = () => {
   return (
     <Box>
       <Image src={ChartImg} alt="chart" w="100%" />
-      <Box border="1px" p={2} my={4} cursor="pointer" onClick={onOpen} layerStyle="lightBorder">
+      <BoxLightBorder p={2} my={4} cursor="pointer" onClick={onOpen} l>
         <Heading fontSize="md" m="0">
           Understanding investor cash flow
         </Heading>
         <Heading fontSize="sm" m="0">
           Crash course
         </Heading>
-      </Box>
-      <Box border="1px" p={2} my={4} layerStyle="lightBorder">
+      </BoxLightBorder>
+      <BoxLightBorder p={2} my={4}>
         <Heading fontSize="md" m="0">
           Learn more about hypothetical investment
         </Heading>
-      </Box>
+      </BoxLightBorder>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent

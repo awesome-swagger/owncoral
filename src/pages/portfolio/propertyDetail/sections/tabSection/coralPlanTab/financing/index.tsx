@@ -1,10 +1,9 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import React from 'react';
-import { FiChevronRight } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
-import { Box, Divider, Flex, Icon, Text, VStack } from '@chakra-ui/react';
+import { Box, Divider, Flex, Icon, VStack } from '@chakra-ui/react';
 
 import { Title2 } from '../../../../../../../components/text';
 import { formatFinancialSI } from '../../../../../../../lib/financialFormatter';
@@ -91,14 +90,12 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
               {/* </Flex> */}
             </React.Fragment>
           )}
-        {/* <Flex */}
+        {/* <FlexLightBorder */}
         {/*  justifyContent="space-between" */}
         {/*  alignItems="center" */}
         {/*  px={4} */}
         {/*  py={2} */}
         {/*  my={4} */}
-        {/*  border="1px" */}
-        {/*  layerStyle="lightBorder" */}
         {/* > */}
         {/*  <Box> */}
         {/*    <Headline>Why Coral participates in equity?</Headline> */}

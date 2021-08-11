@@ -7,9 +7,9 @@ import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
 import Academy from '../../../../../assets/academy-1.svg';
 import ChartImg from '../../../../../assets/Frame331.png';
 import Frame from '../../../../../assets/Frame615.png';
-import { ProgressBar } from '../../../../../components';
+import { ProgressBar, RecognizedCircle, OperatingCircle } from '../../../../../components';
 import { Headline, Title2 } from '../../../../../components/text';
-import { OverAllCashChart,RealizedAppreciationChart, RentalRevenueChart } from '../charts';
+import { OverAllCashChart, RealizedAppreciationChart, RentalRevenueChart } from '../charts';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -199,7 +199,7 @@ export const Data = [
         </Center>
         <Flex justifyContent="center" mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Box mr={2} w={2} h={2} borderRadius="full" layerStyle="operatingColor" />
+            <OperatingCircle />
             <Text textStyle="Body2">Operating Cash Flow</Text>
           </Flex>
         </Flex>
@@ -237,7 +237,7 @@ export const Data = [
         </Center>
         <Flex justifyContent="center" mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Box mr={2} w={2} h={2} borderRadius="full" layerStyle="recognizedColor" />
+            <RecognizedCircle />
             <Text textStyle="Body2">Recognized appreciation</Text>
           </Flex>
         </Flex>
@@ -276,11 +276,11 @@ export const Data = [
         </Center>
         <Flex justifyContent="space-between" px={2} mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Box mr={2} w={2} h={2} borderRadius="full" layerStyle="operatingColor" />
+            <OperatingCircle />
             <Text textStyle="Body2">Operating Cash Flow</Text>
           </Flex>
           <Flex alignItems="center">
-            <Box mr={2} w={2} h={2} borderRadius="full" layerStyle="recognizedColor" />
+            <RecognizedCircle />
             <Text textStyle="Body2">Recognized appreciation</Text>
           </Flex>
         </Flex>

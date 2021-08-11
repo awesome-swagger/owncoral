@@ -1,5 +1,6 @@
 import { BsQuestionCircle } from 'react-icons/bs';
 import { Box, Center, Flex, Heading, Icon } from '@chakra-ui/react';
+import { FlexLightBorder, BoxLightBorder } from '../../../../../components';
 
 export const SourcesAndUses = () => (
   <Box>
@@ -37,15 +38,7 @@ export const SourcesAndUses = () => (
         <Icon w={6} h={6} as={BsQuestionCircle} />
       </Box>
     </Center>
-    <Flex
-      justifyContent="space-between"
-      alignItems="center"
-      px={4}
-      py={2}
-      my={4}
-      border="1px"
-      layerStyle="lightBorder"
-    >
+    <FlexLightBorder justifyContent="space-between" alignItems="center" px={4} py={2} my={4}>
       <Box>
         <Heading fontSize="md" fontWeight="bold">
           Why Coral participates in equity?
@@ -55,7 +48,7 @@ export const SourcesAndUses = () => (
       <Box>
         <Icon w={6} h={6} as={BsQuestionCircle} />
       </Box>
-    </Flex>
+    </FlexLightBorder>
     <Heading mt={8} fontSize="md" fontWeight="bold">
       How the funds are going to be used?
     </Heading>
@@ -89,8 +82,8 @@ export const SourcesAndUses = () => (
         </Heading>
       </Flex>
     </Box>
-    <Box px={4} my={4} textAlign="center" border="1px" layerStyle="lightBorder">
+    <BoxLightBorder px={4} my={4} textAlign="center">
       <Heading fontSize="lg"> Learn more about uses of funds</Heading>
-    </Box>
+    </BoxLightBorder>
   </Box>
 );
