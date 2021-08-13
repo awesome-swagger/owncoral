@@ -117,11 +117,11 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
           </Center>
         }
       />
-      <Center pos="relative" mt={10}>
+      {/* <Center pos="relative" mt={10}>
         <Button top={-16} pos="absolute" border="3px solid" borderColor="white" h={12} w={12}>
           <Icon h={6} w={6} as={FiMapPin} />
         </Button>
-      </Center>
+      </Center> */}
     </Box>
   ) : null;
 };

@@ -103,6 +103,7 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
         base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight})`,
         [NAVBAR_TOP_BREAKPOINT]: 'auto',
       }}
+      pb={{ [NAVBAR_TOP_BREAKPOINT]: '0' }}
       minH="0"
     >
       <Box userSelect="none">
@@ -114,19 +115,30 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
             <Spinner />
           </Center>
         ) : (
-          <Box className="embla" ref={emblaRef}>
-            <Box className="embla__viewport" ref={viewportRef}>
-              <Box className="embla__container" pb={6}>
-                {listings.map((listing, idx) => (
-                  <Box className="embla__slide" minW="85%" mx={2} key={idx}>
-                    <Box className="embla__slide__inner" overflow="visible">
-                      <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
-                    </Box>
+          <>
+            <Box display={{ base: 'block', [NAVBAR_TOP_BREAKPOINT]: 'none' }}>
+              <Box className="embla" ref={emblaRef}>
+                <Box className="embla__viewport" ref={viewportRef}>
+                  <Box className="embla__container" pb={6}>
+                    {listings.map((listing, idx) => (
+                      <Box className="embla__slide" minW="85%" mx={2} key={idx}>
+                        <Box className="embla__slide__inner" overflow="visible">
+                          <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
+                        </Box>
+                      </Box>
+                    ))}
                   </Box>
-                ))}
+                </Box>
               </Box>
             </Box>
-          </Box>
+            <Box display={{ base: 'none', [NAVBAR_TOP_BREAKPOINT]: 'block' }}>
+              {listings.map((listing, idx) => (
+                <Box key={idx} px={6} pb={8}>
+                  <ListingCard listing={listing} onSlideClick={onSlideClick} />
+                </Box>
+              ))}
+            </Box>
+          </>
         )}
       </Box>
     </Container>
