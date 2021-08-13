@@ -1,9 +1,11 @@
 import { Fragment } from 'react';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
-import { Divider } from '@chakra-ui/react';
+import { Divider, Box } from '@chakra-ui/react';
 
 import { Financing } from '../coralPlanTab/Financing';
 import { ValueAddPlan } from './ValueAddPlan';
+import { Renovation } from './Renovation';
+import { RentalIncome } from './RentalIncome';
 
 type CoralPlanTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;
@@ -11,9 +13,17 @@ type CoralPlanTabPropsT = {
 const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
   return (
     <Fragment>
-      <Financing listingsDetail={listingsDetail} />
-      <Divider my={6} />
-      <ValueAddPlan listingsDetail={listingsDetail} />
+      <Box px={6}>
+        <Financing listingsDetail={listingsDetail} />
+        <Divider my={6} />
+        <ValueAddPlan listingsDetail={listingsDetail} />
+        <Divider my={6} />
+      </Box>
+      <Renovation listingsDetail={listingsDetail} />
+      <Box px={6}>
+        <Divider my={6} />
+        <RentalIncome listingsDetail={listingsDetail} />
+      </Box>
     </Fragment>
   );
 };

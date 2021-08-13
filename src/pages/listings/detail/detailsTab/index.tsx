@@ -10,7 +10,7 @@ type DetailsTabPropsT = {
 };
 const DetailsTab = ({ listingsDetail }: DetailsTabPropsT) => {
   return (
-    <Box>
+    <Box px={6}>
       <Images listingsDetail={listingsDetail} />
       <Divider my={6} />
       <PropertyLocation listingsDetail={listingsDetail} />

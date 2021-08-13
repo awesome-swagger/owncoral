@@ -126,26 +126,33 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box p={6} pt={0}>
-            <Icon
-              pos="absolute"
-              top={10}
-              left={10}
-              h={8}
-              w={8}
-              p={1}
-              as={FiX}
-              cursor="pointer"
-              onClick={() => history.push('/listings')}
-              borderRadius="full"
-              layerStyle="iconColor"
-            />
+          <Box py={6} pt={0}>
+            <Box px={6}>
+              <Icon
+                pos="absolute"
+                top={10}
+                left={10}
+                h={8}
+                w={8}
+                p={1}
+                as={FiX}
+                cursor="pointer"
+                onClick={() => history.push('/listings')}
+                borderRadius="full"
+                layerStyle="iconColor"
+              />
 
-            <TopSection listingsDetail={listingsDetail} />
-            <Divider mt={6} />
+              <TopSection listingsDetail={listingsDetail} />
+              <Divider mt={6} />
+            </Box>
             <TabSection listingsDetail={listingsDetail} />
-            <Box h={8} />
-            <InterestButton listingsDetail={listingsDetail} setListingsDetail={setListingsDetail} />
+            <Box px={6}>
+              <Box h={8} />
+              <InterestButton
+                listingsDetail={listingsDetail}
+                setListingsDetail={setListingsDetail}
+              />
+            </Box>
           </Box>
         </Fragment>
       ) : (
@@ -221,7 +228,7 @@ export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
 
   return (
     <Tabs isLazy>
-      <TabList>
+      <TabList mx={6}>
         <Tab py={6} px={2}>
           <Headline>Performance</Headline>
         </Tab>
