@@ -4,7 +4,7 @@ import { Divider, Box } from '@chakra-ui/react';
 
 import { Financing } from '../coralPlanTab/Financing';
 import { ValueAddPlan } from './ValueAddPlan';
-import { Renovation } from './Renovation';
+import { Renovation } from './renovation';
 import { RentalIncome } from './RentalIncome';
 
 type CoralPlanTabPropsT = {
@@ -19,7 +19,7 @@ const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
         <ValueAddPlan listingsDetail={listingsDetail} />
         <Divider my={6} />
       </Box>
-      <Renovation listingsDetail={listingsDetail} />
+      <Renovation />
       <Box px={6}>
         <Divider my={6} />
         <RentalIncome listingsDetail={listingsDetail} />

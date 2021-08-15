@@ -1,11 +1,11 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
-import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import {
   Text,
   Image,
   Box,
+  Flex,
   AspectRatio,
   UnorderedList,
   ListItem,
@@ -22,43 +22,53 @@ import {
   Button,
   Textarea,
 } from '@chakra-ui/react';
-import { Title2 } from '../../../../components/text';
+import { FiCheckCircle, FiCircle } from 'react-icons/fi';
+import { RenovationData } from './renovationData';
+import { Title2 } from '../../../../../components/text';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { UserContext } from '../../../../userContext';
+import { UserContext } from '../../../../../userContext';
 import { FiEdit } from 'react-icons/fi';
 
-type RenovationPropsT = {
-  listingsDetail: ListingsPropertyDetailT;
-};
-
-export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
-  const textRef: any = useRef();
+export const Renovation = () => {
   const [user] = useContext(UserContext);
-  const [text, setText] = useState();
+  const [selectedValue, setSelectedValue] = useState(['curb appeal', 'kitchen', 'roof']);
+  const [text, setText] = useState('');
+  const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false });
+  const textRef: React.MutableRefObject<any> = useRef();
   const Admin = user?.isAdmin;
 
-  const [viewportRef] = useEmblaCarousel({ skipSnaps: false });
-  const [emblaRef] = useEmblaCarousel({ skipSnaps: true });
+  const FilteredValue = RenovationData.filter(({ title }) => selectedValue.indexOf(title) > -1);
 
   useEffect(() => {
     setText(textRef?.current?.innerText);
-  }, []);
+    if (emblaApi && emblaApi.slideNodes().length !== selectedValue.length) {
+      emblaApi.reInit();
+    }
+  }, [emblaApi, selectedValue]);
 
   return (
     <Fragment>
       <Box px={6} pos="relative">
-        {Admin && <RenovationEditBtn text={text} setText={setText} textRef={textRef} />}
+        {Admin && (
+          <RenovationEditBtn
+            text={text}
+            setText={setText}
+            selectedValue={selectedValue}
+            setSelectedValue={setSelectedValue}
+            textRef={textRef}
+          />
+        )}
         <Title2 my={6}>Renovation</Title2>
         <Text ref={textRef}>
           Given that the property is currently fully occupied, renovation will be staggered as
-          leases expire and current teanants vocate their units. We anticipate finishing all
+          leases expire and current tenants vocate their units. We anticipate finishing all
           renovations before January 2022.
         </Text>
       </Box>
-      <Box className="embla" ref={emblaRef}>
+      <Box className="embla">
         <Box className="embla__viewport" ref={viewportRef}>
           <Box className="embla__container" pb={6}>
-            {RenovationData.map(({ title, renovationList }, idx) => (
+            {FilteredValue.map(({ title, image, renovationList }, idx) => (
               <Box className="embla__slide" minW="87%" mx={2} key={idx}>
                 <Box className="embla__slide__inner">
                   <Box width="100%">
@@ -70,9 +80,11 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
                       boxShadow="sm"
                       borderRadius="2xl"
                     >
-                      <Image src={listingsDetail.imageUrls[0]} alt="renovation" />
+                      <Image src={image} alt="renovation" />
                     </AspectRatio>
-                    <Title2>{title}</Title2>
+                    <Title2 textTransform="capitalize" mb={3}>
+                      {title}
+                    </Title2>
                     <UnorderedList>
                       {renovationList.map((val, idx) => (
                         <ListItem key={idx}>{val}</ListItem>
@@ -89,14 +101,41 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
   );
 };
 
-const RenovationEditBtn = ({ text, setText, textRef }: any) => {
+type RenovationEditBtnT = {
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+  selectedValue: string[];
+  setSelectedValue: React.Dispatch<React.SetStateAction<string[]>>;
+  textRef: React.MutableRefObject<any>;
+};
+
+const RenovationEditBtn = ({
+  text,
+  setText,
+  selectedValue,
+  setSelectedValue,
+  textRef,
+}: RenovationEditBtnT) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [newSelectedValue, setNewSelectedValue] = useState(selectedValue);
+
+  const handleSelect = (title: string) => {
+    if (newSelectedValue.includes(title)) {
+      const index = newSelectedValue.indexOf(title);
+      if (index > -1) {
+        newSelectedValue.splice(index, 1);
+        setNewSelectedValue([...newSelectedValue]);
+      }
+    } else {
+      setNewSelectedValue([...newSelectedValue, title]);
+    }
+  };
 
   const handleSubmit = () => {
     textRef.current.innerText = text;
+    setSelectedValue(newSelectedValue);
     onClose();
   };
-
   return (
     <>
       <IconButton
@@ -117,9 +156,26 @@ const RenovationEditBtn = ({ text, setText, textRef }: any) => {
             <Textarea
               onChange={(x) => setText(x.target.value)}
               value={text}
-              rows={5}
+              rows={6}
               resize="vertical"
             />
+            <Flex flexWrap="wrap" gridGap="2">
+              {RenovationData.map(({ title }: { title: string }) => (
+                <Flex
+                  px={3}
+                  py={2}
+                  alignItems="center"
+                  borderRadius="full"
+                  cursor="pointer"
+                  textTransform="capitalize"
+                  layerStyle="card"
+                  onClick={() => handleSelect(title)}
+                >
+                  <Icon mr={1} as={newSelectedValue.includes(title) ? FiCheckCircle : FiCircle} />
+                  {title}
+                </Flex>
+              ))}
+            </Flex>
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" mr={3} onClick={onClose}>
@@ -132,18 +188,3 @@ const RenovationEditBtn = ({ text, setText, textRef }: any) => {
     </>
   );
 };
-
-const RenovationData = [
-  {
-    title: 'Curb Apeal',
-    renovationList: ['Point the building exterior', 'Install new landscaping', 'Replace fencing'],
-  },
-  {
-    title: 'Curb Apeal',
-    renovationList: ['Point the building exterior', 'Install new landscaping', 'Replace fencing'],
-  },
-  {
-    title: 'Curb Apeal',
-    renovationList: ['Point the building exterior', 'Install new landscaping', 'Replace fencing'],
-  },
-];
