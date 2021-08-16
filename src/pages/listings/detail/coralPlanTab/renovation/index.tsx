@@ -1,33 +1,12 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
-import {
-  Text,
-  Image,
-  Box,
-  Flex,
-  AspectRatio,
-  UnorderedList,
-  ListItem,
-  IconButton,
-  Icon,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  Button,
-  Textarea,
-} from '@chakra-ui/react';
-import { FiCheckCircle, FiCircle } from 'react-icons/fi';
+import { Text, Image, Box, AspectRatio, UnorderedList, ListItem } from '@chakra-ui/react';
 import { RenovationData } from './renovationData';
 import { Title2 } from '../../../../../components/text';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { UserContext } from '../../../../../userContext';
-import { FiEdit } from 'react-icons/fi';
+import { RenovationEditModal } from './renovationEditModal';
 
 export const Renovation = () => {
   const [user] = useContext(UserContext);
@@ -50,7 +29,7 @@ export const Renovation = () => {
     <Fragment>
       <Box px={6} pos="relative">
         {Admin && (
-          <RenovationEditBtn
+          <RenovationEditModal
             text={text}
             setText={setText}
             selectedValue={selectedValue}
@@ -69,7 +48,12 @@ export const Renovation = () => {
         <Box className="embla__viewport" ref={viewportRef}>
           <Box className="embla__container" pb={6}>
             {FilteredValue.map(({ title, image, renovationList }, idx) => (
-              <Box className="embla__slide" minW="87%" mx={2} key={idx}>
+              <Box
+                className="embla__slide"
+                minW="87%"
+                mx={FilteredValue.length === 1 ? 4 : 2}
+                key={idx}
+              >
                 <Box className="embla__slide__inner">
                   <Box width="100%">
                     <AspectRatio
@@ -98,93 +82,5 @@ export const Renovation = () => {
         </Box>
       </Box>
     </Fragment>
-  );
-};
-
-type RenovationEditBtnT = {
-  text: string;
-  setText: React.Dispatch<React.SetStateAction<string>>;
-  selectedValue: string[];
-  setSelectedValue: React.Dispatch<React.SetStateAction<string[]>>;
-  textRef: React.MutableRefObject<any>;
-};
-
-const RenovationEditBtn = ({
-  text,
-  setText,
-  selectedValue,
-  setSelectedValue,
-  textRef,
-}: RenovationEditBtnT) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [newSelectedValue, setNewSelectedValue] = useState(selectedValue);
-
-  const handleSelect = (title: string) => {
-    if (newSelectedValue.includes(title)) {
-      const index = newSelectedValue.indexOf(title);
-      if (index > -1) {
-        newSelectedValue.splice(index, 1);
-        setNewSelectedValue([...newSelectedValue]);
-      }
-    } else {
-      setNewSelectedValue([...newSelectedValue, title]);
-    }
-  };
-
-  const handleSubmit = () => {
-    textRef.current.innerText = text;
-    setSelectedValue(newSelectedValue);
-    onClose();
-  };
-  return (
-    <>
-      <IconButton
-        isRound
-        aria-label="edit-button"
-        pos="absolute"
-        top={-2}
-        right={6}
-        icon={<Icon h={5} w={5} as={FiEdit} />}
-        onClick={onOpen}
-      />
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Edit Renovation Description</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Textarea
-              onChange={(x) => setText(x.target.value)}
-              value={text}
-              rows={6}
-              resize="vertical"
-            />
-            <Flex flexWrap="wrap" gridGap="2">
-              {RenovationData.map(({ title }: { title: string }) => (
-                <Flex
-                  px={3}
-                  py={2}
-                  alignItems="center"
-                  borderRadius="full"
-                  cursor="pointer"
-                  textTransform="capitalize"
-                  layerStyle="card"
-                  onClick={() => handleSelect(title)}
-                >
-                  <Icon mr={1} as={newSelectedValue.includes(title) ? FiCheckCircle : FiCircle} />
-                  {title}
-                </Flex>
-              ))}
-            </Flex>
-          </ModalBody>
-          <ModalFooter>
-            <Button variant="ghost" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button onClick={handleSubmit}>Submit</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </>
   );
 };

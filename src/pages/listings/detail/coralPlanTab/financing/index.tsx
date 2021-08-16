@@ -2,12 +2,12 @@
 // TODO: refactor render function
 import type React from 'react';
 import { Fragment } from 'react';
-import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
 import { Box, Divider, Flex, Icon, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 
-import { Caption1, Title2 } from '../../../../components/text';
-import { formatFinancial, formatFinancialSI } from '../../../../lib/financialFormatter';
+import { Caption1, Title2 } from '../../../../../components/text';
+import { formatFinancial, formatFinancialSI } from '../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   listingsDetail: ListingsPropertyDetailT;

@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
-import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
+import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
 import { Flex, Text, VStack } from '@chakra-ui/react';
 
-import { Headline, Title2 } from '../../../../components/text';
-import { formatFinancial } from '../../../../lib/financialFormatter';
+import { Headline, Title2 } from '../../../../../components/text';
+import { formatFinancial } from '../../../../../lib/financialFormatter';
 
 type ValueAddPlanePropsT = {
   listingsDetail: ListingsPropertyDetailT;
