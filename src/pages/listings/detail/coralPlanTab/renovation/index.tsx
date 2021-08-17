@@ -2,7 +2,7 @@
 // TODO: refactor render function
 import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
 import { Text, Image, Box, AspectRatio, UnorderedList, ListItem } from '@chakra-ui/react';
-import { RenovationData } from './renovationData';
+import { DummyData } from './dummyData';
 import { Title2 } from '../../../../../components/text';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { UserContext } from '../../../../../userContext';
@@ -16,7 +16,7 @@ export const Renovation = () => {
   const textRef: React.MutableRefObject<any> = useRef();
   const Admin = user?.isAdmin;
 
-  const FilteredValue = RenovationData.filter(({ title }) => selectedValue.indexOf(title) > -1);
+  const FilteredValue = DummyData.filter(({ title }) => selectedValue.indexOf(title) > -1);
 
   useEffect(() => {
     setText(textRef?.current?.innerText);

@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import { useEmblaCarousel } from 'embla-carousel/react';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import { FiInfo, FiChevronLeft } from 'react-icons/fi';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
-import { Box, Center, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Flex, Button, Center, Spinner, useToast, Icon } from '@chakra-ui/react';
 import { Container, NavBar, ProtectedRoute, ListingCard } from '../../components';
 import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
 import { Title2 } from '../../components/text';
@@ -107,9 +108,15 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
       minH="0"
     >
       <Box userSelect="none">
-        <Title2 px={6} mb={6}>
-          Listings / Greater Boston Area
-        </Title2>
+        <Flex px={6} mb={6} alignItems="center" justifyContent="space-between">
+          <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
+            <Icon as={FiChevronLeft} />
+          </Button>
+          <Title2>Greater Boston Area</Title2>
+          <Button colorScheme="white" w={10} h={10} onClick={() => history.push('/boston-market')}>
+            <Icon as={FiInfo} />
+          </Button>
+        </Flex>
         {listings === null ? (
           <Center h="100%" minH="70vh">
             <Spinner />

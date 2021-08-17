@@ -7,7 +7,7 @@ import Structural from '../../../../../../assets/renovation/structure.png';
 import Roof from '../../../../../../assets/renovation/roof.png';
 import Utility from '../../../../../../assets/renovation/utility.png';
 
-export const RenovationData = [
+export const DummyData = [
   {
     title: 'curb appeal',
     image: CurbAppeal,

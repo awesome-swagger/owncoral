@@ -15,7 +15,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import { FiCheckCircle, FiCircle, FiEdit } from 'react-icons/fi';
-import { RenovationData } from '../renovationData';
+import { DummyData } from '../dummyData';
 
 type RenovationEditModalT = {
   text: string;
@@ -76,7 +76,7 @@ export const RenovationEditModal = ({
               resize="vertical"
             />
             <Flex flexWrap="wrap" gridGap="2">
-              {RenovationData.map(({ title }: { title: string }) => (
+              {DummyData.map(({ title }: { title: string }) => (
                 <Flex
                   px={3}
                   py={2}

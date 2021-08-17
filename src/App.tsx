@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import type { UserProfileT } from './shared-fullstack/types';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Global } from '@emotion/react';
-
 import AppRootStyle from './AppRootStyle';
 import {
   DebugPanel,
@@ -43,6 +42,7 @@ const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 const GlossaryDetail = lazy(() => import('./pages/academy/glossary/glossaryDetail'));
 const CourseDetail = lazy(() => import('./pages/academy/courses/courseDetail'));
 const CourseCashFlow = lazy(() => import('./pages/academy/courses/cashFlow'));
+const BostonMarket = lazy(() => import('./pages/market/bostonMarket'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
@@ -81,6 +81,7 @@ function App() {
                   <Route path="/listings">
                     <Listings />
                   </Route>
+                  <Route path="/boston-market" component={BostonMarket} />
 
                   <ProtectedRoute exact path="/">
                     <Redirect to="/portfolio" />
