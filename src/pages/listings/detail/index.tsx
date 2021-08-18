@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FiPercent, FiX } from 'react-icons/fi';
+import { FiPercent, FiX, FiInfo } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
@@ -17,6 +17,7 @@ import {
   AspectRatio,
   Box,
   Button,
+  Flex,
   Center,
   Divider,
   HStack,
@@ -103,6 +104,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
     })();
   }, [listingUriFragmentToId, listingUriFragment, propertyId, toast]);
 
+  const limitFull = true;
+
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
@@ -119,6 +122,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
               alt={listingsDetail.name + ' Image'}
               w="100%"
+              filter="grayscale(1)"
               fallback={
                 <Center>
                   <Spinner />
@@ -146,8 +150,14 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               <Divider mt={6} />
             </Box>
             <TabSection listingsDetail={listingsDetail} />
-            <Box px={6}>
-              <Box h={8} />
+            <Divider />
+            <Box px={6} mt={3}>
+              {limitFull && (
+                <Flex alignItems="center" mb={2} ml={6}>
+                  <Icon opacity="0.5" as={FiInfo} mr={2} />
+                  <Text textStyle="Body2">This listing is full. Property closing in August 1</Text>
+                </Flex>
+              )}
               <InterestButton
                 listingsDetail={listingsDetail}
                 setListingsDetail={setListingsDetail}

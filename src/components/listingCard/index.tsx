@@ -33,11 +33,13 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       '50%, rgb(208, 199, 197) 60%, rgb(174, 176, 182)  ' +
       '75%, rgb(129, 133, 146) 100%)'
     : 'whiteAlpha.200';
+  const dealClosed = true;
 
   return listing.cardImageUrl ? (
     <Box
       w="100%"
       pos="relative"
+      overflowX="hidden"
       h={{
         base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight} - 6.5rem)`,
         [NAVBAR_TOP_BREAKPOINT]: `calc(${window.innerHeight}px - ${headerHeight} - 8rem)`,
@@ -57,10 +59,29 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       onClick={() => onSlideClick(listing)}
       background={background}
     >
+      {dealClosed && (
+        <Box
+          zIndex="1"
+          lineHeight="36px"
+          pos="absolute"
+          transform="rotate(45deg)"
+          bg="#FFFFFFE6"
+          color="#FF5D5D"
+          top="23px"
+          right="-40px"
+          textAlign="center"
+          width="160px"
+          boxShadow="0px 2.28936px 9.15745px rgba(50, 53, 56, 0.04)"
+          fontSize="12px"
+          fontWeight="600"
+        >
+          DEAL CLOSED
+        </Box>
+      )}
       <Box pos="absolute" top={0} left={0} w="100%" px={5} py={6}>
         <Flex justify="space-between" align="baseline">
           <Title1>{listing.name}</Title1>
-          {listing.mdlEquity !== null && (
+          {listing.mdlEquity !== null && dealClosed === false && (
             <Text>${formatFinancial(Math.round(listing.mdlEquity * 0.01))}</Text>
           )}
         </Flex>
@@ -75,7 +96,7 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
               .filter((tag) => tag !== null)
               .join(' · ')}
           </Subhead>
-          {listing.mdlEquity !== null && <Subhead>price per share</Subhead>}
+          {listing.mdlEquity !== null && dealClosed === false && <Subhead>price per share</Subhead>}
         </Flex>
       </Box>
 
@@ -111,6 +132,7 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
         w="100%"
         objectFit="cover"
         borderRadius="3xl"
+        filter="grayscale(1)"
         fallback={
           <Center h="100%">
             <Spinner />
