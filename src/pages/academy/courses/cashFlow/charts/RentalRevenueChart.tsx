@@ -19,16 +19,16 @@ export type BarStackProps = {
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
 const data = [
   { name: 'Clo.', operatingCashFlow: '2' },
-  { name: '21', operatingCashFlow: '2' },
-  { name: '22', operatingCashFlow: '2' },
-  { name: '23', operatingCashFlow: '2' },
-  { name: '24', operatingCashFlow: '2' },
-  { name: '25', operatingCashFlow: '2' },
-  { name: '26', operatingCashFlow: '2' },
-  { name: '26', operatingCashFlow: '2' },
-  { name: '27', operatingCashFlow: '2' },
-  { name: '28', operatingCashFlow: '2' },
-  { name: '29', operatingCashFlow: '2' },
+  { name: "'21", operatingCashFlow: '2' },
+  { name: "'22", operatingCashFlow: '2' },
+  { name: "'23", operatingCashFlow: '2' },
+  { name: "'24", operatingCashFlow: '2' },
+  { name: "'25", operatingCashFlow: '2' },
+  { name: "'26", operatingCashFlow: '2' },
+  { name: "'26", operatingCashFlow: '2' },
+  { name: "'27", operatingCashFlow: '2' },
+  { name: "'28", operatingCashFlow: '2' },
+  { name: "'29", operatingCashFlow: '2' },
 ];
 
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
@@ -141,4 +141,4 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
       </svg>
     </div>
   );
-}
+};
