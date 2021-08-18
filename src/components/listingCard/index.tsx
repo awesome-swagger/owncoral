@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
 import {
   Box,
@@ -13,7 +14,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import { FiMapPin } from 'react-icons/fi';
 import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
 import { Overline, Subhead, Title1, Title2 } from '../../components/text';
 import { formatFinancial } from '../../lib/financialFormatter';
@@ -25,6 +25,7 @@ type ListingCardPropsT = {
 };
 export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
   const [isTouch] = useMediaQuery('(pointer: coarse)');
+  const [dealClosed, setDealClosed] = useState(true);
   const { headerHeight, footerHeight, extraHeight } = useNavHeight();
   const isLightMode = useColorModeValue(true, false);
   const background = isLightMode
@@ -33,7 +34,6 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       '50%, rgb(208, 199, 197) 60%, rgb(174, 176, 182)  ' +
       '75%, rgb(129, 133, 146) 100%)'
     : 'whiteAlpha.200';
-  const dealClosed = true;
 
   return listing.cardImageUrl ? (
     <Box

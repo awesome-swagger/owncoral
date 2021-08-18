@@ -65,6 +65,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const query = useQuery();
   const history = useHistory();
   const toast = useToast();
+  const [limitFull, setLimitFull] = useState(true);
 
   const listingUriFragment = query.get('property');
   const propertyId: string | null = listingUriFragment
@@ -103,8 +104,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
       }
     })();
   }, [listingUriFragmentToId, listingUriFragment, propertyId, toast]);
-
-  const limitFull = true;
 
   return (
     // TODO: push spinners down to component level?
