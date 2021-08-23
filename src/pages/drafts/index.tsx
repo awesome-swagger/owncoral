@@ -1,14 +1,11 @@
 import { Fragment, lazy } from 'react';
 import { Link as BrowserLink, Switch, useRouteMatch } from 'react-router-dom';
 import { Button, Heading, VStack } from '@chakra-ui/react';
-
 import { Container, NavBar, ProtectedRoute } from '../../components';
-
 const OldPortfolio = lazy(() => import('./oldPortfolio'));
 const PortfolioSplash = lazy(() => import('./portfolio/splash'));
 const Transaction = lazy(() => import('./transaction'));
-
-const CourseCashFlow = lazy(() => import('../academy/courses/cashFlow'));
+const RealizingAppreciationFlow = lazy(() => import('./RealizingAppreciation'));
 
 const Drafts = () => {
   const { url: draftsRootUrl } = useRouteMatch();
@@ -28,6 +25,10 @@ const Drafts = () => {
       />
 
       <ProtectedRoute exact path={draftsRootUrl + '/transaction'} component={Transaction} />
+
+      <ProtectedRoute path={draftsRootUrl + '/realizing-appreciation/:title'}>
+        <RealizingAppreciationFlow />
+      </ProtectedRoute>
     </Switch>
   );
 };
@@ -62,6 +63,14 @@ const DraftsMain = ({ draftsRootUrl }: { draftsRootUrl: string }) => (
 
         <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/transaction`}>
           Transaction
+        </Button>
+
+        <Button
+          colorScheme="secondary"
+          as={BrowserLink}
+          to={`${draftsRootUrl}/realizing-appreciation/1`}
+        >
+          Realizing Appreciation Flow
         </Button>
       </VStack>
     </Container>
