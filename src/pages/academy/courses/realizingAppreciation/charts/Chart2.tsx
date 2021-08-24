@@ -5,7 +5,7 @@ import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 
-export const RentalRevenueChart = () => (
+export const Chart2 = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
 );
 
@@ -16,19 +16,11 @@ export type BarStackProps = {
   events?: boolean;
 };
 
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 50 };
 const data = [
-  { name: 'Clo.', operatingCashFlow: '2' },
-  { name: "'21", operatingCashFlow: '2' },
-  { name: "'22", operatingCashFlow: '2' },
-  { name: "'23", operatingCashFlow: '2' },
-  { name: "'24", operatingCashFlow: '2' },
-  { name: "'25", operatingCashFlow: '2' },
-  { name: "'26", operatingCashFlow: '2' },
-  { name: "'26", operatingCashFlow: '2' },
-  { name: "'27", operatingCashFlow: '2' },
-  { name: "'28", operatingCashFlow: '2' },
-  { name: "'29", operatingCashFlow: '2' },
+  { name: '1', purchase: '525', present: '975', empty: '0', average: '0' },
+  { name: '2', purchase: '975', present: '525', empty: '0', average: '0' },
+  { name: '3', purchase: '0', present: '0', empty: '525', average: '450' },
 ];
 
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
@@ -43,7 +35,10 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
 }, [] as number[]);
 
 const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
-  const barColor = useColorModeValue('#074851', '#48CAE4');
+  const barColor1 = useColorModeValue('#074851', '#48CAE4');
+  const barColor2 = useColorModeValue('#80ECD1', '#F1FAEE');
+  const barColor3 = useColorModeValue('#00000000', '#00000000');
+  const barColor4 = useColorModeValue('#b5838d', '#b5838d');
   const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
 
   // accessors
@@ -59,16 +54,10 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   });
   const colorScale = scaleOrdinal({
     domain: keys,
-    range: [barColor],
+    range: [barColor1, barColor2, barColor3, barColor4],
   });
 
-  const leftAxisData = [
-    { name: '0' },
-    { name: '$5k' },
-    { name: '$10k' },
-    { name: '$15k' },
-    { name: '$20k' },
-  ];
+  const leftAxisData = [{ name: '$.5m' }, { name: '$1m' }, { name: '$1.5m' }];
 
   const getAxisData = ({ name }: { name: string }) => name;
 
@@ -89,7 +78,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
     <div style={{ position: 'relative', paddingTop: '20px' }}>
       <svg width={width} height={height}>
         <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />
-        <Group left={margin.left} top={yMax + margin.top - 15}>
+        <Group left={margin.left} top={margin.top}>
           <BarStack
             data={data}
             keys={keys}
@@ -103,10 +92,10 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
                 barStack.bars.map((bar) => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
-                    x={bar.x + 12}
+                    x={bar.x + 35}
                     y={bar.y}
-                    height={15}
-                    width={bar.width - 24}
+                    height={bar.height}
+                    width={bar.width - 70}
                     fill={bar.color}
                   />
                 )),
@@ -121,7 +110,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
           stroke={textColor}
           tickStroke="none"
           tickLabelProps={() => ({
-            fill: textColor,
+            fill: '#00000000',
             fontSize: 15,
             textAnchor: 'middle',
           })}

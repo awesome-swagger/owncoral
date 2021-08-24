@@ -1,10 +1,10 @@
 import { Fragment, lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, NavBar } from '../../../components';
-import { useScrollToTop } from '../../../lib/useScrollToTop';
-import { Data } from './RealizingAppreciationData';
+import { Container, NavBar } from '../../../../components';
+import { useScrollToTop } from '../../../../lib/useScrollToTop';
+import { Data } from './realizingAppreciationData';
 import { titleToUrlFragment } from './lib';
-const Error404 = lazy(() => import('../../error404'));
+const Error404 = lazy(() => import('../../../error404'));
 
 const RealizingAppreciationFlow = () => {
   const { title } = useParams<{ title: string }>();
@@ -21,7 +21,7 @@ const RealizingAppreciationFlow = () => {
       <NavBar />
       <Container
         minH={{ base: `calc(${window.innerHeight}px - 8rem)` }}
-        h={{ base: 'auto', md: '725px' }}
+        h={{ base: 'auto', md: '750px' }}
         pb={{ base: 16 }}
       >
         {FilteredData.jsx}

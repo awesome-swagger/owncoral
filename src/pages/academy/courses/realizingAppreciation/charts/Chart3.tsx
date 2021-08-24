@@ -1,11 +1,11 @@
-import { useColorModeValue } from '@chakra-ui/react';
-import { AxisBottom, AxisLeft } from '@visx/axis';
+import { useColorModeValue, Text } from '@chakra-ui/react';
+import { AxisBottom } from '@visx/axis';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 
-export const Chart1 = () => (
+export const Chart3 = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
 );
 
@@ -16,10 +16,11 @@ export type BarStackProps = {
   events?: boolean;
 };
 
-const defaultMargin = { top: 40, right: 0, bottom: 0, left: 50 };
+const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
 const data = [
-  { name: 'At Purchase', operatingCashFlow: '65', recognizedAppreciation: '35' },
-  { name: 'At Present', operatingCashFlow: '65', recognizedAppreciation: '85' },
+  { name: 'At Purchase', purchase: '650', present: '350', empty: '0', average: '0' },
+  { name: '', purchase: '975', present: '525', empty: '0', average: '0' },
+  { name: ' ', purchase: '0', present: '0', empty: '525', average: '450' },
 ];
 
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
@@ -36,6 +37,8 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
 const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   const barColor1 = useColorModeValue('#074851', '#48CAE4');
   const barColor2 = useColorModeValue('#80ECD1', '#F1FAEE');
+  const barColor3 = useColorModeValue('#00000000', '#00000000');
+  const barColor4 = useColorModeValue('#b5838d', '#b5838d');
   const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
 
   // accessors
@@ -51,7 +54,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   });
   const colorScale = scaleOrdinal({
     domain: keys,
-    range: [barColor1, barColor2],
+    range: [barColor1, barColor2, barColor3, barColor4],
   });
 
   const leftAxisData = [{ name: '$.5m' }, { name: '$1m' }, { name: '$1.5m' }];
@@ -89,10 +92,10 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
                 barStack.bars.map((bar) => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
-                    x={bar.x + 80}
+                    x={bar.x + 42}
                     y={bar.y}
                     height={bar.height}
-                    width={bar.width - 160}
+                    width={bar.width - 84}
                     fill={bar.color}
                   />
                 )),
@@ -100,6 +103,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
             }
           </BarStack>
         </Group>
+
         <AxisBottom
           left={margin.left}
           top={yMax + margin.top}
@@ -112,19 +116,13 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
             textAnchor: 'middle',
           })}
         />
-        <AxisLeft
-          top={11}
-          left={margin.left}
-          scale={leftScale}
-          tickStroke="none"
-          stroke="none"
-          tickLabelProps={() => ({
-            fill: textColor,
-            fontSize: 15,
-            textAnchor: 'end',
-          })}
-        />
       </svg>
+      <Text pos="absolute" top="25%" left="13%" color={textColor}>
+        $1m
+      </Text>
+      <Text pos="absolute" textAlign="center" width="100%" top="15%" color={textColor}>
+        $1.5m
+      </Text>
     </div>
   );
 };

@@ -1,14 +1,15 @@
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import Frame from '../../../../assets/Frame615.png';
-import { ProgressBar, Circle } from '../../../../components';
-import { Title2 } from '../../../../components/text';
-import { Chart1, Chart2 } from '../charts';
+import { ProgressBar, Circle } from '../../../../../components';
+import { Title2 } from '../../../../../components/text';
+import { Chart1, Chart2, Chart3 } from '../charts';
+import Academy from '../../../../../assets/academy-1.svg';
+import Frame from '../../../../../assets/Frame615.png';
 
 const CloseBtn = () => {
   const history = useHistory();
-  return <Icon as={FiX} cursor="pointer" onClick={() => history.push('/drafts')} />;
+  return <Icon as={FiX} cursor="pointer" onClick={() => history.push('/academy')} />;
 };
 
 const FlowStartBtn = () => {
@@ -20,7 +21,7 @@ const FlowStartBtn = () => {
       bottom={6}
       left={4}
       w="calc(100% - 2rem)"
-      onClick={() => history.push('/drafts/realizing-appreciation/2')}
+      onClick={() => history.push('/academy/unit/realizing-appreciation-without-selling/2')}
     >
       Let’s dig in
     </Button>
@@ -31,7 +32,11 @@ const FlowEndBtn = () => {
   const history = useHistory();
 
   return (
-    <Box p={4} cursor="pointer" onClick={() => history.push('drafts')}>
+    <Box
+      p={4}
+      cursor="pointer"
+      onClick={() => history.push('/academy/course/understanding-coral-listings')}
+    >
       <Text textStyle="Body1" fontWeight="600" my={2}>
         Understanding Coral listings
       </Text>
@@ -53,7 +58,9 @@ const NextBtn = ({
     <Button
       w={finishBtn ? 'auto' : 10}
       h={10}
-      onClick={() => history.push(`/drafts/realizing-appreciation/${nextStep}`)}
+      onClick={() =>
+        history.push(`/academy/unit/realizing-appreciation-without-selling/${nextStep}`)
+      }
     >
       {finishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
     </Button>
@@ -218,10 +225,9 @@ export const Data = [
             <Text textStyle="Body2">Cash to all</Text>
           </Flex>
         </Flex>
-        <Text textStyle="Body2">
-          The overall cash flow includes distributions that come from both rental revenue and
-          realized appreciation, as well as any remaining reserve.
-        </Text>
+        <Center w="100%" h={250}>
+          <Chart3 />
+        </Center>
         <BtnsWrapper>
           <PrevBtn />
           <NextBtn nextStep="6" />
@@ -245,6 +251,9 @@ export const Data = [
           property at closing, so they're already received the majority of their investment back —
           and they still own the property! Further, the value of their equity is now $525K.
         </Text>
+        <Center w="100%" h={250}>
+          <Chart3 />
+        </Center>
         <BtnsWrapper>
           <PrevBtn />
           <NextBtn nextStep="7" />
@@ -453,8 +462,35 @@ export const Data = [
         </Flex>
         <BtnsWrapper>
           <PrevBtn />
-          <NextBtn nextStep="1" />
+          <NextBtn finishBtn={true} />
         </BtnsWrapper>
+      </Box>
+    ),
+  },
+  {
+    name: 'back to property',
+    jsx: (
+      <Box pb={40}>
+        <PrevBtn background={false} />
+        <Center pt={20} flexDirection="column">
+          <Image src={Frame} alt="frame" />
+          <Title2 textAlign="center">
+            Well done! Realizing Appreciation Without Selling lesson completed!
+          </Title2>
+        </Center>
+
+        <Box w="calc(100% - 2rem)" pos="absolute" bottom={6}>
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            layerStyle="selectionBox"
+            borderRadius="2xl"
+            overflow="hidden"
+          >
+            <FlowEndBtn />
+            <Icon as={Academy} h="auto" w="auto" />
+          </Flex>
+        </Box>
       </Box>
     ),
   },

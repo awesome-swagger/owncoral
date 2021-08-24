@@ -5,7 +5,7 @@ import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 
-export const Chart2 = () => (
+export const Chart1 = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
 );
 
@@ -18,9 +18,8 @@ export type BarStackProps = {
 
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 50 };
 const data = [
-  { name: '1', purchase: '525', present: '975', empty: '0', average: '0' },
-  { name: '2', purchase: '975', present: '525', empty: '0', average: '0' },
-  { name: '3', purchase: '0', present: '0', empty: '525', average: '450' },
+  { name: 'At Purchase', operatingCashFlow: '65', recognizedAppreciation: '35' },
+  { name: 'At Present', operatingCashFlow: '65', recognizedAppreciation: '85' },
 ];
 
 const keys = Object.keys(data[0]).filter((d) => d !== 'name');
@@ -37,8 +36,6 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
 const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   const barColor1 = useColorModeValue('#074851', '#48CAE4');
   const barColor2 = useColorModeValue('#80ECD1', '#F1FAEE');
-  const barColor3 = useColorModeValue('#00000000', '#00000000');
-  const barColor4 = useColorModeValue('#b5838d', '#b5838d');
   const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
 
   // accessors
@@ -54,7 +51,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   });
   const colorScale = scaleOrdinal({
     domain: keys,
-    range: [barColor1, barColor2, barColor3, barColor4],
+    range: [barColor1, barColor2],
   });
 
   const leftAxisData = [{ name: '$.5m' }, { name: '$1m' }, { name: '$1.5m' }];
@@ -92,10 +89,10 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
                 barStack.bars.map((bar) => (
                   <rect
                     key={`bar-stack-${barStack.index}-${bar.index}`}
-                    x={bar.x + 48}
+                    x={bar.x + 60}
                     y={bar.y}
                     height={bar.height}
-                    width={bar.width - 96}
+                    width={bar.width - 120}
                     fill={bar.color}
                   />
                 )),
@@ -110,7 +107,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
           stroke={textColor}
           tickStroke="none"
           tickLabelProps={() => ({
-            fill: '#00000000',
+            fill: textColor,
             fontSize: 15,
             textAnchor: 'middle',
           })}

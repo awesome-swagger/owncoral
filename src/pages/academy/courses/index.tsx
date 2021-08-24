@@ -1,7 +1,6 @@
 import type React from 'react';
 import { useHistory } from 'react-router-dom';
-import type { CenterProps } from '@chakra-ui/react';
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 import { CourseCard } from '../../../components';
 import { Data } from '../../../lib/courseDetailData';

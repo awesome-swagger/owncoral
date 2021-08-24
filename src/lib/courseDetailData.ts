@@ -24,7 +24,11 @@ export const Data: CourseT[] = [
       { title: 'Operating expenses', slides: 7 },
       { title: 'Capital expenditure', slides: 7 },
       { title: 'Financing with commercial loans', slides: 7 },
-      { title: 'Realizing appreciation without selling', slides: 7 },
+      {
+        title: 'Realizing appreciation without selling',
+        slides: 7,
+        url: '/academy/unit/realizing-appreciation-without-selling',
+      },
     ],
   },
   {
