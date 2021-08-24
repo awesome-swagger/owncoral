@@ -1,7 +1,8 @@
 import { Overline, Title1, Caption1 } from '../../../../components/text';
-import { Divider, Box, Text, Flex } from '@chakra-ui/react';
+import { Divider, Box, Text, HStack } from '@chakra-ui/react';
 
 export const AreaDetails = () => {
+  const tags = ['Growth potential', ' Good rental yield', 'Anti-cyclicality'];
   return (
     <Box>
       <Overline>WHY IS IT A KEY PLACE TO INVEST</Overline>
@@ -14,35 +15,20 @@ export const AreaDetails = () => {
         rental markets. Top universities (Harvard, MIT) providing anti cyclicality and growth in the
         tech and biotech sectors are what make the Greater Boston area so attractive to us.
       </Text>
-      <Flex flexWrap="wrap" gridGap={2}>
-        <Caption1
-          borderRadius="full"
-          py="0.375rem"
-          px="0.75rem"
-          layerStyle="card"
-          whiteSpace="nowrap"
-        >
-          Growth potential
-        </Caption1>
-        <Caption1
-          borderRadius="full"
-          py="0.375rem"
-          px="0.75rem"
-          layerStyle="card"
-          whiteSpace="nowrap"
-        >
-          Good rental yield
-        </Caption1>
-        <Caption1
-          borderRadius="full"
-          py="0.375rem"
-          px="0.75rem"
-          layerStyle="card"
-          whiteSpace="nowrap"
-        >
-          Anti-cyclicality
-        </Caption1>
-      </Flex>
+      <HStack spacing={2}>
+        {tags.map((value, index) => (
+          <Caption1
+            borderRadius="full"
+            py="0.375rem"
+            px="0.75rem"
+            layerStyle="card"
+            whiteSpace="nowrap"
+            key={index}
+          >
+            {value}
+          </Caption1>
+        ))}
+      </HStack>
       <Divider my={6} />
       <Text my={6} textStyle="Body1">
         The Greater Boston area is a tech capital rivaling the Bay Area and New York, and the top
