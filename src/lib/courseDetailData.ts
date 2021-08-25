@@ -20,7 +20,7 @@ export const Data: CourseT[] = [
     isComingSoon: false,
     value: [
       { title: 'Investor cash flow', slides: 7, url: '/academy/unit/cash-flow' },
-      { title: 'Ownership structure', slides: 7 },
+      { title: 'Ownership structure', slides: 7, url: '/academy/unit/ownership-structure' },
       { title: 'Operating expenses', slides: 7 },
       { title: 'Capital expenditure', slides: 7 },
       { title: 'Financing with commercial loans', slides: 7 },

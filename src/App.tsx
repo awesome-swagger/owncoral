@@ -45,6 +45,7 @@ const CourseCashFlow = lazy(() => import('./pages/academy/courses/cashFlow'));
 const CourseRealizingAppreciation = lazy(
   () => import('./pages/academy/courses/realizingAppreciation'),
 );
+const CourseOwnershipStructure = lazy(() => import('./pages/academy/courses/ownershipStructure'));
 const BostonMarket = lazy(() => import('./pages/market/bostonMarket'));
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
@@ -121,7 +122,15 @@ function App() {
                   </ProtectedRoute>
                   <ProtectedRoute
                     path="/academy/unit/realizing-appreciation-without-selling/:title"
-                    component={CourseRealizingAppreciation}
+                    component={CourseOwnershipStructure}
+                  />
+
+                  <ProtectedRoute exact path="/academy/unit/ownership-structure">
+                    <Redirect to="/academy/unit/ownership-structure/1" />
+                  </ProtectedRoute>
+                  <ProtectedRoute
+                    path="/academy/unit/ownership-structure/:title"
+                    component={CourseOwnershipStructure}
                   />
 
                   {!isProd && (
