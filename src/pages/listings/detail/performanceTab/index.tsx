@@ -6,16 +6,16 @@ import {
   Box,
   Divider,
   Flex,
-  Heading,
   HStack,
   Icon,
   Text,
   useColorModeValue,
   VStack,
+  Center,
 } from '@chakra-ui/react';
 
 import { Card } from '../../../../components';
-import { Headline, Subhead, Title2 } from '../../../../components/text';
+import { Headline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 type PerformanceTabPropsT = {
@@ -24,6 +24,7 @@ type PerformanceTabPropsT = {
 const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
   const history = useHistory();
   const grayBg = useColorModeValue('gray.100', 'whiteAlpha.100');
+  const descColor = useColorModeValue('#545656', '#FFFFFFCC');
 
   const [love1Header, love1Text] = listingsDetail.whyLove1.split('\n\n', 2);
   const [love2Header, love2Text] = listingsDetail.whyLove2.split('\n\n', 2);
@@ -75,31 +76,43 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
         <VStack spacing={6} w="100%" align="baseline">
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Icon as={FiMapPin} verticalAlign="text-top" />
+              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+                <Icon as={FiMapPin} verticalAlign="text-top" />
+              </Center>
             </Box>
             <Box>
               <Headline mb={2}>{love1Header}</Headline>
-              <Text textStyle="Body1">{newlinesToBreaks(love1Text.trim())}</Text>
+              <Text color={descColor} fontSize="13px" textStyle="Body1">
+                {newlinesToBreaks(love1Text.trim())}
+              </Text>
             </Box>
           </Flex>
 
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Icon as={FiDollarSign} verticalAlign="text-top" />
+              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+                <Icon as={FiDollarSign} verticalAlign="text-top" />
+              </Center>
             </Box>
             <Box>
               <Headline mb={2}>{love2Header}</Headline>
-              <Text textStyle="Body1">{newlinesToBreaks(love2Text.trim())}</Text>
+              <Text color={descColor} fontSize="13px" textStyle="Body1">
+                {newlinesToBreaks(love2Text.trim())}
+              </Text>
             </Box>
           </Flex>
 
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Icon as={FiTag} verticalAlign="text-top" />
+              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+                <Icon as={FiTag} verticalAlign="text-top" />
+              </Center>
             </Box>
             <Box>
               <Headline mb={2}>{love3Header}</Headline>
-              <Text textStyle="Body1">{newlinesToBreaks(love3Text.trim())}</Text>
+              <Text color={descColor} fontSize="13px" textStyle="Body1">
+                {newlinesToBreaks(love3Text.trim())}
+              </Text>
             </Box>
           </Flex>
         </VStack>
