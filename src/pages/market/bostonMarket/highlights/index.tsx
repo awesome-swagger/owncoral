@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import { FiBook, FiSearch, FiPlusSquare } from 'react-icons/fi';
 import { Title2 } from '../../../../components/text';
 
@@ -24,17 +24,21 @@ const HighLightsList = [
 ];
 
 export const Highlights = () => {
+  const iconColor = useColorModeValue('#FF5D5D', '#FFFFFF');
+  const descColor = useColorModeValue('#545656', '#FFFFFFCC');
   return (
     <Box>
       <Title2>Highlights</Title2>
       {HighLightsList.map(({ icon, heading, description }) => (
         <Flex my={6}>
           <Center borderRadius="xl" layerStyle="card" h={8} minW={8} mr={4}>
-            <Icon as={icon} h={4} w={4} />
+            <Icon as={icon} h={4} w={4} color={iconColor} />
           </Center>
           <Box>
             <Text fontWeight="600">{heading}</Text>
-            <Text textStyle="Body2">{description}</Text>
+            <Text textStyle="Body2" color={descColor}>
+              {description}
+            </Text>
           </Box>
         </Flex>
       ))}
