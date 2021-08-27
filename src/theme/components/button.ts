@@ -111,7 +111,7 @@ const variants = R.mapValues(baseVariants, (baseVariant) => (props: Dict) => {
 export const Button = {
   baseStyle: {
     // Rounded buttons
-    borderRadius: 'full',
+    borderRadius: '2xl',
     // Button typography
     ...ButtonStyle,
   },

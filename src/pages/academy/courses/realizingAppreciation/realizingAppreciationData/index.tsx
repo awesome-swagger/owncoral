@@ -58,6 +58,7 @@ const NextBtn = ({
     <Button
       w={finishBtn ? 'auto' : 10}
       h={10}
+      borderRadius={finishBtn === false ? 'full' : '2xl'}
       onClick={() =>
         history.push(`/academy/unit/realizing-appreciation-without-selling/${nextStep}`)
       }
@@ -71,7 +72,7 @@ const PrevBtn = ({ background = true }: { background?: boolean }) => {
   const history = useHistory();
 
   return background ? (
-    <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
+    <Button borderRadius="full" colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
       <Icon as={FiChevronLeft} />
     </Button>
   ) : (

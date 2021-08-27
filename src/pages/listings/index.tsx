@@ -109,11 +109,23 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
     >
       <Box userSelect="none">
         <Flex px={6} mb={6} alignItems="center" justifyContent="space-between">
-          <Button colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
+          <Button
+            borderRadius="full"
+            colorScheme="white"
+            w={10}
+            h={10}
+            onClick={() => history.goBack()}
+          >
             <Icon as={FiChevronLeft} />
           </Button>
           <Title2>Greater Boston Area</Title2>
-          <Button colorScheme="white" w={10} h={10} onClick={() => history.push('/boston-market')}>
+          <Button
+            borderRadius="full"
+            colorScheme="white"
+            w={10}
+            h={10}
+            onClick={() => history.push('/boston-market')}
+          >
             <Icon as={FiInfo} />
           </Button>
         </Flex>
