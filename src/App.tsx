@@ -47,6 +47,8 @@ const CourseRealizingAppreciation = lazy(
 );
 const CourseOwnershipStructure = lazy(() => import('./pages/academy/courses/ownershipStructure'));
 const BostonMarket = lazy(() => import('./pages/market/bostonMarket'));
+const BostonSubMarket = lazy(() => import('./pages/market/bostonSubMarket'));
+
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
 
@@ -81,11 +83,10 @@ function App() {
                 <Switch>
                   {/* Note: server handles not-logged-in redirection for the SPA bundle */}
                   {authRoutes}
-
+                  {marketRoutes}
                   <Route path="/listings">
                     <Listings />
                   </Route>
-                  <Route path="/boston-market" component={BostonMarket} />
 
                   <ProtectedRoute exact path="/">
                     <Redirect to="/portfolio" />
@@ -188,6 +189,11 @@ const authRoutes = [
   <Route exact path="/welcome-to-coral/:resetToken" key="/welcome-to-coral/:resetToken">
     <NewPassword isWelcome />
   </Route>,
+];
+
+const marketRoutes = [
+  <Route exact path="/boston-market" component={BostonMarket} />,
+  <Route exact path="/boston-market/:name" component={BostonSubMarket} />,
 ];
 
 // eslint-disable-next-line import/no-default-export
