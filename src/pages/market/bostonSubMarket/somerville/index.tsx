@@ -90,12 +90,6 @@ export const Somerville = () => {
           </Text>
         </Box>
       </Flex>
-      <Box layerStyle="card" borderRadius="2xl">
-        <Text p={4}>
-          The existing building at 258 Prospect, built prior to this regulation, has FAR around 1.8,
-          and is grandfathered in.
-        </Text>
-      </Box>
       <Box my={6}>
         <Text fontSize="12px" color={descColor}>
           Sources: Wallethub,{' '}
