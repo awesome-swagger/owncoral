@@ -1,16 +1,19 @@
 // editorconfig-checker-disable
 // we can replace for quotes symbol (&#39; -> ’, &#34; -> “”)
 import { Fragment } from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 
-import { Headline } from '../../../../components/text';
+import { Title2, Headline, Overline } from '../../../../components/text';
 
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
-const Calculation = ({ children }: { children: any }) => (
-  <Box layerStyle="card" my={4} p={4} borderRadius="2xl">
-      <Headline mb={2} opacity="0.5" casing="uppercase">
+const Calculation = ({ children }: { children: any }) => {
+  const gray = useColorModeValue('gray.700', 'gray.200');
+
+  return (
+    <Box layerStyle="card" my={8} p={4} borderRadius="2xl">
+      <Overline color={gray} mb={2} casing="uppercase">
         How to Calculate
-      </Headline>
+      </Overline>
       <Text
         fontSize="1.125rem"
         letterSpacing="0.02rem"
@@ -21,10 +24,11 @@ const Calculation = ({ children }: { children: any }) => (
         {children}{' '}
       </Text>
     </Box>
-);
+  );
+};
 const Example = ({ children }: { children: any }) => (
   <Box my={4}>
-    <Headline mb={2}>Example</Headline>
+    <Title2 mb={2}>Example</Title2>
     <Text textStyle="Body1">{children}</Text>
   </Box>
 );
