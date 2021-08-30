@@ -10,10 +10,12 @@ import { SubMarkets } from './subMarkets';
 const BostonMarket = () => {
   const history = useHistory();
   const handleClose = () => history.goBack();
+  const handleMarketProperties = () => history.push('listings');
+
   return (
     <Container p={0}>
       <Box>
-        <Image src={MarketImg} alt="house_img" w="100%" filter="grayscale(1)" />
+        <Image src={MarketImg} alt="house_img" w="100%" />
         <Icon
           pos="absolute"
           top={6}
@@ -28,8 +30,8 @@ const BostonMarket = () => {
           layerStyle="iconColor"
         />
       </Box>
-      <Box px={6}>
-        <Box my={6}>
+      <Box px={6} borderRadius="2xl" mt={-4} pos="relative" bg="inherit">
+        <Box py={6}>
           <AreaDetails />
           <Divider my={6} />
           <Highlights />
@@ -39,7 +41,7 @@ const BostonMarket = () => {
       </Box>
       <Divider my={6} />
       <Box px={6}>
-        <Button mb={6} w="100%">
+        <Button mb={6} w="100%" onClick={handleMarketProperties}>
           Continue to market properties
         </Button>
       </Box>
