@@ -112,7 +112,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
 
             <Flex w="100%" align="center">
               <CircleIcon h={3} w={3} mr={2} color={debtColor} />
-              <Box flexGrow={1}>Initial loan</Box>
+              <Box flexGrow={1}>Initial loan*</Box>
               <Box align="right" w="4rem">
                 {((1 - equityPct) * 100).toFixed(1)}%
               </Box>
@@ -131,6 +131,9 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
                 ${formatFinancialSI(listingsDetail.mdlMortgage + listingsDetail.mdlEquity)}
               </Box>
             </Flex>
+            <Caption1 color="gray" mt={4} w="100%">
+              * Coral estimates, subject to change
+            </Caption1>
           </VStack>
         </Fragment>
       )}

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { FiDollarSign, FiMapPin, FiTag } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Card } from '../../../../components';
-import { Headline, Title2 } from '../../../../components/text';
+import { Headline, Title2, Caption1 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 type PerformanceTabPropsT = {
@@ -33,17 +33,23 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
   return (
     <Fragment>
       <Box px={6}>
-        {' '}
         <Title2 mt={4} mb={2}>
           Hypothetical Investment
         </Title2>
         {listingsDetail.mdlEquity && (
-          <Text>10 shares for ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.1))}</Text>
+          <>
+            <Text>
+              10 shares for ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.1))}
+            </Text>
+            <Caption1 color="gray" mt={4}>
+              Targets assume a 10 yr hold
+            </Caption1>
+          </>
         )}
         <Box h={6} />
         <HStack overflow="auto" w="100%" spacing={3} alignItems="stretch">
           <Card
-            title="Avg. cash dist."
+            title="TARGET CASH DIST."
             value={(listingsDetail.listingCashDist * 100).toFixed(1) + '%'}
             description={
               listingsDetail.mdlEquity
@@ -54,7 +60,7 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
             }
           />
           <Card
-            title="IRR"
+            title="TARGET IRR"
             value={(listingsDetail.listingIrr * 100).toFixed(1) + '%'}
             description=""
           />
