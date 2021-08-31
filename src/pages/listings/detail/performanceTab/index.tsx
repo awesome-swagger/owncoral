@@ -14,7 +14,7 @@ import {
   Center,
 } from '@chakra-ui/react';
 
-import { Card } from '../../../../components';
+import { Card, IconBackground } from '../../../../components';
 import { Headline, Title2, Caption1 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
@@ -82,9 +82,9 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
         <VStack spacing={6} w="100%" align="baseline">
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+              <IconBackground>
                 <Icon as={FiMapPin} verticalAlign="text-top" />
-              </Center>
+              </IconBackground>
             </Box>
             <Box>
               <Headline mb={2}>{love1Header}</Headline>
@@ -96,9 +96,9 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
 
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+              <IconBackground>
                 <Icon as={FiDollarSign} verticalAlign="text-top" />
-              </Center>
+              </IconBackground>
             </Box>
             <Box>
               <Headline mb={2}>{love2Header}</Headline>
@@ -110,9 +110,9 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
 
           <Flex>
             <Box mr={4} h={8} w={8}>
-              <Center borderRadius="xl" layerStyle="card" h={8} minW={8}>
+              <IconBackground>
                 <Icon as={FiTag} verticalAlign="text-top" />
-              </Center>
+              </IconBackground>
             </Box>
             <Box>
               <Headline mb={2}>{love3Header}</Headline>
