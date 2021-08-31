@@ -14,6 +14,7 @@ import { Heading } from './components/heading';
 import { Input } from './components/input';
 import { Tabs } from './components/tabs';
 import { Text } from './components/text';
+import { Link } from './components/link';
 // Foundational style overrides
 import { colors } from './foundations/colors';
 import { shadows } from './foundations/shadows';
@@ -45,6 +46,7 @@ const overrides = {
     Tabs,
     Text,
     Accordion,
+    Link,
   },
 };
 
