@@ -46,6 +46,9 @@ const CourseRealizingAppreciation = lazy(
   () => import('./pages/academy/courses/realizingAppreciation'),
 );
 const CourseOwnershipStructure = lazy(() => import('./pages/academy/courses/ownershipStructure'));
+const CourseFinanacingWithCommercial = lazy(
+  () => import('./pages/academy/courses/financingWithCommercial'),
+);
 const BostonMarket = lazy(() => import('./pages/market/bostonMarket'));
 const BostonSubMarket = lazy(() => import('./pages/market/bostonSubMarket'));
 
@@ -69,7 +72,6 @@ function App() {
   }
 
   const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
-
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
       <UserContext.Provider value={[user, setUser]}>
@@ -84,6 +86,7 @@ function App() {
                   {/* Note: server handles not-logged-in redirection for the SPA bundle */}
                   {authRoutes}
                   {marketRoutes}
+                  {courseRoutes}
                   <Route path="/listings">
                     <Listings />
                   </Route>
@@ -109,30 +112,6 @@ function App() {
                   <ProtectedRoute exact path="/academy/:tab" component={Academy} />
                   <ProtectedRoute path="/academy/course/:title" component={CourseDetail} />
                   <ProtectedRoute path="/academy/glossary/:title" component={GlossaryDetail} />
-
-                  <ProtectedRoute exact path="/academy/unit/cash-flow">
-                    <Redirect to="/academy/unit/cash-flow/1" />
-                  </ProtectedRoute>
-                  <ProtectedRoute
-                    path="/academy/unit/cash-flow/:title"
-                    component={CourseCashFlow}
-                  />
-
-                  <ProtectedRoute exact path="/academy/unit/realizing-appreciation-without-selling">
-                    <Redirect to="/academy/unit/realizing-appreciation-without-selling/1" />
-                  </ProtectedRoute>
-                  <ProtectedRoute
-                    path="/academy/unit/realizing-appreciation-without-selling/:title"
-                    component={CourseOwnershipStructure}
-                  />
-
-                  <ProtectedRoute exact path="/academy/unit/ownership-structure">
-                    <Redirect to="/academy/unit/ownership-structure/1" />
-                  </ProtectedRoute>
-                  <ProtectedRoute
-                    path="/academy/unit/ownership-structure/:title"
-                    component={CourseOwnershipStructure}
-                  />
 
                   {!isProd && (
                     <Fragment>
@@ -194,6 +173,37 @@ const authRoutes = [
 const marketRoutes = [
   <Route exact path="/boston-market" component={BostonMarket} />,
   <Route exact path="/boston-market/:name" component={BostonSubMarket} />,
+];
+
+const courseRoutes = [
+  <ProtectedRoute exact path="/academy/unit/cash-flow">
+    <Redirect to="/academy/unit/cash-flow/1" />
+  </ProtectedRoute>,
+  <ProtectedRoute path="/academy/unit/cash-flow/:title" component={CourseCashFlow} />,
+
+  <ProtectedRoute exact path="/academy/unit/realizing-appreciation-without-selling">
+    <Redirect to="/academy/unit/realizing-appreciation-without-selling/1" />
+  </ProtectedRoute>,
+  <ProtectedRoute
+    path="/academy/unit/realizing-appreciation-without-selling/:title"
+    component={CourseRealizingAppreciation}
+  />,
+
+  <ProtectedRoute exact path="/academy/unit/ownership-structure">
+    <Redirect to="/academy/unit/ownership-structure/1" />
+  </ProtectedRoute>,
+  <ProtectedRoute
+    path="/academy/unit/ownership-structure/:title"
+    component={CourseOwnershipStructure}
+  />,
+
+  <ProtectedRoute exact path="/academy/unit/financing-with-commercial-loans">
+    <Redirect to="/academy/unit/financing-with-commercial-loans/1" />
+  </ProtectedRoute>,
+  <ProtectedRoute
+    path="/academy/unit/financing-with-commercial-loans/:title"
+    component={CourseFinanacingWithCommercial}
+  />,
 ];
 
 // eslint-disable-next-line import/no-default-export

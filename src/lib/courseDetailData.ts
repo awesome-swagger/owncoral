@@ -23,7 +23,11 @@ export const Data: CourseT[] = [
       { title: 'Ownership structure', slides: 7, url: '/academy/unit/ownership-structure' },
       { title: 'Operating expenses', slides: 7 },
       { title: 'Capital expenditure', slides: 7 },
-      { title: 'Financing with commercial loans', slides: 7 },
+      {
+        title: 'Financing with commercial loans',
+        slides: 7,
+        url: '/academy/unit/financing-with-commercial-loans',
+      },
       {
         title: 'Realizing appreciation without selling',
         slides: 7,

@@ -2,11 +2,11 @@ import { Fragment, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, NavBar } from '../../../../components';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
-import { Data } from './realizingAppreciationData';
+import { Data } from './financingWithCommercialData';
 import { titleToUrlFragment } from '../../lib';
 const Error404 = lazy(() => import('../../../error404'));
 
-const RealizingAppreciationFlow = () => {
+const FinancingWithCommercialFlow = () => {
   const { title } = useParams<{ title: string }>();
   if (!title) return Data[0].jsx;
 
@@ -19,11 +19,7 @@ const RealizingAppreciationFlow = () => {
   return FilteredData ? (
     <Fragment>
       <NavBar />
-      <Container
-        minH={{ base: `calc(${window.innerHeight}px - 8rem)` }}
-        h={{ base: 'auto', md: '750px' }}
-        pb={{ base: 16 }}
-      >
+      <Container minH={{ base: `calc(${window.innerHeight}px - 8rem)` }} h="auto" pb={{ base: 16 }}>
         {FilteredData.jsx}
       </Container>
     </Fragment>
@@ -33,4 +29,4 @@ const RealizingAppreciationFlow = () => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default RealizingAppreciationFlow;
+export default FinancingWithCommercialFlow;
