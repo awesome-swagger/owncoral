@@ -213,6 +213,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     descriptionMarkdown: z.ZodNullable<z.ZodString>;
     occupancyStatus: z.ZodNullable<z.ZodString>;
     isUnderRenovation: z.ZodBoolean;
+    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString>]>>>>;
     ccyCode: z.ZodNullable<z.ZodString>;
     rentalIncomeMonthlyCurrent: z.ZodNullable<z.ZodNumber>;
     rentalIncomeMonthlyTarget: z.ZodNullable<z.ZodNumber>;
@@ -251,6 +252,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
     isUnderRenovation: boolean;
+    renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
     rentalIncomeMonthlyCurrent: number | null;
     rentalIncomeMonthlyTarget: number | null;
@@ -288,6 +290,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
     isUnderRenovation: boolean;
+    renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
     rentalIncomeMonthlyCurrent: number | null;
     rentalIncomeMonthlyTarget: number | null;
@@ -343,6 +346,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     descriptionMarkdown: z.ZodNullable<z.ZodString>;
     occupancyStatus: z.ZodNullable<z.ZodString>;
     isUnderRenovation: z.ZodBoolean;
+    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString>]>>>>;
     ccyCode: z.ZodNullable<z.ZodString>;
     rentalIncomeMonthlyCurrent: z.ZodNullable<z.ZodNumber>;
     rentalIncomeMonthlyTarget: z.ZodNullable<z.ZodNumber>;
@@ -390,6 +394,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
     isUnderRenovation: boolean;
+    renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
     rentalIncomeMonthlyCurrent: number | null;
     rentalIncomeMonthlyTarget: number | null;
@@ -434,6 +439,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
     isUnderRenovation: boolean;
+    renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
     rentalIncomeMonthlyCurrent: number | null;
     rentalIncomeMonthlyTarget: number | null;

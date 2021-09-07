@@ -52,6 +52,9 @@ export const ListingsProperty = z.object({
 });
 export type ListingsPropertyT = z.infer<typeof ListingsProperty>;
 
+// A renovation item looks like:
+// ['kitchen', ['bullet1 contents', 'bullet 2 contents', ...]]
+const RenovationItem = z.array(z.union([z.string(), z.array(z.string())])).length(2);
 const BasePropertyDetail = z
   .object({
     id: z.string(),
@@ -74,6 +77,7 @@ const BasePropertyDetail = z
     descriptionMarkdown: z.string().nullable(),
     occupancyStatus: z.string().nullable(),
     isUnderRenovation: z.boolean(),
+    renovationsJsonb: z.array(RenovationItem).nullable(),
 
     // TODO: not nullable (and in property.sql)
     ccyCode: z.string().max(3).nullable(),
