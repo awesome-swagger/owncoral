@@ -1,34 +1,68 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
-import React, { Fragment, useContext, useEffect, useState, useRef } from 'react';
-import { Text, Image, Box, AspectRatio, UnorderedList, ListItem } from '@chakra-ui/react';
-import { DummyData } from './dummyData';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
+import {
+  Text,
+  Image,
+  Box,
+  AspectRatio,
+  UnorderedList,
+  ListItem,
+  Center,
+  Spinner,
+} from '@chakra-ui/react';
+import { Images } from './images';
 import { Title2 } from '../../../../../components/text';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { UserContext } from '../../../../../userContext';
-import { RenovationEditModal } from './renovationEditModal';
+import { fetchWrap } from '../../../../../lib/api';
+// import { RenovationEditModal } from './renovationEditModal';
+// import { UserContext } from '../../../../../userContext';
 
-export const Renovation = () => {
-  const [user] = useContext(UserContext);
-  const [selectedValue, setSelectedValue] = useState(['curb appeal', 'kitchen', 'roof']);
-  const [text, setText] = useState('');
+type RenoDataT = Array<string & Array<string & Array<string>>>;
+
+export const Renovation = ({ propertyId }: { propertyId: string }) => {
+  // const [user] = useContext(UserContext);
+  const [renovationData, setRenovationData] = useState([]);
+  // const [selectedValue, setSelectedValue] = useState(['curb appeal', 'kitchen', 'roof']);
+  // const [text, setText] = useState('');
   const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false });
   const textRef: React.MutableRefObject<any> = useRef();
-  const Admin = user?.isAdmin;
-
-  const FilteredValue = DummyData.filter(({ title }) => selectedValue.indexOf(title) > -1);
+  // const Admin = user?.isAdmin;
 
   useEffect(() => {
-    setText(textRef?.current?.innerText);
-    if (emblaApi && emblaApi.slideNodes().length !== selectedValue.length) {
+    // setText(textRef?.current?.innerText);
+    if (emblaApi && emblaApi.slideNodes().length) {
       emblaApi.reInit();
     }
-  }, [emblaApi, selectedValue]);
+  }, [emblaApi, renovationData, setRenovationData]);
+
+  useEffect(() => {
+    (async () => {
+      if (propertyId === null) return;
+
+      const resp = await fetchWrap('/api/listings-detail', {
+        method: 'POST',
+        body: JSON.stringify({
+          propertyId,
+        }),
+      });
+
+      if (resp === null) {
+        return;
+      }
+
+      if (resp.ok) {
+        const data = await resp.json();
+        setRenovationData(data.renovationsJsonb);
+        return;
+      }
+    })();
+  }, []);
 
   return (
     <Fragment>
       <Box px={6} pos="relative">
-        {Admin && (
+        {/* {Admin && (
           <RenovationEditModal
             text={text}
             setText={setText}
@@ -36,7 +70,7 @@ export const Renovation = () => {
             setSelectedValue={setSelectedValue}
             textRef={textRef}
           />
-        )}
+        )} */}
         <Title2 my={6}>Renovation</Title2>
         <Text ref={textRef}>
           Given that the property is currently fully occupied, renovation will be staggered as
@@ -44,43 +78,58 @@ export const Renovation = () => {
           renovations before January 2022.
         </Text>
       </Box>
-      <Box className="embla">
-        <Box className="embla__viewport" ref={viewportRef}>
-          <Box className="embla__container" pb={6}>
-            {FilteredValue.map(({ title, image, renovationList }, idx) => (
-              <Box
-                className="embla__slide"
-                minW="87%"
-                mx={FilteredValue.length === 1 ? 4 : 2}
-                key={idx}
-              >
-                <Box className="embla__slide__inner">
-                  <Box width="100%">
-                    <AspectRatio
-                      my={6}
-                      ratio={4 / 3}
-                      cursor="pointer"
-                      overflow="hidden"
-                      boxShadow="sm"
-                      borderRadius="2xl"
-                    >
-                      <Image src={image} alt="renovation" />
-                    </AspectRatio>
-                    <Title2 textTransform="capitalize" mb={3}>
-                      {title}
-                    </Title2>
-                    <UnorderedList>
-                      {renovationList.map((val, idx) => (
-                        <ListItem key={idx}>{val}</ListItem>
-                      ))}
-                    </UnorderedList>
+      {renovationData !== null && renovationData.length === 0 ? (
+        <Center h={60}>
+          <Spinner />
+        </Center>
+      ) : renovationData ? (
+        <Box className="embla">
+          <Box className="embla__viewport" ref={viewportRef}>
+            <Box className="embla__container" pb={6}>
+              {renovationData?.map((value: RenoDataT, idx: number) => (
+                <Box
+                  className="embla__slide"
+                  minW="87%"
+                  mx={renovationData?.length === 1 ? 4 : 2}
+                  key={idx}
+                >
+                  <Box className="embla__slide__inner">
+                    <Box width="100%">
+                      {Images.map(({ title, image }) => {
+                        return (
+                          title.includes(value[0].toLowerCase()) && (
+                            <AspectRatio
+                              my={6}
+                              key={title}
+                              ratio={4 / 3}
+                              cursor="pointer"
+                              overflow="hidden"
+                              boxShadow="sm"
+                              borderRadius="2xl"
+                            >
+                              <Image src={image} alt="renovation" />
+                            </AspectRatio>
+                          )
+                        );
+                      })}
+                      <Title2 textTransform="capitalize" mb={3}>
+                        {value[0]}
+                      </Title2>
+                      <UnorderedList>
+                        {value[1].map((val, idx) => (
+                          <ListItem key={idx}>{val}</ListItem>
+                        ))}
+                      </UnorderedList>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            ))}
+              ))}
+            </Box>
           </Box>
         </Box>
-      </Box>
+      ) : (
+        <></>
+      )}
     </Fragment>
   );
 };

@@ -108,9 +108,23 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
-    <Container padding={0}>
+    <Container pos="relative" padding={0}>
       {listingUriFragmentToId !== null && listingsDetail !== null ? (
         <Fragment>
+          <Icon
+            zIndex="1"
+            pos="absolute"
+            top={10}
+            left={10}
+            h={8}
+            w={8}
+            p={1}
+            as={FiX}
+            cursor="pointer"
+            onClick={() => history.push('/listings')}
+            borderRadius="full"
+            layerStyle="iconColor"
+          />
           <AspectRatio ratio={4 / 3}>
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
@@ -129,26 +143,12 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box py={6} pt={0}>
+          <Box bg="inherit" mt={-4} borderRadius="2xl" pos="relative" py={6}>
             <Box px={6}>
-              <Icon
-                pos="absolute"
-                top={10}
-                left={10}
-                h={8}
-                w={8}
-                p={1}
-                as={FiX}
-                cursor="pointer"
-                onClick={() => history.push('/listings')}
-                borderRadius="full"
-                layerStyle="iconColor"
-              />
-
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
             </Box>
-            <TabSection listingsDetail={listingsDetail} />
+            <TabSection listingsDetail={listingsDetail} propertyId={propertyId} />
             <Divider />
             <Box px={6} mt={3}>
               {limitFull && (
@@ -191,7 +191,7 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
     .join('  ·  ');
 
   return (
-    <Box mt={8}>
+    <Box>
       <Overline>
         {listingsDetail.address.cityLocality}, {listingsDetail.address.stateRegion}
       </Overline>
@@ -227,8 +227,9 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
 
 type TabSectionPropsT = {
   listingsDetail: ListingsPropertyDetailT;
+  propertyId: string | null;
 };
-export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
+export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => {
   const fallback = (
     <Center>
       <Spinner />
@@ -262,7 +263,7 @@ export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
         </TabPanel>
         <TabPanel px="0">
           <Suspense fallback={fallback}>
-            <CoralPlanTab listingsDetail={listingsDetail} />
+            <CoralPlanTab listingsDetail={listingsDetail} propertyId={propertyId} />
           </Suspense>
         </TabPanel>
       </TabPanels>

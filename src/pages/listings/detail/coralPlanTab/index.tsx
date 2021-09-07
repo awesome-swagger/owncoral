@@ -9,8 +9,9 @@ import { RentalIncome } from './rentalIncome';
 
 type CoralPlanTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;
+  propertyId: string | null;
 };
-const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
+const CoralPlanTab = ({ listingsDetail, propertyId }: CoralPlanTabPropsT) => {
   return (
     <Fragment>
       <Box px={6}>
@@ -19,7 +20,7 @@ const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
         <ValueAddPlan listingsDetail={listingsDetail} />
         <Divider my={6} />
       </Box>
-      <Renovation />
+      <Renovation propertyId={propertyId} />
       <Box px={6}>
         <Divider my={6} />
         <RentalIncome listingsDetail={listingsDetail} />

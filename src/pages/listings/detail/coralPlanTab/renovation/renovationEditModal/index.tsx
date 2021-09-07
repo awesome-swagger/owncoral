@@ -15,7 +15,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import { FiCheckCircle, FiCircle, FiEdit } from 'react-icons/fi';
-import { DummyData } from '../dummyData';
+// import { DummyData } from '../images';
 
 type RenovationEditModalT = {
   text: string;
@@ -76,7 +76,7 @@ export const RenovationEditModal = ({
               resize="vertical"
             />
             <Flex flexWrap="wrap" gridGap="2">
-              {DummyData.map(({ title }: { title: string }) => (
+              {/* {DummyData.map(({ title }: { title: string }, idx) => (
                 <Flex
                   px={3}
                   py={2}
@@ -85,13 +85,14 @@ export const RenovationEditModal = ({
                   cursor="pointer"
                   textTransform="capitalize"
                   layerStyle="card"
+                  key={idx}
                   _hover={{ opacity: 0.8 }}
                   onClick={() => handleSelect(title)}
                 >
                   <Icon mr={1} as={newSelectedValue.includes(title) ? FiCheckCircle : FiCircle} />
                   {title}
                 </Flex>
-              ))}
+              ))} */}
             </Flex>
           </ModalBody>
           <ModalFooter>
