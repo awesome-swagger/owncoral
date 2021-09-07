@@ -14,15 +14,16 @@ import {
 import { Images } from './images';
 import { Title2 } from '../../../../../components/text';
 import { useEmblaCarousel } from 'embla-carousel/react';
-import { fetchWrap } from '../../../../../lib/api';
+import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
+
 // import { RenovationEditModal } from './renovationEditModal';
 // import { UserContext } from '../../../../../userContext';
 
 type RenoDataT = Array<string & Array<string & Array<string>>>;
 
-export const Renovation = ({ propertyId }: { propertyId: string | null }) => {
+export const Renovation = ({ listingsDetail }: { listingsDetail: ListingsPropertyDetailT }) => {
   // const [user] = useContext(UserContext);
-  const [renovationData, setRenovationData] = useState([]);
+  const [renovationData, setRenovationData]: any = useState([]);
   // const [selectedValue, setSelectedValue] = useState(['curb appeal', 'kitchen', 'roof']);
   // const [text, setText] = useState('');
   const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false });
@@ -35,29 +36,7 @@ export const Renovation = ({ propertyId }: { propertyId: string | null }) => {
       emblaApi.reInit();
     }
   }, [emblaApi, renovationData, setRenovationData]);
-
-  useEffect(() => {
-    (async () => {
-      if (propertyId === null) return;
-
-      const resp = await fetchWrap('/api/listings-detail', {
-        method: 'POST',
-        body: JSON.stringify({
-          propertyId,
-        }),
-      });
-
-      if (resp === null) {
-        return;
-      }
-
-      if (resp.ok) {
-        const data = await resp.json();
-        setRenovationData(data.renovationsJsonb);
-        return;
-      }
-    })();
-  }, []);
+  useEffect(() => setRenovationData(listingsDetail.renovationsJsonb), []);
 
   return (
     <Fragment>

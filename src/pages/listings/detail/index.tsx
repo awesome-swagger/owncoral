@@ -263,7 +263,7 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
         </TabPanel>
         <TabPanel px="0">
           <Suspense fallback={fallback}>
-            <CoralPlanTab listingsDetail={listingsDetail} propertyId={propertyId} />
+            <CoralPlanTab listingsDetail={listingsDetail} />
           </Suspense>
         </TabPanel>
       </TabPanels>
