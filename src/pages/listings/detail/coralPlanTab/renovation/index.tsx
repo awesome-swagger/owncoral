@@ -20,7 +20,7 @@ import { fetchWrap } from '../../../../../lib/api';
 
 type RenoDataT = Array<string & Array<string & Array<string>>>;
 
-export const Renovation = ({ propertyId }: { propertyId: string }) => {
+export const Renovation = ({ propertyId }: { propertyId: string | null }) => {
   // const [user] = useContext(UserContext);
   const [renovationData, setRenovationData] = useState([]);
   // const [selectedValue, setSelectedValue] = useState(['curb appeal', 'kitchen', 'roof']);
