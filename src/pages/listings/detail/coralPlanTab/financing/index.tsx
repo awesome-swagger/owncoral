@@ -36,7 +36,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
   const debtColor = useColorModeValue('green.300', 'green.200');
 
   return (
-    <Fragment>
+    <Box>
       <Title2 my={6}>Total property costs*</Title2>
       <VStack align="stretch">
         <Flex justifyContent="space-between">
@@ -157,7 +157,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
       {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
       {/*  Learn more about financing */}
       {/* </Button> */}
-    </Fragment>
+    </Box>
   );
 };
 

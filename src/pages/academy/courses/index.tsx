@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Flex } from '@chakra-ui/react';
+import { Flex, HStack } from '@chakra-ui/react';
 
 import { CourseCard } from '../../../components';
 import { Data } from '../../../lib/courseDetailData';

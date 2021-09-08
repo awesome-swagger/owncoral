@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
-import { Divider, Box } from '@chakra-ui/react';
+import { Divider, Box, VStack } from '@chakra-ui/react';
 
 import { Financing } from './financing';
 import { ValueAddPlan } from './valueAddPlan';
@@ -13,17 +13,17 @@ type CoralPlanTabPropsT = {
 const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
   return (
     <Fragment>
-      <Box px={6}>
+      <VStack px={6} alignItems="normal" gridGap={6} spacing={0}>
         <Financing listingsDetail={listingsDetail} />
-        <Divider my={6} />
+        <Divider />
         <ValueAddPlan listingsDetail={listingsDetail} />
-        <Divider my={6} />
-      </Box>
+        <Divider />
+      </VStack>
       <Renovation listingsDetail={listingsDetail} />
-      <Box px={6}>
-        <Divider my={6} />
+      <VStack px={6} alignItems="normal" gridGap={6} spacing={0}>
+        <Divider />
         <RentalIncome listingsDetail={listingsDetail} />
-      </Box>
+      </VStack>
     </Fragment>
   );
 };

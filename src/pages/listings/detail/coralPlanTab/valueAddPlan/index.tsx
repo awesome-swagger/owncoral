@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
+import React from 'react';
 import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
-import { Flex, Text, VStack } from '@chakra-ui/react';
+import { Flex, Text, VStack, Box } from '@chakra-ui/react';
 
 import { Headline, Title2 } from '../../../../../components/text';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
@@ -10,7 +10,7 @@ type ValueAddPlanePropsT = {
 };
 export const ValueAddPlan = ({ listingsDetail }: ValueAddPlanePropsT) => {
   return (
-    <Fragment>
+    <Box>
       <Title2 mb={6}>Value-add plan</Title2>
       {/* TODO: Table? */}
       <VStack w="100%" align="stretch">
@@ -49,6 +49,6 @@ export const ValueAddPlan = ({ listingsDetail }: ValueAddPlanePropsT) => {
       {/*    </Box> */}
       {/*  ))} */}
       {/* </Flex> */}
-    </Fragment>
+    </Box>
   );
 };
