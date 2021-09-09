@@ -66,6 +66,9 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
           />
           {/* TODO: chart */}
         </HStack>
+        <Caption1 color="gray" my={4}>
+          * See Disclosures Tab for important disclosures regarding target returns
+        </Caption1>
         <Box
           p={4}
           mt={6}

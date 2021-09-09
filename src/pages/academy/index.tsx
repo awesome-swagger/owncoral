@@ -6,7 +6,7 @@ import { Container, NavBar } from '../../components';
 import { Title1 } from '../../components/text';
 import { Courses } from './courses';
 import { Glossary } from './glossary';
-import { Disclosures } from './disclosures';
+import { Disclosure } from './disclosure';
 
 const Academy = () => (
   <Fragment>
@@ -26,11 +26,11 @@ const AcademyTabs = () => {
   return (
     <Box>
       <Title1 mb={4}>Academy</Title1>
-      <Tabs defaultIndex={tab === 'glossary' ? 1 : 0}>
+      <Tabs defaultIndex={tab === 'courses' ? 0 : tab === 'glossary' ? 1 : 2}>
         <TabList>
           <Tab onClick={() => handleClick('courses')}>Crash Courses</Tab>
           <Tab onClick={() => handleClick('glossary')}>Glossary</Tab>
-          <Tab onClick={() => handleClick('disclosures')}>Disclosures</Tab>
+          <Tab onClick={() => handleClick('disclosures')}>Disclosure</Tab>
         </TabList>
         <TabPanels>
           <TabPanel p="0">
@@ -40,7 +40,7 @@ const AcademyTabs = () => {
             <Glossary />
           </TabPanel>
           <TabPanel p="0">
-            <Disclosures p="0" />
+            <Disclosure p="0" />
           </TabPanel>
         </TabPanels>
       </Tabs>

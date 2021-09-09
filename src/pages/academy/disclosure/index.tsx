@@ -1,6 +1,6 @@
 import { Text, VStack } from '@chakra-ui/react';
 
-export const Disclosures = () => (
+export const Disclosure = () => (
   <VStack alignItems="flex-start" mt={6} gridGap={4}>
     <Text>
       This material is solely for informational purposes and shall not constitute an offer to sell

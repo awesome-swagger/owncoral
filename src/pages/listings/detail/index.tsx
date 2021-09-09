@@ -57,6 +57,14 @@ import { useQuery } from '../../../lib/useQuery';
 const PerformanceTab = lazy(() => import('./performanceTab'));
 const DetailsTab = lazy(() => import('./detailsTab'));
 const CoralPlanTab = lazy(() => import('./coralPlanTab'));
+const DisclosureTab = lazy(() => import('./disclosureTab'));
+
+const TabData = [
+  { name: 'Performance', Component: PerformanceTab },
+  { name: 'Property details', Component: DetailsTab },
+  { name: 'Coral plan', Component: CoralPlanTab },
+  { name: 'Disclosure', Component: DisclosureTab },
+];
 
 type ListingDetailPropsT = {
   listingUriFragmentToId: { [uriFragment: string]: string };
@@ -239,33 +247,21 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
   return (
     <Tabs isLazy>
       <TabList mx={6}>
-        <Tab py={6} px={2}>
-          <Headline>Performance</Headline>
-        </Tab>
-        <Tab py={6} px={2}>
-          <Headline textStyle="Headline">Property details</Headline>
-        </Tab>
-        <Tab py={6} px={2}>
-          <Headline textStyle="Headline">Coral plan</Headline>
-        </Tab>
+        {TabData.map(({ name }, idx) => (
+          <Tab py={6} px={2} key={idx}>
+            <Headline>{name}</Headline>
+          </Tab>
+        ))}
       </TabList>
 
       <TabPanels>
-        <TabPanel px="0">
-          <Suspense fallback={fallback}>
-            <PerformanceTab listingsDetail={listingsDetail} />
-          </Suspense>
-        </TabPanel>
-        <TabPanel px="0">
-          <Suspense fallback={fallback}>
-            <DetailsTab listingsDetail={listingsDetail} />
-          </Suspense>
-        </TabPanel>
-        <TabPanel px="0">
-          <Suspense fallback={fallback}>
-            <CoralPlanTab listingsDetail={listingsDetail} />
-          </Suspense>
-        </TabPanel>
+        {TabData.map(({ Component }, idx) => (
+          <TabPanel key={idx} px="0">
+            <Suspense fallback={fallback}>
+              <Component listingsDetail={listingsDetail} />
+            </Suspense>
+          </TabPanel>
+        ))}
       </TabPanels>
     </Tabs>
   );
