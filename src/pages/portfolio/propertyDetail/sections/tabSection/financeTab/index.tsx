@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
-import { Box, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Text, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
 import { format as formatDate, parseISO } from 'date-fns';
 
 import { Card } from '../../../../../../components';
@@ -116,6 +116,12 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
       <InvestmentReturn investment={investment} />
       {/* <Divider my={4} /> */}
       {/* <ChartSection /> */}
+      <Text my={4}>
+        For illustration purposes only to demonstrate Coral’s underwriting assumptions for this
+        property. There is no guarantee that the projected returns or cash flows will be realized,
+        and they may be significantly different than that shown here. See Disclosures tab for
+        additional information.&copy;
+      </Text>
     </Box>
   ) : (
     <Center h="100%" w="100%">
