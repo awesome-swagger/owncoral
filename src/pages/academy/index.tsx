@@ -40,7 +40,7 @@ const AcademyTabs = () => {
             <Glossary />
           </TabPanel>
           <TabPanel p="0">
-            <Disclosure p="0" />
+            <Disclosure />
           </TabPanel>
         </TabPanels>
       </Tabs>
