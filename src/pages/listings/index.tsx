@@ -1,16 +1,27 @@
-import React, { Fragment, useEffect, useState, useCallback } from 'react';
-import { useEmblaCarousel } from 'embla-carousel/react';
+import React, { Fragment, useCallback, useEffect, useState } from 'react';
+import { FiChevronLeft, FiInfo } from 'react-icons/fi';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { FiInfo, FiChevronLeft } from 'react-icons/fi';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
-import { Box, Flex, Button, Center, Spinner, useToast, Icon } from '@chakra-ui/react';
-import { Container, NavBar, ProtectedRoute, ListingCard } from '../../components';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Icon,
+  Spinner,
+  useBreakpointValue,
+  useMediaQuery,
+  useToast,
+} from '@chakra-ui/react';
+import { useEmblaCarousel } from 'embla-carousel/react';
+
+import { Container, ListingCard, NavBar, ProtectedRoute } from '../../components';
 import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
 import { Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
-import { useNavHeight } from '../../lib/useNavHeight';
 import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
 import { addressToUrlFragment } from '../../lib/urlFragments';
+import { useNavHeight } from '../../lib/useNavHeight';
 import Error404 from '../error404';
 import ListingDetail from './detail';
 
@@ -76,14 +87,18 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
   const history = useHistory();
   const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
   const [emblaRef, emblaApi] = useEmblaCarousel({ skipSnaps: true });
+  const [isTouch] = useMediaQuery('(pointer: coarse)');
+  const isBelowNavBreakpoint = useBreakpointValue({ base: true, [NAVBAR_TOP_BREAKPOINT]: false });
+  const useSlider = isTouch && isBelowNavBreakpoint;
+
   const { headerHeight, footerHeight, extraHeight } = useNavHeight();
 
   const onSlideClick = useCallback(
     (listing) => {
-      if (emblaApi && emblaApi.clickAllowed())
+      if (!useSlider || emblaApi?.clickAllowed())
         history.push(listingsRootUrl + '/detail?property=' + addressToUrlFragment(listing.address));
     },
-    [emblaApi],
+    [useSlider, emblaApi, history, listingsRootUrl],
   );
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -100,11 +115,12 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
       px="0"
       overflow="visible"
       showColorModeButton={false}
-      h={{
-        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight})`,
-        [NAVBAR_TOP_BREAKPOINT]: 'auto',
-      }}
-      pb={{ [NAVBAR_TOP_BREAKPOINT]: '0' }}
+      h={
+        useSlider
+          ? `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight})`
+          : 'auto'
+      }
+      pb={useSlider ? undefined : '0'}
       minH="0"
     >
       <Box userSelect="none">
@@ -134,30 +150,30 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
             <Spinner />
           </Center>
         ) : (
-          <>
-            <Box display={{ base: 'block', [NAVBAR_TOP_BREAKPOINT]: 'none' }}>
-              <Box className="embla" ref={emblaRef}>
-                <Box className="embla__viewport" ref={viewportRef}>
-                  <Box className="embla__container" pb={6}>
-                    {listings.map((listing, idx) => (
-                      <Box className="embla__slide" minW="85%" mx={2} key={idx}>
-                        <Box className="embla__slide__inner" overflow="visible">
-                          <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
+          <Box aria-label="listings">
+            {useSlider
+              ? (
+                <Box className="embla" ref={emblaRef}>
+                  <Box className="embla__viewport" ref={viewportRef}>
+                    <Box className="embla__container" pb={6}>
+                      {listings.map((listing, idx) => (
+                        <Box aria-label="listing" className="embla__slide" minW="85%" padding="0" mx="2%" key={idx}>
+                          <Box className="embla__slide__inner" overflow="visible">
+                            <ListingCard listing={listing} onSlideClick={onSlideClick} key={idx} />
+                          </Box>
                         </Box>
-                      </Box>
-                    ))}
+                      ))}
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            </Box>
-            <Box display={{ base: 'none', [NAVBAR_TOP_BREAKPOINT]: 'block' }}>
-              {listings.map((listing, idx) => (
-                <Box key={idx} px={6} pb={8}>
+              )
+              : listings.map((listing, idx) => (
+                <Box aria-label="listing" key={idx} px={6} pb={8}>
                   <ListingCard listing={listing} onSlideClick={onSlideClick} />
                 </Box>
-              ))}
-            </Box>
-          </>
+              ))
+            }
+          </Box>
         )}
       </Box>
     </Container>
