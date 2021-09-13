@@ -143,7 +143,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
               alt={listingsDetail.name + ' Image'}
               w="100%"
-              filter="grayscale(1)"
               fallback={
                 <Center>
                   <Spinner />

@@ -68,8 +68,8 @@ export const Renovation = ({ listingsDetail }: { listingsDetail: ListingsPropert
               {renovationData?.map((value: RenoDataT, idx: number) => (
                 <Box
                   className="embla__slide"
-                  minW="87%"
-                  mx={renovationData?.length === 1 ? 4 : 2}
+                  minW={{ base: 'calc(100% - 4rem)', sm: 'calc(100% - 6rem)' }}
+                  mx={renovationData?.length === 1 ? 4 : { base: 1, sm: 2 }}
                   key={idx}
                 >
                   <Box className="embla__slide__inner">
@@ -91,9 +91,9 @@ export const Renovation = ({ listingsDetail }: { listingsDetail: ListingsPropert
                           )
                         );
                       })}
-                      <Title2 textTransform="capitalize" mb={3}>
+                      <Text fontWeight="bold" textTransform="capitalize" mb={3}>
                         {value[0]}
-                      </Title2>
+                      </Text>
                       <UnorderedList>
                         {value[1].map((val, idx) => (
                           <ListItem key={idx}>{val}</ListItem>
