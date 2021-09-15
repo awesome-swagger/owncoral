@@ -7,19 +7,20 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import { FiPercent, FiX, FiInfo } from 'react-icons/fi';
+import { FiInfo, FiPercent, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
   ListingsPropertyDetailT,
 } from '../../../shared-fullstack/types';
+import { PropertyStatus } from '../../../shared-fullstack/validators';
 import {
   AspectRatio,
   Box,
   Button,
-  Flex,
   Center,
   Divider,
+  Flex,
   HStack,
   Icon,
   Image,
@@ -54,12 +55,12 @@ import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorTo
 import { formatFinancial, formatFinancialSI } from '../../../lib/financialFormatter';
 import { useQuery } from '../../../lib/useQuery';
 
-const PerformanceTab = lazy(() => import('./performanceTab'));
-const DetailsTab = lazy(() => import('./detailsTab'));
 const CoralPlanTab = lazy(() => import('./coralPlanTab'));
+const DetailsTab = lazy(() => import('./detailsTab'));
 const DisclosureTab = lazy(() => import('./disclosureTab'));
+const PerformanceTab = lazy(() => import('./performanceTab'));
 
-const TabData = [
+const tabData = [
   { name: 'Performance', Component: PerformanceTab },
   { name: 'Property details', Component: DetailsTab },
   { name: 'Coral plan', Component: CoralPlanTab },
@@ -73,7 +74,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const query = useQuery();
   const history = useHistory();
   const toast = useToast();
-  const [limitFull, setLimitFull] = useState(true);
+  const [limitFull, setLimitFull] = useState(false);
 
   const listingUriFragment = query.get('property');
   const propertyId: string | null = listingUriFragment
@@ -142,6 +143,9 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
                   : listingsDetail.imageUrls[0]
               }
               alt={listingsDetail.name + ' Image'}
+              filter={
+                listingsDetail.status === PropertyStatus.enum.CLOSED ? 'grayscale(1)' : undefined
+              }
               w="100%"
               fallback={
                 <Center>
@@ -155,7 +159,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
             </Box>
-            <TabSection listingsDetail={listingsDetail} propertyId={propertyId} />
+            <TabSection listingsDetail={listingsDetail} />
             <Divider />
             <Box px={6} mt={3}>
               {limitFull && (
@@ -234,9 +238,8 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
 
 type TabSectionPropsT = {
   listingsDetail: ListingsPropertyDetailT;
-  propertyId: string | null;
 };
-export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => {
+export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
   const fallback = (
     <Center>
       <Spinner />
@@ -246,7 +249,7 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
   return (
     <Tabs isLazy>
       <TabList mx={6}>
-        {TabData.map(({ name }, idx) => (
+        {tabData.map(({ name }, idx) => (
           <Tab py={6} px={2} key={idx}>
             <Headline>{name}</Headline>
           </Tab>
@@ -254,7 +257,7 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
       </TabList>
 
       <TabPanels>
-        {TabData.map(({ Component }, idx) => (
+        {tabData.map(({ Component }, idx) => (
           <TabPanel key={idx} px="0">
             <Suspense fallback={fallback}>
               <Component listingsDetail={listingsDetail} />
@@ -345,7 +348,9 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
     }
   };
 
-  return listingsDetail.mdlEquity !== null ? (
+  if (listingsDetail.mdlEquity === null) return null;
+
+  return (
     <Fragment>
       <Button
         w="100%"
@@ -430,7 +435,7 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
         </ModalContent>
       </Modal>
     </Fragment>
-  ) : null;
+  );
 };
 
 // eslint-disable-next-line import/no-default-export

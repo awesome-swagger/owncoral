@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
-import { Center, Spinner } from '@chakra-ui/react';
+import { Box, Center, Spinner } from '@chakra-ui/react';
 
 import { ImgSlider } from '../../../../components';
 import { Title2 } from '../../../../components/text';
@@ -14,7 +14,7 @@ export const Images = ({ listingsDetail }: PropertyLocationPropsT) => {
   if (newImages.length === 0) return null;
 
   return (
-    <Fragment>
+    <Box>
       <Title2 my={4}>Photos</Title2>
       <ImgSlider
         images={newImages}
@@ -24,6 +24,6 @@ export const Images = ({ listingsDetail }: PropertyLocationPropsT) => {
           </Center>
         }
       />
-    </Fragment>
+    </Box>
   );
 };

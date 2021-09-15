@@ -11,11 +11,10 @@ import {
   Text,
   useColorModeValue,
   VStack,
-  Center,
 } from '@chakra-ui/react';
 
 import { Card, IconBackground } from '../../../../components';
-import { Headline, Title2, Caption1 } from '../../../../components/text';
+import { Caption1, Headline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 
 type PerformanceTabPropsT = {
@@ -37,14 +36,14 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
           Hypothetical Investment
         </Title2>
         {listingsDetail.mdlEquity && (
-          <>
+          <Fragment>
             <Text>
               10 shares for ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.1))}
             </Text>
             <Caption1 color="gray" mt={4}>
               Targets assume a 10 yr hold
             </Caption1>
-          </>
+          </Fragment>
         )}
         <Box h={6} />
         <HStack overflow="auto" w="100%" spacing={3} alignItems="stretch">

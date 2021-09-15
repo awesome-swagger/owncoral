@@ -23,6 +23,7 @@ import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
 import { addressToUrlFragment } from '../../lib/urlFragments';
 import { useNavHeight } from '../../lib/useNavHeight';
 import Error404 from '../error404';
+import BostonMarket from '../market/bostonMarket';
 import ListingDetail from './detail';
 
 const Listings = () => {
@@ -73,6 +74,9 @@ const Listings = () => {
         <ProtectedRoute path={listingsRootUrl + '/detail'}>
           <ListingDetail listingUriFragmentToId={listingUriFragmentToId} />
         </ProtectedRoute>
+
+        <ProtectedRoute path={listingsRootUrl + '/market/boston'} component={BostonMarket} />
+
         <ProtectedRoute path="*" component={Error404} />
       </Switch>
     </Fragment>
@@ -140,7 +144,7 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
             colorScheme="white"
             w={10}
             h={10}
-            onClick={() => history.push('/boston-market')}
+            onClick={() => history.push('/market/boston')}
           >
             <Icon as={FiInfo} />
           </Button>

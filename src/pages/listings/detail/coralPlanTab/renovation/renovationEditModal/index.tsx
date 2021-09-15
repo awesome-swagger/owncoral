@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import { FiCheckCircle, FiCircle, FiEdit } from 'react-icons/fi';
 import {
+  Button,
   Flex,
   IconButton,
   Icon,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
-  Button,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Textarea,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { FiCheckCircle, FiCircle, FiEdit } from 'react-icons/fi';
-// import { DummyData } from '../images';
+
+// import { Images } from '../images';
 
 type RenovationEditModalT = {
   text: string;
@@ -53,7 +54,7 @@ export const RenovationEditModal = ({
     onClose();
   };
   return (
-    <>
+    <Fragment>
       <IconButton
         isRound
         aria-label="edit-button"
@@ -76,7 +77,7 @@ export const RenovationEditModal = ({
               resize="vertical"
             />
             <Flex flexWrap="wrap" gridGap="2">
-              {/* {DummyData.map(({ title }: { title: string }, idx) => (
+              {/* {Object.keys(Images).map((image, idx) => (
                 <Flex
                   px={3}
                   py={2}
@@ -90,7 +91,7 @@ export const RenovationEditModal = ({
                   onClick={() => handleSelect(title)}
                 >
                   <Icon mr={1} as={newSelectedValue.includes(title) ? FiCheckCircle : FiCircle} />
-                  {title}
+                  {image}
                 </Flex>
               ))} */}
             </Flex>
@@ -103,6 +104,6 @@ export const RenovationEditModal = ({
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Fragment>
   );
-};
+}
