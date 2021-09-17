@@ -25,9 +25,9 @@ export const layerStyles = {
     },
   },
   muiCardColor: {
-    bg: '#FFFFFF',
+    bg: 'inherit',
     '.chakra-ui-dark &': {
-      bg: '#272937',
+      bg: { base: 'inherit', md: 'rgba(255, 255, 255, 0.05)' },
     },
   },
   muiCardColorActive: {
