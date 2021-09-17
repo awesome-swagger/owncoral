@@ -100,20 +100,20 @@ const PortfolioPropertyDetail = ({
               }
             />
           </AspectRatio>
-          <Box p={6} pt={0}>
-            <Icon
-              pos="absolute"
-              top={10}
-              left={10}
-              h={8}
-              w={8}
-              p={1}
-              as={FiX}
-              cursor="pointer"
-              onClick={() => history.push('/portfolio')}
-              borderRadius="full"
-              layerStyle="iconColor"
-            />
+          <Icon
+            pos="absolute"
+            top={10}
+            left={10}
+            h={8}
+            w={8}
+            p={1}
+            as={FiX}
+            cursor="pointer"
+            onClick={() => history.push('/portfolio')}
+            borderRadius="full"
+            layerStyle="iconColor"
+          />
+          <Box bg="inherit" p={6} pb={0} borderRadius="2xl" position="relative" bottom={6}>
             {/*
             <Icon
               pos="absolute"

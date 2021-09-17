@@ -30,14 +30,12 @@ const BostonMarket = () => {
           layerStyle="iconColor"
         />
       </Box>
-      <Box px={6} borderRadius="2xl" mt={-4} pos="relative" bg="inherit">
-        <Box py={6}>
-          <AreaDetails />
-          <Divider my={6} />
-          <Highlights />
-          <Divider my={6} />
-          <SubMarkets />
-        </Box>
+      <Box px={6} pt={6} borderRadius="2xl" pos="relative" bottom={6} bg="inherit">
+        <AreaDetails />
+        <Divider my={6} />
+        <Highlights />
+        <Divider my={6} />
+        <SubMarkets />
       </Box>
       <Divider my={6} />
       <Box px={6}>

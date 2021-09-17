@@ -102,7 +102,7 @@ export const TopSection = ({
   ]);
 
   return (
-    <Box mt={8}>
+    <Box>
       <Overline>
         {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
       </Overline>

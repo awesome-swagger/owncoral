@@ -150,7 +150,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box bg="inherit" mt={-4} borderRadius="2xl" pos="relative" py={6}>
+          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} pt={6}>
             <Box px={6}>
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
