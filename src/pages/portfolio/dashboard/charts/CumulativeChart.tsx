@@ -76,7 +76,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
   return width < 10 ? null : (
     <div style={{ position: 'relative' }}>
       <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill="transparent" rx={14} />
         <Grid
           top={margin.top}
           left={margin.left}

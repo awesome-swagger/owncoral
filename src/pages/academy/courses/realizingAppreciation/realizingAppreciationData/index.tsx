@@ -178,11 +178,11 @@ export const Data = [
         </Center>
         <Flex justifyContent="space-between" px={2} mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Circle color="primary" />
+            <Circle color="teal" />
             <Text textStyle="Body2">Loan(debt)</Text>
           </Flex>
           <Flex alignItems="center">
-            <Circle color="secondary" />
+            <Circle color="green" />
             <Text textStyle="Body2">Equity</Text>
           </Flex>
         </Flex>
@@ -214,15 +214,15 @@ export const Data = [
         </Center>
         <Flex justifyContent="space-between" px={2} mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Circle color="primary" />
+            <Circle color="teal" />
             <Text textStyle="Body2">Debt</Text>
           </Flex>
           <Flex alignItems="center">
-            <Circle color="secondary" />
+            <Circle color="green" />
             <Text textStyle="Body2">Equity</Text>
           </Flex>
           <Flex alignItems="center">
-            <Circle color="light" />
+            <Circle color="orange" />
             <Text textStyle="Body2">Cash to all</Text>
           </Flex>
         </Flex>

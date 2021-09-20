@@ -111,8 +111,8 @@ const takeAways = [
 ];
 
 export const Data = () => {
-  const eqColor = useColorModeValue('#074851', '#48CAE4');
-  const debtColor = useColorModeValue('#80ECD1', '#F1FAEE');
+  const eqColor = useColorModeValue('teal.700', 'teal.400');
+  const debtColor = useColorModeValue('green.200', 'green.100');
   return [
     {
       name: '1',
@@ -192,11 +192,11 @@ export const Data = () => {
             <Box bg={debtColor} w="65%" />
           </Flex>
           <HStack>
-            <Circle color="primary" />
+            <Circle color="teal" />
             <Text>Initial equity</Text>
           </HStack>
           <HStack>
-            <Circle color="secondary" />
+            <Circle color="green" />
             <Text>Initial loan</Text>
           </HStack>
           <BtnsWrapper>

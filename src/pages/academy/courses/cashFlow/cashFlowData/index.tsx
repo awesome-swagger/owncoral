@@ -198,7 +198,7 @@ export const Data = [
         </Center>
         <Flex justifyContent="center" mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Circle color="primary" />
+            <Circle color="teal" />
             <Text textStyle="Body2">Operating Cash Flow</Text>
           </Flex>
         </Flex>
@@ -236,7 +236,7 @@ export const Data = [
         </Center>
         <Flex justifyContent="center" mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Circle color="secondary" />
+            <Circle color="green" />
             <Text textStyle="Body2">Recognized appreciation</Text>
           </Flex>
         </Flex>
@@ -275,11 +275,11 @@ export const Data = [
         </Center>
         <Flex justifyContent="space-between" px={2} mb={4} mt={-6}>
           <Flex alignItems="center">
-            <Circle color="primary" />
+            <Circle color="teal" />
             <Text textStyle="Body2">Operating Cash Flow</Text>
           </Flex>
           <Flex alignItems="center">
-            <Circle color="secondary" />
+            <Circle color="green" />
             <Text textStyle="Body2">Recognized appreciation</Text>
           </Flex>
         </Flex>

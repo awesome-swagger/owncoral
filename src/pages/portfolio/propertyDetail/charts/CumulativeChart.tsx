@@ -4,6 +4,8 @@ import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
+import { useColorModeValue } from '@chakra-ui/react';
+import Theme from '../../../../theme';
 
 export const CumulativeChart = () => {
   return <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>;
@@ -15,9 +17,10 @@ export type BarStackProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
   events?: boolean;
 };
-const barColor1 = '#888888';
-const barColor2 = '#232525';
-const barColor3 = '#DFDFDF';
+const { colors } = Theme;
+const barColor1 = useColorModeValue(colors.teal[700], colors.teal[400]);
+const barColor2 = useColorModeValue(colors.green[200], colors.green[100]);
+const barColor3 = useColorModeValue(colors.orange[300], colors.orange[200]);
 
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
 const data = [
@@ -74,7 +77,7 @@ function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
   return width < 10 ? null : (
     <div style={{ position: 'relative' }}>
       <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill="transparent" rx={14} />
         <Grid
           top={margin.top}
           left={margin.left}

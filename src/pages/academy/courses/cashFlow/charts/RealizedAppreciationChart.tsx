@@ -4,6 +4,7 @@ import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
+import Theme from '../../../../../theme';
 
 export const RealizedAppreciationChart = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>
@@ -43,8 +44,9 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
 }, [] as number[]);
 
 const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
-  const barColor = useColorModeValue('#80ECD1', '#F1FAEE');
-  const textColor = useColorModeValue('#8D8F8F', '#FFFFFF');
+  const { colors } = Theme;
+  const barColor = useColorModeValue(colors.green[200], colors.green[100]);
+  const textColor = useColorModeValue(colors.teal[500], colors.white);
 
   // accessors
   const getDate = (d: any) => d.name;
@@ -88,7 +90,7 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
   return (
     <div style={{ position: 'relative', paddingTop: '20px' }}>
       <svg width={width} height={height}>
-        <rect x={0} y={0} width={width} height={height} fill="#00000000" rx={14} />
+        <rect x={0} y={0} width={width} height={height} fill="transparent" rx={14} />
         <Group left={margin.left} top={margin.top}>
           <BarStack
             data={data}
