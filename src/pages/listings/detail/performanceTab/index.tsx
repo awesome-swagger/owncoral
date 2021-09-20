@@ -24,7 +24,7 @@ type PerformanceTabPropsT = {
 const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
   const history = useHistory();
   const grayBg = useColorModeValue('gray.100', 'whiteAlpha.100');
-  const descColor = useColorModeValue('#545656', '#FFFFFFCC');
+  const descColor = useColorModeValue('dark.400', 'whiteAlpha.800');
 
   const [love1Header, love1Text] = listingsDetail.whyLove1.split('\n\n', 2);
   const [love2Header, love2Text] = listingsDetail.whyLove2.split('\n\n', 2);

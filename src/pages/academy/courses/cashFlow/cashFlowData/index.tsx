@@ -41,9 +41,7 @@ const FlowEndBtn = () => {
       cursor="pointer"
       onClick={() => history.push('/academy/course/understanding-coral-listings')}
     >
-      <Text textStyle="Body1" fontWeight="600" my={2}>
-        Understanding Coral listings
-      </Text>
+      <Headline my={2}>Understanding Coral listings</Headline>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -353,9 +351,7 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Text textStyle="Body1" fontWeight="600">
-                Investor cash flow is actual cash disbursed to investors
-              </Text>
+              <Headline>Investor cash flow is actual cash disbursed to investors</Headline>
               <Text mt={2} textStyle="Body2">
                 It’s deposited into your bank account on a monthly basis and derived from rental
                 revenue, realized appreciation, and any unused reserves.
@@ -369,9 +365,7 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Text textStyle="Body1" fontWeight="600">
-                It comes from two main sources
-              </Text>
+              <Headline>It comes from two main sources</Headline>
               <Text mt={2} textStyle="Body2">
                 <span style={{ fontWeight: 600 }}>Rental revenue:</span> which typically creates
                 smooth and consistent cash flow (increasing a bit each year).
@@ -390,9 +384,7 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Text textStyle="Body1" fontWeight="600">
-                It is extremely tax-efficient
-              </Text>
+              <Headline>It is extremely tax-efficient</Headline>
               <Text mt={2} textStyle="Body2">
                 Depreciation offsets your cash flow, resulting in most taxes being deferred to the
                 point of sale (and often paid at a lower rate - a max of 25%).

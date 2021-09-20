@@ -19,7 +19,7 @@ import BuyersAndShares from '../../../../../assets/crash-course/buyers-shares.pn
 import Onboarding from '../../../../../assets/crash-course/Onboarding_Own_gray.png';
 import Frame from '../../../../../assets/Frame615.png';
 import { ProgressBar, Circle } from '../../../../../components';
-import { Title2 } from '../../../../../components/text';
+import { Title2, Headline } from '../../../../../components/text';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -51,9 +51,7 @@ const FlowEndBtn = () => {
       cursor="pointer"
       onClick={() => history.push('/academy/course/understanding-coral-listings')}
     >
-      <Text textStyle="Body1" fontWeight="600" my={2}>
-        Understanding Coral listings
-      </Text>
+      <Headline my={2}>Understanding Coral listings</Headline>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -313,9 +311,7 @@ export const Data = () => {
                   </Center>
                 </Box>
                 <Box my={1} pl={4}>
-                  <Text textStyle="Body1" fontWeight="600">
-                    {value}
-                  </Text>
+                  <Headline>{value}</Headline>
                 </Box>
               </Flex>
             ))}

@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router';
 import { Text, Divider, Flex, Center, Box, Icon, Link, useColorModeValue } from '@chakra-ui/react';
 import { Container, BackBtn } from '../../../../components';
-import { Title1, Title2 } from '../../../../components/text';
+import { Title1, Title2, Headline } from '../../../../components/text';
 import { FiCheck } from 'react-icons/fi';
 import { AiOutlineWarning } from 'react-icons/ai';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
@@ -46,9 +46,9 @@ const List = [
 
 export const Cambridge = () => {
   const history = useHistory();
-  const iconWarningColor = useColorModeValue('#FFB13C', '#FFB13CE6');
-  const iconColor = useColorModeValue('#2CC99A', '#2CC99AE6');
-  const descColor = useColorModeValue('#545656', '#FFFFFFCC');
+  const iconWarningColor = useColorModeValue('yellow.400', 'yellow.200');
+  const iconColor = useColorModeValue('green.400', 'green.200');
+  const descColor = useColorModeValue('dark.400', 'whiteAlpha.800');
 
   const handleBack = () => history.goBack();
 
@@ -77,7 +77,7 @@ export const Cambridge = () => {
             <Icon as={icon} h={4} w={4} color={iconColor} />
           </Center>
           <Box>
-            <Text fontWeight="600">{heading}</Text>
+            <Headline>{heading}</Headline>
             <Text textStyle="Body2" color={descColor}>
               {description}
             </Text>
@@ -96,7 +96,7 @@ export const Cambridge = () => {
           <Icon as={AiOutlineWarning} h={4} w={4} color={iconWarningColor} />
         </Center>
         <Box>
-          <Text fontWeight="600">Residential Zoning - FAR</Text>
+          <Headline>Residential Zoning - FAR</Headline>
           <Text textStyle="Body2" color={descColor}>
             258 Prospect and its neighbors (C1 zoning) are subject to a FAR limit of 0.75(6). This
             means the building's total floor area (gross floor area) cannot exceed 75% of the area

@@ -14,7 +14,7 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { ProgressBar } from '../../../../../components';
-import { Title2 } from '../../../../../components/text';
+import { Title2, Headline } from '../../../../../components/text';
 import { Table } from '../table';
 import Academy from '../../../../../assets/academy-1.svg';
 import Frame from '../../../../../assets/Frame615.png';
@@ -49,9 +49,7 @@ const FlowEndBtn = () => {
       cursor="pointer"
       onClick={() => history.push('/academy/course/understanding-coral-listings')}
     >
-      <Text textStyle="Body1" fontWeight="600" my={2}>
-        Understanding Coral listings
-      </Text>
+      <Headline my={2}>Understanding Coral listings</Headline>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -263,7 +261,7 @@ export const Data = [
           total return of $52,250. Since your investment was only $350k,{' '}
           <span style={{ fontWeight: 600 }}>your leveraged return is 14.9%.</span>
         </Text>
-        <Text fontWeight={600}>Leverage amplifies your returns.</Text>
+        <Headline>Leverage amplifies your returns.</Headline>
         <Table />
         <BtnsWrapper>
           <PrevBtn />

@@ -1,4 +1,4 @@
-import { Overline, Title1, Caption1 } from '../../../../components/text';
+import { Overline, Title1, Caption1, Headline } from '../../../../components/text';
 import { Divider, Box, Text, HStack } from '@chakra-ui/react';
 
 export const AreaDetails = () => {
@@ -7,9 +7,7 @@ export const AreaDetails = () => {
     <Box>
       <Overline>WHY IS IT A KEY PLACE TO INVEST</Overline>
       <Title1 my={3}>Great Boston Area</Title1>
-      <Text my={2} textStyle="Body1" fontWeight="600">
-        Harvard/MIT + tech capital and top biotech hub
-      </Text>
+      <Headline my={2}>Harvard/MIT + tech capital and top biotech hub</Headline>
       <Text my={6} textStyle="Body1">
         One of the highest densities of educated millennials in the world — and one of the best
         rental markets. Top universities (Harvard, MIT) providing anti cyclicality and growth in the

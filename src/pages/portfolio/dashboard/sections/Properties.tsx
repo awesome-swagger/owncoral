@@ -22,7 +22,7 @@ import { transparentize, whiten } from '@chakra-ui/theme-tools';
 import * as R from 'remeda';
 
 import PlaceholderIcon from '../../../../assets/low-poly-placeholder-icon.png';
-import { Overline, Title2 } from '../../../../components/text';
+import { Overline, Title2, Headline } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../../../lib/urlFragments';
 import theme from '../../../../theme';
@@ -206,11 +206,11 @@ export const Properties = ({
                     h={propertyRowHeight}
                     alignItems="center"
                   >
-                    <Text fontWeight="600" w="10rem" px={3} isTruncated>
+                    <Headline w="10rem" px={3} isTruncated>
                       <LinkOverlay as={BrowserLink} to={propertyDetailUrl(property)}>
                         {property.address.line1}
                       </LinkOverlay>
-                    </Text>
+                    </Headline>
 
                     <Text w="6rem" textAlign="right">
                       {property.currentEquity

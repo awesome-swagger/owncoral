@@ -1,6 +1,6 @@
 import { Box, Icon, Text, HStack, VStack, useColorModeValue } from '@chakra-ui/react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Title2 } from '../../../../components/text';
+import { Title2, Headline } from '../../../../components/text';
 import { useHistory } from 'react-router';
 
 export const SubMarkets = () => {
@@ -21,7 +21,7 @@ export const SubMarkets = () => {
           borderRadius="2xl"
         >
           <Box>
-            <Text fontWeight="600">Cambridge</Text>
+            <Headline>Cambridge</Headline>
             <Text textStyle="Body2" color={descColor}>
               An established and thriving tech capital and biotech hub, and home to MIT and Harvard
             </Text>
@@ -36,7 +36,7 @@ export const SubMarkets = () => {
           borderRadius="2xl"
         >
           <Box>
-            <Text fontWeight="600">Somerville</Text>
+            <Headline>Somerville</Headline>
             <Text textStyle="Body2" color={descColor}>
               aaAn emerging hub next to Cambridge, Somerville is becoming the next hot lab cluster
             </Text>
