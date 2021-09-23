@@ -13,7 +13,7 @@ type ContainerPropsT = {
 export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
   ({ showColorModeButton = true, padding = 6, children, ...otherProps }, ref) => {
     const showMobileTag = useBreakpointValue({ base: false, md: true });
-    const bgColor = useColorModeValue('#FFFFFF', '#272937');
+    const containerBgColor = useColorModeValue('white', 'dark.800');
 
     return (
       <Fragment>
@@ -27,7 +27,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           maxW={{ base: 'unset', md: theme.breakpoints.sm }}
           minH={{ base: window.innerHeight, md: window.innerHeight * 0.8 }}
           borderRadius={{ base: 'none', md: '2xl' }}
-          bg={bgColor}
+          bg={containerBgColor}
           pos="relative"
           boxShadow={{ base: 'none', md: 'md' }}
           ref={ref}
