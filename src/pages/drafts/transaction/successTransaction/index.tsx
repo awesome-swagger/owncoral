@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Box, Button, Divider, Flex, Heading, Image } from '@chakra-ui/react';
 
-import PropertyImg from '../../../../assets/Frame269.png';
-import { Container, BoxLightBorder } from '../../../../components';
+import { BoxLightBorder, Container } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
+
+import PropertyImg from '../../../../assets/Frame269.png';
 
 export const SuccessTransaction = () => (
   <Container overflow="hidden">

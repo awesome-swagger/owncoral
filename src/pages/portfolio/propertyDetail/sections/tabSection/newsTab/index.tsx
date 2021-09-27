@@ -1,7 +1,10 @@
 import { Box, Center } from '@chakra-ui/react';
+
 import { Headline } from '../../../../../../components/text';
+import { DummyData } from '../../../../../../lib/portfolioData';
 
 const NewsTab = () => {
+  // const dummyData = DummyData;
   return (
     <Box>
       <Center my={6}>

@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 
 export const BoxLightBorder: React.FC<any> = (props) => {

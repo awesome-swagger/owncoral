@@ -1,11 +1,12 @@
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import { ProgressBar, Circle } from '../../../../../components';
-import { Title2 } from '../../../../../components/text';
-import { Chart1, Chart2, Chart3 } from '../charts';
-import Academy from '../../../../../assets/academy-1.svg';
-import Frame from '../../../../../assets/Frame615.png';
+import { Circle, ProgressBar } from '../../../../components';
+import { Title2 } from '../../../../components/text';
+import { Chart1, Chart2, Chart3 } from './charts';
+
+import Academy from '../../../../assets/academy-1.svg';
+import Frame from '../../../../assets/Frame615.png';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -35,7 +36,7 @@ const FlowEndBtn = () => {
     <Box
       p={4}
       cursor="pointer"
-      onClick={() => history.push('/academy/course/understanding-coral-listings')}
+      onClick={() => history.push('/academy/courses/understanding-coral-listings')}
     >
       <Text textStyle="Body1" fontWeight="600" my={2}>
         Understanding Coral listings
@@ -117,7 +118,7 @@ export const Data = [
         <Title2 my={4}>Top line</Title2>
         <Text textStyle="Body1" fontWeight="500">
           Appreciation is an increase in the value of an asset (the property) over time. Many people
-          think you need to sell a property to realize its appreciation — but you don't!
+          think you need to sell a property to realize its appreciation — but you don&apos;t!
         </Text>
         <Text textStyle="Body1" fontWeight="500">
           Instead, you can benefit from an increase in property value while remaining a property
@@ -249,7 +250,7 @@ export const Data = [
         <ProgressBar total={11} value={5} />
         <Text textStyle="Body1" fontWeight="500">
           The property owners now have $325K in cash. Remember: they only put $350K into the
-          property at closing, so they're already received the majority of their investment back —
+          property at closing, so they&apos;re already received the majority of their investment back —
           and they still own the property! Further, the value of their equity is now $525K.
         </Text>
         <Center w="100%" h={250}>
@@ -327,10 +328,10 @@ export const Data = [
         <ProgressBar total={11} value={8} />
         <Title2 my={4}>(1) Construction earn-out</Title2>
         <Text textStyle="Body1" fontWeight="500">
-          When we renovate a property, we are "forcing" appreciation. A better property can command
+          When we renovate a property, we are &ldquo;forcing&rdquo; appreciation. A better property can command
           higher rent prices, and as a result, the property itself is worth more money. With
           construction earn-out, we typically align on a post-renovation property value with our
-          lender prior to even beginning construction, and then "call" the incremental loan dollars
+          lender prior to even beginning construction, and then &ldquo;call&rdquo; the incremental loan dollars
           once we have completed the renovations.
         </Text>
 
@@ -382,7 +383,7 @@ export const Data = [
         <Title2 my={4}>How often do we do it?</Title2>
         <Text textStyle="Body1" fontWeight="500">
           We typically get a construction earn-out after a meaningful renovation, and refinance
-          every ~5 years. These events, along with the sale of the property, create "spikes" in cash
+          every ~5 years. These events, along with the sale of the property, create &ldquo;spikes&rdquo; in cash
           flow (layered on top of the cash flow from rental revenue).
         </Text>
         <Text textStyle="Body1" fontWeight="500">

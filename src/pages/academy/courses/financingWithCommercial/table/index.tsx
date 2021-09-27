@@ -1,7 +1,9 @@
-import { VStack, HStack, Text, Divider, useColorModeValue, Box } from '@chakra-ui/react';
+import { Box, Divider, HStack, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 
 export const Table = () => {
-  const borderColor = useColorModeValue('#E2E8F0', 'rgba(255, 255, 255, 0.16)');
+  const borderColor = useColorModeValue('gray.200', 'whiteAlpha.300');
+  const titleWidth = "40%", valueWidth = "30%";
+
   return (
     <Box pos="relative">
       <VStack
@@ -13,13 +15,13 @@ export const Table = () => {
         alignItems="normal"
       >
         <HStack textAlign="center" w="100%" justifyContent="flex-end">
-          <Text w="40%" />
-          <Text fontWeight="bold" w="30%">
+          <Text w={titleWidth} />
+          <Text fontWeight="bold" w={valueWidth}>
             Unlevered
             <br />
             (without loan)
           </Text>
-          <Text fontWeight="bold" w="30%">
+          <Text fontWeight="bold" w={valueWidth}>
             Levered
             <br />
             (with loan)
@@ -31,59 +33,59 @@ export const Table = () => {
         </Text>
         <Divider />
         <HStack textAlign="right">
-          <Text w="40%">Net Operating Income</Text>
-          <Text w="30%">$45,000</Text>
-          <Text w="30%">$45,000</Text>
+          <Text w={titleWidth}>Net Operating Income</Text>
+          <Text w={valueWidth}>$45,000</Text>
+          <Text w={valueWidth}>$45,000</Text>
         </HStack>
         <Divider />
         <HStack textAlign="right">
-          <Text w="40%">Appreciation</Text>
-          <Text w="30%">$30,000</Text>
-          <Text w="30%">$30,000</Text>
+          <Text w={titleWidth}>Appreciation</Text>
+          <Text w={valueWidth}>$30,000</Text>
+          <Text w={valueWidth}>$30,000</Text>
         </HStack>
         <Divider />
         <HStack>
-          <Text fontWeight="bold" w="40%">
+          <Text fontWeight="bold" w={titleWidth}>
             Interest Payments
           </Text>
-          <Text w="30%" />
-          <Text w="30%" textAlign="right">
+          <Text w={valueWidth} />
+          <Text w={valueWidth} textAlign="right">
             -$22,750
           </Text>
         </HStack>
         <Divider />
         <HStack>
-          <Text fontWeight="bold" w="40%">
+          <Text fontWeight="bold" w={titleWidth}>
             Total Returns
           </Text>
-          <Text fontWeight="bold" w="30%" textAlign="right">
+          <Text fontWeight="bold" w={valueWidth} textAlign="right">
             $75,000
           </Text>
-          <Text fontWeight="bold" w="30%" textAlign="right">
+          <Text fontWeight="bold" w={valueWidth} textAlign="right">
             $52,250
           </Text>
         </HStack>
         <Divider />
         <HStack>
-          <Text fontWeight="bold" w="40%">
+          <Text fontWeight="bold" w={titleWidth}>
             Your Investment
           </Text>
-          <Text w="30%" textAlign="right" fontWeight="bold">
+          <Text w={valueWidth} textAlign="right" fontWeight="bold">
             $1,000,000
           </Text>
-          <Text w="30%" textAlign="right" fontWeight="bold">
+          <Text w={valueWidth} textAlign="right" fontWeight="bold">
             $350,000
           </Text>
         </HStack>
         <Divider />
         <HStack>
-          <Text fontWeight="bold" w="40%">
+          <Text fontWeight="bold" w={titleWidth}>
             Rate of Return
           </Text>
-          <Text w="30%" textAlign="right" fontWeight="bold">
+          <Text w={valueWidth} textAlign="right" fontWeight="bold">
             7.5%
           </Text>
-          <Text w="30%" textAlign="right" fontWeight="bold">
+          <Text w={valueWidth} textAlign="right" fontWeight="bold">
             14.9%
           </Text>
         </HStack>

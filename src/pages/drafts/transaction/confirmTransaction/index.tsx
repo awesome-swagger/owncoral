@@ -16,7 +16,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-import { BackBtn, Container, BoxLightBorder } from '../../../../components';
+import { BackBtn, BoxLightBorder, Container } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 
 export const ConfirmTransaction = ({

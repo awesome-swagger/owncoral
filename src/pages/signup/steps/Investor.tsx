@@ -1,7 +1,24 @@
-import React, { Dispatch, forwardRef, Fragment, useCallback, useContext, useState } from 'react';
+import React, {
+  Dispatch,
+  forwardRef,
+  Fragment,
+  useCallback,
+  useContext,
+  useState
+} from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiAlertTriangle, FiCircle } from 'react-icons/fi';
-import { Box, Button, Center, Divider, Flex, Heading, Icon, Input, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Divider,
+  Flex,
+  Heading,
+  Icon,
+  Input,
+  Text
+} from '@chakra-ui/react';
 import { BackBtn, Container, FlexContainer } from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
@@ -23,8 +40,7 @@ const accreditedInvestor: AccreditedInvestorT[] = [
   { value: 3, label: 'No, none of the above are true' },
 ];
 
-export const Investor = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
+export const Investor = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
     const form = useContext(StepFormContext);
     const [available, setAvailable] = useState('Available');
     const formStep = form?.formState?.step3;

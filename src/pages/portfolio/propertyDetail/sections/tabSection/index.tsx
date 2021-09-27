@@ -45,7 +45,7 @@ export const TabSection = ({
             <Text textStyle="Headline">Property details</Text>
           </Tab>
           <Tab px={2} py={6}>
-            <Text textStyle="Headline">Coral Plan</Text>
+            <Text textStyle="Headline">Coral plan</Text>
           </Tab>
           <Tab px={2} py={6}>
             <Text textStyle="Headline">News</Text>

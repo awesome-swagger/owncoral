@@ -14,10 +14,9 @@ const initialQuestions: { value: AvailableT; label: string }[] = [
   { value: 'notAvailable', label: 'No' },
 ];
 
-export const Residency = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const [available, setAvailable] = useState<AvailableT>('Available');
-    const form = useContext(StepFormContext);
+export const Residency = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
+  const [available, setAvailable] = useState<AvailableT>('Available');
+  const form = useContext(StepFormContext);
 
     const handleSubmit = useCallback(
       (value) => {

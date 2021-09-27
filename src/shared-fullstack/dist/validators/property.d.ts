@@ -89,8 +89,11 @@ export declare const PortfolioDashboardProperty: z.ZodObject<{
     cashflowSchedule: import("./json").JsonT;
 }>;
 export declare type PortfolioDashboardPropertyT = z.infer<typeof PortfolioDashboardProperty>;
+export declare const PropertyStatus: z.ZodEnum<["LISTING", "CLOSED", "INACTIVE"]>;
+export declare type PropertyStatusT = z.infer<typeof PropertyStatus>;
 export declare const ListingsProperty: z.ZodObject<{
     propertyId: z.ZodString;
+    status: z.ZodEnum<["LISTING", "CLOSED", "INACTIVE"]>;
     name: z.ZodString;
     address: z.ZodObject<{
         line1: z.ZodString;
@@ -121,11 +124,12 @@ export declare const ListingsProperty: z.ZodObject<{
     areaLiving: z.ZodNullable<z.ZodNumber>;
     numUnits: z.ZodNullable<z.ZodNumber>;
     cardImageUrl: z.ZodNullable<z.ZodString>;
-    listingIrr: z.ZodNumber;
-    listingCashDist: z.ZodNumber;
+    listingIrr: z.ZodNullable<z.ZodNumber>;
+    listingCashDist: z.ZodNullable<z.ZodNumber>;
     mdlEquity: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     propertyId: string;
+    name: string;
     mdlEquity: number | null;
     address: {
         line1: string;
@@ -136,15 +140,16 @@ export declare const ListingsProperty: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
     cardImageUrl: string | null;
-    listingIrr: number;
-    listingCashDist: number;
+    listingIrr: number | null;
+    listingCashDist: number | null;
 }, {
     propertyId: string;
+    name: string;
     mdlEquity: number | null;
     address: {
         line1: string;
@@ -155,25 +160,24 @@ export declare const ListingsProperty: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
     cardImageUrl: string | null;
-    listingIrr: number;
-    listingCashDist: number;
+    listingIrr: number | null;
+    listingCashDist: number | null;
 }>;
 export declare type ListingsPropertyT = z.infer<typeof ListingsProperty>;
-export declare const PortfolioPropertyDetail: z.ZodObject<{
-    mdlPurchasePrice: z.ZodNullable<z.ZodNumber>;
-    mdlClosingCost: z.ZodNullable<z.ZodNumber>;
-    mdlOriginationFee: z.ZodNullable<z.ZodNumber>;
-    mdlBrokerFee: z.ZodNullable<z.ZodNumber>;
-    mdlRenovation: z.ZodNullable<z.ZodNumber>;
-    mdlCapexReserve: z.ZodNullable<z.ZodNumber>;
-    mdlPrincipalReserve: z.ZodNullable<z.ZodNumber>;
-    mdlMortgage: z.ZodNullable<z.ZodNumber>;
-    mdlEquity: z.ZodNullable<z.ZodNumber>;
+export declare const RenovationItem: z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>, "many">;
+export declare type RenovationItemT = z.infer<typeof RenovationItem>;
+export declare const PortfolioPropertyDetail: z.ZodObject<z.extendShape<z.extendShape<{
+    id: z.ZodString;
+    status: z.ZodEnum<["LISTING", "CLOSED", "INACTIVE"]>;
+    name: z.ZodNullable<z.ZodString>;
+    description: z.ZodNullable<z.ZodString>;
+    imageUrls: z.ZodArray<z.ZodString, "many">;
+    docsUrls: z.ZodArray<z.ZodString, "many">;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodNullable<z.ZodString>;
@@ -199,27 +203,35 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     }>;
-    name: z.ZodNullable<z.ZodString>;
-    areaUnits: z.ZodNullable<z.ZodString>;
-    areaLiving: z.ZodNullable<z.ZodNumber>;
     numUnits: z.ZodNullable<z.ZodNumber>;
-    id: z.ZodString;
-    description: z.ZodNullable<z.ZodString>;
-    imageUrls: z.ZodArray<z.ZodString>;
     numBeds: z.ZodNullable<z.ZodNumber>;
     numBaths: z.ZodNullable<z.ZodNumber>;
     numStories: z.ZodNullable<z.ZodNumber>;
+    areaUnits: z.ZodNullable<z.ZodString>;
+    areaLiving: z.ZodNullable<z.ZodNumber>;
     areaLotSize: z.ZodNullable<z.ZodNumber>;
     descriptionMarkdown: z.ZodNullable<z.ZodString>;
     occupancyStatus: z.ZodNullable<z.ZodString>;
+    renovationsOverview: z.ZodNullable<z.ZodString>;
     isUnderRenovation: z.ZodBoolean;
-    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString>]>>>>;
+    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>, "many">, "many">>;
     ccyCode: z.ZodNullable<z.ZodString>;
     rentalIncomeMonthlyCurrent: z.ZodNullable<z.ZodNumber>;
     rentalIncomeMonthlyTarget: z.ZodNullable<z.ZodNumber>;
-} & {
+}, {
+    mdlPurchasePrice: z.ZodNullable<z.ZodNumber>;
+    mdlClosingCost: z.ZodNullable<z.ZodNumber>;
+    mdlOriginationFee: z.ZodNullable<z.ZodNumber>;
+    mdlBrokerFee: z.ZodNullable<z.ZodNumber>;
+    mdlRenovation: z.ZodNullable<z.ZodNumber>;
+    mdlCapexReserve: z.ZodNullable<z.ZodNumber>;
+    mdlPrincipalReserve: z.ZodNullable<z.ZodNumber>;
+    mdlMortgage: z.ZodNullable<z.ZodNumber>;
+    mdlEquity: z.ZodNullable<z.ZodNumber>;
+}>, {
     mdlCurrentMortgage: z.ZodNullable<z.ZodNumber>;
-}, "strip", z.ZodTypeAny, {
+}>, "strip", z.ZodTypeAny, {
+    name: string | null;
     mdlPurchasePrice: number | null;
     mdlClosingCost: number | null;
     mdlOriginationFee: number | null;
@@ -238,19 +250,21 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string | null;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
     id: string;
     description: string | null;
     imageUrls: string[];
+    docsUrls: string[];
     numBeds: number | null;
     numBaths: number | null;
     numStories: number | null;
     areaLotSize: number | null;
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
+    renovationsOverview: string | null;
     isUnderRenovation: boolean;
     renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
@@ -258,6 +272,7 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     rentalIncomeMonthlyTarget: number | null;
     mdlCurrentMortgage: number | null;
 }, {
+    name: string | null;
     mdlPurchasePrice: number | null;
     mdlClosingCost: number | null;
     mdlOriginationFee: number | null;
@@ -276,19 +291,21 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string | null;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
     id: string;
     description: string | null;
     imageUrls: string[];
+    docsUrls: string[];
     numBeds: number | null;
     numBaths: number | null;
     numStories: number | null;
     areaLotSize: number | null;
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
+    renovationsOverview: string | null;
     isUnderRenovation: boolean;
     renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
@@ -297,16 +314,13 @@ export declare const PortfolioPropertyDetail: z.ZodObject<{
     mdlCurrentMortgage: number | null;
 }>;
 export declare type PortfolioPropertyDetailT = z.infer<typeof PortfolioPropertyDetail>;
-export declare const ListingsPropertyDetail: z.ZodObject<{
-    mdlPurchasePrice: z.ZodNullable<z.ZodNumber>;
-    mdlClosingCost: z.ZodNullable<z.ZodNumber>;
-    mdlOriginationFee: z.ZodNullable<z.ZodNumber>;
-    mdlBrokerFee: z.ZodNullable<z.ZodNumber>;
-    mdlRenovation: z.ZodNullable<z.ZodNumber>;
-    mdlCapexReserve: z.ZodNullable<z.ZodNumber>;
-    mdlPrincipalReserve: z.ZodNullable<z.ZodNumber>;
-    mdlMortgage: z.ZodNullable<z.ZodNumber>;
-    mdlEquity: z.ZodNullable<z.ZodNumber>;
+export declare const ListingsPropertyDetail: z.ZodObject<z.extendShape<z.extendShape<{
+    id: z.ZodString;
+    status: z.ZodEnum<["LISTING", "CLOSED", "INACTIVE"]>;
+    name: z.ZodNullable<z.ZodString>;
+    description: z.ZodNullable<z.ZodString>;
+    imageUrls: z.ZodArray<z.ZodString, "many">;
+    docsUrls: z.ZodArray<z.ZodString, "many">;
     address: z.ZodObject<{
         line1: z.ZodString;
         line2: z.ZodNullable<z.ZodString>;
@@ -332,25 +346,32 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     }>;
-    name: z.ZodNullable<z.ZodString>;
-    areaUnits: z.ZodNullable<z.ZodString>;
-    areaLiving: z.ZodNullable<z.ZodNumber>;
     numUnits: z.ZodNullable<z.ZodNumber>;
-    id: z.ZodString;
-    description: z.ZodNullable<z.ZodString>;
-    imageUrls: z.ZodArray<z.ZodString>;
     numBeds: z.ZodNullable<z.ZodNumber>;
     numBaths: z.ZodNullable<z.ZodNumber>;
     numStories: z.ZodNullable<z.ZodNumber>;
+    areaUnits: z.ZodNullable<z.ZodString>;
+    areaLiving: z.ZodNullable<z.ZodNumber>;
     areaLotSize: z.ZodNullable<z.ZodNumber>;
     descriptionMarkdown: z.ZodNullable<z.ZodString>;
     occupancyStatus: z.ZodNullable<z.ZodString>;
+    renovationsOverview: z.ZodNullable<z.ZodString>;
     isUnderRenovation: z.ZodBoolean;
-    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString>]>>>>;
+    renovationsJsonb: z.ZodNullable<z.ZodArray<z.ZodArray<z.ZodUnion<[z.ZodString, z.ZodArray<z.ZodString, "many">]>, "many">, "many">>;
     ccyCode: z.ZodNullable<z.ZodString>;
     rentalIncomeMonthlyCurrent: z.ZodNullable<z.ZodNumber>;
     rentalIncomeMonthlyTarget: z.ZodNullable<z.ZodNumber>;
-} & {
+}, {
+    mdlPurchasePrice: z.ZodNullable<z.ZodNumber>;
+    mdlClosingCost: z.ZodNullable<z.ZodNumber>;
+    mdlOriginationFee: z.ZodNullable<z.ZodNumber>;
+    mdlBrokerFee: z.ZodNullable<z.ZodNumber>;
+    mdlRenovation: z.ZodNullable<z.ZodNumber>;
+    mdlCapexReserve: z.ZodNullable<z.ZodNumber>;
+    mdlPrincipalReserve: z.ZodNullable<z.ZodNumber>;
+    mdlMortgage: z.ZodNullable<z.ZodNumber>;
+    mdlEquity: z.ZodNullable<z.ZodNumber>;
+}>, {
     listingIrr: z.ZodNumber;
     listingCashDist: z.ZodNumber;
     keyDistances: z.ZodString;
@@ -359,7 +380,8 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     whyLove3: z.ZodString;
     hasInterest: z.ZodBoolean;
     interestAmt: z.ZodNullable<z.ZodNumber>;
-}, "strip", z.ZodTypeAny, {
+}>, "strip", z.ZodTypeAny, {
+    name: string | null;
     mdlPurchasePrice: number | null;
     mdlClosingCost: number | null;
     mdlOriginationFee: number | null;
@@ -378,7 +400,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string | null;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
@@ -387,12 +409,14 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     id: string;
     description: string | null;
     imageUrls: string[];
+    docsUrls: string[];
     numBeds: number | null;
     numBaths: number | null;
     numStories: number | null;
     areaLotSize: number | null;
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
+    renovationsOverview: string | null;
     isUnderRenovation: boolean;
     renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;
@@ -405,6 +429,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     hasInterest: boolean;
     interestAmt: number | null;
 }, {
+    name: string | null;
     mdlPurchasePrice: number | null;
     mdlClosingCost: number | null;
     mdlOriginationFee: number | null;
@@ -423,7 +448,7 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
         postalCode: string;
         country: string;
     };
-    name: string | null;
+    status: "LISTING" | "CLOSED" | "INACTIVE";
     areaUnits: string | null;
     areaLiving: number | null;
     numUnits: number | null;
@@ -432,12 +457,14 @@ export declare const ListingsPropertyDetail: z.ZodObject<{
     id: string;
     description: string | null;
     imageUrls: string[];
+    docsUrls: string[];
     numBeds: number | null;
     numBaths: number | null;
     numStories: number | null;
     areaLotSize: number | null;
     descriptionMarkdown: string | null;
     occupancyStatus: string | null;
+    renovationsOverview: string | null;
     isUnderRenovation: boolean;
     renovationsJsonb: (string | string[])[][] | null;
     ccyCode: string | null;

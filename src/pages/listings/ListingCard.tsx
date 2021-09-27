@@ -8,6 +8,7 @@ import {
   Image,
   Spinner,
   Text,
+  useBreakpointValue,
   useColorModeValue,
   useMediaQuery,
   VStack,
@@ -149,18 +150,27 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
 };
 
 // Reference: https://www.figma.com/file/Tsxb6xTQkoLz2bQMN3FQNH/Coral---UI-Design?node-id=3381%3A16817
-const ClosedDealLabel = () => (
-  <Flex
-    pos="absolute"
-    right="-4.17em"
-    top="3.3em"
-    transform="rotate(45deg)"
-    align="center"
-    justifyContent="center"
-    background="white"
-    w="16.67em"
-    h="2em"
-  >
-    <Overline color="primary.500">Closed Deal</Overline>
-  </Flex>
-);
+const ClosedDealLabel = () => {
+  const isDesktop = useBreakpointValue({ base: false, md: true });
+  const width = isDesktop ? 15 : 12,
+    height = 2.5;
+  const top = ((width - height) * 0.707 - height) / 2;
+  const right = ((width - height) * 0.707 - width) / 2;
+
+  return (
+    <Box
+      pos="absolute"
+      transform="rotate(45deg)"
+      bg="whiteAlpha.900"
+      top={`${top}em`}
+      right={`${right}em`}
+      width={`${width}em`}
+      textAlign="center"
+      boxShadow="0px 2.28936px 9.15745px rgba(50, 53, 56, 0.04)"
+    >
+      <Overline fontSize={`${14 / 16}rem`} color="primary.600" lineHeight={`${height}em`}>
+        Closed Deal
+      </Overline>
+    </Box>
+  );
+};

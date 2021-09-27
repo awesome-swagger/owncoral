@@ -1,15 +1,16 @@
 import type React from 'react';
-import { useHistory } from 'react-router-dom';
-import { Flex, HStack } from '@chakra-ui/react';
-
+import { useHistory, useRouteMatch } from 'react-router-dom';
+import { Flex } from '@chakra-ui/react';
+import { titleToUrlFragment } from '../lib';
 import { CourseCard } from '../../../components';
 import { Data } from '../../../lib/courseDetailData';
-import { titleToUrlFragment } from '../lib';
 
 export const Courses: React.FC = () => {
   const history = useHistory();
+  const { url: coursesUrl } = useRouteMatch();
+
   const handleClick = (route: string) =>
-    history.push(`/academy/course/${titleToUrlFragment(route)}`);
+    history.push(coursesUrl + '/' + titleToUrlFragment(route));
 
   return (
     <Flex flexWrap="wrap" justifyContent="space-around" mt={4}>
@@ -25,4 +26,4 @@ export const Courses: React.FC = () => {
       ))}
     </Flex>
   );
-};
+}

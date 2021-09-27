@@ -1,6 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
-import { Box, Text, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Center, Divider, HStack, Spinner, Text, useToast } from '@chakra-ui/react';
 import { format as formatDate, parseISO } from 'date-fns';
 
 import { Card } from '../../../../../../components';
@@ -87,7 +87,7 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
     <Box>
       <Title2 my={4}>Distributions</Title2>
       {investment.lastDistributionMonth !== null ? (
-        <HStack spacing={3} alignItems="stretch">
+        <HStack alignItems="stretch" w="100%" spacing={3}>
           <Card
             title="Monthly"
             value={'$' + formatFinancial(investment.lastDistributionTotal)}
@@ -116,12 +116,14 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
       <InvestmentReturn investment={investment} />
       {/* <Divider my={4} /> */}
       {/* <ChartSection /> */}
-      <Text my={4}>
-        For illustration purposes only to demonstrate Coral’s underwriting assumptions for this
+
+      {/* TODO: Unhide once CharSection is shown */}
+      {/* <Text my={4}>
+        For illustration purposes only to demonstrate Coral&apos;s underwriting assumptions for this
         property. There is no guarantee that the projected returns or cash flows will be realized,
         and they may be significantly different than that shown here. See Disclosures tab for
         additional information.&copy;
-      </Text>
+      </Text> */}
     </Box>
   ) : (
     <Center h="100%" w="100%">

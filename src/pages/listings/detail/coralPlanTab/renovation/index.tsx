@@ -15,11 +15,11 @@ import {
   UnorderedList,
 } from '@chakra-ui/react';
 import { useEmblaCarousel } from 'embla-carousel/react';
+
 import { Headline, Title2 } from '../../../../../components/text';
-import { fetchWrap } from '../../../../../lib/api';
 // import { UserContext } from '../../../../../userContext';
 // import { RenovationEditModal } from './renovationEditModal';
-import { Images } from './images';
+import { RenovationImages } from '../../../../../lib/renovationImages';
 
 type RenovationPropsT = {
   listingsDetail: ListingsPropertyDetailT;
@@ -28,7 +28,9 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
   // const [user] = useContext(UserContext);
   // const Admin = user?.isAdmin;
   // const [text, setText] = useState('');
-  const [renovationData, setRenovationData] = useState(listingsDetail?.renovationsJsonb as RenovationItemT[]);
+  const [renovationData, setRenovationData] = useState(
+    listingsDetail?.renovationsJsonb as RenovationItemT[],
+  );
   const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false });
   const textRef: React.MutableRefObject<any> = useRef();
 
@@ -52,18 +54,16 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
           />
         )} */}
         <Title2 my={6}>Renovation</Title2>
-        <Text ref={textRef}>
-          Given that the property is currently fully occupied, renovation will be staggered as
-          leases expire and current tenants vocate their units. We anticipate finishing all
-          renovations before January 2022.
-        </Text>
+        {listingsDetail.renovationsOverview && (
+          <Text ref={textRef}>{listingsDetail.renovationsOverview}</Text>
+        )}
       </Box>
       {renovationData?.length && (
         <Box className="embla">
           <Box className="embla__viewport" ref={viewportRef}>
             <Box className="embla__container" pb={6}>
               {renovationData.map((value: RenovationItemT, idx: number) => {
-                const img = Images[(value[0] as string).toLowerCase()];
+                const img = RenovationImages[(value[0] as string).toLowerCase()];
                 return (
                   <Box
                     className="embla__slide"

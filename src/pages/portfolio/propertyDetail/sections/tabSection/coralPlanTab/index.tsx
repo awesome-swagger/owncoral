@@ -15,7 +15,7 @@ const CoralPlanTab = ({ propertyDetail }: DetailsTabPropsT) => {
   return (
     <Box>
       <ValueAddPlan propertyDetail={propertyDetail} />
-      {/* <Renovation propertyDetail={propertyDetail} /> */}
+      <Renovation propertyDetail={propertyDetail} />
       <Divider my={6} />
       <RentalIncome propertyDetail={propertyDetail} />
       <Divider my={6} />

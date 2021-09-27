@@ -1,7 +1,8 @@
-import { Box, Icon, Text, HStack, VStack, useColorModeValue } from '@chakra-ui/react';
+import type React from 'react';
+import { useHistory } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
-import { Title2, Headline } from '../../../../components/text';
-import { useHistory } from 'react-router';
+import { Box, HStack, Icon, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import { Headline, Title2 } from '../../../../components/text';
 
 export const SubMarkets = () => {
   const history = useHistory();

@@ -3,6 +3,7 @@ import type { BoxProps, FlexProps } from '@chakra-ui/react';
 import { Box, forwardRef, Text, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
 
 import theme from '../../theme';
+import { lightContainerBg, darkContainerBg } from '../../theme/styles';
 import { ColorModeButton } from '../colorModeButton';
 import { TimeoutModal } from '../timeoutModal';
 
@@ -13,7 +14,7 @@ type ContainerPropsT = {
 export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
   ({ showColorModeButton = true, padding = 6, children, ...otherProps }, ref) => {
     const showMobileTag = useBreakpointValue({ base: false, md: true });
-    const containerBgColor = useColorModeValue('white', 'dark.800');
+    const bgColor = useColorModeValue(lightContainerBg, darkContainerBg);
 
     return (
       <Fragment>
@@ -27,7 +28,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           maxW={{ base: 'unset', md: theme.breakpoints.sm }}
           minH={{ base: window.innerHeight, md: window.innerHeight * 0.8 }}
           borderRadius={{ base: 'none', md: '2xl' }}
-          bg={containerBgColor}
+          bg={bgColor}
           pos="relative"
           boxShadow={{ base: 'none', md: 'md' }}
           ref={ref}

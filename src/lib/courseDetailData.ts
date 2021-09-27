@@ -10,7 +10,7 @@ export type CourseT = {
   image: string;
   lesson: number;
   isComingSoon?: boolean;
-  value: { title: string; slides: number; url?: string }[];
+  value: { title: string; slides: number; url?: string; hideInProd?: boolean; }[];
 };
 export const Data: CourseT[] = [
   {
@@ -20,19 +20,26 @@ export const Data: CourseT[] = [
     isComingSoon: false,
     value: [
       { title: 'Investor cash flow', slides: 7, url: '/academy/unit/cash-flow' },
-      { title: 'Ownership structure', slides: 7, url: '/academy/unit/ownership-structure' },
-      { title: 'Operating expenses', slides: 7 },
-      { title: 'Capital expenditure', slides: 7 },
-      {
-        title: 'Financing with commercial loans',
-        slides: 7,
-        url: '/academy/unit/financing-with-commercial-loans',
-      },
       {
         title: 'Realizing appreciation without selling',
         slides: 7,
         url: '/academy/unit/realizing-appreciation-without-selling',
+        hideInProd: true
       },
+      {
+        title: 'Ownership structure',
+        slides: 7,
+        url: '/academy/unit/ownership-structure',
+        hideInProd: true
+      },
+      {
+        title: 'Financing with commercial loans',
+        slides: 7,
+        url: '/academy/unit/financing-with-commercial-loans',
+        hideInProd: true
+      },
+      { title: 'Operating expenses', slides: 7 },
+      { title: 'Capital expenditure', slides: 7 },
     ],
   },
   {

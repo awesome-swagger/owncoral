@@ -5,7 +5,6 @@ import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
 import Theme from '../../../../../theme';
-import { transparentize } from '@chakra-ui/theme-tools';
 
 export const Chart3 = () => (
   <ParentSize>{({ width, height }) => <Chart width={width} height={height} />}</ParentSize>

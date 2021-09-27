@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { FiDollarSign, FiMapPin, FiTag } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';

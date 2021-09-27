@@ -4,10 +4,12 @@ import React, {
   lazy,
   SetStateAction,
   Suspense,
+  useCallback,
   useEffect,
   useState,
+  useRef,
 } from 'react';
-import { FiInfo, FiPercent, FiX } from 'react-icons/fi';
+import { FiInfo, FiPercent, FiX, FiFile } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
@@ -30,6 +32,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Portal,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -50,6 +53,7 @@ import {
 import Placeholder from '../../../assets/low-poly-placeholder.png';
 import { Container } from '../../../components';
 import { Headline, Overline, Subhead, Title2 } from '../../../components/text';
+import { DocumentsDrawer } from '../../../components/documentsDrawer';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
 import { formatFinancial, formatFinancialSI } from '../../../lib/financialFormatter';
@@ -72,9 +76,12 @@ type ListingDetailPropsT = {
 };
 const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const query = useQuery();
+  const portalRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const toast = useToast();
   const [limitFull, setLimitFull] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [drawerIsOpen, setDrawerIsOpen]);
 
   const listingUriFragment = query.get('property');
   const propertyId: string | null = listingUriFragment
@@ -82,7 +89,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
     : null;
 
   const [listingsDetail, setListingsDetail] = useState<ListingsPropertyDetailT | null>(null);
-
   useEffect(() => {
     (async () => {
       if (propertyId === null) return;
@@ -117,23 +123,39 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
-    <Container pos="relative" padding={0}>
+    <Container pos="relative" padding={0} ref={portalRef}>
       {listingUriFragmentToId !== null && listingsDetail !== null ? (
         <Fragment>
-          <Icon
-            zIndex="1"
-            pos="absolute"
-            top={10}
-            left={10}
-            h={8}
-            w={8}
-            p={1}
-            as={FiX}
-            cursor="pointer"
-            onClick={() => history.push('/listings')}
-            borderRadius="full"
-            layerStyle="iconColor"
-          />
+          <Portal containerRef={portalRef}>
+            <Icon
+              pos="absolute"
+              top={5}
+              left={5}
+              h={8}
+              w={8}
+              p={2}
+              as={FiX}
+              cursor="pointer"
+              onClick={() => history.push('/listings')}
+              borderRadius="full"
+              layerStyle="iconColor"
+            />
+            {listingsDetail.docsUrls.length > 0 &&
+              <Icon
+                pos="absolute"
+                top={5}
+                right={5}
+                h={8}
+                w={8}
+                p={2}
+                as={FiFile}
+                cursor="pointer"
+                onClick={toggleDrawer}
+                borderRadius="full"
+                layerStyle="iconColor"
+              />
+            }
+          </Portal>
           <AspectRatio ratio={4 / 3}>
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
@@ -154,7 +176,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} pt={6}>
+          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} py={6}>
             <Box px={6}>
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
@@ -174,7 +196,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               />
             </Box>
           </Box>
-        </Fragment>
+          <DocumentsDrawer isOpen={drawerIsOpen} onToggle={toggleDrawer} documents={listingsDetail.docsUrls} />
+        </Fragment >
       ) : (
         <Center w="100%" h={window.innerHeight}>
           <Spinner />
