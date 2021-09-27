@@ -2,10 +2,10 @@
 // we can replace for quotes symbol (&#39; -> ’, &#34; -> “”)
 import { Fragment } from 'react';
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
-
-import { Title2, Headline, Overline } from '../../../../components/text';
+import { Headline, Overline, Title2 } from '../../../../components/text';
 
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
+
 const Calculation = ({ children }: { children: any }) => {
   const gray = useColorModeValue('gray.700', 'gray.200');
 
@@ -20,18 +20,19 @@ const Calculation = ({ children }: { children: any }) => {
         fontFamily="Times, 'Times New Roman', Bookman, Palatino, serif"
         fontWeight="400"
       >
-        {' '}
-        {children}{' '}
+        {' '}{children}{' '}
       </Text>
     </Box>
   );
 };
+
 const Example = ({ children }: { children: any }) => (
   <Box my={4}>
     <Title2 mb={2}>Example</Title2>
     <Text textStyle="Body1">{children}</Text>
   </Box>
 );
+
 const Notes = ({ children }: { children: any }) => (
   <Fragment>
     <Headline mt={6} mb={2}>

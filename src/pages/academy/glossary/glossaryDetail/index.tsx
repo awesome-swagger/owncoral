@@ -10,27 +10,25 @@ import { GlossaryData } from '../glossaryData';
 const Error404 = lazy(() => import('../../../error404'));
 
 const GlossaryDetail = () => {
+  useScrollToTop();
+
   const history = useHistory();
   const { title } = useParams<{ title: string }>();
 
-  useScrollToTop();
-  const FilteredData: any = GlossaryData.find((val) =>
-    titleToUrlFragment(val.name).includes(title),
+  const filteredData: any = GlossaryData.find((val) =>
+    titleToUrlFragment(val.name) === title
   );
 
-  return FilteredData ? (
+  return filteredData ? (
     <Fragment>
-      <NavBar />
-      <Container>
-        <BackBtn handleClick={() => history.goBack()} />
-        <Fragment>
-          <Title2 my={4}>{FilteredData.name}</Title2>
-          {FilteredData.jsx}
-        </Fragment>
-      </Container>
+      <BackBtn handleClick={() => history.goBack()} />
+      <Fragment>
+        <Title2 my={4}>{filteredData.name}</Title2>
+        {filteredData.jsx}
+      </Fragment>
     </Fragment>
   ) : (
-    <Error404 />
+    <Error404 isComponent />
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaGoogle } from 'react-icons/fa';
 import { FiEye, FiEyeOff, FiLock, FiMail } from 'react-icons/fi';
 import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
 import type { UserProfileT } from '../../shared-fullstack/types';
@@ -22,12 +23,13 @@ import {
   Text,
   useColorModeValue,
   useToast,
+  VisuallyHidden,
   VStack,
 } from '@chakra-ui/react';
 import type { History } from 'history';
 
 import Logo from '../../assets/coral-logo-wtext.svg';
-import { ColorModeButton } from '../../components';
+import { ColorModeButton, DividerWithText } from '../../components';
 import { fetchWrap } from '../../lib/api';
 import { UserContext } from '../../userContext';
 
@@ -99,6 +101,21 @@ function LoginForm() {
       <FormControl>
         <Center>
           <VStack spacing={2} p={[1, 2]} sx={{ flexGrow: 1 }}>
+            <Button
+              as="a"
+              href="/api/oidc/login?service=google"
+              variant="outline"
+              w="100%"
+              colorScheme="gray"
+              isLoading={isLoading}
+              type="button"
+              size="lg"
+              spinner={<Spinner />}
+              leftIcon={<FaGoogle />}
+            >
+              <span>Log In with Google</span>
+            </Button>
+            <DividerWithText mt="6" mx={2}>or</DividerWithText>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
@@ -157,7 +174,7 @@ function LoginForm() {
               size="lg"
               spinner={<Spinner />}
             >
-              Log In
+              Log In with Password
             </Button>
             <Box h={2} />
 
@@ -227,8 +244,8 @@ async function onSubmit({
       redirectUrl
         ? decodeURIComponent(redirectUrl)
         : re.numInvestments
-        ? '/portfolio'
-        : '/listings',
+          ? '/portfolio'
+          : '/listings',
     );
     return;
   }

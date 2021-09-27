@@ -22,11 +22,11 @@ import { transparentize, whiten } from '@chakra-ui/theme-tools';
 import * as R from 'remeda';
 
 import PlaceholderIcon from '../../../../assets/low-poly-placeholder-icon.png';
-import { Overline, Title2, Headline } from '../../../../components/text';
+import { Overline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../../../lib/urlFragments';
 import theme from '../../../../theme';
-import { darkBg, lightBg } from '../../../../theme/styles';
+import { lightContainerBg, darkContainerBg } from '../../../../theme/styles';
 
 const SHOW_FEWER_COUNT = 5;
 /*
@@ -80,16 +80,23 @@ export const Properties = ({
           .slice(0, showAll ? properties.length : SHOW_FEWER_COUNT)
       : [];
 
-  // HACK: match background color of body (theme.styles.global.body.bg)
-  const themeBackgroundColor = useColorModeValue('gray.50', 'gray.800');
+  // HACK: match background color of Container bgColor
+  const containerBgColor = useColorModeValue(lightContainerBg, darkContainerBg);
 
   // Shared sizing constraints between property columns
   const rowSpacing = 6;
   const propertyColWidth = 16;
   const propertyRowHeight = 12;
 
-  const [tableLeftScrollDist, setTableLeftScrollDist] = useState(0);
   const [tableRightScrollDist, setTableRightScrollDist] = useState<number>(Infinity);
+  
+  const [tableLeftGrad, setTableLeftGrad] = useState(
+    `linear-gradient(to right, ${
+      transparentize(containerBgColor, 1)(theme)
+    } 72%, ${
+      transparentize(containerBgColor, 0)(theme)
+    } 72%)`
+  );
 
   return (
     <Box>
@@ -114,18 +121,25 @@ export const Properties = ({
               onScroll={({
                 currentTarget: { scrollLeft, scrollWidth, offsetWidth },
               }: SyntheticEvent<HTMLDivElement>) => {
-                setTableLeftScrollDist(scrollLeft);
+                setTableLeftGrad(
+                  `linear-gradient(to right, ${
+                    transparentize(containerBgColor, 1)(theme)
+                  } 72%, ${
+                    transparentize(containerBgColor, 0)(theme)
+                  } ${72 + (scrollLeft/2 < 28 ? scrollLeft/2 : 28)}%);`
+                );
+
                 setTableRightScrollDist(scrollWidth - offsetWidth - scrollLeft);
               }}
             >
               <Box
                 left={0}
                 pos="sticky"
-                w={propertyColWidth}
-                backgroundColor={themeBackgroundColor}
+                w={propertyColWidth + 8}
+                background={tableLeftGrad}
                 zIndex={1}
               >
-                <VStack layerStyle="muiCardColor" spacing={rowSpacing}>
+                <VStack spacing={rowSpacing} alignItems="left">
                   <Flex w={propertyColWidth} h={8} alignItems="center">
                     <Overline>Property</Overline>
                   </Flex>
@@ -165,7 +179,7 @@ export const Properties = ({
                 </VStack>
               </Box>
 
-              <VStack align="stretch" zIndex={0} spacing={rowSpacing} paddingRight="3rem">
+              <VStack align="stretch" zIndex={0} spacing={rowSpacing} paddingRight="3rem" ml={-8}>
                 <Flex h={8} alignItems="center">
                   <Overline w="10rem" px={3}>
                     Address
@@ -206,11 +220,11 @@ export const Properties = ({
                     h={propertyRowHeight}
                     alignItems="center"
                   >
-                    <Headline w="10rem" px={3} isTruncated>
+                    <Text fontWeight="600" w="10rem" px={3} isTruncated>
                       <LinkOverlay as={BrowserLink} to={propertyDetailUrl(property)}>
                         {property.address.line1}
                       </LinkOverlay>
-                    </Headline>
+                    </Text>
 
                     <Text w="6rem" textAlign="right">
                       {property.currentEquity
@@ -251,10 +265,7 @@ export const Properties = ({
                 3
               </VStack>
             </Flex>
-            <FadeOutGradient
-              tableLeftScrollDist={tableLeftScrollDist}
-              tableRightScrollDist={tableRightScrollDist}
-            />
+            <FadeOutGradient tableRightScrollDist={tableRightScrollDist} />
           </Fragment>
         )}
       </Box>
@@ -264,15 +275,15 @@ export const Properties = ({
 
 // Apply fade-out gradient on right hand side of table (to imply more content)
 const FadeOutGradient = ({
-  tableLeftScrollDist,
   tableRightScrollDist,
 }: {
-  tableLeftScrollDist: number;
   tableRightScrollDist: number;
 }) => {
   const cardShown = useBreakpointValue({ base: false, md: true });
   // HACK: past card 'md' breakpoint, we lighten dark mode background color to match MUI card color
-  const bg = useColorModeValue(lightBg, cardShown ? whiten(darkBg, 5)(theme) : darkBg) as string;
+  const bg = useColorModeValue(
+    lightContainerBg, cardShown ? whiten(darkContainerBg, 2)(theme) : darkContainerBg
+  ) as string;
 
   const tableGrad =
     // Not really a linear gradient - transition faster to bg more quickly than straight-line, to have
@@ -284,33 +295,20 @@ const FadeOutGradient = ({
     `${transparentize(bg, 1.0)(theme)} 100%)`;
 
   return (
-    <Fragment>
-      <Box
-        // Hide gradient when table is scrolled far left
-        opacity={Math.min(tableLeftScrollDist / 32, 1)}
-        pos="absolute"
-        w={{ base: '2rem', md: '3rem' }}
-        h="calc(100% - 1rem)"
-        left="4rem"
-        top="0"
-        background={tableGrad}
-        transform="rotate(180deg)"
-      />
-      <Box
-        // Hide gradient when table is scrolled far right
-        opacity={Math.min(tableRightScrollDist / 32, 1)}
-        pos="absolute"
-        w={{ base: '3rem', md: '4.5rem' }}
-        h="calc(100% - 1rem)"
-        /*
+    <Box
+      // Hide gradient when table is scrolled far right
+      opacity={Math.min(tableRightScrollDist / 32, 1)}
+      pos="absolute"
+      w={{ base: '3rem', md: '4.5rem' }}
+      h="calc(100% - 1rem)"
+      /*
       HACK:
         match breakpoint and width of Container to place 'fade out' gradient
         on RHS of table
       */
-        left={{ base: 'calc(100vw - 4.5rem)', md: `calc(${theme.breakpoints.sm} - 6rem)` }}
-        top="0"
-        background={tableGrad}
-      />
-    </Fragment>
+      left={{ base: 'calc(100vw - 4.5rem)', md: `calc(${theme.breakpoints.sm} - 6rem)` }}
+      top="0"
+      background={tableGrad}
+    />
   );
 };

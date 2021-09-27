@@ -58,7 +58,10 @@ function Profile() {
           <ProtectedRoute path={profileUrl + '/faq'}>
             <Faq goBack={goBack} />
           </ProtectedRoute>
-          <ProtectedRoute path="*" component={Error404} />
+
+          <ProtectedRoute path="*">
+            <Error404 isComponent />
+          </ProtectedRoute>
         </Switch>
       </Container>
     </Fragment>

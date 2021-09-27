@@ -12,10 +12,9 @@ const netWorth = [
   { value: 'Greater than $10 million' },
 ];
 
-export const NetWorth = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step8;
+export const NetWorth = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
+  const form = useContext(StepFormContext);
+  const formStep = form?.formState?.step8;
 
     const handleSubmit = useCallback(
       (value) => {

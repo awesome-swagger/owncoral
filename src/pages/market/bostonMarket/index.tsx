@@ -1,11 +1,12 @@
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { FiX } from 'react-icons/fi';
-import { Button, Divider, Icon, Image, Box } from '@chakra-ui/react';
-import MarketImg from '../../../assets/boston-market.png';
+import { Box, Button, Divider, Icon, Image } from '@chakra-ui/react';
+
 import { Container } from '../../../components';
 import { AreaDetails } from './areaDetails';
 import { Highlights } from './highlights';
-import { SubMarkets } from './subMarkets';
+// import { SubMarkets } from './subMarkets';
+import MarketImg from '../../../assets/boston-market-v1.png';
 
 const BostonMarket = () => {
   const history = useHistory();
@@ -34,13 +35,13 @@ const BostonMarket = () => {
         <AreaDetails />
         <Divider my={6} />
         <Highlights />
-        <Divider my={6} />
-        <SubMarkets />
+        {/* <Divider my={6} /> */}
+        {/* <SubMarkets /> */}
       </Box>
       <Divider my={6} />
       <Box px={6}>
         <Button mb={6} w="100%" onClick={handleMarketProperties}>
-          Continue to market properties
+          Back to market properties
         </Button>
       </Box>
     </Container>

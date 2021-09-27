@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
 import React from 'react';
+import { FiChevronRight } from 'react-icons/fi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
 import { Box, Divider, Flex, Icon, VStack } from '@chakra-ui/react';
@@ -104,7 +105,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
         {/*  <Box> */}
         {/*    <Icon w={6} h={6} as={BsQuestionCircle} /> */}
         {/*  </Box> */}
-        {/* </Flex> */}
+        {/* </FlexLightBorder> */}
         {/* <Box h={4} /> */}
         {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
         {/*  Learn more about financing */}

@@ -1,32 +1,23 @@
-import { Fragment, lazy } from 'react';
+import { lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, NavBar } from '../../../../components';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
-import { Data } from './financingWithCommercialData';
 import { titleToUrlFragment } from '../../lib';
+import { Data } from './FinancingWithCommercialData';
+
 const Error404 = lazy(() => import('../../../error404'));
 
 const FinancingWithCommercialFlow = () => {
+  useScrollToTop();
+
   const { title } = useParams<{ title: string }>();
   if (!title) return Data[0].jsx;
 
-  const FilteredData = Data.find(({ name }: { name: string }) =>
-    titleToUrlFragment(name).includes(title),
+  const filteredData = Data.find(({ name } : { name: string }) =>
+    titleToUrlFragment(name) === title,
   );
 
-  useScrollToTop();
-
-  return FilteredData ? (
-    <Fragment>
-      <NavBar />
-      <Container minH={{ base: `calc(${window.innerHeight}px - 8rem)` }} h="auto" pb={{ base: 16 }}>
-        {FilteredData.jsx}
-      </Container>
-    </Fragment>
-  ) : (
-    <Error404 />
-  );
-};
+  return filteredData ? filteredData.jsx : <Error404 />;
+}
 
 // eslint-disable-next-line import/no-default-export
 export default FinancingWithCommercialFlow;

@@ -2,7 +2,7 @@ import { FaRegBuilding } from 'react-icons/fa';
 import { FiSquare } from 'react-icons/fi';
 import { GiStairs } from 'react-icons/gi';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
-import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex, HStack, Icon } from '@chakra-ui/react';
 
 import { Card } from '../../../../../../../components';
 import { Headline, Subhead, Title2 } from '../../../../../../../components/text';
@@ -56,9 +56,9 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
             </Headline>
           )}
           {propertyDetail.areaLotSize !== null && (
-            <Text>
+            <Subhead>
               {propertyDetail.areaLotSize.toLocaleString()} {propertyDetail.areaUnits} lot size
-            </Text>
+            </Subhead>
           )}
         </Box>
       </Flex>

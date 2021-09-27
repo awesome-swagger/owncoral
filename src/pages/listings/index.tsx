@@ -73,6 +73,7 @@ const Listings = () => {
         <ProtectedRoute path={listingsRootUrl + '/detail'}>
           <ListingDetail listingUriFragmentToId={listingUriFragmentToId} />
         </ProtectedRoute>
+        
         <ProtectedRoute path="*" component={Error404} />
       </Switch>
     </Fragment>
@@ -114,7 +115,6 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
     <Container
       px="0"
       overflow="visible"
-      showColorModeButton={false}
       h={
         useSlider
           ? `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight})`
@@ -140,7 +140,7 @@ const ListingsMain = ({ listings, listingsRootUrl }: ListingsMainPropsT) => {
             colorScheme="white"
             w={10}
             h={10}
-            onClick={() => history.push('/boston-market')}
+            onClick={() => history.push('/market/boston')}
           >
             <Icon as={FiInfo} />
           </Button>

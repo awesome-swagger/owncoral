@@ -1,10 +1,10 @@
+import { useColorModeValue } from '@chakra-ui/react';
 import { AxisBottom } from '@visx/axis';
 import { Grid } from '@visx/grid';
 import { Group } from '@visx/group';
 import { ParentSize } from '@visx/responsive';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { BarStack } from '@visx/shape';
-import { useColorModeValue } from '@chakra-ui/react';
 import Theme from '../../../../theme';
 
 export const CumulativeChart = () => {
@@ -17,10 +17,6 @@ export type BarStackProps = {
   margin?: { top: number; right: number; bottom: number; left: number };
   events?: boolean;
 };
-const { colors } = Theme;
-const barColor1 = useColorModeValue(colors.teal[700], colors.teal[400]);
-const barColor2 = useColorModeValue(colors.green[200], colors.green[100]);
-const barColor3 = useColorModeValue(colors.orange[300], colors.orange[200]);
 
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 0 };
 const data = [
@@ -49,27 +45,34 @@ const dataTotals = data.reduce((allTotals, currentDate: any) => {
   return allTotals;
 }, [] as number[]);
 
-// accessors
-const getDate = (d: any) => d.name;
-
-// scales
-const dateScale = scaleBand<string>({
-  domain: data.map(getDate),
-  padding: 0.2,
-});
-const dataScale = scaleLinear<number>({
-  domain: [0, Math.max(...dataTotals)],
-  nice: true,
-});
-const colorScale = scaleOrdinal({
-  domain: keys,
-  range: [barColor1, barColor2, barColor3],
-});
-
 function Chart({ width, height, margin = defaultMargin }: BarStackProps) {
+  const { colors } = Theme;
+  const barColor1 = useColorModeValue(colors.teal[700], colors.teal[400]);
+  const barColor2 = useColorModeValue(colors.green[200], colors.green[100]);
+  const barColor3 = useColorModeValue(colors.orange[300], colors.orange[200]);
+  
   if (width < 10) return null;
+
+  const AXIS_BOTTOM_HEIGHT = 100;
   const xMax = width;
-  const yMax = height - margin.top - 100;
+  const yMax = height - margin.top - AXIS_BOTTOM_HEIGHT;
+
+  // accessors
+  const getDate = (d: any) => d.name;
+
+  // scales
+  const dateScale = scaleBand<string>({
+    domain: data.map(getDate),
+    padding: 0.2,
+  });
+  const dataScale = scaleLinear<number>({
+    domain: [0, Math.max(...dataTotals)],
+    nice: true,
+  });
+  const colorScale = scaleOrdinal({
+    domain: keys,
+    range: [barColor1, barColor2, barColor3],
+  });
 
   dateScale.rangeRound([0, xMax]);
   dataScale.range([yMax, 0]);

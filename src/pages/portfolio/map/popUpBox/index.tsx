@@ -5,7 +5,7 @@ import { Container, Option, FilterPopUp } from '../../../../components';
 
 export const PopUpBox = ({
   handleClose,
-}: {
+} : {
   handleClose: React.Dispatch<React.SetStateAction<boolean>>;
 }) => (
   <Box w="100vw" h={window.innerHeight} pos="fixed" top="0" left="0" bg="blackAlpha.400">

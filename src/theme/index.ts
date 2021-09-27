@@ -12,14 +12,14 @@ import { Accordion } from './components/accordion';
 import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
+import { Link } from './components/link';
 import { Tabs } from './components/tabs';
 import { Text } from './components/text';
-import { Link } from './components/link';
 // Foundational style overrides
 import { colors } from './foundations/colors';
+import { layerStyles } from './layerStyles';
 import { shadows } from './foundations/shadows';
 import { typography } from './foundations/typography';
-import { layerStyles } from './layerStyles';
 // Global style overrides
 import { styles } from './styles';
 import * as textStyles from './textStyles';
@@ -40,13 +40,13 @@ const overrides = {
 
   // Other foundational style overrides go here
   components: {
+    Accordion,
     Button,
-    Input,
     Heading,
+    Input,
+    Link,
     Tabs,
     Text,
-    Accordion,
-    Link,
   },
 };
 

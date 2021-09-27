@@ -19,7 +19,7 @@ export type BarStackProps = {
 
 const defaultMargin = { top: 40, right: 0, bottom: 0, left: 40 };
 const data = [
-  { name: 'Clo.', operatingCashFlow: '2', recognizedAppreciation: '2' },
+  { name: "Clo.", operatingCashFlow: '2', recognizedAppreciation: '2' },
   { name: "'21", operatingCashFlow: '2', recognizedAppreciation: '0' },
   { name: "'22", operatingCashFlow: '2', recognizedAppreciation: '0' },
   { name: "'23", operatingCashFlow: '2', recognizedAppreciation: '0' },
@@ -144,4 +144,4 @@ const Chart = ({ width, height, margin = defaultMargin }: BarStackProps) => {
       </svg>
     </div>
   );
-};
+}

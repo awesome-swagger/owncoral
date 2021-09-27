@@ -1,27 +1,31 @@
 import { Fragment } from 'react';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
+import { Button, Icon, Text, VStack } from '@chakra-ui/react';
 
-import { NavBar } from '../../components';
+import { Container, NavBar } from '../../components';
 import { Title2 } from '../../components/text';
 
-const Error404 = () => {
+const Error404 = ({ isComponent=false } : { isComponent?: boolean }) => {
   const history = useHistory();
 
-  return (
+  const errorComponent = (
+    <VStack sx={{ transform: 'translate(0, 50%)' }}>
+      <Icon as={FiAlertTriangle} h={{ base: 28, md: 40 }} w={{ base: 28, md: 40 }} />
+      <Title2>Ooops!</Title2>
+      <Text textStyle="Body1">Sorry, we couldn&rsquo;t find this page</Text>
+      <Button onClick={() => history.goBack()}>Go Back</Button>
+    </VStack>
+  );
+
+  return !isComponent ? (
     <Fragment>
       <NavBar />
-      <Center align="center" w="100%" h={window.innerHeight} pos="fixed" top={0}>
-        <VStack>
-          <Icon as={FiAlertTriangle} h={{ base: 28, md: 40 }} w={{ base: 28, md: 40 }} />
-          <Title2>Ooops!</Title2>
-          <Text textStyle="Body1">Sorry, we couldn&rsquo;t find this page</Text>
-          <Button onClick={() => history.goBack()}>Go Back</Button>
-        </VStack>
-      </Center>
+      <Container>
+        {errorComponent}
+      </Container>
     </Fragment>
-  );
+  ) : errorComponent;
 };
 
 // eslint-disable-next-line import/no-default-export

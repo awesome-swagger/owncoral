@@ -4,22 +4,25 @@ import React, {
   lazy,
   SetStateAction,
   Suspense,
+  useCallback,
   useEffect,
   useState,
+  useRef,
 } from 'react';
-import { FiPercent, FiX, FiInfo } from 'react-icons/fi';
+import { FiInfo, FiPercent, FiX, FiFile } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
   ListingsPropertyDetailT,
 } from '../../../shared-fullstack/types';
+import { PropertyStatus } from '../../../shared-fullstack/validators';
 import {
   AspectRatio,
   Box,
   Button,
-  Flex,
   Center,
   Divider,
+  Flex,
   HStack,
   Icon,
   Image,
@@ -29,6 +32,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Portal,
   Slider,
   SliderFilledTrack,
   SliderThumb,
@@ -49,17 +53,18 @@ import {
 import Placeholder from '../../../assets/low-poly-placeholder.png';
 import { Container } from '../../../components';
 import { Headline, Overline, Subhead, Title2 } from '../../../components/text';
+import { DocumentsDrawer } from '../../../components/documentsDrawer';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
 import { formatFinancial, formatFinancialSI } from '../../../lib/financialFormatter';
 import { useQuery } from '../../../lib/useQuery';
 
-const PerformanceTab = lazy(() => import('./performanceTab'));
-const DetailsTab = lazy(() => import('./detailsTab'));
 const CoralPlanTab = lazy(() => import('./coralPlanTab'));
+const DetailsTab = lazy(() => import('./detailsTab'));
 const DisclosureTab = lazy(() => import('./disclosureTab'));
+const PerformanceTab = lazy(() => import('./performanceTab'));
 
-const TabData = [
+const tabData = [
   { name: 'Performance', Component: PerformanceTab },
   { name: 'Property details', Component: DetailsTab },
   { name: 'Coral plan', Component: CoralPlanTab },
@@ -71,9 +76,12 @@ type ListingDetailPropsT = {
 };
 const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const query = useQuery();
+  const portalRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const toast = useToast();
-  const [limitFull, setLimitFull] = useState(true);
+  const [limitFull, setLimitFull] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [drawerIsOpen, setDrawerIsOpen]);
 
   const listingUriFragment = query.get('property');
   const propertyId: string | null = listingUriFragment
@@ -81,7 +89,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
     : null;
 
   const [listingsDetail, setListingsDetail] = useState<ListingsPropertyDetailT | null>(null);
-
   useEffect(() => {
     (async () => {
       if (propertyId === null) return;
@@ -116,23 +123,39 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
-    <Container pos="relative" padding={0}>
+    <Container pos="relative" padding={0} ref={portalRef}>
       {listingUriFragmentToId !== null && listingsDetail !== null ? (
         <Fragment>
-          <Icon
-            zIndex="1"
-            pos="absolute"
-            top={10}
-            left={10}
-            h={8}
-            w={8}
-            p={1}
-            as={FiX}
-            cursor="pointer"
-            onClick={() => history.push('/listings')}
-            borderRadius="full"
-            layerStyle="iconColor"
-          />
+          <Portal containerRef={portalRef}>
+            <Icon
+              pos="absolute"
+              top={5}
+              left={5}
+              h={8}
+              w={8}
+              p={2}
+              as={FiX}
+              cursor="pointer"
+              onClick={() => history.push('/listings')}
+              borderRadius="full"
+              layerStyle="iconColor"
+            />
+            {listingsDetail.docsUrls.length > 0 &&
+              <Icon
+                pos="absolute"
+                top={5}
+                right={5}
+                h={8}
+                w={8}
+                p={2}
+                as={FiFile}
+                cursor="pointer"
+                onClick={toggleDrawer}
+                borderRadius="full"
+                layerStyle="iconColor"
+              />
+            }
+          </Portal>
           <AspectRatio ratio={4 / 3}>
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
@@ -142,6 +165,9 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
                   : listingsDetail.imageUrls[0]
               }
               alt={listingsDetail.name + ' Image'}
+              filter={
+                listingsDetail.status === PropertyStatus.enum.CLOSED ? 'grayscale(1)' : undefined
+              }
               w="100%"
               fallback={
                 <Center>
@@ -150,12 +176,12 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} pt={6}>
+          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} py={6}>
             <Box px={6}>
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
             </Box>
-            <TabSection listingsDetail={listingsDetail} propertyId={propertyId} />
+            <TabSection listingsDetail={listingsDetail} />
             <Divider />
             <Box px={6} mt={3}>
               {limitFull && (
@@ -170,7 +196,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               />
             </Box>
           </Box>
-        </Fragment>
+          <DocumentsDrawer isOpen={drawerIsOpen} onToggle={toggleDrawer} documents={listingsDetail.docsUrls} />
+        </Fragment >
       ) : (
         <Center w="100%" h={window.innerHeight}>
           <Spinner />
@@ -234,9 +261,8 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
 
 type TabSectionPropsT = {
   listingsDetail: ListingsPropertyDetailT;
-  propertyId: string | null;
 };
-export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => {
+export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
   const fallback = (
     <Center>
       <Spinner />
@@ -246,7 +272,7 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
   return (
     <Tabs isLazy>
       <TabList mx={6}>
-        {TabData.map(({ name }, idx) => (
+        {tabData.map(({ name }, idx) => (
           <Tab py={6} px={2} key={idx}>
             <Headline>{name}</Headline>
           </Tab>
@@ -254,7 +280,7 @@ export const TabSection = ({ listingsDetail, propertyId }: TabSectionPropsT) => 
       </TabList>
 
       <TabPanels>
-        {TabData.map(({ Component }, idx) => (
+        {tabData.map(({ Component }, idx) => (
           <TabPanel key={idx} px="0">
             <Suspense fallback={fallback}>
               <Component listingsDetail={listingsDetail} />
@@ -345,7 +371,9 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
     }
   };
 
-  return listingsDetail.mdlEquity !== null ? (
+  if (listingsDetail.mdlEquity === null) return null;
+
+  return (
     <Fragment>
       <Button
         w="100%"
@@ -430,7 +458,7 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
         </ModalContent>
       </Modal>
     </Fragment>
-  ) : null;
+  );
 };
 
 // eslint-disable-next-line import/no-default-export

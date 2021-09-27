@@ -101,10 +101,9 @@ const baseVariants = {
     component, which is too much boilerplate
     */
 const variants = R.mapValues(baseVariants, (baseVariant) => (props: Dict) => {
-  const defaultColorScheme = mode('gray', 'secondary')(props);
-  const colorScheme =
+  const defaultColorScheme: string = mode('gray', 'secondary')(props);
+  const colorScheme: string =
     (props.colorScheme || 'auto') === 'auto' ? defaultColorScheme : props.colorScheme;
-
   return typeof baseVariant === 'function' ? baseVariant({ ...props, colorScheme }) : baseVariant;
 });
 

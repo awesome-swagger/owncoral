@@ -1,7 +1,7 @@
 import { FiMapPin } from 'react-icons/fi';
 import { Box, Flex, Heading, Icon, Image } from '@chakra-ui/react';
 
-import { ScrollSlider, BoxLightBorder } from '../../../../../components';
+import { BoxLightBorder, ScrollSlider } from '../../../../../components';
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
 
 const images = [RenovationImg, RenovationImg, RenovationImg];
