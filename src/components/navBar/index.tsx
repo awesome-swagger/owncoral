@@ -16,7 +16,7 @@ import {
 import { Portal } from '@visx/tooltip';
 import { useNavHeight } from '../../lib/useNavHeight';
 
-import Academy from '../../assets/academy.svg';
+import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
 
 const NAV_ZINDEX = 5;

@@ -1,4 +1,5 @@
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
+import { FaLightbulb } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import {
   Box,
@@ -11,7 +12,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Circle, ProgressBar } from '../../../../components';
+import { Circle, ProgressBar, SlideShow } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 
 import Academy from '../../../../assets/academy-1.svg';
@@ -19,7 +20,6 @@ import BuyersAndShares from '../../../../assets/crash-course/buyers-shares.png';
 import Frame from '../../../../assets/Frame615.png';
 import LegalOwnership from '../../../../assets/crash-course/legal-ownership.png';
 import Onboarding from '../../../../assets/crash-course/onboarding-own-gray.png';
-import PropertyLlc from '../../../../assets/crash-course/property-llc.png';
 import UtilityImg from '../../../../assets/renovation/utility.png';
 
 const CloseBtn = () => {
@@ -32,10 +32,9 @@ const FlowStartBtn = () => {
 
   return (
     <Button
-      pos="absolute"
-      bottom={6}
-      left={4}
-      w="calc(100% - 2rem)"
+      w={{ base: 'calc(100% - 3rem)', md: '100%' }}
+      pos={{ base: 'fixed', md: 'relative' }}
+      bottom={{ base: 20, md: 0 }}
       onClick={() => history.push('/academy/unit/ownership-structure/2')}
     >
       Let&apos;s dig in
@@ -104,13 +103,11 @@ const BtnsWrapper = (props: any) => (
 );
 
 const takeAways = [
-  'Coral forms a new property LLC to acquire a property.',
+  'Coral forms a new property LLC to acquire a company. This structure insulates you from liability.',
   'The LLC has a total of 100 shares (ownership interests).',
   'Coral secures leverage (a loan) to allow buyers to own a higher percentage of the property with less capital (cash).', // editorconfig-checker-disable-line
   'Coral brings together buyers, each of whom chooses how many shares they want to own.',
-  'Coral manages the property.',
-  'The LLC insulates you from liability.',
-  'If owners are dissatisfied, owners can vote and fire Pacaso.',
+  'Coral executes the business plan for the property and manages ongoing operations.',
 ];
 
 export const Data = () => {
@@ -123,7 +120,7 @@ export const Data = () => {
       jsx: (
         <Box h="100%">
           <CloseBtn />
-          <Center flexDirection="column" textAlign="center" h="100%">
+          <Center my={4} flexDirection="column" textAlign="center" h="100%">
             <Image h="240px" src={LegalOwnership} alt="frame" />
             <Title2 my={4}>Legal Ownership Structure</Title2>
             <Text textStyle="Body1">
@@ -146,9 +143,7 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              1/6
-            </Box>
+            <SlideShow>1/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={1} />
           <Title2 my={4}>We form a property LLC</Title2>
@@ -156,7 +151,19 @@ export const Data = () => {
             When Coral identifies an investment property it wants to buy, it forms an LLC: a limited
             liability company. That LLC acquires the home.
           </Text>
-          <Image mx="auto" src={PropertyLlc} />
+          <Box layerStyle="card" p={4} my={8} borderRadius="2xl">
+            <Flex>
+              <Center h={6} mr={4}>
+                <Icon as={FaLightbulb} />
+              </Center>
+              <Text>
+                An LLC is a business structure in the U.S. that protects its owners from personal
+                responsibility for its debts or liabilities. This structure allows the profits to be
+                passed directly to the owners (members) so that they are taxed only once, as part of
+                the investors’ personal income.
+              </Text>
+            </Flex>
+          </Box>
           <BtnsWrapper>
             <PrevBtn />
             <NextBtn nextStep="3" />
@@ -170,9 +177,7 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              2/6
-            </Box>
+            <SlideShow>2/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={2} />
           <Title2 my={4}>We secure leverage</Title2>
@@ -216,9 +221,7 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              3/6
-            </Box>
+            <SlideShow>3/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={3} />
           <Title2 my={4}>We bring together buyers</Title2>
@@ -240,22 +243,16 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              4/6
-            </Box>
+            <SlideShow>4/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={4} />
           <Title2 my={4}>We manage the property</Title2>
           <Text textStyle="Body1" fontWeight="500">
-            Coral manages the property per the business plan. We manage any planned renovations, as
-            well as unexpected repairs and maintenance.
+            Coral executes the business plan for the property. We manage any planned renovations as
+            well as unexpected repairs and maintenance; find tenants, and manage those relationships
+            (including all repair requests). You sit back and enjoy the benefits without any of the
+            headaches!
           </Text>
-          <Text textStyle="Body1" fontWeight="500" my={4}>
-            We find tenants and manage the relationships with those tenants, including all repair
-            requests. We manage relationships with local vendors to keep the property operational
-            and in good condition.
-          </Text>
-          <Image mx="auto" src={UtilityImg} />
           <BtnsWrapper>
             <PrevBtn />
             <NextBtn nextStep="6" />
@@ -269,14 +266,10 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              5/6
-            </Box>
+            <SlideShow>5/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={5} />
-          <Title2 fontSize="2xl" my={4}>
-            The LLC insulates you from liability
-          </Title2>
+          <Title2 my={4}>The LLC insulates you from liability</Title2>
           <Text textStyle="Body1" fontWeight="500">
             LLC stands for limited liability company. By virtue of that, you&apos;re insulated from
             liability. There are costs associated with owning an investment property, but these
@@ -296,9 +289,7 @@ export const Data = () => {
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              6/6
-            </Box>
+            <SlideShow>6/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={6} />
           <Title2 my={4}>Takeaways</Title2>
@@ -357,4 +348,4 @@ export const Data = () => {
       ),
     },
   ];
-}
+};
