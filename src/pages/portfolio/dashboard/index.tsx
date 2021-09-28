@@ -4,7 +4,7 @@ import { Box, Divider } from '@chakra-ui/react';
 
 import { Container } from '../../../components';
 import { Title1 } from '../../../components/text';
-import { PopUpBox } from './popUpBox';
+// import { PopUpBox } from './popUpBox';
 import { Properties, TotalDistribution } from './sections';
 
 type PortfolioDashboardPropsT = {
@@ -12,13 +12,13 @@ type PortfolioDashboardPropsT = {
   portfolioRootUrl: string;
 };
 const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboardPropsT) => {
-  const [popUp, setPopUp] = useState(false);
+  // const [popUp, setPopUp] = useState(false);
   const [showAllProperties, setShowAllProperties] = useState(false);
 
   const handleClick = () => setShowAllProperties(!showAllProperties);
 
   return (
-    <Container showColorModeButton={false}>
+    <Container>
       <Box>
         <Title1 mb={4}>Portfolio</Title1>
         <TotalDistribution properties={properties} />
@@ -39,7 +39,7 @@ const PortfolioDashboard = ({ properties, portfolioRootUrl }: PortfolioDashboard
         {/*  <CashFlow /> */}
         {/* )} */}
       </Box>
-      {popUp && <PopUpBox handleClose={setPopUp} />}
+      {/* {popUp && <PopUpBox handleClose={setPopUp} />} */}
     </Container>
   );
 };

@@ -66,9 +66,9 @@ export declare const UserProfile: z.ZodObject<{
     birthDate: z.ZodString;
     numInvestments: z.ZodNullable<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
+    email: string;
     id: string;
     isAdmin: boolean;
-    email: string;
     emailAlt: string;
     isVerifiedPrimary: boolean;
     isVerifiedAlt: boolean;
@@ -100,9 +100,9 @@ export declare const UserProfile: z.ZodObject<{
     birthDate: string;
     numInvestments: number | null;
 }, {
+    email: string;
     id: string;
     isAdmin: boolean;
-    email: string;
     emailAlt: string;
     isVerifiedPrimary: boolean;
     isVerifiedAlt: boolean;
@@ -140,12 +140,12 @@ export declare const AdminPanelUserInfo: z.ZodObject<{
     email: z.ZodNullable<z.ZodString>;
     displayName: z.ZodNullable<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    id: string;
     email: string | null;
+    id: string;
     displayName: string | null;
 }, {
-    id: string;
     email: string | null;
+    id: string;
     displayName: string | null;
 }>;
 export declare type AdminPanelUserInfoT = z.infer<typeof AdminPanelUserInfo>;

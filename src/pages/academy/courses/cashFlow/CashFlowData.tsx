@@ -4,12 +4,13 @@ import { HiOutlineCash } from 'react-icons/hi';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
 
-import Academy from '../../../../../assets/academy-1.svg';
-import ChartImg from '../../../../../assets/Frame331.png';
-import Frame from '../../../../../assets/Frame615.png';
-import { ProgressBar, Circle } from '../../../../../components';
-import { Headline, Title2 } from '../../../../../components/text';
-import { OverAllCashChart, RealizedAppreciationChart, RentalRevenueChart } from '../charts';
+import { Circle, ProgressBar } from '../../../../components';
+import { Headline, Title2 } from '../../../../components/text';
+import { OverAllCashChart, RealizedAppreciationChart, RentalRevenueChart } from './charts';
+
+import Academy from '../../../../assets/academy-1.svg';
+import ChartImg from '../../../../assets/Frame331.png';
+import Frame from '../../../../assets/Frame615.png';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -39,9 +40,11 @@ const FlowEndBtn = () => {
     <Box
       p={4}
       cursor="pointer"
-      onClick={() => history.push('/academy/course/understanding-coral-listings')}
+      onClick={() => history.push('/academy/courses/understanding-coral-listings')}
     >
-      <Headline my={2}>Understanding Coral listings</Headline>
+      <Text textStyle="Body1" fontWeight="600" my={2}>
+        Understanding Coral listings
+      </Text>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -60,7 +63,7 @@ const NextBtn = ({
     <Button
       w={finishBtn ? 'auto' : 10}
       h={10}
-      borderRadius={finishBtn === false ? 'full' : '2xl'}
+      borderRadius={finishBtn ? '2xl' : 'full'}
       onClick={() => history.push(`/academy/unit/cash-flow/${nextStep}`)}
     >
       {finishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
@@ -351,7 +354,9 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Headline>Investor cash flow is actual cash disbursed to investors</Headline>
+              <Text textStyle="Body1" fontWeight="600">
+                Investor cash flow is actual cash disbursed to investors
+              </Text>
               <Text mt={2} textStyle="Body2">
                 It’s deposited into your bank account on a monthly basis and derived from rental
                 revenue, realized appreciation, and any unused reserves.
@@ -365,7 +370,9 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Headline>It comes from two main sources</Headline>
+              <Text textStyle="Body1" fontWeight="600">
+                It comes from two main sources
+              </Text>
               <Text mt={2} textStyle="Body2">
                 <span style={{ fontWeight: 600 }}>Rental revenue:</span> which typically creates
                 smooth and consistent cash flow (increasing a bit each year).
@@ -384,7 +391,9 @@ export const Data = [
               </Center>
             </Box>
             <Box pl={4}>
-              <Headline>It is extremely tax-efficient</Headline>
+              <Text textStyle="Body1" fontWeight="600">
+                It is extremely tax-efficient
+              </Text>
               <Text mt={2} textStyle="Body2">
                 Depreciation offsets your cash flow, resulting in most taxes being deferred to the
                 point of sale (and often paid at a lower rate - a max of 25%).

@@ -1,41 +1,35 @@
-import { useHistory } from 'react-router';
+import { Fragment } from 'react';
+import { FiAlertTriangle, FiCheck } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import { Text, Divider, Flex, Center, Box, Icon, Link, useColorModeValue } from '@chakra-ui/react';
-import { Container, BackBtn } from '../../../../components';
-import { Title1, Title2, Headline } from '../../../../components/text';
-import { FiCheck } from 'react-icons/fi';
-import { AiOutlineWarning } from 'react-icons/ai';
+import { BackBtn, Container } from '../../../../components';
+import { Headline, Title1, Title2 } from '../../../../components/text';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
 
 const HighLightsList = [
   {
     icon: FiCheck,
-    heading: 'Strong Population Growth',
+    headings: ['Strong Population Growth'],
     description: '1.2% Cambridge vs 0.6% US (1)',
   },
   {
     icon: FiCheck,
-    heading: 'High Renter Population',
+    headings: ['High Renter Population'],
     description: '65% renters in Cambridge (2)',
   },
   {
     icon: FiCheck,
-    heading: 'Highly Educated',
+    headings: ['Highly Educated', 'High Median Household Income'],
     description:
-      '7th most educated city in America(3) ; 76.5% bachelor’s degree or higher(4); high density of colleges and universities',
+      '7th most educated city in America(3) ; 76.5% bachelor’s degree or higher(4); high density of colleges and universities', // editorconfig-checker-disable-line
   },
   {
     icon: FiCheck,
-    heading: 'High Median Household Income',
-    description:
-      '7th most educated city in America(3) ; 76.5% bachelor’s degree or higher(4); high density of colleges and universities',
-  },
-  {
-    icon: FiCheck,
-    heading: 'Low Long-Term Unemployment Rate',
+    headings: ['Low Long-Term Unemployment Rate'],
     description: '3.5% Cambridge vs 5.8% US (5)',
   },
 ];
-const List = [
+const References = [
   { heading: 'US Census Bureau' },
   { heading: 'as of Feb 08 2021', link: 'Zumper.com' },
   { heading: 'Wallethub' },
@@ -71,18 +65,20 @@ export const Cambridge = () => {
         tenants. Cambridge has a growing population (mostly renters), of highly educated, high
         earners.
       </Text>
-      {HighLightsList.map(({ icon, heading, description }) => (
-        <Flex my={6}>
-          <Center borderRadius="xl" layerStyle="card" h={8} minW={8} mr={4}>
-            <Icon as={icon} h={4} w={4} color={iconColor} />
-          </Center>
-          <Box>
-            <Headline>{heading}</Headline>
-            <Text textStyle="Body2" color={descColor}>
-              {description}
-            </Text>
-          </Box>
-        </Flex>
+      {HighLightsList.map(({ icon, headings, description }) => (
+        headings.map(heading => (
+          <Flex my={6} key={heading}>
+            <Center borderRadius="xl" layerStyle="card" h={8} minW={8} mr={4}>
+              <Icon as={icon} h={4} w={4} color={iconColor} />
+            </Center>
+            <Box>
+              <Headline>{heading}</Headline>
+              <Text textStyle="Body2" color={descColor}>
+                {description}
+              </Text>
+            </Box>
+          </Flex>
+        ))
       ))}
       <Divider my={4} />
       <Title2 my={4}>Constrained Supply</Title2>
@@ -93,13 +89,13 @@ export const Cambridge = () => {
       </Text>
       <Flex my={6}>
         <Center borderRadius="xl" layerStyle="card" h={8} minW={8} mr={4}>
-          <Icon as={AiOutlineWarning} h={4} w={4} color={iconWarningColor} />
+          <Icon as={FiAlertTriangle} h={4} w={4} color={iconWarningColor} />
         </Center>
         <Box>
           <Headline>Residential Zoning - FAR</Headline>
           <Text textStyle="Body2" color={descColor}>
             258 Prospect and its neighbors (C1 zoning) are subject to a FAR limit of 0.75(6). This
-            means the building's total floor area (gross floor area) cannot exceed 75% of the area
+            means the building&apos;s total floor area (gross floor area) cannot exceed 75% of the area
             of the land it sits on.
           </Text>
         </Box>
@@ -111,8 +107,8 @@ export const Cambridge = () => {
         </Text>
       </Box>
       <Box my={6}>
-        {List.map(({ heading, link }, index: any) => (
-          <Text fontSize="12px" color={descColor}>
+        {References.map(({ heading, link }, index: number) => (
+          <Text fontSize="12px" color={descColor} key={index}>
             ({index + 1}){' '}
             <Link textDecoration="underline" isExternal href={`https://${link}`}>
               {link}

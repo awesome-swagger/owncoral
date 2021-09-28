@@ -1,36 +1,25 @@
-import { Fragment, lazy } from 'react';
+import { lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, NavBar } from '../../../../components';
+
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
-import { Data } from './realizingAppreciationData';
 import { titleToUrlFragment } from '../../lib';
+
+import { Data } from './RealizingAppreciationData';
+
 const Error404 = lazy(() => import('../../../error404'));
 
 const RealizingAppreciationFlow = () => {
+  useScrollToTop();
+  
   const { title } = useParams<{ title: string }>();
   if (!title) return Data[0].jsx;
 
-  const FilteredData = Data.find(({ name }: { name: string }) =>
-    titleToUrlFragment(name).includes(title),
+  const filteredData = Data.find(({ name } : { name: string }) =>
+    titleToUrlFragment(name) === title,
   );
 
-  useScrollToTop();
-
-  return FilteredData ? (
-    <Fragment>
-      <NavBar />
-      <Container
-        minH={{ base: `calc(${window.innerHeight}px - 8rem)` }}
-        h={{ base: 'auto', md: '750px' }}
-        pb={{ base: 16 }}
-      >
-        {FilteredData.jsx}
-      </Container>
-    </Fragment>
-  ) : (
-    <Error404 />
-  );
-};
+  return filteredData ? filteredData.jsx : <Error404 isComponent />;
+}
 
 // eslint-disable-next-line import/no-default-export
 export default RealizingAppreciationFlow;

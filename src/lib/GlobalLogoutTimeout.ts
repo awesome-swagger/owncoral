@@ -1,4 +1,3 @@
-
 export const GlobalLogoutTimeout: {
   timer: ReturnType<typeof setTimeout> | null;
   timerExpiry: Date | null;

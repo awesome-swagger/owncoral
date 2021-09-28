@@ -1,6 +1,6 @@
 import { BsQuestionCircle } from 'react-icons/bs';
 import { Box, Center, Flex, Heading, Icon } from '@chakra-ui/react';
-import { FlexLightBorder, BoxLightBorder } from '../../../../../components';
+import { BoxLightBorder, FlexLightBorder } from '../../../../../components';
 
 export const SourcesAndUses = () => (
   <Box>

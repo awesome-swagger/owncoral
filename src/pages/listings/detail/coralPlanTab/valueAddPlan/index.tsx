@@ -1,6 +1,6 @@
-import React from 'react';
+import type React from 'react';
 import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
-import { Flex, Text, VStack, Box } from '@chakra-ui/react';
+import { Box, Flex, Text, VStack } from '@chakra-ui/react';
 
 import { Headline, Title2 } from '../../../../../components/text';
 import { formatFinancial } from '../../../../../lib/financialFormatter';

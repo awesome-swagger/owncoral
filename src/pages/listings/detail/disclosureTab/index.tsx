@@ -1,4 +1,4 @@
-import { VStack, Text, Divider } from '@chakra-ui/react';
+import { Divider, Text, VStack} from '@chakra-ui/react';
 import { Title2 } from '../../../../components/text';
 
 const DisclosureTab = () => (
@@ -65,8 +65,10 @@ const DisclosureTab = () => (
     <Title2>Requlatory Status</Title2>
     <Text>
       Coral is not registered as a broker-dealer or investment adviser, and is not a fiduciary by
-      virtue of any person’s use of or access to the app.
+      virtue of any person&apos;s use of or access to the app.
     </Text>
   </VStack>
 );
+
+// eslint-disable-next-line import/no-default-export
 export default DisclosureTab;

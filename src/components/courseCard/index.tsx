@@ -18,25 +18,21 @@ export const CourseCard: React.FC<{
     width="calc(50% - 1rem)"
     minWidth={38}
     maxWidth={44}
-    height="224px"
+    height="210px"
     mx={2}
-    my={3}
+    my={2}
     pos="relative"
     filter="drop-shadow(0px 2px 8px rgba(56, 53, 50, 0.04))"
   >
-    <Flex
-      flexDirection="column"
-      textAlign="center"
-      py={6}
-      px={4}
-      opacity={isComingSoon ? 0.35 : 1.0}
-    >
-      <Image minH={24} h={24} src={image} alt="course_image" mx="auto" />
-      <Center flexDirection="column" h="100%">
-        <Headline my={2}>{name}</Headline>
-        <Subhead>{lesson} lessons</Subhead>
-      </Center>
-    </Flex>
+    <Center w="100%" h="100%">
+      <Flex flexDirection="column" textAlign="center" opacity={isComingSoon ? 0.35 : 1.0}>
+        <Image minH={24} h={24} src={image} alt="course_image" mx="auto" />
+        <Center flexDirection="column" h="100%">
+          <Headline my={2}>{name}</Headline>
+          <Subhead>{lesson} lessons</Subhead>
+        </Center>
+      </Flex>
+    </Center>
     {isComingSoon && <ComingSoonOverlay />}
   </Box>
 );
@@ -52,7 +48,7 @@ const ComingSoonOverlay: React.FC<CenterProps> = (props) => (
     fontSize="24px"
     pos="absolute"
   >
-    <Box textAlign="center" sx={{ transform: 'rotate(-35deg)' }} color="gray.500">
+    <Box textAlign="center" sx={{ transform: 'rotate(-35deg)' }} opacity="0.4" color="gray.500">
       Coming Soon
     </Box>
   </Center>

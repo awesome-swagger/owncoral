@@ -5,21 +5,22 @@ import {
   Button,
   Center,
   Flex,
+  HStack,
   Icon,
   Image,
   Text,
-  HStack,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Academy from '../../../../../assets/academy-1.svg';
-import UtilityImg from '../../../../../assets/renovation/utility.png';
-import LegalOwnership from '../../../../../assets/crash-course/legal-ownership.png';
-import PropertyLlc from '../../../../../assets/crash-course/property-llc.png';
-import BuyersAndShares from '../../../../../assets/crash-course/buyers-shares.png';
-import Onboarding from '../../../../../assets/crash-course/Onboarding_Own_gray.png';
-import Frame from '../../../../../assets/Frame615.png';
-import { ProgressBar, Circle } from '../../../../../components';
-import { Title2, Headline } from '../../../../../components/text';
+import { Circle, ProgressBar } from '../../../../components';
+import { Title2 } from '../../../../components/text';
+
+import Academy from '../../../../assets/academy-1.svg';
+import BuyersAndShares from '../../../../assets/crash-course/buyers-shares.png';
+import Frame from '../../../../assets/Frame615.png';
+import LegalOwnership from '../../../../assets/crash-course/legal-ownership.png';
+import Onboarding from '../../../../assets/crash-course/onboarding-own-gray.png';
+import PropertyLlc from '../../../../assets/crash-course/property-llc.png';
+import UtilityImg from '../../../../assets/renovation/utility.png';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -37,7 +38,7 @@ const FlowStartBtn = () => {
       w="calc(100% - 2rem)"
       onClick={() => history.push('/academy/unit/ownership-structure/2')}
     >
-      Let’s dig in
+      Let&apos;s dig in
     </Button>
   );
 };
@@ -51,7 +52,9 @@ const FlowEndBtn = () => {
       cursor="pointer"
       onClick={() => history.push('/academy/course/understanding-coral-listings')}
     >
-      <Headline my={2}>Understanding Coral listings</Headline>
+      <Text textStyle="Body1" fontWeight="600" my={2}>
+        Understanding Coral listings
+      </Text>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -103,7 +106,7 @@ const BtnsWrapper = (props: any) => (
 const takeAways = [
   'Coral forms a new property LLC to acquire a property.',
   'The LLC has a total of 100 shares (ownership interests).',
-  'Coral secures leverage (a loan) to allow buyers to own a higher percentage of the property with less capital (cash).',
+  'Coral secures leverage (a loan) to allow buyers to own a higher percentage of the property with less capital (cash).', // editorconfig-checker-disable-line
   'Coral brings together buyers, each of whom chooses how many shares they want to own.',
   'Coral manages the property.',
   'The LLC insulates you from liability.',
@@ -113,6 +116,7 @@ const takeAways = [
 export const Data = () => {
   const eqColor = useColorModeValue('teal.700', 'teal.400');
   const debtColor = useColorModeValue('green.200', 'green.100');
+
   return [
     {
       name: '1',
@@ -274,9 +278,9 @@ export const Data = () => {
             The LLC insulates you from liability
           </Title2>
           <Text textStyle="Body1" fontWeight="500">
-            LLC stands for limited liability company. By virtue of that, you're insulated from
+            LLC stands for limited liability company. By virtue of that, you&apos;re insulated from
             liability. There are costs associated with owning an investment property, but these
-            costs are paid out of the LLC's operating cash flow — not out of your pocket.
+            costs are paid out of the LLC&apos;s operating cash flow — not out of your pocket.
           </Text>
           <Image mx="auto" src={Onboarding} />
           <BtnsWrapper>
@@ -299,19 +303,21 @@ export const Data = () => {
           <ProgressBar total={6} value={6} />
           <Title2 my={4}>Takeaways</Title2>
           <Text textStyle="Body1" fontWeigh="500">
-            Coral enables people (like you) to own investment properties in a way that wouldn't
+            Coral enables people (like you) to own investment properties in a way that wouldn&apos;t
             otherwise be available or affordable.
           </Text>
           <Box my={4}>
             {takeAways.map((value, index) => (
-              <Flex mt={4}>
+              <Flex mt={4} key={index}>
                 <Box>
                   <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
                     <Title2>{index + 1}</Title2>
                   </Center>
                 </Box>
                 <Box my={1} pl={4}>
-                  <Headline>{value}</Headline>
+                  <Text textStyle="Body1" fontWeight="600">
+                    {value}
+                  </Text>
                 </Box>
               </Flex>
             ))}
@@ -351,4 +357,4 @@ export const Data = () => {
       ),
     },
   ];
-};
+}

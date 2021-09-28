@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, useColorModeValue } from '@chakra-ui/react';
 
 export const Circle: React.FC<any> = ({ color }) => {
@@ -5,14 +6,11 @@ export const Circle: React.FC<any> = ({ color }) => {
   const greenColor = useColorModeValue('green.200', 'green.100');
   const orangeColor = useColorModeValue('orange.300', 'orange.200');
 
-  const bgColor =
-    color === 'teal'
-      ? tealColor
-      : color === 'green'
-      ? greenColor
-      : color === 'orange'
-      ? orangeColor
-      : 'black';
+  const colors: { [key: string]: string } = {
+    'teal': tealColor,
+    'green': greenColor,
+    'orange': orangeColor
+  }
 
-  return <Box mr={2} w={2} h={2} borderRadius="full" bg={bgColor} />;
+  return <Box mr={2} w={2} h={2} borderRadius="full" bg={colors[color] || "black"} />;
 };

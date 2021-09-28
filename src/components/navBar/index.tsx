@@ -14,15 +14,15 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
-import Academy from '../../assets/Academy.svg';
-import AcademyFilled from '../../assets/AcademyFilled.svg';
-import Logo from '../../assets/coral-logo-wtext.svg';
 import { useNavHeight } from '../../lib/useNavHeight';
+
+import Academy from '../../assets/academy.svg';
+import Logo from '../../assets/coral-logo-wtext.svg';
 
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
-type navLinksT = { name: string; url: string; icon: any };
+type navLinksT = { name: string; url: string; icon: any }
 
 const navLinks = [
   {
@@ -33,7 +33,7 @@ const navLinks = [
   {
     name: 'Academy',
     url: '/academy',
-    icon: [Academy, AcademyFilled],
+    icon: Academy,
   },
   {
     name: 'Portfolio',
@@ -183,24 +183,14 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
           _hover={hoverColors}
           color={props.currentPageName === name ? activeColor : inactiveColor}
         >
-          {icon.length === 2 ? (
-            <Icon
-              as={props.currentPageName === name ? icon[1] : icon[0]}
-              w={5}
-              h={5}
-              aria-label={name}
-              m={0}
-            />
-          ) : (
-            <Icon
-              as={icon}
-              w={5}
-              h={5}
-              aria-label={name}
-              m={0}
-              fill={props.currentPageName === name ? activeColor : 'none'}
-            />
-          )}
+          <Icon
+            as={icon}
+            w={5}
+            h={5}
+            aria-label={name}
+            m={0}
+            fill={props.currentPageName === name ? activeColor : 'none'}
+          />
           <Text as="span" textStyle="Caption1" fontWeight="normal">
             {name}
           </Text>

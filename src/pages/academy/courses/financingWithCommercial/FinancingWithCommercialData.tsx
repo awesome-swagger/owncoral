@@ -1,5 +1,5 @@
-import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { FaLightbulb } from 'react-icons/fa';
+import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import {
   Box,
@@ -8,18 +8,18 @@ import {
   Flex,
   Icon,
   Image,
-  Text,
   Link,
+  Text,
   VStack,
   HStack,
   UnorderedList,
   ListItem,
 } from '@chakra-ui/react';
-import { ProgressBar, SlideShow } from '../../../../../components';
-import { Title2, Headline } from '../../../../../components/text';
-import { Table, UnleveredTable } from '../table';
-import Academy from '../../../../../assets/academy-1.svg';
-import Frame from '../../../../../assets/Frame615.png';
+import { ProgressBar, SlideShow } from '../../../../components';
+import { Title2 } from '../../../../components/text';
+import { Table, UnleveredTable } from './table';
+import Academy from '../../../../assets/academy-1.svg';
+import Frame from '../../../../assets/Frame615.png';
 
 const CloseBtn = () => {
   const history = useHistory();
@@ -37,7 +37,7 @@ const FlowStartBtn = () => {
       w="calc(100% - 2rem)"
       onClick={() => history.push('/academy/unit/financing-with-commercial-loans/2')}
     >
-      Let's get started
+      Let&apos;s get started
     </Button>
   );
 };
@@ -51,7 +51,9 @@ const FlowEndBtn = () => {
       cursor="pointer"
       onClick={() => history.push('/academy/course/understanding-coral-listings')}
     >
-      <Headline my={2}>Understanding Coral listings</Headline>
+      <Text textStyle="Body1" fontWeight="600" my={2}>
+        Understanding Coral listings
+      </Text>
       <Text textStyle="Body2">Crash course</Text>
     </Box>
   );
@@ -141,7 +143,7 @@ export const Data = [
           with that money — and leverage will amplify your returns.
         </Text>
         <Text my={4} textStyle="Body1" fontWeight="500">
-          Managing through this, in reality, is more nuanced. We'll come back to that.
+          Managing through this, in reality, is more nuanced. We&apos;ll come back to that.
         </Text>
         <BtnsWrapper>
           <PrevBtn />
@@ -272,11 +274,11 @@ export const Data = [
         <Title2 my={4}>Leverage in action</Title2>
         <Text my={4}>
           When borrowing $650K at 3.5% interest rate, the interest payment is $650K x 3.5% =
-          $22.75K. When subtracted from your annual returns (above) of $75k, you're left with a net
-          total return of $52,250. Since your investment was only $350k,{' '}
+          $22.75K. When subtracted from your annual returns (above) of $75k, you&apos;re left with a
+          net total return of $52,250. Since your investment was only $350k,{' '}
           <span style={{ fontWeight: 600 }}>your levered return is 14.9%.</span>
         </Text>
-        <Headline>Leverage amplifies your returns.</Headline>
+        <Text fontWeight={600}>Leverage amplifies your returns.</Text>
         <Table />
         <BtnsWrapper>
           <PrevBtn />
@@ -444,8 +446,8 @@ export const Data = [
         <Title2 my={4}>Risks of leverage</Title2>
         <Text textStyle="Body1" fontWeight="500">
           It is often said in finance that leverage is a double-edged sword. While it amplifies the
-          investment's return, it will work against you the same way in the event that the property
-          value decreases or your rental yield decreases.
+          investment&apos;s return, it will work against you the same way in the event that the
+          property value decreases or your rental yield decreases.
         </Text>
         <Text textStyle="Body1" fontWeight="500" my={4}>
           At Coral, we aim to mitigate that risk by (1) buying and owning the least risky properties

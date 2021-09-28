@@ -48,7 +48,7 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
             ID.
           </Text>
           <FormLabel mt={8}>
-            <Text variant="label" fontSize="md">
+            <Text layerStyle="labelColor" fontSize="md">
               FIRST NAME
             </Text>
             <Input
@@ -62,7 +62,7 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
             />
           </FormLabel>
           <FormLabel mt={8}>
-            <Text variant="label" fontSize="md">
+            <Text layerStyle="labelColor" fontSize="md">
               LAST NAME
             </Text>
             <Input

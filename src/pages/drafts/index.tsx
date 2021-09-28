@@ -1,7 +1,9 @@
 import { Fragment, lazy } from 'react';
 import { Link as BrowserLink, Switch, useRouteMatch } from 'react-router-dom';
 import { Button, Heading, VStack } from '@chakra-ui/react';
+
 import { Container, NavBar, ProtectedRoute } from '../../components';
+
 const OldPortfolio = lazy(() => import('./oldPortfolio'));
 const PortfolioSplash = lazy(() => import('./portfolio/splash'));
 const Transaction = lazy(() => import('./transaction'));

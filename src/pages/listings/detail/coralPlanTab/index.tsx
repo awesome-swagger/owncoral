@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
-import { Divider, Box, VStack } from '@chakra-ui/react';
+import { Box, Divider, VStack } from '@chakra-ui/react';
 
 import { Financing } from './financing';
-import { ValueAddPlan } from './valueAddPlan';
 import { Renovation } from './renovation';
 import { RentalIncome } from './rentalIncome';
+import { ValueAddPlan } from './valueAddPlan';
 
 type CoralPlanTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;

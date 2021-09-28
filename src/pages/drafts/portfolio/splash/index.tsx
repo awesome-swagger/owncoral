@@ -1,8 +1,9 @@
 import { useEffect, useCallback, Fragment } from 'react';
-import { useEmblaCarousel } from 'embla-carousel/react';
-import { Box, Flex, Center, Icon, Button } from '@chakra-ui/react';
 import { FaChartLine } from 'react-icons/fa';
-import { FiMap, FiInfo, FiChevronLeft } from 'react-icons/fi';
+import { FiChevronLeft, FiInfo, FiMap } from 'react-icons/fi';
+import { Box, Button, Center, Flex, Icon } from '@chakra-ui/react';
+import { useEmblaCarousel } from 'embla-carousel/react';
+
 import MapImg from '../../../../assets/Frame269.png';
 import { Container, PropertyCard, NavBar } from '../../../../components';
 import { Title2 } from '../../../../components/text';
@@ -29,10 +30,11 @@ const PortfolioSplash = () => {
   }, [embla, onSelect]);
 
   const slides = [
-    <NeighborhoodMap />,
-    <PropertyCard data={PortfolioData} />,
-    <PropertyCard data={PortfolioData} />,
+    <NeighborhoodMap key="Neighborhood Map" />,
+    <PropertyCard data={PortfolioData} key="Property Card 1" />,
+    <PropertyCard data={PortfolioData} key="Property Card 2" />,
   ];
+
   return (
     <Fragment>
       <NavBar />

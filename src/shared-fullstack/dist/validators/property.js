@@ -23,27 +23,34 @@ export const PortfolioDashboardProperty = z.object({
     lastDistributionMonth: z.date().nullable(),
     months: z.number().nullable(),
 });
+// Keep in sync with TYPE property_status in /db/schema/property.sql
+// For staged deploys:
+//   the list here should be extended and deployed _before_ the database enum is extended with new entries.
+export const PropertyStatus = z.enum(['LISTING', 'CLOSED', 'INACTIVE']);
 export const ListingsProperty = z.object({
     propertyId: z.string(),
+    status: PropertyStatus,
     name: z.string(),
     address: Address,
     areaUnits: z.string().nullable(),
     areaLiving: z.number().nullable(),
     numUnits: z.number().nullable(),
     cardImageUrl: z.string().nullable(),
-    listingIrr: z.number(),
-    listingCashDist: z.number(),
+    listingIrr: z.number().nullable(),
+    listingCashDist: z.number().nullable(),
     mdlEquity: z.number().nullable(),
 });
 // A renovation item looks like:
 // ['kitchen', ['bullet1 contents', 'bullet 2 contents', ...]]
-const RenovationItem = z.array(z.union([z.string(), z.array(z.string())])).length(2);
+export const RenovationItem = z.array(z.union([z.string(), z.array(z.string())])).length(2);
 const BasePropertyDetail = z
     .object({
     id: z.string(),
+    status: PropertyStatus,
     name: z.string().nullable(),
     description: z.string().nullable(),
     imageUrls: z.array(z.string()),
+    docsUrls: z.array(z.string()),
     address: Address,
     numUnits: z.number().nullable(),
     numBeds: z.number().nullable(),
@@ -54,6 +61,7 @@ const BasePropertyDetail = z
     areaLotSize: z.number().nullable(),
     descriptionMarkdown: z.string().nullable(),
     occupancyStatus: z.string().nullable(),
+    renovationsOverview: z.string().nullable(),
     isUnderRenovation: z.boolean(),
     renovationsJsonb: z.array(RenovationItem).nullable(),
     // TODO: not nullable (and in property.sql)
