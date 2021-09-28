@@ -24,3 +24,4 @@ export { FilterPopUp } from './filterPopUp';
 export { BoxLightBorder, FlexLightBorder } from './lightBorder';
 export { Circle } from './circle';
 export { IconBackground } from './iconBackground';
+export { SlideShow } from './slideShow';

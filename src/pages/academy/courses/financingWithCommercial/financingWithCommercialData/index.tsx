@@ -12,10 +12,12 @@ import {
   Link,
   VStack,
   HStack,
+  UnorderedList,
+  ListItem,
 } from '@chakra-ui/react';
-import { ProgressBar } from '../../../../../components';
+import { ProgressBar, SlideShow } from '../../../../../components';
 import { Title2, Headline } from '../../../../../components/text';
-import { Table } from '../table';
+import { Table, UnleveredTable } from '../table';
 import Academy from '../../../../../assets/academy-1.svg';
 import Frame from '../../../../../assets/Frame615.png';
 
@@ -126,11 +128,9 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            1/11
-          </Box>
+          <SlideShow>1/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={1} />
+        <ProgressBar total={10} value={1} />
         <Title2 my={4}>When leverage works</Title2>
         <Text textStyle="Body1" fontWeight="500">
           The key to a successful multiplier effect in leverage is that the{' '}
@@ -156,11 +156,9 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            2/11
-          </Box>
+          <SlideShow>2/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={2} />
+        <ProgressBar total={10} value={2} />
         <Title2 my={4}>Loan to Value (LTV)</Title2>
         <Text textStyle="Body1" fontWeight="500">
           At Coral, we tend to borrow about 65% of the purchase price (or asset value) from the
@@ -212,17 +210,18 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            3/11
-          </Box>
+          <SlideShow>3/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={3} />
+        <ProgressBar total={10} value={3} />
         <Title2 my={4}>Interest Rate</Title2>
         <Text>
           The <span style={{ fontWeight: 600 }}>Interest Rate</span> of the loan is the ongoing
-          (annual) cost of borrowing the $650K, paid to the lender. An interest rate can be a fixed
-          rate (the same every year) or a floating rate (moves up or down with an index). Floating
-          rates may have a floor (lowest rate) and a cap (highest rate).
+          (annual) cost of borrowing the $650K, paid to the lender.
+        </Text>
+        <Text my={4}>
+          An interest rate can be a fixed rate (the same every year) or a floating rate (moves up or
+          down with an index). Floating rates may have a floor (lowest rate) and a cap (highest
+          rate).
         </Text>
         <Text my={4}>
           While interest rates change over time, Coral has established strategic partnerships with a
@@ -243,11 +242,9 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            4/11
-          </Box>
+          <SlideShow>4/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={4} />
+        <ProgressBar total={10} value={4} />
         <Title2 my={4}>Leverage in action</Title2>
         <Text>
           For a $1M property with a 4.5% cap rate and 3% per year conservative price appreciation
@@ -255,14 +252,7 @@ export const Data = [
           cap rate on a $1M property) and $30k in unrealized appreciation.{' '}
           <span style={{ fontWeight: 600 }}>Your unlevered return is 7.5%.</span>
         </Text>
-        <Text my={4}>
-          When borrowing $650K at 3.5% interest rate, the interest payment is $650K x 3.5% =
-          $22.75K. When subtracted from your annual returns (above) of $75k, you're left with a net
-          total return of $52,250. Since your investment was only $350k,{' '}
-          <span style={{ fontWeight: 600 }}>your leveraged return is 14.9%.</span>
-        </Text>
-        <Headline>Leverage amplifies your returns.</Headline>
-        <Table />
+        <UnleveredTable />
         <BtnsWrapper>
           <PrevBtn />
           <NextBtn nextStep="6" />
@@ -276,23 +266,18 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            5/11
-          </Box>
+          <SlideShow>5/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={5} />
-        <Title2 my={4}>Managing cashflow</Title2>
-        <Text textStyle="Body1" fontWeight="500">
-          Managing cashflow with leverage is critical. Loan payments (principal and interest) are
-          due each month. Meanwhile, returns from real estate (derived from rental income and
-          appreciation) may fluctuate.
+        <ProgressBar total={10} value={5} />
+        <Title2 my={4}>Leverage in action</Title2>
+        <Text my={4}>
+          When borrowing $650K at 3.5% interest rate, the interest payment is $650K x 3.5% =
+          $22.75K. When subtracted from your annual returns (above) of $75k, you're left with a net
+          total return of $52,250. Since your investment was only $350k,{' '}
+          <span style={{ fontWeight: 600 }}>your levered return is 14.9%.</span>
         </Text>
-        <Text textStyle="Body1" my={4} fontWeight="500">
-          There are different options to manage cashflow while using leverage: (1) reserve cash to
-          cover any differential between realized returns and loan payments (2) use less leverage
-          (less LTV) to ensure that the loan payments is substantially lower than the realized
-          returns or (3) use a hybrid approach between 1 and 2.
-        </Text>
+        <Headline>Leverage amplifies your returns.</Headline>
+        <Table />
         <BtnsWrapper>
           <PrevBtn />
           <NextBtn nextStep="7" />
@@ -306,14 +291,55 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            6/11
-          </Box>
+          <SlideShow>6/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={6} />
+        <ProgressBar total={10} value={6} />
+        <Title2 my={4}>Managing cash flow</Title2>
+        <Text textStyle="Body1" fontWeight="500">
+          Managing cash flow with leverage is critical. Loan payments (principal and interest) are
+          due each month. Meanwhile, returns from real estate (derived from rental income and
+          appreciation) may fluctuate.
+        </Text>
+        <Text textStyle="Body1" my={4} fontWeight="500">
+          There are different options to manage cash flow while using leverage:
+        </Text>
+        <UnorderedList>
+          <ListItem>
+            <Text textStyle="Body1" fontWeight="500">
+              reserve cash to cover any differential between realized returns and loan payments
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text textStyle="Body1" fontWeight="500">
+              use less leverage (lower LTV) to ensure the loan payment is lower than realized
+              returns at any given time
+            </Text>
+          </ListItem>
+          <ListItem>
+            <Text textStyle="Body1" fontWeight="500">
+              use a hybrid approach
+            </Text>
+          </ListItem>
+        </UnorderedList>
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="8" />
+        </BtnsWrapper>
+      </Box>
+    ),
+  },
+  {
+    name: '8',
+    jsx: (
+      <Box>
+        <Flex justifyContent="space-between" alignItems="center">
+          <CloseBtn />
+          <SlideShow>7/10</SlideShow>
+        </Flex>
+        <ProgressBar total={10} value={7} />
         <Title2 my={4}>Loan payments</Title2>
         <Text textStyle="Body1" fontWeight="500">
-          To manage cashflow, you have to have a good grasp on your loan payments.
+          To manage cash flow, you have to have a good grasp on your loan payments.
         </Text>
         <Text my={4} fontWeight="500">
           Each monthly loan payment is part
@@ -364,42 +390,6 @@ export const Data = [
         </Text>
         <BtnsWrapper>
           <PrevBtn />
-          <NextBtn nextStep="8" />
-        </BtnsWrapper>
-      </Box>
-    ),
-  },
-  {
-    name: '8',
-    jsx: (
-      <Box>
-        <Flex justifyContent="space-between" alignItems="center">
-          <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            7/11
-          </Box>
-        </Flex>
-        <ProgressBar total={9} value={7} />
-        <Title2 my={4}>Recourse and Non-recourse</Title2>
-        <Text textStyle="Body1" fontWeight="500">
-          There are two types of debt: <span style={{ fontWeight: 600 }}>recourse</span> and{' '}
-          <span style={{ fontWeight: 600 }}>non-recourse</span>. A recourse holds the borrower
-          personally liable.{' '}
-          <span style={{ fontWeight: 600 }}>
-            Owners of Coral properties will never be asked to take on any personal liability for
-            loans.
-          </span>
-        </Text>
-        <Text textStyle="Body1" fontWeight="500" my={4}>
-          Coral seeks out non-recourse loans, and the loan belongs to the LLC. These loans typically
-          have something called a "Bad boy" carve-out: an exceptions (carve-outs) that result in
-          full-recourse liability when bad-boy behaviors exist (e.g. fraud, gross-negligence or
-          criminal acts, etc). This carve-out is very common in commercial real estate loans, and
-          Coral is on the hook for this "Bad-boy" carve-out.
-        </Text>
-
-        <BtnsWrapper>
-          <PrevBtn />
           <NextBtn nextStep="9" />
         </BtnsWrapper>
       </Box>
@@ -411,21 +401,28 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            8/11
-          </Box>
+          <SlideShow>8/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={8} />
-        <Title2 my={4}>Risks of leverage</Title2>
+        <ProgressBar total={10} value={8} />
+        <Title2 my={4}>Recourse and Non-recourse</Title2>
         <Text textStyle="Body1" fontWeight="500">
-          It is often said in finance that leverage is a double-edged sword. While it amplifies the
-          investment's return, it will work against you the same way in the event that the property
-          value decreases or your rental yield decreases.
+          There are two types of debt:{' '}
+          <span style={{ fontWeight: 600 }}>recourse and non-recourse</span>. With a non-recourse
+          loan, a lender can seize the loan collateral, but in contrast to a recourse loan, the
+          lender cannot go after the borrower's other assets.
         </Text>
         <Text textStyle="Body1" fontWeight="500" my={4}>
-          At Coral, we aim to mitigate that risk by (1) buying and owning the least risky properties
-          in well established markets with stable tenancy (2) using a principal reserve (in escrow)
-          to satisfy the amortization needs of the mortgage.
+          With Coral, the loan belongs to the property LLC. When you acquire fractional ownership
+          through Coral{' '}
+          <span style={{ fontWeight: 600 }}>
+            you are not required to take on any personal liability for loans.
+          </span>
+        </Text>
+        <Text textStyle="Body1" fontWeight="500" my={4}>
+          Coral seeks out non-recourse loans. These loans typically have something calls a "bad boy
+          carve-out." This is common in commercial real estate and defines exceptions that result in
+          full-recourse liability when bad-boy behaviors exist (e.g., fraud, gross negligence or
+          criminal acts). Coral is on the hook for this "bad-boy carve-out."
         </Text>
 
         <BtnsWrapper>
@@ -441,11 +438,37 @@ export const Data = [
       <Box>
         <Flex justifyContent="space-between" alignItems="center">
           <CloseBtn />
-          <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-            11/11
-          </Box>
+          <SlideShow>9/10</SlideShow>
         </Flex>
-        <ProgressBar total={9} value={9} />
+        <ProgressBar total={10} value={9} />
+        <Title2 my={4}>Risks of leverage</Title2>
+        <Text textStyle="Body1" fontWeight="500">
+          It is often said in finance that leverage is a double-edged sword. While it amplifies the
+          investment's return, it will work against you the same way in the event that the property
+          value decreases or your rental yield decreases.
+        </Text>
+        <Text textStyle="Body1" fontWeight="500" my={4}>
+          At Coral, we aim to mitigate that risk by (1) buying and owning the least risky properties
+          in well established markets with stable tenancy (2) using a principal reserve (in escrow)
+          to satisfy the amortization needs of the mortgage.
+        </Text>
+
+        <BtnsWrapper>
+          <PrevBtn />
+          <NextBtn nextStep="11" />
+        </BtnsWrapper>
+      </Box>
+    ),
+  },
+  {
+    name: '11',
+    jsx: (
+      <Box>
+        <Flex justifyContent="space-between" alignItems="center">
+          <CloseBtn />
+          <SlideShow>10/10</SlideShow>
+        </Flex>
+        <ProgressBar total={10} value={10} />
         <Title2 my={4}>Takeaways</Title2>
         <Flex mt={4}>
           <Box>
@@ -455,7 +478,9 @@ export const Data = [
           </Box>
           <Box pl={4}>
             <Text textStyle="Body2">
-              Leverage multiplies your buying power and can, as a result, amplify your returns.
+              Leverage multiplies your buying power and can, as a result, amplify your returns. As a
+              general rule of thumb, the key to a successful multiplier effect in leverage is that
+              the interest rate is lower than the annualized rate of return.
             </Text>
           </Box>
         </Flex>
@@ -467,12 +492,8 @@ export const Data = [
           </Box>
           <Box pl={4}>
             <Text textStyle="Body2">
-              As a general rule of thumb, the key to successful multiplier effect in leverage is
-              that{' '}
-              <Link href="#" fontWeight={600}>
-                the interest rate is lower than the annualized rate of return.
-              </Link>{' '}
-              Successful cashflow management is equally critical to manage risk.
+              Multifamily properties tend to require commercial loans. Coral obtains loans on behalf
+              of the LLC, and property owners have no personal liability.
             </Text>
           </Box>
         </Flex>
@@ -484,25 +505,10 @@ export const Data = [
           </Box>
           <Box pl={4}>
             <Text textStyle="Body2">
-              Multifamily properties require commercial loans. Similar to traditional loans, loan
-              payments are due each month, and consist of both interest payment and principal
-              repayment. Coral obtains loans on behalf of the LLC, and{' '}
-              <span style={{ fontWeight: 600 }}>property owners have no personal liability.</span>
-            </Text>
-          </Box>
-        </Flex>
-        <Flex mt={4}>
-          <Box>
-            <Center w={8} h={8} borderRadius="full" layerStyle="selectionBox">
-              <Title2>4</Title2>
-            </Center>
-          </Box>
-          <Box pl={4}>
-            <Text textStyle="Body2">
-              A conservative way to manage the leverage is to use reasonable leverage while setting
-              aside a reserve for the principal repayments in extreme adverse situations. At Coral,
-              we typically purchase a property at 65% LTV while simultaneously reserving for 5 years
-              of principal repayment in an interest bearing account.
+              The importance of cash flow management cannot be overstated. At Coral, we typically
+              purchase each property with 65% LTV while simultaneously reserving five years of
+              principal repayment. This reserve is a cash flow management tool and serves as
+              protection in adverse situations.
             </Text>
           </Box>
         </Flex>
