@@ -22,7 +22,7 @@ import Logo from '../../assets/coral-logo-wtext.svg';
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
-type navLinksT = { name: string; url: string; icon: any }
+type navLinksT = { name: string; url: string; icon: any };
 
 const navLinks = [
   {
@@ -79,7 +79,7 @@ export const NAVBAR_TOP_BREAKPOINT = 'md';
 export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
   const location = useLocation();
   const currentPageName = getCurrentPageName(location.pathname);
-  const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
+  const logoFillColor = useColorModeValue('dark.500', 'gray.200');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
   const { headerHeight, footerHeight, extraHeight } = useNavHeight();
@@ -108,7 +108,6 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
           <Center h="100%" marginX={6}>
             <Icon as={Logo} w="6em" h="1.5em" sx={{ fill: logoFillColor }} />
           </Center>
-
           {!isBottomNav && (
             <Fragment>
               <Spacer />

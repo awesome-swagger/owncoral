@@ -34,7 +34,7 @@ import { fetchWrap } from '../../lib/api';
 import { UserContext } from '../../userContext';
 
 function Login() {
-  const logoFillColor = useColorModeValue('#1B1E1E', '#E8E8E8');
+  const logoFillColor = useColorModeValue('dark.500', 'gray.200');
   const loginColor = useColorModeValue('inherit', 'whiteAlpha.100');
 
   return (
@@ -115,7 +115,9 @@ function LoginForm() {
             >
               <span>Log In with Google</span>
             </Button>
-            <DividerWithText mt="6" mx={2}>or</DividerWithText>
+            <DividerWithText mt="6" mx={2}>
+              or
+            </DividerWithText>
             <InputGroup>
               <InputLeftElement pointerEvents="none">
                 <Icon as={FiMail} />
@@ -244,8 +246,8 @@ async function onSubmit({
       redirectUrl
         ? decodeURIComponent(redirectUrl)
         : re.numInvestments
-          ? '/portfolio'
-          : '/listings',
+        ? '/portfolio'
+        : '/listings',
     );
     return;
   }

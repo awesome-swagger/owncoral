@@ -13,7 +13,7 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
   ({ nextStep, prevStep }: stepProps, ref) => (
     <FlexContainer ref={ref}>
       <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
-      <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
+      <Box h={40} w={40} borderRadius="50%" bg="gray.200" />
       <Heading size="md" mt={8} textAlign="center">
         Some personal information is missing
       </Heading>

@@ -6,7 +6,7 @@ import { Headline, Title2 } from '../../../../components/text';
 
 export const SubMarkets = () => {
   const history = useHistory();
-  const descColor = useColorModeValue('#6F8283', '#FFFFFFCC');
+  const descColor = useColorModeValue('dark.400', 'whiteAlpha.800');
 
   const handleRoute = (route: string) => history.push(`boston-market/${route}`);
 

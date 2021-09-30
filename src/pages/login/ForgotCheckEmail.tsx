@@ -6,7 +6,7 @@ import { FlexContainer } from '../../components';
 
 const ForgotCheckEmail: React.FC = () => (
   <FlexContainer>
-    <Box h={40} w={40} borderRadius="50%" bg="#d2d2d1" />
+    <Box h={40} w={40} borderRadius="50%" bg="gray.200" />
     <Heading mt={8}>Check your email</Heading>
     <Text>We sent password reset instructions to your email inbox</Text>
     <Box h={16} />
