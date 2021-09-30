@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { format as formatDate } from 'date-fns';
 
-import lowPolyHouseSm from '../../../assets/low-poly-1-still-sm.png';
+import lowPolyHouseSm from '../../../assets/low-poly/low-poly-1-still-sm.png';
 import { NavBar } from '../../../components';
 import { formatFinancial } from '../../../lib/financialFormatter';
 import theme from '../../../theme';

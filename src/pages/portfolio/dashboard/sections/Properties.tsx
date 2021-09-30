@@ -21,7 +21,7 @@ import {
 import { transparentize, whiten } from '@chakra-ui/theme-tools';
 import * as R from 'remeda';
 
-import PlaceholderIcon from '../../../../assets/low-poly-placeholder-icon.png';
+import PlaceholderIcon from '../../../../assets/low-poly/low-poly-placeholder-icon.png';
 import { Overline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../../../lib/urlFragments';
@@ -89,13 +89,12 @@ export const Properties = ({
   const propertyRowHeight = 12;
 
   const [tableRightScrollDist, setTableRightScrollDist] = useState<number>(Infinity);
-  
+
   const [tableLeftGrad, setTableLeftGrad] = useState(
-    `linear-gradient(to right, ${
-      transparentize(containerBgColor, 1)(theme)
-    } 72%, ${
-      transparentize(containerBgColor, 0)(theme)
-    } 72%)`
+    `linear-gradient(to right, ${transparentize(containerBgColor, 1)(theme)} 72%, ${transparentize(
+      containerBgColor,
+      0,
+    )(theme)} 72%)`,
   );
 
   return (
@@ -122,11 +121,12 @@ export const Properties = ({
                 currentTarget: { scrollLeft, scrollWidth, offsetWidth },
               }: SyntheticEvent<HTMLDivElement>) => {
                 setTableLeftGrad(
-                  `linear-gradient(to right, ${
-                    transparentize(containerBgColor, 1)(theme)
-                  } 72%, ${
-                    transparentize(containerBgColor, 0)(theme)
-                  } ${72 + (scrollLeft/2 < 28 ? scrollLeft/2 : 28)}%);`
+                  `linear-gradient(to right, ${transparentize(
+                    containerBgColor,
+                    1,
+                  )(theme)} 72%, ${transparentize(containerBgColor, 0)(theme)} ${
+                    72 + (scrollLeft / 2 < 28 ? scrollLeft / 2 : 28)
+                  }%);`,
                 );
 
                 setTableRightScrollDist(scrollWidth - offsetWidth - scrollLeft);
@@ -274,15 +274,12 @@ export const Properties = ({
 };
 
 // Apply fade-out gradient on right hand side of table (to imply more content)
-const FadeOutGradient = ({
-  tableRightScrollDist,
-}: {
-  tableRightScrollDist: number;
-}) => {
+const FadeOutGradient = ({ tableRightScrollDist }: { tableRightScrollDist: number }) => {
   const cardShown = useBreakpointValue({ base: false, md: true });
   // HACK: past card 'md' breakpoint, we lighten dark mode background color to match MUI card color
   const bg = useColorModeValue(
-    lightContainerBg, cardShown ? whiten(darkContainerBg, 2)(theme) : darkContainerBg
+    lightContainerBg,
+    cardShown ? whiten(darkContainerBg, 2)(theme) : darkContainerBg,
   ) as string;
 
   const tableGrad =

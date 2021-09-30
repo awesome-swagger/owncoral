@@ -10,7 +10,7 @@ import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
 import { useQuery } from '../../../lib/useQuery';
 import { UserContext } from '../../../userContext';
 import { TabSection, TopSection } from './sections';
-import Placeholder from '../../../assets/low-poly-placeholder.png';
+import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
 
 type PortfolioPropertyDetailPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
@@ -31,7 +31,10 @@ const PortfolioPropertyDetail = ({
   const [user] = useContext(UserContext);
   const currentUserId = user?.id;
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [drawerIsOpen, setDrawerIsOpen]);
+  const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
+    drawerIsOpen,
+    setDrawerIsOpen,
+  ]);
 
   const history = useHistory();
   const toast = useToast();
@@ -117,7 +120,7 @@ const PortfolioPropertyDetail = ({
               borderRadius="full"
               layerStyle="iconColor"
             />
-            {propertyDetail.docsUrls.length > 0 &&
+            {propertyDetail.docsUrls.length > 0 && (
               <Icon
                 pos="absolute"
                 top={5}
@@ -131,7 +134,7 @@ const PortfolioPropertyDetail = ({
                 borderRadius="full"
                 layerStyle="iconColor"
               />
-            }
+            )}
           </Portal>
           <Box bg="inherit" p={6} pb={0} borderRadius="2xl" position="relative" bottom={6}>
             {/* <Icon
@@ -170,7 +173,11 @@ const PortfolioPropertyDetail = ({
               adminSelectedUser={adminSelectedUser}
             />
           </Box>
-          <DocumentsDrawer isOpen={drawerIsOpen} onToggle={toggleDrawer} documents={propertyDetail.docsUrls} />
+          <DocumentsDrawer
+            isOpen={drawerIsOpen}
+            onToggle={toggleDrawer}
+            documents={propertyDetail.docsUrls}
+          />
         </Fragment>
       ) : (
         <Center w="100%" h={window.innerHeight}>

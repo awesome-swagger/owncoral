@@ -20,7 +20,7 @@ import {
 } from '@chakra-ui/react';
 import { format as formatDate } from 'date-fns';
 
-import lowPolyHouseLg from '../../assets/low-poly-1.gif';
+import lowPolyHouseLg from '../../assets/low-poly/low-poly-1.gif';
 import { BackBtn } from '../../components';
 import { NavBar } from '../../components/navBar';
 import { Title2 } from '../../components/text';
