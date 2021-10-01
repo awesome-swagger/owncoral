@@ -6,7 +6,7 @@ import { Headline, Overline, Title2 } from '../../../../components/text';
 
 const Description = (props: any) => <Text textStyle="body1" {...props} />;
 
-const Calculation = ({ children }: { children: React.ReactNode }) => {
+const Calculation = ({ children }: { children: any }) => {
   const gray = useColorModeValue('gray.700', 'gray.200');
 
   return (
@@ -27,14 +27,14 @@ const Calculation = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const Example = ({ children }: { children: React.ReactNode }) => (
+const Example = ({ children }: { children: any }) => (
   <Box my={4}>
     <Title2 mb={2}>Example</Title2>
     <Text textStyle="Body1">{children}</Text>
   </Box>
 );
 
-const Notes = ({ children }: { children: React.ReactNode }) => (
+const Notes = ({ children }: { children: any }) => (
   <Fragment>
     <Headline mt={6} mb={2}>
       Other notes
@@ -59,22 +59,28 @@ export const GlossaryData = [
           <br />= Total Monthly Payment - Principal Payment ✕️ Interest Rate
         </Calculation>
         <Example>
-          <Text>A property is purchased for $3M with a $2M loan and $1M in equity:</Text>
-
-          <Text>
-            The loan has a <b>30 year</b> amortization period at a fixed interest rate of <b>3%</b>,
-            and the owner is paying <b>$8,433</b> in equal monthly payments for 30 years.
-          </Text>
-
-          <Text>
-            In month 1, the interest payment is $2M ✕ 3% / 12 = $5,000. Therefore, the amortization
-            for Month 1 is $8,433 - $5,000 = $3,433.
-          </Text>
-
-          <Text>
-            By month 6, the interest payment is $1.98M ✕ 3% / 12 = $4957, making the amortization
-            for that month $3,475.
-          </Text>
+          A property is purchased for $3M with a $2M loan and $1M in equity:
+          <br />
+          The loan has a{' '}
+          <Box as="span" fontWeight={600}>
+            30 year
+          </Box>{' '}
+          amortization period at a fixed interest rate of{' '}
+          <Box as="span" fontWeight={600}>
+            3%
+          </Box>
+          , and the owner is paying{' '}
+          <Box as="span" fontWeight={600}>
+            $8,433
+          </Box>{' '}
+          in equal monthly payments for 30 years.
+          <br />
+          In month 1, the interest payment is $2M ✕ 3% / 12 = $5,000. Therefore, the amortization
+          for Month 1 is $8,433 - $5,000 = $3,433.
+          <br />
+          By month 6, the interest payment is $1.98M ✕ 3% / 12 = $4957, making the amortization for
+          that month $3,475.
+          <br />
         </Example>
       </Box>
     ),
