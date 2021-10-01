@@ -1,4 +1,3 @@
-import type React from 'react';
 import {
   CreateAccount,
   InvestmentExperience,
@@ -16,7 +15,7 @@ import {
   WelcomeCoral,
 } from './steps';
 
-type SignupRouteT = { path: string; component: React.ReactNode };
+type SignupRouteT = { path: string; component: any };
 
 // Paths are relative to signup path (e.g. '/name' corresponds to '/signup/name', if '/signup' is the parent path)
 export const signupRoutes: Array<SignupRouteT> = [

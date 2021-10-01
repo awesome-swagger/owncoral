@@ -21,7 +21,7 @@ export type ContextT = {
 export type StepPropsT = {
   nextStep: () => void;
   prevStep: () => void;
-}
+};
 
 type ActionT = {
   type: string;
