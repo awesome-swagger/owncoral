@@ -22,7 +22,11 @@ import Logo from '../../assets/coral-logo-wtext.svg';
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
-type navLinksT = { name: string; url: string; icon: any };
+type navLinksT = {
+  name: string;
+  url: string;
+  icon: React.RefForwardingComponent<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>;
+};
 
 const navLinks = [
   {

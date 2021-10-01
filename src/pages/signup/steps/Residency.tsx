@@ -14,9 +14,10 @@ const initialQuestions: { value: AvailableT; label: string }[] = [
   { value: 'notAvailable', label: 'No' },
 ];
 
-export const Residency = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
-  const [available, setAvailable] = useState<AvailableT>('Available');
-  const form = useContext(StepFormContext);
+export const Residency = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
+    const [available, setAvailable] = useState<AvailableT>('Available');
+    const form = useContext(StepFormContext);
 
     const handleSubmit = useCallback(
       (value) => {
@@ -103,7 +104,7 @@ const TaxID = ({
           mt={8}
           value={taxID}
           variant="filled"
-          onChange={(e: any) => setTaxID(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTaxID(e.target.value)}
         />
       </Box>
       <Button h={12} disabled={!taxID.length} onClick={() => handleSubmit()}>

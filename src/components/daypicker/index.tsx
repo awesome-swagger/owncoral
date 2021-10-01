@@ -77,7 +77,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange, onBlur }) 
         variant="filled"
         value={date.day}
         onBlur={onBlur}
-        onChange={(e: any) => onChange({ day: e.target.value })}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange({ day: e.target.value })}
       />
       <Spacer />
       <Input
@@ -94,7 +94,7 @@ export const DayPicker: React.FC<DayPickerProps> = ({ date, onChange, onBlur }) 
         variant="filled"
         value={date.year}
         onBlur={onBlur}
-        onChange={(e: any) => onChange({ year: e.target.value })}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange({ year: e.target.value })}
       />
     </Flex>
   );

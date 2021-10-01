@@ -116,39 +116,6 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
 
           <ReadonlyLine label="Email" value={user?.email} />
           {user?.emailAlt && <ReadonlyLine label="Alternate Email" value={user.emailAlt} />}
-          {/* <Box p={3} width="100%">
-            <Title2>Address</Title2>
-            <Text marginY={2}>
-              {R.flatMap(
-                [
-                  user?.addressResidency.line1,
-                  user?.addressResidency.line2,
-                  user?.addressResidency.line3,
-                  `${user?.addressResidency.cityLocality}, ${user?.addressResidency.stateRegion} ` +
-                    user?.addressResidency.postalCode,
-                ].filter((text) => (text || '').length > 0),
-                // eslint-disable-next-line react/jsx-key
-                (text) => [text, <br />],
-              )}
-            </Text>
-          </Box> */}
-
-          {/* <Box p={3} width="100%">
-            <Title2>I&#39;m an accredited visitor</Title2>
-            <Switch
-              marginY={2}
-              size="lg"
-              isChecked={isAccredited}
-              onChange={() => {
-                const newIsAccredited = !isAccredited;
-                setIsAccredited(newIsAccredited);
-                updateCurrentUser(
-                  { completedAccreditation: newIsAccredited },
-                  { user, setUser, toast },
-                );
-              }}
-            />
-          </Box> */}
         </VStack>
       )}
     </Box>

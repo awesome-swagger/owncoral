@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import {
-  Box,
   Button,
   FormControl,
   Heading,
@@ -115,5 +114,4 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
-// eslint-disable-next-line import/no-default-export
 export default ForgotPassword;

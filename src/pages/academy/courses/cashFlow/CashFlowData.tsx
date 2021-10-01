@@ -83,13 +83,13 @@ const PrevBtn = ({ background = true }: { background?: boolean }) => {
   );
 };
 
-const BtnsWrapper = (props: any) => (
+const BtnsWrapper = ({ children }: { children: React.ReactNode }) => (
   <Flex
     justifyContent="space-between"
     w="calc(100% - 3rem)"
     pos={{ base: 'fixed', md: 'absolute' }}
     bottom={{ base: 20, md: 6 }}
-    {...props}
+    children={children}
   />
 );
 

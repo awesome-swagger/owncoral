@@ -7,7 +7,6 @@ import { Global } from '@emotion/react';
 
 import AppRootStyle from './AppRootStyle';
 import {
-  DebugPanel,
   ErrorFallback,
   LogPageViews,
   MapBox,

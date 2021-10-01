@@ -1,7 +1,7 @@
-import { Fragment, lazy } from 'react';
+import React, { Fragment, lazy } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { BackBtn, Container, NavBar } from '../../../../components';
+import { BackBtn } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
 import { titleToUrlFragment } from '../../lib';
@@ -9,14 +9,16 @@ import { GlossaryData } from '../glossaryData';
 
 const Error404 = lazy(() => import('../../../error404'));
 
+type filteredDataT = { name: string; jsx: React.ReactNode } | undefined;
+
 const GlossaryDetail = () => {
   useScrollToTop();
 
   const history = useHistory();
   const { title } = useParams<{ title: string }>();
 
-  const filteredData: any = GlossaryData.find((val) =>
-    titleToUrlFragment(val.name) === title
+  const filteredData: filteredDataT = GlossaryData.find(
+    (val) => titleToUrlFragment(val.name) === title,
   );
 
   return filteredData ? (

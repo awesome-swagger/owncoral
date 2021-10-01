@@ -81,13 +81,13 @@ const PrevBtn = ({ background = true }: { background?: boolean }) => {
   );
 };
 
-const BtnsWrapper = (props: any) => (
+const BtnsWrapper = ({ children }: { children: React.ReactNode }) => (
   <Flex
     justifyContent="space-between"
     w="calc(100% - 3rem)"
     pos={{ base: 'fixed', md: 'absolute' }}
     bottom={{ base: 20, md: 6 }}
-    {...props}
+    children={children}
   />
 );
 
@@ -250,8 +250,8 @@ export const Data = [
         <ProgressBar total={11} value={5} />
         <Text textStyle="Body1" fontWeight="500">
           The property owners now have $325K in cash. Remember: they only put $350K into the
-          property at closing, so they&apos;re already received the majority of their investment back —
-          and they still own the property! Further, the value of their equity is now $525K.
+          property at closing, so they&apos;re already received the majority of their investment
+          back — and they still own the property! Further, the value of their equity is now $525K.
         </Text>
         <Center w="100%" h={250}>
           <Chart3 />
@@ -328,11 +328,11 @@ export const Data = [
         <ProgressBar total={11} value={8} />
         <Title2 my={4}>(1) Construction earn-out</Title2>
         <Text textStyle="Body1" fontWeight="500">
-          When we renovate a property, we are &ldquo;forcing&rdquo; appreciation. A better property can command
-          higher rent prices, and as a result, the property itself is worth more money. With
-          construction earn-out, we typically align on a post-renovation property value with our
-          lender prior to even beginning construction, and then &ldquo;call&rdquo; the incremental loan dollars
-          once we have completed the renovations.
+          When we renovate a property, we are &ldquo;forcing&rdquo; appreciation. A better property
+          can command higher rent prices, and as a result, the property itself is worth more money.
+          With construction earn-out, we typically align on a post-renovation property value with
+          our lender prior to even beginning construction, and then &ldquo;call&rdquo; the
+          incremental loan dollars once we have completed the renovations.
         </Text>
 
         <BtnsWrapper>
@@ -383,8 +383,8 @@ export const Data = [
         <Title2 my={4}>How often do we do it?</Title2>
         <Text textStyle="Body1" fontWeight="500">
           We typically get a construction earn-out after a meaningful renovation, and refinance
-          every ~5 years. These events, along with the sale of the property, create &ldquo;spikes&rdquo; in cash
-          flow (layered on top of the cash flow from rental revenue).
+          every ~5 years. These events, along with the sale of the property, create
+          &ldquo;spikes&rdquo; in cash flow (layered on top of the cash flow from rental revenue).
         </Text>
         <Text textStyle="Body1" fontWeight="500">
           There are costs associated with refinancing. As a result, refinancing too frequently has

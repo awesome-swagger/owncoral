@@ -62,7 +62,7 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
           name="ein"
           mask="99-9999999"
           value={einNumber}
-          onChange={(e: any) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setEinNumber(e.target.value);
             setError(false);
           }}

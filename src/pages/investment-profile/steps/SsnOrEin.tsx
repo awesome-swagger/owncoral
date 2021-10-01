@@ -59,7 +59,7 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
           name="Ssn_Or_Ein"
           mask="999-99-9999"
           value={ssnNumber}
-          onChange={(e: any) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setSsnNumber(e.target.value);
             setError(false);
           }}

@@ -24,7 +24,7 @@ export const Option = ({
   className = '',
 }: {
   children: ReactNode;
-  onClick?: any;
+  onClick?: () => void;
   icon?: ElementType | null;
   borderRadius?: boolean;
   className?: string;

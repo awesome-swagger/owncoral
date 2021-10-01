@@ -85,7 +85,6 @@ const PortfolioPropertyDetail = ({
   ]);
 
   return (
-    // TODO: push spinners down to component level?
     <Container padding={0} ref={portalRef}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
@@ -137,31 +136,6 @@ const PortfolioPropertyDetail = ({
             )}
           </Portal>
           <Box bg="inherit" p={6} pb={0} borderRadius="2xl" position="relative" bottom={6}>
-            {/* <Icon
-              pos="absolute"
-              top={10}
-              right={10}
-              h={8}
-              w={8}
-              p={1}
-              as={FiMoreHorizontal}
-              borderRadius="full"
-              boxShadow="base"
-              layerStyle="iconColor"
-            />
-            <Icon
-              pos="absolute"
-              top={10}
-              right={20}
-              mr={2}
-              h={8}
-              w={8}
-              p={1}
-              as={AiOutlineUpload}
-              borderRadius="full"
-              boxShadow="base"
-              layerStyle="iconColor"
-            /> */}
             <TopSection
               propertyDetail={propertyDetail}
               propertyUriFragmentToId={propertyUriFragmentToId}
@@ -188,5 +162,4 @@ const PortfolioPropertyDetail = ({
   );
 };
 
-// eslint-disable-next-line import/no-default-export
 export default PortfolioPropertyDetail;

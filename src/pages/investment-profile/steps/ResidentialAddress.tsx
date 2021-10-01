@@ -29,7 +29,7 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
       setValue(e.target.value);
     };
 
-    const handleSelect = ({ description }: any) => () => {
+    const handleSelect = ({ description }: { description: string }) => () => {
       setValue(description, false);
       clearSuggestions();
       getGeocode({ address: description })

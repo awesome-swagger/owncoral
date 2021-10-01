@@ -61,7 +61,7 @@ export const PhoneNumber = forwardRef<DivRef, stepProps>(
             placeholder="(XXX) XXX-XXX"
             className={error ? 'mask_input shake_animation' : 'mask_input'}
             value={phoneNumber}
-            onChange={(e: any) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setPhoneNumber(e.target.value);
               setError(false);
             }}

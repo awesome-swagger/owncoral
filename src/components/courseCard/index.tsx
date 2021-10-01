@@ -7,9 +7,9 @@ export const CourseCard: React.FC<{
   image: string;
   name: string;
   lesson: number;
-  handleClick: any;
+  handleClick: (name: string) => void;
   isComingSoon: boolean;
-}> = ({ image, name, lesson, handleClick, isComingSoon, children }) => (
+}> = ({ image, name, lesson, handleClick, isComingSoon }) => (
   <Box
     onClick={() => !isComingSoon && handleClick(name)}
     cursor={isComingSoon ? undefined : 'pointer'}
