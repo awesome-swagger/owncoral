@@ -4,7 +4,6 @@ import { Button, Heading, VStack } from '@chakra-ui/react';
 
 import { Container, NavBar, ProtectedRoute } from '../../components';
 
-const OldPortfolio = lazy(() => import('./oldPortfolio'));
 const PortfolioSplash = lazy(() => import('./portfolio/splash'));
 const Transaction = lazy(() => import('./transaction'));
 
@@ -16,8 +15,6 @@ const Drafts = () => {
       <ProtectedRoute exact path={`${draftsRootUrl}`}>
         <DraftsMain draftsRootUrl={draftsRootUrl} />
       </ProtectedRoute>
-
-      <ProtectedRoute exact path={draftsRootUrl + '/old-portfolio'} component={OldPortfolio} />
 
       <ProtectedRoute
         exact
@@ -44,10 +41,6 @@ const DraftsMain = ({ draftsRootUrl }: { draftsRootUrl: string }) => (
 
         <Button colorScheme="secondary" as={BrowserLink} to="/signup">
           Signup
-        </Button>
-
-        <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/old-portfolio`}>
-          Old Portfolio
         </Button>
 
         <Button colorScheme="secondary" as={BrowserLink} to={`${draftsRootUrl}/portfolio/splash`}>
