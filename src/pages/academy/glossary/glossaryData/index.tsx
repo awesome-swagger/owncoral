@@ -4,9 +4,11 @@ import { Fragment } from 'react';
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { Headline, Overline, Title2 } from '../../../../components/text';
 
-const Description = (props: any) => <Text textStyle="body1" {...props} />;
+const Description = ({ children }: { children: React.ReactNode }) => (
+  <Text textStyle="body1" children={children} />
+);
 
-const Calculation = ({ children }: { children: any }) => {
+const Calculation = ({ children }: { children: React.ReactNode }) => {
   const gray = useColorModeValue('gray.700', 'gray.200');
 
   return (
@@ -27,14 +29,14 @@ const Calculation = ({ children }: { children: any }) => {
   );
 };
 
-const Example = ({ children }: { children: any }) => (
+const Example = ({ children }: { children: React.ReactNode }) => (
   <Box my={4}>
     <Title2 mb={2}>Example</Title2>
     <Text textStyle="Body1">{children}</Text>
   </Box>
 );
 
-const Notes = ({ children }: { children: any }) => (
+const Notes = ({ children }: { children: React.ReactNode }) => (
   <Fragment>
     <Headline mt={6} mb={2}>
       Other notes

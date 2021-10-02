@@ -79,8 +79,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const portalRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const toast = useToast();
-  const [limitFull, setLimitFull] = useState(false);
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const limitFull = false;
   const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
     drawerIsOpen,
     setDrawerIsOpen,

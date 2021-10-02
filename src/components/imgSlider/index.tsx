@@ -77,10 +77,10 @@ const CenterCarousel = ({
   setImageIndex,
   onOpen,
 }: {
-  images: any;
-  fallback: any;
-  setImageIndex: any;
-  onOpen: any;
+  images: string[];
+  fallback?: ReactElement;
+  setImageIndex: (index: number) => void;
+  onOpen: () => void;
 }) => {
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
@@ -121,12 +121,14 @@ const CenterCarousel = ({
       let diffToTarget = scrollSnap - scrollProgress;
 
       if (engine.options.loop) {
-        engine.slideLooper.loopPoints.forEach((loopItem: any) => {
-          const target = loopItem.getTarget();
-          if (index === loopItem.index && target !== 0) {
-            diffToTarget = scrollSnap + (1 - Math.sign(target) * scrollProgress);
-          }
-        });
+        engine.slideLooper.loopPoints.forEach(
+          (loopItem: { getTarget: () => number; index: number }) => {
+            const target = loopItem.getTarget();
+            if (index === loopItem.index && target !== 0) {
+              diffToTarget = scrollSnap + (1 - Math.sign(target) * scrollProgress);
+            }
+          },
+        );
       }
       return diffToTarget * (-1 / PARALLAX_FACTOR) * 100;
     });
