@@ -74,10 +74,6 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           <Text>${totalCapitalCost}</Text>
         </Flex>
       </VStack>
-      {/* <Box h={4} /> */}
-      {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
-      {/*  Learn more about Capital Cost */}
-      {/* </Button> */}
     </Box>
   );
 };

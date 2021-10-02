@@ -62,15 +62,6 @@ export const PropertyDetail = ({ propertyDetail }: PropertyDetailPropsT) => {
           )}
         </Box>
       </Flex>
-      {/* <Flex mb={2} minH={10}> */}
-      {/*  <Box mr={4}> */}
-      {/*    <Icon as={FiUsers} /> */}
-      {/*  </Box> */}
-      {/*  <Box> */}
-      {/*    <Headline>{dummyData.status}</Headline> */}
-      {/*    <Subhead>{dummyData.builtDate}</Subhead> */}
-      {/*  </Box> */}
-      {/* </Flex> */}
       <HStack alignItems="stretch" w="100%" spacing={3}>
         <Card
           title="Purchase Price"

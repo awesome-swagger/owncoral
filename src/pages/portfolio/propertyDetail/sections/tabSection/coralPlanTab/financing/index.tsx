@@ -85,31 +85,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                   ${formatFinancialSI(propertyDetail.mdlCurrentMortgage)}
                 </Box>
               </Flex>
-              {/* <Flex alignItems="center" cursor="pointer" mt={6}> */}
-              {/*  <Icon as={FiChevronRight} mr={1} /> */}
-              {/*  <Text>Learn more about financing</Text> */}
-              {/* </Flex> */}
             </React.Fragment>
           )}
-        {/* <FlexLightBorder */}
-        {/*  justifyContent="space-between" */}
-        {/*  alignItems="center" */}
-        {/*  px={4} */}
-        {/*  py={2} */}
-        {/*  my={4} */}
-        {/* > */}
-        {/*  <Box> */}
-        {/*    <Headline>Why Coral participates in equity?</Headline> */}
-        {/*    <Text>Crash course</Text> */}
-        {/*  </Box> */}
-        {/*  <Box> */}
-        {/*    <Icon w={6} h={6} as={BsQuestionCircle} /> */}
-        {/*  </Box> */}
-        {/* </FlexLightBorder> */}
-        {/* <Box h={4} /> */}
-        {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
-        {/*  Learn more about financing */}
-        {/* </Button> */}
       </Box>
     </Box>
   );
