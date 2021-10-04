@@ -16,9 +16,9 @@ import {
   CloseBtn,
   FlowStartBtn,
   FlowEndBtn,
-  NextBtn,
   PrevBtn,
   SlideContainer,
+  BtnsWrapper,
 } from '../components';
 import { ProgressBar, SlideShow } from '../../../../components';
 import { Title2 } from '../../../../components/text';
@@ -26,37 +26,26 @@ import { Table, UnleveredTable } from './table';
 import Academy from '../../../../assets/academy-1.svg';
 import Frame from '../../../../assets/Frame615.png';
 
-const BtnsWrapper = ({ children }: { children: React.ReactNode }) => (
-  <Flex
-    mt={4}
-    justifyContent="space-between"
-    w={{ base: 'calc(100% - 3rem)', md: '100%' }}
-    pos={{ base: 'fixed', md: 'relative' }}
-    bottom={{ base: 20, md: 0 }}
-    children={children}
-  />
-);
-
 export const Data = [
   {
     name: '1',
     jsx: (
       <SlideContainer>
-        <Box>
+        <Box w="100%">
           <CloseBtn />
-          <Center flexDirection="column" textAlign="center" h="100%">
-            <Image src={Frame} alt="frame" />
-            <Title2 my={4}>Leverage and Commercial Loans</Title2>
-            <Text textStyle="Body1">
-              One unique benefit of real estate is the ability to use leverage to amplify your
-              returns. It multiplies buying power and can, as a result, amplify your returns.
-            </Text>
-            <Text textStyle="Body1" my={4}>
-              Multifamily properties typically require commercial loans. These are similar, but a
-              bit different from your traditional mortgage.
-            </Text>
-          </Center>
         </Box>
+        <Center flexDirection="column" textAlign="center" h="100%">
+          <Image src={Frame} alt="frame" />
+          <Title2 my={4}>Leverage and Commercial Loans</Title2>
+          <Text textStyle="Body1">
+            One unique benefit of real estate is the ability to use leverage to amplify your
+            returns. It multiplies buying power and can, as a result, amplify your returns.
+          </Text>
+          <Text textStyle="Body1" my={4}>
+            Multifamily properties typically require commercial loans. These are similar, but a bit
+            different from your traditional mortgage.
+          </Text>
+        </Center>
         <FlowStartBtn />
       </SlideContainer>
     ),
@@ -84,10 +73,7 @@ export const Data = [
             Managing through this, in reality, is more nuanced. We&apos;ll come back to that.
           </Text>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="3" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -140,10 +126,7 @@ export const Data = [
             </Flex>
           </Box>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="4" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -174,10 +157,7 @@ export const Data = [
             obtains) are 5-10 years.
           </Text>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="5" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -200,10 +180,7 @@ export const Data = [
           </Text>
           <UnleveredTable />
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="6" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -227,10 +204,7 @@ export const Data = [
           <Text fontWeight={600}>Leverage amplifies your returns.</Text>
           <Table />
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="7" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -272,10 +246,7 @@ export const Data = [
             </ListItem>
           </UnorderedList>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="8" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -341,10 +312,7 @@ export const Data = [
             equal installments.
           </Text>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="9" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -379,10 +347,7 @@ export const Data = [
             negligence or criminal acts). Coral is on the hook for this "bad-boy carve-out."
           </Text>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="10" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -408,10 +373,7 @@ export const Data = [
             (in escrow) to satisfy the amortization needs of the mortgage.
           </Text>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn nextStep="11" />
-        </BtnsWrapper>
+        <BtnsWrapper />
       </SlideContainer>
     ),
   },
@@ -469,10 +431,7 @@ export const Data = [
             </Box>
           </Flex>
         </Box>
-        <BtnsWrapper>
-          <PrevBtn />
-          <NextBtn finishBtn={true} />
-        </BtnsWrapper>
+        <BtnsWrapper finishBtn />
       </SlideContainer>
     ),
   },

@@ -1,6 +1,6 @@
 import { Icon, Flex, Box, Button, Text, VStack } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 export const SlideContainer = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,9 +10,11 @@ export const SlideContainer = ({ children }: { children: React.ReactNode }) => {
         base: `calc(${window.innerHeight}px - 3rem)`,
         md: `calc((${window.innerHeight}px * 0.8) - 3rem)`,
       }}
-      pb={{ base: 10, md: 0 }}
-      children={children}
-    />
+      pb={{ base: 12, md: 0 }}
+    >
+      {children}
+      <Box display={{ base: 'block', md: 'none' }} />
+    </VStack>
   );
 };
 
@@ -23,13 +25,17 @@ export const CloseBtn = () => {
 
 export const FlowStartBtn = () => {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const pathnames: string[] = pathname.split('/');
+
+  const route = pathnames[pathnames.length - 2];
 
   return (
     <Button
       w={{ base: 'calc(100% - 3rem)', md: '100%' }}
       pos={{ base: 'fixed', md: 'relative' }}
       bottom={{ base: 20, md: 0 }}
-      onClick={() => history.push('/academy/unit/financing-with-commercial-loans/2')}
+      onClick={() => history.push(`/academy/unit/${route}/2`)}
     >
       Let&apos;s get started
     </Button>
@@ -53,21 +59,21 @@ export const FlowEndBtn = () => {
   );
 };
 
-export const NextBtn = ({
-  nextStep = 'back-to-property',
-  finishBtn = false,
-}: {
-  nextStep?: string;
-  finishBtn?: boolean;
-}) => {
+export const NextBtn = ({ finishBtn = false }: { finishBtn?: boolean }) => {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const pathnames: string[] = pathname.split('/');
+  const route = pathnames[pathnames.length - 2];
+  const nextRoute = Number(pathnames[pathnames.length - 1]) + 1;
 
   return (
     <Button
       w={finishBtn ? 'auto' : 10}
       h={10}
       borderRadius={finishBtn === false ? 'full' : '2xl'}
-      onClick={() => history.push(`/academy/unit/financing-with-commercial-loans/${nextStep}`)}
+      onClick={() =>
+        history.push(`/academy/unit/${route}/${finishBtn ? 'back-to-property' : nextRoute}`)
+      }
     >
       {finishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
     </Button>
@@ -86,13 +92,15 @@ export const PrevBtn = ({ background = true }: { background?: boolean }) => {
   );
 };
 
-export const BtnsWrapper = ({ children }: { children: React.ReactNode }) => (
+export const BtnsWrapper = ({ finishBtn = false }: { finishBtn?: boolean }) => (
   <Flex
     mt={4}
     justifyContent="space-between"
     w={{ base: 'calc(100% - 3rem)', md: '100%' }}
     pos={{ base: 'fixed', md: 'relative' }}
     bottom={{ base: 20, md: 0 }}
-    children={children}
-  />
+  >
+    <PrevBtn />
+    <NextBtn finishBtn={finishBtn} />
+  </Flex>
 );
