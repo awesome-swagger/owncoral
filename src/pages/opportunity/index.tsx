@@ -27,14 +27,11 @@ import { Title2 } from '../../components/text';
 import { propertyData } from '../../lib/fakePropertyData';
 import { formatFinancial } from '../../lib/financialFormatter';
 import theme from '../../theme';
-import type { PropertyDataT } from '../drafts/oldPortfolio/fetchData';
 import { PropertyTable } from './PropertyTable';
 
 function Property() {
   const { address: uriAddress } = useParams<{ address: string }>();
-  const property: PropertyDataT | undefined = propertyData.find(
-    (property) => property.uriAddress === uriAddress,
-  );
+  const property = propertyData.find((property) => property.uriAddress === uriAddress);
   const history = useHistory();
 
   return !property ? null : (
