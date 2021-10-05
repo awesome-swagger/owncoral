@@ -1,5 +1,5 @@
 import { Box, Divider, HStack, Text } from '@chakra-ui/react';
-import { Caption1, Headline, Overline, Title1 } from '../../../../components/text';
+import { Subhead, Headline, Overline, Title1 } from '../../../../components/text';
 
 export const AreaDetails = () => {
   const tags = ['Growth potential', ' Good rental yield', 'Anti-cyclicality'];
@@ -13,9 +13,9 @@ export const AreaDetails = () => {
         rental markets. Top universities (Harvard, MIT) providing anti-cyclicality and growth in the
         tech and biotech sectors are what make the Greater Boston area so attractive to us.
       </Text>
-      <HStack spacing={2}>
+      <HStack flexWrap="wrap" gridGap={2} spacing={0}>
         {tags.map((tag, index) => (
-          <Caption1
+          <Subhead
             borderRadius="full"
             py="0.375rem"
             px="0.75rem"
@@ -24,7 +24,7 @@ export const AreaDetails = () => {
             key={index}
           >
             {tag}
-          </Caption1>
+          </Subhead>
         ))}
       </HStack>
       <Divider my={6} />

@@ -4,10 +4,20 @@ import type {
   PortfolioPropertyDetailT,
   PortfolioPropertyDetailInvestmentT,
 } from '../../../../../shared-fullstack/types';
-import { Box, Flex, Icon, Divider, Text, Center, Spinner, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Icon,
+  Divider,
+  Text,
+  Center,
+  Spinner,
+  HStack,
+  useToast,
+} from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
-import { Caption1, Overline, Title2 } from '../../../../../components/text';
+import { Subhead, Overline, Title2 } from '../../../../../components/text';
 import { DEFAULT_ERROR_TOAST } from '../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../lib/useQuery';
@@ -110,26 +120,25 @@ export const TopSection = ({
       <Text my={2} textStyle="Body2" colorScheme="gray" variant="colored">
         {propertySummary}
       </Text>
-      {[
-        propertyDetail.occupancyStatus,
-        propertyDetail.isUnderRenovation ? 'Under renovation' : null,
-      ]
-        .filter((pillContents) => pillContents !== null)
-        .map((pillContents, idx) => (
-          <Caption1
-            borderRadius="xl"
-            display="inline-block"
-            mr={2}
-            my={2}
-            py="0.375rem"
-            px="0.75rem"
-            layerStyle="card"
-            whiteSpace="nowrap"
-            key={idx}
-          >
-            {pillContents}
-          </Caption1>
-        ))}
+      <HStack flexWrap="wrap" gridGap={2} spacing={0}>
+        {[
+          propertyDetail.occupancyStatus,
+          propertyDetail.isUnderRenovation ? 'Under renovation' : null,
+        ]
+          .filter((pillContents) => pillContents !== null)
+          .map((pillContents, idx) => (
+            <Subhead
+              borderRadius="full"
+              py="0.375rem"
+              px="0.75rem"
+              layerStyle="card"
+              whiteSpace="nowrap"
+              key={idx}
+            >
+              {pillContents}
+            </Subhead>
+          ))}
+      </HStack>
       <Divider my={4} />
 
       {investment !== null ? (
