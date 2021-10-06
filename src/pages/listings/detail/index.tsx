@@ -179,14 +179,14 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} py={6}>
+          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} pt={6}>
             <Box px={6}>
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
             </Box>
             <TabSection listingsDetail={listingsDetail} />
             <Divider />
-            <Box px={6} mt={3}>
+            <Box px={6} mt={3} mb={{ base: 12, md: 0 }}>
               {limitFull && (
                 <Flex alignItems="center" mb={2} ml={6}>
                   <Icon opacity="0.5" as={FiInfo} mr={2} />
@@ -383,9 +383,10 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
   return (
     <Fragment>
       <Button
-        w="100%"
-        h="100%"
+        w={{ base: 'calc(100% - 3rem)', md: '100%' }}
         py={3}
+        pos={{ base: 'fixed', md: 'relative' }}
+        bottom={{ base: 16, md: 0 }}
         whiteSpace="normal"
         onClick={handleInterest}
         variant={listingsDetail.hasInterest ? 'outline' : undefined}
