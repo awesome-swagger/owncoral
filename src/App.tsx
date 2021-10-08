@@ -2,7 +2,9 @@ import React, { Fragment, lazy, Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import type { UserProfileT } from './shared-fullstack/types';
+import { IntercomProvider } from 'react-use-intercom';
 import { ChakraProvider } from '@chakra-ui/react';
+
 import { Global } from '@emotion/react';
 
 import AppRootStyle from './AppRootStyle';
@@ -61,76 +63,79 @@ function App() {
   }
 
   const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
+  const intercomAppId = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_APP_ID;
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
       <UserContext.Provider value={[user, setUser]}>
         <ChakraProvider theme={AppTheme}>
-          <Global styles={[AppRootStyle, headerStyles]} />
-          {/* <DebugPanel /> */}
-          {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-          <Suspense fallback={<Fragment />}>
-            <Router>
-              <LogPageViews>
-                <Switch>
-                  {/* Note: server handles not-logged-in redirection for the SPA bundle */}
-                  {authRoutes}
+          <IntercomProvider appId={intercomAppId}>
+            <Global styles={[AppRootStyle, headerStyles]} />
+            {/* <DebugPanel /> */}
+            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+            <Suspense fallback={<Fragment />}>
+              <Router>
+                <LogPageViews>
+                  <Switch>
+                    {/* Note: server handles not-logged-in redirection for the SPA bundle */}
+                    {authRoutes}
 
-                  <Route path="/listings">
-                    <Listings />
-                  </Route>
+                    <Route path="/listings">
+                      <Listings />
+                    </Route>
 
-                  <ProtectedRoute path="/market">
-                    <Market />
-                  </ProtectedRoute>
+                    <ProtectedRoute path="/market">
+                      <Market />
+                    </ProtectedRoute>
 
-                  <ProtectedRoute exact path="/">
-                    <Redirect to="/portfolio" />
-                  </ProtectedRoute>
+                    <ProtectedRoute exact path="/">
+                      <Redirect to="/portfolio" />
+                    </ProtectedRoute>
 
-                  <ProtectedRoute path="/portfolio" component={Portfolio} />
+                    <ProtectedRoute path="/portfolio" component={Portfolio} />
 
-                  <ProtectedRoute exact path="/property/:address" component={Property} />
+                    <ProtectedRoute exact path="/property/:address" component={Property} />
 
-                  <ProtectedRoute path="/profile">
-                    <Profile />
-                  </ProtectedRoute>
+                    <ProtectedRoute path="/profile">
+                      <Profile />
+                    </ProtectedRoute>
 
-                  <ProtectedRoute path="/coming-soon" component={ComingSoon} />
+                    <ProtectedRoute path="/coming-soon" component={ComingSoon} />
 
-                  <ProtectedRoute path="/academy" component={Academy} />
+                    <ProtectedRoute path="/academy" component={Academy} />
 
-                  {!isProd && (
-                    <Fragment>
-                      <Route path="/signup">
-                        <SignupFlow />
-                      </Route>
+                    {!isProd && (
+                      <Fragment>
+                        <Route path="/signup">
+                          <SignupFlow />
+                        </Route>
 
-                      <Route path="/investment-profile">
-                        <InvestmentProfileFlow />
-                      </Route>
+                        <Route path="/investment-profile">
+                          <InvestmentProfileFlow />
+                        </Route>
 
-                      <ProtectedRoute path="/drafts" component={Drafts} />
+                        <ProtectedRoute path="/drafts" component={Drafts} />
 
-                      <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+                        <ProtectedRoute exact path="/property-card" component={PropertyCard} />
 
-                      <ProtectedRoute
-                        exact
-                        path="/opportunities/detail"
-                        component={OpportunityDetail}
-                      />
+                        <ProtectedRoute
+                          exact
+                          path="/opportunities/detail"
+                          component={OpportunityDetail}
+                        />
 
-                      <ProtectedRoute exact path="/map-box" component={MapBox} />
-                    </Fragment>
-                  )}
+                        <ProtectedRoute exact path="/map-box" component={MapBox} />
+                      </Fragment>
+                    )}
 
-                  {/* <Route exact path="/documents" component={Docs} /> */}
+                    {/* <Route exact path="/documents" component={Docs} /> */}
 
-                  <ProtectedRoute path="*" component={Error404} />
-                </Switch>
-              </LogPageViews>
-            </Router>
-          </Suspense>
+                    <ProtectedRoute path="*" component={Error404} />
+                  </Switch>
+                </LogPageViews>
+              </Router>
+            </Suspense>
+          </IntercomProvider>
         </ChakraProvider>
       </UserContext.Provider>
     </ErrorBoundary>

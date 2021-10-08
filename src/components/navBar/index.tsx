@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { FiBell, FiKey, FiTag, FiUser } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
+import { useIntercom } from 'react-use-intercom';
 import {
   Box,
   Center,
@@ -18,13 +19,14 @@ import { useNavHeight } from '../../lib/useNavHeight';
 
 import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
+import { UserContext } from '../../userContext';
 
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 
 type navLinksT = {
   name: string;
-  url: string;
+  url?: string;
   icon: React.RefForwardingComponent<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>;
 };
 
@@ -45,8 +47,7 @@ const navLinks = [
     icon: FiKey,
   },
   {
-    name: 'Notifications',
-    url: '/coming-soon/notifications',
+    name: 'Messages',
     icon: FiBell,
   },
   {
@@ -150,6 +151,9 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 }
 
 function NavButtons(props: { currentPageName: string | null; isTouch: boolean }) {
+  const { boot } = useIntercom();
+  const [user] = useContext(UserContext);
+
   const navBarTopBreakpoint = 'lg';
 
   const hoverColors = useColorModeValue(
@@ -158,6 +162,14 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
   );
   const inactiveColor = useColorModeValue('gray.500', 'gray.400');
   const activeColor = useColorModeValue('black', 'white');
+
+  useEffect(() => {
+    boot({
+      name: user?.legalFirst,
+      hideDefaultLauncher: true,
+      customLauncherSelector: '#itercomLauncherHandler',
+    });
+  }, [user]);
 
   return (
     <Flex
@@ -169,8 +181,8 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
     >
       {navLinks.map(({ name, url, icon }: navLinksT) => (
         <Flex
-          as={Link}
-          to={url}
+          as={url ? Link : Flex}
+          to={url ? url : null}
           direction="column"
           align="center"
           flex="1 1 0px"
@@ -180,6 +192,8 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
           h="100%"
           justify="center"
           borderRadius="lg"
+          cursor="pointer"
+          id={name === 'Messages' ? 'itercomLauncherHandler' : ''}
           // Button-press effect for desktop
           _active={props.isTouch ? {} : { transform: 'scale(0.9)' }}
           sx={{ transition: 'all 200ms' }}
@@ -204,7 +218,7 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
 }
 
 function getCurrentPageName(path: string): string | null {
-  const filteredLink = navLinks.find((link) => path.startsWith(link.url));
+  const filteredLink = navLinks.find((link) => link.url && path.startsWith(link.url));
 
   return filteredLink ? filteredLink.name : null;
 }
