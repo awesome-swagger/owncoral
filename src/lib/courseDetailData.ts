@@ -1,16 +1,14 @@
-import Fringilla from '../assets/crash-course/fringilla.png';
-import Fundamentals from '../assets/crash-course/fundamentals.png';
-import Optimization from '../assets/crash-course/optimization.png';
-import Sources from '../assets/crash-course/sources.png';
-import Understanding from '../assets/crash-course/understanding.png';
-import Valuing from '../assets/crash-course/valuing.png';
+import Fringilla from '../assets/crash-course/AC3_Sources.png';
+import Fundamentals from '../assets/crash-course/AC1_Listings.png';
+import Understanding from '../assets/crash-course/AC2_RealStateFundamentals.png';
+import Valuing from '../assets/crash-course/AC4_Valuing.png';
 
 export type CourseT = {
   name: string;
   image: string;
   lesson: number;
   isComingSoon?: boolean;
-  value: { title: string; slides: number; url?: string; hideInProd?: boolean; }[];
+  value: { title: string; slides: number; url?: string; hideInProd?: boolean }[];
 };
 export const Data: CourseT[] = [
   {
@@ -24,19 +22,19 @@ export const Data: CourseT[] = [
         title: 'Realizing appreciation without selling',
         slides: 7,
         url: '/academy/unit/realizing-appreciation-without-selling',
-        hideInProd: true
+        hideInProd: true,
       },
       {
         title: 'Ownership structure',
         slides: 7,
         url: '/academy/unit/ownership-structure',
-        hideInProd: true
+        hideInProd: true,
       },
       {
         title: 'Financing with commercial loans',
         slides: 7,
         url: '/academy/unit/financing-with-commercial-loans',
-        hideInProd: true
+        hideInProd: true,
       },
       { title: 'Operating expenses', slides: 7 },
       { title: 'Capital expenditure', slides: 7 },
@@ -54,7 +52,7 @@ export const Data: CourseT[] = [
     ],
   },
   {
-    name: 'Drivers of wealth',
+    name: 'Sources of wealth',
     image: Fringilla,
     lesson: 4,
     value: [
@@ -74,32 +72,6 @@ export const Data: CourseT[] = [
       { title: 'Income-based method: using cap rate', slides: 7 },
       { title: 'Sales-based method: using comps', slides: 7 },
       { title: 'Net asset value (NAV)', slides: 7 },
-    ],
-  },
-  {
-    name: 'Optimization',
-    image: Optimization,
-    lesson: 5,
-    value: [
-      { title: 'Ownership structure', slides: 7 },
-      { title: 'Investor cash flow', slides: 7 },
-      { title: 'Operating expenses', slides: 7 },
-      { title: 'Capital expenditure', slides: 7 },
-      { title: 'Financing with commercial loans', slides: 7 },
-      { title: 'Realizing appreciation without selling', slides: 7 },
-    ],
-  },
-  {
-    name: 'Sources',
-    image: Sources,
-    lesson: 5,
-    value: [
-      { title: 'Ownership structure', slides: 7 },
-      { title: 'Investor cash flow', slides: 7 },
-      { title: 'Operating expenses', slides: 7 },
-      { title: 'Capital expenditure', slides: 7 },
-      { title: 'Financing with commercial loans', slides: 7 },
-      { title: 'Realizing appreciation without selling', slides: 7 },
     ],
   },
 ];
