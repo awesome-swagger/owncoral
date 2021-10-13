@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { FiBell, FiKey, FiTag, FiUser } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
@@ -15,10 +15,12 @@ import {
 } from '@chakra-ui/react';
 import { Portal } from '@visx/tooltip';
 import { useNavHeight } from '../../lib/useNavHeight';
+import CryptoJS from 'crypto-js';
 
 import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
 import { UserContext } from '../../userContext';
+import { useIntercom } from 'react-use-intercom';
 
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
@@ -81,7 +83,10 @@ export const NAVBAR_TOP_BREAKPOINT = 'md';
     Reference: https://material.io/design/color/dark-theme.html#properties
  */
 export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
+  const [user] = useContext(UserContext);
   const location = useLocation();
+  const { boot } = useIntercom();
+  const identitySecretKey = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_IDENTITY_SECRET_KEY;
   const currentPageName = getCurrentPageName(location.pathname);
   const logoFillColor = useColorModeValue('dark.500', 'gray.200');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
@@ -90,6 +95,21 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
   const isBottomNav = useBreakpointValue({ base: true, [NAVBAR_TOP_BREAKPOINT]: false });
 
   const navColor = useColorModeValue('gray.50', 'whiteAlpha.200');
+
+  useEffect(() => {
+    if (user) {
+      const hashCode = CryptoJS.HmacSHA256(user.email, identitySecretKey).toString(
+        CryptoJS.enc.Hex,
+      );
+      boot({
+        name: user?.legalFirst,
+        email: user?.email,
+        hideDefaultLauncher: true,
+        customLauncherSelector: '#itercomLauncherHandler',
+        userHash: hashCode,
+      });
+    }
+  }, [user]);
 
   return (
     <Fragment>
