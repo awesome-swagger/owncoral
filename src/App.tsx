@@ -1,9 +1,10 @@
-import React, { Fragment, lazy, Suspense, useState } from 'react';
+import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import type { UserProfileT } from './shared-fullstack/types';
-import { IntercomProvider } from 'react-use-intercom';
+import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import { ChakraProvider } from '@chakra-ui/react';
+import CryptoJS from 'crypto-js';
 
 import { Global } from '@emotion/react';
 
@@ -56,6 +57,7 @@ const headerStyles = {
 };
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);
+  const { boot } = useIntercom();
 
   const splashScreen = document.getElementById('splash-screen');
   if (splashScreen && !splashScreen.hasAttribute('hidden')) {
@@ -64,6 +66,22 @@ function App() {
 
   const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
   const intercomAppId = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_APP_ID;
+  const identitySecretKey = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_IDENTITY_SECRET_KEY;
+
+  useEffect(() => {
+    if (user) {
+      const hashCode = CryptoJS.HmacSHA256(user.email, identitySecretKey).toString(
+        CryptoJS.enc.Hex,
+      );
+      boot({
+        name: user?.legalFirst,
+        email: user?.email,
+        hideDefaultLauncher: true,
+        customLauncherSelector: '#itercomLauncherHandler',
+        userHash: hashCode,
+      });
+    }
+  }, [user]);
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>

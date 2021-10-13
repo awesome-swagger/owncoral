@@ -1,8 +1,7 @@
-import React, { Fragment, useEffect, useContext } from 'react';
+import React, { Fragment } from 'react';
 import { FiBell, FiKey, FiTag, FiUser } from 'react-icons/fi';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
-import { useIntercom } from 'react-use-intercom';
 import {
   Box,
   Center,
@@ -151,9 +150,6 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
 }
 
 function NavButtons(props: { currentPageName: string | null; isTouch: boolean }) {
-  const { boot } = useIntercom();
-  const [user] = useContext(UserContext);
-
   const navBarTopBreakpoint = 'lg';
 
   const hoverColors = useColorModeValue(
@@ -162,14 +158,6 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
   );
   const inactiveColor = useColorModeValue('gray.500', 'gray.400');
   const activeColor = useColorModeValue('black', 'white');
-
-  useEffect(() => {
-    boot({
-      name: user?.legalFirst,
-      hideDefaultLauncher: true,
-      customLauncherSelector: '#itercomLauncherHandler',
-    });
-  }, [user]);
 
   return (
     <Flex
