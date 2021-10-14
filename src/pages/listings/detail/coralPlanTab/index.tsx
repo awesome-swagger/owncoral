@@ -5,7 +5,6 @@ import { Box, Divider, VStack } from '@chakra-ui/react';
 import { Financing } from './financing';
 import { Upgrades } from './upgrades';
 import { RentalIncome } from './rentalIncome';
-import { ValueAddPlan } from './valueAddPlan';
 
 type CoralPlanTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;
