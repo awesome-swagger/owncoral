@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
-import { Subhead, Overline, Title2 } from '../../../../../components/text';
+import { Subhead, Overline, Title1 } from '../../../../../components/text';
 import { DEFAULT_ERROR_TOAST } from '../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../lib/useQuery';
@@ -116,7 +116,7 @@ export const TopSection = ({
       <Overline>
         {propertyDetail.address.cityLocality}, {propertyDetail.address.stateRegion}
       </Overline>
-      <Title2 my={3}>{propertyDetail.address.line1}</Title2>
+      <Title1 my={3}>{propertyDetail.address.line1}</Title1>
       <Text my={2} textStyle="Body2" colorScheme="gray" variant="colored">
         {propertySummary}
       </Text>

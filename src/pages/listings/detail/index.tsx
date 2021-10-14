@@ -52,7 +52,7 @@ import {
 
 import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
 import { Container } from '../../../components';
-import { Headline, Overline, Subhead, Title2 } from '../../../components/text';
+import { Headline, Overline, Subhead, Title1, Title2 } from '../../../components/text';
 import { DocumentsDrawer } from '../../../components/documentsDrawer';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
@@ -237,7 +237,7 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
         {listingsDetail.address.cityLocality}, {listingsDetail.address.stateRegion}
       </Overline>
       <Box h={2} />
-      <Title2>{listingsDetail.address.line1}</Title2>
+      <Title1>{listingsDetail.address.line1}</Title1>
       <Box h={2} />
       <Text textStyle="Body2" colorScheme="gray" variant="colored">
         {propertySummary}

@@ -5,7 +5,7 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { Headline, Overline, Title2 } from '../../../../components/text';
 
 const Description = ({ children }: { children: React.ReactNode }) => (
-  <Text textStyle="body1" children={children} />
+  <Text lineHeight="short" textStyle="body1" children={children} />
 );
 
 const Calculation = ({ children }: { children: React.ReactNode }) => {
@@ -30,19 +30,21 @@ const Calculation = ({ children }: { children: React.ReactNode }) => {
 };
 
 const Example = ({ children }: { children: React.ReactNode }) => (
-  <Box my={4}>
-    <Title2 mb={2}>Example</Title2>
-    <Text textStyle="Body1">{children}</Text>
+  <Box my={6}>
+    <Headline my={2}>Example</Headline>
+    <Text lineHeight="short" textStyle="body1">
+      {children}
+    </Text>
   </Box>
 );
 
 const Notes = ({ children }: { children: React.ReactNode }) => (
-  <Fragment>
-    <Headline mt={6} mb={2}>
-      Other notes
-    </Headline>
-    <Text textStyle="Body1">{children}</Text>
-  </Fragment>
+  <Box my={6}>
+    <Headline my={2}>Other notes</Headline>
+    <Text lineHeight="short" textStyle="body1">
+      {children}
+    </Text>
+  </Box>
 );
 
 export const GlossaryData = [
