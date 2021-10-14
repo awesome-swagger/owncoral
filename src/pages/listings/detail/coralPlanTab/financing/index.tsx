@@ -105,8 +105,8 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
               <Box align="right" w="4rem">
                 {(equityPct * 100).toFixed(1)}%
               </Box>
-              <Box align="right" w="4rem">
-                ${formatFinancialSI(listingsDetail.mdlEquity)}
+              <Box align="right" minW={24}>
+                ${formatFinancial(listingsDetail.mdlEquity)}
               </Box>
             </Flex>
 
@@ -116,8 +116,8 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
               <Box align="right" w="4rem">
                 {((1 - equityPct) * 100).toFixed(1)}%
               </Box>
-              <Box align="right" w="4rem">
-                ${formatFinancialSI(listingsDetail.mdlMortgage)}
+              <Box align="right" minW={24}>
+                ${formatFinancial(listingsDetail.mdlMortgage)}
               </Box>
             </Flex>
 
@@ -127,8 +127,8 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
               <Box align="right" w="4rem">
                 100.0%
               </Box>
-              <Box align="right" w="4rem">
-                ${formatFinancialSI(listingsDetail.mdlMortgage + listingsDetail.mdlEquity)}
+              <Box align="right" minW={24}>
+                ${formatFinancial(listingsDetail.mdlMortgage + listingsDetail.mdlEquity)}
               </Box>
             </Flex>
             <Caption1 color="gray" mt={4} w="100%">

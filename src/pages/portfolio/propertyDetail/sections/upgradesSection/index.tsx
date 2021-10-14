@@ -5,10 +5,10 @@ import { BoxLightBorder, ScrollSlider } from '../../../../../components';
 import RenovationImg from '../../../../../assets/CapturaRenovation.png';
 
 const images = [RenovationImg, RenovationImg, RenovationImg];
-export const RenovationSection = () => (
+export const UpgradesSection = () => (
   <Box>
     <Heading fontSize="2xl" fontWeight="bold">
-      Renovations
+      Upgrades
     </Heading>
     <ScrollSlider images={images} />
     <Heading fontSize="md">

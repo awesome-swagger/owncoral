@@ -3,7 +3,7 @@ import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types
 import { Box, Divider, VStack } from '@chakra-ui/react';
 
 import { Financing } from './financing';
-import { Renovation } from './renovation';
+import { Upgrades } from './upgrades';
 import { RentalIncome } from './rentalIncome';
 import { ValueAddPlan } from './valueAddPlan';
 
@@ -16,10 +16,8 @@ const CoralPlanTab = ({ listingsDetail }: CoralPlanTabPropsT) => {
       <VStack px={6} alignItems="normal" gridGap={6} spacing={0}>
         <Financing listingsDetail={listingsDetail} />
         <Divider />
-        <ValueAddPlan listingsDetail={listingsDetail} />
-        <Divider />
       </VStack>
-      <Renovation listingsDetail={listingsDetail} />
+      <Upgrades listingsDetail={listingsDetail} />
       <VStack px={6} alignItems="normal" gridGap={6} spacing={0}>
         <Divider />
         <RentalIncome listingsDetail={listingsDetail} />

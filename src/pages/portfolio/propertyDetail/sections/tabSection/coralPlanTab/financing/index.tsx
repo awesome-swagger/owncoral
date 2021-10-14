@@ -1,13 +1,12 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
-import React from 'react';
-import { FiChevronRight } from 'react-icons/fi';
+import React, { Fragment } from 'react';
 import type { PortfolioPropertyDetailT } from '../../../../../../../shared-fullstack/types';
 import type { IconProps } from '@chakra-ui/react';
 import { Box, Divider, Flex, Icon, VStack } from '@chakra-ui/react';
 
 import { Title2 } from '../../../../../../../components/text';
-import { formatFinancialSI } from '../../../../../../../lib/financialFormatter';
+import { formatFinancial } from '../../../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -29,7 +28,7 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
           propertyDetail.mdlCurrentMortgage !== null &&
           propertyDetail.mdlMortgage !== null &&
           equityPct && (
-            <React.Fragment>
+            <Fragment>
               <Flex
                 my={4}
                 borderRadius="full"
@@ -48,8 +47,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                   <Box align="right" w="4rem">
                     {(equityPct * 100).toFixed(1)}%
                   </Box>
-                  <Box align="right" w="4rem">
-                    ${formatFinancialSI(propertyDetail.mdlEquity)}
+                  <Box align="right" minW={24} whiteSpace="nowrap">
+                    ${formatFinancial(propertyDetail.mdlEquity)}
                   </Box>
                 </Flex>
 
@@ -59,8 +58,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                   <Box align="right" w="4rem">
                     {((1 - equityPct) * 100).toFixed(1)}%
                   </Box>
-                  <Box align="right" w="4rem">
-                    ${formatFinancialSI(propertyDetail.mdlMortgage)}
+                  <Box align="right" minW={24}>
+                    ${formatFinancial(propertyDetail.mdlMortgage)}
                   </Box>
                 </Flex>
 
@@ -70,8 +69,8 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                   <Box align="right" w="4rem">
                     100.0%
                   </Box>
-                  <Box align="right" w="4rem">
-                    ${formatFinancialSI(propertyDetail.mdlMortgage + propertyDetail.mdlEquity)}
+                  <Box align="right" minW={24}>
+                    ${formatFinancial(propertyDetail.mdlMortgage + propertyDetail.mdlEquity)}
                   </Box>
                 </Flex>
               </VStack>
@@ -81,11 +80,11 @@ export const Financing = ({ propertyDetail }: FinancingPropsT) => {
                 <Box w={3} mr={2} />
                 <Box flexGrow={1}>Outstanding loan balance</Box>
 
-                <Box align="right" w="4rem">
-                  ${formatFinancialSI(propertyDetail.mdlCurrentMortgage)}
+                <Box align="right" minW={24}>
+                  ${formatFinancial(propertyDetail.mdlCurrentMortgage)}
                 </Box>
               </Flex>
-            </React.Fragment>
+            </Fragment>
           )}
       </Box>
     </Box>

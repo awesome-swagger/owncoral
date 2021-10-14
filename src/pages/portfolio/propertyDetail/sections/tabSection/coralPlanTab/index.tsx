@@ -3,9 +3,8 @@ import { Box, Divider } from '@chakra-ui/react';
 
 import { Financing } from './financing';
 import { PropertyCosts } from './propertyCosts';
-import { Renovation } from './renovation';
+import { Upgrades } from './upgrades';
 import { RentalIncome } from './rentalIncome';
-import { ValueAddPlan } from './valueAddPlan';
 
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;
@@ -14,9 +13,7 @@ type DetailsTabPropsT = {
 const CoralPlanTab = ({ propertyDetail }: DetailsTabPropsT) => {
   return (
     <Box>
-      <ValueAddPlan propertyDetail={propertyDetail} />
-      <Renovation propertyDetail={propertyDetail} />
-      <Divider my={6} />
+      <Upgrades propertyDetail={propertyDetail} />
       <RentalIncome propertyDetail={propertyDetail} />
       <Divider my={6} />
       <PropertyCosts propertyDetail={propertyDetail} />

@@ -38,10 +38,10 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Closing costs</Text>
+          <Text>Property upgrades and closing</Text>
           <Text>
-            {propertyDetail.mdlClosingCost !== null && propertyDetail.mdlBrokerFee !== null
-              ? '$' + formatFinancial(propertyDetail.mdlClosingCost + propertyDetail.mdlBrokerFee)
+            {propertyDetail.mdlClosingCost !== null && propertyDetail.mdlRenovation !== null
+              ? '$' + formatFinancial(propertyDetail.mdlClosingCost + propertyDetail.mdlRenovation)
               : 'N/A'}
           </Text>
         </Flex>
@@ -54,7 +54,7 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Principal Reserve</Text>
+          <Text>Principal reserve</Text>
           <Text>
             {propertyDetail.mdlPrincipalReserve !== null
               ? '$' + formatFinancial(propertyDetail.mdlPrincipalReserve)
@@ -62,7 +62,7 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Total capex</Text>
+          <Text>Capex reserve</Text>
           <Text>
             {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
               ? '$' + formatFinancial(propertyDetail.mdlCapexReserve + propertyDetail.mdlRenovation)

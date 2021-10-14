@@ -2,7 +2,7 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import type {
   ListingsPropertyDetailT,
-  RenovationItemT
+  RenovationItemT,
 } from '../../../../../shared-fullstack/types';
 import {
   AspectRatio,
@@ -24,7 +24,7 @@ import { RenovationImages } from '../../../../../lib/renovationImages';
 type RenovationPropsT = {
   listingsDetail: ListingsPropertyDetailT;
 };
-export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
+export const Upgrades = ({ listingsDetail }: RenovationPropsT) => {
   // const [user] = useContext(UserContext);
   // const Admin = user?.isAdmin;
   // const [text, setText] = useState('');
@@ -40,7 +40,7 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
       emblaApi?.reInit();
     }
   }, [emblaApi, renovationData]);
-
+  console.log('listing detail==>', listingsDetail);
   return (
     <Fragment>
       <Box px={6} pos="relative">
@@ -53,7 +53,9 @@ export const Renovation = ({ listingsDetail }: RenovationPropsT) => {
             textRef={textRef}
           />
         )} */}
-        <Title2 my={6}>Renovation</Title2>
+        {listingsDetail.renovationsOverview && renovationData?.length && (
+          <Title2 my={6}>Upgrades</Title2>
+        )}
         {listingsDetail.renovationsOverview && (
           <Text ref={textRef}>{listingsDetail.renovationsOverview}</Text>
         )}
