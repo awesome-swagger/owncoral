@@ -7,7 +7,7 @@ import type { IconProps } from '@chakra-ui/react';
 import { Box, Divider, Flex, Icon, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 
 import { Caption1, Title2 } from '../../../../../components/text';
-import { formatFinancial, formatFinancialSI } from '../../../../../lib/financialFormatter';
+import { formatFinancial } from '../../../../../lib/financialFormatter';
 
 type FinancingPropsT = {
   listingsDetail: ListingsPropertyDetailT;
@@ -34,7 +34,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
 
   const eqColor = useColorModeValue('green.900', 'green.700');
   const debtColor = useColorModeValue('green.300', 'green.200');
-
+  console.log(listingsDetail);
   return (
     <Box>
       <Title2 my={6}>Total property costs*</Title2>
@@ -48,10 +48,10 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Closing costs</Text>
+          <Text>Property upgrades and closing</Text>
           <Text>
-            {listingsDetail.mdlClosingCost !== null && listingsDetail.mdlBrokerFee !== null
-              ? '$' + formatFinancial(listingsDetail.mdlClosingCost + listingsDetail.mdlBrokerFee)
+            {listingsDetail.mdlClosingCost !== null && listingsDetail.mdlRenovation !== null
+              ? '$' + formatFinancial(listingsDetail.mdlClosingCost + listingsDetail.mdlRenovation)
               : 'N/A'}
           </Text>
         </Flex>
@@ -64,7 +64,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Principal Reserve</Text>
+          <Text>Principal reserve</Text>
           <Text>
             {listingsDetail.mdlPrincipalReserve !== null
               ? '$' + formatFinancial(listingsDetail.mdlPrincipalReserve)
@@ -72,7 +72,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Total capex</Text>
+          <Text>Capex reserve </Text>
           <Text>
             {listingsDetail.mdlCapexReserve !== null && listingsDetail.mdlRenovation !== null
               ? '$' + formatFinancial(listingsDetail.mdlCapexReserve + listingsDetail.mdlRenovation)
