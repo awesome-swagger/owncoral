@@ -18,10 +18,10 @@ import LegalOwnership from '../../../../assets/crash-course/legal-ownership.png'
 import Onboarding from '../../../../assets/crash-course/onboarding-own-gray.png';
 
 const takeAways = [
-  'Coral forms a new property LLC to acquire a company. This structure insulates you from liability.',
-  'The LLC has a total of 100 shares (ownership interests).',
-  'Coral secures leverage (a loan) to allow buyers to own a higher percentage of the property with less capital (cash).', // editorconfig-checker-disable-line
-  'Coral brings together buyers, each of whom chooses how many shares they want to own.',
+  'Coral forms a new property LLC to acquire a property. The LLC structure insulates its owners from liability.',
+  'The LLC has a total of 100 shares. Each share represents 1% ownership.',
+  'Coral brings together buyers. Each buyer chooses how many shares they want to own.',
+  'Coral secures leverage (a loan) to allow buyers to own a higher percentage of the property with less capital (cash).',
   'Coral executes the business plan for the property and manages ongoing operations.',
 ];
 
@@ -41,13 +41,8 @@ export const Data = () => {
             <Image h="240px" src={LegalOwnership} alt="frame" />
             <Title2 my={4}>Legal Ownership Structure</Title2>
             <Text textStyle="Body1">
-              Coral facilitates direct ownership of investment properties. We do this through a
-              property-specific LLC: owners (people like you) buy shares of the LLC, which owns the
-              property.
-            </Text>
-            <Text textStyle="Body1">
-              This structure gives you all the benefits of direct ownership and insulates you from
-              liability.
+              Coral facilitates direct ownership of investment properties through a property LLC.
+              Owners (people like you) buy shares of the LLC, which owns the property.
             </Text>
           </Center>
           <FlowStartBtn />
@@ -61,9 +56,9 @@ export const Data = () => {
           <Box>
             <Flex justifyContent="space-between" alignItems="center">
               <CloseBtn />
-              <SlideShow>1/6</SlideShow>
+              <SlideShow>1/5</SlideShow>
             </Flex>
-            <ProgressBar total={6} value={1} />
+            <ProgressBar total={5} value={1} />
             <Title2 my={4}>We form a property LLC</Title2>
             <Text textStyle="Body1" fontWeight="500">
               When Coral identifies an investment property it wants to buy, it forms an LLC: a
@@ -94,9 +89,30 @@ export const Data = () => {
           <Box>
             <Flex justifyContent="space-between" alignItems="center">
               <CloseBtn />
-              <SlideShow>2/6</SlideShow>
+              <SlideShow>2/5</SlideShow>
             </Flex>
-            <ProgressBar total={6} value={2} />
+            <ProgressBar total={5} value={2} />
+            <Title2 my={4}>We bring together buyers</Title2>
+            <Text textStyle="Body1" fontWeight="500">
+              The LLC has a total of 100 shares. Each share represents 1% ownership. Buyers have the
+              opportunity to buy one share, ten shares, or however many they choose.
+            </Text>
+            <Image mx="auto" src={BuyersAndShares} />
+          </Box>
+          <BtnsWrapper />
+        </SlideContainer>
+      ),
+    },
+    {
+      name: '4',
+      jsx: (
+        <SlideContainer>
+          <Box>
+            <Flex justifyContent="space-between" alignItems="center">
+              <CloseBtn />
+              <SlideShow>3/5</SlideShow>
+            </Flex>
+            <ProgressBar total={5} value={3} />
             <Title2 my={4}>We secure leverage</Title2>
             <Text textStyle="Body1" fontWeight="500">
               Coral secures leverage on behalf of the property LLC. This means that the LLC has a
@@ -104,7 +120,7 @@ export const Data = () => {
               approximately 65% of the purchase price.
             </Text>
             <Text textStyle="Body1" fontWeight="500" my={4}>
-              This leverage allows you to buy more of the property with less capital (cash).
+              This leverage allows you to buy more of the property with less cash.
             </Text>
             <Flex
               mt={20}
@@ -131,42 +147,23 @@ export const Data = () => {
       ),
     },
     {
-      name: '4',
-      jsx: (
-        <SlideContainer>
-          <Box>
-            <Flex justifyContent="space-between" alignItems="center">
-              <CloseBtn />
-              <SlideShow>3/6</SlideShow>
-            </Flex>
-            <ProgressBar total={6} value={3} />
-            <Title2 my={4}>We bring together buyers</Title2>
-            <Text textStyle="Body1" fontWeight="500">
-              The LLC has a total of 100 ownership interests (or 100 shares). Buyers have the
-              opportunity to buy one share, ten shares or however many they choose.
-            </Text>
-            <Image mx="auto" src={BuyersAndShares} />
-          </Box>
-          <BtnsWrapper />
-        </SlideContainer>
-      ),
-    },
-    {
       name: '5',
       jsx: (
         <SlideContainer>
           <Box>
             <Flex justifyContent="space-between" alignItems="center">
               <CloseBtn />
-              <SlideShow>4/6</SlideShow>
+              <SlideShow>4/5</SlideShow>
             </Flex>
-            <ProgressBar total={6} value={4} />
+            <ProgressBar total={5} value={4} />
             <Title2 my={4}>We manage the property</Title2>
             <Text textStyle="Body1" fontWeight="500">
               Coral executes the business plan for the property. We manage any planned renovations
               as well as unexpected repairs and maintenance; find tenants, and manage those
-              relationships (including all repair requests). You sit back and enjoy the benefits
-              without any of the headaches!
+              relationships (including all repair requests).
+            </Text>
+            <Text textStyle="Body1" fontWeight="500" my={4}>
+              You sit back and enjoy the benefits without any of the headaches!
             </Text>
           </Box>
           <BtnsWrapper />
@@ -180,32 +177,9 @@ export const Data = () => {
           <Box>
             <Flex justifyContent="space-between" alignItems="center">
               <CloseBtn />
-              <SlideShow>5/6</SlideShow>
+              <SlideShow>5/5</SlideShow>
             </Flex>
-            <ProgressBar total={6} value={5} />
-            <Title2 my={4}>The LLC insulates you from liability</Title2>
-            <Text textStyle="Body1" fontWeight="500">
-              LLC stands for limited liability company. By virtue of that, you&apos;re insulated
-              from liability. There are costs associated with owning an investment property, but
-              these costs are paid out of the LLC&apos;s operating cash flow — not out of your
-              pocket.
-            </Text>
-            <Image mx="auto" src={Onboarding} />
-          </Box>
-          <BtnsWrapper />
-        </SlideContainer>
-      ),
-    },
-    {
-      name: '7',
-      jsx: (
-        <SlideContainer>
-          <Box>
-            <Flex justifyContent="space-between" alignItems="center">
-              <CloseBtn />
-              <SlideShow>6/6</SlideShow>
-            </Flex>
-            <ProgressBar total={6} value={6} />
+            <ProgressBar total={5} value={5} />
             <Title2 my={4}>Takeaways</Title2>
             <Text textStyle="Body1" fontWeigh="500">
               Coral enables people (like you) to own investment properties in a way that
@@ -219,10 +193,8 @@ export const Data = () => {
                       <Title2>{index + 1}</Title2>
                     </Center>
                   </Box>
-                  <Box my={1} pl={4}>
-                    <Text textStyle="Body1" fontWeight="600">
-                      {value}
-                    </Text>
+                  <Box pl={4}>
+                    <Text textStyle="Body2">{value}</Text>
                   </Box>
                 </Flex>
               ))}
