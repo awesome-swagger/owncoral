@@ -15,7 +15,6 @@ import Academy from '../../../../assets/academy-1.svg';
 import BuyersAndShares from '../../../../assets/crash-course/buyers-shares.png';
 import Frame from '../../../../assets/Frame615.png';
 import LegalOwnership from '../../../../assets/crash-course/legal-ownership.png';
-import Onboarding from '../../../../assets/crash-course/onboarding-own-gray.png';
 
 const takeAways = [
   'Coral forms a new property LLC to acquire a property. The LLC structure insulates its owners from liability.',

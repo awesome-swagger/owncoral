@@ -2,7 +2,7 @@ import { BsGraphUp } from 'react-icons/bs';
 import { HiOutlineCash } from 'react-icons/hi';
 import { Box, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
 
-import { Circle, ProgressBar } from '../../../../components';
+import { Circle, ProgressBar, SlideShow } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 import { OverAllCashChart, RealizedAppreciationChart, RentalRevenueChart } from './charts';
 import {
@@ -46,9 +46,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              1/6
-            </Box>
+            <SlideShow>1/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={1} />
           <Title2 my={4}>Where does Investor Cash Flow comes from?</Title2>
@@ -112,9 +110,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              2/6
-            </Box>
+            <SlideShow>2/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={2} />
           <Title2 my={4}>Rental revenue</Title2>
@@ -151,9 +147,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              3/6
-            </Box>
+            <SlideShow>3/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={3} />
           <Title2 my={4}>Realized Appreciation</Title2>
@@ -188,9 +182,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              4/6
-            </Box>
+            <SlideShow>4/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={4} />
           <Title2 my={4}>Overall Cash Flow</Title2>
@@ -227,9 +219,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              5/6
-            </Box>
+            <SlideShow>5/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={5} />
           <Title2 fontSize="2xl" my={4}>
@@ -263,9 +253,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              6/6
-            </Box>
+            <SlideShow>6/6</SlideShow>
           </Flex>
           <ProgressBar total={6} value={6} />
           <Title2 my={4}>Takeaways</Title2>

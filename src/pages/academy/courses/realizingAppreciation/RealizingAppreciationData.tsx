@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import { Circle, ProgressBar } from '../../../../components';
+import { Circle, ProgressBar, SlideShow } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { Chart1, Chart2, Chart3 } from './charts';
 import {
@@ -36,9 +36,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              1/11
-            </Box>
+            <SlideShow>1/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={1} />
           <Title2 my={4}>Top line</Title2>
@@ -64,9 +62,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              2/11
-            </Box>
+            <SlideShow>2/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={2} />
           <Title2 my={4}>How it works</Title2>
@@ -88,9 +84,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              3/11
-            </Box>
+            <SlideShow>3/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={3} />
           <Title2 my={4}>A hypothetical example</Title2>
@@ -123,9 +117,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              4/11
-            </Box>
+            <SlideShow>4/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={4} />
           <Text textStyle="Body1" fontWeight="500">
@@ -165,9 +157,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              5/11
-            </Box>
+            <SlideShow>5/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={5} />
           <Text textStyle="Body1" fontWeight="500">
@@ -190,9 +180,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              6/11
-            </Box>
+            <SlideShow>6/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={6} />
           <Text textStyle="Body1" fontWeight="500">
@@ -216,9 +204,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              7/11
-            </Box>
+            <SlideShow>7/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={7} />
           <Title2 my={4}>Two Ways</Title2>
@@ -240,9 +226,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              8/11
-            </Box>
+            <SlideShow>8/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={8} />
           <Title2 my={4}>(1) Construction earn-out</Title2>
@@ -265,9 +249,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              9/11
-            </Box>
+            <SlideShow>9/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={9} />
           <Title2 my={4}>(2) Cash-out refinancing</Title2>
@@ -290,9 +272,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              10/11
-            </Box>
+            <SlideShow>10/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={10} />
           <Title2 my={4}>How often do we do it?</Title2>
@@ -317,9 +297,7 @@ export const Data = [
         <Box>
           <Flex justifyContent="space-between" alignItems="center">
             <CloseBtn />
-            <Box layerStyle="selectionBox" borderRadius="full" px={4} py={1}>
-              11/11
-            </Box>
+            <SlideShow>11/11</SlideShow>
           </Flex>
           <ProgressBar total={11} value={11} />
           <Title2 my={4}>Takeaways</Title2>
