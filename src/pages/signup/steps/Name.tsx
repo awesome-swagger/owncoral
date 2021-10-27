@@ -1,8 +1,8 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, Button, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container } from '../../../components';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
 import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -38,47 +38,47 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
   return (
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
       <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
-        <Box>
-          <BackBtn handleClick={prevStep} />
-          <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
-            Tell us about yourself
-          </Heading>
-          <Text fontSize="md" textAlign="left">
-            Please enter your full legal name. Your legal name should match any form of government
-            ID.
-          </Text>
-          <FormLabel mt={8}>
-            <Text layerStyle="labelColor" fontSize="md">
-              FIRST NAME
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
+              Tell us about yourself
+            </Heading>
+            <Text fontSize="md" textAlign="left">
+              Please enter your full legal name. Your legal name should match any form of government
+              ID.
             </Text>
-            <Input
-              placeholder="First Name"
-              name="firstName"
-              ref={register}
-              h={12}
-              mt={1}
-              variant="filled"
-              onChange={handleSubmit(handleChange)}
-            />
-          </FormLabel>
-          <FormLabel mt={8}>
-            <Text layerStyle="labelColor" fontSize="md">
-              LAST NAME
-            </Text>
-            <Input
-              placeholder="Last Name"
-              name="lastName"
-              ref={register}
-              h={12}
-              mt={1}
-              variant="filled"
-              onChange={handleSubmit(handleChange)}
-            />
-          </FormLabel>
-        </Box>
-        <Button h={12} type="submit" disabled={!firstName || !lastName}>
-          Continue
-        </Button>
+            <FormLabel mt={8}>
+              <Text layerStyle="labelColor" fontSize="md">
+                FIRST NAME
+              </Text>
+              <Input
+                placeholder="First Name"
+                name="firstName"
+                ref={register}
+                h={12}
+                mt={1}
+                variant="filled"
+                onChange={handleSubmit(handleChange)}
+              />
+            </FormLabel>
+            <FormLabel mt={8}>
+              <Text layerStyle="labelColor" fontSize="md">
+                LAST NAME
+              </Text>
+              <Input
+                placeholder="Last Name"
+                name="lastName"
+                ref={register}
+                h={12}
+                mt={1}
+                variant="filled"
+                onChange={handleSubmit(handleChange)}
+              />
+            </FormLabel>
+          </Box>
+          <SubmitBtn label="Continue" disabled={!firstName || !lastName} />
+        </SlideContainer>
       </Container>
     </form>
   );

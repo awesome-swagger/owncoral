@@ -12,15 +12,8 @@ import {
   UnorderedList,
   ListItem,
 } from '@chakra-ui/react';
-import {
-  CloseBtn,
-  FlowStartBtn,
-  FlowEndBtn,
-  PrevBtn,
-  SlideContainer,
-  BtnsWrapper,
-} from '../components';
-import { ProgressBar, SlideShow } from '../../../../components';
+import { CloseBtn, FlowStartBtn, FlowEndBtn, PrevBtn, BtnsWrapper } from '../components';
+import { ProgressBar, SlideShow, SlideContainer } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { Table, UnleveredTable } from './table';
 import Academy from '../../../../assets/academy-1.svg';

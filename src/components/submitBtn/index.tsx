@@ -11,13 +11,10 @@ type SubmitBtnProps = {
 export const SubmitBtn = forwardRef<SubmitBtnProps & ButtonProps, 'button'>(
   ({ label, ...buttonProps }, ref) => (
     <Button
-      pos="absolute"
-      bottom={10}
-      left={6}
-      w="calc(100% - 3rem)"
-      h={12}
+      bottom={6}
+      pos={{ base: 'fixed', md: 'initial' }}
+      w={{ base: 'calc(100% - 3rem)', md: '100%' }}
       type="submit"
-      cursor="pointer"
       ref={ref}
       {...buttonProps}
     >

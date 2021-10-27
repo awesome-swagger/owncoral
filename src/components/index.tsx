@@ -27,3 +27,4 @@ export { ScrollSlider } from './scrollSlider';
 export { SubmitBtn } from './submitBtn';
 export { TimeoutModal } from './timeoutModal';
 export { SlideShow } from './slideShow';
+export { SlideContainer } from './slideContainer';

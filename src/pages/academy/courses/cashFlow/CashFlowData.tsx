@@ -2,17 +2,10 @@ import { BsGraphUp } from 'react-icons/bs';
 import { HiOutlineCash } from 'react-icons/hi';
 import { Box, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
 
-import { Circle, ProgressBar, SlideShow } from '../../../../components';
+import { Circle, ProgressBar, SlideShow, SlideContainer } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
 import { OverAllCashChart, RealizedAppreciationChart, RentalRevenueChart } from './charts';
-import {
-  CloseBtn,
-  FlowStartBtn,
-  FlowEndBtn,
-  SlideContainer,
-  BtnsWrapper,
-  PrevBtn,
-} from '../components';
+import { CloseBtn, FlowStartBtn, FlowEndBtn, BtnsWrapper, PrevBtn } from '../components';
 
 import Academy from '../../../../assets/academy-1.svg';
 import ChartImg from '../../../../assets/Frame331.png';

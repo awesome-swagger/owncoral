@@ -1,8 +1,8 @@
 import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { Heading, Input, Text, Box } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -46,28 +46,32 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
   return (
     <div ref={ref}>
       <Container>
-        <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt={8} mb={2} textAlign="left">
-          What’s your SSN or EIN?
-        </Heading>
-        <Text fontSize="md" textAlign="left">
-          Lorem ipsum dolor sir amet
-        </Text>
-        <Input
-          as={InputMask}
-          className={error ? 'mask_input shake_animation' : 'mask_input'}
-          name="Ssn_Or_Ein"
-          mask="999-99-9999"
-          value={ssnNumber}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setSsnNumber(e.target.value);
-            setError(false);
-          }}
-        />
-        <Text mt={2} variant="colored" colorScheme="red">
-          {error ? 'Please enter a valid SSN number' : ''}
-        </Text>
-        <SubmitBtn onClick={onSubmit} label="Continue" />
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <Heading size="md" mt={8} mb={2} textAlign="left">
+              What’s your SSN or EIN?
+            </Heading>
+            <Text fontSize="md" textAlign="left">
+              Lorem ipsum dolor sir amet
+            </Text>
+            <Input
+              as={InputMask}
+              className={error ? 'mask_input shake_animation' : 'mask_input'}
+              name="Ssn_Or_Ein"
+              mask="999-99-9999"
+              value={ssnNumber}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setSsnNumber(e.target.value);
+                setError(false);
+              }}
+            />
+            <Text mt={2} variant="colored" colorScheme="red">
+              {error ? 'Please enter a valid SSN number' : ''}
+            </Text>
+          </Box>
+          <SubmitBtn onClick={onSubmit} label="Continue" />
+        </SlideContainer>
       </Container>
     </div>
   );

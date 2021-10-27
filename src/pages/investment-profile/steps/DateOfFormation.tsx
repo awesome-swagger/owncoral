@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { Heading, Text } from '@chakra-ui/react';
+import { Heading, Text, Box } from '@chakra-ui/react';
 
-import { BackBtn, Container, DayPicker, SubmitBtn } from '../../../components';
+import { BackBtn, Container, DayPicker, SubmitBtn, SlideContainer } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -71,15 +71,19 @@ export const DateOfFormation = forwardRef<DivRef, stepProps>(
     return (
       <div ref={ref}>
         <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8} mb={2} textAlign="left">
-            Which is the date of formation?
-          </Heading>
-          <Text fontSize="md" textAlign="left">
-            Lorem ipsum dolor sir amet
-          </Text>
-          <DayPicker date={date} onChange={handleDateChange} />
-          <SubmitBtn onClick={onSubmit} label="Continue" disabled={checkValid} />
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8} mb={2} textAlign="left">
+                Which is the date of formation?
+              </Heading>
+              <Text fontSize="md" textAlign="left">
+                Lorem ipsum dolor sir amet
+              </Text>
+              <DayPicker date={date} onChange={handleDateChange} />
+            </Box>
+            <SubmitBtn onClick={onSubmit} label="Continue" disabled={checkValid} />
+          </SlideContainer>
         </Container>
       </div>
     );

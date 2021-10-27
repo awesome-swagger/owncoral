@@ -14,9 +14,10 @@ import {
   InputRightElement,
   Link as ChakraLink,
   Text,
+  Button,
 } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SlideContainer } from '../../../components';
 import { Caption1 } from '../../../theme/textStyles';
 import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
@@ -45,64 +46,71 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
-          <Box>
-            <BackBtn handleClick={prevStep} />
-            <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
-              Let’s create your account
-            </Heading>
-            <FormLabel mt={8}>
-              <Text layerStyle="labelColor" fontSize="md" textAlign="left">
-                Email
-              </Text>
-              <Input
-                h={12}
-                mt={2}
-                placeholder="Email"
-                ref={register}
-                name="email"
-                type="email"
-                variant="filled"
-              />
-            </FormLabel>
-            <FormLabel mt={4}>
-              <Text layerStyle="labelColor" fontSize="md" textAlign="left">
-                Password
-              </Text>
-              <InputGroup>
+          <SlideContainer>
+            {' '}
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+                Let’s create your account
+              </Heading>
+              <FormLabel mt={8}>
+                <Text layerStyle="labelColor" fontSize="md" textAlign="left">
+                  Email
+                </Text>
                 <Input
-                  type={showPassword ? 'text' : 'password'}
                   h={12}
                   mt={2}
-                  placeholder="Password"
-                  name="password"
+                  placeholder="Email"
+                  ref={register}
+                  name="email"
+                  type="email"
                   variant="filled"
-                  className={errors.password ? 'shake_animation' : ''}
-                  ref={register({ minLength: 8, required: true })}
                 />
-                <InputRightElement h="calc(100% - 0.5rem)" mt="0.5rem">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    variant="unstyled"
-                    aria-label={(showPassword ? 'Hide' : 'Show') + ' password'}
-                    sx={{
-                      '&:focus': { boxShadow: 'none' },
-                    }}
-                    icon={<Icon as={showPassword ? FiEyeOff : FiEye} />}
+              </FormLabel>
+              <FormLabel mt={4}>
+                <Text layerStyle="labelColor" fontSize="md" textAlign="left">
+                  Password
+                </Text>
+                <InputGroup>
+                  <Input
+                    type={showPassword ? 'text' : 'password'}
+                    h={12}
+                    mt={2}
+                    placeholder="Password"
+                    name="password"
+                    variant="filled"
+                    className={errors.password ? 'shake_animation' : ''}
+                    ref={register({ minLength: 8, required: true })}
                   />
-                </InputRightElement>
-              </InputGroup>
-            </FormLabel>
-            <Text
-              fontSize="sm"
-              color={errors.password ? 'black' : 'gray'}
-              className={errors.password ? 'shake_animation' : ''}
-              textAlign="left"
-              m="0.5rem 0"
-            >
-              Must be at least 8 characters
-            </Text>
-          </Box>
-          <Box>
+                  <InputRightElement h="calc(100% - 0.5rem)" mt="0.5rem">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      variant="unstyled"
+                      aria-label={(showPassword ? 'Hide' : 'Show') + ' password'}
+                      sx={{
+                        '&:focus': { boxShadow: 'none' },
+                      }}
+                      icon={<Icon as={showPassword ? FiEyeOff : FiEye} />}
+                    />
+                  </InputRightElement>
+                </InputGroup>
+              </FormLabel>
+              <Text
+                fontSize="sm"
+                color={errors.password ? 'black' : 'gray'}
+                className={errors.password ? 'shake_animation' : ''}
+                textAlign="left"
+                m="0.5rem 0"
+              >
+                Must be at least 8 characters
+              </Text>
+            </Box>
+          </SlideContainer>
+          <Box
+            bottom={6}
+            pos={{ base: 'fixed', md: 'initial' }}
+            w={{ base: 'calc(100% - 3rem)', md: '100%' }}
+          >
             <Center>
               <Checkbox
                 size="lg"
@@ -124,7 +132,9 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
                 Ò
               </Checkbox>
             </Center>
-            <SubmitBtn pos="initial" w="100%" label="Continue" isDisabled={!agreementChecked} />
+            <Button type="submit" w="100%" isDisabled={!agreementChecked}>
+              Continue
+            </Button>
           </Box>
         </Container>
       </form>

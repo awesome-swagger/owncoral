@@ -1,8 +1,8 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Box, Button, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Heading, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, FlexContainer } from '../../../components';
+import { BackBtn, Container, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 import { ContextT, StepFormContext } from '../index';
 
@@ -84,47 +84,51 @@ const TaxID = ({
 
   return (
     <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
-      <Box>
-        <BackBtn handleClick={goBack} />
-        <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
-          Please enter your Tax ID
-        </Heading>
-        <Text fontSize="md" textAlign="left">
-          Lorem ipsum dolor sir
-        </Text>
-        <Input
-          as={InputMask}
-          mask="999-99-9999"
-          type="tel"
-          maskPlaceholder="0"
-          placeholder="XXX-XX-XXXX"
-          fontFamily="monospace"
-          className="mask_input"
-          h={12}
-          mt={8}
-          value={taxID}
-          variant="filled"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTaxID(e.target.value)}
-        />
-      </Box>
-      <Button h={12} disabled={!taxID.length} onClick={() => handleSubmit()}>
-        Continue
-      </Button>
+      <SlideContainer>
+        <Box w="100%">
+          <BackBtn handleClick={goBack} />
+          <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+            Please enter your Tax ID
+          </Heading>
+          <Text fontSize="md" textAlign="left">
+            Lorem ipsum dolor sir
+          </Text>
+          <Input
+            as={InputMask}
+            mask="999-99-9999"
+            type="tel"
+            maskPlaceholder="0"
+            placeholder="XXX-XX-XXXX"
+            fontFamily="monospace"
+            className="mask_input"
+            h={12}
+            mt={8}
+            value={taxID}
+            variant="filled"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTaxID(e.target.value)}
+          />
+        </Box>
+        <SubmitBtn label="Continue" disabled={!taxID.length} onClick={() => handleSubmit()} />
+      </SlideContainer>
     </Container>
   );
 };
 
 const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => (
   <FlexContainer layerStyle="noSelect">
-    <BackBtn handleClick={goBack} pos="absolute" top={6} left={6} />
-    <Heading size="md" as="h4" textAlign="center">
-      Sorry, Coral is only available for U.S. residents
-    </Heading>
-    <Text fontSize="md" textAlign="center">
-      Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-    </Text>
-    <Button pos="absolute" bottom={10} left={6} w="calc(100% - 3rem)" h={12}>
-      Dismiss
-    </Button>
+    <SlideContainer>
+      <Box w="100%">
+        <BackBtn handleClick={goBack} />
+      </Box>
+      <Box w="100%" my={6}>
+        <Heading size="md" as="h4" textAlign="center">
+          Sorry, Coral is only available for U.S. residents
+        </Heading>
+        <Text fontSize="md" textAlign="center">
+          Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+        </Text>
+      </Box>
+      <SubmitBtn label="Dismiss" />
+    </SlideContainer>
   </FlexContainer>
 );

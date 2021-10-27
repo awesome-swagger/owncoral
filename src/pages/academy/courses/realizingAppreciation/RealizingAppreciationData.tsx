@@ -1,15 +1,8 @@
 import { Box, Center, Flex, Icon, Image, Text } from '@chakra-ui/react';
-import { Circle, ProgressBar, SlideShow } from '../../../../components';
+import { Circle, ProgressBar, SlideShow, SlideContainer } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { Chart1, Chart2, Chart3 } from './charts';
-import {
-  CloseBtn,
-  FlowStartBtn,
-  FlowEndBtn,
-  PrevBtn,
-  SlideContainer,
-  BtnsWrapper,
-} from '../components';
+import { CloseBtn, FlowStartBtn, FlowEndBtn, PrevBtn, BtnsWrapper } from '../components';
 
 import Academy from '../../../../assets/academy-1.svg';
 import Frame from '../../../../assets/Frame615.png';

@@ -1,8 +1,8 @@
 import { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Heading, Input } from '@chakra-ui/react';
+import { Heading, Input, Box } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -33,19 +33,23 @@ export const EntityName = forwardRef<FormRef, stepProps>(
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8} mb={2} textAlign="left">
-            What is your Entity Name
-          </Heading>
-          <Input
-            type="text"
-            name="entity_name"
-            placeholder="Entity Name"
-            ref={register({ required: true })}
-            h={12}
-            mt={8}
-          />
-          <SubmitBtn label="Continue" />
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8} mb={2} textAlign="left">
+                What is your Entity Name
+              </Heading>
+              <Input
+                type="text"
+                name="entity_name"
+                placeholder="Entity Name"
+                ref={register({ required: true })}
+                h={12}
+                mt={8}
+              />
+            </Box>
+            <SubmitBtn label="Continue" />
+          </SlideContainer>
         </Container>
       </form>
     );

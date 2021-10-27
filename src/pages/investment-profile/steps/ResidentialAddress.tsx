@@ -1,10 +1,10 @@
 import { ChangeEvent, forwardRef } from 'react';
-import { Box, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Heading, Input, Text, Button } from '@chakra-ui/react';
 // We're using the verbose default import here to work around a
 // bundling bug in Snowpack for this particular package
 import { default as usePlacesAutocomplete, getGeocode, getLatLng } from 'use-places-autocomplete';
 
-import { BackBtn, Container, Option, SubmitBtn } from '../../../components';
+import { BackBtn, Container, Option, SlideContainer, SubmitBtn } from '../../../components';
 import type { DivRef } from './index';
 
 type stepProps = {
@@ -58,28 +58,31 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
     return (
       <div ref={ref}>
         <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8}>
-            What’s your Residential address?
-          </Heading>
-          <Text fontSize="md" m="0">
-            Lorem ipsum dolor sir amet
-          </Text>
-          <Input
-            placeholder="Residental Address"
-            h={12}
-            mt={8}
-            value={value}
-            onChange={handleInput}
-            disabled={!ready}
-          />
-          {status === 'OK' && (
-            <Box borderRadius="3xl" overflow="hidden" mt={1}>
-              {renderSuggestions()}
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8}>
+                What’s your Residential address?
+              </Heading>
+              <Text fontSize="md" m="0">
+                Lorem ipsum dolor sir amet
+              </Text>
+              <Input
+                placeholder="Residental Address"
+                h={12}
+                mt={8}
+                value={value}
+                onChange={handleInput}
+                disabled={!ready}
+              />
+              {status === 'OK' && (
+                <Box borderRadius="3xl" overflow="hidden" mt={1}>
+                  {renderSuggestions()}
+                </Box>
+              )}
             </Box>
-          )}
-
-          <SubmitBtn label="Continue" />
+            <SubmitBtn onClick={nextStep} label="Continue" />
+          </SlideContainer>
         </Container>
       </div>
     );

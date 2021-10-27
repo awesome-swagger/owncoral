@@ -2,22 +2,6 @@ import { Icon, Flex, Box, Button, Text, VStack } from '@chakra-ui/react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
 import { useLocation, useHistory } from 'react-router-dom';
 
-export const SlideContainer = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <VStack
-      justify="space-between"
-      minH={{
-        base: `calc(${window.innerHeight}px - 3rem)`,
-        md: `calc((${window.innerHeight}px * 0.8) - 3rem)`,
-      }}
-      pb={{ base: 12, md: 0 }}
-    >
-      {children}
-      <Box display={{ base: 'block', md: 'none' }} />
-    </VStack>
-  );
-};
-
 export const CloseBtn = () => {
   const history = useHistory();
   return <Icon as={FiX} cursor="pointer" onClick={() => history.push('/academy')} />;

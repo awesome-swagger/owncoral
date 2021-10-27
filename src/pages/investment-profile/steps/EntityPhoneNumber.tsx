@@ -1,9 +1,9 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import InputMask from 'react-input-mask';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { Heading, Input, Text, Box } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -36,25 +36,29 @@ export const EntityPhoneNumber = forwardRef<FormRef, stepProps>(
     return (
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8} mb={2} textAlign="left">
-            What’s your Entity phone number?
-          </Heading>
-          <Text fontSize="md" textAlign="left">
-            Enter your US phone number
-          </Text>
-          <Input
-            as={InputMask}
-            placeholder="(XXX) XXX-XXXX"
-            className="mask_input"
-            name="entity_phone_number"
-            mask="(999) 999-9999"
-            ref={register({
-              required: true,
-              minLength: 9,
-            })}
-          />
-          <SubmitBtn label="Continue" />
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8} mb={2} textAlign="left">
+                What’s your Entity phone number?
+              </Heading>
+              <Text fontSize="md" textAlign="left">
+                Enter your US phone number
+              </Text>
+              <Input
+                as={InputMask}
+                placeholder="(XXX) XXX-XXXX"
+                className="mask_input"
+                name="entity_phone_number"
+                mask="(999) 999-9999"
+                ref={register({
+                  required: true,
+                  minLength: 9,
+                })}
+              />
+            </Box>
+            <SubmitBtn label="Continue" />
+          </SlideContainer>
         </Container>
       </form>
     );

@@ -1,8 +1,8 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
-import { Box, Button, Flex, Heading, Icon, Text } from '@chakra-ui/react';
-import { BackBtn, Container, ProgressBar } from '../../../components';
+import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
+import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -46,44 +46,44 @@ export const InvestmentGoal = forwardRef<DivRef, StepPropsT>(
         ref={ref}
         layerStyle="noSelect"
       >
-        <Box>
-          <BackBtn handleClick={prevStep} />
-          <ProgressBar total={7} value={2} />
-          <Heading size="md" mt={8} mb={2} textAlign="left">
-            What goals do you want to achieve through investment property ownership?
-          </Heading>
-          <Text fontSize="md">Select all that apply</Text>
-          <Box my={8}>
-            {investmentGoals.map(({ value, label }) => (
-              <Flex
-                px={6}
-                py={3}
-                mt={2}
-                key={value}
-                textAlign="left"
-                alignItems="center"
-                borderRadius="full"
-                cursor="pointer"
-                textStyle="Body1"
-                onClick={() => handleSubmit(value)}
-                layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
-              >
-                <Icon
-                  as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                  layerStyle="iconColor"
-                  bg="transparent !important"
-                  h={5}
-                  w={5}
-                  mr={2}
-                />
-                {label}
-              </Flex>
-            ))}
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <ProgressBar total={7} value={2} />
+            <Heading size="md" mt={8} mb={2} textAlign="left">
+              What goals do you want to achieve through investment property ownership?
+            </Heading>
+            <Text fontSize="md">Select all that apply</Text>
+            <Box my={8}>
+              {investmentGoals.map(({ value, label }) => (
+                <Flex
+                  px={6}
+                  py={3}
+                  mt={2}
+                  key={value}
+                  textAlign="left"
+                  alignItems="center"
+                  borderRadius="full"
+                  cursor="pointer"
+                  textStyle="Body1"
+                  onClick={() => handleSubmit(value)}
+                  layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
+                >
+                  <Icon
+                    as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
+                    layerStyle="iconColor"
+                    bg="transparent !important"
+                    h={5}
+                    w={5}
+                    mr={2}
+                  />
+                  {label}
+                </Flex>
+              ))}
+            </Box>
           </Box>
-        </Box>
-        <Button h={12} cursor="pointer" disabled={!formStep?.length} onClick={nextStep}>
-          Continue
-        </Button>
+          <SubmitBtn label="Continue" disabled={!formStep?.length} onClick={nextStep} />
+        </SlideContainer>
       </Container>
     );
   },

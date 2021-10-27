@@ -1,14 +1,7 @@
 import { FaLightbulb } from 'react-icons/fa';
 import { Box, Center, Flex, HStack, Icon, Image, Text, useColorModeValue } from '@chakra-ui/react';
-import {
-  CloseBtn,
-  FlowStartBtn,
-  FlowEndBtn,
-  PrevBtn,
-  SlideContainer,
-  BtnsWrapper,
-} from '../components';
-import { Circle, ProgressBar, SlideShow } from '../../../../components';
+import { CloseBtn, FlowStartBtn, FlowEndBtn, PrevBtn, BtnsWrapper } from '../components';
+import { Circle, ProgressBar, SlideShow, SlideContainer } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 
 import Academy from '../../../../assets/academy-1.svg';

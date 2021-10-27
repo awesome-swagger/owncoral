@@ -1,8 +1,8 @@
 import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { Heading, Input, Text, Box } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -48,30 +48,33 @@ export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepPr
   return (
     <div ref={ref}>
       <Container>
-        <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt={8} mb={2} textAlign="left">
-          What’s your EIN?
-        </Heading>
-        <Text fontSize="md" textAlign="left">
-          Lorem ipsum dolor sir amet
-        </Text>
-        <Input
-          as={InputMask}
-          placeholder="XX-XXXXXXX"
-          className={error ? 'mask_input shake_animation' : 'mask_input'}
-          name="ein"
-          mask="99-9999999"
-          value={einNumber}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setEinNumber(e.target.value);
-            setError(false);
-          }}
-        />
-        <Text mt={2} color="red">
-          {error ? 'Please enter a valid EIN number' : ''}
-        </Text>
-
-        <SubmitBtn onClick={onSubmit} label="Continue" />
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <Heading size="md" mt={8} mb={2} textAlign="left">
+              What’s your EIN?
+            </Heading>
+            <Text fontSize="md" textAlign="left">
+              Lorem ipsum dolor sir amet
+            </Text>
+            <Input
+              as={InputMask}
+              placeholder="XX-XXXXXXX"
+              className={error ? 'mask_input shake_animation' : 'mask_input'}
+              name="ein"
+              mask="99-9999999"
+              value={einNumber}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setEinNumber(e.target.value);
+                setError(false);
+              }}
+            />
+            <Text mt={2} color="red">
+              {error ? 'Please enter a valid EIN number' : ''}
+            </Text>
+          </Box>
+          <SubmitBtn onClick={onSubmit} label="Continue" />
+        </SlideContainer>
       </Container>
     </div>
   );

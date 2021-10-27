@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { Button, Heading, Image, Text } from '@chakra-ui/react';
-import { BackBtn, FlexContainer } from '../../../components';
+import { Heading, Image, Text, Box } from '@chakra-ui/react';
+import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
 import { StepFormContext } from '../index';
 import type { StepPropsT } from '../index';
 import Logo from '../../../assets/coral_logo_with_shadow.png';
@@ -18,26 +18,22 @@ export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
 
   return (
     <FlexContainer layerStyle="noSelect">
-      <BackBtn handleClick={prevStep} top={6} left={6} pos="absolute" />
-      <Image src={Logo} alt="logo" h="200px" />
-      <Heading size="md" as="h4" textAlign="center">
-        Welcome to Coral, {fullName}!
-      </Heading>
-      <Text fontSize="md" textAlign="center">
-        On the following screens, we are going to ask you a few questions to get you better. There
-        are no good/bad answers.
-      </Text>
-      <Button
-        pos="absolute"
-        bottom={10}
-        left={6}
-        w="calc(100% - 3rem)"
-        h={12}
-        cursor="pointer"
-        onClick={nextStep}
-      >
-        Continue
-      </Button>
+      <SlideContainer>
+        <Box w="100%">
+          <BackBtn handleClick={prevStep} />
+        </Box>
+        <Box w="100%">
+          <Image mx="auto" src={Logo} alt="logo" h="200px" />
+          <Heading size="md" as="h4" textAlign="center">
+            Welcome to Coral, {fullName}!
+          </Heading>
+          <Text fontSize="md" textAlign="center">
+            On the following screens, we are going to ask you a few questions to get you better.
+            There are no good/bad answers.
+          </Text>
+        </Box>
+        <SubmitBtn onClick={nextStep} label="Continue" />
+      </SlideContainer>
     </FlexContainer>
   );
 };

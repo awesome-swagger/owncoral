@@ -1,10 +1,10 @@
 import { ChangeEvent, forwardRef } from 'react';
-import { Heading, Input, Text } from '@chakra-ui/react';
+import { Heading, Input, Text, Box } from '@chakra-ui/react';
 // We're using the verbose default import here to work around a
 // bundling bug in Snowpack for this particular package
 import { default as usePlacesAutocomplete, getGeocode, getLatLng } from 'use-places-autocomplete';
 
-import { BackBtn, Container, SubmitBtn } from '../../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
 import type { DivRef } from './index';
 
 type stepProps = {
@@ -58,23 +58,27 @@ export const EntityAddress = forwardRef<DivRef, stepProps>(
     return (
       <div ref={ref}>
         <Container>
-          <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8}>
-            What’s your Entity address?
-          </Heading>
-          <Text fontSize="md" m="0">
-            Lorem ipsum dolor sir amet
-          </Text>
-          <Input
-            placeholder="Residental Address"
-            h={12}
-            mt={8}
-            value={value}
-            onChange={handleInput}
-            disabled={!ready}
-          />
-          {status === 'OK' && <ul>{renderSuggestions()}</ul>}
-          <SubmitBtn label="Continue" />
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={prevStep} />
+              <Heading size="md" mt={8}>
+                What’s your Entity address?
+              </Heading>
+              <Text fontSize="md" m="0">
+                Lorem ipsum dolor sir amet
+              </Text>
+              <Input
+                placeholder="Residental Address"
+                h={12}
+                mt={8}
+                value={value}
+                onChange={handleInput}
+                disabled={!ready}
+              />
+              {status === 'OK' && <ul>{renderSuggestions()}</ul>}
+            </Box>
+            <SubmitBtn onClick={nextStep} label="Continue" />
+          </SlideContainer>
         </Container>
       </div>
     );
