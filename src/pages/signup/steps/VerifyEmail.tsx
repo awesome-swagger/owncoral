@@ -1,7 +1,8 @@
 import { forwardRef } from 'react';
 import { FiMail } from 'react-icons/fi';
-import { Button, Center, Heading, Icon, Text, Box } from '@chakra-ui/react';
+import { Button, Center, Icon, Text, Box } from '@chakra-ui/react';
 import { BackBtn, FlexContainer, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 
 export const VerifyEmail = forwardRef<DivRef, StepPropsT>(
@@ -15,9 +16,9 @@ export const VerifyEmail = forwardRef<DivRef, StepPropsT>(
           <Center mx="auto" h={16} w={16} borderRadius="50%" layerStyle="card">
             <Icon as={FiMail} color="primary.500" h={6} w={6} />
           </Center>
-          <Heading size="md" as="h4" mt={8} textAlign="center">
+          <Title1 as="h4" mt={8} textAlign="center">
             Please verify your email address
-          </Heading>
+          </Title1>
           <Text fontSize="md" textAlign="center">
             An email has been sent to <b>johndoe@gmail.com</b>. Please follow the instructions in
             the verification email to finish creating your Coral account.

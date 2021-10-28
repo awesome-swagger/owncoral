@@ -1,6 +1,8 @@
 import { forwardRef, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { Heading, Text, Box } from '@chakra-ui/react';
+import { Text, Box } from '@chakra-ui/react';
+
 import { BackBtn, Container, DayPicker, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -76,9 +78,9 @@ export const DateOfRegistration = forwardRef<DivRef, stepProps>(
           <SlideContainer>
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Heading size="md" mt={8} mb={2} textAlign="left">
+              <Title1 mt={8} mb={2} textAlign="left">
                 Which is the date of registration?
-              </Heading>
+              </Title1>
               <Text fontSize="md" textAlign="left">
                 Lorem ipsum dolor sir amet
               </Text>

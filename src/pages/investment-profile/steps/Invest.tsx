@@ -1,9 +1,10 @@
 import { forwardRef, useContext } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Box, Heading, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -20,9 +21,9 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
     <div ref={ref}>
       <Container>
         <BackBtn handleClick={prevStep} />
-        <Heading size="md" mt={8} mb={2} textAlign="left">
+        <Title1 mt={8} mb={2} textAlign="left">
           Do you want to invest as an individual or through an entity?
-        </Heading>
+        </Title1>
         <Box
           px={6}
           py={3}

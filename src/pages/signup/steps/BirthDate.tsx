@@ -1,7 +1,8 @@
 import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
-import { Heading, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
 import { BackBtn, Container, DayPicker, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1, Headline } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -52,15 +53,11 @@ export const BirthDate = forwardRef<DivRef, StepPropsT>(
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
-            <Heading size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               When is your Birthday?
-            </Heading>
+            </Title1>
             <DayPicker date={date} onChange={handleDateChange} />
-            {age < 18 && (
-              <Heading size="xs" color="red">
-                You are under 18!
-              </Heading>
-            )}
+            {age < 18 && <Headline color="red">You are under 18!</Headline>}
           </Box>
           <SubmitBtn
             onClick={onSubmit}

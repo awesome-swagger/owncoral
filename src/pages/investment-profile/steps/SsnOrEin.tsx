@@ -1,8 +1,9 @@
 import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Heading, Input, Text, Box } from '@chakra-ui/react';
+import { Input, Text, Box } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -49,9 +50,9 @@ export const SsnOrEin = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: s
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
-            <Heading size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               What’s your SSN or EIN?
-            </Heading>
+            </Title1>
             <Text fontSize="md" textAlign="left">
               Lorem ipsum dolor sir amet
             </Text>

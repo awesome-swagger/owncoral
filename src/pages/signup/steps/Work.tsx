@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, FormLabel, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -44,9 +45,9 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
           <Box w="100%" mb={8}>
             <BackBtn handleClick={prevStep} />
             <ProgressBar total={7} value={6} />
-            <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               What do you do for work?
-            </Heading>
+            </Title1>
 
             <FormLabel mt={8}>
               <Text layerStyle="labelColor">CURRENT ROLE OR TITLE</Text>

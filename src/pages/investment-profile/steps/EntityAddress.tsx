@@ -1,10 +1,11 @@
 import { ChangeEvent, forwardRef } from 'react';
-import { Heading, Input, Text, Box } from '@chakra-ui/react';
+import { Input, Text, Box } from '@chakra-ui/react';
 // We're using the verbose default import here to work around a
 // bundling bug in Snowpack for this particular package
 import { default as usePlacesAutocomplete, getGeocode, getLatLng } from 'use-places-autocomplete';
 
 import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 
 type stepProps = {
@@ -61,9 +62,7 @@ export const EntityAddress = forwardRef<DivRef, stepProps>(
           <SlideContainer>
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Heading size="md" mt={8}>
-                What’s your Entity address?
-              </Heading>
+              <Title1 mt={8}>What’s your Entity address?</Title1>
               <Text fontSize="md" m="0">
                 Lorem ipsum dolor sir amet
               </Text>

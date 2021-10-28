@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, FormLabel, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, FormLabel, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -41,9 +42,9 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
-            <Heading as="h4" size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               Tell us about yourself
-            </Heading>
+            </Title1>
             <Text fontSize="md" textAlign="left">
               Please enter your full legal name. Your legal name should match any form of government
               ID.

@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { Heading, Image, Text, Box } from '@chakra-ui/react';
+import { Image, Text, Box } from '@chakra-ui/react';
 import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import { StepFormContext } from '../index';
 import type { StepPropsT } from '../index';
 import Logo from '../../../assets/coral_logo_with_shadow.png';
@@ -24,9 +25,7 @@ export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
         </Box>
         <Box w="100%">
           <Image mx="auto" src={Logo} alt="logo" h="200px" />
-          <Heading size="md" as="h4" textAlign="center">
-            Welcome to Coral, {fullName}!
-          </Heading>
+          <Title1 textAlign="center">Welcome to Coral, {fullName}!</Title1>
           <Text fontSize="md" textAlign="center">
             On the following screens, we are going to ask you a few questions to get you better.
             There are no good/bad answers.

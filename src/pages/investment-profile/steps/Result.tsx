@@ -1,8 +1,9 @@
 import { forwardRef, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -30,9 +31,9 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
         </Box>
         <Box my={6} w="100%">
           <Box mx="auto" bg="gray.300" h={40} w={40} borderRadius="50%" />
-          <Heading size="md" mt={8} textAlign="center">
+          <Title1 mt={8} textAlign="center">
             Congratulations! Your profile is now complete
-          </Heading>
+          </Title1>
           <Text fontSize="md" m="0" textAlign="center">
             You are ready to start investing in Coral.
           </Text>

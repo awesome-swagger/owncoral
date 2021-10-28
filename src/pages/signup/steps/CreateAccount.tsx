@@ -6,7 +6,6 @@ import {
   Center,
   Checkbox,
   FormLabel,
-  Heading,
   Icon,
   IconButton,
   Input,
@@ -18,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 
 import { BackBtn, Container, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import { Caption1 } from '../../../theme/textStyles';
 import type { FormRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
@@ -47,12 +47,11 @@ export const CreateAccount = forwardRef<FormRef, StepPropsT>(
       <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
         <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
           <SlideContainer>
-            {' '}
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+              <Title1 mt={8} mb={2} textAlign="left">
                 Let’s create your account
-              </Heading>
+              </Title1>
               <FormLabel mt={8}>
                 <Text layerStyle="labelColor" fontSize="md" textAlign="left">
                   Email

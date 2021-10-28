@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiCircle } from 'react-icons/fi';
-import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -50,9 +51,9 @@ export const InvestmentGoal = forwardRef<DivRef, StepPropsT>(
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
             <ProgressBar total={7} value={2} />
-            <Heading size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               What goals do you want to achieve through investment property ownership?
-            </Heading>
+            </Title1>
             <Text fontSize="md">Select all that apply</Text>
             <Box my={8}>
               {investmentGoals.map(({ value, label }) => (

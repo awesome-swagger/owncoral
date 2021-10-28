@@ -1,7 +1,8 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { ChevronRight } from 'react-feather';
-import { Box, Heading, Icon } from '@chakra-ui/react';
+import { Box, Icon } from '@chakra-ui/react';
 import { BackBtn, Container, ProgressBar } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -35,9 +36,9 @@ export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
         <Container>
           <BackBtn handleClick={prevStep} />
           <ProgressBar total={7} value={1} />
-          <Heading size="md" as="h4" mt={8} textAlign="left">
+          <Title1 mt={8} textAlign="left">
             How long have you been investing?
-          </Heading>
+          </Title1>
           <Box my={8}>
             {experience.map(({ value, label }) => (
               <Box

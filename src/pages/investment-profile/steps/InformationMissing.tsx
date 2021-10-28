@@ -1,7 +1,8 @@
 import React, { forwardRef } from 'react';
-import { Box, Button, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Text, VStack } from '@chakra-ui/react';
 
 import { BackBtn, Container, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 
 type stepProps = {
@@ -18,9 +19,9 @@ export const InformationMissing = forwardRef<DivRef, stepProps>(
         </Box>
         <Box py={6}>
           <Box h={40} w={40} mx="auto" borderRadius="50%" bg="gray.200" />
-          <Heading size="md" mt={8} textAlign="center">
+          <Title1 mt={8} textAlign="center">
             Some personal information is missing
-          </Heading>
+          </Title1>
           <Text fontSize="md" m="0" textAlign="center">
             Before making an investing, we need you to provide us some personal information.
           </Text>

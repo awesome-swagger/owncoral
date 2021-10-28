@@ -1,8 +1,9 @@
 import { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Heading, Input, Text, Box } from '@chakra-ui/react';
+import { Input, Text, Box } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -34,9 +35,9 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
-            <Heading size="md" mt={8} mb={2} textAlign="left">
+            <Title1 mt={8} mb={2} textAlign="left">
               What’s your Industry?
-            </Heading>
+            </Title1>
             <Text fontSize="md" textAlign="left">
               Lorem ipsum dolor sir amet
             </Text>

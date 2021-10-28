@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { Box, Heading, Input, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 
 type stepProps = {
@@ -19,9 +20,9 @@ export const CertificateOfRegistration = forwardRef<DivRef, stepProps>(
           <SlideContainer>
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Heading size="md" mt={8} mb={2} textAlign="left">
+              <Title1 mt={8} mb={2} textAlign="left">
                 Certificate of registration
-              </Heading>
+              </Title1>
               <Text fontSize="md" textAlign="left" mb={8}>
                 Lorem ipsum dolor sir amet
               </Text>

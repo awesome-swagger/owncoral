@@ -1,6 +1,8 @@
 import { FiCheck } from 'react-icons/fi';
-import { Box, Center, Heading, Icon, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Center, Icon, Text, useColorModeValue } from '@chakra-ui/react';
+
 import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { StepPropsT } from '../index';
 
 export const Result = ({ nextStep, prevStep }: StepPropsT) => {
@@ -16,9 +18,9 @@ export const Result = ({ nextStep, prevStep }: StepPropsT) => {
           <Center mx="auto" h={16} w={16} borderRadius="50%" layerStyle="card">
             <Icon as={FiCheck} color="green.500" h={6} w={6} />
           </Center>
-          <Heading as="h4" size="md" mt={4} color={resultHeading} textAlign="center">
+          <Title1 mt={4} color={resultHeading} textAlign="center">
             Great, you&#39;ve answered everything!
-          </Heading>
+          </Title1>
           <Text fontSize="sm" colorScheme="gray" variant="colored" textAlign="center">
             If you need to edit any responses, tap the back button. Otherwise, click the button
             below to continue.

@@ -1,8 +1,9 @@
 import React, { forwardRef, useCallback, useContext, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Box, Heading, Input, Text } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { ContextT, StepFormContext } from '../index';
 
@@ -36,9 +37,9 @@ export const Residency = forwardRef<DivRef, StepPropsT>(
         {available === 'Available' ? (
           <Container>
             <BackBtn handleClick={prevStep} />
-            <Heading as="h4" size="md" mt={8} mb={6} textAlign="left">
+            <Title1 mt={8} mb={6} textAlign="left">
               Are you a U.S resident?
-            </Heading>
+            </Title1>
             {initialQuestions.map(({ value, label }) => (
               <Box
                 key={value}
@@ -87,9 +88,9 @@ const TaxID = ({
       <SlideContainer>
         <Box w="100%">
           <BackBtn handleClick={goBack} />
-          <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+          <Title1 mt={8} mb={2} textAlign="left">
             Please enter your Tax ID
-          </Heading>
+          </Title1>
           <Text fontSize="md" textAlign="left">
             Lorem ipsum dolor sir
           </Text>
@@ -121,9 +122,7 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => (
         <BackBtn handleClick={goBack} />
       </Box>
       <Box w="100%" my={6}>
-        <Heading size="md" as="h4" textAlign="center">
-          Sorry, Coral is only available for U.S. residents
-        </Heading>
+        <Title1 textAlign="center">Sorry, Coral is only available for U.S. residents</Title1>
         <Text fontSize="md" textAlign="center">
           Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
         </Text>

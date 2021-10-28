@@ -1,7 +1,8 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -38,9 +39,9 @@ export const AllocateToRealState = forwardRef<DivRef, StepPropsT>(
       <Container ref={ref} layerStyle="noSelect">
         <BackBtn handleClick={prevStep} />
         <ProgressBar total={7} value={7} />
-        <Heading size="md" mt={8} mb={2} textAlign="left">
+        <Title1 mt={8} mb={2} textAlign="left">
           How much do you intend to allocate to real estate through Coral in the next 12 months?
-        </Heading>
+        </Title1>
         <Text fontSize="md">This helps us gauge demand, which helps us serve you better.</Text>
         <Box my={8}>
           {investment.map(({ value, label }) => (

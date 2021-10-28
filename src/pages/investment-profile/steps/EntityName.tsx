@@ -1,8 +1,9 @@
 import { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Heading, Input, Box } from '@chakra-ui/react';
+import { Input, Box } from '@chakra-ui/react';
 
 import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { FormRef } from './index';
 import { StepFormContext } from './index';
 
@@ -36,9 +37,9 @@ export const EntityName = forwardRef<FormRef, stepProps>(
           <SlideContainer>
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Heading size="md" mt={8} mb={2} textAlign="left">
+              <Title1 mt={8} mb={2} textAlign="left">
                 What is your Entity Name
-              </Heading>
+              </Title1>
               <Input
                 type="text"
                 name="entity_name"

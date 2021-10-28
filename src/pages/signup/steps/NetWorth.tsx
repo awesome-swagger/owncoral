@@ -1,6 +1,8 @@
 import { forwardRef, useCallback, useContext } from 'react';
-import { Box, Heading, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
+
 import { BackBtn, Container, ProgressBar } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -12,9 +14,10 @@ const netWorth = [
   { value: 'Greater than $10 million' },
 ];
 
-export const NetWorth = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
-  const form = useContext(StepFormContext);
-  const formStep = form?.formState?.step8;
+export const NetWorth = forwardRef<DivRef, StepPropsT>(
+  ({ nextStep, prevStep }: StepPropsT, ref) => {
+    const form = useContext(StepFormContext);
+    const formStep = form?.formState?.step8;
 
     const handleSubmit = useCallback(
       (value) => {
@@ -29,9 +32,9 @@ export const NetWorth = forwardRef<DivRef, StepPropsT>(({ nextStep, prevStep }: 
         <Container>
           <BackBtn handleClick={prevStep} />
           <ProgressBar total={7} value={4} />
-          <Heading size="md" as="h4" mt={8} mb={2} textAlign="left">
+          <Title1 mt={8} mb={2} textAlign="left">
             What is your approximate net worth (jointly with your spouse, if married)?
-          </Heading>
+          </Title1>
           <Text fontSize="md">
             We need to know you better in order to comply with SEC regulations.
           </Text>

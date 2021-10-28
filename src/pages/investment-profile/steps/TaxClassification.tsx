@@ -1,8 +1,9 @@
 import { forwardRef, useContext } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
-import { Box, Heading, Icon, Text } from '@chakra-ui/react';
+import { Box, Icon, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef } from './index';
 import { StepFormContext } from './index';
 
@@ -26,9 +27,9 @@ export const TaxClassification = forwardRef<DivRef, stepProps>(
       <div ref={ref}>
         <Container>
           <BackBtn handleClick={prevStep} />
-          <Heading size="md" mt={8} mb={2} textAlign="left">
+          <Title1 mt={8} mb={2} textAlign="left">
             Which type of Tax Classification?
-          </Heading>
+          </Title1>
           <Text fontSize="md" textAlign="left" mb={8}>
             Lorem ipsum dolor sir amet
           </Text>

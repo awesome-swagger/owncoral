@@ -1,8 +1,9 @@
 import React, { Dispatch, forwardRef, Fragment, useCallback, useContext, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiAlertTriangle, FiCircle } from 'react-icons/fi';
-import { Box, Center, Divider, Flex, Heading, Icon, Input, Text } from '@chakra-ui/react';
+import { Box, Center, Divider, Flex, Icon, Input, Text } from '@chakra-ui/react';
 import { BackBtn, Container, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
@@ -51,9 +52,9 @@ export const Investor = forwardRef<DivRef, StepPropsT>(
               <SlideContainer>
                 <Box w="100%">
                   <BackBtn handleClick={prevStep} />
-                  <Heading size="md" mt={8} mb={2} textAlign="left">
+                  <Title1 mt={8} mb={2} textAlign="left">
                     Are you an accredited investor?
-                  </Heading>
+                  </Title1>
                   <Text fontSize="md" textAlign="left">
                     You are an accredited investor if any of the first three statements below are
                     true. Select all that apply.
@@ -121,9 +122,9 @@ const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
         <Center mx="auto" h={16} w={16} borderRadius="50%" layerStyle="card">
           <Icon as={FiAlertTriangle} color="green.500" h={6} w={6} />
         </Center>
-        <Heading size="md" as="h4" textAlign="center">
+        <Title1 textAlign="center">
           Coral is currently available to accredited investors only
-        </Heading>
+        </Title1>
         <Text my={4} fontSize="md" textAlign="center">
           But we&#39;re working on that! Please input your email address below if you&#39;d like to
           be added to the waitlist.
