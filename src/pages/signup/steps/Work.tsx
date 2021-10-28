@@ -94,7 +94,10 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
           </Box>
           <SubmitBtn
             label="Continue"
-            disabled={(!currentRole || !currentEmployer) && !linkedInProfile}
+            disabled={
+              (!currentRole || !currentEmployer) &&
+              !linkedInProfile?.toLowerCase().includes('linkedin.com/')
+            }
           />
         </SlideContainer>
       </Container>
