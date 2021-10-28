@@ -10,6 +10,7 @@ import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
 import { useQuery } from '../../../lib/useQuery';
 import { UserContext } from '../../../userContext';
 import { TabSection, TopSection } from './sections';
+import { useNavHeight } from '../../../lib/useNavHeight';
 import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
 
 type PortfolioPropertyDetailPropsT = {
@@ -20,6 +21,7 @@ const PortfolioPropertyDetail = ({
   propertyUriFragmentToId,
   adminSelectedUser,
 }: PortfolioPropertyDetailPropsT) => {
+  const { headerHeight } = useNavHeight();
   const query = useQuery();
   const portalRef = useRef<HTMLDivElement>(null);
   const propertyUriFragment = query.get('property');
@@ -107,8 +109,8 @@ const PortfolioPropertyDetail = ({
           </AspectRatio>
           <Portal containerRef={portalRef}>
             <Icon
-              pos="absolute"
-              top={5}
+              pos={{ base: 'fixed', md: 'absolute' }}
+              top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
               left={5}
               h={8}
               w={8}
@@ -117,12 +119,13 @@ const PortfolioPropertyDetail = ({
               cursor="pointer"
               onClick={() => history.push('/portfolio')}
               borderRadius="full"
+              boxShadow="xs"
               layerStyle="iconColor"
             />
             {propertyDetail.docsUrls.length > 0 && (
               <Icon
-                pos="absolute"
-                top={5}
+                pos={{ base: 'fixed', md: 'absolute' }}
+                top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
                 right={5}
                 h={8}
                 w={8}
@@ -131,6 +134,7 @@ const PortfolioPropertyDetail = ({
                 cursor="pointer"
                 onClick={toggleDrawer}
                 borderRadius="full"
+                boxShadow="xs"
                 layerStyle="iconColor"
               />
             )}

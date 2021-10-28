@@ -57,6 +57,7 @@ import { DocumentsDrawer } from '../../../components/documentsDrawer';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
 import { formatFinancial, formatFinancialSI } from '../../../lib/financialFormatter';
+import { useNavHeight } from '../../../lib/useNavHeight';
 import { useQuery } from '../../../lib/useQuery';
 
 const CoralPlanTab = lazy(() => import('./coralPlanTab'));
@@ -75,6 +76,7 @@ type ListingDetailPropsT = {
   listingUriFragmentToId: { [uriFragment: string]: string };
 };
 const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
+  const { headerHeight } = useNavHeight();
   const query = useQuery();
   const portalRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
@@ -92,6 +94,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
     : null;
 
   const [listingsDetail, setListingsDetail] = useState<ListingsPropertyDetailT | null>(null);
+
   useEffect(() => {
     (async () => {
       if (propertyId === null) return;
@@ -122,7 +125,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
       }
     })();
   }, [listingUriFragmentToId, listingUriFragment, propertyId, toast]);
-
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
@@ -131,8 +133,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
         <Fragment>
           <Portal containerRef={portalRef}>
             <Icon
-              pos="absolute"
-              top={5}
+              pos={{ base: 'fixed', md: 'absolute' }}
+              top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
               left={5}
               h={8}
               w={8}
@@ -141,12 +143,13 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               cursor="pointer"
               onClick={() => history.push('/listings')}
               borderRadius="full"
+              boxShadow="xs"
               layerStyle="iconColor"
             />
             {listingsDetail.docsUrls.length > 0 && (
               <Icon
-                pos="absolute"
-                top={5}
+                pos={{ base: 'fixed', md: 'absolute' }}
+                top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
                 right={5}
                 h={8}
                 w={8}
@@ -155,6 +158,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
                 cursor="pointer"
                 onClick={toggleDrawer}
                 borderRadius="full"
+                boxShadow="xs"
                 layerStyle="iconColor"
               />
             )}
