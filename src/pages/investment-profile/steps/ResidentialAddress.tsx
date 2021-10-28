@@ -62,7 +62,9 @@ export const ResidentialAddress = forwardRef<DivRef, stepProps>(
           <SlideContainer>
             <Box w="100%">
               <BackBtn handleClick={prevStep} />
-              <Title1 mt={8}>What’s your Residential address?</Title1>
+              <Title1 mt={8} mb={2}>
+                What’s your Residential address?
+              </Title1>
               <Text fontSize="md" m="0">
                 Lorem ipsum dolor sir amet
               </Text>
