@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FiExternalLink, FiEye, FiEyeOff, FiLock } from 'react-icons/fi';
 import { Link as BrowserLink, useHistory, useParams } from 'react-router-dom';
@@ -9,7 +9,6 @@ import {
   Checkbox,
   FormControl,
   FormHelperText,
-  Heading,
   Icon,
   IconButton,
   Input,
@@ -25,7 +24,7 @@ import {
 
 import NoTextLogo from '../../assets/coral_logo-notext.svg';
 import { BackBtn, Container } from '../../components';
-import { Subhead, Title2 } from '../../components/text';
+import { Subhead, Title2, Title1 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { Caption1 } from '../../theme/textStyles';
 
@@ -114,9 +113,9 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
               <Subhead>To sign in for the first time, please create a new password.</Subhead>
             </VStack>
           ) : (
-            <Heading mt={8} mb={2}>
+            <Title1 mt={8} mb={2}>
               Create a new password
-            </Heading>
+            </Title1>
           )}
 
           <Text m="2rem 0 0.5rem 0" w="100%">
@@ -210,9 +209,9 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
 const ExpiredLink = () => {
   return (
     <Box>
-      <Heading mt={8} mb={2}>
+      <Title1 mt={8} mb={2}>
         Expired link
-      </Heading>
+      </Title1>
       <Text>
         Your new password link has expired, or was already used. If you still need to set a new
         password, you can request a new email.

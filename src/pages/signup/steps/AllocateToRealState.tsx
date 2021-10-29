@@ -1,22 +1,21 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, ProgressBar } from '../../../components';
+import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
 import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
 type InvestmentT = {
-  value: number;
-  label: string;
+  value: string;
 };
 
 const investment: InvestmentT[] = [
-  { value: 0, label: '$1,000 - $10,000' },
-  { value: 1, label: 'Between $10,000 and $100,000' },
-  { value: 2, label: 'Between $100,000 and $250,000' },
-  { value: 3, label: 'Between $250,000 and $500,000' },
-  { value: 4, label: 'Greater than $500,000' },
+  { value: '$1,000 - $10,000' },
+  { value: 'Between $10,000 and $100,000' },
+  { value: 'Between $100,000 and $250,000' },
+  { value: 'Between $250,000 and $500,000' },
+  { value: 'Greater than $500,000' },
 ];
 
 export const AllocateToRealState = forwardRef<DivRef, StepPropsT>(
@@ -44,21 +43,14 @@ export const AllocateToRealState = forwardRef<DivRef, StepPropsT>(
         </Title1>
         <Text fontSize="md">This helps us gauge demand, which helps us serve you better.</Text>
         <Box my={8}>
-          {investment.map(({ value, label }) => (
-            <Box
-              px={6}
-              py={3}
-              mt={2}
-              layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
-              borderRadius="full"
-              textAlign="left"
-              cursor="pointer"
-              key={value}
-              textStyle="Body1"
-              onClick={() => handleSubmit(value)}
-            >
-              {label}
-            </Box>
+          {investment.map(({ value }, idx) => (
+            <SelectBox
+              key={idx}
+              state={formStep}
+              value={value}
+              icon="chevron"
+              handleClick={() => handleSubmit(value)}
+            />
           ))}
         </Box>
       </Container>

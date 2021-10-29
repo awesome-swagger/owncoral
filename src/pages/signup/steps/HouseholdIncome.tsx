@@ -1,21 +1,20 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import { BackBtn, Container, ProgressBar } from '../../../components';
+import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
 import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
 type IncomeT = {
-  value: number;
-  label: string;
+  value: string;
 };
 
 const householdIncomes: IncomeT[] = [
-  { value: 0, label: 'Less than $200,000' },
-  { value: 1, label: 'Between $200,000 and $300,000' },
-  { value: 2, label: 'Between $1M and $5M' },
-  { value: 3, label: 'Between $5M and $10 million' },
-  { value: 4, label: 'Greater than $10 million' },
+  { value: 'Less than $200,000' },
+  { value: 'Between $200,000 and $300,000' },
+  { value: 'Between $1M and $5M' },
+  { value: 'Between $5M and $10 million' },
+  { value: 'Greater than $10 million' },
 ];
 
 export const HouseholdIncome = forwardRef<DivRef, StepPropsT>(
@@ -45,21 +44,14 @@ export const HouseholdIncome = forwardRef<DivRef, StepPropsT>(
           We need to know you better in order to comply with SEC regulations.
         </Text>
         <Box my={8}>
-          {householdIncomes.map(({ value, label }) => (
-            <Box
-              px={6}
-              py={3}
-              mt={2}
-              layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
-              borderRadius="full"
-              textAlign="left"
-              cursor="pointer"
-              key={value}
-              textStyle="Body1"
-              onClick={() => handleSubmit(value)}
-            >
-              {label}
-            </Box>
+          {householdIncomes.map(({ value }, idx) => (
+            <SelectBox
+              key={idx}
+              value={value}
+              state={formStep}
+              handleClick={() => handleSubmit(value)}
+              icon="chevron"
+            />
           ))}
         </Box>
       </Container>

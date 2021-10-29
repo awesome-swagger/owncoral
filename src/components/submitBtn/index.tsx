@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { ButtonProps } from '@chakra-ui/react';
-import { Button, forwardRef, Heading } from '@chakra-ui/react';
+import { Button, forwardRef } from '@chakra-ui/react';
 
 type SubmitBtnProps = {
   label: string;

@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, ProgressBar } from '../../../components';
+import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
 import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
@@ -39,20 +39,14 @@ export const NetWorth = forwardRef<DivRef, StepPropsT>(
             We need to know you better in order to comply with SEC regulations.
           </Text>
           <Box my={8}>
-            {netWorth.map(({ value }) => (
-              <Box
-                px={6}
-                py={3}
-                mt={2}
-                layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
-                borderRadius="full"
-                textAlign="left"
-                cursor="pointer"
-                key={value}
-                onClick={() => handleSubmit(value)}
-              >
-                {value}
-              </Box>
+            {netWorth.map(({ value }, idx) => (
+              <SelectBox
+                key={idx}
+                icon="chevron"
+                value={value}
+                state={formStep}
+                handleClick={() => handleSubmit(value)}
+              />
             ))}
           </Box>
         </Container>

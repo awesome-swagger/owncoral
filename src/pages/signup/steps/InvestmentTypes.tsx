@@ -1,25 +1,29 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
-import { FaCheckCircle } from 'react-icons/fa';
-import { FiCircle } from 'react-icons/fi';
-import { Box, Flex, Icon, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 import { Title1 } from '../../../components/text';
-import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  ProgressBar,
+  SlideContainer,
+  SubmitBtn,
+  SelectBox,
+} from '../../../components';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
 type InvestmentT = {
-  value: number;
-  label: string;
+  value: string;
 };
 
 const investmentTypes: InvestmentT[] = [
-  { value: 0, label: 'Publicly traded stocks' },
-  { value: 1, label: 'Bonds' },
-  { value: 2, label: 'Real estate (for investment purposes)' },
-  { value: 3, label: 'Private companies/startups' },
-  { value: 4, label: 'Hedge funds' },
-  { value: 5, label: 'Private equity funds' },
-  { value: 6, label: 'Other alternative assets' },
+  { value: 'Publicly traded stocks' },
+  { value: 'Bonds' },
+  { value: 'Real estate (for investment purposes)' },
+  { value: 'Private companies/startups' },
+  { value: 'Hedge funds' },
+  { value: 'Private equity funds' },
+  { value: 'Other alternative assets' },
 ];
 
 export const InvestmentTypes = forwardRef<DivRef, StepPropsT>(
@@ -58,30 +62,14 @@ export const InvestmentTypes = forwardRef<DivRef, StepPropsT>(
             </Title1>
             <Text fontSize="md">Select all that apply</Text>
             <Box my={8}>
-              {investmentTypes.map(({ value, label }) => (
-                <Flex
-                  alignItems="center"
-                  px={6}
-                  py={3}
-                  mt={2}
-                  layerStyle={formStep?.includes(value) ? 'selectionBox.selected' : 'selectionBox'}
-                  borderRadius="full"
-                  textAlign="left"
-                  cursor="pointer"
-                  key={value}
-                  textStyle="Body1"
-                  onClick={() => handleSubmit(value)}
-                >
-                  <Icon
-                    as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                    layerStyle="iconColor"
-                    bg="transparent !important"
-                    h={5}
-                    w={5}
-                    mr={2}
-                  />
-                  {label}
-                </Flex>
+              {investmentTypes.map(({ value }, idx) => (
+                <SelectBox
+                  key={idx}
+                  state={formStep}
+                  icon="checkbox"
+                  value={value}
+                  handleClick={() => handleSubmit(value)}
+                />
               ))}
             </Box>
           </Box>

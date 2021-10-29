@@ -1,21 +1,20 @@
 import React, { forwardRef, useCallback, useContext } from 'react';
 import { ChevronRight } from 'react-feather';
 import { Box, Icon } from '@chakra-ui/react';
-import { BackBtn, Container, ProgressBar } from '../../../components';
+import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
 import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { StepFormContext } from '../index';
 
 type ExperienceT = {
-  value: number;
-  label: string;
+  value: string;
 };
 const experience: ExperienceT[] = [
-  { value: 0, label: '0-2 years ' },
-  { value: 1, label: '2-5 years ' },
-  { value: 2, label: '5-10 years ' },
-  { value: 3, label: '10-20 years ' },
-  { value: 4, label: 'More than 20 years ' },
+  { value: '0-2 years ' },
+  { value: '2-5 years ' },
+  { value: '5-10 years ' },
+  { value: '10-20 years ' },
+  { value: 'More than 20 years ' },
 ];
 
 export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
@@ -40,21 +39,14 @@ export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
             How long have you been investing?
           </Title1>
           <Box my={8}>
-            {experience.map(({ value, label }) => (
-              <Box
-                px={6}
-                py={3}
-                mt={2}
-                layerStyle={value === formStep ? 'selectionBox.selected' : 'selectionBox'}
-                borderRadius="full"
-                textAlign="left"
-                cursor="pointer"
-                key={value}
-                onClick={() => handleSubmit(value)}
-              >
-                {label}
-                <Icon as={ChevronRight} />
-              </Box>
+            {experience.map(({ value }, idx) => (
+              <SelectBox
+                key={idx}
+                icon="chevron"
+                value={value}
+                state={formStep}
+                handleClick={() => handleSubmit(value)}
+              />
             ))}
           </Box>
         </Container>

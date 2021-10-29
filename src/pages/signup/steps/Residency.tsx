@@ -2,7 +2,14 @@ import React, { forwardRef, useCallback, useContext, useState } from 'react';
 import InputMask from 'react-input-mask';
 import { Box, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
+import {
+  BackBtn,
+  Container,
+  FlexContainer,
+  SlideContainer,
+  SubmitBtn,
+  SelectBox,
+} from '../../../components';
 import { Title1 } from '../../../components/text';
 import type { DivRef, StepPropsT } from '../index';
 import { ContextT, StepFormContext } from '../index';
@@ -40,20 +47,14 @@ export const Residency = forwardRef<DivRef, StepPropsT>(
             <Title1 mt={8} mb={6} textAlign="left">
               Are you a U.S resident?
             </Title1>
-            {initialQuestions.map(({ value, label }) => (
-              <Box
-                key={value}
-                px={6}
-                py={3}
-                mt={2}
-                borderRadius="full"
-                textAlign="left"
-                cursor="pointer"
-                onClick={() => handleSubmit(value)}
-                layerStyle="selectionBox"
-              >
-                {label}
-              </Box>
+            {initialQuestions.map(({ value, label }, idx) => (
+              <SelectBox
+                key={idx}
+                value={label}
+                state={value}
+                icon={false}
+                handleClick={() => handleSubmit(value)}
+              />
             ))}
           </Container>
         ) : available === 'taxID' ? (

@@ -3,9 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import {
-  Button,
   FormControl,
-  Heading,
   Icon,
   Input,
   InputGroup,
@@ -13,9 +11,12 @@ import {
   Spinner,
   Text,
   useToast,
+  Box,
 } from '@chakra-ui/react';
 
-import { BackBtn, Container } from '../../components';
+import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../components';
+import { Title1 } from '../../components/text';
+
 import { fetchWrap } from '../../lib/api';
 
 const ForgotPassword: React.FC = () => {
@@ -59,58 +60,55 @@ const ForgotPassword: React.FC = () => {
   };
 
   return (
-    <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <BackBtn
-          handleClick={() => {
-            history.push('/login');
-          }}
-        />
-        <Heading mt={8} mb={2} colorScheme="secondary" variant="colored">
-          Forgot your password?
-        </Heading>
-        <Text>
-          Enter the email address associated with your account. We will send you an email with
-          instructions to set a new password.
-        </Text>
-
-        <Text m="2rem 0 0.5rem 0" w="100%">
-          Email
-        </Text>
-        <FormControl isInvalid={errors?.email}>
-          <InputGroup mt={2}>
-            <InputLeftElement h="100%" pointerEvents="none">
-              <Icon as={FiMail} />
-            </InputLeftElement>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              pl={8}
-              placeholder="Email"
-              defaultValue=""
-              ref={register({
-                required: true,
-              })}
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Container>
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn
+              handleClick={() => {
+                history.push('/login');
+              }}
             />
-          </InputGroup>
-        </FormControl>
-        <Button
-          pos="absolute"
-          bottom={10}
-          left={6}
-          w="calc(100% - 3rem)"
-          h={12}
-          isDisabled={errors.email?.message}
-          isLoading={isLoading}
-          spinner={<Spinner />}
-          type="submit"
-          colorScheme="white"
-        >
-          Send Instructions
-        </Button>
-      </form>
-    </Container>
+            <Title1 mt={8} mb={2} colorScheme="secondary" variant="colored">
+              Forgot your password?
+            </Title1>
+            <Text>
+              Enter the email address associated with your account. We will send you an email with
+              instructions to set a new password.
+            </Text>
+
+            <Text m="2rem 0 0.5rem 0" w="100%">
+              Email
+            </Text>
+            <FormControl isInvalid={errors?.email}>
+              <InputGroup mt={2}>
+                <InputLeftElement h="100%" pointerEvents="none">
+                  <Icon as={FiMail} />
+                </InputLeftElement>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  pl={8}
+                  placeholder="Email"
+                  defaultValue=""
+                  ref={register({
+                    required: true,
+                  })}
+                />
+              </InputGroup>
+            </FormControl>
+          </Box>
+          <SubmitBtn
+            disabled={errors.email?.message}
+            isLoading={isLoading}
+            spinner={<Spinner />}
+            colorScheme="white"
+            label="Send Instructions"
+          />
+        </SlideContainer>
+      </Container>
+    </form>
   );
 };
 
