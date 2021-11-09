@@ -11,7 +11,6 @@ import {
   Icon,
   IconButton,
   Spinner,
-  Switch,
   Text,
   useEditableControls,
   useToast,

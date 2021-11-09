@@ -1,8 +1,7 @@
 // editorconfig-checker-disable
 // we can replace for quotes symbol (&#39; -> ’, &#34; -> “”)
-import { Fragment } from 'react';
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
-import { Headline, Overline, Title2 } from '../../../../components/text';
+import { Headline, Overline } from '../../../../components/text';
 
 const Description = ({ children }: { children: React.ReactNode }) => (
   <Text lineHeight="short" textStyle="body1" children={children} />

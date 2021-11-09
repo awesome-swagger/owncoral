@@ -12,7 +12,7 @@ interface PropsT {
 export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 'chevron' }) => {
   const selectBoxBg = useColorModeValue('blue.50', 'whiteAlpha.100');
   const selectBoxText = useColorModeValue('black', 'white');
-  const selectBoxHover = useColorModeValue('secondary.100', 'secondary.800');
+  const selectBoxBgSecondary = useColorModeValue('secondary.100', 'secondary.800');
   const selectBoxSelected = useColorModeValue('gray.300', 'whiteAlpha.400');
 
   return (
@@ -26,7 +26,8 @@ export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 
       key={value}
       borderRadius="full"
       color={selectBoxText}
-      _hover={{ bg: selectBoxHover }}
+      _hover={{ bg: selectBoxBgSecondary }}
+      _active={{ bg: selectBoxBgSecondary }}
       bg={
         value === state || (state && state.length > 0 && state.includes(value))
           ? selectBoxSelected

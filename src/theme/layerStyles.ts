@@ -16,11 +16,14 @@ export const layerStyles = {
     bg: 'white',
     color: 'black',
     _hover: { bg: 'secondary.100' },
+    _active: { bg: 'secondary.100' },
+
     selected: { bg: 'gray.300' },
     '.chakra-ui-dark &': {
       bg: 'whiteAlpha.100',
       color: 'white',
       _hover: { bg: 'secondary.800' },
+      _active: { bg: 'secondary.800' },
       selected: { bg: 'whiteAlpha.400' },
     },
   },
