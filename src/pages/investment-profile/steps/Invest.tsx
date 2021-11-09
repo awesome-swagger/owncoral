@@ -17,6 +17,30 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
   const form = useContext(StepFormContext);
   const history = useHistory();
 
+  const handleIndividualAccount = () => {
+    form.dispatch({
+      type: 'update-form',
+      payload: {
+        step5: 'Individual',
+      },
+    });
+    setTimeout(() => {
+      history.push('/investment-profile/result');
+    }, 200);
+  };
+
+  const handleEntityAccount = () => {
+    form.dispatch({
+      type: 'update-form',
+      payload: {
+        step5: 'Entity',
+      },
+    });
+    setTimeout(() => {
+      nextStep();
+    }, 200);
+  };
+
   return (
     <div ref={ref}>
       <Container>
@@ -33,15 +57,7 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
           pos="relative"
           borderRadius="full"
           layerStyle="selectionBox"
-          onClick={() => {
-            form.dispatch({
-              type: 'update-form',
-              payload: {
-                step5: 'Individual',
-              },
-            });
-            history.push('/investment-profile/result');
-          }}
+          onClick={handleIndividualAccount}
         >
           <Text fontSize="md" colorScheme="gray" variant="colored">
             Individual account
@@ -66,15 +82,7 @@ export const Invest = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: ste
           pos="relative"
           borderRadius="full"
           layerStyle="selectionBox"
-          onClick={() => {
-            form.dispatch({
-              type: 'update-form',
-              payload: {
-                step5: 'Entity',
-              },
-            });
-            nextStep();
-          }}
+          onClick={handleEntityAccount}
         >
           <Text fontSize="md" colorScheme="gray" variant="colored">
             Entity account

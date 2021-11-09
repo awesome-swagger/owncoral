@@ -33,7 +33,11 @@ export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 
           ? selectBoxSelected
           : selectBoxBg
       }
-      onClick={handleClick}
+      onClick={() => {
+        setTimeout(() => {
+          handleClick();
+        }, 200);
+      }}
     >
       {icon === 'checkbox' && (
         <Icon
