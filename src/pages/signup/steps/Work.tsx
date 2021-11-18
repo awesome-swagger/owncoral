@@ -1,6 +1,8 @@
 import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, FormLabel, Input, Text } from '@chakra-ui/react';
+import { Box, FormLabel, Input, Text, useColorModeValue } from '@chakra-ui/react';
+import { transparentize } from '@chakra-ui/theme-tools';
+import theme from '../../../theme';
 
 import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
 import { Title1 } from '../../../components/text';
@@ -15,6 +17,8 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
   const currentRole = watch('currentRole');
   const currentEmployer = watch('currentEmployer');
   const linkedInProfile = watch('linkedInProfile');
+
+  const placeholderColor = useColorModeValue('dark.50', transparentize('#000000', 0.24)(theme));
 
   const onSubmit = useCallback(
     (data) => {
@@ -37,6 +41,15 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
     setValue('linkedInProfile', formStep?.linkedInProfile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (linkedInProfile?.includes('linkedin.com/in/')) {
+      let startIndex = linkedInProfile.indexOf('linkedin.com/in/') + 16;
+      let endIndex = linkedInProfile.length;
+      let linkedInUserName = linkedInProfile.slice(startIndex, endIndex).replaceAll('/', '');
+      setValue('linkedInProfile', linkedInUserName);
+    }
+  }, [linkedInProfile]);
 
   return (
     <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
@@ -80,24 +93,39 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
             </Text>
             <FormLabel mt={8}>
               <Text layerStyle="labelColor">YOUR LINKEDIN PROFILE</Text>
-              <Input
-                placeholder="linkedIn.com/in/yourprofilename"
-                name="linkedInProfile"
-                ref={register}
-                h={12}
-                mt={1}
-                variant="filled"
-                onChange={handleSubmit(handleChange)}
-                disabled={currentRole || currentEmployer}
-              />
+              <Box pos="relative">
+                <Input
+                  // placeholder="linkedIn.com/in/yourprofilename"
+                  name="linkedInProfile"
+                  ref={register}
+                  h={12}
+                  mt={1}
+                  pl="8.3rem"
+                  variant="filled"
+                  onChange={handleSubmit(handleChange)}
+                  disabled={currentRole || currentEmployer}
+                />
+                <Text fontWeight={400} top={0} left={4} lineHeight="3.5rem" pos="absolute">
+                  linkedIn.com/in/
+                </Text>
+                {!linkedInProfile && (
+                  <Text
+                    color={placeholderColor}
+                    fontWeight={400}
+                    top={0}
+                    right={4}
+                    lineHeight="3.5rem"
+                    pos="absolute"
+                  >
+                    yourprofilename
+                  </Text>
+                )}
+              </Box>
             </FormLabel>
           </Box>
           <SubmitBtn
             label="Continue"
-            disabled={
-              (!currentRole || !currentEmployer) &&
-              !linkedInProfile?.toLowerCase().includes('linkedin.com/')
-            }
+            disabled={(!currentRole || !currentEmployer) && !linkedInProfile}
           />
         </SlideContainer>
       </Container>
