@@ -9,14 +9,13 @@ type PropertyLocationPropsT = {
 };
 
 export const Images = ({ propertyDetail }: PropertyLocationPropsT) => {
-  const newImages = propertyDetail.imageUrls.slice(1);
-  if (newImages.length === 0) return null;
+  const images = propertyDetail.imageUrls;
 
-  return (
+  return images.length ? (
     <Box>
       <Title2 my={4}>Photos</Title2>
       <ImgSlider
-        images={newImages}
+        images={images}
         fallback={
           <Center w="100%" h={window.innerHeight * 0.4}>
             <Spinner />
@@ -24,5 +23,5 @@ export const Images = ({ propertyDetail }: PropertyLocationPropsT) => {
         }
       />
     </Box>
-  );
+  ) : null;
 };

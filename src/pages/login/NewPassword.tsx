@@ -24,7 +24,7 @@ import {
 
 import NoTextLogo from '../../assets/coral_logo-notext.svg';
 import { BackBtn, Container } from '../../components';
-import { Subhead, Title2, Title1 } from '../../components/text';
+import { Subhead, Title1, Title2 } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { Caption1 } from '../../theme/textStyles';
 
@@ -35,7 +35,11 @@ type NewPasswordPropsT = {
   isWelcome?: boolean;
 };
 const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
-  const { handleSubmit, register, errors } = useForm();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   const { resetToken } = useParams<{ resetToken: string }>();
   const [showPassword, setShowPassword] = useState(false);
   const [agreementChecked, setAgreementChecked] = useState(!isWelcome);
@@ -50,35 +54,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
   type FormDataT = {
     password: string;
   };
-  const onSubmit = async ({ password }: FormDataT) => {
-    const resp = await fetchWrap('/api/set-new-password', {
-      method: 'POST',
-      body: JSON.stringify({
-        resetToken,
-        password,
-      }),
-    });
-
-    if (resp === null) return;
-
-    if (resp.ok) {
-      history.push('/');
-      return;
-    }
-
-    switch (resp.status) {
-      default:
-        toast({
-          title: 'An error occurred.',
-          description: 'Unable to set new password',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        });
-        break;
-    }
-  };
-
+  
   useEffect(() => {
     (async () => {
       const resp = await fetchWrap('/api/check-reset-password-token', {
@@ -94,6 +70,10 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
     })();
   }, [resetToken]);
 
+  const onSubmit = () => {
+    
+  };
+
   return (
     // TODO: use a Suspense when feature is stable
     <Container showColorModeButton={false}>
@@ -104,7 +84,7 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
       )}
       {tokenState === 'invalid' && <ExpiredLink />}
       {tokenState === 'valid' && (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           {!isWelcome && <BackBtn handleClick={handleClick} />}
           {isWelcome ? (
             <VStack align="center" spacing={4}>
@@ -128,17 +108,16 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
               </InputLeftElement>
 
               <Input
-                name="password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                defaultValue=""
-                ref={register({
+                {...register('password', {
                   required: true,
                   minLength: {
                     message: 'Please enter at least 8 characters',
                     value: 8,
                   },
                 })}
+                type={showPassword ? 'text' : 'password'}
+                placeholder="Password"
+                defaultValue=""
                 pl={8}
               />
 
@@ -172,16 +151,30 @@ const NewPassword: React.FC<NewPasswordPropsT> = ({ isWelcome = false }) => {
                 size="lg"
                 sx={{ '.chakra-checkbox__label': Caption1 }}
                 isChecked={agreementChecked}
-                onChange={(e) => setAgreementChecked(!agreementChecked)}
+                onChange={() => setAgreementChecked(!agreementChecked)}
               >
-                I certify that I am 18 years of age or older, and I agree to the{' '}
+                By checking this box, you certify that you are 18 years of age or older and agree to
+                our{' '}
                 <ChakraLink href="https://www.owncoral.com/user-agreement" isExternal>
-                  User Agreement{' '}
-                  <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
+                  User Agreement
+                  <Icon as={FiExternalLink} w={3} h={3} verticalAlign="baseline" />
                 </ChakraLink>
                 {' and '}
                 <ChakraLink href="https://www.owncoral.com/privacy" isExternal>
-                  Privacy Policy{' '}
+                  Privacy Policy
+                  <Icon as={FiExternalLink} w={3} h={3} verticalAlign="baseline" />
+                </ChakraLink>
+                , as well as our partner Dwolla’s{' '}
+                <ChakraLink
+                  href="https://www.dwolla.com/legal/dwolla-account-terms-of-service/#legal-content"
+                  isExternal
+                >
+                  User Agreement
+                  <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
+                </ChakraLink>
+                {' and '}
+                <ChakraLink href="https://www.dwolla.com/legal/privacy/#legal-content" isExternal>
+                  Privacy Policy
                   <Icon as={FiExternalLink} w={2.5} h={2.5} verticalAlign="baseline" />
                 </ChakraLink>
               </Checkbox>

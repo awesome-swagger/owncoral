@@ -34,7 +34,23 @@ export {
 } from './property';
 export type { SourcesUsesT } from './propertyFinancials';
 export { SourcesUses } from './propertyFinancials';
-export type { AdminPanelUserInfoT } from './user';
-export type { UserProfileT } from './user';
-export { AdminPanelUserInfo } from './user';
-export { UserProfile } from './user';
+export type { SessionPrivateStrictT } from './session';
+export { SessionPrivateStrict } from './session';
+export type {
+  AdminPanelUserInfoT,
+  InvestmentGoalT,
+  InvestmentTypeT,
+  SignupInfoT,
+  UserPrivateStrictT,
+  UserProfileT,
+} from './user';
+export {
+  AdminPanelUserInfo,
+  InvestmentGoal,
+  InvestmentType,
+  SignupInfo,
+  UserPrivateStrict,
+  UserProfile,
+} from './user';
+export type { WaitlistRequestT } from './waitlist';
+export { WaitlistRequest } from './waitlist';

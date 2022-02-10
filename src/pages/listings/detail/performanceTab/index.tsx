@@ -8,14 +8,18 @@ import {
   Flex,
   HStack,
   Icon,
+  ListItem,
   Text,
   useColorModeValue,
+  UnorderedList,
   VStack,
 } from '@chakra-ui/react';
 
 import { Card, IconBackground } from '../../../../components';
 import { Caption1, Headline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
+import { COURSE_CASH_FLOW_URL } from '../../../../lib/courseDetailData';
+import { AcademyUrl } from '../../../../lib/uriConstants';
 
 type PerformanceTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;
@@ -23,7 +27,6 @@ type PerformanceTabPropsT = {
 const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
   const history = useHistory();
   const grayBg = useColorModeValue('gray.100', 'whiteAlpha.100');
-  const descColor = useColorModeValue('dark.400', 'whiteAlpha.800');
 
   const [love1Header, love1Text] = listingsDetail.whyLove1.split('\n\n', 2);
   const [love2Header, love2Text] = listingsDetail.whyLove2.split('\n\n', 2);
@@ -53,8 +56,8 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
             description={
               listingsDetail.mdlEquity
                 ? '$' +
-                  formatFinancial(listingsDetail.listingCashDist * listingsDetail.mdlEquity * 0.1) +
-                  '/yr'
+                formatFinancial(listingsDetail.listingCashDist * listingsDetail.mdlEquity * 0.1) +
+                '/yr'
                 : ''
             }
           />
@@ -72,7 +75,7 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
           p={4}
           mt={6}
           cursor="pointer"
-          onClick={() => history.push('/academy/unit/cash-flow')}
+          onClick={() => history.push(AcademyUrl + COURSE_CASH_FLOW_URL)}
           bg={grayBg}
           borderRadius="2xl"
         >
@@ -90,9 +93,7 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
             </Box>
             <Box>
               <Headline mb={2}>{love1Header}</Headline>
-              <Text color={descColor} fontSize="13px" textStyle="Body1">
-                {newlinesToBreaks(love1Text.trim())}
-              </Text>
+              <LoveTextListItem text={love1Text.trim()} />
             </Box>
           </Flex>
 
@@ -104,9 +105,7 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
             </Box>
             <Box>
               <Headline mb={2}>{love2Header}</Headline>
-              <Text color={descColor} fontSize="13px" textStyle="Body1">
-                {newlinesToBreaks(love2Text.trim())}
-              </Text>
+              <LoveTextListItem text={love2Text.trim()} />
             </Box>
           </Flex>
 
@@ -118,29 +117,36 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
             </Box>
             <Box>
               <Headline mb={2}>{love3Header}</Headline>
-              <Text color={descColor} fontSize="13px" textStyle="Body1">
-                {newlinesToBreaks(love3Text.trim())}
-              </Text>
+              <LoveTextListItem text={love3Text.trim()} />
             </Box>
           </Flex>
         </VStack>
       </Box>
     </Fragment>
   );
-};
+}
 
 /**
- * Turns newlines into <br /> elements in a string.
+ * Turns Unorderedlist elements in a string.
  */
-const newlinesToBreaks = (s: string) => {
-  const sParts = s.split('\n');
-  return sParts.map((sPart, idx) => (
-    <Fragment key={idx}>
-      {sPart}
-      {idx < sParts.length - 1 && <br />}
-    </Fragment>
-  ));
-};
+const LoveTextListItem = ({ text }: { text: string }) => {
+  const descColor = useColorModeValue('dark.400', 'whiteAlpha.800');
+  const sParts = text.split('\n');
+
+  return (sParts.length === 1) ? (
+    <Text color={descColor} fontSize="13px" textStyle="Body1">
+      {text}
+    </Text>
+  ) : (
+    <UnorderedList>
+      {sParts.map((sPart, idx) => (
+        <ListItem key={idx} color={descColor} fontSize="13px" textStyle="Body1">
+          {sPart.replace('• ', '')}
+        </ListItem>
+      ))}
+    </UnorderedList>
+  );
+}
 
 // eslint-disable-next-line import/no-default-export
 export default PerformanceTab;

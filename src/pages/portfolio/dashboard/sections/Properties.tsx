@@ -26,9 +26,9 @@ import { Overline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { addressToUrlFragment } from '../../../../lib/urlFragments';
 import theme from '../../../../theme';
-import { lightContainerBg, darkContainerBg } from '../../../../theme/styles';
+import { darkContainerBg, lightContainerBg } from '../../../../theme/styles';
 
-const SHOW_FEWER_COUNT = 5;
+const SHOW_FEWER_COUNT = 100;
 /*
  * Small hack to force Top Ranking list to always show h-scroll on iOS / macOS,
  * which hides scrollbars when not scrolling (even when overscroll: scroll is set)
@@ -70,7 +70,7 @@ export const Properties = ({
 }: PropertiesPropsT) => {
   const propertyDetailUrl = (property: PortfolioDashboardPropertyT) =>
     `${portfolioRootUrl}/investment?property=${addressToUrlFragment(property.address)}&entity=${
-      property.legalEntityId
+      property.legalPersonId
     }`;
 
   const visibleProperties =
@@ -132,14 +132,8 @@ export const Properties = ({
                 setTableRightScrollDist(scrollWidth - offsetWidth - scrollLeft);
               }}
             >
-              <Box
-                left={0}
-                pos="sticky"
-                w={propertyColWidth + 8}
-                background={tableLeftGrad}
-                zIndex={1}
-              >
-                <VStack spacing={rowSpacing} alignItems="left">
+              <Box left={0} pos="sticky" paddingRight={8} background={tableLeftGrad} zIndex={1}>
+                <VStack spacing={rowSpacing} alignItems="left" w={propertyColWidth}>
                   <Flex w={propertyColWidth} h={8} alignItems="center">
                     <Overline>Property</Overline>
                   </Flex>
@@ -162,6 +156,10 @@ export const Properties = ({
                       variant="link"
                       colorScheme="primary"
                       alignSelf="start"
+                      style={{
+                        textDecoration: 'none',
+                        boxShadow: 'none',
+                      }}
                     >
                       {showAll ? (
                         <Fragment>
@@ -233,7 +231,7 @@ export const Properties = ({
                     </Text>
 
                     {/* <Text w="6rem" textAlign="right"> */}
-                    {/*  {property.legalEntityName} */}
+                    {/*  {property.legalPersonName} */}
                     {/* </Text> */}
 
                     <Text w="6rem" textAlign="right">

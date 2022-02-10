@@ -12,7 +12,7 @@ export const SubmitBtn = forwardRef<SubmitBtnProps & ButtonProps, 'button'>(
   ({ label, ...buttonProps }, ref) => (
     <Button
       bottom={6}
-      pos={{ base: 'fixed', md: 'initial' }}
+      pos={{ base: 'absolute', md: 'initial' }}
       w={{ base: 'calc(100% - 3rem)', md: '100%' }}
       type="submit"
       ref={ref}

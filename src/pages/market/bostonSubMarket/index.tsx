@@ -1,7 +1,6 @@
-import { Fragment, lazy } from 'react';
-import { Switch } from 'react-router-dom';
+import { lazy } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
-import { NavBar, ProtectedRoute } from '../../../components';
 import { Cambridge } from './cambridge';
 import { Somerville } from './somerville';
 
@@ -12,19 +11,16 @@ type BostonSubMarketPropsT = {
 };
 const BostonSubMarket = ({ marketBostonRootUrl }: BostonSubMarketPropsT ) => {
   return (
-    <Fragment>
-      <NavBar />
-      <Switch>
-        <ProtectedRoute exact path={marketBostonRootUrl + '/cambridge'}>
-          <Cambridge />
-        </ProtectedRoute>
-        <ProtectedRoute exact path={marketBostonRootUrl + '/somerville'}>
-          <Somerville />
-        </ProtectedRoute>
+    <Switch>
+      <Route exact path={marketBostonRootUrl + '/cambridge'}>
+        <Cambridge />
+      </Route>
+      <Route exact path={marketBostonRootUrl + '/somerville'}>
+        <Somerville />
+      </Route>
 
-        <ProtectedRoute path="*" component={Error404} />
-      </Switch>
-    </Fragment>
+      <Route path="*" component={Error404} />
+    </Switch>
   );
 };
 

@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Box, Center, Spinner } from '@chakra-ui/react';
 
@@ -10,14 +9,13 @@ type PropertyLocationPropsT = {
 };
 
 export const Images = ({ listingsDetail }: PropertyLocationPropsT) => {
-  const newImages = listingsDetail.imageUrls.slice(1);
-  if (newImages.length === 0) return null;
+  const images = listingsDetail.imageUrls;
 
-  return (
+  return images.length ? (
     <Box>
       <Title2 my={4}>Photos</Title2>
       <ImgSlider
-        images={newImages}
+        images={images}
         fallback={
           <Center w="100%" h={window.innerHeight * 0.4}>
             <Spinner />
@@ -25,5 +23,5 @@ export const Images = ({ listingsDetail }: PropertyLocationPropsT) => {
         }
       />
     </Box>
-  );
+  ) : null;
 };

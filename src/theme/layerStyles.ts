@@ -13,18 +13,21 @@ export const layerStyles = {
     },
   },
   selectionBox: {
-    bg: 'white',
+    bg: 'secondary.50',
     color: 'black',
-    _hover: { bg: 'secondary.100' },
-    _active: { bg: 'secondary.100' },
-
-    selected: { bg: 'gray.300' },
+    '&:hover,&:active': { bg: 'secondary.100' },
+    selected: {
+      bg: 'secondary.100',
+      '&:hover,&:active': { bg: 'secondary.200' },
+      '.chakra-ui-dark &': {
+        bg: 'secondary.700',
+        '&:hover,&:active': { bg: 'secondary.800' },
+      },
+    },
     '.chakra-ui-dark &': {
       bg: 'whiteAlpha.100',
       color: 'white',
-      _hover: { bg: 'secondary.800' },
-      _active: { bg: 'secondary.800' },
-      selected: { bg: 'whiteAlpha.400' },
+      '&:hover,&:active': { bg: 'secondary.800' },
     },
   },
   muiCardColor: {

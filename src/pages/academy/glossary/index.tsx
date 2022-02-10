@@ -6,8 +6,9 @@ import * as R from 'remeda';
 
 import { Option, OptionGroup } from '../../../components';
 import { Headline, Overline, Title2 } from '../../../components/text';
+import { GlossaryUrl } from '../../../lib/uriConstants';
 import { titleToUrlFragment } from '../lib';
-import { GlossaryData } from './glossaryData';
+import { GlossaryData } from './GlossaryData';
 
 export const Glossary = () => {
   const history = useHistory();
@@ -43,7 +44,7 @@ export const Glossary = () => {
             {entries.map(({ name }, index) => (
               <Option
                 key={`option-${index}`}
-                onClick={() => history.push(`/academy/glossary/${titleToUrlFragment(name)}`)}
+                onClick={() => history.push(`${GlossaryUrl}/${titleToUrlFragment(name)}`)}
                 className="option"
               >
                 {name}

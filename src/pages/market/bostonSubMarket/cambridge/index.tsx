@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { FiAlertTriangle, FiCheck } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { Text, Divider, Flex, Center, Box, Icon, Link, useColorModeValue } from '@chakra-ui/react';

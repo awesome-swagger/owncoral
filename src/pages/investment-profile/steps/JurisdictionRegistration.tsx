@@ -1,68 +1,57 @@
-import { forwardRef, useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Select, Text, Box } from '@chakra-ui/react';
+import { Box, Select, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
 import { Title1 } from '../../../components/text';
 import { States } from '../../../lib/states';
-import type { FormRef } from './index';
-import { StepFormContext } from './index';
+import type { StepPropsT } from '../index';
+import { InvestmentProfileContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
+export const JurisdictionRegistration:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { handleSubmit, register, setValue } = useForm();
+  const form = useContext(InvestmentProfileContext);
 
-export const JurisdictionRegistration = forwardRef<FormRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, register, setValue } = useForm();
-    const form = useContext(StepFormContext);
+  const onSubmit = useCallback((data) => {
+    form.dispatch?.({ step13: data });
+    nextStep();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step13: data },
-      });
-      nextStep();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+  useEffect(() => {
+    const formState = form.formState;
 
-    useEffect(() => {
-      const formState = form.formState;
+    setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-      setValue('jurisdiction_registration', formState?.step13?.jurisdiction_registration || '');
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    return (
-      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
-        <Container>
-          <SlideContainer>
-            <Box w="100%">
-              <BackBtn handleClick={prevStep} />
-              <Title1 mt={8} mb={2} textAlign="left">
-                Which is the jurisdiction of registration
-              </Title1>
-              <Text fontSize="md" textAlign="left">
-                Lorem ipsum dolor sir amet
-              </Text>
-              <Select
-                ref={register}
-                placeholder="Select option"
-                name="jurisdiction_registration"
-                mt={2}
-              >
-                {States.map((value) => (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                ))}
-              </Select>
-            </Box>
-            <SubmitBtn label="Continue" />
-          </SlideContainer>
-        </Container>
-      </form>
-    );
-  },
-);
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Container>
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <Title1 mt={8} mb={2} textAlign="left">
+              Which is the jurisdiction of registration
+            </Title1>
+            <Text fontSize="md" textAlign="left">
+              Lorem ipsum dolor sir amet
+            </Text>
+            <Select
+              placeholder="Select option"
+              {...register('jurisdiction_registration')}
+              mt={2}
+            >
+              {States.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </Select>
+          </Box>
+          <SubmitBtn label="Continue" />
+        </SlideContainer>
+      </Container>
+    </form>
+  );
+}

@@ -5,7 +5,7 @@ import { BackBtn } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { useScrollToTop } from '../../../../lib/useScrollToTop';
 import { titleToUrlFragment } from '../../lib';
-import { GlossaryData } from '../glossaryData';
+import { GlossaryData } from '../GlossaryData';
 
 const Error404 = lazy(() => import('../../../error404'));
 

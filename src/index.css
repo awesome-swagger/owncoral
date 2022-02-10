@@ -8,6 +8,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+#root {
+  height: 100vh;
+}
+
 .mask_input {
   width: 100%;
   min-width: 0;

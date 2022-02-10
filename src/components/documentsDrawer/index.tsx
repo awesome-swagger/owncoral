@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   Drawer,
   DrawerBody,
@@ -10,7 +11,6 @@ import {
 
 import { Title1 } from '../text';
 import { Option, OptionGroup } from '../../components';
-import { useMemo } from 'react';
 
 const DOC_NAME_REGEXP = /.*\/docs\/(.*)\..*\?/;
 
@@ -21,49 +21,42 @@ export type DocumentsDrawerPropT = {
 };
 export const DocumentsDrawer = ({ isOpen, onToggle, documents }: DocumentsDrawerPropT) => {
   return (
-    <Drawer
-      preserveScrollBarGap={false}
-      isOpen={isOpen}
-      placement="bottom"
-      onClose={onToggle}
-    >
+    <Drawer preserveScrollBarGap={false} isOpen={isOpen} placement="bottom" onClose={onToggle}>
       <DrawerOverlay />
-      <DrawerContent borderTopRadius={15} height={0.98 * window.innerHeight}>
+      <DrawerContent
+        borderTopRadius={15}
+        height={`calc(${0.98 * window.innerHeight}px - env(safe-area-inset-top))`}
+        paddingLeft="env(safe-area-inset-left)"
+        paddingRight="env(safe-area-inset-right)"
+      >
         <DrawerHeader>
-          <Flex
-            flexDirection="row"
-            justifyContent="space-between"
-            alignItems="center"
-            width="100%"
-          >
+          <Flex flexDirection="row" justifyContent="space-between" alignItems="center" width="100%">
             <DrawerCloseButton size="sm" position="inherit" />
           </Flex>
         </DrawerHeader>
 
         <DrawerBody>
-          <Title1 ml={3} mb={4}>Documents</Title1>
+          <Title1 ml={3} mb={4}>
+            Documents
+          </Title1>
           <OptionGroup>
-            {documents.map((url, index) => <DocumentOption key={index} url={url} />)}
+            {documents.map((url, index) => (
+              <DocumentOption key={index} url={url} />
+            ))}
           </OptionGroup>
         </DrawerBody>
       </DrawerContent>
     </Drawer>
   );
-}
+};
 
 const DocumentOption = ({ url }: { url: string }) => {
   const name = useMemo(() => {
     const [_, fileMatch] = url.match(DOC_NAME_REGEXP) || [];
-    return fileMatch
-      ? decodeURIComponent(fileMatch)
-      : null;
-  }, [url])
+    return fileMatch ? decodeURIComponent(fileMatch) : null;
+  }, [url]);
 
   if (!name) return null;
 
-  return (
-    <Option onClick={() => window.open(url, '_blank')}>
-      {name}
-    </Option>
-  )
-}
+  return <Option onClick={() => window.open(url, '_blank')}>{name}</Option>;
+};

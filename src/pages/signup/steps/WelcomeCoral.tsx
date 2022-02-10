@@ -1,21 +1,21 @@
-import { useContext } from 'react';
-import { Image, Text, Box } from '@chakra-ui/react';
+import React, { useContext } from 'react';
+import { Box, Image, Text } from '@chakra-ui/react';
+
+import Logo from '../../../assets/coral_logo_with_shadow.png';
 import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
 import { Title1 } from '../../../components/text';
-import { StepFormContext } from '../index';
 import type { StepPropsT } from '../index';
-import Logo from '../../../assets/coral_logo_with_shadow.png';
+import { SignupContext } from '../signupContext';
 
-export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
-  const { formState } = useContext(StepFormContext);
+export const WelcomeCoral:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo } = useContext(SignupContext);
 
   function capitalizeFirstLetter(val: string) {
     return val.charAt(0).toUpperCase() + val.slice(1);
   }
-  const firstName = capitalizeFirstLetter(formState?.step1?.firstName);
-  const lastName = capitalizeFirstLetter(formState?.step1?.lastName);
-
-  const fullName = `${firstName}  ${lastName}`;
+  const fullName = [signupInfo?.legalFirst, signupInfo?.legalLast]
+    .map((ns) => capitalizeFirstLetter(ns || ''))
+    .join(' ');
 
   return (
     <FlexContainer layerStyle="noSelect">
@@ -24,15 +24,20 @@ export const WelcomeCoral = ({ nextStep, prevStep }: StepPropsT) => {
           <BackBtn handleClick={prevStep} />
         </Box>
         <Box w="100%">
-          <Image mx="auto" src={Logo} alt="logo" h="200px" />
-          <Title1 textAlign="center">Welcome to Coral, {fullName}!</Title1>
-          <Text fontSize="md" textAlign="center">
-            On the following screens, we are going to ask you a few questions to get you better.
-            There are no good/bad answers.
+          <Image src={Logo} alt="logo" h="200px" />
+          <Title1 mb={4} textAlign="center">
+            Welcome to Coral <br />
+            {fullName}!
+          </Title1>
+          <Text textStyle="Body1" textAlign="center" mt={2}>
+            We just need to ask you a few more questions. There are no ‘right’ or ‘wrong’ answers.
+          </Text>
+          <Text textStyle="Body1" textAlign="center" mt={4}>
+            We also sent a verification link to your inbox.
           </Text>
         </Box>
-        <SubmitBtn onClick={nextStep} label="Continue" />
+        <SubmitBtn onClick={() => nextStep()} label="Continue" />
       </SlideContainer>
     </FlexContainer>
   );
-};
+}

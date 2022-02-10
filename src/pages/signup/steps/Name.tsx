@@ -1,51 +1,48 @@
-import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Box, FormLabel, Input, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { FormRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { Title2 } from '../../../components/text';
+import { fbqWrap } from '../../../lib/fbqWrap';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
-export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
+export const Name:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   const { handleSubmit, register, watch, setValue } = useForm();
-  const form = useContext(StepFormContext);
-  const formStep = form.formState?.step1;
+  const { signupInfo, dispatch } = useContext(SignupContext);
 
-  const firstName = watch('firstName');
-  const lastName = watch('lastName');
+  const legalFirst = watch('legalFirst');
+  const legalLast = watch('legalLast');
 
   const onSubmit = useCallback(
     (data) => {
-      form.dispatch({ type: 'update-form', payload: { step1: data } });
+      dispatch?.(data);
       nextStep();
     },
-    [form, nextStep],
+    [dispatch, nextStep],
   );
 
-  const handleChange = useCallback(
-    (data) => {
-      form.dispatch({ type: 'update-form', payload: { step1: data } });
-    },
-    [form],
-  );
-
+  // Run only once initially to populate form from state, if e.g. we go back from
+  // future step
   useEffect(() => {
-    setValue('firstName', formStep?.firstName);
-    setValue('lastName', formStep?.lastName);
+    setValue('legalFirst', signupInfo?.legalFirst);
+    setValue('legalLast', signupInfo?.legalLast);
+
+    fbqWrap('trackCustom', 'SignupStart');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />
-            <Title1 mt={8} mb={2} textAlign="left">
+            <Title2 mt={8} mb={2} textAlign="left">
               Tell us about yourself
-            </Title1>
-            <Text fontSize="md" textAlign="left">
+            </Title2>
+            <Text textStyle="Body1" textAlign="left">
               Please enter your full legal name. Your legal name should match any form of government
               ID.
             </Text>
@@ -55,12 +52,10 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
               </Text>
               <Input
                 placeholder="First Name"
-                name="firstName"
-                ref={register}
+                {...register('legalFirst')}
                 h={12}
                 mt={1}
                 variant="filled"
-                onChange={handleSubmit(handleChange)}
               />
             </FormLabel>
             <FormLabel mt={8}>
@@ -69,18 +64,16 @@ export const Name = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
               </Text>
               <Input
                 placeholder="Last Name"
-                name="lastName"
-                ref={register}
+                {...register('legalLast')}
                 h={12}
                 mt={1}
                 variant="filled"
-                onChange={handleSubmit(handleChange)}
               />
             </FormLabel>
           </Box>
-          <SubmitBtn label="Continue" disabled={!firstName || !lastName} />
+          <SubmitBtn label="Continue" disabled={!legalFirst || !legalLast} />
         </SlideContainer>
       </Container>
     </form>
   );
-});
+}

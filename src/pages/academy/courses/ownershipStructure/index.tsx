@@ -1,24 +1,18 @@
+import type React from 'react';
 import { lazy } from 'react';
 import { useParams } from 'react-router-dom';
-import { titleToUrlFragment } from '../../lib';
-import { useScrollToTop } from '../../../../lib/useScrollToTop';
 
-import { Data } from './OwnershipStructureData';
+import { getFlowData, CourseEnum } from '../../../../lib/courseDetailData';
+import { useScrollToTop } from '../../../../lib/useScrollToTop';
 
 const Error404 = lazy(() => import('../../../error404'));
 
-const OwnershipStructureFlow = () => {
+const OwnershipStructureFlow: React.FC = () => {
   useScrollToTop();
 
-  const data = Data();
   const { title } = useParams<{ title: string }>();
-  if (!title) return data[0].jsx;
 
-  const filteredData = data.find(({ name }: { name: string }) =>
-    titleToUrlFragment(name).includes(title),
-  );
-
-  return filteredData ? filteredData.jsx : <Error404 />;
+  return getFlowData(title, CourseEnum.OWNERSHIP_STRUCTURE) || <Error404 isComponent />;
 }
 
 // eslint-disable-next-line import/no-default-export

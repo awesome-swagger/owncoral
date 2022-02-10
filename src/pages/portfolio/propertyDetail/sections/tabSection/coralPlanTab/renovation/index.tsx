@@ -10,7 +10,7 @@ import {
   Text,
   UnorderedList,
 } from '@chakra-ui/react';
-import { useEmblaCarousel } from 'embla-carousel/react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import { Headline, Title2 } from '../../../../../../../components/text';
 

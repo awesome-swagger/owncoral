@@ -1,17 +1,17 @@
-import { Fragment, useContext, useEffect, useState, useCallback, useRef, createRef } from 'react';
-import { FiX, FiFile } from 'react-icons/fi';
+import { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { FiFile, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type { PortfolioPropertyDetailT } from '../../../shared-fullstack/types';
-import { AspectRatio, Box, Center, Icon, Image, Portal, Spinner, useToast } from '@chakra-ui/react';
+import { AspectRatio, Box, Button, Center, Icon, Image, Portal, Spinner, useToast } from '@chakra-ui/react';
 
+import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
 import { Container, DocumentsDrawer } from '../../../components';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../lib/errorToastOptions';
+import { PortfolioUrl } from '../../../lib/uriConstants';
 import { useQuery } from '../../../lib/useQuery';
 import { UserContext } from '../../../userContext';
 import { TabSection, TopSection } from './sections';
-import { useNavHeight } from '../../../lib/useNavHeight';
-import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
 
 type PortfolioPropertyDetailPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
@@ -21,7 +21,6 @@ const PortfolioPropertyDetail = ({
   propertyUriFragmentToId,
   adminSelectedUser,
 }: PortfolioPropertyDetailPropsT) => {
-  const { headerHeight } = useNavHeight();
   const query = useQuery();
   const portalRef = useRef<HTMLDivElement>(null);
   const propertyUriFragment = query.get('property');
@@ -37,6 +36,7 @@ const PortfolioPropertyDetail = ({
     drawerIsOpen,
     setDrawerIsOpen,
   ]);
+  const [loggedOut, setLoggedOut] = useState<boolean>(false);
 
   const history = useHistory();
   const toast = useToast();
@@ -68,6 +68,9 @@ const PortfolioPropertyDetail = ({
       }
 
       switch (resp.status) {
+        case 401:
+          setLoggedOut(true);
+          break;
         default:
           toast({
             ...DEFAULT_ERROR_TOAST,
@@ -86,18 +89,21 @@ const PortfolioPropertyDetail = ({
     user,
   ]);
 
+  // Redirects logged out users to the logged in page
+  // TODO: wrap this in a useLogout hook
+  if (loggedOut) {
+    window.location.assign("/login?flash=You've logged out");
+  }
+
   return (
-    <Container padding={0} ref={portalRef}>
+    // TODO: push spinners down to component level?
+    <Container p={0} ref={portalRef}>
       {propertyUriFragmentToId !== null && propertyDetail !== null ? (
         <Fragment>
           <AspectRatio ratio={4 / 3}>
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
-              src={
-                propertyDetail.imageUrls === undefined || propertyDetail.imageUrls.length === 0
-                  ? Placeholder
-                  : propertyDetail.imageUrls[0]
-              }
+              src={propertyDetail.splashImageUrl || Placeholder}
               alt={propertyDetail.name + ' Image'}
               w="100%"
               fallback={
@@ -110,33 +116,36 @@ const PortfolioPropertyDetail = ({
           <Portal containerRef={portalRef}>
             <Icon
               pos={{ base: 'fixed', md: 'absolute' }}
-              top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
+              top={5}
               left={5}
               h={8}
               w={8}
               p={2}
               as={FiX}
               cursor="pointer"
-              onClick={() => history.push('/portfolio')}
+              onClick={() => history.push(PortfolioUrl)}
               borderRadius="full"
               boxShadow="xs"
               layerStyle="iconColor"
+              zIndex={2}
             />
             {propertyDetail.docsUrls.length > 0 && (
-              <Icon
+              <Button
                 pos={{ base: 'fixed', md: 'absolute' }}
-                top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
+                top={5}
                 right={5}
                 h={8}
-                w={8}
                 p={2}
-                as={FiFile}
-                cursor="pointer"
+                leftIcon={<FiFile />}
                 onClick={toggleDrawer}
                 borderRadius="full"
                 boxShadow="xs"
                 layerStyle="iconColor"
-              />
+                variant='outline'
+                zIndex={2}
+              >
+                Docs
+              </Button>
             )}
           </Portal>
           <Box bg="inherit" p={6} pb={0} borderRadius="2xl" position="relative" bottom={6}>
@@ -166,4 +175,5 @@ const PortfolioPropertyDetail = ({
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default PortfolioPropertyDetail;

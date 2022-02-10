@@ -3,8 +3,8 @@ import { Box, Divider } from '@chakra-ui/react';
 
 import { Financing } from './financing';
 import { PropertyCosts } from './propertyCosts';
-import { Upgrades } from './upgrades';
 import { RentalIncome } from './rentalIncome';
+import { Upgrades } from './upgrades';
 
 type DetailsTabPropsT = {
   propertyDetail: PortfolioPropertyDetailT;

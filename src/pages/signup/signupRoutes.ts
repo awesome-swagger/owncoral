@@ -1,78 +1,89 @@
+import type React from 'react';
+
 import {
+  AllocateToRealState,
   CreateAccount,
+  HouseholdIncome,
   InvestmentExperience,
   InvestmentGoal,
   InvestmentTypes,
   Investor,
   Name,
   NetWorth,
-  HouseholdIncome,
-  Work,
-  AllocateToRealState,
+  NonResidency,
   Residency,
   Result,
-  VerifyEmail,
   WelcomeCoral,
+  Work,
 } from './steps';
 
-type SignupRouteT = { path: string; component: any };
+type SignupRouteT = {
+  component: React.ElementType;
+  isProtectedRoute?: boolean;
+  next: Array<string>;
+};
 
-// Paths are relative to signup path (e.g. '/name' corresponds to '/signup/name', if '/signup' is the parent path)
-export const signupRoutes: Array<SignupRouteT> = [
-  {
-    path: '/name',
+export const signupRouteGraph: Record<string, SignupRouteT> = {
+  name: {
     component: Name,
+    next: ['residency'],
+    isProtectedRoute: false,
   },
-  {
-    path: '/residency',
+  residency: {
     component: Residency,
+    // If user is residence, then investor else non-residency
+    next: ['investor', 'non-residency'],
+    isProtectedRoute: false,
   },
-  {
-    path: '/investor',
+  investor: {
     component: Investor,
+    next: ['create-account'],
+    isProtectedRoute: false,
   },
-  {
-    path: '/create-account',
+  'non-residency': {
+    component: NonResidency,
+    next: ['investor'],
+    isProtectedRoute: false,
+  },
+  'create-account': {
     component: CreateAccount,
+    next: ['welcome-coral'],
+    isProtectedRoute: false,
   },
-  {
-    path: '/verify-email',
-    component: VerifyEmail,
-  },
-  {
-    path: '/welcome-coral',
+  'welcome-coral': {
+    next: ['investment-experience'],
     component: WelcomeCoral,
   },
-  {
-    path: '/investment-experience',
+  'investment-experience': {
+    next: ['investment-goal'],
     component: InvestmentExperience,
   },
-  {
-    path: '/investment-goal',
+  'investment-goal': {
+    next: ['investment-types'],
     component: InvestmentGoal,
   },
-  {
-    path: '/investment-types',
+  'investment-types': {
+    next: ['network'],
     component: InvestmentTypes,
   },
-  {
-    path: '/networth',
+  network: {
+    next: ['household-income'],
     component: NetWorth,
   },
-  {
-    path: '/household-income',
+  'household-income': {
+    next: ['work'],
     component: HouseholdIncome,
   },
-  {
-    path: '/work',
+  work: {
+    next: ['allocate-to-real-state'],
     component: Work,
   },
-  {
-    path: '/allocate-to-real-state',
+  'allocate-to-real-state': {
+    next: ['result'],
     component: AllocateToRealState,
   },
-  {
-    path: '/result',
+  result: {
+    next: [],
     component: Result,
   },
-];
+};

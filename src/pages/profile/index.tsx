@@ -11,9 +11,9 @@ import {
   FiUser,
 } from 'react-icons/fi';
 import { Switch, useHistory, useRouteMatch } from 'react-router-dom';
-import { Box, Icon, Link as ChakraLink, useColorMode, VStack } from '@chakra-ui/react';
+import { Box, Icon, useColorMode, VStack } from '@chakra-ui/react';
 
-import { Container, NavBar, Option, OptionGroup, ProtectedRoute } from '../../components';
+import { Container, Option, OptionGroup, ProtectedRoute } from '../../components';
 import { Overline } from '../../components/text';
 import { fetchWrap } from '../../lib/api';
 import { useScrollToTop } from '../../lib/useScrollToTop';
@@ -31,40 +31,37 @@ function Profile() {
   useScrollToTop();
 
   return (
-    <Fragment>
-      <NavBar />
-      <Container>
-        <Switch>
-          <ProtectedRoute exact path={profileUrl}>
-            <ProfileContent />
-          </ProtectedRoute>
+    <Container>
+      <Switch>
+        <ProtectedRoute exact path={profileUrl}>
+          <ProfileContent />
+        </ProtectedRoute>
 
-          <ProtectedRoute path={profileUrl + '/personal-info'}>
-            <PersonalInformation goBack={goBack} />
-          </ProtectedRoute>
+        <ProtectedRoute path={profileUrl + '/personal-info'}>
+          <PersonalInformation goBack={goBack} />
+        </ProtectedRoute>
 
-          <ProtectedRoute path={profileUrl + '/about-coral'}>
-            <AboutCoral goBack={goBack} />
-          </ProtectedRoute>
+        <ProtectedRoute path={profileUrl + '/about-coral'}>
+          <AboutCoral goBack={goBack} />
+        </ProtectedRoute>
 
-          <ProtectedRoute path={profileUrl + '/fees'}>
-            <Fees goBack={goBack} />
-          </ProtectedRoute>
+        <ProtectedRoute path={profileUrl + '/fees'}>
+          <Fees goBack={goBack} />
+        </ProtectedRoute>
 
-          <ProtectedRoute path={profileUrl + '/legal-structure'}>
-            <LegalStructure goBack={goBack} />
-          </ProtectedRoute>
+        <ProtectedRoute path={profileUrl + '/legal-structure'}>
+          <LegalStructure goBack={goBack} />
+        </ProtectedRoute>
 
-          <ProtectedRoute path={profileUrl + '/faq'}>
-            <Faq goBack={goBack} />
-          </ProtectedRoute>
+        <ProtectedRoute path={profileUrl + '/faq'}>
+          <Faq goBack={goBack} />
+        </ProtectedRoute>
 
-          <ProtectedRoute path="*">
-            <Error404 isComponent />
-          </ProtectedRoute>
-        </Switch>
-      </Container>
-    </Fragment>
+        <ProtectedRoute path="*">
+          <Error404 isComponent />
+        </ProtectedRoute>
+      </Switch>
+    </Container>
   );
 }
 
@@ -131,18 +128,28 @@ export const ProfileContent = () => {
             Legal
           </Overline>
           <OptionGroup>
-            <ChakraLink href="https://www.owncoral.com/user-agreement" isExternal>
-              <Option icon={FiExternalLink}>
+            <Option icon={FiExternalLink}>
+              <Box
+                as="a"
+                w="100%"
+                target="blank"
+                href={import.meta.env.SNOWPACK_PUBLIC_USER_AGREEMENT_DOC_URL}
+              >
                 <Icon as={FiFile} w={4} h={4} mr={4} />
                 User Agreement
-              </Option>
-            </ChakraLink>
-            <ChakraLink href="https://www.owncoral.com/privacy" isExternal>
-              <Option icon={FiExternalLink}>
+              </Box>
+            </Option>
+            <Option icon={FiExternalLink}>
+              <Box
+                as="a"
+                w="100%"
+                target="blank"
+                href={import.meta.env.SNOWPACK_PUBLIC_PRIVACY_POLICY_DOC_URL}
+              >
                 <Icon as={FiFile} w={4} h={4} mr={4} />
                 Privacy Policy
-              </Option>
-            </ChakraLink>
+              </Box>
+            </Option>
           </OptionGroup>
         </Box>
         <Box w="100%">

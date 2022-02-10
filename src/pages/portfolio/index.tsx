@@ -1,10 +1,10 @@
 import React, { Fragment, lazy, useContext, useEffect, useState } from 'react';
-import { Switch, useRouteMatch } from 'react-router-dom';
+import { Redirect,Switch, useRouteMatch } from 'react-router-dom';
 import type { AdminPanelUserInfoT, PortfolioDashboardPropertyT } from '../../shared-fullstack/types';
 import { useToast } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
-import { NavBar, ProtectedRoute } from '../../components';
+import { ProtectedRoute } from '../../components';
 import { fetchWrap } from '../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../lib/errorToastOptions';
 import { addressToUrlFragment } from '../../lib/urlFragments';
@@ -19,8 +19,9 @@ const PortfolioPropertyDetail = lazy(() => import('./propertyDetail'));
 const Portfolio = () => {
   const { url: portfolioRootUrl } = useRouteMatch();
   const [adminPanelUserInfo, setAdminPanelUserInfo] = useState<AdminPanelUserInfoT[] | null>(null);
-  const [user] = useContext(UserContext);
+  const [user, setUser] = useContext(UserContext);
   const currentUserId = user?.id;
+  const [loggedOut, setLoggedOut] = useState<boolean>(false);
 
   const [adminSelectedUser, setAdminSelectedUser] = useState<string | null>(
     // TODO: remove this dev hack
@@ -61,6 +62,9 @@ const Portfolio = () => {
       }
 
       switch (resp.status) {
+        case 401:
+          setLoggedOut(true);
+          break;
         default:
           toast({
             ...DEFAULT_ERROR_TOAST,
@@ -103,6 +107,9 @@ const Portfolio = () => {
       }
 
       switch (resp.status) {
+        case 401:
+          setLoggedOut(true);
+          break;
         default:
           toast({
             ...DEFAULT_ERROR_TOAST,
@@ -115,9 +122,14 @@ const Portfolio = () => {
     })();
   }, [adminSelectedUser, currentUserId, toast, user]);
 
+  // Redirects logged out users to the logged in page
+  // TODO: wrap this in a useLogout hook
+  if (loggedOut) {
+    window.location.assign("/login?flash=You've logged out");
+  }
+
   return (
     <Fragment>
-      <NavBar />
       {user?.isAdmin && (
         <AdminPanel
           isLoading={adminPanelUserInfo === null}

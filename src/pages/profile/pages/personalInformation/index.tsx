@@ -17,13 +17,13 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
-import * as R from 'remeda';
 
 import { BackBtn, DayPicker } from '../../../../components';
 import type { SplitDateT } from '../../../../components/daypicker';
 import { Title2 } from '../../../../components/text';
+import { splitDate } from '../../../../lib/splitDate';
 import { UserContext } from '../../../../userContext';
-import { splitDate, updateCurrentUser } from './lib';
+import { updateCurrentUser } from './lib';
 
 export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -31,14 +31,12 @@ export const PersonalInformation = ({ goBack }: { goBack: () => void }) => {
   // but we still load UserContext here to keep initial and post-edit state
   const [user, setUser] = useContext(UserContext);
   const [birthDate, setBirthDate] = useState<SplitDateT>({ day: '', month: '', year: '' });
-  const [isAccredited, setIsAccredited] = useState<boolean>(false);
 
   useEffect(() => {
     if (user !== null) {
-      if (user.birthDate !== null) {
+      if (user.birthDate !== null && typeof user.birthDate === 'string') {
         setBirthDate(splitDate(parseISO(user.birthDate)));
       }
-      setIsAccredited(user.completedAccreditation);
     }
     setIsLoading(false);
   }, [user]);

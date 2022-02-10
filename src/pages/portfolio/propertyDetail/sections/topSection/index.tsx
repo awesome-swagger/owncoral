@@ -6,18 +6,18 @@ import type {
 } from '../../../../../shared-fullstack/types';
 import {
   Box,
-  Flex,
-  Icon,
-  Divider,
-  Text,
   Center,
-  Spinner,
+  Divider,
+  Flex,
   HStack,
+  Icon,
+  Spinner,
+  Text,
   useToast,
 } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
-import { Subhead, Overline, Title1 } from '../../../../../components/text';
+import { Overline, Subhead, Title1 } from '../../../../../components/text';
 import { DEFAULT_ERROR_TOAST } from '../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../lib/useQuery';
@@ -40,7 +40,7 @@ export const TopSection = ({
 
   const query = useQuery();
   const propertyUriFragment = query.get('property');
-  const legalEntityId = query.get('entity');
+  const legalPersonId = query.get('entity');
   const propertyId: string | null =
     propertyUriFragmentToId !== null && propertyUriFragment !== null
       ? propertyUriFragmentToId[propertyUriFragment] || null
@@ -61,13 +61,13 @@ export const TopSection = ({
 
   useEffect(() => {
     (async () => {
-      if (propertyId === null || legalEntityId === null) {
+      if (propertyId === null || legalPersonId === null) {
         return;
       }
 
       const requestOptions = {
         propertyId,
-        legalEntityId,
+        legalPersonId,
       };
       if (user?.isAdmin) {
         Object.assign(requestOptions, { impersonatedUserId: adminSelectedUser || currentUserId });
@@ -105,7 +105,7 @@ export const TopSection = ({
     currentUserId,
     propertyUriFragmentToId,
     propertyUriFragment,
-    legalEntityId,
+    legalPersonId,
     propertyId,
     toast,
     user,

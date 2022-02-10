@@ -18,14 +18,7 @@ const Error404 = ({ isComponent=false } : { isComponent?: boolean }) => {
     </VStack>
   );
 
-  return !isComponent ? (
-    <Fragment>
-      <NavBar />
-      <Container>
-        {errorComponent}
-      </Container>
-    </Fragment>
-  ) : errorComponent;
+  return !isComponent ? (<Container>{errorComponent}</Container>) : errorComponent;
 };
 
 // eslint-disable-next-line import/no-default-export

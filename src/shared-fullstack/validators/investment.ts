@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
 // Data is mostly from
-//  /db/schema/legal_entity__property.sql
+//  /db/schema/investments.sql
 //  /db/schema/money_transfer.sql
 export const PortfolioPropertyDetailInvestment = z.object({
   propertyId: z.string(),
-  legalEntityId: z.string(),
+  legalPersonId: z.string(),
 
   propertyName: z.string(),
-  legalEntityName: z.string(),
+  legalPersonName: z.string(),
 
   currentEquity: z.number().nullable(),
   currentOwnershipPct: z.number().nullable(),

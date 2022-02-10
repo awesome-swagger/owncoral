@@ -2,7 +2,23 @@ import { SESSION_TIMEOUT_MS } from '../shared-fullstack/constants';
 
 import 'whatwg-fetch'; // Polyfill
 
-import { GlobalLogoutTimeout } from './GlobalLogoutTimeout';
+import { GlobalLogoutTimeout } from './globalLogoutTimeout';
+const API_HOST = import.meta.env.SNOWPACK_PUBLIC_CORAL_API_HOST || '';
+
+type MutableRequest = {
+  -readonly [K in keyof Request]: Request[K];
+};
+
+// eslint-disable-next-line no-undef
+const prependApiHost = (input: RequestInfo): RequestInfo => {
+  if (typeof input === 'string') {
+    return `${API_HOST}${input}`;
+  } else {
+    const newInput: MutableRequest = input;
+    newInput.url = `${API_HOST}${newInput.url}`;
+    return newInput;
+  }
+};
 
 export const fetchWrap = (
   input: RequestInfo, // eslint-disable-line no-undef
@@ -18,10 +34,10 @@ export const fetchWrap = (
     return null;
   }
 
-  return fetch(input, {
-    // Fetch doesn't send cookies (in newer browser), but we rely on them
-    // for session authentication
-    credentials: 'same-origin',
+  return fetch(prependApiHost(input), {
+    // Fetch doesn't send cookies by default (in newer browsers), but we rely on them
+    // for session authentication. Set 'include' only if we're making a cross-origin request
+    credentials: import.meta.env.SNOWPACK_PUBLIC_CORAL_API_HOST ? 'include' : 'same-origin',
     // If we had set a body, then sent JSON Content-Type
     ...(init?.body && {
       headers: {

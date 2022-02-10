@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { FiCheckCircle, FiCircle, FiEdit } from 'react-icons/fi';
+import { FiEdit } from 'react-icons/fi';
 import {
   Button,
   Flex,
-  IconButton,
   Icon,
+  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -15,8 +15,6 @@ import {
   Textarea,
   useDisclosure,
 } from '@chakra-ui/react';
-
-// import { Images } from '../images';
 
 type RenovationEditModalT = {
   text: string;
@@ -106,4 +104,4 @@ export const RenovationEditModal = ({
       </Modal>
     </Fragment>
   );
-}
+};

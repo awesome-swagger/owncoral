@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type {
   PortfolioPropertyDetailT,
   RenovationItemT,
@@ -14,7 +14,7 @@ import {
   UnorderedList,
   Divider,
 } from '@chakra-ui/react';
-import { useEmblaCarousel } from 'embla-carousel/react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import { Headline } from '../../../../../../../components/text';
 
@@ -37,7 +37,7 @@ export const Upgrades = ({ propertyDetail }: RenovationPropsT) => {
   }, [emblaApi, renovationData]);
 
   return (
-    <Fragment>
+    <React.Fragment>
       <Box pos="relative">
         {propertyDetail.renovationsOverview && (
           <Text ref={textRef}>{propertyDetail.renovationsOverview}</Text>
@@ -95,6 +95,6 @@ export const Upgrades = ({ propertyDetail }: RenovationPropsT) => {
         </Center>
       )}
       {propertyDetail.renovationsOverview && renovationData?.length && <Divider my={6} />}
-    </Fragment>
+    </React.Fragment>
   );
 };

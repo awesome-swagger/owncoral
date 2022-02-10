@@ -1,10 +1,10 @@
-import type React from 'react';
 import { Fragment, lazy } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Center, Flex, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { BackBtn } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
+import { CoursesUrl } from '../../../../lib/uriConstants';
 import { titleToUrlFragment } from '../../lib';
 
 import { Data } from '../../../../lib/courseDetailData';
@@ -13,7 +13,7 @@ import Academy from '../../../../assets/academy-1.svg';
 
 const Error404 = lazy(() => import('../../../error404'));
 
-const CourseDetail: React.FC = () => {
+const CourseDetail = ({ academyUrl } : { academyUrl: string; }) => {
   const { title }: { title: string } = useParams();
   const history = useHistory();
 
@@ -26,12 +26,12 @@ const CourseDetail: React.FC = () => {
 
   return filteredData ? (
     <Fragment>
-      <BackBtn pos="absolute" handleClick={() => history.goBack()} />
+      <BackBtn pos="absolute" handleClick={() => history.push(CoursesUrl)} />
       <Box>
         <Title2 textAlign="center" mx={8} mb={10} mt={2}>
           {filteredData.name}
         </Title2>
-        {filteredData.value.map(({ title, slides, url, hideInProd=false }, index: number) => {
+        {filteredData.lessons.map(({ title, slides, url, hideInProd=false }, index: number) => {
           return (isProduction && hideInProd) ? null : (
             <Box borderRadius="2xl" my={6} pos="relative" key={index}>
               <Flex
@@ -42,7 +42,7 @@ const CourseDetail: React.FC = () => {
                 opacity={url ? 1.0 : 0.35}
                 cursor="pointer"
                 p={4}
-                onClick={url ? () => history.push(url) : undefined}
+                onClick={url ? () => history.push(academyUrl + url) : undefined}
                 borderRadius="2xl"
               >
                 <Box>

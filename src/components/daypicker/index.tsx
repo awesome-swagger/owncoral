@@ -1,6 +1,5 @@
 /* eslint-disable import/no-duplicates */
 import type React from 'react';
-import type { FocusEvent } from 'react';
 import { Flex, Input, Select, Spacer } from '@chakra-ui/react';
 
 export type SplitDateT = {

@@ -1,79 +1,62 @@
-import React, { lazy, useCallback, useEffect, useReducer } from 'react';
+import React, { lazy, useCallback } from 'react';
 import { Redirect, Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
 
 import { ProtectedRoute } from '../../components';
-import { retrieveState, storeState } from '../../lib/utils';
-import { signupRoutes } from './signupRoutes';
+import { signupRouteGraph } from './signupRoutes';
+import { ResultAlmostThere } from './steps/ResultAlmostThere';
+
 const Error404 = lazy(() => import('../error404'));
 
-export type DivRef = HTMLDivElement;
-export type FormRef = HTMLFormElement;
-
-type FormStateT = {
-  [key: string]: any;
-};
-
-export type ContextT = {
-  formState?: FormStateT;
-  dispatch?: any;
-};
-
 export type StepPropsT = {
-  nextStep: () => void;
+  nextStep: (nextExit?: number) => void;
   prevStep: () => void;
 };
 
-type ActionT = {
-  type: string;
-  payload: { [key: string]: any };
-};
-
-export const StepFormContext = React.createContext<ContextT>({});
-
-function formReducer(state: FormStateT, action: ActionT) {
-  switch (action.type) {
-    case 'update-form':
-      return { ...state, ...action.payload };
-    default:
-      return state;
-  }
-}
-
+/**
+ * Overview
+ *
+ * 1. First check for accreditation. All state for these questions is
+ *    local.
+ * 2. If user is accredited, they set up a login and we start a session.
+ * 3. Once they are logged in, we incrementally update the user_self
+ *    view as they answer more questions.
+ */
 function SignupFlow() {
-  const [formState, dispatch] = useReducer(formReducer, retrieveState('signup_state'));
   const { url: signupRootUrl } = useRouteMatch();
   const history = useHistory();
 
-  const createNextStep = (currStep: number) => () => {
-    if (currStep + 1 === signupRoutes.length) {
+  const createNextStep = (exits: Array<string>) => (exitNum = 0) => {
+    if (exits.length === 0) {
       history.push('/');
     } else {
-      history.push(signupRootUrl + signupRoutes[currStep + 1]?.path);
+      history.push(signupRootUrl + '/' + exits[exitNum]);
     }
   };
   const prevStep = useCallback(() => {
     history.goBack();
   }, [history]);
 
-  useEffect(() => {
-    /** store state at local storage as well for future use */
-    storeState(formState, 'signup_state');
-  }, [formState]);
-
   return (
-    <StepFormContext.Provider value={{ formState, dispatch }}>
-      <Switch>
-        <Route exact path={signupRootUrl}>
-          <Redirect to={signupRootUrl + signupRoutes[0].path} />
-        </Route>
-        {signupRoutes.map(({ component: SignupComponent, path }, currStep) => (
-          <Route exact path={signupRootUrl + path} key={path}>
-            <SignupComponent nextStep={createNextStep(currStep)} prevStep={prevStep} />
-          </Route>
-        ))}
-        <ProtectedRoute path="*" component={Error404} />
-      </Switch>
-    </StepFormContext.Provider>
+    <Switch>
+      <Route exact path={signupRootUrl}>
+        <Redirect push to={signupRootUrl + '/name'} />
+      </Route>
+      {Object.keys(signupRouteGraph).map(
+        (path) => {
+          const RouteComponent = signupRouteGraph[path].isProtectedRoute ? ProtectedRoute : Route;
+          const SignupComponent = signupRouteGraph[path].component;
+          return (
+            <RouteComponent exact path={signupRootUrl + '/' + path} key={path}>
+              <SignupComponent nextStep={createNextStep(signupRouteGraph[path].next)} prevStep={prevStep} />
+            </RouteComponent>
+          );
+        },
+      )}
+      <Route exact path={signupRootUrl + '/almost-there'}>
+        <ResultAlmostThere />
+      </Route>
+      <Route path="*" component={Error404} />
+    </Switch>
   );
 }
 

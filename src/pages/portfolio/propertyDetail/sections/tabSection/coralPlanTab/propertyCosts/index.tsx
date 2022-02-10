@@ -41,7 +41,12 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           <Text>Property upgrades and closing</Text>
           <Text>
             {propertyDetail.mdlClosingCost !== null && propertyDetail.mdlRenovation !== null
-              ? '$' + formatFinancial(propertyDetail.mdlClosingCost + propertyDetail.mdlRenovation)
+              ? '$' +
+                formatFinancial(
+                  propertyDetail.mdlClosingCost +
+                    propertyDetail.mdlRenovation +
+                    (propertyDetail?.mdlBrokerFee || 0),
+                )
               : 'N/A'}
           </Text>
         </Flex>
@@ -62,10 +67,10 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Capex reserve</Text>
+          <Text>Capex&nbsp;reserve</Text>
           <Text>
-            {propertyDetail.mdlCapexReserve !== null && propertyDetail.mdlRenovation !== null
-              ? '$' + formatFinancial(propertyDetail.mdlCapexReserve + propertyDetail.mdlRenovation)
+            {propertyDetail.mdlCapexReserve !== null
+              ? '$' + formatFinancial(propertyDetail.mdlCapexReserve)
               : 'N/A'}
           </Text>
         </Flex>
@@ -74,6 +79,10 @@ export const PropertyCosts = ({ propertyDetail }: PropertyCostsPropsT) => {
           <Text>${totalCapitalCost}</Text>
         </Flex>
       </VStack>
+      {/* <Box h={4} /> */}
+      {/* <Button colorScheme="secondary" variant="outline" w="100%"> */}
+      {/*  Learn more about Capital Cost */}
+      {/* </Button> */}
     </Box>
   );
 };

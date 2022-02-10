@@ -1,79 +1,83 @@
-import React, { forwardRef, useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
+import type { InvestmentGoalT } from '../../../shared-fullstack/types';
 import { Box, Text } from '@chakra-ui/react';
-import {
-  BackBtn,
-  Container,
-  ProgressBar,
-  SlideContainer,
-  SubmitBtn,
-  SelectBox,
-} from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
 
-type InvestmentGoalT = {
-  value: string;
-};
+import { BackBtn, Container, ProgressBar, SelectBox, SlideContainer, SubmitBtn } from '../../../components';
+import { Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
-const investmentGoals: InvestmentGoalT[] = [
-  { value: 'Diversification' },
-  { value: 'Steady cash flow (income)' },
-  { value: 'Overall returns' },
-  { value: 'Tax-efficiency / benefits' },
-  { value: "I'm not sure" },
+const investmentGoals: { goal: InvestmentGoalT; label: string }[] = [
+  { goal: 'DIVERSIFICATION', label: 'Diversification' },
+  { goal: 'INCOME', label: 'Steady cash flow (income)' },
+  { goal: 'RETURNS', label: 'Overall returns' },
+  { goal: 'TAX_EFFICIENCY', label: 'Tax-efficiency / benefits' },
+  { goal: 'NOT_SURE', label: "I'm not sure" },
 ];
 
-export const InvestmentGoal = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step6;
+export const InvestmentGoal:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo, dispatch } = useContext(SignupContext);
 
-    const handleSubmit = useCallback(
-      (value) => {
-        const selectedVal = formStep ? formStep : [];
-        const filterVal = selectedVal.filter((item: Number) => item !== value);
-        const checkVal = selectedVal.includes(value);
+  const handleClick = (goal: InvestmentGoalT) => {
+    let goals: InvestmentGoalT[] = signupInfo?.investmentGoals || [];
+    if (goals.includes(goal)) {
+      goals = goals.filter((g) => g !== goal);
+    } else {
+      goals.push(goal);
+    }
+    goals.sort();
 
-        form.dispatch({
-          type: 'update-form',
-          payload: { step6: checkVal ? filterVal : [...selectedVal, value] },
-        });
-      },
-      [form, formStep],
-    );
+    dispatch?.({
+      investmentGoals: goals,
+    });
+  };
 
-    return (
-      <Container
-        d="flex"
-        flexDir="column"
-        justifyContent="space-between"
-        ref={ref}
-        layerStyle="noSelect"
-      >
-        <SlideContainer>
-          <Box w="100%">
-            <BackBtn handleClick={prevStep} />
-            <ProgressBar total={7} value={2} />
-            <Title1 mt={8} mb={2} textAlign="left">
-              What goals do you want to achieve through investment property ownership?
-            </Title1>
-            <Text fontSize="md">Select all that apply</Text>
-            <Box my={8}>
-              {investmentGoals.map(({ value }, idx) => (
-                <SelectBox
-                  key={idx}
-                  state={formStep}
-                  icon="checkbox"
-                  value={value}
-                  handleClick={() => handleSubmit(value)}
-                />
-              ))}
-            </Box>
+  const handleSubmit = async () => {
+    nextStep(); // optimistically updates, ignoring failures
+    await fetchWrap('/api/update-signup-info', {
+      method: 'POST',
+      body: JSON.stringify(signupInfo),
+    });
+  };
+
+  return (
+    <Container
+      d="flex"
+      flexDir="column"
+      justifyContent="space-between"
+      layerStyle="noSelect"
+    >
+      <SlideContainer>
+        <Box w="100%">
+          <BackBtn handleClick={prevStep} />
+          <ProgressBar total={7} value={2} />
+          <Title2 mt={8} mb={6} textAlign="left">
+            What are your goals?
+          </Title2>
+          <Text textStyle="Body1">
+            What do you want to achieve through investment property ownership? Select all that apply
+          </Text>
+          <Box my={8}>
+            {investmentGoals.map(({ goal, label }, idx) => (
+              <SelectBox
+                key={idx}
+                state={signupInfo?.investmentGoals}
+                icon="checkbox"
+                value={goal}
+                handleClick={() => handleClick(goal)}
+              >
+                {label}
+              </SelectBox>
+            ))}
           </Box>
-          <SubmitBtn label="Continue" disabled={!formStep?.length} onClick={nextStep} />
-        </SlideContainer>
-      </Container>
-    );
-  },
-);
+        </Box>
+        <SubmitBtn
+          label="Continue"
+          disabled={!(signupInfo?.investmentGoals || []).length}
+          onClick={handleSubmit}
+        />
+      </SlideContainer>
+    </Container>
+  );
+}

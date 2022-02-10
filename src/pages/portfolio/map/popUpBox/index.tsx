@@ -1,7 +1,7 @@
 import type React from 'react';
 import { Box, Center, Heading } from '@chakra-ui/react';
 
-import { Container, Option, FilterPopUp } from '../../../../components';
+import { Container, FilterPopUp, Option } from '../../../../components';
 
 export const PopUpBox = ({
   handleClose,

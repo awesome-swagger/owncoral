@@ -1,5 +1,4 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { FiBell, FiKey, FiTag, FiUser } from 'react-icons/fi';
+import React, { Fragment } from 'react';
 import { HiOutlineDocument } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -9,18 +8,40 @@ import {
   Icon,
   Spacer,
   Text,
-  useBreakpointValue,
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { Portal } from '@visx/tooltip';
-import { useNavHeight } from '../../lib/useNavHeight';
-import CryptoJS from 'crypto-js';
+import { whiten } from '@chakra-ui/theme-tools';
 
-import Academy from '../../assets/Academy.svg';
 import Logo from '../../assets/coral-logo-wtext.svg';
-import { UserContext } from '../../userContext';
-import { useIntercom } from 'react-use-intercom';
+import {
+  AcademyUrl,
+  ComingSoonUrl,
+  DraftsUrl,
+  ListingsUrl,
+  NewsfeedUrl,
+  PortfolioUrl,
+  ProfileUrl,
+} from '../../lib/uriConstants';
+import { useNavHeight } from '../../lib/useNavHeight';
+import theme from '../../theme';
+import {
+  Academy,
+  AcademyFill,
+  Bell,
+  BellAlert,
+  BellAlertFill,
+  BellFill,
+  Communication,
+  CommunicationFill,
+  Key,
+  KeyFill,
+  Tag,
+  TagFill,
+  User,
+  UserFill
+} from './../../assets/navBarIcons';
+import { NAVBAR_TOP_BREAKPOINT } from './constants';
 
 const NAV_ZINDEX = 5;
 const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
@@ -28,46 +49,51 @@ const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
 type navLinksT = {
   name: string;
   url?: string;
-  icon: React.RefForwardingComponent<SVGSVGElement, React.SVGAttributes<SVGSVGElement>>;
+  icon: ((props: any) => (React.ReactElement));
+  fullIcon : ((props: any) => (React.ReactElement));
 };
 
 const navLinks = [
   {
     name: 'Listings',
-    url: '/listings',
-    icon: FiTag,
+    url: ListingsUrl,
+    icon: Tag,
+    fullIcon: TagFill,
   },
   {
     name: 'Academy',
-    url: '/academy',
+    url: AcademyUrl,
     icon: Academy,
+    fullIcon: AcademyFill,
   },
   {
     name: 'Portfolio',
-    url: '/portfolio',
-    icon: FiKey,
+    url: PortfolioUrl,
+    icon: Key,
+    fullIcon: KeyFill,
   },
   {
-    name: 'Messages',
-    icon: FiBell,
+    name: 'News',
+    url: NewsfeedUrl,
+    icon: Communication,
+    fullIcon: CommunicationFill,
   },
   {
     name: 'Profile',
-    url: '/profile',
-    icon: FiUser,
+    url: ProfileUrl,
+    icon: User,
+    fullIcon: UserFill,
   },
 ];
 
 if (!isProd) {
   navLinks.push({
     name: 'Drafts',
-    url: '/drafts',
-    icon: HiOutlineDocument,
+    url: DraftsUrl,
+    icon: Communication, // icons intentionally spaghetti
+    fullIcon: UserFill,
   });
 }
-
-// Past this size, navbar only shown on top bar (no footer)
-export const NAVBAR_TOP_BREAKPOINT = 'md';
 
 /*
   Layout
@@ -83,68 +109,50 @@ export const NAVBAR_TOP_BREAKPOINT = 'md';
     Reference: https://material.io/design/color/dark-theme.html#properties
  */
 export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement | null {
-  const [user] = useContext(UserContext);
   const location = useLocation();
-  const { boot } = useIntercom();
-  const identitySecretKey = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_IDENTITY_SECRET_KEY;
   const currentPageName = getCurrentPageName(location.pathname);
   const logoFillColor = useColorModeValue('dark.500', 'gray.200');
   const [isTouch] = useMediaQuery('(pointer: coarse)');
 
-  const { headerHeight, footerHeight, extraHeight } = useNavHeight();
-  const isBottomNav = useBreakpointValue({ base: true, [NAVBAR_TOP_BREAKPOINT]: false });
+  const { extraHeight, footerHeight, headerHeight } = useNavHeight();
 
-  const navColor = useColorModeValue('gray.50', 'whiteAlpha.200');
-
-  useEffect(() => {
-    if (user) {
-      const hashCode = CryptoJS.HmacSHA256(user.email, identitySecretKey).toString(
-        CryptoJS.enc.Hex,
-      );
-      boot({
-        name: user?.legalFirst,
-        email: user?.email,
-        hideDefaultLauncher: true,
-        customLauncherSelector: '#itercomLauncherHandler',
-        userHash: hashCode,
-      });
-    }
-  }, [user]);
+  const navColor = useColorModeValue('white', whiten('gray.900', 6)(theme));
+  /* match theme.styles.global.body.bg for dark mode */
+  const navBg = useColorModeValue(navColor, 'gray.900');
 
   return (
     <Fragment>
       {/* Spacer to match fixed header */}
-      <Box h={headerHeight} />
+      <Box
+        h={`calc(${headerHeight} + env(safe-area-inset-top))`}
+        display={{ base: 'none', md: 'block' }}
+      />
       {/* Provide a default bgColor backing transparency in dark mode */}
       <Box
         as="header"
         pos="fixed"
-        top={0}
+        top="-1px" // Avoid transparent box-shadow showing thin layer underneath at top
         w="100%"
         boxShadow="xs"
-        h={headerHeight}
-        /* match theme.styles.global.body.bg for dark mode */
-        bgColor="gray.800"
+        h={`calc(${headerHeight} + env(safe-area-inset-top) * 7/6)`}
+        display={{ base: 'none', md: 'block' }}
+        paddingTop="env(safe-area-inset-top)"
+        paddingLeft="env(safe-area-inset-left)"
+        paddingRight="env(safe-area-inset-right)"
+        paddingBottom="calc(env(safe-area-inset-top) / 6)"
+        bgColor={navBg}
+        bg={navColor}
         zIndex={NAV_ZINDEX}
         sx={{ overscrollBehavior: 'none' }}
       >
-        <Flex align="stretch" justify="center" bg={navColor} h="100%" w="100%">
+        <Flex align="stretch" justify="center" h="100%" w="100%">
           <Center h="100%" marginX={6}>
             <Icon as={Logo} w="6em" h="1.5em" sx={{ fill: logoFillColor }} />
           </Center>
-          {!isBottomNav && (
-            <Fragment>
-              <Spacer />
-              <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
-            </Fragment>
-          )}
+          <Spacer />
+          <NavButtons currentPageName={currentPageName} isTouch={isTouch} />
         </Flex>
       </Box>
-
-      {/* This goes at bottom of content to match footer height */}
-      <Portal>
-        <Box display={{ [NAVBAR_TOP_BREAKPOINT]: 'none' }} h={footerHeight} />
-      </Portal>
 
       {/* Provide a default bgColor backing transparency in dark mode */}
       <Box
@@ -156,7 +164,7 @@ export function NavBar(props: React.PropsWithChildren<{}>): React.ReactElement |
         h={footerHeight}
         display={{ [NAVBAR_TOP_BREAKPOINT]: 'none' }}
         /* match theme.styles.global.body.bg for dark mode */
-        bgColor="gray.800"
+        bgColor="gray.900"
         zIndex={NAV_ZINDEX}
         sx={{ overscrollBehavior: 'none' }}
       >
@@ -187,7 +195,7 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
       maxW="450px"
       h="100%"
     >
-      {navLinks.map(({ name, url, icon }: navLinksT) => (
+      {navLinks.map(({ name, url, icon, fullIcon }: navLinksT) => (
         <Flex
           as={url ? Link : Flex}
           to={url ? url : null}
@@ -201,20 +209,22 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
           justify="center"
           borderRadius="lg"
           cursor="pointer"
-          id={name === 'Messages' ? 'itercomLauncherHandler' : ''}
+          id={name}
           // Button-press effect for desktop
           _active={props.isTouch ? {} : { transform: 'scale(0.9)' }}
           sx={{ transition: 'all 200ms' }}
           _hover={hoverColors}
           color={props.currentPageName === name ? activeColor : inactiveColor}
+          
         >
           <Icon
-            as={icon}
+            as={props.currentPageName === name ? fullIcon : icon}
             w={5}
             h={5}
             aria-label={name}
             m={0}
-            fill={props.currentPageName === name ? activeColor : 'none'}
+            fill={props.currentPageName === name ? activeColor : "none"}
+            stroke={props.currentPageName === name ? "none" : activeColor}
           />
           <Text as="span" textStyle="Caption1" fontWeight="normal">
             {name}
@@ -228,5 +238,5 @@ function NavButtons(props: { currentPageName: string | null; isTouch: boolean })
 function getCurrentPageName(path: string): string | null {
   const filteredLink = navLinks.find((link) => link.url && path.startsWith(link.url));
 
-  return filteredLink ? filteredLink.name : null;
+  return filteredLink?.name || null;
 }

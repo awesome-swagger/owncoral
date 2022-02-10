@@ -36,7 +36,7 @@ const baseVariants = {
     const { colorScheme: c } = props;
 
     if (c === 'gray') {
-      const bg = mode(`gray.800`, `whiteAlpha.800`)(props);
+      const bg = mode(`gray.900`, `whiteAlpha.800`)(props);
       const fg = mode(`white`, `gray.900`)(props);
 
       return {
@@ -76,7 +76,7 @@ const baseVariants = {
 
     return {
       bg: background,
-      color: mode(color, `gray.800`)(props),
+      color: mode(color, `gray.900`)(props),
       _hover: {
         bg: mode(hoverBg, `${c}.300`)(props),
         _disabled: {

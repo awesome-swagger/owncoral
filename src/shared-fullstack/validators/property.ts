@@ -8,10 +8,10 @@ import { SourcesUses } from './propertyFinancials';
 // `@app/server/controllers/portfolio.ts`
 export const PortfolioDashboardProperty = z.object({
   propertyId: z.string(),
-  legalEntityId: z.string(),
+  legalPersonId: z.string(),
 
   propertyName: z.string(),
-  legalEntityName: z.string(),
+  legalPersonName: z.string(),
   iconUrl: z.string().nullable(),
 
   address: Address,
@@ -72,6 +72,7 @@ const BasePropertyDetail = z
 
     name: z.string().nullable(),
     description: z.string().nullable(),
+    splashImageUrl: z.string().nullable(),
     imageUrls: z.array(z.string()),
     docsUrls: z.array(z.string()),
 

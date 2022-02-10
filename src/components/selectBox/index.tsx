@@ -1,19 +1,27 @@
+import type React from 'react';
 import { Box, Icon, useColorModeValue } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FiChevronRight, FiCircle } from 'react-icons/fi';
 
-interface PropsT {
-  value: string;
-  state?: string | string[];
+type SelectBoxPropsT = {
+  value: string | number;
+  state?: string | string[] | number | null;
+  icon?: 'chevron' | 'checkbox';
   handleClick: () => void;
-  icon?: false | 'chevron' | 'checkbox';
+  children?: React.ReactNode;
 }
 
-export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 'chevron' }) => {
+export const SelectBox: React.FC<SelectBoxPropsT> = ({
+  value,
+  state,
+  icon,
+  handleClick,
+  children = null
+}) => {
   const selectBoxBg = useColorModeValue('blue.50', 'whiteAlpha.100');
-  const selectBoxText = useColorModeValue('black', 'white');
   const selectBoxBgSecondary = useColorModeValue('secondary.100', 'secondary.800');
   const selectBoxSelected = useColorModeValue('gray.300', 'whiteAlpha.400');
+  const selectBoxText = useColorModeValue('black', 'white');
 
   return (
     <Box
@@ -23,13 +31,12 @@ export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 
       textAlign="left"
       cursor="pointer"
       pos="relative"
-      key={value}
       borderRadius="full"
       color={selectBoxText}
       _hover={{ bg: selectBoxBgSecondary }}
       _active={{ bg: selectBoxBgSecondary }}
       bg={
-        value === state || (state && state.length > 0 && state.includes(value))
+        value === state || (Array.isArray(state) && state.length > 0 && state.includes(value.toString()))
           ? selectBoxSelected
           : selectBoxBg
       }
@@ -42,7 +49,7 @@ export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 
       {icon === 'checkbox' && (
         <Icon
           as={
-            value === state || (state && state.length > 0 && state.includes(value))
+            value === state || (Array.isArray(state) && state.length > 0 && state.includes(value.toString()))
               ? FaCheckCircle
               : FiCircle
           }
@@ -53,7 +60,7 @@ export const SelectBox: React.FC<PropsT> = ({ value, state, handleClick, icon = 
           mr={2}
         />
       )}
-      {value}
+      {children || value}
       {icon === 'chevron' && (
         <Icon pos="absolute" top="50%" right={4} transform="translateY(-50%)" as={FiChevronRight} />
       )}

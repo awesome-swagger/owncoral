@@ -1,4 +1,3 @@
-import { FiMapPin } from 'react-icons/fi';
 import type { ListingsPropertyT } from '../../shared-fullstack/types';
 import { PropertyStatus } from '../../shared-fullstack/validators';
 import {
@@ -14,27 +13,33 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar';
+import { NAVBAR_TOP_BREAKPOINT } from '../../components/navBar/constants';
 import { Overline, Subhead, Title1, Title2 } from '../../components/text';
 import { formatFinancial } from '../../lib/financialFormatter';
 import { useNavHeight } from '../../lib/useNavHeight';
 
 type ListingCardPropsT = {
   listing: ListingsPropertyT;
+  useSlider?: boolean;
   onSlideClick: (x: ListingsPropertyT) => void;
 };
-export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
+export const ListingCard = ({ listing, useSlider, onSlideClick }: ListingCardPropsT) => {
   const [isTouch] = useMediaQuery('(pointer: coarse)');
-  const { headerHeight, footerHeight, extraHeight } = useNavHeight();
+  const { headerHeight, footerHeight } = useNavHeight();
   const isLightMode = useColorModeValue(true, false);
+
   const background = isLightMode
     ? 'linear-gradient(0deg, rgb(129, 133, 146) 0%, rgb(174, 176, 182) ' +
       '25%, rgb(208, 199, 197) 40%, rgb(228, 219, 217) ' +
       '50%, rgb(208, 199, 197) 60%, rgb(174, 176, 182)  ' +
       '75%, rgb(129, 133, 146) 100%)'
     : 'whiteAlpha.200';
-  const priorListingGrayscaleFilter =
-    listing.status === PropertyStatus.enum.CLOSED ? 'grayscale(1)' : undefined;
+  const hover = isLightMode
+    ? { filter: `saturate(1.35) contrast(1.1)` }
+    : {
+        filter: `saturate(1.35) contrast(1.1) brightness(1.1)`,
+        bgColor: 'whiteAlpha.300',
+      };
 
   if (!listing.cardImageUrl) return null;
 
@@ -43,20 +48,17 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       w="100%"
       pos="relative"
       h={{
-        base: `calc(${window.innerHeight}px - ${headerHeight} - ${footerHeight} - ${extraHeight} - 6.5rem)`,
-        [NAVBAR_TOP_BREAKPOINT]: `calc(${window.innerHeight}px - ${headerHeight} - 8rem)`,
+        base:
+          `calc(${window.innerHeight}px - ${footerHeight}` +
+          ' - 6.5rem - env(safe-area-inset-top))',
+        [NAVBAR_TOP_BREAKPOINT]:
+          `calc(max(${window.innerHeight}px - ${headerHeight} ` +
+          '- 8rem - env(safe-area-inset-top), 24rem))',
       }}
       maxHeight={{ base: 'unset', [NAVBAR_TOP_BREAKPOINT]: '550px' }}
       boxShadow="sm"
       borderRadius="3xl"
-      _hover={
-        isLightMode
-          ? { filter: `saturate(1.35) contrast(1.1)` }
-          : {
-              filter: `saturate(1.35) contrast(1.1) brightness(1.1)`,
-              bgColor: 'whiteAlpha.300',
-            }
-      }
+      _hover={useSlider ? {} : hover}
       _active={isTouch ? {} : { transform: 'translateY(1px) translateX(0.5px)' }}
       transition="all 200ms"
       color="white"
@@ -65,8 +67,8 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
       background={background}
       overflow="hidden"
     >
-      {listing.status === PropertyStatus.enum.CLOSED && <ClosedDealLabel />}
-      <Box w="100%" h="100%" filter={priorListingGrayscaleFilter}>
+      {listing.status === PropertyStatus.enum.CLOSED && <CornerRibbon />}
+      <Box w="100%" h="100%">
         <Box pos="absolute" top={0} left={0} w="100%" px={5} py={6}>
           <Flex justify="space-between" align="baseline">
             <Title1>{listing.name}</Title1>
@@ -150,10 +152,10 @@ export const ListingCard = ({ listing, onSlideClick }: ListingCardPropsT) => {
 };
 
 // Reference: https://www.figma.com/file/Tsxb6xTQkoLz2bQMN3FQNH/Coral---UI-Design?node-id=3381%3A16817
-const ClosedDealLabel = () => {
+const CornerRibbon = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true });
-  const width = isDesktop ? 15 : 12,
-    height = 2.5;
+  const width = isDesktop ? 16 : 14;
+  const height = 2.5;
   const top = ((width - height) * 0.707 - height) / 2;
   const right = ((width - height) * 0.707 - width) / 2;
 
@@ -169,7 +171,7 @@ const ClosedDealLabel = () => {
       boxShadow="0px 2.28936px 9.15745px rgba(50, 53, 56, 0.04)"
     >
       <Overline fontSize={`${14 / 16}rem`} color="primary.600" lineHeight={`${height}em`}>
-        Closed Deal
+        Secondary Sale
       </Overline>
     </Box>
   );

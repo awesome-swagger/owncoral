@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { FiMail } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import {
+  Box,
   FormControl,
   Icon,
   Input,
@@ -11,12 +12,10 @@ import {
   Spinner,
   Text,
   useToast,
-  Box,
 } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../components';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../components';
 import { Title1 } from '../../components/text';
-
 import { fetchWrap } from '../../lib/api';
 
 const ForgotPassword: React.FC = () => {
@@ -30,44 +29,16 @@ const ForgotPassword: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   type FormContents = { email: string };
-  const onSubmit = async ({ email }: FormContents) => {
-    setIsLoading(true);
-    const resp = await fetchWrap('/api/reset-password', {
-      method: 'POST',
-      body: JSON.stringify({ email }),
-    });
-    setIsLoading(false);
-
-    if (resp === null) return;
-
-    // 429 on too many reset requests — we report success anyway
-    if (resp.ok || resp.status === 429) {
-      history.push('/forgot-check-email');
-      return;
-    }
-
-    switch (resp.status) {
-      default:
-        toast({
-          title: 'An error occurred.',
-          description: 'Unable to send password reset email',
-          status: 'error',
-          duration: 9000,
-          isClosable: true,
-        });
-        break;
-    }
+  const onSubmit = () => {
+    
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Container>
         <SlideContainer>
           <Box w="100%">
-            <BackBtn
-              handleClick={() => {
-                history.push('/login');
-              }}
+            <BackBtn handleClick={() => history.push('/login')}
             />
             <Title1 mt={8} mb={2} colorScheme="secondary" variant="colored">
               Forgot your password?
@@ -87,14 +58,13 @@ const ForgotPassword: React.FC = () => {
                 </InputLeftElement>
                 <Input
                   id="email"
-                  name="email"
+                  {...register('email', {
+                    required: true,
+                  })}
                   type="email"
                   pl={8}
                   placeholder="Email"
                   defaultValue=""
-                  ref={register({
-                    required: true,
-                  })}
                 />
               </InputGroup>
             </FormControl>
@@ -112,4 +82,5 @@ const ForgotPassword: React.FC = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default ForgotPassword;

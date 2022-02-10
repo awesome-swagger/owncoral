@@ -1,92 +1,106 @@
-import { CertificateOfRegistration } from './steps/CertificateOfRegistration';
-import { DateOfFormation } from './steps/DateOfFormation';
-import { DateOfRegistration } from './steps/DateOfRegistration';
-import { Ein } from './steps/Ein';
-import { EntityAddress } from './steps/EntityAddress';
-import { EntityName } from './steps/EntityName';
-import { EntityPhoneNumber } from './steps/EntityPhoneNumber';
-import { EntityType } from './steps/EntityType';
-import { Industry } from './steps/Industry';
-import { InformationMissing } from './steps/InformationMissing';
-import { Invest } from './steps/Invest';
-import { JurisdictionRegistration } from './steps/JurisdictionRegistration';
-import { PhoneNumber } from './steps/PhoneNumber';
-import { ResidentialAddress } from './steps/ResidentialAddress';
-import { Result } from './steps/Result';
-import { SsnOrEin } from './steps/SsnOrEin';
-import { TaxClassification } from './steps/TaxClassification';
+import type React from 'react';
 
-type loginRouteType = { path: string; Component: any };
+import {
+  AccountNumber,
+  AccreditedEntity,
+  // CertificateOfRegistration,
+  Custodian,
+  DateOfBirth,
+  // DateOfFormation,
+  Ein,
+  EntityAddress,
+  EntityName,
+  // EntityPhoneNumber,
+  EntityType,
+  // Industry,
+  InformationMissing,
+  Invest,
+  // JurisdictionRegistration,
+  PhoneNumber,
+  ResidentialAddress,
+  Result,
+  SsnOrEin,
+} from './steps';
 
-// Paths are relative to flow's path (e.g. '/phone-number' corresponds to 'investment-profile/phone-number')
-export const investmentProfileRoutes: Array<loginRouteType> = [
-  {
-    path: '/information-missing',
-    Component: InformationMissing,
-  },
-  {
-    path: '/residental-address',
-    Component: ResidentialAddress,
-  },
-  {
-    path: '/phone-number',
-    Component: PhoneNumber,
-  },
-  {
-    path: '/ssn-or-ein',
-    Component: SsnOrEin,
-  },
-  {
-    path: '/invest',
-    Component: Invest,
-  },
-  {
-    path: '/entity-name',
-    Component: EntityName,
-  },
-  {
-    path: '/entity-type',
-    Component: EntityType,
-  },
-  {
-    path: '/tax-classification',
-    Component: TaxClassification,
-  },
-  {
-    path: '/ein',
-    Component: Ein,
-  },
-  {
-    path: '/industry',
-    Component: Industry,
-  },
-  {
-    path: '/date-of-formation',
-    Component: DateOfFormation,
-  },
+type InvestmentProfileRouteType = {component: React.ElementType; next: Array<string>};
 
-  {
-    path: '/jurisdiction-registration',
-    Component: JurisdictionRegistration,
+export const investmentProfileRouteGraph: Record<string, InvestmentProfileRouteType> = {
+  '/information-missing': {
+    component: InformationMissing,
+    next: ['/date-of-birth']
   },
-  {
-    path: '/date-of-registration',
-    Component: DateOfRegistration,
+  '/date-of-birth': {
+    component: DateOfBirth,
+    next: ['/residental-address']
   },
-  {
-    path: '/certificate-of-registration',
-    Component: CertificateOfRegistration,
+  '/residental-address': {
+    component: ResidentialAddress,
+    next: ['/phone-number']
   },
-  {
-    path: '/entity-address',
-    Component: EntityAddress,
+  '/phone-number': {
+    component: PhoneNumber,
+    next: ['/ein']
   },
-  {
-    path: '/entity-phone-number',
-    Component: EntityPhoneNumber,
+  '/ein': {
+    component: Ein,
+    next: ['/invest']
   },
-  {
-    path: '/result',
-    Component: Result,
+  '/invest': {
+    component: Invest,
+    next: ['/entity-name','/result']
   },
-];
+  '/entity-name': {
+    component: EntityName,
+    next: ['/entity-type']
+  },
+  '/entity-type': {
+    component: EntityType,
+    next: ['/entity-accredited', '/ira-custodian']
+  },
+  '/ira-custodian': {
+    component: Custodian,
+    next: ['/ira-account-number']
+  },
+  '/ira-account-number': {
+    component: AccountNumber,
+    next: ['/entity-accredited']
+  },
+  '/entity-accredited': {
+    component: AccreditedEntity,
+    next: ['/ssn-or-ein']
+  },
+  '/ssn-or-ein': {
+    component: SsnOrEin,
+    next: ['/entity-address']
+  },
+  '/entity-address': {
+    component: EntityAddress,
+    next: ['/result']
+  },
+  /*
+  '/industry': {
+    component: Industry,
+    next: ['/date-of-formation']
+  },
+  '/date-of-formation': {
+    component: DateOfFormation,
+    next: ['/jurisdiction-registration']
+  },
+  '/jurisdiction-registration': {
+    component: JurisdictionRegistration,
+    next: ['/date-of-registration']
+  },
+  '/certificate-of-registration': {
+    component: CertificateOfRegistration,
+    next: ['/entity-address']
+  },
+  '/entity-phone-number': {
+    component: EntityPhoneNumber,
+    next: ['/result']
+  },
+  */
+  '/result': {
+    component: Result,
+    next: []
+  },
+};

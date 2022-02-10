@@ -30,5 +30,9 @@ export const RentalIncome = ({ propertyDetail }: ValueAddPlanPropsT) => (
         </Text>
       </Flex>
     </VStack>
+    {/* <Flex alignItems="center" cursor="pointer" mt={6}> */}
+    {/*  <Icon as={FiChevronRight} mr={1} /> */}
+    {/*  <Text>Learn more about our target rental income</Text> */}
+    {/* </Flex> */}
   </Box>
 );

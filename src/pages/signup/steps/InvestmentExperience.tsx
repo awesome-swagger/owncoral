@@ -1,56 +1,60 @@
-import React, { forwardRef, useCallback, useContext } from 'react';
-import { ChevronRight } from 'react-feather';
-import { Box, Icon } from '@chakra-ui/react';
+import React, { useContext, useState } from 'react';
+import { Box, useToast } from '@chakra-ui/react';
+
 import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
 type ExperienceT = {
-  value: string;
+  yrs: number;
+  label: string;
 };
 const experience: ExperienceT[] = [
-  { value: '0-2 years ' },
-  { value: '2-5 years ' },
-  { value: '5-10 years ' },
-  { value: '10-20 years ' },
-  { value: 'More than 20 years ' },
+  { yrs: 1, label: '0-2 years ' },
+  { yrs: 3, label: '2-5 years ' },
+  { yrs: 7, label: '5-10 years ' },
+  { yrs: 14, label: '10-20 years ' },
+  { yrs: 30, label: 'More than 20 years ' },
 ];
 
-export const InvestmentExperience = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step5;
+export const InvestmentExperience:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo, dispatch } = useContext(SignupContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
 
-    const handleSubmit = useCallback(
-      (value) => {
-        form.dispatch({ type: 'update-form', payload: { step5: value } });
-        nextStep();
-      },
-      [form, nextStep],
-    );
+  const handleSubmit = async (value: number) => {
+    dispatch?.({ investmentExperienceYrs: value });
+    nextStep(); // optimistically updates, ignoring failures
+    await fetchWrap('/api/update-signup-info', {
+      method: 'POST',
+      body: JSON.stringify(signupInfo),
+    });
+  };
 
-    return (
-      <Box ref={ref} layerStyle="noSelect">
-        <Container>
-          <BackBtn handleClick={prevStep} />
-          <ProgressBar total={7} value={1} />
-          <Title1 mt={8} textAlign="left">
-            How long have you been investing?
-          </Title1>
-          <Box my={8}>
-            {experience.map(({ value }, idx) => (
-              <SelectBox
-                key={idx}
-                icon="chevron"
-                value={value}
-                state={formStep}
-                handleClick={() => handleSubmit(value)}
-              />
-            ))}
-          </Box>
-        </Container>
-      </Box>
-    );
-  },
-);
+  return (
+    <Box layerStyle="noSelect">
+      <Container>
+        <BackBtn handleClick={prevStep} />
+        <ProgressBar total={7} value={1} />
+        <Title2 mt={8} mb={6} textAlign="left">
+          How long have you been investing?
+        </Title2>
+        <Box mt={8}>
+          {experience.map(({ yrs, label }) => (
+            <SelectBox
+              key={yrs}
+              icon="chevron"
+              value={yrs}
+              state={signupInfo?.investmentExperienceYrs}
+              handleClick={() => handleSubmit(yrs)}
+            >
+              {label}
+            </SelectBox>
+          ))}
+        </Box>
+      </Container>
+    </Box>
+  );
+}

@@ -1,5 +1,5 @@
 import type React from 'react';
-import { Box, Center, CenterProps, Flex, Image } from '@chakra-ui/react';
+import { Box, Center, CenterProps, Flex, Image, Spinner } from '@chakra-ui/react';
 
 import { Headline, Subhead } from '../../components/text';
 
@@ -26,7 +26,18 @@ export const CourseCard: React.FC<{
   >
     <Center w="100%" h="100%">
       <Flex flexDirection="column" textAlign="center" opacity={isComingSoon ? 0.35 : 1.0}>
-        <Image minH={24} h={24} src={image} alt="course_image" mx="auto" />
+        <Image
+          minH={24}
+          h={24}
+          src={image}
+          alt="course_image"
+          mx="auto"
+          fallback={
+            <Center h="100%">
+              <Spinner />
+            </Center>
+          }
+        />
         <Center flexDirection="column" h="100%">
           <Headline my={2}>{name}</Headline>
           <Subhead>{lesson} lessons</Subhead>

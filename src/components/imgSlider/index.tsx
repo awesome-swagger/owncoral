@@ -1,5 +1,5 @@
 /* eslint-disable max-params */
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import {
   AspectRatio,
@@ -13,7 +13,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { useEmblaCarousel } from 'embla-carousel/react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import './style.css';
 
@@ -21,7 +21,7 @@ import { DotButton, NextButton, PrevButton } from './EmblaCarouselButtons';
 
 type ImgSliderPropsT = {
   images: string[];
-  fallback?: ReactElement;
+  fallback?: React.ReactElement;
 };
 
 export const ImgSlider = ({ images, fallback }: ImgSliderPropsT) => {
@@ -78,7 +78,7 @@ const CenterCarousel = ({
   onOpen,
 }: {
   images: string[];
-  fallback?: ReactElement;
+  fallback?: React.ReactElement;
   setImageIndex: (index: number) => void;
   onOpen: () => void;
 }) => {

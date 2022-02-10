@@ -3,6 +3,7 @@ import { Box, Button, Divider, Flex, Heading, Image } from '@chakra-ui/react';
 
 import { BoxLightBorder, Container } from '../../../../components';
 import { Headline, Title2 } from '../../../../components/text';
+import { PortfolioUrl } from '../../../../lib/uriConstants';
 
 import PropertyImg from '../../../../assets/Frame269.png';
 
@@ -37,7 +38,7 @@ export const SuccessTransaction = () => (
           <Title2 fontWeight="500">$50.000</Title2>
         </Flex>
       </BoxLightBorder>
-      <Link to="/portfolio">
+      <Link to={PortfolioUrl}>
         <Button w="100%">See my portfolio</Button>
       </Link>
     </Box>

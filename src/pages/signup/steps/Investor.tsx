@@ -1,137 +1,266 @@
-import React, { Dispatch, forwardRef, Fragment, useCallback, useContext, useState } from 'react';
+import React, { Dispatch, useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FiAlertTriangle, FiCircle } from 'react-icons/fi';
-import { Box, Center, Divider, Flex, Icon, Input, Text } from '@chakra-ui/react';
-import { BackBtn, Container, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { FiAlertTriangle, FiCircle, FiMail } from 'react-icons/fi';
+import { Redirect, useHistory } from 'react-router-dom';
+import {
+  Box,
+  Center,
+  Divider,
+  Flex,
+  FormControl,
+  FormHelperText,
+  Icon,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Spinner,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
+import {
+  BackBtn,
+  Container,
+  DividerWithText,
+  FlexContainer,
+  SlideContainer,
+  SubmitBtn,
+} from '../../../components';
+import { Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
+import { fbqWrap } from '../../../lib/fbqWrap';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
+
+type AccreditationKeysT = 'isAccreditedByIncome' | 'isAccreditedByLicense' | 'isAccreditedByAssets';
 type AccreditedInvestorT = {
-  value: number;
+  key: AccreditationKeysT;
   label: string;
   desc?: string;
 };
 
 const accreditedInvestor: AccreditedInvestorT[] = [
   {
-    value: 0,
-    label: 'Yes, I have had $200k in income (or $300k jointly with my spouse)',
-    desc: 'For the past two years and expect the same this year',
+    key: 'isAccreditedByIncome',
+    label: 'Yes, I have $200k in income, or $300k jointly with my spouse',
+    desc: 'For the past two years, and expect the same this year',
   },
-  { value: 1, label: 'Yes, I hold a Series 7, Series 65 or Series 82 license' },
-  { value: 2, label: 'Yes, I have over $1M in net assets, excluding my primary residence' },
-  { value: 3, label: 'No, none of the above are true' },
+  {
+    key: 'isAccreditedByAssets',
+    label: 'Yes, I have over $1 million in net assets, excluding my primary residence',
+  },
+  { key: 'isAccreditedByLicense', label: 'Yes, I hold a Series 7, Series 65 or Series 82 license' },
 ];
 
-export const Investor = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const [available, setAvailable] = useState('Available');
-    const formStep = form?.formState?.step3;
+export const Investor: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo, dispatch } = useContext(SignupContext);
+  const [available, setAvailable] = useState('Available');
 
-    const handleSubmit = useCallback(
-      (value) => {
-        const selectedVal = formStep ? formStep : [];
-        const filterVal = selectedVal.filter((item: Number) => item !== value);
-        const checkVal = selectedVal.includes(value);
+  // Extra bit of UI state, so that initially there's no selection (neither yes nor no)
+  const [notAccreditedCheck, setNotAccreditedCheck] = useState(false);
 
-        form.dispatch({
-          type: 'update-form',
-          payload: { step3: checkVal ? filterVal : [...selectedVal, value] },
-        });
-      },
-      [form, formStep],
-    );
+  // Accreditation state, or null if they haven't answered any question yet
+  let isAccredited: boolean | null = null;
 
-    return (
-      <div>
-        {available === 'Available' ? (
-          <Box ref={ref} layerStyle="noSelect">
-            <Container d="flex" flexDir="column" justifyContent="space-between">
-              <SlideContainer>
-                <Box w="100%">
-                  <BackBtn handleClick={prevStep} />
-                  <Title1 mt={8} mb={2} textAlign="left">
-                    Are you an accredited investor?
-                  </Title1>
-                  <Text fontSize="md" textAlign="left">
-                    You are an accredited investor if any of the first three statements below are
-                    true. Select all that apply.
-                  </Text>
-                  <Box my={8}>
-                    {accreditedInvestor.map(({ value, label, desc }, ind) => (
-                      <Fragment key={value}>
-                        {ind === 0 && <Divider />}
-                        <Flex
-                          px={2}
-                          py={3}
-                          mt={2}
-                          textAlign="left"
-                          cursor="pointer"
-                          textStyle="Body1"
-                          fontWeight="600"
-                          onClick={() => handleSubmit(value)}
-                        >
-                          <Icon
-                            as={formStep?.includes(value) ? FaCheckCircle : FiCircle}
-                            layerStyle="iconColor"
-                            bg="transparent !important"
-                            h={5}
-                            w={5}
-                            mr={2}
-                          />
-                          <Box>
-                            {label}
-                            {desc ? (
-                              <Text textStyle="Subhead" mt={2}>
-                                {desc}
-                              </Text>
-                            ) : (
-                              ''
-                            )}
-                          </Box>
-                        </Flex>
-                      </Fragment>
-                    ))}
-                  </Box>
+  if (
+    signupInfo?.isAccreditedByIncome ||
+    signupInfo?.isAccreditedByLicense ||
+    signupInfo?.isAccreditedByAssets
+  ) {
+    isAccredited = true;
+    if (notAccreditedCheck) setNotAccreditedCheck(false);
+  } else if (notAccreditedCheck) {
+    isAccredited = false;
+  }
+
+  const handleSelection = (key: AccreditationKeysT) => {
+    dispatch?.({
+      [key]: !(signupInfo?.[key] || false),
+    });
+  };
+
+  const handleClickContinue = () => {
+    if (isAccredited) {
+      fbqWrap('trackCustom', 'IsAccredited');
+      nextStep();
+    } else {
+      setAvailable('Not Available');
+    }
+    // TODO(jimmy):
+    //   Remove workaround when we have new campaign. See:
+    //   https://linear.app/franklin-coral/issue/FC-619/[workaround]-double-book-fb-pixel-events-to-work-with-existing
+    fbqWrap('trackCustom', 'TypeformFirstInteraction');
+  };
+
+  const clearAccreditation = () => {
+    setNotAccreditedCheck(true);
+    dispatch?.({
+      isAccreditedByIncome: false,
+      isAccreditedByLicense: false,
+      isAccreditedByAssets: false,
+    });
+  };
+
+  // Previous steps incomplete, go back to beginning
+  if (
+    signupInfo === undefined ||
+    signupInfo.legalFirst === null ||
+    signupInfo.legalLast === null ||
+    signupInfo.residencyCountryCode === "" ||
+    (signupInfo.residencyCountryCode !== 'US' && signupInfo.taxPayerId === null)
+  ) {
+    return <Redirect push to="/signup" />;
+  }
+
+  return (
+    <div>
+      {available === 'Available' ? (
+        <Box layerStyle="noSelect">
+          <Container d="flex" flexDir="column" justifyContent="space-between">
+            <SlideContainer>
+              <Box w="100%">
+                <BackBtn handleClick={prevStep} />
+                <Title2 mt={8} mb={6} textAlign="left">
+                  Are you an accredited investor?
+                </Title2>
+                <Text textStyle="Body1">
+                  You are an accredited investor if any of the first three statements below are
+                  true. Select all that apply.
+                </Text>
+                <Box my={8}>
+                  <Divider />
+                  {accreditedInvestor.map(({ key, label, desc }, ind) => (
+                    <Flex
+                      px={2}
+                      py={3}
+                      mt={2}
+                      textAlign="left"
+                      cursor="pointer"
+                      textStyle="Body1"
+                      fontWeight="600"
+                      onClick={() => handleSelection(key)}
+                      key={key}
+                    >
+                      <Icon
+                        as={signupInfo?.[key] ? FaCheckCircle : FiCircle}
+                        layerStyle="iconColor"
+                        bg="transparent !important"
+                        h={5}
+                        w={5}
+                        mr={2}
+                      />
+                      <Box>
+                        {label}
+                        {desc && (
+                          <Text textStyle="Subhead" mt={2}>
+                            {desc}
+                          </Text>
+                        )}
+                      </Box>
+                    </Flex>
+                  ))}
+                  <DividerWithText my={2}>or</DividerWithText>
+                  <Flex
+                    px={2}
+                    py={3}
+                    mt={2}
+                    textAlign="left"
+                    cursor="pointer"
+                    textStyle="Body1"
+                    fontWeight="600"
+                    onClick={clearAccreditation}
+                    key="notAccredited"
+                  >
+                    <Icon
+                      as={notAccreditedCheck ? FaCheckCircle : FiCircle}
+                      layerStyle="iconColor"
+                      bg="transparent !important"
+                      h={5}
+                      w={5}
+                      mr={2}
+                    />
+                    <Box>No, I’m not accredited</Box>
+                  </Flex>
                 </Box>
-                <SubmitBtn
-                  disabled={!formStep?.length}
-                  onClick={formStep?.includes(3) ? () => setAvailable('Not Available') : nextStep}
-                  label="Continue"
-                />
-              </SlideContainer>
-            </Container>
-          </Box>
-        ) : (
-          <NotAvailable goBack={() => setAvailable('Available')} />
-        )}
-      </div>
-    );
-  },
-);
+              </Box>
+              <SubmitBtn
+                onClick={handleClickContinue}
+                variant={isAccredited ? undefined : 'outline'}
+                label="Continue"
+                disabled={isAccredited === null}
+              />
+            </SlideContainer>
+          </Container>
+        </Box>
+      ) : (
+        <NotAvailable goBack={() => setAvailable('Available')} />
+      )}
+    </div>
+  );
+};
 
-const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => (
-  <FlexContainer layerStyle="noSelect">
-    <SlideContainer>
-      <Box w="100%">
-        <BackBtn handleClick={goBack} />
-      </Box>
-      <Box my={6}>
-        <Center mx="auto" h={16} w={16} borderRadius="50%" layerStyle="card">
-          <Icon as={FiAlertTriangle} color="green.500" h={6} w={6} />
-        </Center>
-        <Title1 textAlign="center">
-          Coral is currently available to accredited investors only
-        </Title1>
-        <Text my={4} fontSize="md" textAlign="center">
-          But we&#39;re working on that! Please input your email address below if you&#39;d like to
-          be added to the waitlist.
-        </Text>
-        <Input h={12} mt={2} placeholder="Email" name="email" type="email" variant="filled" />
-      </Box>
-      <SubmitBtn label="Join the waitlist" />
-    </SlideContainer>
-  </FlexContainer>
-);
+const WaitlistForm = z.object({
+  email: z.string().email({ message: 'Please enter a valid email' }),
+});
+type WaitlistFormT = z.infer<typeof WaitlistForm>;
+
+const NotAvailable = ({ goBack }: { goBack: Dispatch<any> }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(WaitlistForm),
+  });
+  const toast = useToast();
+  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
+    
+  const onSubmit = () => {
+    
+  };
+
+  return (
+    <form css={{ width: '100%' }} onSubmit={onSubmit}>
+      <FormControl>
+        <FlexContainer layerStyle="noSelect">
+          <SlideContainer>
+            <Box w="100%">
+              <BackBtn handleClick={goBack} />
+            </Box>
+            <Box my={6}>
+              <Center mx="auto" h={16} w={16} borderRadius="50%" layerStyle="card">
+                <Icon as={FiAlertTriangle} color="green.500" h={6} w={6} />
+              </Center>
+              <Title2 mt={8} mb={6} textAlign="left">
+                Coral is currently available to accredited investors only
+              </Title2>
+              <Text my={4} fontSize="md" textAlign="center">
+                But we’re working on that! Please join our waitlist.
+              </Text>
+              <InputGroup align="center" mt={2}>
+                <InputLeftElement pointerEvents="none" h="100%">
+                  <Icon as={FiMail} />
+                </InputLeftElement>
+                <Input h={12} placeholder="Email" variant="filled" {...register('email')} />
+              </InputGroup>
+              <FormHelperText w="100%" textStyle="Caption1">
+                {errors.email?.message}&nbsp;
+              </FormHelperText>
+              <SubmitBtn
+                isLoading={isLoading}
+                spinner={<Spinner />}
+                disabled={errors.email}
+                label="Join the waitlist"
+              />
+            </Box>
+          </SlideContainer>
+        </FlexContainer>
+      </FormControl>
+    </form>
+  );
+};

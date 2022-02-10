@@ -9,28 +9,40 @@
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
-    /* paths - import rewriting/resolving */
-    "paths": {
-      // If you configured any Snowpack aliases, add them here.
-      // Add this line to get types for streaming imports (packageOptions.source="remote"):
-      //     "*": [".snowpack/types/*"]
-      // More info: https://www.snowpack.dev/guides/streaming-imports
-    },
-    /* noEmit - Snowpack builds (emits) files, not tsc. */
     "noEmit": true,
-    /* Additional Options */
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "importsNotUsedAsValues": "error",
-    // Make tsc warn us if we're doing something that will break Babel
-    // (which we're using via Snowpack)
-    // See: https://www.typescriptlang.org/tsconfig#isolatedModules
-    "isolatedModules": true
+    "isolatedModules": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true
   },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs",
+      "noEmit": true,
+      "lib": [
+        "es2019",
+        "esnext.asynciterable"
+      ],
+      "target": "es2018",
+    }
+  },
+  "references": [
+    {
+      "path": "src/shared-fullstack"
+    }
+  ]
 }

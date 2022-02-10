@@ -22,7 +22,7 @@ const AdminPanel: React.FC<AdminPanelPropsT> = ({
   };
 
   const sortedUsers = (userList || []).sort((u1, u2) =>
-    (u1.displayName || '').toLowerCase().localeCompare((u2.displayName || '').toLowerCase()),
+    (`${u1.displayName}` || '').toLowerCase().localeCompare((u2.displayName || '').toLowerCase()),
   );
 
   return (

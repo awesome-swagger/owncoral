@@ -1,39 +1,65 @@
-import { Icon, Flex, Box, Button, Text, VStack } from '@chakra-ui/react';
+import type React from 'react';
 import { FiChevronLeft, FiChevronRight, FiX } from 'react-icons/fi';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  Circle,
+  Flex,
+  Icon,
+  Text,
+  VStack,
+  useColorModeValue
+} from '@chakra-ui/react';
 
-export const CloseBtn = () => {
+export const SlideShow = ({ children }: { children: React.ReactNode }) => (
+  <Box
+    layerStyle="selectionBox"
+    borderRadius="full"
+    pos={{ base: 'fixed', md: 'relative' }}
+    right={{ base: 4, md: 0 }}
+    px={4}
+    py={1}
+  >
+    {children}
+  </Box>
+);
+
+export const CloseBtn = ({ backUrl } : { backUrl?: string; }) => {
   const history = useHistory();
-  return <Icon as={FiX} cursor="pointer" onClick={() => history.push('/academy')} />;
-};
 
-export const FlowStartBtn = () => {
+  return (
+    <Icon
+      as={FiX}
+      cursor="pointer"
+      onClick={() => backUrl ? history.push(backUrl) : history.goBack()}
+    />
+  );
+}
+
+export const FlowStartBtn = ({ path } : { path: string }) => {
   const history = useHistory();
-  const { pathname } = useLocation();
-  const pathnames: string[] = pathname.split('/');
-
-  const route = pathnames[pathnames.length - 2];
 
   return (
     <Button
       w={{ base: 'calc(100% - 3rem)', md: '100%' }}
       pos={{ base: 'fixed', md: 'relative' }}
       bottom={{ base: 20, md: 0 }}
-      onClick={() => history.push(`/academy/unit/${route}/2`)}
+      onClick={() => history.push(path)}
     >
       Let&apos;s get started
     </Button>
   );
 };
 
-export const FlowEndBtn = () => {
+export const FlowEndBtn = ({ path } : { path: string }) => {
   const history = useHistory();
 
   return (
     <Box
       p={4}
       cursor="pointer"
-      onClick={() => history.push('/academy/course/understanding-coral-listings')}
+      onClick={() => history.push(path)}
     >
       <Text textStyle="Body1" fontWeight="600" my={2}>
         Understanding Coral listings
@@ -43,40 +69,67 @@ export const FlowEndBtn = () => {
   );
 };
 
-export const NextBtn = ({ finishBtn = false }: { finishBtn?: boolean }) => {
+export const NextBtn = ({
+  route,
+  nextStep,
+} : {
+  route: string;
+  nextStep: string;
+}) => {
   const history = useHistory();
-  const { pathname } = useLocation();
-  const pathnames: string[] = pathname.split('/');
-  const route = pathnames[pathnames.length - 2];
-  const nextRoute = Number(pathnames[pathnames.length - 1]) + 1;
+  const isFinishBtn = nextStep === "back-to-property";
 
   return (
     <Button
-      w={finishBtn ? 'auto' : 10}
+      w={isFinishBtn ? 'auto' : 10}
       h={10}
-      borderRadius={finishBtn === false ? 'full' : '2xl'}
+      borderRadius={isFinishBtn ? '2xl' : 'full'}
       onClick={() =>
-        history.push(`/academy/unit/${route}/${finishBtn ? 'back-to-property' : nextRoute}`)
+        history.push(`${route}/${nextStep}`)
       }
     >
-      {finishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
+      {isFinishBtn ? 'Finish' : <Icon as={FiChevronRight} />}
     </Button>
   );
 };
 
-export const PrevBtn = ({ background = true }: { background?: boolean }) => {
+export const PrevBtn = ({
+  background = true,
+  route,
+  prevStep,
+} : {
+  background?: boolean;
+  route?: string;
+  prevStep?: string;
+}) => {
   const history = useHistory();
 
+  const onClick = () => {
+    if(route && prevStep) {
+      history.push(route + '/' + prevStep);
+    } else {
+      history.goBack();
+    }
+  }
+
   return background ? (
-    <Button borderRadius="full" colorScheme="white" w={10} h={10} onClick={() => history.goBack()}>
+    <Button borderRadius="full" colorScheme="white" w={10} h={10} onClick={onClick}>
       <Icon as={FiChevronLeft} />
     </Button>
   ) : (
-    <Icon as={FiChevronLeft} cursor="pointer" onClick={() => history.goBack()} />
+    <Icon as={FiChevronLeft} cursor="pointer" onClick={onClick} />
   );
 };
 
-export const BtnsWrapper = ({ finishBtn = false }: { finishBtn?: boolean }) => (
+export const BtnsWrapper = ({
+  route,
+  prevStep,
+  nextStep,
+} : {
+  route: string;
+  prevStep?: string;
+  nextStep: string;
+}) => (
   <Flex
     mt={4}
     justifyContent="space-between"
@@ -84,7 +137,21 @@ export const BtnsWrapper = ({ finishBtn = false }: { finishBtn?: boolean }) => (
     pos={{ base: 'fixed', md: 'relative' }}
     bottom={{ base: 20, md: 0 }}
   >
-    <PrevBtn />
-    <NextBtn finishBtn={finishBtn} />
+    <PrevBtn route={route} prevStep={prevStep} />
+    <NextBtn route={route} nextStep={nextStep} />
   </Flex>
 );
+
+export const CircleIcon: React.FC<{ color: string }> = ({ color }) => {
+  const tealColor = useColorModeValue('teal.700', 'teal.400');
+  const greenColor = useColorModeValue('green.200', 'green.100');
+  const orangeColor = useColorModeValue('orange.300', 'orange.200');
+
+  const colors: { [key: string]: string } = {
+    'teal': tealColor,
+    'green': greenColor,
+    'orange': orangeColor
+  }
+
+  return <Circle size={2} mr={2} bg={colors[color] || color} />;
+};

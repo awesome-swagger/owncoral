@@ -10,6 +10,7 @@
 
 # production
 /build
+/src/shared-fullstack/dist
 
 # misc
 .DS_Store

@@ -2,12 +2,12 @@ import { Fragment } from 'react';
 import { FiCalendar, FiRotateCw } from 'react-icons/fi';
 import type { PortfolioDashboardPropertyT } from '../../../../shared-fullstack/types';
 import { Box, Center, Divider, Flex, HStack, Icon, Spinner, Text, VStack } from '@chakra-ui/react';
-import { format as formatDate } from 'date-fns';
 import * as R from 'remeda';
 
 import { Card } from '../../../../components';
 import { Overline, Title1, Title2 } from '../../../../components/text';
 import { formatFinancial, formatFinancialSI } from '../../../../lib/financialFormatter';
+import { formatUTCDateMMMyyyy } from '../../lib';
 
 const sum = (arr: number[]) => arr.reduce((n, acc) => n + acc, 0);
 
@@ -43,7 +43,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
   const hasDistributions =
     (properties || []).filter((property) => property.lastDistributionMonth !== null).length > 0;
 
-  // TODO: remove/simplify this logic, we always return distributions for current month now
+  // TODO(jimmy): remove/simplify this logic, we always return distributions for current month now
   const maxMonth: Date | null =
     hasDistributions && properties
       ? new Date(
@@ -112,7 +112,7 @@ export const TotalDistribution = ({ properties }: TotalDistributionPropsT) => {
               </Center>
             )
           }
-          description={maxMonth !== null ? formatDate(maxMonth, 'MMM yyyy') : ''}
+          description={maxMonth !== null ? formatUTCDateMMMyyyy(maxMonth) : ''}
         />
 
         <Card

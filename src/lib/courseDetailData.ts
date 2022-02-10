@@ -1,50 +1,135 @@
-import Fringilla from '../assets/crash-course/AC3_Sources.png';
-import Fundamentals from '../assets/crash-course/AC1_Listings.png';
-import Understanding from '../assets/crash-course/AC2_RealStateFundamentals.png';
-import Valuing from '../assets/crash-course/AC4_Valuing.png';
+import type { ReactElement } from 'react';
+
+import { CashFlowData } from '../pages/academy/courses/cashFlow/data';
+import {
+  FinancingWithCommercialData
+} from '../pages/academy/courses/financingWithCommercial/data';
+import {
+  RealizingAppreciationData
+} from '../pages/academy/courses/realizingAppreciation/data';
+import {
+  OwnershipStructureData
+} from '../pages/academy/courses/ownershipStructure/data';
+
+import Listings from '../assets/crash-course/Listings.png';
+import RealStateFundamentals from '../assets/crash-course/RealStateFundamentals.png';
+import Sources from '../assets/crash-course/Sources.png';
+import Valuing from '../assets/crash-course/Valuing.png';
+
+const listingsName = 'Understanding Coral listings';
+const realStateFundamentalsName = 'Real estate fundamentals'
+const sourcesName = 'Sources of wealth';
+const valuingName = 'Valuing real estate';
+
+export const COURSE_CASH_FLOW_URL = '/unit/cash-flow';
+export const FINANCING_WITH_COMMERCIAL_URL = '/unit/financing-with-commercial-loans';
+export const OWNERSHIP_STRUCTURE_URL = '/unit/ownership-structure';
+export const REALIZING_APPRECIATION_URL = '/unit/realizing-appreciation-without-selling';
+
+const {
+  flowStartData,
+  cashFlowData,
+  flowEndData
+} = CashFlowData(COURSE_CASH_FLOW_URL, listingsName);
+
+const {
+  financingStartData,
+  financingWithCommercialData,
+  financingEndData
+} = FinancingWithCommercialData(FINANCING_WITH_COMMERCIAL_URL, listingsName);
+
+const {
+  ownershipStartData,
+  ownershipStructureData,
+  ownershipEndData
+} = OwnershipStructureData(OWNERSHIP_STRUCTURE_URL, listingsName);
+
+const {
+  realizingStartData,
+  realizingAppreciationData,
+  realizingEndData
+} = RealizingAppreciationData(REALIZING_APPRECIATION_URL, listingsName);
+
+export enum CourseEnum {
+  CASHFLOW = "CASHFLOW",
+  FINANCING = "FINANCING",
+  OWNERSHIP_STRUCTURE = "OWNERSHIP_STRUCTURE",
+  REALIZING_APPRECIATION = "REALIZING_APPRECIATION",
+}
+
+const FLOW_DATA: Record<CourseEnum, ReactElement[]> = {
+  [CourseEnum.CASHFLOW]: cashFlowData,
+  [CourseEnum.FINANCING]: financingWithCommercialData,
+  [CourseEnum.OWNERSHIP_STRUCTURE]: ownershipStructureData,
+  [CourseEnum.REALIZING_APPRECIATION]: realizingAppreciationData
+}
+const FLOW_START_DATA: Record<CourseEnum, ReactElement> = {
+  [CourseEnum.CASHFLOW]: flowStartData,
+  [CourseEnum.FINANCING]: financingStartData,
+  [CourseEnum.OWNERSHIP_STRUCTURE]: ownershipStartData,
+  [CourseEnum.REALIZING_APPRECIATION]: realizingStartData
+}
+const FLOW_END_DATA: Record<CourseEnum, ReactElement> = {
+  [CourseEnum.CASHFLOW]: flowEndData,
+  [CourseEnum.FINANCING]: financingEndData,
+  [CourseEnum.OWNERSHIP_STRUCTURE]: ownershipEndData,
+  [CourseEnum.REALIZING_APPRECIATION]: realizingEndData
+}
+
+export const getFlowData = (index: string, courseKey: CourseEnum) => {
+  const flowDataArray = Object.fromEntries([
+    ...FLOW_DATA[courseKey].map((data, idx) => [idx+1, data]),
+    ["get-started", FLOW_START_DATA[courseKey]],
+    ["back-to-property", FLOW_END_DATA[courseKey]]
+  ]);
+
+  return flowDataArray[index || 'get-started'];
+}
 
 export type CourseT = {
   name: string;
   image: string;
-  lesson: number;
   isComingSoon?: boolean;
-  value: { title: string; slides: number; url?: string; hideInProd?: boolean }[];
-};
+  lessons: { title: string; slides: number; url?: string; hideInProd?: boolean }[];
+}
+
 export const Data: CourseT[] = [
   {
-    name: 'Understanding Coral listings',
-    image: Understanding,
-    lesson: 5,
+    name: listingsName,
+    image: Listings,
     isComingSoon: false,
-    value: [
-      { title: 'Investor cash flow', slides: 7, url: '/academy/unit/cash-flow' },
+    lessons: [
+      {
+        title: 'Investor cash flow',
+        slides: cashFlowData.length,
+        url: COURSE_CASH_FLOW_URL
+      },
       {
         title: 'Realizing appreciation without selling',
-        slides: 7,
-        url: '/academy/unit/realizing-appreciation-without-selling',
-        hideInProd: true,
+        slides: realizingAppreciationData.length,
+        url: REALIZING_APPRECIATION_URL,
+        hideInProd: true
       },
       {
         title: 'Ownership structure',
-        slides: 7,
-        url: '/academy/unit/ownership-structure',
-        hideInProd: true,
+        slides: ownershipStructureData.length,
+        url: OWNERSHIP_STRUCTURE_URL,
+        hideInProd: true
       },
       {
         title: 'Financing with commercial loans',
-        slides: 7,
-        url: '/academy/unit/financing-with-commercial-loans',
-        hideInProd: true,
+        slides: financingWithCommercialData.length,
+        url: FINANCING_WITH_COMMERCIAL_URL,
+        hideInProd: true
       },
       { title: 'Operating expenses', slides: 7 },
       { title: 'Capital expenditure', slides: 7 },
     ],
   },
   {
-    name: 'Real estate fundamentals',
-    image: Fundamentals,
-    lesson: 4,
-    value: [
+    name: realStateFundamentalsName,
+    image: RealStateFundamentals,
+    lessons: [
       { title: 'Basics of real estate investing', slides: 10 },
       { title: 'How to invest in real estate', slides: 5 },
       { title: 'Real estate markets and submarkets', slides: 1 },
@@ -52,10 +137,9 @@ export const Data: CourseT[] = [
     ],
   },
   {
-    name: 'Sources of wealth',
-    image: Fringilla,
-    lesson: 4,
-    value: [
+    name: sourcesName,
+    image: Sources,
+    lessons: [
       { title: 'Key drivers of wealth through property ownership', slides: 7 },
       { title: 'Cash flow: generating income', slides: 7 },
       { title: 'Appreciation & inflation: increasing property value', slides: 7 },
@@ -64,10 +148,9 @@ export const Data: CourseT[] = [
     ],
   },
   {
-    name: 'Valuing real estate',
+    name: valuingName,
     image: Valuing,
-    lesson: 2,
-    value: [
+    lessons: [
       { title: 'Key approaches to valuation', slides: 7 },
       { title: 'Income-based method: using cap rate', slides: 7 },
       { title: 'Sales-based method: using comps', slides: 7 },

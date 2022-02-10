@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Box, useColorModeValue } from '@chakra-ui/react';
 
 export const FilterPopUp = ({ children }: { children: React.ReactNode }) => {
@@ -11,7 +12,8 @@ export const FilterPopUp = ({ children }: { children: React.ReactNode }) => {
       left="0"
       w="100%"
       p={4}
-      children={children}
-    />
+    >
+      {children}
+    </Box>
   );
 };

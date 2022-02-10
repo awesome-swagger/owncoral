@@ -1,58 +1,56 @@
-import { forwardRef, useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Input, Box } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { FormRef } from './index';
-import { StepFormContext } from './index';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
+import { Title2 } from '../../../components/text';
+import type { StepPropsT } from '../index';
+import { InvestmentProfileContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
+export const EntityName:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { handleSubmit, setValue, register } = useForm();
+  const form = useContext(InvestmentProfileContext);
 
-export const EntityName = forwardRef<FormRef, stepProps>(
-  ({ nextStep, prevStep }: stepProps, ref) => {
-    const { handleSubmit, setValue, register } = useForm();
-    const form = useContext(StepFormContext);
+  const onSubmit = useCallback((data) => {
+    form.dispatch?.({ step6: data });
+    nextStep();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    const onSubmit = useCallback((data) => {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step6: data },
-      });
-      nextStep();
-    }, []);
+  useEffect(() => {
+    const formState = form.formState;
 
-    useEffect(() => {
-      const formState = form.formState;
+    setValue('entity_name', formState?.step6?.entity_name || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-      setValue('entity_name', formState?.step6?.entity_name || '');
-    }, []);
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Container>
+        <SlideContainer>
+          <Box w="100%">
+            <BackBtn handleClick={prevStep} />
+            <Title2 mt={8} mb={2} textAlign="left">
+              What is your Legal Entity Name
+            </Title2>
+            <Text textStyle="Body1">
+              Lorem ipsum dolor sir amet. If you don’t know it
+              exactly don’t worry, you can edit it later.
+            </Text>
 
-    return (
-      <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
-        <Container>
-          <SlideContainer>
-            <Box w="100%">
-              <BackBtn handleClick={prevStep} />
-              <Title1 mt={8} mb={2} textAlign="left">
-                What is your Entity Name
-              </Title1>
-              <Input
-                type="text"
-                name="entity_name"
-                placeholder="Entity Name"
-                ref={register({ required: true })}
-                h={12}
-                mt={8}
-              />
-            </Box>
-            <SubmitBtn label="Continue" />
-          </SlideContainer>
-        </Container>
-      </form>
-    );
-  },
-);
+            <Text textStyle="Body2" mt={8} mb={2}>
+              ENTITY NAME
+            </Text>
+            <Input
+              type="text"
+              {...register('entity_name', { required: true })}
+              placeholder="Your entity name"
+              h={12}
+            />
+          </Box>
+          <SubmitBtn label="Continue" />
+        </SlideContainer>
+      </Container>
+    </form>
+  );
+}

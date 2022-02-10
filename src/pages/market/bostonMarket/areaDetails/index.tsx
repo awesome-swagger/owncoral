@@ -1,8 +1,8 @@
 import { Box, Divider, HStack, Text } from '@chakra-ui/react';
-import { Subhead, Headline, Overline, Title1 } from '../../../../components/text';
+import { Headline, Overline, Subhead, Title1 } from '../../../../components/text';
 
 export const AreaDetails = () => {
-  const tags = ['Growth potential', ' Good rental yield', 'Anti-cyclicality'];
+  const tags = ['Growth potential', 'Good rental yield', 'Anti-cyclicality'];
   return (
     <Box>
       <Overline>WHY IS IT A KEY PLACE TO INVEST</Overline>

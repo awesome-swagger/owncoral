@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { FiClock } from 'react-icons/fi';
 import { Center, Icon, Text, VStack } from '@chakra-ui/react';
 
-import { NavBar } from '../../components';
 import { Title2 } from '../../components/text';
 
 const ComingSoonSplash = () => (
@@ -17,12 +16,9 @@ const ComingSoonSplash = () => (
 
 const ComingSoon = ({ isPage = true }: { isPage?: boolean }) => {
   return isPage ? (
-    <Fragment>
-      <NavBar />
-      <Center w="100%" h={window.innerHeight} pos="fixed" top={0} p={[10, 14]}>
-        <ComingSoonSplash />
-      </Center>
-    </Fragment>
+    <Center w="100%" h={window.innerHeight} pos="fixed" top={0} p={[10, 14]}>
+      <ComingSoonSplash />
+    </Center>
   ) : (
     <Center w="100%" h="400px">
       <ComingSoonSplash />

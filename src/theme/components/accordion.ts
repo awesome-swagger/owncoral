@@ -4,7 +4,7 @@ export const Accordion = {
   baseStyle: (props: any) => ({
     container: {
       borderTopWidth: '1.5px',
-      borderColor: mode('gray.200', 'gray.800')(props),
+      borderColor: mode('gray.200', 'gray.900')(props),
       bg: mode('white', 'whiteAlpha.100')(props),
       _hover: { bg: mode('secondary.100', 'secondary.800')(props) },
       _first: {

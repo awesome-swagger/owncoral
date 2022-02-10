@@ -3,15 +3,18 @@ import { FiX } from 'react-icons/fi';
 import { Box, Button, Divider, Icon, Image } from '@chakra-ui/react';
 
 import { Container } from '../../../components';
+import { ListingsUrl } from '../../../lib/uriConstants';
+
 import { AreaDetails } from './areaDetails';
 import { Highlights } from './highlights';
 // import { SubMarkets } from './subMarkets';
+
 import MarketImg from '../../../assets/boston-market-v1.png';
 
 const BostonMarket = () => {
   const history = useHistory();
   const handleClose = () => history.goBack();
-  const handleMarketProperties = () => history.push('listings');
+  const handleMarketProperties = () => history.push(ListingsUrl);
 
   return (
     <Container p={0}>

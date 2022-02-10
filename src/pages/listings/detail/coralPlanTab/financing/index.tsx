@@ -1,10 +1,19 @@
 /* eslint-disable complexity */
 // TODO: refactor render function
-import type React from 'react';
-import { Fragment } from 'react';
+import React from 'react';
 import type { ListingsPropertyDetailT } from '../../../../../shared-fullstack/types';
+import { PropertyStatus } from '../../../../../shared-fullstack/validators';
 import type { IconProps } from '@chakra-ui/react';
-import { Box, Divider, Flex, Icon, Text, useColorModeValue, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Circle,
+  Divider,
+  Flex,
+  Icon,
+  Text,
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react';
 
 import { Caption1, Title2 } from '../../../../../components/text';
 import { formatFinancial } from '../../../../../lib/financialFormatter';
@@ -34,7 +43,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
 
   const eqColor = useColorModeValue('green.900', 'green.700');
   const debtColor = useColorModeValue('green.300', 'green.200');
-  console.log(listingsDetail);
+
   return (
     <Box>
       <Title2 my={6}>Total property costs*</Title2>
@@ -51,7 +60,12 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           <Text>Property upgrades and closing</Text>
           <Text>
             {listingsDetail.mdlClosingCost !== null && listingsDetail.mdlRenovation !== null
-              ? '$' + formatFinancial(listingsDetail.mdlClosingCost + listingsDetail.mdlRenovation)
+              ? '$' +
+                formatFinancial(
+                  listingsDetail.mdlClosingCost +
+                    listingsDetail.mdlRenovation +
+                    (listingsDetail?.mdlBrokerFee || 0),
+                )
               : 'N/A'}
           </Text>
         </Flex>
@@ -72,10 +86,10 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text>Capex reserve </Text>
+          <Text>Capex&nbsp;reserve</Text>
           <Text>
-            {listingsDetail.mdlCapexReserve !== null && listingsDetail.mdlRenovation !== null
-              ? '$' + formatFinancial(listingsDetail.mdlCapexReserve + listingsDetail.mdlRenovation)
+            {listingsDetail.mdlCapexReserve !== null
+              ? '$' + formatFinancial(listingsDetail.mdlCapexReserve)
               : 'N/A'}
           </Text>
         </Flex>
@@ -85,11 +99,13 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
         </Flex>
       </VStack>
       <Caption1 color="gray" mt={4}>
-        * Coral estimates, subject to change.
+        {listingsDetail.status === PropertyStatus.enum.CLOSED
+          ? '* Coral estimates. See financial statements for actuals to-date.'
+          : '* Coral estimates, subject to change.'}
       </Caption1>
 
       {listingsDetail.mdlEquity !== null && listingsDetail.mdlMortgage !== null && equityPct && (
-        <Fragment>
+        <React.Fragment>
           <Divider my={6} />
           <Title2 my={6}>Financing</Title2>
 
@@ -100,7 +116,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
 
           <VStack spacing={2} justifyContent="stretch">
             <Flex w="100%" align="center">
-              <CircleIcon h={3} w={3} mr={2} color={eqColor} />
+              <Circle size={2} mr={2} bg={eqColor} />
               <Box flexGrow={1}>Initial equity</Box>
               <Box align="right" w="4rem">
                 {(equityPct * 100).toFixed(1)}%
@@ -111,7 +127,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
             </Flex>
 
             <Flex w="100%" align="center">
-              <CircleIcon h={3} w={3} mr={2} color={debtColor} />
+              <Circle size={2} mr={2} bg={debtColor} />
               <Box flexGrow={1}>Initial loan*</Box>
               <Box align="right" w="4rem">
                 {((1 - equityPct) * 100).toFixed(1)}%
@@ -135,7 +151,7 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
               * Coral estimates, subject to change
             </Caption1>
           </VStack>
-        </Fragment>
+        </React.Fragment>
       )}
       {/* <FlexLightBorder */}
       {/*  justifyContent="space-between" */}
@@ -160,9 +176,3 @@ export const Financing = ({ listingsDetail }: FinancingPropsT) => {
     </Box>
   );
 };
-
-const CircleIcon: React.FC<IconProps> = (props) => (
-  <Icon viewBox="0 0 200 200" {...props}>
-    <path fill="currentColor" d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0" />
-  </Icon>
-);

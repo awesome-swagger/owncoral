@@ -1,15 +1,19 @@
-import { useCallback,useEffect, useState } from 'react';
+import { useCallback, useContext,useEffect, useState } from 'react';
 import { PlaidLink } from 'react-plaid-link';
+import { Redirect,useHistory } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
 import { FlexContainer } from '../../../../components';
 import { fetchWrap } from '../../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../../lib/errorToastOptions';
+import { UserContext } from '../../../../userContext';
 
 export const LinkBankAccount = (props: any) => {
   const [plaidLinkToken, setPlaidLinkToken] = useState(null);
   const { handleTransaction } = props;
   const toast = useToast();
+  const [loggedOut, setLoggedOut] = useState<boolean>(false);
+  const [_, setUser] = useContext(UserContext);
 
   useEffect(() => {
     const generateToken = async () => {
@@ -28,6 +32,9 @@ export const LinkBankAccount = (props: any) => {
       }
 
       switch (resp.status) {
+        case 401:
+          setLoggedOut(true);
+          break;
         default:
           toast({
             ...DEFAULT_ERROR_TOAST,
@@ -51,6 +58,12 @@ export const LinkBankAccount = (props: any) => {
     },
     [handleTransaction],
   );
+
+  // Redirects logged out users to the logged in page
+  // TODO: wrap this in a useLogout hook
+  if (loggedOut) {
+    window.location.assign("/login?flash=You've logged out");
+  }
 
   return (
     <FlexContainer>

@@ -6,10 +6,10 @@ import React, {
   Suspense,
   useCallback,
   useEffect,
-  useState,
   useRef,
+  useState,
 } from 'react';
-import { FiInfo, FiPercent, FiX, FiFile } from 'react-icons/fi';
+import { FiFile, FiPercent, FiX } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import type {
   ListingsMutateInterestRequestParamsT,
@@ -22,7 +22,6 @@ import {
   Button,
   Center,
   Divider,
-  Flex,
   HStack,
   Icon,
   Image,
@@ -51,12 +50,13 @@ import {
 } from '@chakra-ui/react';
 
 import Placeholder from '../../../assets/low-poly/low-poly-placeholder.png';
-import { Container } from '../../../components';
+import { Container, DocumentsDrawer } from '../../../components';
 import { Headline, Overline, Subhead, Title1, Title2 } from '../../../components/text';
-import { DocumentsDrawer } from '../../../components/documentsDrawer';
 import { fetchWrap } from '../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../lib/errorToastOptions';
+import { fbqWrap } from '../../../lib/fbqWrap';
 import { formatFinancial, formatFinancialSI } from '../../../lib/financialFormatter';
+import { ListingsUrl } from '../../../lib/uriConstants';
 import { useNavHeight } from '../../../lib/useNavHeight';
 import { useQuery } from '../../../lib/useQuery';
 
@@ -76,17 +76,16 @@ type ListingDetailPropsT = {
   listingUriFragmentToId: { [uriFragment: string]: string };
 };
 const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
-  const { headerHeight } = useNavHeight();
   const query = useQuery();
   const portalRef = useRef<HTMLDivElement>(null);
   const history = useHistory();
   const toast = useToast();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const limitFull = false;
   const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
     drawerIsOpen,
     setDrawerIsOpen,
   ]);
+  const { footerHeight } = useNavHeight();
 
   const listingUriFragment = query.get('property');
   const propertyId: string | null = listingUriFragment
@@ -94,7 +93,6 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
     : null;
 
   const [listingsDetail, setListingsDetail] = useState<ListingsPropertyDetailT | null>(null);
-
   useEffect(() => {
     (async () => {
       if (propertyId === null) return;
@@ -104,6 +102,13 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
         body: JSON.stringify({
           propertyId,
         }),
+      });
+
+      fbqWrap('track', 'ViewContent', {
+        content_name: listingsDetail?.name,
+        content_ids: [listingsDetail?.id],
+        content_type: 'product',
+        content_category: 'LongTermHold',
       });
 
       if (resp === null) {
@@ -124,57 +129,55 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
           break;
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listingUriFragmentToId, listingUriFragment, propertyId, toast]);
+
   return (
     // TODO: push spinners down to component level?
     // TODO: remove mdlEquity checks after cleaning up schema
-    <Container pos="relative" padding={0} ref={portalRef}>
+    <Container pos="relative" p={0} ref={portalRef}>
       {listingUriFragmentToId !== null && listingsDetail !== null ? (
         <Fragment>
           <Portal containerRef={portalRef}>
             <Icon
               pos={{ base: 'fixed', md: 'absolute' }}
-              top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
+              top={5}
               left={5}
               h={8}
               w={8}
               p={2}
               as={FiX}
               cursor="pointer"
-              onClick={() => history.push('/listings')}
+              onClick={() => history.push(ListingsUrl)}
               borderRadius="full"
               boxShadow="xs"
               layerStyle="iconColor"
+              zIndex={2}
             />
             {listingsDetail.docsUrls.length > 0 && (
-              <Icon
+              <Button
                 pos={{ base: 'fixed', md: 'absolute' }}
-                top={{ base: `calc(${headerHeight} + 1.25rem)`, md: 5 }}
+                top={5}
                 right={5}
                 h={8}
-                w={8}
                 p={2}
-                as={FiFile}
-                cursor="pointer"
+                leftIcon={<FiFile />}
                 onClick={toggleDrawer}
                 borderRadius="full"
                 boxShadow="xs"
                 layerStyle="iconColor"
-              />
+                variant='outline'
+                zIndex={2}
+              >
+                Docs
+              </Button>
             )}
           </Portal>
           <AspectRatio ratio={4 / 3}>
             <Image
               borderTopRadius={{ base: 'none', md: '2xl' }}
-              src={
-                listingsDetail.imageUrls === undefined || listingsDetail.imageUrls.length === 0
-                  ? Placeholder
-                  : listingsDetail.imageUrls[0]
-              }
-              alt={listingsDetail.name + ' Image'}
-              filter={
-                listingsDetail.status === PropertyStatus.enum.CLOSED ? 'grayscale(1)' : undefined
-              }
+              src={listingsDetail.splashImageUrl || Placeholder}
+              alt={`${listingsDetail.name} Image`}
               w="100%"
               fallback={
                 <Center>
@@ -183,20 +186,34 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
               }
             />
           </AspectRatio>
-          <Box bg="inherit" borderRadius="2xl" pos="relative" bottom={6} pt={6}>
+          <Box
+            bg="inherit"
+            borderRadius="2xl"
+            pos="relative"
+            bottom={6}
+            pt={6}
+            pb={{ base: 10, md: 0 }}
+          >
             <Box px={6}>
               <TopSection listingsDetail={listingsDetail} />
               <Divider mt={6} />
             </Box>
             <TabSection listingsDetail={listingsDetail} />
             <Divider />
-            <Box px={6} mt={3} mb={{ base: 12, md: 0 }}>
-              {limitFull && (
-                <Flex alignItems="center" mb={2} ml={6}>
-                  <Icon opacity="0.5" as={FiInfo} mr={2} />
-                  <Text textStyle="Body2">This listing is full. Property closing in August 1</Text>
-                </Flex>
-              )}
+            <Box
+              w="100%"
+              px={6}
+              py={3}
+              pos={{ base: 'fixed', md: 'relative' }}
+              bottom={{ base: footerHeight, md: 0 }}
+              zIndex={2}
+              bg="inherit"
+            >
+              {/* TODO: show secondary listing text based on whether property is closed
+              <Flex alignItems="center" mb={2} ml={6}>
+                <Icon opacity="0.5" as={FiInfo} mr={2} />
+                <Text textStyle="Body2">This listing is full. Property closing in August 1</Text>
+              </Flex>  */}
               <InterestButton
                 listingsDetail={listingsDetail}
                 setListingsDetail={setListingsDetail}
@@ -252,11 +269,28 @@ const TopSection = ({ listingsDetail }: TopSectionPropsT) => {
           <Center bgColor={pctBg} w={12} h={12} borderRadius="2xl">
             <Icon as={FiPercent} color="primary.500" w={5} h={5} />
           </Center>
-          <VStack spacing={1} align="left">
-            <Subhead fontWeight="600">Share price</Subhead>
-            <Headline>
-              ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.01))} for 1% ownership
-            </Headline>
+          <VStack
+            spacing={listingsDetail.status === PropertyStatus.enum.CLOSED ? 2 : 1}
+            align="left"
+          >
+            <Subhead fontWeight="600">
+              Share price
+              {listingsDetail.status === PropertyStatus.enum.CLOSED ? ' for 1% ownership' : ''}
+            </Subhead>
+            {listingsDetail.status === PropertyStatus.enum.CLOSED ? (
+              <Fragment>
+                <Headline fontWeight="700">
+                  Secondary: ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.01))}
+                </Headline>
+                <Headline fontWeight="500">
+                  Original Price: ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.01))}
+                </Headline>
+              </Fragment>
+            ) : (
+              <Headline>
+                ${formatFinancial(Math.round(listingsDetail.mdlEquity * 0.01))} for 1% ownership
+              </Headline>
+            )}
             {listingsDetail.mdlMortgage !== null && (
               <Text textStyle="Body2">
                 Total Property Costs: $
@@ -304,7 +338,7 @@ export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
 };
 
 const Semibold: React.FC = ({ children }) => (
-  <Text fontWeight="600" display="inline">
+  <Text as="span" fontWeight="600" display="inline">
     {children}
   </Text>
 );
@@ -340,8 +374,9 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
 
     const newInterestAmt =
       interestShares > 0 && newHasInterest
-        ? (interestShares / 100) * listingsDetail.mdlEquity
+        ? Math.round((interestShares / 100) * listingsDetail.mdlEquity)
         : null;
+
     const listingsInterestParams: ListingsMutateInterestRequestParamsT = {
       interestAmt: newInterestAmt,
       hasInterest: newHasInterest,
@@ -352,6 +387,18 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
       method: 'POST',
       body: JSON.stringify(listingsInterestParams),
     });
+
+    if (newHasInterest) {
+      fbqWrap('track', 'AddToWishlist', {
+        value: newInterestAmt,
+        currency: 'USD',
+        content_name: listingsDetail?.name,
+        content_ids: [listingsDetail?.id],
+        content_type: 'product',
+        content_category: 'LongTermHold',
+      });
+    }
+
     if (resp === null) return;
 
     if (resp.ok) {
@@ -362,6 +409,7 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
         interestAmt: newInterestAmt,
       });
 
+      // Display Snackbar
       toast({
         ...DEFAULT_SUCCESS_TOAST,
         description: newHasInterest
@@ -387,15 +435,15 @@ const InterestButton = ({ listingsDetail, setListingsDetail }: InterestButtonPro
   return (
     <Fragment>
       <Button
-        w={{ base: 'calc(100% - 3rem)', md: '100%' }}
+        w="100%"
         py={3}
-        pos={{ base: 'fixed', md: 'relative' }}
-        bottom={{ base: 16, md: 0 }}
         whiteSpace="normal"
         onClick={handleInterest}
         variant={listingsDetail.hasInterest ? 'outline' : undefined}
       >
-        I&apos;m {listingsDetail.hasInterest ? 'no longer ' : ''}interested in this property
+        {listingsDetail.hasInterest
+          ? 'I’m no longer interested'
+          : 'I’m interested in this property'}
       </Button>
       <Modal isCentered size="xl" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

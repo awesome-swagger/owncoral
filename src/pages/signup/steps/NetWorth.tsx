@@ -1,56 +1,58 @@
-import { forwardRef, useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
-const netWorth = [
-  { value: 'Less than $500,000' },
-  { value: 'Between $500,000 and $1M' },
-  { value: 'Between $1M and $5M' },
-  { value: 'Between $5M and $10 million' },
-  { value: 'Greater than $10 million' },
+const netWorth: { nw: number; label: string }[] = [
+  { nw: 200e3, label: 'Less than $500,000' },
+  { nw: 700e3, label: 'Between $500,000 and $1M' },
+  { nw: 2e6, label: 'Between $1M and $5M' },
+  { nw: 7e6, label: 'Between $5M and $10 million' },
+  { nw: 15e6, label: 'Greater than $10 million' },
 ];
 
-export const NetWorth = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step8;
+export const NetWorth:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo, dispatch } = useContext(SignupContext);
 
-    const handleSubmit = useCallback(
-      (value) => {
-        form.dispatch({ type: 'update-form', payload: { step8: value } });
-        nextStep();
-      },
-      [form, nextStep],
-    );
+  const handleSubmit = async (netWorth: number) => {
+    dispatch?.({ netWorth });
+    nextStep(); // optimistically updates, ignoring failures
+    await fetchWrap('/api/update-signup-info', {
+      method: 'POST',
+      body: JSON.stringify(signupInfo),
+    });
+  };
 
-    return (
-      <Box ref={ref} layerStyle="noSelect">
-        <Container>
-          <BackBtn handleClick={prevStep} />
-          <ProgressBar total={7} value={4} />
-          <Title1 mt={8} mb={2} textAlign="left">
-            What is your approximate net worth (jointly with your spouse, if married)?
-          </Title1>
-          <Text fontSize="md">
-            We need to know you better in order to comply with SEC regulations.
-          </Text>
-          <Box my={8}>
-            {netWorth.map(({ value }, idx) => (
-              <SelectBox
-                key={idx}
-                icon="chevron"
-                value={value}
-                state={formStep}
-                handleClick={() => handleSubmit(value)}
-              />
-            ))}
-          </Box>
-        </Container>
-      </Box>
-    );
-  },
-);
+  return (
+    <Box layerStyle="noSelect">
+      <Container>
+        <BackBtn handleClick={prevStep} />
+        <ProgressBar total={7} value={4} />
+        <Title2 mt={8} mb={6} textAlign="left">
+          What is your net worth?
+        </Title2>
+        <Text textStyle="Body1">
+          We need to know you better in order to comply with SEC regulations. If you are married,
+          please use your joint net worth.
+        </Text>
+        <Box mt={8}>
+          {netWorth.map(({ nw, label }, idx) => (
+            <SelectBox
+              key={idx}
+              icon="chevron"
+              value={nw}
+              state={signupInfo?.netWorth}
+              handleClick={() => handleSubmit(nw)}
+            >
+              {label}
+            </SelectBox>
+          ))}
+        </Box>
+      </Container>
+    </Box>
+  );
+}

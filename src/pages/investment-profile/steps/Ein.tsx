@@ -1,82 +1,58 @@
-import { forwardRef, useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import InputMask from 'react-input-mask';
-import { Input, Text, Box } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef } from './index';
-import { StepFormContext } from './index';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
+import { Title2 } from '../../../components/text';
+import type { StepPropsT } from '../index';
+import { InvestmentProfileContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const Ein = forwardRef<DivRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Ein:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   const [einNumber, setEinNumber] = useState('');
-  const [error, setError] = useState(false);
-  const form = useContext(StepFormContext);
+  const form = useContext(InvestmentProfileContext);
 
   const onSubmit = useCallback(() => {
-    if (!einNumber.includes('_') && einNumber.length !== 0) {
-      form.dispatch({
-        type: 'update-form',
-        payload: { step9: { einNumber } },
-      });
-      nextStep();
-    } else {
-      setError(true);
-    }
+    form.dispatch?.({ step4: { einNumber } });
+    nextStep();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [einNumber]);
 
   useEffect(() => {
     const formState = form.formState;
 
-    setEinNumber(formState?.step9?.einNumber || '');
+    setEinNumber(formState?.step4?.einNumber || '');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(
-    () =>
-      form.dispatch({
-        type: 'update-form',
-        payload: { step9: { einNumber } },
-      }),
-    [einNumber], // eslint-disable-line react-hooks/exhaustive-deps
-  );
-
   return (
-    <div ref={ref}>
-      <Container>
-        <SlideContainer>
-          <Box w="100%">
-            <BackBtn handleClick={prevStep} />
-            <Title1 mt={8} mb={2} textAlign="left">
-              What’s your EIN?
-            </Title1>
-            <Text fontSize="md" textAlign="left">
-              Lorem ipsum dolor sir amet
-            </Text>
-            <Input
-              as={InputMask}
-              placeholder="XX-XXXXXXX"
-              className={error ? 'mask_input shake_animation' : 'mask_input'}
-              name="ein"
-              mask="99-9999999"
-              value={einNumber}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                setEinNumber(e.target.value);
-                setError(false);
-              }}
-            />
-            <Text mt={2} color="red">
-              {error ? 'Please enter a valid EIN number' : ''}
-            </Text>
-          </Box>
-          <SubmitBtn onClick={onSubmit} label="Continue" />
-        </SlideContainer>
-      </Container>
-    </div>
+    <Container>
+      <SlideContainer>
+        <Box w="100%">
+          <BackBtn handleClick={prevStep} />
+          <Title2 mt={8} mb={2} textAlign="left">
+            What’s your EIN?
+          </Title2>
+          <Text fontSize="md" textAlign="left">
+            Lorem ipsum dolor sir amet
+          </Text>
+          <Input
+            as={InputMask}
+            className='mask_input'
+            name="ein"
+            mask="99-9999999"
+            placeholder="XX-XXXXXXX"
+            value={einNumber}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              setEinNumber(e.target.value);
+            }}
+          />
+        </Box>
+        <SubmitBtn
+          onClick={onSubmit}
+          label="Continue"
+          disabled={einNumber.includes('_') || einNumber.length < 9}
+        />
+      </SlideContainer>
+    </Container>
   );
-});
+}

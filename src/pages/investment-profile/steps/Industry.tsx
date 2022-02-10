@@ -1,36 +1,30 @@
-import { forwardRef, useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Input, Text, Box } from '@chakra-ui/react';
+import { Box, Input, Text } from '@chakra-ui/react';
 
-import { BackBtn, Container, SubmitBtn, SlideContainer } from '../../../components';
+import { BackBtn, Container, SlideContainer, SubmitBtn } from '../../../components';
 import { Title1 } from '../../../components/text';
-import type { FormRef } from './index';
-import { StepFormContext } from './index';
+import type { StepPropsT } from '../index';
+import { InvestmentProfileContext } from '../index';
 
-type stepProps = {
-  nextStep: () => void;
-  prevStep: () => void;
-};
-
-export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: stepProps, ref) => {
+export const Industry:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   const { handleSubmit, setValue, register } = useForm();
-  const form = useContext(StepFormContext);
+  const form = useContext(InvestmentProfileContext);
 
   const onSubmit = useCallback((data) => {
-    form.dispatch({
-      type: 'update-form',
-      payload: { step10: data },
-    });
+    form.dispatch?.({ step10: data });
     nextStep();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const formState = form.formState;
 
     setValue('industry', formState?.step10?.industry || '');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Container>
         <SlideContainer>
           <Box w="100%">
@@ -42,17 +36,15 @@ export const Industry = forwardRef<FormRef, stepProps>(({ nextStep, prevStep }: 
               Lorem ipsum dolor sir amet
             </Text>
             <Input
-              name="industry"
-              ref={register({ required: true })}
+              {...register('industry', { required: true })}
               type="text"
               placeholder="Industry"
               h={12}
-              mt={8}
-            />
+              mt={8} />
           </Box>
           <SubmitBtn label="Continue" />
         </SlideContainer>
       </Container>
     </form>
   );
-});
+}

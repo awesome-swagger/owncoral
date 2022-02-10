@@ -1,6 +1,5 @@
 /* eslint-disable import/no-duplicates */
 import type { ElementType, FC, ReactNode } from 'react';
-import type React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Box, Flex, Icon, useColorModeValue } from '@chakra-ui/react';
 
@@ -48,7 +47,7 @@ export const Option = ({
       pos="relative"
       borderRadius={borderRadius ? 'full' : ''}
       alignItems="center"
-      textStyle="BodyText2"
+      textStyle="Body2"
       onClick={onClick}
       className={className}
     >

@@ -1,10 +1,8 @@
-import React, { Fragment, lazy, Suspense, useState, useEffect } from 'react';
+import React, { Fragment, lazy, Suspense, useReducer, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, useLocation } from 'react-router-dom';
 import type { UserProfileT } from './shared-fullstack/types';
-import { IntercomProvider, useIntercom } from 'react-use-intercom';
 import { ChakraProvider } from '@chakra-ui/react';
-
 import { Global } from '@emotion/react';
 
 import AppRootStyle from './AppRootStyle';
@@ -13,9 +11,26 @@ import {
   LogPageViews,
   MapBox,
   MyErrorHandler,
-  PropertyCard,
+  NavBar,
   ProtectedRoute,
+  SwitchWrapper,
 } from './components';
+import {
+  AcademyUrl,
+  ComingSoonUrl,
+  DraftsUrl,
+  InvestmentProfileUrl,
+  ListingsUrl,
+  MapBoxUrl,
+  MarketUrl,
+  NewsfeedUrl,
+  PortfolioUrl,
+  ProfileUrl,
+} from './lib/uriConstants';
+import { InvestmentProfileProvider } from './pages/investment-profile';
+import { AuthRouteArray } from './pages/login';
+import type { SignupReducerT } from './pages/signup/signupContext';
+import { EMPTY_SIGNUP, SignupContext, signupReducer } from './pages/signup/signupContext';
 import AppTheme from './theme';
 import {
   Headline,
@@ -26,22 +41,16 @@ import {
   XXLargeTitle,
 } from './theme/textStyles';
 import { UserContext } from './userContext';
-
-const Login = lazy(() => import('./pages/login'));
-const ForgotCheckEmail = lazy(() => import('./pages/login/ForgotCheckEmail'));
-const ForgotPassword = lazy(() => import('./pages/login/ForgotPassword'));
-const NewPassword = lazy(() => import('./pages/login/NewPassword'));
-
+const AuthPages = lazy(() => import('./pages/login'));
 const Academy = lazy(() => import('./pages/academy'));
+const Newsfeed = lazy(() => import('./pages/newsfeed'));
 const Drafts = lazy(() => import('./pages/drafts'));
 const Listings = lazy(() => import('./pages/listings'));
 const Market = lazy(() => import('./pages/market'));
 const Portfolio = lazy(() => import('./pages/portfolio'));
 const Profile = lazy(() => import('./pages/profile'));
-const Property = lazy(() => import('./pages/opportunity'));
-const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile/steps'));
+const InvestmentProfileFlow = lazy(() => import('./pages/investment-profile'));
 const SignupFlow = lazy(() => import('./pages/signup'));
-const OpportunityDetail = lazy(() => import('./pages/opportunity/detail'));
 
 const ComingSoon = lazy(() => import('./pages/coming-soon'));
 const Error404 = lazy(() => import('./pages/error404'));
@@ -54,113 +63,91 @@ const headerStyles = {
   h5: Title2,
   h6: Headline,
 };
+
 function App() {
   const [user, setUser] = useState<UserProfileT | null>(null);
-
-  const splashScreen = document.getElementById('splash-screen');
-  if (splashScreen && !splashScreen.hasAttribute('hidden')) {
-    splashScreen.setAttribute('hidden', 'true');
-  }
+  const [signupInfo, dispatch] = useReducer<SignupReducerT>(signupReducer, EMPTY_SIGNUP);
 
   const isProd = import.meta.env.SNOWPACK_PUBLIC_CORAL_ENV === 'production';
-  const intercomAppId = import.meta.env.SNOWPACK_PUBLIC_INTERCOM_APP_ID;
+
+  const NavbarWrap = () => {
+    const location = useLocation(); // Can only useLocation in child components
+    return user && !location.pathname.startsWith('/signup') ? <NavBar /> : null;
+  };
+
+  const splashScreen = document.querySelector('.splash-screen');
+  splashScreen?.classList.add('hidden');
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback} onError={MyErrorHandler}>
       <UserContext.Provider value={[user, setUser]}>
         <ChakraProvider theme={AppTheme}>
-          <IntercomProvider appId={intercomAppId}>
-            <Global styles={[AppRootStyle, headerStyles]} />
-            {/* <DebugPanel /> */}
-            {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-            <Suspense fallback={<Fragment />}>
-              <Router>
-                <LogPageViews>
-                  <Switch>
-                    {/* Note: server handles not-logged-in redirection for the SPA bundle */}
-                    {authRoutes}
+          <Global styles={[AppRootStyle, headerStyles]} />
+          {/* <DebugPanel /> */}
+          {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+          <Suspense fallback={<Fragment />}>
+            <Router>
+              <LogPageViews>
+                <NavbarWrap />
+                <SwitchWrapper>
+                  {/* Note: server handles not-logged-in redirection for the SPA bundle */}
+                  <Route exact path={AuthRouteArray.map(({ route }) => route)}>
+                    <AuthPages />
+                  </Route>
 
-                    <Route path="/listings">
-                      <Listings />
-                    </Route>
+                  {/* TODO: show listings only for signed in users */}
+                  <ProtectedRoute path={ListingsUrl}>
+                    <Listings />
+                  </ProtectedRoute>
 
-                    <ProtectedRoute path="/market">
-                      <Market />
-                    </ProtectedRoute>
+                  <ProtectedRoute path={MarketUrl}>
+                    <Market />
+                  </ProtectedRoute>
 
-                    <ProtectedRoute exact path="/">
-                      <Redirect to="/portfolio" />
-                    </ProtectedRoute>
+                  <ProtectedRoute exact path="/">
+                    <Redirect push to={ListingsUrl} />
+                  </ProtectedRoute>
 
-                    <ProtectedRoute path="/portfolio" component={Portfolio} />
+                  <ProtectedRoute path={PortfolioUrl} component={Portfolio} />
 
-                    <ProtectedRoute exact path="/property/:address" component={Property} />
+                  <ProtectedRoute path={ProfileUrl}>
+                    <Profile />
+                  </ProtectedRoute>
 
-                    <ProtectedRoute path="/profile">
-                      <Profile />
-                    </ProtectedRoute>
+                  <ProtectedRoute path={ComingSoonUrl} component={ComingSoon} />
 
-                    <ProtectedRoute path="/coming-soon" component={ComingSoon} />
+                  <ProtectedRoute path={AcademyUrl} component={Academy} />
 
-                    <ProtectedRoute path="/academy" component={Academy} />
+                  <ProtectedRoute path={NewsfeedUrl} component={Newsfeed} />
 
-                    {!isProd && (
-                      <Fragment>
-                        <Route path="/signup">
-                          <SignupFlow />
-                        </Route>
+                  <Route path="/signup">
+                    <SignupContext.Provider value={{ signupInfo, dispatch }}>
+                      <SignupFlow />
+                    </SignupContext.Provider>
+                  </Route>
 
-                        <Route path="/investment-profile">
-                          <InvestmentProfileFlow />
-                        </Route>
+                  {!isProd && [
+                    <Route path={InvestmentProfileUrl} key={InvestmentProfileUrl}>
+                      <InvestmentProfileProvider>
+                        <InvestmentProfileFlow />
+                      </InvestmentProfileProvider>
+                    </Route>,
 
-                        <ProtectedRoute path="/drafts" component={Drafts} />
+                    <ProtectedRoute path={DraftsUrl} key={DraftsUrl} component={Drafts} />,
 
-                        <ProtectedRoute exact path="/property-card" component={PropertyCard} />
+                    <ProtectedRoute exact path={MapBoxUrl} key={MapBoxUrl} component={MapBox} />,
+                  ]}
 
-                        <ProtectedRoute
-                          exact
-                          path="/opportunities/detail"
-                          component={OpportunityDetail}
-                        />
-
-                        <ProtectedRoute exact path="/map-box" component={MapBox} />
-                      </Fragment>
-                    )}
-
-                    {/* <Route exact path="/documents" component={Docs} /> */}
-
-                    <ProtectedRoute path="*" component={Error404} />
-                  </Switch>
-                </LogPageViews>
-              </Router>
-            </Suspense>
-          </IntercomProvider>
+                  <Route path="*" component={Error404} />
+                </SwitchWrapper>
+              </LogPageViews>
+            </Router>
+          </Suspense>
         </ChakraProvider>
       </UserContext.Provider>
     </ErrorBoundary>
   );
 }
-
-// Note: we're not using a <Fragment> here, because the <Switch> component
-// which contains this block does not work with Fragments
-const authRoutes = [
-  <Route exact path="/login" key="/login">
-    <Login />
-  </Route>,
-  <Route exact path="/forgot" key="/forgot">
-    <ForgotPassword />
-  </Route>,
-  <Route exact path="/forgot-check-email" key="/forgot-check-email">
-    <ForgotCheckEmail />
-  </Route>,
-  <Route exact path="/new-password/:resetToken" key="/new-password/:resetToken">
-    <NewPassword />
-  </Route>,
-  <Route exact path="/welcome-to-coral/:resetToken" key="/welcome-to-coral/:resetToken">
-    <NewPassword isWelcome />
-  </Route>,
-];
 
 // eslint-disable-next-line import/no-default-export
 export default App;

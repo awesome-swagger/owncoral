@@ -1,60 +1,57 @@
-import React, { forwardRef, useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
+
 import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { DivRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
-type IncomeT = {
-  value: string;
-};
-
-const householdIncomes: IncomeT[] = [
-  { value: 'Less than $200,000' },
-  { value: 'Between $200,000 and $300,000' },
-  { value: 'Between $1M and $5M' },
-  { value: 'Between $5M and $10 million' },
-  { value: 'Greater than $10 million' },
+const householdIncomes: { income: number; label: string }[] = [
+  { income: 70e3, label: 'Less than $200,000' },
+  { income: 230e3, label: 'Between $200,000 and $300,000' },
+  { income: 400e3, label: 'Between $300,000 and $500,000' },
+  { income: 700e3, label: 'Over $500,000' },
 ];
 
-export const HouseholdIncome = forwardRef<DivRef, StepPropsT>(
-  ({ nextStep, prevStep }: StepPropsT, ref) => {
-    const form = useContext(StepFormContext);
-    const formStep = form?.formState?.step9;
+export const HouseholdIncome:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const { signupInfo, dispatch } = useContext(SignupContext);
 
-    const handleSubmit = useCallback(
-      (value) => {
-        form.dispatch({
-          type: 'update-form',
-          payload: { step9: value },
-        });
-        nextStep();
-      },
-      [form, nextStep],
-    );
+  const handleSubmit = async (income: number) => {
+    dispatch?.({
+      incomeAnnual: income,
+    });
 
-    return (
-      <Container ref={ref} layerStyle="noSelect">
-        <BackBtn handleClick={prevStep} />
-        <ProgressBar total={7} value={5} />
-        <Title1 mt={8} mb={2} textAlign="left">
-          What is your current household income?
-        </Title1>
-        <Text fontSize="md">
-          We need to know you better in order to comply with SEC regulations.
-        </Text>
-        <Box my={8}>
-          {householdIncomes.map(({ value }, idx) => (
-            <SelectBox
-              key={idx}
-              value={value}
-              state={formStep}
-              handleClick={() => handleSubmit(value)}
-              icon="chevron"
-            />
-          ))}
-        </Box>
-      </Container>
-    );
-  },
-);
+    nextStep(); // optimistically updates, ignoring failures
+    await fetchWrap('/api/update-signup-info', {
+      method: 'POST',
+      body: JSON.stringify(signupInfo),
+    });
+  };
+
+  return (
+    <Container layerStyle="noSelect">
+      <BackBtn handleClick={prevStep} />
+      <ProgressBar total={7} value={5} />
+      <Title2 mt={8} mb={6} textAlign="left">
+        What is your household income?
+      </Title2>
+      <Text textStyle="Body1">
+        We need to know you better in order to comply with SEC regulations.
+      </Text>
+      <Box mt={8}>
+        {householdIncomes.map(({ income, label }, idx) => (
+          <SelectBox
+            key={idx}
+            value={income}
+            state={signupInfo?.incomeAnnual}
+            icon="chevron"
+            handleClick={() => handleSubmit(income)}
+          >
+            {label}
+          </SelectBox>
+        ))}
+      </Box>
+    </Container>
+  );
+}

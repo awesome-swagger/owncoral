@@ -25,5 +25,6 @@ export const formatFinancialSI = (n: number): string => {
   return (n / Math.pow(10, unitIdx * 3)).toFixed(nExtra) + FINANCIAL_UNIT_SUFFIX[unitIdx];
 };
 
+// TODO: Take currency symbol as arg so negative numbers are -$123, not $-123
 /** Rounds off cents, formats according to locale */
 export const formatFinancial = (n: number): string => Math.round(n).toLocaleString();

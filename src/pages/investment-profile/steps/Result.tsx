@@ -1,28 +1,28 @@
-import { forwardRef, useContext } from 'react';
+import React, { useContext } from 'react';
+import { FiCheck } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Center, Icon, Text } from '@chakra-ui/react';
+import { transparentize } from '@chakra-ui/theme-tools';
 
 import { BackBtn, FlexContainer, SlideContainer, SubmitBtn } from '../../../components';
 import { Title1 } from '../../../components/text';
-import type { DivRef } from './index';
-import { StepFormContext } from './index';
+import { InvestmentProfileUrl } from '../../../lib/uriConstants';
+import theme from '../../../theme';
+import type { StepPropsT } from '../index';
+import { InvestmentProfileContext } from '../index';
 
-type stepProps = {
-  prevStep: () => void;
-};
-
-export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, ref) => {
-  const form = useContext(StepFormContext);
+export const Result:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
+  const form = useContext(InvestmentProfileContext);
   const history = useHistory();
 
   return (
-    <FlexContainer ref={ref}>
+    <FlexContainer>
       <SlideContainer>
         <Box w="100%">
           <BackBtn
             handleClick={() => {
               if (form.formState?.step5 === 'Individual') {
-                history.push('/investment-profile/invest');
+                history.push(InvestmentProfileUrl);
               } else {
                 prevStep();
               }
@@ -30,7 +30,9 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
           />
         </Box>
         <Box my={6} w="100%">
-          <Box mx="auto" bg="gray.300" h={40} w={40} borderRadius="50%" />
+          <Center mx="auto" h={16} w={16} borderRadius="3xl" bgColor={transparentize('green.200', 0.2)(theme)}>
+            <Icon as={FiCheck} color="green.500" h={6} w={6} />
+          </Center>
           <Title1 mt={8} textAlign="center">
             Congratulations! Your profile is now complete
           </Title1>
@@ -38,8 +40,8 @@ export const Result = forwardRef<DivRef, stepProps>(({ prevStep }: stepProps, re
             You are ready to start investing in Coral.
           </Text>
         </Box>
-        <SubmitBtn onClick={() => history.push('/listings')} label="Continue watching properties" />
+        <SubmitBtn onClick={() => nextStep()} label="Continue watching properties" />
       </SlideContainer>
     </FlexContainer>
   );
-});
+}

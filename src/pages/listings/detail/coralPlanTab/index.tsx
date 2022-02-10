@@ -3,8 +3,8 @@ import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types
 import { Box, Divider, VStack } from '@chakra-ui/react';
 
 import { Financing } from './financing';
-import { Upgrades } from './upgrades';
 import { RentalIncome } from './rentalIncome';
+import { Upgrades } from './upgrades';
 
 type CoralPlanTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;

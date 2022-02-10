@@ -15,5 +15,9 @@ export const PropertyLocation = ({ propertyDetail }: PropertyLocationPropsT) => 
       <Box h={6} />
     </Box>
     {propertyDetail.description && <Text>{propertyDetail.description}</Text>}
+
+    {/* <Button colorScheme="secondary" variant="outline" my={4} w="100%"> */}
+    {/*  Learn more about location */}
+    {/* </Button> */}
   </Box>
 );

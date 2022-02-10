@@ -1,7 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
-import { Box, Center, Divider, HStack, Spinner, Text, useToast } from '@chakra-ui/react';
-import { format as formatDate, parseISO } from 'date-fns';
+import { Box, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
+import { parseISO } from 'date-fns';
 
 import { Card } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
@@ -10,6 +10,7 @@ import { DEFAULT_ERROR_TOAST } from '../../../../../../lib/errorToastOptions';
 import { formatFinancial } from '../../../../../../lib/financialFormatter';
 import { useQuery } from '../../../../../../lib/useQuery';
 import { UserContext } from '../../../../../../userContext';
+import { formatUTCDateMMMyyyy } from '../../../../lib';
 import { InvestmentReturn } from '../../investmentReturn';
 
 type FinanceTabPropsT = {
@@ -19,7 +20,7 @@ type FinanceTabPropsT = {
 const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPropsT) => {
   const query = useQuery();
   const propertyUriFragment = query.get('property');
-  const legalEntityId = query.get('entity');
+  const legalPersonId = query.get('entity');
 
   const propertyId: string | null =
     propertyUriFragmentToId !== null && propertyUriFragment !== null
@@ -33,13 +34,13 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
 
   useEffect(() => {
     (async () => {
-      if (propertyId === null || legalEntityId === null) {
+      if (propertyId === null || legalPersonId === null) {
         return;
       }
 
       const requestOptions = {
         propertyId,
-        legalEntityId,
+        legalPersonId,
       };
       if (user?.isAdmin) {
         Object.assign(requestOptions, { impersonatedUserId: adminSelectedUser || currentUserId });
@@ -77,7 +78,7 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
     currentUserId,
     propertyUriFragmentToId,
     propertyUriFragment,
-    legalEntityId,
+    legalPersonId,
     propertyId,
     toast,
     user,
@@ -93,7 +94,7 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
             value={'$' + formatFinancial(investment.lastDistributionTotal)}
             description={
               investment.lastDistributionMonth
-                ? formatDate(investment.lastDistributionMonth, 'MMM yyyy')
+                ? formatUTCDateMMMyyyy(investment.lastDistributionMonth)
                 : ''
             }
           />

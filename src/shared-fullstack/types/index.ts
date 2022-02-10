@@ -2,6 +2,8 @@
 export type {
   AddressT,
   AdminPanelUserInfoT,
+  InvestmentGoalT,
+  InvestmentTypeT,
   JsonT,
   ListingsMutateInterestRequestParamsT,
   ListingsPropertyDetailT,
@@ -14,6 +16,10 @@ export type {
   PortfolioPropertyDetailT,
   PropertyStatusT,
   RenovationItemT,
+  SessionPrivateStrictT,
+  SignupInfoT,
   SourcesUsesT,
+  UserPrivateStrictT,
   UserProfileT,
+  WaitlistRequestT,
 } from '../validators';

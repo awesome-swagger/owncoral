@@ -1,114 +1,96 @@
-import React, { forwardRef, useCallback, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Box, FormLabel, Input, Text, useColorModeValue } from '@chakra-ui/react';
 import { transparentize } from '@chakra-ui/theme-tools';
-import theme from '../../../theme';
-
 import { BackBtn, Container, ProgressBar, SlideContainer, SubmitBtn } from '../../../components';
-import { Title1 } from '../../../components/text';
-import type { FormRef, StepPropsT } from '../index';
-import { StepFormContext } from '../index';
+import { Overline, Title2 } from '../../../components/text';
+import { fetchWrap } from '../../../lib/api';
+import theme from '../../../theme';
+import type { StepPropsT } from '../index';
+import { SignupContext } from '../signupContext';
 
-export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: StepPropsT, ref) => {
+type WorkFormUpdateT = { jobTitle: string; employerName: string; linkedinProfile: string };
+
+export const Work: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   const { handleSubmit, register, watch, setValue } = useForm();
-  const form = useContext(StepFormContext);
-  const formStep = form.formState?.step9;
+  const { signupInfo, dispatch } = useContext(SignupContext);
 
-  const currentRole = watch('currentRole');
-  const currentEmployer = watch('currentEmployer');
-  const linkedInProfile = watch('linkedInProfile');
+  const jobTitle = watch('jobTitle');
+  const employerName = watch('employerName');
+  const linkedinProfile = watch('linkedinProfile');
 
-  const placeholderColor = useColorModeValue('dark.50', transparentize('#000000', 0.24)(theme));
+  const placeholderColor = useColorModeValue('dark.50', transparentize('white', 0.24)(theme));
 
-  const onSubmit = useCallback(
-    (data) => {
-      form.dispatch({ type: 'update-form', payload: { step9: data } });
-      nextStep();
-    },
-    [form, nextStep],
-  );
+  const onSubmit = () => {
 
-  const handleChange = useCallback(
-    (data) => {
-      form.dispatch({ type: 'update-form', payload: { step9: data } });
-    },
-    [form],
-  );
+  };
 
+  // Run only once, to populate form from context
   useEffect(() => {
-    setValue('currentRole', formStep?.currentRole);
-    setValue('currentEmployer', formStep?.currentEmployer);
-    setValue('linkedInProfile', formStep?.linkedInProfile);
+    setValue('jobTitle', signupInfo?.jobTitle);
+    setValue('employerName', signupInfo?.employerName);
+    setValue('linkedinProfile', signupInfo?.linkedinProfile);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (linkedInProfile?.includes('linkedin.com/in/')) {
-      let startIndex = linkedInProfile.indexOf('linkedin.com/in/') + 16;
-      let endIndex = linkedInProfile.length;
-      let linkedInUserName = linkedInProfile.slice(startIndex, endIndex).replaceAll('/', '');
-      setValue('linkedInProfile', linkedInUserName);
+    if (linkedinProfile?.includes('linkedin.com/in/')) {
+      let startIndex = linkedinProfile.indexOf('linkedin.com/in/') + 16;
+      let endIndex = linkedinProfile.length;
+      let linkedInUserName = linkedinProfile.slice(startIndex, endIndex).replaceAll('/', '');
+      setValue('linkedinProfile', linkedInUserName);
     }
-  }, [linkedInProfile]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [linkedinProfile]);
 
   return (
-    <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={onSubmit}>
       <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
         <SlideContainer>
           <Box w="100%" mb={8}>
             <BackBtn handleClick={prevStep} />
             <ProgressBar total={7} value={6} />
-            <Title1 mt={8} mb={2} textAlign="left">
+            <Title2 mt={8} mb={6} textAlign="left">
               What do you do for work?
-            </Title1>
+            </Title2>
 
             <FormLabel mt={8}>
-              <Text layerStyle="labelColor">CURRENT ROLE OR TITLE</Text>
+              <Overline mb={1}>CURRENT ROLE OR TITLE</Overline>
               <Input
-                placeholder="Your current Role or Title"
-                name="currentRole"
-                ref={register}
+                placeholder="Your current role or title"
+                {...register('jobTitle')}
                 h={12}
                 mt={1}
                 variant="filled"
-                onChange={handleSubmit(handleChange)}
-                disabled={linkedInProfile}
               />
             </FormLabel>
             <FormLabel mt={8}>
-              <Text layerStyle="labelColor">CURRENT EMPLOYER</Text>
+              <Overline mb={1}>CURRENT EMPLOYER</Overline>
               <Input
                 placeholder="Your current employer"
-                name="currentEmployer"
-                ref={register}
+                {...register('employerName')}
                 h={12}
                 mt={1}
                 variant="filled"
-                onChange={handleSubmit(handleChange)}
-                disabled={linkedInProfile}
               />
             </FormLabel>
             <Text textAlign="center" layerStyle="labelColor" my={8}>
               Or share
             </Text>
             <FormLabel mt={8}>
-              <Text layerStyle="labelColor">YOUR LINKEDIN PROFILE</Text>
+              <Overline mb={1}>YOUR LINKEDIN PROFILE</Overline>
               <Box pos="relative">
                 <Input
-                  // placeholder="linkedIn.com/in/yourprofilename"
-                  name="linkedInProfile"
-                  ref={register}
+                  {...register('linkedinProfile')}
                   h={12}
                   mt={1}
-                  pl="8.3rem"
                   variant="filled"
-                  onChange={handleSubmit(handleChange)}
-                  disabled={currentRole || currentEmployer}
+                  pl="8.3rem"
                 />
                 <Text fontWeight={400} top={0} left={4} lineHeight="3.5rem" pos="absolute">
                   linkedIn.com/in/
                 </Text>
-                {!linkedInProfile && (
+                {!linkedinProfile && (
                   <Text
                     color={placeholderColor}
                     fontWeight={400}
@@ -116,19 +98,21 @@ export const Work = forwardRef<FormRef, StepPropsT>(({ nextStep, prevStep }: Ste
                     right={4}
                     lineHeight="3.5rem"
                     pos="absolute"
+                    userSelect="none"
                   >
                     yourprofilename
                   </Text>
-                )}
-              </Box>
-            </FormLabel>
-          </Box>
+                )
+                }
+              </Box >
+            </FormLabel >
+          </Box >
           <SubmitBtn
             label="Continue"
-            disabled={(!currentRole || !currentEmployer) && !linkedInProfile}
+            disabled={!linkedinProfile && (!jobTitle || !employerName)}
           />
-        </SlideContainer>
-      </Container>
-    </form>
+        </SlideContainer >
+      </Container >
+    </form >
   );
-});
+}

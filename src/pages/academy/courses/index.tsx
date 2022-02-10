@@ -13,13 +13,13 @@ export const Courses: React.FC = () => {
     history.push(coursesUrl + '/' + titleToUrlFragment(route));
 
   return (
-    <Flex flexWrap="wrap" justifyContent="space-around" mt={4}>
-      {Data.map(({ name, lesson, image, isComingSoon }, index) => (
+    <Flex flexWrap="wrap" justifyContent="space-around" mt={12}>
+      {Data.map(({ name, lessons, image, isComingSoon }, index) => (
         <CourseCard
           key={index}
           image={image}
           name={name}
-          lesson={lesson}
+          lesson={lessons.length}
           handleClick={handleClick}
           isComingSoon={isComingSoon === undefined ? true : isComingSoon}
         />

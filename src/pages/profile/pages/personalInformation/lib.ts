@@ -2,7 +2,6 @@ import type { Dispatch, SetStateAction } from 'react';
 import type { UserProfileT } from '../../../../shared-fullstack/types';
 import type { useToast } from '@chakra-ui/react';
 
-import type { SplitDateT } from '../../../../components/daypicker';
 import { fetchWrap } from '../../../../lib/api';
 import { DEFAULT_ERROR_TOAST, DEFAULT_SUCCESS_TOAST } from '../../../../lib/errorToastOptions';
 
@@ -63,12 +62,4 @@ export const updateCurrentUser = async (
       });
       break;
   }
-};
-
-export const splitDate = (date: Date): SplitDateT => {
-  return {
-    year: date.getUTCFullYear().toString(),
-    month: date.getUTCMonth().toString(),
-    day: date.getUTCDate().toString(),
-  };
 };

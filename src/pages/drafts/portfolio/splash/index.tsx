@@ -1,11 +1,11 @@
-import { useEffect, useCallback, Fragment } from 'react';
+import { useEffect, useCallback } from 'react';
 import { FaChartLine } from 'react-icons/fa';
 import { FiChevronLeft, FiInfo, FiMap } from 'react-icons/fi';
 import { Box, Button, Center, Flex, Icon } from '@chakra-ui/react';
-import { useEmblaCarousel } from 'embla-carousel/react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import MapImg from '../../../../assets/Frame269.png';
-import { Container, PropertyCard, NavBar } from '../../../../components';
+import { Container } from '../../../../components';
 import { Title2 } from '../../../../components/text';
 import { DummyData } from '../../../../lib/portfolioData';
 
@@ -31,48 +31,42 @@ const PortfolioSplash = () => {
 
   const slides = [
     <NeighborhoodMap key="Neighborhood Map" />,
-    <PropertyCard data={PortfolioData} key="Property Card 1" />,
-    <PropertyCard data={PortfolioData} key="Property Card 2" />,
   ];
 
   return (
-    <Fragment>
-      <NavBar />
-
-      <Container
-        minH="0"
-        h={{ base: `calc(${window.innerHeight}px - 8rem)`, md: '725px' }}
-        px="0"
-        pb="0"
-      >
-        <Flex justifyContent="space-between" alignItems="center" px={6} mb={6}>
-          <Button colorScheme="white" w={10} h={10}>
-            <Icon as={FiChevronLeft} />
-          </Button>
-          <Title2>{PortfolioData?.stateRegion}</Title2>
-          <Button colorScheme="white" w={10} h={10}>
-            <Icon as={FiInfo} />
-          </Button>
-        </Flex>
-        <Box className="embla">
-          <Box className="embla__viewport" ref={viewportRef}>
-            <Box
-              className="embla__container"
-              pb={6}
-              h={{ base: `calc(${window.innerHeight}px - 14rem)`, md: 'calc(725px - 7rem)' }}
-            >
-              {slides.map((val, ind) => (
-                <Box className="embla__slide" minW="85%" p="0" mx={2} key={ind}>
-                  <Box className="embla__slide__inner" h="100%">
-                    {val}
-                  </Box>
+    <Container
+      minH="0"
+      h={{ base: `calc(${window.innerHeight}px - 8rem)`, md: '725px' }}
+      px="0"
+      pb="0"
+    >
+      <Flex justifyContent="space-between" alignItems="center" px={6} mb={6}>
+        <Button colorScheme="white" w={10} h={10}>
+          <Icon as={FiChevronLeft} />
+        </Button>
+        <Title2>{PortfolioData?.stateRegion}</Title2>
+        <Button colorScheme="white" w={10} h={10}>
+          <Icon as={FiInfo} />
+        </Button>
+      </Flex>
+      <Box className="embla">
+        <Box className="embla__viewport" ref={viewportRef}>
+          <Box
+            className="embla__container"
+            pb={6}
+            h={{ base: `calc(${window.innerHeight}px - 14rem)`, md: 'calc(725px - 7rem)' }}
+          >
+            {slides.map((val, ind) => (
+              <Box className="embla__slide" minW="85%" p="0" mx={2} key={ind}>
+                <Box className="embla__slide__inner" h="100%">
+                  {val}
                 </Box>
-              ))}
-            </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
-      </Container>
-    </Fragment>
+      </Box>
+    </Container>
   );
 };
 

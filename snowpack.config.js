@@ -2,7 +2,7 @@
 const httpProxy = require('http-proxy');
 let proxy = null;
 try {
-  proxy = httpProxy.createProxyServer({target: 'http://localhost:3001'});
+  proxy = httpProxy.createProxyServer({ target: 'http://localhost:3001' });
 } catch (e) {
   console.trace(e);
 }
