@@ -52,10 +52,10 @@ function SignupFlow() {
       setHeight(window.innerHeight);
       setWidth(window.innerWidth);
     })
-  },[])
+  },[]);
 
   return (
-    <Box pos="absolute" height={height} width={width} overflow="hidden">
+    <Box pos="absolute" minH={height} width={width} overflowY="auto" overflowX="hidden">
       <AnimatePresence initial={false} custom={slideDirection} >
       <Switch location={location} key={location.key}>
         <Route exact path={signupRootUrl}>
