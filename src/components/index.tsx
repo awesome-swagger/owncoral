@@ -27,3 +27,4 @@ export { SlideContainer } from './slideContainer';
 export { SubmitBtn } from './submitBtn';
 export { SwitchWrapper } from './switchWrapper';
 export { TimeoutModal } from './timeoutModal';
+export { SlideMotionBox } from './motionBox' 

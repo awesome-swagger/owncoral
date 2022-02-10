@@ -120,7 +120,7 @@ export const Investor: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
     <div>
       {available === 'Available' ? (
         <Box layerStyle="noSelect">
-          <Container d="flex" flexDir="column" justifyContent="space-between">
+          <Container d="flex" flexDir="column" justifyContent="space-between" isFooter={false}>
             <SlideContainer>
               <Box w="100%">
                 <BackBtn handleClick={prevStep} />

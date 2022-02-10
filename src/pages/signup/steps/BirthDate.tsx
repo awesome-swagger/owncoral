@@ -55,7 +55,7 @@ export const BirthDate:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   }, []);
 
   return (
-    <Container layerStyle="noSelect">
+    <Container layerStyle="noSelect" isFooter={false}>
       <SlideContainer>
         <Box w="100%">
           <BackBtn handleClick={prevStep} />

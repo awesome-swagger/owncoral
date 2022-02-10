@@ -10,9 +10,10 @@ import { TimeoutModal } from '../timeoutModal';
 
 type ContainerPropsT = {
   showColorModeButton?: boolean;
+  isFooter?: boolean;
 };
 export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
-  ({ showColorModeButton = true, children, ...otherProps }, ref) => {
+  ({ showColorModeButton = true,isFooter = true, children, ...otherProps }, ref) => {
     const showMobileTag = useBreakpointValue({ base: false, md: true });
     const { footerHeight } = useNavHeight();
     const bgColor = useColorModeValue(lightContainerBg, darkContainerBg);
@@ -28,7 +29,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
           w={{ base: '100%', md: '80vw' }}
           maxW={{ base: 'unset', md: theme.breakpoints.sm }}
           minH={{
-            base: `calc(${window.innerHeight}px - ${footerHeight} - env(safe-area-inset-top))`,
+            base: isFooter ? `calc(${window.innerHeight}px - ${footerHeight} - env(safe-area-inset-top))` : `${window.innerHeight}px`,
             md: window.innerHeight * 0.8,
           }}
           borderRadius={{ base: 'none', md: '2xl' }}
@@ -58,7 +59,7 @@ export const Container = forwardRef<BoxProps & ContainerPropsT, 'div'>(
   },
 );
 
-export const FlexContainer = forwardRef<FlexProps, 'div'>((props, ref) => (
+export const FlexContainer = forwardRef<FlexProps & ContainerPropsT, 'div'>((props, ref) => (
   <Container
     display="flex"
     alignItems="center"

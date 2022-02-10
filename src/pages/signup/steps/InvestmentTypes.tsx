@@ -51,6 +51,7 @@ export const InvestmentTypes:React.FC<StepPropsT> = ({ nextStep, prevStep }) => 
       flexDir="column"
       justifyContent="space-between"
       layerStyle="noSelect"
+      isFooter={false}
     >
       <SlideContainer>
         <Box w="100%">

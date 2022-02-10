@@ -279,6 +279,7 @@ export const Residency:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
       d="flex"
       flexDir="column"
       justifyContent="space-between"
+      isFooter={false}
     >
       <Box>
         <BackBtn handleClick={prevStep} />

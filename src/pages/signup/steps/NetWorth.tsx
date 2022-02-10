@@ -29,7 +29,7 @@ export const NetWorth:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
 
   return (
     <Box layerStyle="noSelect">
-      <Container>
+      <Container isFooter={false}>
         <BackBtn handleClick={prevStep} />
         <ProgressBar total={7} value={4} />
         <Title2 mt={8} mb={6} textAlign="left">

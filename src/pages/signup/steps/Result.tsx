@@ -53,7 +53,7 @@ export const Result:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   };
 
   return (
-    <FlexContainer layerStyle="noSelect">
+    <FlexContainer layerStyle="noSelect" isFooter={false}>
       <SlideContainer>
         <Box w="100%">
           <BackBtn handleClick={prevStep} />

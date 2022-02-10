@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
 import { BackBtn, Container, ProgressBar, SelectBox } from '../../../components';
@@ -28,7 +28,7 @@ export const AllocateToRealState:React.FC<StepPropsT> = ({ nextStep, prevStep })
   };
 
   return (
-    <Container layerStyle="noSelect">
+    <Container layerStyle="noSelect" isFooter={false}>
       <BackBtn handleClick={prevStep} />
       <ProgressBar total={7} value={7} />
       <Title2 mt={8} mb={6} textAlign="left">

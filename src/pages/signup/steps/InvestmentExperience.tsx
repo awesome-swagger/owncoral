@@ -35,7 +35,7 @@ export const InvestmentExperience:React.FC<StepPropsT> = ({ nextStep, prevStep }
 
   return (
     <Box layerStyle="noSelect">
-      <Container>
+      <Container isFooter={false}>
         <BackBtn handleClick={prevStep} />
         <ProgressBar total={7} value={1} />
         <Title2 mt={8} mb={6} textAlign="left">

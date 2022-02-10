@@ -9,7 +9,7 @@ export const ResultAlmostThere = () => {
   const [user] = useContext(UserContext);
 
   return (
-    <FlexContainer layerStyle="noSelect">
+    <FlexContainer layerStyle="noSelect" isFooter={false}>
       <Title2 my={4} textAlign="center">
         Thanks{user?.legalFirst ? ' ' + user.legalFirst : ''}, we&apos;re almost there!
       </Title2>

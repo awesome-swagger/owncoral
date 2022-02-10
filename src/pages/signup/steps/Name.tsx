@@ -35,7 +35,7 @@ export const Name:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
+      <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect" isFooter={false}>
         <SlideContainer>
           <Box w="100%">
             <BackBtn handleClick={prevStep} />

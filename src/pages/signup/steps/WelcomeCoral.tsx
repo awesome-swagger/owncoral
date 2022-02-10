@@ -18,7 +18,7 @@ export const WelcomeCoral:React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
     .join(' ');
 
   return (
-    <FlexContainer layerStyle="noSelect">
+    <FlexContainer layerStyle="noSelect" isFooter={false}>
       <SlideContainer>
         <Box w="100%">
           <BackBtn handleClick={prevStep} />

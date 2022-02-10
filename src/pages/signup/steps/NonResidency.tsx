@@ -3,13 +3,15 @@ import InputMask from 'react-input-mask';
 import { FiAlertTriangle } from 'react-icons/fi';
 import { Redirect, useHistory } from 'react-router-dom';
 import { Box, Center, Button, Icon, Input, Text, useColorModeValue } from '@chakra-ui/react';
-import { BackBtn, Container, FlexContainer } from '../../../components';
+import { BackBtn, Container, FlexContainer, SlideMotionBox } from '../../../components';
 import { Title2 } from '../../../components/text';
 import type { StepPropsT } from '../index';
 import { SignupContext } from '../signupContext';
+import { AnimatePresence } from 'framer-motion';
 
 export const NonResidency: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
   const [available, setAvailable] = useState<boolean | null>(null);
+  const [direction,setDirection] = useState<number>(1);
   const { signupInfo } = useContext(SignupContext);
 
   // Previous steps incomplete, go back to beginning
@@ -22,10 +24,22 @@ export const NonResidency: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
     return <Redirect push to="/signup" />;
   }
 
+  const handleBack = ()=> {
+    setAvailable(null);
+    setDirection(-1)
+  }
+
+  const handleNext=( availablity: boolean )=>{
+    setAvailable(availablity);
+    setDirection(1)
+  }
+
   return (
     <Box layerStyle="noSelect">
+      <AnimatePresence initial={true} custom={direction} >
       {available === null ? (
-        <Container>
+         <SlideMotionBox key={1} custom={direction}>
+        <Container isFooter={false}>
           <BackBtn handleClick={prevStep} />
           <Title2 mt={8} mb={6} textAlign="left">
             Do you have a U.S tax ID?
@@ -41,7 +55,7 @@ export const NonResidency: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
             textAlign="left"
             cursor="pointer"
             layerStyle="selectionBox"
-            onClick={() => setAvailable(true)}
+            onClick={() => handleNext(true)}
           >
             Yes
           </Box>
@@ -53,20 +67,25 @@ export const NonResidency: React.FC<StepPropsT> = ({ nextStep, prevStep }) => {
             textAlign="left"
             cursor="pointer"
             layerStyle="selectionBox"
-            onClick={() => setAvailable(false)}
+            onClick={() => handleNext(false)}
           >
             No
           </Box>
         </Container>
+        </SlideMotionBox>
       ) : available ? (
-        <TaxID
-          nextStep={nextStep}
-          prevStep={prevStep}
-          goBack={() => setAvailable(null)}
-        />
+        <SlideMotionBox key={2} custom={direction}>
+          <TaxID
+            nextStep={nextStep}
+            prevStep={prevStep}
+            goBack={() => handleBack()}
+          />
+        </SlideMotionBox>
       ) : (
-        <NotAvailable goBack={() => setAvailable(null)} />
-      )}
+        <SlideMotionBox key={3} custom={direction}>
+          <NotAvailable goBack={() => handleBack()} />
+        </SlideMotionBox>
+      )}</AnimatePresence>
     </Box>
   );
 };
@@ -91,7 +110,7 @@ const TaxID = ({
   };
 
   return (
-    <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect">
+    <Container d="flex" flexDir="column" justifyContent="space-between" layerStyle="noSelect" isFooter={false}>
       <Box>
         <BackBtn handleClick={goBack} />
         <Title2 mt={8} mb={6} textAlign="left">
@@ -125,7 +144,7 @@ const NotAvailable = ({ goBack }: { goBack: React.Dispatch<any> }) => {
   const iconWarningBgColor = useColorModeValue('notificationTint.warning', 'whiteAlpha.100');
 
   return (
-    <FlexContainer layerStyle="noSelect">
+    <FlexContainer layerStyle="noSelect" isFooter={false}>
       <BackBtn handleClick={goBack} pos="absolute" top={6} left={6} />
       <Center borderRadius="xl" h={16} minW={16} bg={iconWarningBgColor}>
         <Icon
