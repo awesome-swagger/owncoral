@@ -14,8 +14,19 @@ const baseStyleTab = (props: Dict) => {
   };
 };
 
+const baseStyleTabList = (props: Dict) => {
+  return {
+    overflowX: 'auto',
+    overflowY: 'hidden',
+    msOverflowStyle: 'none',
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': { display: 'none' },
+  };
+};
+
 const baseStyle = (props: Dict) => ({
   tab: baseStyleTab(props),
+  tablist: baseStyleTabList(props),
 });
 
 export const Tabs = {

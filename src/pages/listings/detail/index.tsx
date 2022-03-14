@@ -321,7 +321,7 @@ export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
       <TabList mx={6}>
         {tabData.map(({ name }, idx) => (
           <Tab py={6} px={2} key={idx}>
-            <Headline>{name}</Headline>
+            <Headline whiteSpace="nowrap">{name}</Headline>
           </Tab>
         ))}
       </TabList>
