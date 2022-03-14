@@ -64,9 +64,11 @@ const CoralPlanTab = lazy(() => import('./coralPlanTab'));
 const DetailsTab = lazy(() => import('./detailsTab'));
 const DisclosureTab = lazy(() => import('./disclosureTab'));
 const PerformanceTab = lazy(() => import('./performanceTab'));
+const NewsTab = lazy(() => import('./newsTab'));
 
 const tabData = [
   { name: 'Performance', Component: PerformanceTab },
+  { name: 'News', Component: NewsTab },
   { name: 'Property details', Component: DetailsTab },
   { name: 'Coral plan', Component: CoralPlanTab },
   { name: 'Disclosure', Component: DisclosureTab },
@@ -81,10 +83,10 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
   const history = useHistory();
   const toast = useToast();
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
-  const toggleDrawer = useCallback(() => setDrawerIsOpen(!drawerIsOpen), [
-    drawerIsOpen,
-    setDrawerIsOpen,
-  ]);
+  const toggleDrawer = useCallback(
+    () => setDrawerIsOpen(!drawerIsOpen),
+    [drawerIsOpen, setDrawerIsOpen],
+  );
   const { footerHeight } = useNavHeight();
 
   const listingUriFragment = query.get('property');
