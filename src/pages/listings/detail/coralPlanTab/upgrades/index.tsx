@@ -28,7 +28,7 @@ export const Upgrades = ({ listingsDetail }: RenovationPropsT) => {
   const [renovationData, setRenovationData] = useState(
     listingsDetail?.renovationsJsonb as RenovationItemT[],
   );
-  const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false });
+  const [viewportRef, emblaApi] = useEmblaCarousel({ skipSnaps: false, loop: true });
   const textRef: React.MutableRefObject<any> = useRef();
 
   useEffect(() => {
