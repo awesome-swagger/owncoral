@@ -5,7 +5,7 @@ import { GiStairs } from 'react-icons/gi';
 import type { ListingsPropertyDetailT } from '../../../../shared-fullstack/types';
 import { Box, Flex, HStack, Icon } from '@chakra-ui/react';
 
-import { Card } from '../../../../components';
+import { Card, IconBackground } from '../../../../components';
 import { Headline, Subhead, Title2 } from '../../../../components/text';
 import { formatFinancial, formatFinancialSI } from '../../../../lib/financialFormatter';
 
@@ -19,7 +19,9 @@ export const PropertyDetail = ({ listingsDetail }: listingsDetailPropsT) => {
       {listingsDetail.numStories !== null && (
         <Flex mb={6}>
           <Box mr={4}>
-            <Icon as={GiStairs} verticalAlign="text-top" />
+            <IconBackground>
+              <Icon as={GiStairs} verticalAlign="text-top" />
+            </IconBackground>
           </Box>
           <Box>
             <Headline>
@@ -31,7 +33,9 @@ export const PropertyDetail = ({ listingsDetail }: listingsDetailPropsT) => {
       {listingsDetail.numUnits !== null && (
         <Flex mb={6} minH={10}>
           <Box mr={4}>
-            <Icon as={FaRegBuilding} verticalAlign="text-top" />
+            <IconBackground>
+              <Icon as={FaRegBuilding} verticalAlign="text-top" />
+            </IconBackground>
           </Box>
           <Box>
             <Headline>
@@ -48,7 +52,9 @@ export const PropertyDetail = ({ listingsDetail }: listingsDetailPropsT) => {
       )}
       <Flex mb={6} minH={10}>
         <Box mr={4}>
-          <Icon as={FiSquare} verticalAlign="text-top" />
+          <IconBackground>
+            <Icon as={FiSquare} verticalAlign="text-top" />
+          </IconBackground>
         </Box>
         <Box>
           {listingsDetail.areaLiving !== null && (
