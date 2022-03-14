@@ -1,9 +1,13 @@
 import { Box, Center } from '@chakra-ui/react';
-
+import type { PortfolioPropertyDetailT } from '../../../../../../shared-fullstack/types';
 import { Headline } from '../../../../../../components/text';
 import { DummyData } from '../../../../../../lib/portfolioData';
 
-const NewsTab = () => {
+type DetailsTabPropsT = {
+  propertyDetail: PortfolioPropertyDetailT;
+};
+
+const NewsTab = ({ propertyDetail }: DetailsTabPropsT) => {
   // const dummyData = DummyData;
   return (
     <Box>

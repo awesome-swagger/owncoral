@@ -1,9 +1,9 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import type { PortfolioPropertyDetailInvestmentT } from '../../../../../../shared-fullstack/types';
-import { Box, Center, Divider, HStack, Spinner, useToast } from '@chakra-ui/react';
+import { Box, Center, Divider, HStack,VStack, Spinner, useToast } from '@chakra-ui/react';
 import { parseISO } from 'date-fns';
 
-import { Card } from '../../../../../../components';
+import { Card, EquityCard, MonthCard } from '../../../../../../components';
 import { Title2 } from '../../../../../../components/text';
 import { fetchWrap } from '../../../../../../lib/api';
 import { DEFAULT_ERROR_TOAST } from '../../../../../../lib/errorToastOptions';
@@ -12,6 +12,42 @@ import { useQuery } from '../../../../../../lib/useQuery';
 import { UserContext } from '../../../../../../userContext';
 import { formatUTCDateMMMyyyy } from '../../../../lib';
 import { InvestmentReturn } from '../../investmentReturn';
+
+const EqityData = [
+  {
+    index: 1,
+    label: 'Preferred Equity 1',
+    startDate: '06/01/2022',
+    endDate: '06/01/2022',
+    dividend: 9025,
+    days: 183,
+    totalAmount: 150000,
+  },
+  {
+    index: 2,
+    label: 'Preferred Equity 2',
+    startDate: '01/06/2022',
+    endDate: '01/06/2022',
+    dividend: 4011,
+    days: 122,
+    totalAmount: 100000,
+  },
+  {
+    index: 3,
+    label: 'Preferred Equity 3',
+    startDate: '01/06/2022',
+    endDate: '01/06/2022',
+    dividend: 2005,
+    days: 61,
+    totalAmount: 100000,
+  },
+  {
+    label: 'Total Preferred Equity',
+    checkIcon: true,
+    dividend: 15041,
+    totalAmount: 350000,
+  },
+];
 
 type FinanceTabPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
@@ -125,6 +161,13 @@ const FinanceTab = ({ propertyUriFragmentToId, adminSelectedUser }: FinanceTabPr
         and they may be significantly different than that shown here. See Disclosures tab for
         additional information.&copy;
       </Text> */}
+      <Title2 my={4}>Preferred Equity Terms</Title2>
+      <VStack gap={4}>
+        {EqityData.map((value, index) => (
+          <EquityCard key={index} {...value} />
+        ))}
+        <MonthCard year={2022} />
+      </VStack>
     </Box>
   ) : (
     <Center h="100%" w="100%">
