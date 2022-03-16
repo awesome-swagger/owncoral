@@ -15,7 +15,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
-import { Card, EquityCard, IconBackground, MonthCard } from '../../../../components';
+import { Card, EquityCard, IconBackground } from '../../../../components';
 import { Caption1, Headline, Title2 } from '../../../../components/text';
 import { formatFinancial } from '../../../../lib/financialFormatter';
 import { COURSE_CASH_FLOW_URL } from '../../../../lib/courseDetailData';
@@ -25,39 +25,24 @@ type PerformanceTabPropsT = {
   listingsDetail: ListingsPropertyDetailT;
 };
 
-const EqityData = [
+const EquityData = [
   {
     index: 1,
     label: 'Preferred Equity 1',
-    startDate: '06/01/2022',
-    endDate: '06/01/2022',
+    startDate: '01/01/2022',
+    endDate: '05/01/2022',
     dividend: 9025,
-    days: 183,
     totalAmount: 150000,
+    fixedRate: '8%',
   },
   {
     index: 2,
     label: 'Preferred Equity 2',
-    startDate: '01/06/2022',
-    endDate: '01/06/2022',
+    startDate: '07/06/2022',
+    endDate: '11/26/2022',
     dividend: 4011,
-    days: 122,
     totalAmount: 100000,
-  },
-  {
-    index: 3,
-    label: 'Preferred Equity 3',
-    startDate: '01/06/2022',
-    endDate: '01/06/2022',
-    dividend: 2005,
-    days: 61,
-    totalAmount: 100000,
-  },
-  {
-    label: 'Total Preferred Equity',
-    checkIcon: true,
-    dividend: 15041,
-    totalAmount: 350000,
+    fixedRate: '12%',
   },
 ];
 
@@ -67,17 +52,12 @@ const PerformanceTab = ({ listingsDetail }: PerformanceTabPropsT) => {
 
   const [love1Header, love1Text] = listingsDetail.whyLove1.split('\n\n', 2);
   const [love2Header, love2Text] = listingsDetail.whyLove2.split('\n\n', 2);
-  
+
   return (
     <Fragment>
       <Box px={6}>
         <Title2 my={4}>Preferred Equity Terms</Title2>
-        <VStack gap={4}>
-          {EqityData.map((value, index) => (
-            <EquityCard key={index} {...value} />
-          ))}
-          <MonthCard year={2022} />
-        </VStack>
+        <EquityCard data={EquityData} />
         <Title2 mt={4} mb={2}>
           Hypothetical Investment
         </Title2>
