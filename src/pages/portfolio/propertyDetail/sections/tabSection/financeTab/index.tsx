@@ -33,7 +33,6 @@ const EquityData = [
     fixedRate: '12%',
   },
 ];
-];
 
 type FinanceTabPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
