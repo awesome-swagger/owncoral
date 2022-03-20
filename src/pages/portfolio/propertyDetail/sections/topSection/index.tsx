@@ -157,7 +157,7 @@ export const TopSection = ({
                 % ownership
               </Text>
             </Flex>
-            <Divider mt={4} />
+            <Box mt={4} />
           </Fragment>
         )
       ) : (

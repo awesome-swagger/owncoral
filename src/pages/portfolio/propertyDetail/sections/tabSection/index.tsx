@@ -29,11 +29,11 @@ type TabSectionPropsT = {
   propertyUriFragmentToId: { [uriFragment: string]: string } | null;
   adminSelectedUser: string | null;
 };
-export const TabSection = ({
+export const TabSection: React.FC<TabSectionPropsT> = ({
   propertyDetail,
   propertyUriFragmentToId,
   adminSelectedUser,
-}: TabSectionPropsT) => {
+}) => {
   const fallback = (
     <Center>
       <Spinner />
@@ -42,7 +42,7 @@ export const TabSection = ({
 
   return (
     <Box>
-      <Tabs isLazy>
+      <Tabs variant="bordered" isLazy>
         <TabList>
           <Tab px={2} py={6}>
             <Text textStyle="Headline">Performance</Text>

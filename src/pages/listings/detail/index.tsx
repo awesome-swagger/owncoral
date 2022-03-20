@@ -168,7 +168,7 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
                 borderRadius="full"
                 boxShadow="xs"
                 layerStyle="iconColor"
-                variant='outline'
+                variant="outline"
                 zIndex={2}
               >
                 Docs
@@ -196,9 +196,8 @@ const ListingDetail = ({ listingUriFragmentToId }: ListingDetailPropsT) => {
             pt={6}
             pb={{ base: 10, md: 0 }}
           >
-            <Box px={6}>
+            <Box mb={6} px={6}>
               <TopSection listingsDetail={listingsDetail} />
-              <Divider mt={6} />
             </Box>
             <TabSection listingsDetail={listingsDetail} />
             <Divider />
@@ -315,9 +314,8 @@ export const TabSection = ({ listingsDetail }: TabSectionPropsT) => {
       <Spinner />
     </Center>
   );
-
   return (
-    <Tabs isLazy>
+    <Tabs variant="bordered" isLazy>
       <TabList mx={6}>
         {tabData.map(({ name }, idx) => (
           <Tab py={6} px={2} key={idx}>
