@@ -7,14 +7,15 @@
 import type { ColorModeOptions } from '@chakra-ui/react';
 import { extendTheme } from '@chakra-ui/react';
 
-import { Accordion } from './components/accordion';
 // Component style overrides
+import { Accordion } from './components/accordion';
 import { Button } from './components/button';
 import { Heading } from './components/heading';
 import { Input } from './components/input';
 import { Link } from './components/link';
 import { Tabs } from './components/tabs';
 import { Text } from './components/text';
+import { Tooltip } from './components/tooltip';
 // Foundational style overrides
 import { colors } from './foundations/colors';
 import { layerStyles } from './layerStyles';
@@ -47,6 +48,7 @@ const overrides = {
     Link,
     Tabs,
     Text,
+    Tooltip,
   },
 };
 
